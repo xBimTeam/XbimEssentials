@@ -10,29 +10,39 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcDocumentInformationRelationship : IIfcDocumentInformationRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 3)]
 		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument 
 		{ 
 			get
 			{
 				return RelatingDocument;
 			} 
+			set
+			{
+				RelatingDocument = value as IfcDocumentInformation;
+				
+			}
 		}
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 4)]
+		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments 
 		{ 
 			get
 			{
-				foreach (var member in RelatedDocuments)
-				{
-					yield return member as IIfcDocumentInformation;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcDocumentInformation, IIfcDocumentInformation>(RelatedDocuments);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformationRelationship.RelationshipType 
 		{ 
 			get
@@ -40,24 +50,47 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!RelationshipType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(RelationshipType.Value);
 			} 
+			set
+			{
+				RelationshipType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _name;
+
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return null;
-			    //##
+				return _name;
 			} 
+			set
+			{
+				SetValue(v => _name = v, _name, value, "Name", -1);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformationRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -2);
+				
+			}
 		}
 	//## Custom code
 	//##

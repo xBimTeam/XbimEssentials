@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialClassificationRelationship : IIfcMaterialClassificationRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialClassificationRelationship), 1)]
 		IEnumerable<IIfcClassificationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications 
 		{ 
 			get
@@ -31,11 +34,11 @@ namespace Xbim.Ifc2x3.MaterialResource
                         if (items.Any())
                         {
                             foreach (var item in items)
-                                yield return new Interfaces.Conversions.IfcClassificationReferenceTransient(item);
+                                yield return item;
                         }
                         else
                         {
-                            yield return new Interfaces.Conversions.IfcClassificationNotationTransient(notation);
+                            yield return notation;
                         }
 			            continue;
 			        }
@@ -46,12 +49,19 @@ namespace Xbim.Ifc2x3.MaterialResource
 				//##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialClassificationRelationship), 2)]
 		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial 
 		{ 
 			get
 			{
 				return ClassifiedMaterial;
 			} 
+			set
+			{
+				ClassifiedMaterial = value as IfcMaterial;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,31 +26,49 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMetric : IIfcConstraint
 	{
-		IfcBenchmarkEnum @Benchmark { get; }
-		IfcLabel? @ValueSource { get; }
-		IIfcMetricValueSelect @DataValue { get; }
-		IIfcReference @ReferencePath { get; }
+		IfcBenchmarkEnum @Benchmark { get;  set; }
+		IfcLabel? @ValueSource { get;  set; }
+		IIfcMetricValueSelect @DataValue { get;  set; }
+		IIfcReference @ReferencePath { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IfcMetric", 776)]
+	[ExpressType("IfcMetric", 80)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IEqualityComparer<@IfcMetric>, IEquatable<@IfcMetric>
+	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IContainsEntityReferences, IEquatable<@IfcMetric>
 	{
 		#region IIfcMetric explicit implementation
-		IfcBenchmarkEnum IIfcMetric.Benchmark { get { return @Benchmark; } }	
-		IfcLabel? IIfcMetric.ValueSource { get { return @ValueSource; } }	
-		IIfcMetricValueSelect IIfcMetric.DataValue { get { return @DataValue; } }	
-		IIfcReference IIfcMetric.ReferencePath { get { return @ReferencePath; } }	
+		IfcBenchmarkEnum IIfcMetric.Benchmark { 
+ 
+			get { return @Benchmark; } 
+			set { Benchmark = value;}
+		}	
+		IfcLabel? IIfcMetric.ValueSource { 
+ 
+			get { return @ValueSource; } 
+			set { ValueSource = value;}
+		}	
+		IIfcMetricValueSelect IIfcMetric.DataValue { 
+ 
+ 
+			get { return @DataValue; } 
+			set { DataValue = value as IfcMetricValueSelect;}
+		}	
+		IIfcReference IIfcMetric.ReferencePath { 
+ 
+ 
+			get { return @ReferencePath; } 
+			set { ReferencePath = value as IfcReference;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMetric(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMetric(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -64,13 +84,13 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _benchmark;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _benchmark;
+				Activate();
 				return _benchmark;
 			} 
 			set
 			{
-				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark");
+				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -78,13 +98,13 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _valueSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _valueSource;
+				Activate();
 				return _valueSource;
 			} 
 			set
 			{
-				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource");
+				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -92,13 +112,16 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dataValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dataValue;
+				Activate();
 				return _dataValue;
 			} 
 			set
 			{
-				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _dataValue = v, _dataValue, value,  "DataValue", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -106,13 +129,15 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referencePath;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referencePath;
+				Activate();
 				return _referencePath;
 			} 
 			set
 			{
-				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _referencePath = v, _referencePath, value,  "ReferencePath", 11);
 			} 
 		}	
 		#endregion
@@ -120,9 +145,8 @@ namespace Xbim.Ifc4.ConstraintResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -151,11 +175,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -163,55 +182,20 @@ namespace Xbim.Ifc4.ConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMetric
-            var root = (@IfcMetric)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMetric left, @IfcMetric right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMetric left, @IfcMetric right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMetric x, @IfcMetric y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMetric obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@CreatingActor != null)
+					yield return @CreatingActor;
+				if (@ReferencePath != null)
+					yield return @ReferencePath;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,32 +10,56 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	public partial class @IfcTubeBundleType : IIfcTubeBundleType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTubeBundleType), 10)]
 		Ifc4.Interfaces.IfcTubeBundleTypeEnum IIfcTubeBundleType.PredefinedType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcTubeBundleTypeEnum.FINNED:
 						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.FINNED;
-					
 					case IfcTubeBundleTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.USERDEFINED;
-					
 					case IfcTubeBundleTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcTubeBundleTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTubeBundleTypeEnum.FINNED:
+						PredefinedType = IfcTubeBundleTypeEnum.FINNED;
+						return;
+					case Ifc4.Interfaces.IfcTubeBundleTypeEnum.USERDEFINED:
+						PredefinedType = IfcTubeBundleTypeEnum.USERDEFINED;
+						return;
+					case Ifc4.Interfaces.IfcTubeBundleTypeEnum.NOTDEFINED:
+						PredefinedType = IfcTubeBundleTypeEnum.NOTDEFINED;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

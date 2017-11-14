@@ -19,6 +19,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -28,12 +30,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAppliedValue : IPersistEntity, IfcObjectReferenceSelect
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcAppliedValueSelect @AppliedValue { get; }
-		IIfcMeasureWithUnit @UnitBasis { get; }
-		IIfcDateTimeSelect @ApplicableDate { get; }
-		IIfcDateTimeSelect @FixedUntilDate { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcAppliedValueSelect @AppliedValue { get;  set; }
+		IIfcMeasureWithUnit @UnitBasis { get;  set; }
+		IIfcDateTimeSelect @ApplicableDate { get;  set; }
+		IIfcDateTimeSelect @FixedUntilDate { get;  set; }
 		IEnumerable<IIfcReferencesValueDocument> @ValuesReferenced {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @ValueOfComponents {  get; }
 		IEnumerable<IIfcAppliedValueRelationship> @IsComponentIn {  get; }
@@ -43,85 +45,54 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.CostResource
 {
-	[IndexedClass]
 	[ExpressType("IfcAppliedValue", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAppliedValue : IPersistEntity, INotifyPropertyChanged, IIfcAppliedValue, IEqualityComparer<@IfcAppliedValue>, IEquatable<@IfcAppliedValue>
+	public abstract partial class @IfcAppliedValue : PersistEntity, IIfcAppliedValue, IEquatable<@IfcAppliedValue>
 	{
 		#region IIfcAppliedValue explicit implementation
-		IfcLabel? IIfcAppliedValue.Name { get { return @Name; } }	
-		IfcText? IIfcAppliedValue.Description { get { return @Description; } }	
-		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { get { return @AppliedValue; } }	
-		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { get { return @UnitBasis; } }	
-		IIfcDateTimeSelect IIfcAppliedValue.ApplicableDate { get { return @ApplicableDate; } }	
-		IIfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { get { return @FixedUntilDate; } }	
+		IfcLabel? IIfcAppliedValue.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		IfcText? IIfcAppliedValue.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { 
+ 
+ 
+			get { return @AppliedValue; } 
+			set { AppliedValue = value as IfcAppliedValueSelect;}
+		}	
+		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { 
+ 
+ 
+			get { return @UnitBasis; } 
+			set { UnitBasis = value as IfcMeasureWithUnit;}
+		}	
+		IIfcDateTimeSelect IIfcAppliedValue.ApplicableDate { 
+ 
+ 
+			get { return @ApplicableDate; } 
+			set { ApplicableDate = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { 
+ 
+ 
+			get { return @FixedUntilDate; } 
+			set { FixedUntilDate = value as IfcDateTimeSelect;}
+		}	
 		 
 		IEnumerable<IIfcReferencesValueDocument> IIfcAppliedValue.ValuesReferenced {  get { return @ValuesReferenced; } }
 		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.ValueOfComponents {  get { return @ValueOfComponents; } }
 		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.IsComponentIn {  get { return @IsComponentIn; } }
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAppliedValue(IModel model) 		{ 
-			Model = model; 
+		internal IfcAppliedValue(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -139,13 +110,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -153,13 +124,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -167,13 +138,16 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _appliedValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _appliedValue;
+				Activate();
 				return _appliedValue;
 			} 
 			set
 			{
-				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -181,13 +155,15 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unitBasis;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unitBasis;
+				Activate();
 				return _unitBasis;
 			} 
 			set
 			{
-				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -195,13 +171,15 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableDate;
+				Activate();
 				return _applicableDate;
 			} 
 			set
 			{
-				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -209,13 +187,15 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fixedUntilDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fixedUntilDate;
+				Activate();
 				return _fixedUntilDate;
 			} 
 			set
 			{
-				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _fixedUntilDate = v, _fixedUntilDate, value,  "FixedUntilDate", 6);
 			} 
 		}	
 		#endregion
@@ -238,7 +218,7 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAppliedValueRelationship>(e => (e.ComponentOfTotal as IfcAppliedValue) == this, "ComponentOfTotal", this);
+				return Model.Instances.Where<IfcAppliedValueRelationship>(e => Equals(e.ComponentOfTotal), "ComponentOfTotal", this);
 			} 
 		}
 		[InverseProperty("Components")]
@@ -252,58 +232,8 @@ namespace Xbim.Ifc2x3.CostResource
 		}
 		#endregion
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -329,12 +259,6 @@ namespace Xbim.Ifc2x3.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            EXISTS (ValueOfComponents);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -342,54 +266,6 @@ namespace Xbim.Ifc2x3.CostResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcAppliedValue
-            var root = (@IfcAppliedValue)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcAppliedValue left, @IfcAppliedValue right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcAppliedValue left, @IfcAppliedValue right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAppliedValue x, @IfcAppliedValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAppliedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

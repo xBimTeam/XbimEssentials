@@ -10,26 +10,43 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcDerivedProfileDef : IIfcDerivedProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedProfileDef), 3)]
 		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile 
 		{ 
 			get
 			{
 				return ParentProfile;
 			} 
+			set
+			{
+				ParentProfile = value as IfcProfileDef;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedProfileDef), 4)]
 		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator 
 		{ 
 			get
 			{
 				return Operator;
 			} 
+			set
+			{
+				Operator = value as GeometryResource.IfcCartesianTransformationOperator2D;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedProfileDef), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDerivedProfileDef.Label 
 		{ 
 			get
@@ -37,6 +54,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!Label.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Label.Value);
 			} 
+			set
+			{
+				Label = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -12,11 +12,13 @@
 
 #region Directives
 
+using QUT.Gppg;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Common.Exceptions;
 using Xbim.Common.Logging;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
@@ -29,133 +31,153 @@ namespace Xbim.IO.Step21
 {
     public class XbimP21Parser : P21Parser
     {
-        private readonly ILogger _logger = LoggerFactory.GetLogger();
+        protected readonly ILogger Logger = LoggerFactory.GetLogger();
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
-        private int _listNestLevel = -1;
-        private Part21Entity _currentInstance;
+        protected int ListNestLevel = -1;
+        protected Part21Entity CurrentInstance;
         public event CreateEntityEventHandler EntityCreate;
         private readonly Dictionary<long, IPersist> _entities;
-        private PropertyValue _propertyValue;
+        protected PropertyValue PropertyValue;
         private readonly List<DeferredReference> _deferredReferences;
         private readonly double _streamSize = -1;
-        private int _errorCount;
-        public static int MaxErrorCount = 100;
+        public static int MaxErrorCount = 200;
         private int _percentageParsed;
         private bool _deferListItems;
         public bool Cancel = false;
         private readonly List<int> _nestedIndex = new List<int>();
-        public int[] NestedIndex { get { return _listNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
-        private ExpressMetaData _metadata;
+        public int[] NestedIndex
+        {
+            get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; }
+        }
 
+        protected readonly ExpressMetaData Metadata;
 
-        public XbimP21Parser(Stream strm, ExpressMetaData metadata)
+        public XbimP21Parser(Stream strm, ExpressMetaData metadata, long streamSize)
             : base(strm)
         {
-            _metadata = metadata;
+            Metadata = metadata;
             var entityApproxCount = 5000;
-            if (strm.CanSeek)
+            if (streamSize > 0)
             {
-                _streamSize = strm.Length;
+                _streamSize = streamSize;
                 entityApproxCount = Convert.ToInt32(_streamSize/50); //average 50 bytes per entity.
             }
 
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount/2); //assume 50% deferred
-            _errorCount = 0;
+            ErrorCount = 0;
         }
 
-        public int ErrorCount
+        protected XbimP21Parser(ExpressMetaData metadata)
         {
-            get { return _errorCount; }
+            Metadata = metadata;
+            const int entityApproxCount = 5000;
+            _entities = new Dictionary<long, IPersist>(entityApproxCount);
+            _deferredReferences = new List<DeferredReference>(entityApproxCount/2); //assume 50% deferred
+            ErrorCount = 0;
+        }
+
+        public int ErrorCount { get; protected set; }
+
+        /// <summary>
+        /// Returns current position as [line, column] integer array. This is usefull when debuging misformatted files.
+        /// </summary>
+        public LexLocation CurrentPosition
+        {
+            get
+            {
+                return Scanner.yylloc;
+            }
         }
 
         internal override void SetErrorMessage()
         {
         }
 
-        internal override void CharacterError()
+        protected override void CharacterError()
+        {
+            Logger.WarnFormat("Error parsing IFC File, illegal character found");
+        }
+
+        protected override void BeginParse()
         {
         }
 
-        internal override void BeginParse()
-        {
-        }
-
-        internal override void EndParse()
+        protected override void EndParse()
         {
             foreach (var defRef in _deferredReferences)
             {
                 if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex))
-                    _logger.WarnFormat("Entity #{0,-5} is referenced but could not be instantiated",
-                                                      defRef.ReferenceId);
+                    Logger.WarnFormat("Entity #{0,-5} is referenced but could not be instantiated",
+                        defRef.ReferenceId);
             }
         }
 
-        internal override void BeginHeader()
+        protected override void BeginHeader()
         {
         }
 
-        internal override void EndHeader()
+        protected override void EndHeader()
         {
         }
 
-        internal override void BeginScope()
+        protected override void BeginScope()
         {
         }
 
-        internal override void EndScope()
+        protected override void EndScope()
         {
         }
 
-        internal override void EndSec()
+        protected override void EndSec()
         {
         }
 
-        internal override void BeginList()
+        protected override void BeginList()
         {
             var p21 = _processStack.Peek();
             if (p21.CurrentParamIndex == -1)
                 p21.CurrentParamIndex++; //first time in take the first argument
 
-            _listNestLevel++;
+            ListNestLevel++;
             //  Console.WriteLine("BeginList");
-            if (_listNestLevel < 2) return;
+            if (ListNestLevel < 2) return;
 
-            if (_listNestLevel -1 > _nestedIndex.Count)
+            if (ListNestLevel - 1 > _nestedIndex.Count)
                 _nestedIndex.Add(0);
             else
-                _nestedIndex[_listNestLevel - 2]++;
+                _nestedIndex[ListNestLevel - 2]++;
         }
 
-        internal override void EndList()
+        protected override void EndList()
         {
-            _listNestLevel--;
-            if (_listNestLevel == 0)
+            ListNestLevel--;
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
             //Console.WriteLine("EndList");
 
             //we are finished with the list
-            if (_listNestLevel <= 0) _nestedIndex.Clear();
+            if (ListNestLevel <= 0) _nestedIndex.Clear();
         }
 
-        internal override void BeginComplex()
+        protected override void BeginComplex()
         {
         }
 
-        internal override void EndComplex()
+        protected override void EndComplex()
         {
         }
 
-        internal override void NewEntity(string entityLabel)
+        protected override void NewEntity(string entityLabel)
         {
-            _currentInstance = new Part21Entity(entityLabel);
+            CurrentInstance = new Part21Entity(entityLabel);
             // Console.WriteLine(CurrentSemanticValue.strVal);
-            _processStack.Push(_currentInstance);
+            _processStack.Push(CurrentInstance);
             if (_streamSize == -1 || ProgressStatus == null) return;
 
             var sc = (Scanner) Scanner;
@@ -167,16 +189,21 @@ namespace Xbim.IO.Step21
             if (Cancel) YYAccept();
         }
 
-        internal override void SetType(string entityTypeName)
+        protected override void SetType(string entityTypeName)
         {
             if (InHeader)
             {
                 int[] reqParams;
-                _currentInstance = new Part21Entity(EntityCreate(entityTypeName, null, InHeader, out reqParams))
+                // instantiates an empty IPersist from the header information
+                var t = EntityCreate(entityTypeName, null, InHeader, out reqParams);
+                // then attaches it to a new Part21Entity, this will be processed later from the _processStack
+                // to debug value initialisation place a breakpoint on the Parse() function of 
+                // StepFileName, StepFileSchema or StepFileDescription classes.
+                CurrentInstance = new Part21Entity(t)
                 {
                     RequiredParameters = reqParams
                 };
-                if(_currentInstance != null) _processStack.Push(_currentInstance);
+                if (CurrentInstance != null) _processStack.Push(CurrentInstance);
             }
             else
             {
@@ -188,115 +215,129 @@ namespace Xbim.IO.Step21
             if (Cancel) YYAccept();
         }
 
-        internal override void EndEntity()
+        protected override void EndEntity()
         {
+            // Check if stack is empty to avoid exception
+            if (0 == _processStack.Count)
+            {
+                Logger.Error("Stack is empty");
+                return;
+            }
             var p21 = _processStack.Pop();
             //Debug.Assert(_processStack.Count == 0);
-            _currentInstance = null;
+            CurrentInstance = null;
             if (p21.Entity != null)
-                _entities.Add(p21.EntityLabel, p21.Entity);
-
-
+            {
+                try
+                {
+                    _entities.Add(p21.EntityLabel, p21.Entity);
+                }
+                catch (Exception ex)
+                {
+                    var msg = string.Format("Duplicate entity label: #{0}", p21.EntityLabel);
+                    Logger.Error(msg, ex);
+                }
+            }
             // Console.WriteLine("EndEntity - " + CurrentSemanticValue.strVal);
         }
 
-        internal override void EndHeaderEntity()
+        protected override void EndHeaderEntity()
         {
             _processStack.Pop();
 
-            _currentInstance = null;
+            CurrentInstance = null;
             // Console.WriteLine("EndHeaderEntity - " + CurrentSemanticValue.strVal);
         }
 
-        internal override void SetIntegerValue(string value)
+        protected override void SetIntegerValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.Integer);
+            PropertyValue.Init(value, StepParserType.Integer);
             SetEntityParameter(value);
         }
 
-        internal override void SetHexValue(string value)
+        protected override void SetHexValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.HexaDecimal);
+            PropertyValue.Init(value, StepParserType.HexaDecimal);
             SetEntityParameter(value);
         }
 
-        internal override void SetFloatValue(string value)
+        protected override void SetFloatValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.Real);
+            PropertyValue.Init(value, StepParserType.Real);
             SetEntityParameter(value);
         }
 
-        internal override void SetStringValue(string value)
+        protected override void SetStringValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.String);
+            PropertyValue.Init(value, StepParserType.String);
             SetEntityParameter(value);
         }
 
-        internal override void SetEnumValue(string value)
+        protected override void SetEnumValue(string value)
         {
-            _propertyValue.Init(value.Trim('.'), StepParserType.Enum);
+            PropertyValue.Init(value.Trim('.'), StepParserType.Enum);
             SetEntityParameter(value);
         }
 
-        internal override void SetBooleanValue(string value)
+        protected override void SetBooleanValue(string value)
         {
-            _propertyValue.Init(value, StepParserType.Boolean);
+            PropertyValue.Init(value, StepParserType.Boolean);
             SetEntityParameter(value);
         }
 
-        internal override void SetNonDefinedValue()
+        protected override void SetNonDefinedValue()
         {
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
 
-        internal override void SetOverrideValue()
+        protected override void SetOverrideValue()
         {
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
 
-        internal override void SetObjectValue(string value)
+        protected override void SetObjectValue(string value)
         {
             var refId = Convert.ToInt32(value.TrimStart('#'));
-            if (!TrySetObjectValue(_currentInstance.Entity, _currentInstance.CurrentParamIndex, refId, NestedIndex))
+            if (!TrySetObjectValue(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, refId, NestedIndex))
             {
-                _deferredReferences.Add(new DeferredReference(_currentInstance.CurrentParamIndex,
-                                                              _currentInstance.Entity, refId, NestedIndex));
-                if (_listNestLevel != 0) _deferListItems = true;
+                _deferredReferences.Add(new DeferredReference(CurrentInstance.CurrentParamIndex,
+                                                              CurrentInstance.Entity, refId, NestedIndex));
+                if (ListNestLevel != 0) _deferListItems = true;
             }
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
 
-        internal override void EndNestedType(string value)
+        protected override void EndNestedType(string value)
         {
             try
             {
-                _propertyValue.Init(_processStack.Pop().Entity);
-                _currentInstance = _processStack.Peek();
-                if (_currentInstance.Entity != null)
-                    _currentInstance.ParameterSetter(_currentInstance.CurrentParamIndex, _propertyValue, NestedIndex);
+                PropertyValue.Init(_processStack.Pop().Entity);
+                CurrentInstance = _processStack.Peek();
+                if (CurrentInstance.Entity != null)
+                    CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
             catch (Exception )
             {
-                if (_errorCount > MaxErrorCount)
-                    throw new Exception("Too many errors in file, parser execution terminated");
-                _errorCount++;
+                if (ErrorCount > MaxErrorCount)
+                    throw new XbimParserException("Too many errors in file, parser execution terminated");
+                ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    var expressType = _metadata.ExpressType(mainEntity.Entity);
-                    _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                    var expressType = Metadata.ExpressType(mainEntity.Entity);
+                    Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
                                                mainEntity.EntityLabel, mainEntity.Entity.GetType().Name.ToUpper(),
                                                mainEntity.CurrentParamIndex + 1,
                                                expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name,
@@ -304,25 +345,25 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    _logger.Error("Unhandled Parser error, in Parser.cs EndNestedType");
+                    Logger.Error("Unhandled Parser error, in Parser.cs EndNestedType");
                 }
             }
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
 
-        internal override void BeginNestedType(string value)
+        protected override void BeginNestedType(string value)
         {
             int[] reqProps;
             if (EntityCreate != null)
-                _currentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out reqProps))
+                CurrentInstance = new Part21Entity(EntityCreate(value, null, InHeader, out reqProps))
                 {
                     RequiredParameters = reqProps
                 };
-            _processStack.Push(_currentInstance);
+            _processStack.Push(CurrentInstance);
             if (Cancel) YYAccept();
         }
 
@@ -330,38 +371,51 @@ namespace Xbim.IO.Step21
         {
             try
             {
-                if (_currentInstance.Entity != null)
-                    _currentInstance.ParameterSetter(_currentInstance.CurrentParamIndex, _propertyValue, NestedIndex);
+                if (CurrentInstance.Entity != null)
+                    CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
             catch (Exception )
             {
-                if (_errorCount > MaxErrorCount)
-                    throw new Exception("Too many errors in file, parser execution terminated");
-                _errorCount++;
+                if (ErrorCount > MaxErrorCount)
+                    throw new XbimParserException("Too many errors in file, parser execution terminated");
+                ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    var expressType = _metadata.ExpressType(mainEntity.Entity);
+                    ExpressType expressType = null;
+                    if (Metadata != null)
+                        expressType = Metadata.ExpressType(mainEntity.Entity);
+                    if (expressType != null)
+                    {
+                        var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count
+                            ? "[UnknownProperty]"
+                            : expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
 
-                    var propertyName = mainEntity.CurrentParamIndex + 1 > expressType.Properties.Count ? "[UnknownProperty]" :
-                        expressType.Properties[mainEntity.CurrentParamIndex + 1].PropertyInfo.Name;
+                        Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
+                            mainEntity.EntityLabel,
+                            mainEntity.Entity.GetType().Name.ToUpper(),
+                            mainEntity.CurrentParamIndex + 1,
+                            propertyName,
+                            value);
+                    }
+                    else
+                    {
+                        Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
+                           mainEntity.EntityLabel,
+                           mainEntity.Entity.GetType().Name.ToUpper(),
+                           mainEntity.CurrentParamIndex + 1,                          
+                           value);
+                    }
 
-                    _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = {4}",
-                                               mainEntity.EntityLabel, 
-                                               mainEntity.Entity.GetType().Name.ToUpper(),
-                                               mainEntity.CurrentParamIndex + 1,
-                                               propertyName,
-                                               value);
-                   
                 }
                 else
                 {
-                    _logger.Error("Unhandled Parser error, in Parser.cs SetEntityParameter");
+                    Logger.Error("Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
             }
-            if (_listNestLevel == 0)
+            if (ListNestLevel == 0)
             {
-                _currentInstance.CurrentParamIndex++;
+                CurrentInstance.CurrentParamIndex++;
                 _deferListItems = false;
             }
         }
@@ -379,20 +433,20 @@ namespace Xbim.IO.Step21
                 IPersist refEntity;
                 if (_entities.TryGetValue(refId, out refEntity) && host != null)
                 {
-                    _propertyValue.Init(refEntity);
-                    (host).Parse(paramIndex, _propertyValue, listNextLevel);
+                    PropertyValue.Init(refEntity);
+                    (host).Parse(paramIndex, PropertyValue, listNextLevel);
                     return true;
                 }
             }
             catch (Exception )
             {
-                if (_errorCount > MaxErrorCount)
-                    throw new Exception("Too many errors in file, parser execution terminated");
-                _errorCount++;
-                var expressType = _metadata.ExpressType(host);
+                if (ErrorCount > MaxErrorCount)
+                    throw new XbimParserException("Too many errors in file, parser execution terminated");
+                ErrorCount++;
+                var expressType = Metadata.ExpressType(host);
                 var propertyName = paramIndex+1 > expressType.Properties.Count ? "[UnknownProperty]" :
                         expressType.Properties[paramIndex+1].PropertyInfo.Name;
-                _logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3}",
+                Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3}",
                                            refId, expressType.Type.Name.ToUpper(), paramIndex + 1,
                                            propertyName);
                 

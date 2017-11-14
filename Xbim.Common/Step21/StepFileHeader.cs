@@ -29,11 +29,11 @@ namespace Xbim.Common.Step21
     {
         private void MakeValid()
         {
-            if (_description.Count == 0)
-            {
-                _description.Add("ViewDefinition [CoordinationView]");
-                
-            }
+            //if (_description.Count == 0)
+            //{
+            //    _description.Add("ViewDefinition [CoordinationView]");
+
+            //}
             if (string.IsNullOrWhiteSpace(_implementationLevel))
             {
                 _implementationLevel = "2;1";
@@ -49,7 +49,7 @@ namespace Xbim.Common.Step21
         public StepFileDescription(string implementationLevel)
         {
             ImplementationLevel = implementationLevel;
-            Description.Add("ViewDefinition [CoordinationView]");
+            //Description.Add("ViewDefinition [CoordinationView]");
             Init();
         }
 

@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,28 +25,37 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionPointGeometry : IIfcConnectionGeometry
 	{
-		IIfcPointOrVertexPoint @PointOnRelatingElement { get; }
-		IIfcPointOrVertexPoint @PointOnRelatedElement { get; }
+		IIfcPointOrVertexPoint @PointOnRelatingElement { get;  set; }
+		IIfcPointOrVertexPoint @PointOnRelatedElement { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[IndexedClass]
-	[ExpressType("IfcConnectionPointGeometry", 520)]
+	[ExpressType("IfcConnectionPointGeometry", 71)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IEqualityComparer<@IfcConnectionPointGeometry>, IEquatable<@IfcConnectionPointGeometry>
+	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionPointGeometry>
 	{
 		#region IIfcConnectionPointGeometry explicit implementation
-		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { get { return @PointOnRelatingElement; } }	
-		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement { get { return @PointOnRelatedElement; } }	
+		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { 
+ 
+ 
+			get { return @PointOnRelatingElement; } 
+			set { PointOnRelatingElement = value as IfcPointOrVertexPoint;}
+		}	
+		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement { 
+ 
+ 
+			get { return @PointOnRelatedElement; } 
+			set { PointOnRelatedElement = value as IfcPointOrVertexPoint;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConnectionPointGeometry(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcConnectionPointGeometry(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +69,15 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointOnRelatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointOnRelatingElement;
+				Activate();
 				return _pointOnRelatingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _pointOnRelatingElement = v, _pointOnRelatingElement, value,  "PointOnRelatingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _pointOnRelatingElement = v, _pointOnRelatingElement, value,  "PointOnRelatingElement", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -72,13 +85,15 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointOnRelatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointOnRelatedElement;
+				Activate();
 				return _pointOnRelatedElement;
 			} 
 			set
 			{
-				SetValue( v =>  _pointOnRelatedElement = v, _pointOnRelatedElement, value,  "PointOnRelatedElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _pointOnRelatedElement = v, _pointOnRelatedElement, value,  "PointOnRelatedElement", 2);
 			} 
 		}	
 		#endregion
@@ -86,9 +101,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -102,11 +116,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -114,55 +123,20 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConnectionPointGeometry
-            var root = (@IfcConnectionPointGeometry)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConnectionPointGeometry left, @IfcConnectionPointGeometry right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConnectionPointGeometry left, @IfcConnectionPointGeometry right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionPointGeometry x, @IfcConnectionPointGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionPointGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PointOnRelatingElement != null)
+					yield return @PointOnRelatingElement;
+				if (@PointOnRelatedElement != null)
+					yield return @PointOnRelatedElement;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

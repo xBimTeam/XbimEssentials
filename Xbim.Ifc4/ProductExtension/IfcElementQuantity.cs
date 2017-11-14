@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,33 +28,39 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElementQuantity : IIfcQuantitySet
 	{
-		IfcLabel? @MethodOfMeasurement { get; }
-		IEnumerable<IIfcPhysicalQuantity> @Quantities { get; }
+		IfcLabel? @MethodOfMeasurement { get;  set; }
+		IItemSet<IIfcPhysicalQuantity> @Quantities { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcElementQuantity", 622)]
+	[ExpressType("IfcElementQuantity", 458)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementQuantity : IfcQuantitySet, IInstantiableEntity, IIfcElementQuantity, IEqualityComparer<@IfcElementQuantity>, IEquatable<@IfcElementQuantity>
+	public  partial class @IfcElementQuantity : IfcQuantitySet, IInstantiableEntity, IIfcElementQuantity, IContainsEntityReferences, IEquatable<@IfcElementQuantity>
 	{
 		#region IIfcElementQuantity explicit implementation
-		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { get { return @MethodOfMeasurement; } }	
-		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { get { return @Quantities; } }	
+		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { 
+ 
+			get { return @MethodOfMeasurement; } 
+			set { MethodOfMeasurement = value;}
+		}	
+		IItemSet<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { 
+			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @Quantities); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcElementQuantity(IModel model) : base(model) 		{ 
-			Model = model; 
-			_quantities = new ItemSet<IfcPhysicalQuantity>( this, 0 );
+		internal IfcElementQuantity(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_quantities = new ItemSet<IfcPhysicalQuantity>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _methodOfMeasurement;
-		private ItemSet<IfcPhysicalQuantity> _quantities;
+		private readonly ItemSet<IfcPhysicalQuantity> _quantities;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -61,22 +69,22 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _methodOfMeasurement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _methodOfMeasurement;
+				Activate();
 				return _methodOfMeasurement;
 			} 
 			set
 			{
-				SetValue( v =>  _methodOfMeasurement = v, _methodOfMeasurement, value,  "MethodOfMeasurement");
+				SetValue( v =>  _methodOfMeasurement = v, _methodOfMeasurement, value,  "MethodOfMeasurement", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
-		public ItemSet<IfcPhysicalQuantity> @Quantities 
+		public IItemSet<IfcPhysicalQuantity> @Quantities 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _quantities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _quantities;
+				Activate();
 				return _quantities;
 			} 
 		}	
@@ -85,9 +93,8 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -101,18 +108,11 @@ namespace Xbim.Ifc4.ProductExtension
 					_methodOfMeasurement = value.StringVal;
 					return;
 				case 5: 
-					if (_quantities == null) _quantities = new ItemSet<IfcPhysicalQuantity>( this );
 					_quantities.InternalAdd((IfcPhysicalQuantity)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*UniqueQuantityNames:	UniqueQuantityNames : IfcUniqueQuantityNames(Quantities);*/
 		}
 		#endregion
 
@@ -121,55 +121,20 @@ namespace Xbim.Ifc4.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcElementQuantity
-            var root = (@IfcElementQuantity)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcElementQuantity left, @IfcElementQuantity right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcElementQuantity left, @IfcElementQuantity right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElementQuantity x, @IfcElementQuantity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElementQuantity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @Quantities)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

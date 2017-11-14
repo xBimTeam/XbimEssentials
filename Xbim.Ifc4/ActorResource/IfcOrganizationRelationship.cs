@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ActorResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,34 +26,40 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOrganizationRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcOrganization @RelatingOrganization { get; }
-		IEnumerable<IIfcOrganization> @RelatedOrganizations { get; }
+		IIfcOrganization @RelatingOrganization { get;  set; }
+		IItemSet<IIfcOrganization> @RelatedOrganizations { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ActorResource
 {
-	[IndexedClass]
-	[ExpressType("IfcOrganizationRelationship", 793)]
+	[ExpressType("IfcOrganizationRelationship", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IEqualityComparer<@IfcOrganizationRelationship>, IEquatable<@IfcOrganizationRelationship>
+	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcOrganizationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganizationRelationship>
 	{
 		#region IIfcOrganizationRelationship explicit implementation
-		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { get { return @RelatingOrganization; } }	
-		IEnumerable<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { get { return @RelatedOrganizations; } }	
+		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { 
+ 
+ 
+			get { return @RelatingOrganization; } 
+			set { RelatingOrganization = value as IfcOrganization;}
+		}	
+		IItemSet<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { 
+			get { return new Common.Collections.ProxyItemSet<IfcOrganization, IIfcOrganization>( @RelatedOrganizations); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcOrganizationRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedOrganizations = new ItemSet<IfcOrganization>( this, 0 );
+		internal IfcOrganizationRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedOrganizations = new ItemSet<IfcOrganization>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcOrganization _relatingOrganization;
-		private ItemSet<IfcOrganization> _relatedOrganizations;
+		private readonly ItemSet<IfcOrganization> _relatedOrganizations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -61,23 +69,25 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingOrganization;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingOrganization;
+				Activate();
 				return _relatingOrganization;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingOrganization = v, _relatingOrganization, value,  "RelatingOrganization");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingOrganization = v, _relatingOrganization, value,  "RelatingOrganization", 3);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcOrganization> @RelatedOrganizations 
+		public IItemSet<IfcOrganization> @RelatedOrganizations 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedOrganizations;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedOrganizations;
+				Activate();
 				return _relatedOrganizations;
 			} 
 		}	
@@ -86,9 +96,8 @@ namespace Xbim.Ifc4.ActorResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -100,17 +109,11 @@ namespace Xbim.Ifc4.ActorResource
 					_relatingOrganization = (IfcOrganization)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedOrganizations == null) _relatedOrganizations = new ItemSet<IfcOrganization>( this );
 					_relatedOrganizations.InternalAdd((IfcOrganization)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -119,55 +122,35 @@ namespace Xbim.Ifc4.ActorResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcOrganizationRelationship
-            var root = (@IfcOrganizationRelationship)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcOrganizationRelationship left, @IfcOrganizationRelationship right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcOrganizationRelationship left, @IfcOrganizationRelationship right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOrganizationRelationship x, @IfcOrganizationRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOrganizationRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingOrganization != null)
+					yield return @RelatingOrganization;
+				foreach(var entity in @RelatedOrganizations)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingOrganization != null)
+					yield return @RelatingOrganization;
+				foreach(var entity in @RelatedOrganizations)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
-	[ExpressType("IfcNullStyle", 0)]
+	[ExpressType("IfcNullStyle", 566)]
 	[DefinedType(typeof(IfcNullStyleEnum))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcNullStyle : IfcPresentationStyleSelect, IExpressValueType, System.IEquatable<IfcNullStyleEnum>
@@ -93,11 +93,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             System.Enum.TryParse(value.EnumVal, true, out _value);
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

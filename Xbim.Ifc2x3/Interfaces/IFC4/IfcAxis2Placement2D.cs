@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcAxis2Placement2D : IIfcAxis2Placement2D
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAxis2Placement2D), 2)]
 		IIfcDirection IIfcAxis2Placement2D.RefDirection 
 		{ 
 			get
 			{
 				return RefDirection;
 			} 
+			set
+			{
+				RefDirection = value as IfcDirection;
+				
+			}
 		}
 		List<Common.Geometry.XbimVector3D> Ifc4.GeometryResource.IfcAxis2Placement.P 
 		{

@@ -14,6 +14,9 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+using Xbim.Ifc4.Kernel;
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,25 +26,29 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpatialStructureElement : IIfcSpatialElement
 	{
-		IfcElementCompositionEnum? @CompositionType { get; }
+		IfcElementCompositionEnum? @CompositionType { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcSpatialStructureElement", 1007)]
+	[ExpressType("IfcSpatialStructureElement", 170)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialStructureElement : IfcSpatialElement, IIfcSpatialStructureElement, IEqualityComparer<@IfcSpatialStructureElement>, IEquatable<@IfcSpatialStructureElement>
+	public abstract partial class @IfcSpatialStructureElement : IfcSpatialElement, IIfcSpatialStructureElement, IEquatable<@IfcSpatialStructureElement>
 	{
 		#region IIfcSpatialStructureElement explicit implementation
-		IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType { get { return @CompositionType; } }	
+		IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType { 
+ 
+			get { return @CompositionType; } 
+			set { CompositionType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSpatialStructureElement(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSpatialStructureElement(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -54,13 +61,13 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _compositionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _compositionType;
+				Activate();
 				return _compositionType;
 			} 
 			set
 			{
-				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType");
+				SetValue( v =>  _compositionType = v, _compositionType, value,  "CompositionType", 9);
 			} 
 		}	
 		#endregion
@@ -68,9 +75,8 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -91,12 +97,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -104,59 +104,47 @@ namespace Xbim.Ifc4.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSpatialStructureElement
-            var root = (@IfcSpatialStructureElement)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSpatialStructureElement left, @IfcSpatialStructureElement right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSpatialStructureElement left, @IfcSpatialStructureElement right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpatialStructureElement x, @IfcSpatialStructureElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpatialStructureElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
-		//##
+
+        /// <summary>
+	    ///   Adds the  element to the set of  elements which are contained in this spatialstructure
+	    /// </summary>
+	    /// <param name = "product"></param>
+        public void AddElement(IfcProduct product)
+        {
+            var spatialStructure = ContainsElements.FirstOrDefault();
+            if (spatialStructure == null) //none defined create the relationship
+            {
+                var relSe = Model.Instances.New<IfcRelContainedInSpatialStructure>();
+                relSe.RelatingStructure = this;
+                relSe.RelatedElements.Add(product);
+            }
+            else
+                spatialStructure.RelatedElements.Add(product);
+        }
+
+	    /// <summary>
+	    ///   Adds specified IfcSpatialStructureElement to the decomposition of this spatial structure element.
+	    /// </summary>
+	    /// <param name = "child">Child spatial structure element.</param>
+	    public void AddToSpatialDecomposition(IfcSpatialStructureElement child)
+        {
+            var ifcRelDecomposes = IsDecomposedBy.FirstOrDefault();
+            if (ifcRelDecomposes == null) //none defined create the relationship
+            {
+                var relSub = Model.Instances.New<IfcRelAggregates>();
+                relSub.RelatingObject = this;
+                relSub.RelatedObjects.Add(child);
+            }
+            else
+            {
+                ifcRelDecomposes.RelatedObjects.Add(child);
+            }
+        }
+        //##
 		#endregion
 	}
 }

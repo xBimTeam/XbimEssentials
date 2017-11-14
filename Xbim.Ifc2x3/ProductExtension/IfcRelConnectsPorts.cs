@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsPorts : IIfcRelConnects
 	{
-		IIfcPort @RelatingPort { get; }
-		IIfcPort @RelatedPort { get; }
-		IIfcElement @RealizingElement { get; }
+		IIfcPort @RelatingPort { get;  set; }
+		IIfcPort @RelatedPort { get;  set; }
+		IIfcElement @RealizingElement { get;  set; }
 	
 	}
 }
@@ -35,18 +37,33 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsPorts", 215)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IEqualityComparer<@IfcRelConnectsPorts>, IEquatable<@IfcRelConnectsPorts>
+	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPorts>
 	{
 		#region IIfcRelConnectsPorts explicit implementation
-		IIfcPort IIfcRelConnectsPorts.RelatingPort { get { return @RelatingPort; } }	
-		IIfcPort IIfcRelConnectsPorts.RelatedPort { get { return @RelatedPort; } }	
-		IIfcElement IIfcRelConnectsPorts.RealizingElement { get { return @RealizingElement; } }	
+		IIfcPort IIfcRelConnectsPorts.RelatingPort { 
+ 
+ 
+			get { return @RelatingPort; } 
+			set { RelatingPort = value as IfcPort;}
+		}	
+		IIfcPort IIfcRelConnectsPorts.RelatedPort { 
+ 
+ 
+			get { return @RelatedPort; } 
+			set { RelatedPort = value as IfcPort;}
+		}	
+		IIfcElement IIfcRelConnectsPorts.RealizingElement { 
+ 
+ 
+			get { return @RealizingElement; } 
+			set { RealizingElement = value as IfcElement;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelConnectsPorts(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelConnectsPorts(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +79,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingPort;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingPort;
+				Activate();
 				return _relatingPort;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingPort = v, _relatingPort, value,  "RelatingPort", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -77,13 +96,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedPort;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedPort;
+				Activate();
 				return _relatedPort;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedPort = v, _relatedPort, value,  "RelatedPort");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedPort = v, _relatedPort, value,  "RelatedPort", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -91,13 +112,15 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _realizingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _realizingElement;
+				Activate();
 				return _realizingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _realizingElement = v, _realizingElement, value,  "RealizingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _realizingElement = v, _realizingElement, value,  "RealizingElement", 7);
 			} 
 		}	
 		#endregion
@@ -105,9 +128,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -130,11 +152,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -142,55 +159,39 @@ namespace Xbim.Ifc2x3.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelConnectsPorts
-            var root = (@IfcRelConnectsPorts)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelConnectsPorts left, @IfcRelConnectsPorts right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelConnectsPorts left, @IfcRelConnectsPorts right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsPorts x, @IfcRelConnectsPorts y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsPorts obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingPort != null)
+					yield return @RelatingPort;
+				if (@RelatedPort != null)
+					yield return @RelatedPort;
+				if (@RealizingElement != null)
+					yield return @RealizingElement;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingPort != null)
+					yield return @RelatingPort;
+				if (@RelatedPort != null)
+					yield return @RelatedPort;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

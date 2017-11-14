@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,33 +25,40 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExternalReferenceRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcExternalReference @RelatingReference { get; }
-		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IIfcExternalReference @RelatingReference { get;  set; }
+		IItemSet<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
-	[ExpressType("IfcExternalReferenceRelationship", 641)]
+	[ExpressType("IfcExternalReferenceRelationship", 1173)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IEqualityComparer<@IfcExternalReferenceRelationship>, IEquatable<@IfcExternalReferenceRelationship>
+	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcExternalReferenceRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcExternalReferenceRelationship>
 	{
 		#region IIfcExternalReferenceRelationship explicit implementation
-		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { get { return @RelatingReference; } }	
-		IEnumerable<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
+		IIfcExternalReference IIfcExternalReferenceRelationship.RelatingReference { 
+ 
+ 
+			get { return @RelatingReference; } 
+			set { RelatingReference = value as IfcExternalReference;}
+		}	
+		IItemSet<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcResourceObjectSelect, IIfcResourceObjectSelect>( @RelatedResourceObjects); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcExternalReferenceRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0 );
+		internal IfcExternalReferenceRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcExternalReference _relatingReference;
-		private ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
+		private readonly ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -59,23 +68,25 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingReference;
+				Activate();
 				return _relatingReference;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingReference = v, _relatingReference, value,  "RelatingReference");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingReference = v, _relatingReference, value,  "RelatingReference", 3);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
+		public IItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedResourceObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedResourceObjects;
+				Activate();
 				return _relatedResourceObjects;
 			} 
 		}	
@@ -84,9 +95,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -98,17 +108,11 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					_relatingReference = (IfcExternalReference)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedResourceObjects == null) _relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this );
 					_relatedResourceObjects.InternalAdd((IfcResourceObjectSelect)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -117,55 +121,35 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcExternalReferenceRelationship
-            var root = (@IfcExternalReferenceRelationship)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcExternalReferenceRelationship left, @IfcExternalReferenceRelationship right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcExternalReferenceRelationship left, @IfcExternalReferenceRelationship right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExternalReferenceRelationship x, @IfcExternalReferenceRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExternalReferenceRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingReference != null)
+					yield return @RelatingReference;
+				foreach(var entity in @RelatedResourceObjects)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingReference != null)
+					yield return @RelatingReference;
+				foreach(var entity in @RelatedResourceObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

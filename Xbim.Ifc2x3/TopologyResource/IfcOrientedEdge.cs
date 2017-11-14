@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -23,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOrientedEdge : IIfcEdge
 	{
-		IIfcEdge @EdgeElement { get; }
-		bool @Orientation { get; }
+		IIfcEdge @EdgeElement { get;  set; }
+		bool @Orientation { get;  set; }
 	
 	}
 }
@@ -33,17 +35,26 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcOrientedEdge", 596)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IEqualityComparer<@IfcOrientedEdge>, IEquatable<@IfcOrientedEdge>
+	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IContainsEntityReferences, IEquatable<@IfcOrientedEdge>
 	{
 		#region IIfcOrientedEdge explicit implementation
-		IIfcEdge IIfcOrientedEdge.EdgeElement { get { return @EdgeElement; } }	
-		bool IIfcOrientedEdge.Orientation { get { return @Orientation; } }	
+		IIfcEdge IIfcOrientedEdge.EdgeElement { 
+ 
+ 
+			get { return @EdgeElement; } 
+			set { EdgeElement = value as IfcEdge;}
+		}	
+		bool IIfcOrientedEdge.Orientation { 
+ 
+			get { return @Orientation; } 
+			set { Orientation = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcOrientedEdge(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcOrientedEdge(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -57,13 +68,15 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _edgeElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _edgeElement;
+				Activate();
 				return _edgeElement;
 			} 
 			set
 			{
-				SetValue( v =>  _edgeElement = v, _edgeElement, value,  "EdgeElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _edgeElement = v, _edgeElement, value,  "EdgeElement", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -71,13 +84,13 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientation;
+				Activate();
 				return _orientation;
 			} 
 			set
 			{
-				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation");
+				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 4);
 			} 
 		}	
 		#endregion
@@ -119,9 +132,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -139,12 +151,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : NOT('IFC2X3.IFCORIENTEDEDGE' IN TYPEOF(EdgeElement));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -152,55 +158,22 @@ namespace Xbim.Ifc2x3.TopologyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcOrientedEdge
-            var root = (@IfcOrientedEdge)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcOrientedEdge left, @IfcOrientedEdge right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcOrientedEdge left, @IfcOrientedEdge right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOrientedEdge x, @IfcOrientedEdge y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOrientedEdge obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@EdgeStart != null)
+					yield return @EdgeStart;
+				if (@EdgeEnd != null)
+					yield return @EdgeEnd;
+				if (@EdgeElement != null)
+					yield return @EdgeElement;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

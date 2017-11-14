@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -23,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVertexLoop : IIfcLoop
 	{
-		IIfcVertex @LoopVertex { get; }
+		IIfcVertex @LoopVertex { get;  set; }
 	
 	}
 }
@@ -32,16 +34,21 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertexLoop", 244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IEqualityComparer<@IfcVertexLoop>, IEquatable<@IfcVertexLoop>
+	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IContainsEntityReferences, IEquatable<@IfcVertexLoop>
 	{
 		#region IIfcVertexLoop explicit implementation
-		IIfcVertex IIfcVertexLoop.LoopVertex { get { return @LoopVertex; } }	
+		IIfcVertex IIfcVertexLoop.LoopVertex { 
+ 
+ 
+			get { return @LoopVertex; } 
+			set { LoopVertex = value as IfcVertex;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcVertexLoop(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcVertexLoop(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -54,13 +61,15 @@ namespace Xbim.Ifc2x3.TopologyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _loopVertex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _loopVertex;
+				Activate();
 				return _loopVertex;
 			} 
 			set
 			{
-				SetValue( v =>  _loopVertex = v, _loopVertex, value,  "LoopVertex");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _loopVertex = v, _loopVertex, value,  "LoopVertex", 1);
 			} 
 		}	
 		#endregion
@@ -68,9 +77,8 @@ namespace Xbim.Ifc2x3.TopologyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -81,11 +89,6 @@ namespace Xbim.Ifc2x3.TopologyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -93,55 +96,18 @@ namespace Xbim.Ifc2x3.TopologyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcVertexLoop
-            var root = (@IfcVertexLoop)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcVertexLoop left, @IfcVertexLoop right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcVertexLoop left, @IfcVertexLoop right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVertexLoop x, @IfcVertexLoop y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVertexLoop obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LoopVertex != null)
+					yield return @LoopVertex;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

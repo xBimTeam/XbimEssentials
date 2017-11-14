@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPreDefinedItem : IIfcPreDefinedItem
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPreDefinedItem), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcPreDefinedItem.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
 	//## Custom code
 	//##

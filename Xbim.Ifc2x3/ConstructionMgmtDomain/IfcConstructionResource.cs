@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstructionMgmtDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,10 +27,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstructionResource : IIfcResource
 	{
-		IfcIdentifier? @ResourceIdentifier { get; }
-		IfcLabel? @ResourceGroup { get; }
-		IfcResourceConsumptionEnum? @ResourceConsumption { get; }
-		IIfcMeasureWithUnit @BaseQuantity { get; }
+		IfcIdentifier? @ResourceIdentifier { get;  set; }
+		IfcLabel? @ResourceGroup { get;  set; }
+		IfcResourceConsumptionEnum? @ResourceConsumption { get;  set; }
+		IIfcMeasureWithUnit @BaseQuantity { get;  set; }
 	
 	}
 }
@@ -37,19 +39,36 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionResource", 157)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEqualityComparer<@IfcConstructionResource>, IEquatable<@IfcConstructionResource>
+	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEquatable<@IfcConstructionResource>
 	{
 		#region IIfcConstructionResource explicit implementation
-		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { get { return @ResourceIdentifier; } }	
-		IfcLabel? IIfcConstructionResource.ResourceGroup { get { return @ResourceGroup; } }	
-		IfcResourceConsumptionEnum? IIfcConstructionResource.ResourceConsumption { get { return @ResourceConsumption; } }	
-		IIfcMeasureWithUnit IIfcConstructionResource.BaseQuantity { get { return @BaseQuantity; } }	
+		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { 
+ 
+			get { return @ResourceIdentifier; } 
+			set { ResourceIdentifier = value;}
+		}	
+		IfcLabel? IIfcConstructionResource.ResourceGroup { 
+ 
+			get { return @ResourceGroup; } 
+			set { ResourceGroup = value;}
+		}	
+		IfcResourceConsumptionEnum? IIfcConstructionResource.ResourceConsumption { 
+ 
+			get { return @ResourceConsumption; } 
+			set { ResourceConsumption = value;}
+		}	
+		IIfcMeasureWithUnit IIfcConstructionResource.BaseQuantity { 
+ 
+ 
+			get { return @BaseQuantity; } 
+			set { BaseQuantity = value as IfcMeasureWithUnit;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConstructionResource(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcConstructionResource(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -65,13 +84,13 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resourceIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resourceIdentifier;
+				Activate();
 				return _resourceIdentifier;
 			} 
 			set
 			{
-				SetValue( v =>  _resourceIdentifier = v, _resourceIdentifier, value,  "ResourceIdentifier");
+				SetValue( v =>  _resourceIdentifier = v, _resourceIdentifier, value,  "ResourceIdentifier", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -79,13 +98,13 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resourceGroup;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resourceGroup;
+				Activate();
 				return _resourceGroup;
 			} 
 			set
 			{
-				SetValue( v =>  _resourceGroup = v, _resourceGroup, value,  "ResourceGroup");
+				SetValue( v =>  _resourceGroup = v, _resourceGroup, value,  "ResourceGroup", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 14)]
@@ -93,13 +112,13 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resourceConsumption;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resourceConsumption;
+				Activate();
 				return _resourceConsumption;
 			} 
 			set
 			{
-				SetValue( v =>  _resourceConsumption = v, _resourceConsumption, value,  "ResourceConsumption");
+				SetValue( v =>  _resourceConsumption = v, _resourceConsumption, value,  "ResourceConsumption", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -107,13 +126,15 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseQuantity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseQuantity;
+				Activate();
 				return _baseQuantity;
 			} 
 			set
 			{
-				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity", 9);
 			} 
 		}	
 		#endregion
@@ -121,9 +142,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -150,11 +170,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -162,54 +177,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConstructionResource
-            var root = (@IfcConstructionResource)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConstructionResource left, @IfcConstructionResource right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConstructionResource left, @IfcConstructionResource right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConstructionResource x, @IfcConstructionResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstructionResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

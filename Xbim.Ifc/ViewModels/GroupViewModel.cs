@@ -47,7 +47,12 @@ namespace Xbim.Ifc.ViewModels
 
         public string Name
         {
-            get { return _group.Name; }
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(_group.Name))
+                    return string.Format("{0} #{1}", _group.Name, _group.EntityLabel);
+                return string.Format("{0} #{1}", _group.ExpressType.ExpressName.Substring(3), _group.EntityLabel);
+            }
         }
 
         public int EntityLabel

@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,11 +28,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceTexture : IIfcPresentationItem
 	{
-		IfcBoolean @RepeatS { get; }
-		IfcBoolean @RepeatT { get; }
-		IfcIdentifier? @Mode { get; }
-		IIfcCartesianTransformationOperator2D @TextureTransform { get; }
-		IEnumerable<IfcIdentifier> @Parameter { get; }
+		IfcBoolean @RepeatS { get;  set; }
+		IfcBoolean @RepeatT { get;  set; }
+		IfcIdentifier? @Mode { get;  set; }
+		IIfcCartesianTransformationOperator2D @TextureTransform { get;  set; }
+		IItemSet<IfcIdentifier> @Parameter { get; }
 		IEnumerable<IIfcTextureCoordinate> @IsMappedBy {  get; }
 		IEnumerable<IIfcSurfaceStyleWithTextures> @UsedInStyles {  get; }
 	
@@ -39,25 +41,44 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcSurfaceTexture", 1073)]
+	[ExpressType("IfcSurfaceTexture", 722)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEqualityComparer<@IfcSurfaceTexture>, IEquatable<@IfcSurfaceTexture>
+	public abstract partial class @IfcSurfaceTexture : IfcPresentationItem, IIfcSurfaceTexture, IEquatable<@IfcSurfaceTexture>
 	{
 		#region IIfcSurfaceTexture explicit implementation
-		IfcBoolean IIfcSurfaceTexture.RepeatS { get { return @RepeatS; } }	
-		IfcBoolean IIfcSurfaceTexture.RepeatT { get { return @RepeatT; } }	
-		IfcIdentifier? IIfcSurfaceTexture.Mode { get { return @Mode; } }	
-		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { get { return @TextureTransform; } }	
-		IEnumerable<IfcIdentifier> IIfcSurfaceTexture.Parameter { get { return @Parameter; } }	
+		IfcBoolean IIfcSurfaceTexture.RepeatS { 
+ 
+			get { return @RepeatS; } 
+			set { RepeatS = value;}
+		}	
+		IfcBoolean IIfcSurfaceTexture.RepeatT { 
+ 
+			get { return @RepeatT; } 
+			set { RepeatT = value;}
+		}	
+		IfcIdentifier? IIfcSurfaceTexture.Mode { 
+ 
+			get { return @Mode; } 
+			set { Mode = value;}
+		}	
+		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { 
+ 
+ 
+			get { return @TextureTransform; } 
+			set { TextureTransform = value as IfcCartesianTransformationOperator2D;}
+		}	
+		IItemSet<IfcIdentifier> IIfcSurfaceTexture.Parameter { 
+			get { return @Parameter; } 
+		}	
 		 
 		IEnumerable<IIfcTextureCoordinate> IIfcSurfaceTexture.IsMappedBy {  get { return @IsMappedBy; } }
 		IEnumerable<IIfcSurfaceStyleWithTextures> IIfcSurfaceTexture.UsedInStyles {  get { return @UsedInStyles; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSurfaceTexture(IModel model) : base(model) 		{ 
-			Model = model; 
-			_parameter = new OptionalItemSet<IfcIdentifier>( this, 0 );
+		internal IfcSurfaceTexture(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_parameter = new OptionalItemSet<IfcIdentifier>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
@@ -65,7 +86,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		private IfcBoolean _repeatT;
 		private IfcIdentifier? _mode;
 		private IfcCartesianTransformationOperator2D _textureTransform;
-		private OptionalItemSet<IfcIdentifier> _parameter;
+		private readonly OptionalItemSet<IfcIdentifier> _parameter;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -74,13 +95,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _repeatS;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _repeatS;
+				Activate();
 				return _repeatS;
 			} 
 			set
 			{
-				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS");
+				SetValue( v =>  _repeatS = v, _repeatS, value,  "RepeatS", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -88,13 +109,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _repeatT;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _repeatT;
+				Activate();
 				return _repeatT;
 			} 
 			set
 			{
-				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT");
+				SetValue( v =>  _repeatT = v, _repeatT, value,  "RepeatT", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -102,13 +123,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mode;
+				Activate();
 				return _mode;
 			} 
 			set
 			{
-				SetValue( v =>  _mode = v, _mode, value,  "Mode");
+				SetValue( v =>  _mode = v, _mode, value,  "Mode", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -116,22 +137,24 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textureTransform;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textureTransform;
+				Activate();
 				return _textureTransform;
 			} 
 			set
 			{
-				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _textureTransform = v, _textureTransform, value,  "TextureTransform", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 5)]
-		public OptionalItemSet<IfcIdentifier> @Parameter 
+		public IOptionalItemSet<IfcIdentifier> @Parameter 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parameter;
+				Activate();
 				return _parameter;
 			} 
 		}	
@@ -160,9 +183,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -179,17 +201,11 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_textureTransform = (IfcCartesianTransformationOperator2D)(value.EntityVal);
 					return;
 				case 4: 
-					if (_parameter == null) _parameter = new OptionalItemSet<IfcIdentifier>( this );
 					_parameter.InternalAdd(value.StringVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -198,54 +214,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSurfaceTexture
-            var root = (@IfcSurfaceTexture)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSurfaceTexture left, @IfcSurfaceTexture right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSurfaceTexture left, @IfcSurfaceTexture right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceTexture x, @IfcSurfaceTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

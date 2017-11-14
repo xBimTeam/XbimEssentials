@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFillAreaStyleTiles : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
-		IIfcOneDirectionRepeatFactor @TilingPattern { get; }
+		IIfcOneDirectionRepeatFactor @TilingPattern { get;  set; }
 		IEnumerable<IIfcFillAreaStyleTileShapeSelect> @Tiles { get; }
-		IfcPositiveRatioMeasure @TilingScale { get; }
+		IfcPositiveRatioMeasure @TilingScale { get;  set; }
 	
 	}
 }
@@ -36,24 +38,35 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTiles", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IEqualityComparer<@IfcFillAreaStyleTiles>, IEquatable<@IfcFillAreaStyleTiles>
+	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTiles>
 	{
 		#region IIfcFillAreaStyleTiles explicit implementation
-		IIfcOneDirectionRepeatFactor IIfcFillAreaStyleTiles.TilingPattern { get { return @TilingPattern; } }	
-		IEnumerable<IIfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { get { return @Tiles; } }	
-		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { get { return @TilingScale; } }	
+		IIfcOneDirectionRepeatFactor IIfcFillAreaStyleTiles.TilingPattern { 
+ 
+ 
+			get { return @TilingPattern; } 
+			set { TilingPattern = value as IfcOneDirectionRepeatFactor;}
+		}	
+		IEnumerable<IIfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { 
+			get { return new Common.Collections.ProxyItemSet<IfcFillAreaStyleTileShapeSelect, IIfcFillAreaStyleTileShapeSelect>( @Tiles); } 
+		}	
+		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { 
+ 
+			get { return @TilingScale; } 
+			set { TilingScale = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcFillAreaStyleTiles(IModel model) : base(model) 		{ 
-			Model = model; 
-			_tiles = new ItemSet<IfcFillAreaStyleTileShapeSelect>( this, 0 );
+		internal IfcFillAreaStyleTiles(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_tiles = new ItemSet<IfcFillAreaStyleTileShapeSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcOneDirectionRepeatFactor _tilingPattern;
-		private ItemSet<IfcFillAreaStyleTileShapeSelect> _tiles;
+		private readonly ItemSet<IfcFillAreaStyleTileShapeSelect> _tiles;
 		private IfcPositiveRatioMeasure _tilingScale;
 		#endregion
 	
@@ -63,22 +76,24 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tilingPattern;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tilingPattern;
+				Activate();
 				return _tilingPattern;
 			} 
 			set
 			{
-				SetValue( v =>  _tilingPattern = v, _tilingPattern, value,  "TilingPattern");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _tilingPattern = v, _tilingPattern, value,  "TilingPattern", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcFillAreaStyleTileShapeSelect> @Tiles 
+		public IItemSet<IfcFillAreaStyleTileShapeSelect> @Tiles 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tiles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tiles;
+				Activate();
 				return _tiles;
 			} 
 		}	
@@ -87,13 +102,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tilingScale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tilingScale;
+				Activate();
 				return _tilingScale;
 			} 
 			set
 			{
-				SetValue( v =>  _tilingScale = v, _tilingScale, value,  "TilingScale");
+				SetValue( v =>  _tilingScale = v, _tilingScale, value,  "TilingScale", 3);
 			} 
 		}	
 		#endregion
@@ -101,9 +116,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -111,7 +125,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					_tilingPattern = (IfcOneDirectionRepeatFactor)(value.EntityVal);
 					return;
 				case 1: 
-					if (_tiles == null) _tiles = new ItemSet<IfcFillAreaStyleTileShapeSelect>( this );
 					_tiles.InternalAdd((IfcFillAreaStyleTileShapeSelect)value.EntityVal);
 					return;
 				case 2: 
@@ -121,11 +134,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -133,55 +141,20 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcFillAreaStyleTiles
-            var root = (@IfcFillAreaStyleTiles)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcFillAreaStyleTiles left, @IfcFillAreaStyleTiles right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcFillAreaStyleTiles left, @IfcFillAreaStyleTiles right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFillAreaStyleTiles x, @IfcFillAreaStyleTiles y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFillAreaStyleTiles obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@TilingPattern != null)
+					yield return @TilingPattern;
+				foreach(var entity in @Tiles)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,36 +26,46 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentInformationRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcDocumentInformation @RelatingDocument { get; }
-		IEnumerable<IIfcDocumentInformation> @RelatedDocuments { get; }
-		IfcLabel? @RelationshipType { get; }
+		IIfcDocumentInformation @RelatingDocument { get;  set; }
+		IItemSet<IIfcDocumentInformation> @RelatedDocuments { get; }
+		IfcLabel? @RelationshipType { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
-	[IndexedClass]
-	[ExpressType("IfcDocumentInformationRelationship", 586)]
+	[ExpressType("IfcDocumentInformationRelationship", 491)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IEqualityComparer<@IfcDocumentInformationRelationship>, IEquatable<@IfcDocumentInformationRelationship>
+	public  partial class @IfcDocumentInformationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcDocumentInformationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformationRelationship>
 	{
 		#region IIfcDocumentInformationRelationship explicit implementation
-		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { get { return @RelatingDocument; } }	
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { get { return @RelatedDocuments; } }	
-		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { get { return @RelationshipType; } }	
+		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { 
+ 
+ 
+			get { return @RelatingDocument; } 
+			set { RelatingDocument = value as IfcDocumentInformation;}
+		}	
+		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { 
+			get { return new Common.Collections.ProxyItemSet<IfcDocumentInformation, IIfcDocumentInformation>( @RelatedDocuments); } 
+		}	
+		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { 
+ 
+			get { return @RelationshipType; } 
+			set { RelationshipType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDocumentInformationRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedDocuments = new ItemSet<IfcDocumentInformation>( this, 0 );
+		internal IfcDocumentInformationRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedDocuments = new ItemSet<IfcDocumentInformation>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcDocumentInformation _relatingDocument;
-		private ItemSet<IfcDocumentInformation> _relatedDocuments;
+		private readonly ItemSet<IfcDocumentInformation> _relatedDocuments;
 		private IfcLabel? _relationshipType;
 		#endregion
 	
@@ -64,23 +76,25 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingDocument;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingDocument;
+				Activate();
 				return _relatingDocument;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingDocument = v, _relatingDocument, value,  "RelatingDocument", 3);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcDocumentInformation> @RelatedDocuments 
+		public IItemSet<IfcDocumentInformation> @RelatedDocuments 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedDocuments;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedDocuments;
+				Activate();
 				return _relatedDocuments;
 			} 
 		}	
@@ -89,13 +103,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relationshipType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relationshipType;
+				Activate();
 				return _relationshipType;
 			} 
 			set
 			{
-				SetValue( v =>  _relationshipType = v, _relationshipType, value,  "RelationshipType");
+				SetValue( v =>  _relationshipType = v, _relationshipType, value,  "RelationshipType", 5);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -117,7 +130,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					_relatingDocument = (IfcDocumentInformation)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedDocuments == null) _relatedDocuments = new ItemSet<IfcDocumentInformation>( this );
 					_relatedDocuments.InternalAdd((IfcDocumentInformation)value.EntityVal);
 					return;
 				case 4: 
@@ -127,11 +139,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -139,55 +146,35 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDocumentInformationRelationship
-            var root = (@IfcDocumentInformationRelationship)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDocumentInformationRelationship left, @IfcDocumentInformationRelationship right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDocumentInformationRelationship left, @IfcDocumentInformationRelationship right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDocumentInformationRelationship x, @IfcDocumentInformationRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDocumentInformationRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingDocument != null)
+					yield return @RelatingDocument;
+				foreach(var entity in @RelatedDocuments)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingDocument != null)
+					yield return @RelatingDocument;
+				foreach(var entity in @RelatedDocuments)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcTextStyleForDefinedFont : IIfcTextStyleForDefinedFont
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleForDefinedFont), 1)]
 		IIfcColour IIfcTextStyleForDefinedFont.Colour 
 		{ 
 			get
@@ -29,7 +32,30 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifcpredefinedcolour;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Colour = null;
+					return;
+				}	
+				var ifccolourspecification = value as PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+				{
+					Colour = ifccolourspecification;
+					return;
+				}
+				var ifcpredefinedcolour = value as PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+				{
+					Colour = ifcpredefinedcolour;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextStyleForDefinedFont), 2)]
 		IIfcColour IIfcTextStyleForDefinedFont.BackgroundColour 
 		{ 
 			get
@@ -43,6 +69,27 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifcpredefinedcolour;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					BackgroundColour = null;
+					return;
+				}	
+				var ifccolourspecification = value as PresentationResource.IfcColourSpecification;
+				if (ifccolourspecification != null) 
+				{
+					BackgroundColour = ifccolourspecification;
+					return;
+				}
+				var ifcpredefinedcolour = value as PresentationResource.IfcPreDefinedColour;
+				if (ifcpredefinedcolour != null) 
+				{
+					BackgroundColour = ifcpredefinedcolour;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

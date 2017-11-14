@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedMgmtElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProjectOrder : IIfcControl
 	{
-		IfcIdentifier @ID { get; }
-		IfcProjectOrderTypeEnum @PredefinedType { get; }
-		IfcLabel? @Status { get; }
+		IfcIdentifier @ID { get;  set; }
+		IfcProjectOrderTypeEnum @PredefinedType { get;  set; }
+		IfcLabel? @Status { get;  set; }
 	
 	}
 }
@@ -36,18 +38,30 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcProjectOrder", 696)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IEqualityComparer<@IfcProjectOrder>, IEquatable<@IfcProjectOrder>
+	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IContainsEntityReferences, IEquatable<@IfcProjectOrder>
 	{
 		#region IIfcProjectOrder explicit implementation
-		IfcIdentifier IIfcProjectOrder.ID { get { return @ID; } }	
-		IfcProjectOrderTypeEnum IIfcProjectOrder.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcProjectOrder.Status { get { return @Status; } }	
+		IfcIdentifier IIfcProjectOrder.ID { 
+ 
+			get { return @ID; } 
+			set { ID = value;}
+		}	
+		IfcProjectOrderTypeEnum IIfcProjectOrder.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcProjectOrder.Status { 
+ 
+			get { return @Status; } 
+			set { Status = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcProjectOrder(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcProjectOrder(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +76,13 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _iD;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _iD;
+				Activate();
 				return _iD;
 			} 
 			set
 			{
-				SetValue( v =>  _iD = v, _iD, value,  "ID");
+				SetValue( v =>  _iD = v, _iD, value,  "ID", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 13)]
@@ -76,13 +90,13 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -90,13 +104,13 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _status;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _status;
+				Activate();
 				return _status;
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 8);
 			} 
 		}	
 		#endregion
@@ -104,9 +118,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -130,11 +143,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -142,55 +150,18 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcProjectOrder
-            var root = (@IfcProjectOrder)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcProjectOrder left, @IfcProjectOrder right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcProjectOrder left, @IfcProjectOrder right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProjectOrder x, @IfcProjectOrder y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProjectOrder obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

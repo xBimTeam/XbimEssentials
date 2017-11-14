@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,44 +25,51 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelDefinesByTemplate : IIfcRelDefines
 	{
-		IEnumerable<IIfcPropertySetDefinition> @RelatedPropertySets { get; }
-		IIfcPropertySetTemplate @RelatingTemplate { get; }
+		IItemSet<IIfcPropertySetDefinition> @RelatedPropertySets { get; }
+		IIfcPropertySetTemplate @RelatingTemplate { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcRelDefinesByTemplate", 942)]
+	[ExpressType("IfcRelDefinesByTemplate", 1251)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IEqualityComparer<@IfcRelDefinesByTemplate>, IEquatable<@IfcRelDefinesByTemplate>
+	public  partial class @IfcRelDefinesByTemplate : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByTemplate, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByTemplate>
 	{
 		#region IIfcRelDefinesByTemplate explicit implementation
-		IEnumerable<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { get { return @RelatedPropertySets; } }	
-		IIfcPropertySetTemplate IIfcRelDefinesByTemplate.RelatingTemplate { get { return @RelatingTemplate; } }	
+		IItemSet<IIfcPropertySetDefinition> IIfcRelDefinesByTemplate.RelatedPropertySets { 
+			get { return new Common.Collections.ProxyItemSet<IfcPropertySetDefinition, IIfcPropertySetDefinition>( @RelatedPropertySets); } 
+		}	
+		IIfcPropertySetTemplate IIfcRelDefinesByTemplate.RelatingTemplate { 
+ 
+ 
+			get { return @RelatingTemplate; } 
+			set { RelatingTemplate = value as IfcPropertySetTemplate;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelDefinesByTemplate(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedPropertySets = new ItemSet<IfcPropertySetDefinition>( this, 0 );
+		internal IfcRelDefinesByTemplate(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedPropertySets = new ItemSet<IfcPropertySetDefinition>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcPropertySetDefinition> _relatedPropertySets;
+		private readonly ItemSet<IfcPropertySetDefinition> _relatedPropertySets;
 		private IfcPropertySetTemplate _relatingTemplate;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcPropertySetDefinition> @RelatedPropertySets 
+		public IItemSet<IfcPropertySetDefinition> @RelatedPropertySets 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedPropertySets;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedPropertySets;
+				Activate();
 				return _relatedPropertySets;
 			} 
 		}	
@@ -70,13 +79,15 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingTemplate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingTemplate;
+				Activate();
 				return _relatingTemplate;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingTemplate = v, _relatingTemplate, value,  "RelatingTemplate");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingTemplate = v, _relatingTemplate, value,  "RelatingTemplate", 6);
 			} 
 		}	
 		#endregion
@@ -84,9 +95,8 @@ namespace Xbim.Ifc4.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -97,7 +107,6 @@ namespace Xbim.Ifc4.Kernel
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 4: 
-					if (_relatedPropertySets == null) _relatedPropertySets = new ItemSet<IfcPropertySetDefinition>( this );
 					_relatedPropertySets.InternalAdd((IfcPropertySetDefinition)value.EntityVal);
 					return;
 				case 5: 
@@ -107,11 +116,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -119,55 +123,37 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelDefinesByTemplate
-            var root = (@IfcRelDefinesByTemplate)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelDefinesByTemplate left, @IfcRelDefinesByTemplate right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelDefinesByTemplate left, @IfcRelDefinesByTemplate right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelDefinesByTemplate x, @IfcRelDefinesByTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelDefinesByTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedPropertySets)
+					yield return entity;
+				if (@RelatingTemplate != null)
+					yield return @RelatingTemplate;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedPropertySets)
+					yield return entity;
+				if (@RelatingTemplate != null)
+					yield return @RelatingTemplate;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

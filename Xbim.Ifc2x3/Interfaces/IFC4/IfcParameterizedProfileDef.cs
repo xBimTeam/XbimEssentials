@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcParameterizedProfileDef : IIfcParameterizedProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcParameterizedProfileDef), 3)]
 		IIfcAxis2Placement2D IIfcParameterizedProfileDef.Position 
 		{ 
 			get
 			{
 				return Position;
 			} 
+			set
+			{
+				Position = value as GeometryResource.IfcAxis2Placement2D;
+				
+			}
 		}
 	//## Custom code
 	//##

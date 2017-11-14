@@ -6,7 +6,7 @@ using Xbim.Common.Geometry;
 
 namespace Xbim.IO.Memory
 {
-    internal class InMemoryGeometryStore : IGeometryStore
+    public class InMemoryGeometryStore : IGeometryStore
     {
         private ConcurrentDictionary<int, XbimShapeGeometry> _shapeGeometries=new ConcurrentDictionary<int, XbimShapeGeometry>();
         private ConcurrentDictionary<int, XbimShapeInstance> _shapeInstances=new ConcurrentDictionary<int, XbimShapeInstance>();

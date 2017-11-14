@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,29 +27,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveStyleFontAndScaling : IIfcPresentationItem, IfcCurveFontOrScaledCurveFontSelect
 	{
-		IfcLabel? @Name { get; }
-		IIfcCurveStyleFontSelect @CurveFont { get; }
-		IfcPositiveRatioMeasure @CurveFontScaling { get; }
+		IfcLabel? @Name { get;  set; }
+		IIfcCurveStyleFontSelect @CurveFont { get;  set; }
+		IfcPositiveRatioMeasure @CurveFontScaling { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcCurveStyleFontAndScaling", 562)]
+	[ExpressType("IfcCurveStyleFontAndScaling", 569)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IEqualityComparer<@IfcCurveStyleFontAndScaling>, IEquatable<@IfcCurveStyleFontAndScaling>
+	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IContainsEntityReferences, IEquatable<@IfcCurveStyleFontAndScaling>
 	{
 		#region IIfcCurveStyleFontAndScaling explicit implementation
-		IfcLabel? IIfcCurveStyleFontAndScaling.Name { get { return @Name; } }	
-		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { get { return @CurveFont; } }	
-		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { get { return @CurveFontScaling; } }	
+		IfcLabel? IIfcCurveStyleFontAndScaling.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { 
+ 
+ 
+			get { return @CurveFont; } 
+			set { CurveFont = value as IfcCurveStyleFontSelect;}
+		}	
+		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { 
+ 
+			get { return @CurveFontScaling; } 
+			set { CurveFontScaling = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCurveStyleFontAndScaling(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcCurveStyleFontAndScaling(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +77,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -76,13 +91,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveFont;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveFont;
+				Activate();
 				return _curveFont;
 			} 
 			set
 			{
-				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -90,13 +107,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveFontScaling;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveFontScaling;
+				Activate();
 				return _curveFontScaling;
 			} 
 			set
 			{
-				SetValue( v =>  _curveFontScaling = v, _curveFontScaling, value,  "CurveFontScaling");
+				SetValue( v =>  _curveFontScaling = v, _curveFontScaling, value,  "CurveFontScaling", 3);
 			} 
 		}	
 		#endregion
@@ -104,9 +121,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -123,11 +139,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -135,55 +146,18 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCurveStyleFontAndScaling
-            var root = (@IfcCurveStyleFontAndScaling)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCurveStyleFontAndScaling left, @IfcCurveStyleFontAndScaling right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCurveStyleFontAndScaling left, @IfcCurveStyleFontAndScaling right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCurveStyleFontAndScaling x, @IfcCurveStyleFontAndScaling y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurveStyleFontAndScaling obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@CurveFont != null)
+					yield return @CurveFont;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

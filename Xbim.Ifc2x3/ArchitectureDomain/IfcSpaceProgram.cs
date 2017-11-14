@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ArchitectureDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpaceProgram : IIfcControl
 	{
-		IfcIdentifier @SpaceProgramIdentifier { get; }
-		IfcAreaMeasure? @MaxRequiredArea { get; }
-		IfcAreaMeasure? @MinRequiredArea { get; }
-		IIfcSpatialStructureElement @RequestedLocation { get; }
-		IfcAreaMeasure @StandardRequiredArea { get; }
+		IfcIdentifier @SpaceProgramIdentifier { get;  set; }
+		IfcAreaMeasure? @MaxRequiredArea { get;  set; }
+		IfcAreaMeasure? @MinRequiredArea { get;  set; }
+		IIfcSpatialStructureElement @RequestedLocation { get;  set; }
+		IfcAreaMeasure @StandardRequiredArea { get;  set; }
 		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsFrom {  get; }
 		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsTo {  get; }
 	
@@ -41,22 +43,43 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcSpaceProgram", 709)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IEqualityComparer<@IfcSpaceProgram>, IEquatable<@IfcSpaceProgram>
+	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IContainsEntityReferences, IEquatable<@IfcSpaceProgram>
 	{
 		#region IIfcSpaceProgram explicit implementation
-		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { get { return @SpaceProgramIdentifier; } }	
-		IfcAreaMeasure? IIfcSpaceProgram.MaxRequiredArea { get { return @MaxRequiredArea; } }	
-		IfcAreaMeasure? IIfcSpaceProgram.MinRequiredArea { get { return @MinRequiredArea; } }	
-		IIfcSpatialStructureElement IIfcSpaceProgram.RequestedLocation { get { return @RequestedLocation; } }	
-		IfcAreaMeasure IIfcSpaceProgram.StandardRequiredArea { get { return @StandardRequiredArea; } }	
+		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { 
+ 
+			get { return @SpaceProgramIdentifier; } 
+			set { SpaceProgramIdentifier = value;}
+		}	
+		IfcAreaMeasure? IIfcSpaceProgram.MaxRequiredArea { 
+ 
+			get { return @MaxRequiredArea; } 
+			set { MaxRequiredArea = value;}
+		}	
+		IfcAreaMeasure? IIfcSpaceProgram.MinRequiredArea { 
+ 
+			get { return @MinRequiredArea; } 
+			set { MinRequiredArea = value;}
+		}	
+		IIfcSpatialStructureElement IIfcSpaceProgram.RequestedLocation { 
+ 
+ 
+			get { return @RequestedLocation; } 
+			set { RequestedLocation = value as IfcSpatialStructureElement;}
+		}	
+		IfcAreaMeasure IIfcSpaceProgram.StandardRequiredArea { 
+ 
+			get { return @StandardRequiredArea; } 
+			set { StandardRequiredArea = value;}
+		}	
 		 
 		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsFrom {  get { return @HasInteractionReqsFrom; } }
 		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsTo {  get { return @HasInteractionReqsTo; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSpaceProgram(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSpaceProgram(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -73,13 +96,13 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaceProgramIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spaceProgramIdentifier;
+				Activate();
 				return _spaceProgramIdentifier;
 			} 
 			set
 			{
-				SetValue( v =>  _spaceProgramIdentifier = v, _spaceProgramIdentifier, value,  "SpaceProgramIdentifier");
+				SetValue( v =>  _spaceProgramIdentifier = v, _spaceProgramIdentifier, value,  "SpaceProgramIdentifier", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -87,13 +110,13 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maxRequiredArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maxRequiredArea;
+				Activate();
 				return _maxRequiredArea;
 			} 
 			set
 			{
-				SetValue( v =>  _maxRequiredArea = v, _maxRequiredArea, value,  "MaxRequiredArea");
+				SetValue( v =>  _maxRequiredArea = v, _maxRequiredArea, value,  "MaxRequiredArea", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -101,13 +124,13 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minRequiredArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minRequiredArea;
+				Activate();
 				return _minRequiredArea;
 			} 
 			set
 			{
-				SetValue( v =>  _minRequiredArea = v, _minRequiredArea, value,  "MinRequiredArea");
+				SetValue( v =>  _minRequiredArea = v, _minRequiredArea, value,  "MinRequiredArea", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -115,13 +138,15 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _requestedLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _requestedLocation;
+				Activate();
 				return _requestedLocation;
 			} 
 			set
 			{
-				SetValue( v =>  _requestedLocation = v, _requestedLocation, value,  "RequestedLocation");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _requestedLocation = v, _requestedLocation, value,  "RequestedLocation", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -129,13 +154,13 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _standardRequiredArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _standardRequiredArea;
+				Activate();
 				return _standardRequiredArea;
 			} 
 			set
 			{
-				SetValue( v =>  _standardRequiredArea = v, _standardRequiredArea, value,  "StandardRequiredArea");
+				SetValue( v =>  _standardRequiredArea = v, _standardRequiredArea, value,  "StandardRequiredArea", 10);
 			} 
 		}	
 		#endregion
@@ -149,7 +174,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatedSpaceProgram as IfcSpaceProgram) == this, "RelatedSpaceProgram", this);
+				return Model.Instances.Where<IfcRelInteractionRequirements>(e => Equals(e.RelatedSpaceProgram), "RelatedSpaceProgram", this);
 			} 
 		}
 		[InverseProperty("RelatingSpaceProgram")]
@@ -158,14 +183,13 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelInteractionRequirements>(e => (e.RelatingSpaceProgram as IfcSpaceProgram) == this, "RelatingSpaceProgram", this);
+				return Model.Instances.Where<IfcRelInteractionRequirements>(e => Equals(e.RelatingSpaceProgram), "RelatingSpaceProgram", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -195,11 +219,6 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -207,55 +226,20 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSpaceProgram
-            var root = (@IfcSpaceProgram)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSpaceProgram left, @IfcSpaceProgram right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSpaceProgram left, @IfcSpaceProgram right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpaceProgram x, @IfcSpaceProgram y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpaceProgram obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RequestedLocation != null)
+					yield return @RequestedLocation;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

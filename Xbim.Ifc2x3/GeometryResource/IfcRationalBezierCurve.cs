@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -23,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBezierCurve : IIfcBezierCurve
 	{
-		IEnumerable<double> @WeightsData { get; }
+		IItemSet<double> @WeightsData { get; }
 		List<double> @Weights  { get ; }
 	
 	}
@@ -33,31 +35,33 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRationalBezierCurve", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IEqualityComparer<@IfcRationalBezierCurve>, IEquatable<@IfcRationalBezierCurve>
+	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IContainsEntityReferences, IEquatable<@IfcRationalBezierCurve>
 	{
 		#region IIfcRationalBezierCurve explicit implementation
-		IEnumerable<double> IIfcRationalBezierCurve.WeightsData { get { return @WeightsData; } }	
+		IItemSet<double> IIfcRationalBezierCurve.WeightsData { 
+			get { return @WeightsData; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRationalBezierCurve(IModel model) : base(model) 		{ 
-			Model = model; 
-			_weightsData = new ItemSet<double>( this, 0 );
+		internal IfcRationalBezierCurve(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_weightsData = new ItemSet<double>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<double> _weightsData;
+		private readonly ItemSet<double> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 8)]
-		public ItemSet<double> @WeightsData 
+		public IItemSet<double> @WeightsData 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weightsData;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weightsData;
+				Activate();
 				return _weightsData;
 			} 
 		}	
@@ -79,9 +83,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -93,19 +96,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 5: 
-					if (_weightsData == null) _weightsData = new ItemSet<double>( this );
 					_weightsData.InternalAdd(value.RealVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(WeightsData) = SIZEOF(SELF\IfcBSplineCurve.ControlPointsList);*/
-		/*WR2:	WR2 : IfcCurveWeightsPositive(SELF);*/
 		}
 		#endregion
 
@@ -114,55 +109,18 @@ namespace Xbim.Ifc2x3.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRationalBezierCurve
-            var root = (@IfcRationalBezierCurve)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRationalBezierCurve left, @IfcRationalBezierCurve right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRationalBezierCurve left, @IfcRationalBezierCurve right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRationalBezierCurve x, @IfcRationalBezierCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRationalBezierCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @ControlPointsList)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

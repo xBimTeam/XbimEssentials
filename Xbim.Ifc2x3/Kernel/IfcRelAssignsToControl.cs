@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -23,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToControl : IIfcRelAssigns
 	{
-		IIfcControl @RelatingControl { get; }
+		IIfcControl @RelatingControl { get;  set; }
 	
 	}
 }
@@ -32,16 +34,21 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToControl", 558)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToControl, IEqualityComparer<@IfcRelAssignsToControl>, IEquatable<@IfcRelAssignsToControl>
+	public  partial class @IfcRelAssignsToControl : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToControl, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToControl>
 	{
 		#region IIfcRelAssignsToControl explicit implementation
-		IIfcControl IIfcRelAssignsToControl.RelatingControl { get { return @RelatingControl; } }	
+		IIfcControl IIfcRelAssignsToControl.RelatingControl { 
+ 
+ 
+			get { return @RelatingControl; } 
+			set { RelatingControl = value as IfcControl;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelAssignsToControl(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelAssignsToControl(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +62,15 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingControl;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingControl;
+				Activate();
 				return _relatingControl;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingControl = v, _relatingControl, value,  "RelatingControl");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingControl = v, _relatingControl, value,  "RelatingControl", 7);
 			} 
 		}	
 		#endregion
@@ -69,9 +78,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -90,12 +98,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(Temp <* SELF\IfcRelAssigns.RelatedObjects | RelatingControl :=: Temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -103,55 +105,37 @@ namespace Xbim.Ifc2x3.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelAssignsToControl
-            var root = (@IfcRelAssignsToControl)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelAssignsToControl left, @IfcRelAssignsToControl right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelAssignsToControl left, @IfcRelAssignsToControl right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToControl x, @IfcRelAssignsToControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingControl != null)
+					yield return @RelatingControl;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingControl != null)
+					yield return @RelatingControl;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

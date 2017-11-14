@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Common.Metadata;
+using Xbim.Ifc;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.SharedBldgElements;
@@ -18,6 +19,37 @@ namespace Xbim.MemoryModel.Tests
     [TestClass]
     public class InMemoryInsertionTests
     {
+        [DeploymentItem("TestFiles")]
+        [TestMethod]
+        public void Ifc4InsertCopyTest()
+        {
+            using (var model = IfcStore.Open(@"Ifc4WithNestedLists.ifcZip"))
+            {
+                               
+                using (var iModel = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
+                {
+                    using (var txn = iModel.BeginTransaction("Insert copy"))
+                    {
+                        var w = new Stopwatch();
+                        w.Start();
+                        iModel.InsertCopy(model.Instances[61828], new XbimInstanceHandleMap(model, iModel), null, true, true);
+                        txn.Commit();
+                        w.Stop();
+                     
+                       // Debug.WriteLine("Time to insert {0} walls (Overall {1} entities): {2}ms", iWalls.Count, iModel.Instances.Count, w.ElapsedMilliseconds);
+
+                        //Assert.IsTrue(iWalls.Count >= 1);
+                       
+                    }
+                    var tw = File.Create("Ifc4WithNestedListsExtract.ifc");
+                    iModel.SaveAsStep21(tw);
+                    tw.Close();
+                    
+
+                }
+            }
+        }
+
         [DeploymentItem("TestFiles")]
         [TestMethod]
         public void CopyWallsOver()
@@ -44,7 +76,8 @@ namespace Xbim.MemoryModel.Tests
 
             using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
             {
-                model.LoadStep21(original);
+                var errs = model.LoadStep21(original);
+                Assert.AreEqual(0, errs);
                 var wall = model.Instances.FirstOrDefault<IfcWall>();
                 using (var iModel = new IO.Memory.MemoryModel(new EntityFactory()))
                 {
@@ -52,8 +85,7 @@ namespace Xbim.MemoryModel.Tests
                     {
                         var w = new Stopwatch();
                         w.Start();
-                        var mappings = new Dictionary<int, IPersistEntity>();
-                        iModel.InsertCopy(wall, mappings, true);
+                        iModel.InsertCopy(wall, new XbimInstanceHandleMap(model, iModel), null, true, true);
                         txn.Commit();
                         w.Stop();
 
@@ -73,6 +105,8 @@ namespace Xbim.MemoryModel.Tests
 
             CompareEntityLines(inserted, original);
         }
+
+
 
         private void CompareEntityLines(string insertedFile, string originalFile)
         {
@@ -133,10 +167,10 @@ namespace Xbim.MemoryModel.Tests
                 {
                     using (var txn = iModel.BeginTransaction("Insert copy"))
                     {
-                        var mappings = new Dictionary<int, IPersistEntity>();
+                        var mappings = new XbimInstanceHandleMap(model, iModel);
                         foreach (var root in roots)
                         {
-                            iModel.InsertCopy(root, mappings, false, true, Filter);
+                            iModel.InsertCopy(root, mappings, Filter, false, true);
                         }
                         txn.Commit();
                         using (var fileStream = new StreamWriter("..\\..\\SampleHouseSemantic4.ifc"))

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOffsetCurve2D : IIfcCurve
 	{
-		IIfcCurve @BasisCurve { get; }
-		IfcLengthMeasure @Distance { get; }
-		bool? @SelfIntersect { get; }
+		IIfcCurve @BasisCurve { get;  set; }
+		IfcLengthMeasure @Distance { get;  set; }
+		bool? @SelfIntersect { get;  set; }
 	
 	}
 }
@@ -35,18 +37,31 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcOffsetCurve2D", 687)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve2D, IEqualityComparer<@IfcOffsetCurve2D>, IEquatable<@IfcOffsetCurve2D>
+	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve2D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve2D>
 	{
 		#region IIfcOffsetCurve2D explicit implementation
-		IIfcCurve IIfcOffsetCurve2D.BasisCurve { get { return @BasisCurve; } }	
-		IfcLengthMeasure IIfcOffsetCurve2D.Distance { get { return @Distance; } }	
-		bool? IIfcOffsetCurve2D.SelfIntersect { get { return @SelfIntersect; } }	
+		IIfcCurve IIfcOffsetCurve2D.BasisCurve { 
+ 
+ 
+			get { return @BasisCurve; } 
+			set { BasisCurve = value as IfcCurve;}
+		}	
+		IfcLengthMeasure IIfcOffsetCurve2D.Distance { 
+ 
+			get { return @Distance; } 
+			set { Distance = value;}
+		}	
+		bool? IIfcOffsetCurve2D.SelfIntersect { 
+ 
+			get { return @SelfIntersect; } 
+			set { SelfIntersect = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcOffsetCurve2D(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcOffsetCurve2D(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +76,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisCurve;
+				Activate();
 				return _basisCurve;
 			} 
 			set
 			{
-				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -75,13 +92,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _distance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _distance;
+				Activate();
 				return _distance;
 			} 
 			set
 			{
-				SetValue( v =>  _distance = v, _distance, value,  "Distance");
+				SetValue( v =>  _distance = v, _distance, value,  "Distance", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -89,13 +106,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _selfIntersect;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _selfIntersect;
+				Activate();
 				return _selfIntersect;
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 3);
 			} 
 		}	
 		#endregion
@@ -103,9 +120,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -122,12 +138,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : BasisCurve.Dim = 2;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -135,55 +145,18 @@ namespace Xbim.Ifc2x3.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcOffsetCurve2D
-            var root = (@IfcOffsetCurve2D)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcOffsetCurve2D left, @IfcOffsetCurve2D right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcOffsetCurve2D left, @IfcOffsetCurve2D right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOffsetCurve2D x, @IfcOffsetCurve2D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOffsetCurve2D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisCurve != null)
+					yield return @BasisCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

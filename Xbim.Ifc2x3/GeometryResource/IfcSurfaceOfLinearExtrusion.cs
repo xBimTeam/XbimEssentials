@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceOfLinearExtrusion : IIfcSweptSurface
 	{
-		IIfcDirection @ExtrudedDirection { get; }
-		IfcLengthMeasure @Depth { get; }
+		IIfcDirection @ExtrudedDirection { get;  set; }
+		IfcLengthMeasure @Depth { get;  set; }
 		Common.Geometry.XbimVector3D @ExtrusionAxis  { get ; }
 	
 	}
@@ -35,17 +37,26 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurfaceOfLinearExtrusion", 256)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IEqualityComparer<@IfcSurfaceOfLinearExtrusion>, IEquatable<@IfcSurfaceOfLinearExtrusion>
+	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IContainsEntityReferences, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{
 		#region IIfcSurfaceOfLinearExtrusion explicit implementation
-		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { get { return @ExtrudedDirection; } }	
-		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { get { return @Depth; } }	
+		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { 
+ 
+ 
+			get { return @ExtrudedDirection; } 
+			set { ExtrudedDirection = value as IfcDirection;}
+		}	
+		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { 
+ 
+			get { return @Depth; } 
+			set { Depth = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSurfaceOfLinearExtrusion(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSurfaceOfLinearExtrusion(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +70,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _extrudedDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _extrudedDirection;
+				Activate();
 				return _extrudedDirection;
 			} 
 			set
 			{
-				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -73,13 +86,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _depth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _depth;
+				Activate();
 				return _depth;
 			} 
 			set
 			{
-				SetValue( v =>  _depth = v, _depth, value,  "Depth");
+				SetValue( v =>  _depth = v, _depth, value,  "Depth", 4);
 			} 
 		}	
 		#endregion
@@ -93,12 +106,9 @@ namespace Xbim.Ifc2x3.GeometryResource
 			{
 				//## Getter for ExtrusionAxis
                 return new Common.Geometry.XbimVector3D(
-                    _extrudedDirection.X, 
-                    _extrudedDirection.Y, 
-                    _extrudedDirection.Z)
-                {
-                    Magnitude = _depth
-                };
+                    _extrudedDirection.X * _depth, 
+                    _extrudedDirection.Y * _depth, 
+                    _extrudedDirection.Z * _depth);
 				//##
 			}
 		}
@@ -106,9 +116,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -126,12 +135,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:	WR41 : Depth > 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -139,55 +142,22 @@ namespace Xbim.Ifc2x3.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSurfaceOfLinearExtrusion
-            var root = (@IfcSurfaceOfLinearExtrusion)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSurfaceOfLinearExtrusion left, @IfcSurfaceOfLinearExtrusion right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSurfaceOfLinearExtrusion left, @IfcSurfaceOfLinearExtrusion right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceOfLinearExtrusion x, @IfcSurfaceOfLinearExtrusion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceOfLinearExtrusion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptCurve != null)
+					yield return @SweptCurve;
+				if (@Position != null)
+					yield return @Position;
+				if (@ExtrudedDirection != null)
+					yield return @ExtrudedDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

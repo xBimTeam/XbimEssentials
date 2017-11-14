@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	public partial class @IfcPlanarExtent : IIfcPlanarExtent
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPlanarExtent), 1)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInX 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInX);
 			} 
+			set
+			{
+				SizeInX = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPlanarExtent), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcPlanarExtent.SizeInY 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(SizeInY);
 			} 
+			set
+			{
+				SizeInY = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.PropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,42 +26,64 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyTableValue : IIfcSimpleProperty
 	{
-		IEnumerable<IIfcValue> @DefiningValues { get; }
-		IEnumerable<IIfcValue> @DefinedValues { get; }
-		IfcText? @Expression { get; }
-		IIfcUnit @DefiningUnit { get; }
-		IIfcUnit @DefinedUnit { get; }
-		IfcCurveInterpolationEnum? @CurveInterpolation { get; }
+		IItemSet<IIfcValue> @DefiningValues { get; }
+		IItemSet<IIfcValue> @DefinedValues { get; }
+		IfcText? @Expression { get;  set; }
+		IIfcUnit @DefiningUnit { get;  set; }
+		IIfcUnit @DefinedUnit { get;  set; }
+		IfcCurveInterpolationEnum? @CurveInterpolation { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IfcPropertyTableValue", 869)]
+	[ExpressType("IfcPropertyTableValue", 557)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IEqualityComparer<@IfcPropertyTableValue>, IEquatable<@IfcPropertyTableValue>
+	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IContainsEntityReferences, IEquatable<@IfcPropertyTableValue>
 	{
 		#region IIfcPropertyTableValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefiningValues { get { return @DefiningValues; } }	
-		IEnumerable<IIfcValue> IIfcPropertyTableValue.DefinedValues { get { return @DefinedValues; } }	
-		IfcText? IIfcPropertyTableValue.Expression { get { return @Expression; } }	
-		IIfcUnit IIfcPropertyTableValue.DefiningUnit { get { return @DefiningUnit; } }	
-		IIfcUnit IIfcPropertyTableValue.DefinedUnit { get { return @DefinedUnit; } }	
-		IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation { get { return @CurveInterpolation; } }	
+		IItemSet<IIfcValue> IIfcPropertyTableValue.DefiningValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @DefiningValues); } 
+		}	
+		IItemSet<IIfcValue> IIfcPropertyTableValue.DefinedValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @DefinedValues); } 
+		}	
+		IfcText? IIfcPropertyTableValue.Expression { 
+ 
+			get { return @Expression; } 
+			set { Expression = value;}
+		}	
+		IIfcUnit IIfcPropertyTableValue.DefiningUnit { 
+ 
+ 
+			get { return @DefiningUnit; } 
+			set { DefiningUnit = value as IfcUnit;}
+		}	
+		IIfcUnit IIfcPropertyTableValue.DefinedUnit { 
+ 
+ 
+			get { return @DefinedUnit; } 
+			set { DefinedUnit = value as IfcUnit;}
+		}	
+		IfcCurveInterpolationEnum? IIfcPropertyTableValue.CurveInterpolation { 
+ 
+			get { return @CurveInterpolation; } 
+			set { CurveInterpolation = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPropertyTableValue(IModel model) : base(model) 		{ 
-			Model = model; 
-			_definingValues = new OptionalItemSet<IfcValue>( this, 0 );
-			_definedValues = new OptionalItemSet<IfcValue>( this, 0 );
+		internal IfcPropertyTableValue(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_definingValues = new OptionalItemSet<IfcValue>( this, 0,  3);
+			_definedValues = new OptionalItemSet<IfcValue>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcValue> _definingValues;
-		private OptionalItemSet<IfcValue> _definedValues;
+		private readonly OptionalItemSet<IfcValue> _definingValues;
+		private readonly OptionalItemSet<IfcValue> _definedValues;
 		private IfcText? _expression;
 		private IfcUnit _definingUnit;
 		private IfcUnit _definedUnit;
@@ -68,22 +92,22 @@ namespace Xbim.Ifc4.PropertyResource
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 10)]
-		public OptionalItemSet<IfcValue> @DefiningValues 
+		public IOptionalItemSet<IfcValue> @DefiningValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definingValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definingValues;
+				Activate();
 				return _definingValues;
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
-		public OptionalItemSet<IfcValue> @DefinedValues 
+		public IOptionalItemSet<IfcValue> @DefinedValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definedValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definedValues;
+				Activate();
 				return _definedValues;
 			} 
 		}	
@@ -92,13 +116,13 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression");
+				SetValue( v =>  _expression = v, _expression, value,  "Expression", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -106,13 +130,15 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definingUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definingUnit;
+				Activate();
 				return _definingUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _definingUnit = v, _definingUnit, value,  "DefiningUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _definingUnit = v, _definingUnit, value,  "DefiningUnit", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -120,13 +146,15 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definedUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definedUnit;
+				Activate();
 				return _definedUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _definedUnit = v, _definedUnit, value,  "DefinedUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _definedUnit = v, _definedUnit, value,  "DefinedUnit", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
@@ -134,13 +162,13 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveInterpolation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveInterpolation;
+				Activate();
 				return _curveInterpolation;
 			} 
 			set
 			{
-				SetValue( v =>  _curveInterpolation = v, _curveInterpolation, value,  "CurveInterpolation");
+				SetValue( v =>  _curveInterpolation = v, _curveInterpolation, value,  "CurveInterpolation", 8);
 			} 
 		}	
 		#endregion
@@ -148,9 +176,8 @@ namespace Xbim.Ifc4.PropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -159,11 +186,9 @@ namespace Xbim.Ifc4.PropertyResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_definingValues == null) _definingValues = new OptionalItemSet<IfcValue>( this );
 					_definingValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				case 3: 
-					if (_definedValues == null) _definedValues = new OptionalItemSet<IfcValue>( this );
 					_definedValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				case 4: 
@@ -182,14 +207,6 @@ namespace Xbim.Ifc4.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:OR (SIZEOF(DefiningValues) = SIZEOF(DefinedValues));*/
-		/*WR22:)) = 0);*/
-		/*WR23:)) = 0);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -197,55 +214,20 @@ namespace Xbim.Ifc4.PropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPropertyTableValue
-            var root = (@IfcPropertyTableValue)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPropertyTableValue left, @IfcPropertyTableValue right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPropertyTableValue left, @IfcPropertyTableValue right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyTableValue x, @IfcPropertyTableValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyTableValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@DefiningUnit != null)
+					yield return @DefiningUnit;
+				if (@DefinedUnit != null)
+					yield return @DefinedUnit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

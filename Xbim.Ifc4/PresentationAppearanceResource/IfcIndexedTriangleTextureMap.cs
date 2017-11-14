@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,40 +26,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIndexedTriangleTextureMap : IIfcIndexedTextureMap
 	{
-		IEnumerable<IEnumerable<IfcPositiveInteger>> @TexCoordIndex { get; }
+		IItemSet<IItemSet<IfcPositiveInteger>> @TexCoordIndex { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcIndexedTriangleTextureMap", 717)]
+	[ExpressType("IfcIndexedTriangleTextureMap", 1192)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IEqualityComparer<@IfcIndexedTriangleTextureMap>, IEquatable<@IfcIndexedTriangleTextureMap>
+	public  partial class @IfcIndexedTriangleTextureMap : IfcIndexedTextureMap, IInstantiableEntity, IIfcIndexedTriangleTextureMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcIndexedTriangleTextureMap>
 	{
 		#region IIfcIndexedTriangleTextureMap explicit implementation
-		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { get { return @TexCoordIndex; } }	
+		IItemSet<IItemSet<IfcPositiveInteger>> IIfcIndexedTriangleTextureMap.TexCoordIndex { 
+			get { return @TexCoordIndex; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcIndexedTriangleTextureMap(IModel model) : base(model) 		{ 
-			Model = model; 
-			_texCoordIndex = new OptionalItemSet<ItemSet<IfcPositiveInteger>>( this, 0 );
+		internal IfcIndexedTriangleTextureMap(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_texCoordIndex = new OptionalItemSet<IItemSet<IfcPositiveInteger>>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<ItemSet<IfcPositiveInteger>> _texCoordIndex;
+		private readonly OptionalItemSet<IItemSet<IfcPositiveInteger>> _texCoordIndex;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 4)]
-		public OptionalItemSet<ItemSet<IfcPositiveInteger>> @TexCoordIndex 
+		public IOptionalItemSet<IItemSet<IfcPositiveInteger>> @TexCoordIndex 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _texCoordIndex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _texCoordIndex;
+				Activate();
 				return _texCoordIndex;
 			} 
 		}	
@@ -66,9 +70,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -78,18 +81,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					_texCoordIndex
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcPositiveInteger>)_texCoordIndex
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -98,55 +96,37 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcIndexedTriangleTextureMap
-            var root = (@IfcIndexedTriangleTextureMap)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcIndexedTriangleTextureMap left, @IfcIndexedTriangleTextureMap right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcIndexedTriangleTextureMap left, @IfcIndexedTriangleTextureMap right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIndexedTriangleTextureMap x, @IfcIndexedTriangleTextureMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIndexedTriangleTextureMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Maps)
+					yield return entity;
+				if (@MappedTo != null)
+					yield return @MappedTo;
+				if (@TexCoords != null)
+					yield return @TexCoords;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Maps)
+					yield return entity;
+				if (@MappedTo != null)
+					yield return @MappedTo;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

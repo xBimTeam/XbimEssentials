@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,12 +27,12 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfile : IIfcMaterialDefinition
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcMaterial @Material { get; }
-		IIfcProfileDef @Profile { get; }
-		IfcInteger? @Priority { get; }
-		IfcLabel? @Category { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcMaterial @Material { get;  set; }
+		IIfcProfileDef @Profile { get;  set; }
+		IfcInteger? @Priority { get;  set; }
+		IfcLabel? @Category { get;  set; }
 		IIfcMaterialProfileSet @ToMaterialProfileSet {  get; }
 	
 	}
@@ -38,24 +40,50 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IfcMaterialProfile", 760)]
+	[ExpressType("IfcMaterialProfile", 1205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IEqualityComparer<@IfcMaterialProfile>, IEquatable<@IfcMaterialProfile>
+	public  partial class @IfcMaterialProfile : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialProfile, IContainsEntityReferences, IEquatable<@IfcMaterialProfile>
 	{
 		#region IIfcMaterialProfile explicit implementation
-		IfcLabel? IIfcMaterialProfile.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialProfile.Description { get { return @Description; } }	
-		IIfcMaterial IIfcMaterialProfile.Material { get { return @Material; } }	
-		IIfcProfileDef IIfcMaterialProfile.Profile { get { return @Profile; } }	
-		IfcInteger? IIfcMaterialProfile.Priority { get { return @Priority; } }	
-		IfcLabel? IIfcMaterialProfile.Category { get { return @Category; } }	
+		IfcLabel? IIfcMaterialProfile.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialProfile.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IIfcMaterial IIfcMaterialProfile.Material { 
+ 
+ 
+			get { return @Material; } 
+			set { Material = value as IfcMaterial;}
+		}	
+		IIfcProfileDef IIfcMaterialProfile.Profile { 
+ 
+ 
+			get { return @Profile; } 
+			set { Profile = value as IfcProfileDef;}
+		}	
+		IfcInteger? IIfcMaterialProfile.Priority { 
+ 
+			get { return @Priority; } 
+			set { Priority = value;}
+		}	
+		IfcLabel? IIfcMaterialProfile.Category { 
+ 
+			get { return @Category; } 
+			set { Category = value;}
+		}	
 		 
 		IIfcMaterialProfileSet IIfcMaterialProfile.ToMaterialProfileSet {  get { return @ToMaterialProfileSet; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialProfile(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMaterialProfile(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -73,13 +101,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -87,13 +115,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -101,13 +129,15 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _material;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _material;
+				Activate();
 				return _material;
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _material = v, _material, value,  "Material", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -115,13 +145,15 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profile;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profile;
+				Activate();
 				return _profile;
 			} 
 			set
 			{
-				SetValue( v =>  _profile = v, _profile, value,  "Profile");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _profile = v, _profile, value,  "Profile", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -129,13 +161,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _priority;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _priority;
+				Activate();
 				return _priority;
 			} 
 			set
 			{
-				SetValue( v =>  _priority = v, _priority, value,  "Priority");
+				SetValue( v =>  _priority = v, _priority, value,  "Priority", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -143,13 +175,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 6);
 			} 
 		}	
 		#endregion
@@ -168,9 +200,8 @@ namespace Xbim.Ifc4.MaterialResource
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -196,12 +227,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NormalizedPriority:	NormalizedPriority : NOT(EXISTS(Priority)) OR {0 <= Priority <= 100};*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -209,55 +234,20 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialProfile
-            var root = (@IfcMaterialProfile)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialProfile left, @IfcMaterialProfile right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialProfile left, @IfcMaterialProfile right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialProfile x, @IfcMaterialProfile y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialProfile obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				if (@Profile != null)
+					yield return @Profile;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

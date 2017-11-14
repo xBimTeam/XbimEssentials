@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcExtrudedAreaSolid : IIfcExtrudedAreaSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcExtrudedAreaSolid), 3)]
 		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection 
 		{ 
 			get
 			{
 				return ExtrudedDirection;
 			} 
+			set
+			{
+				ExtrudedDirection = value as GeometryResource.IfcDirection;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcExtrudedAreaSolid), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Depth);
 			} 
+			set
+			{
+				Depth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

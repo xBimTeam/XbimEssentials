@@ -12,10 +12,10 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcDimensionCount", 22)]
+	[ExpressType("IfcDimensionCount", 523)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcDimensionCount : IExpressValueType, System.IEquatable<long>
+	public partial struct IfcDimensionCount : IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
 		private long _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.GeometryResource
         {
             get { return _value; }
         }
+
+ 
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {
@@ -91,11 +94,6 @@ namespace Xbim.Ifc4.GeometryResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             _value = value.IntegerVal;
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

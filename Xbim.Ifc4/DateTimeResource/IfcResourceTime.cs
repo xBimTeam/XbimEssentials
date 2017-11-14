@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,53 +26,113 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResourceTime : IIfcSchedulingTime
 	{
-		IfcDuration? @ScheduleWork { get; }
-		IfcPositiveRatioMeasure? @ScheduleUsage { get; }
-		IfcDateTime? @ScheduleStart { get; }
-		IfcDateTime? @ScheduleFinish { get; }
-		IfcLabel? @ScheduleContour { get; }
-		IfcDuration? @LevelingDelay { get; }
-		IfcBoolean? @IsOverAllocated { get; }
-		IfcDateTime? @StatusTime { get; }
-		IfcDuration? @ActualWork { get; }
-		IfcPositiveRatioMeasure? @ActualUsage { get; }
-		IfcDateTime? @ActualStart { get; }
-		IfcDateTime? @ActualFinish { get; }
-		IfcDuration? @RemainingWork { get; }
-		IfcPositiveRatioMeasure? @RemainingUsage { get; }
-		IfcPositiveRatioMeasure? @Completion { get; }
+		IfcDuration? @ScheduleWork { get;  set; }
+		IfcPositiveRatioMeasure? @ScheduleUsage { get;  set; }
+		IfcDateTime? @ScheduleStart { get;  set; }
+		IfcDateTime? @ScheduleFinish { get;  set; }
+		IfcLabel? @ScheduleContour { get;  set; }
+		IfcDuration? @LevelingDelay { get;  set; }
+		IfcBoolean? @IsOverAllocated { get;  set; }
+		IfcDateTime? @StatusTime { get;  set; }
+		IfcDuration? @ActualWork { get;  set; }
+		IfcPositiveRatioMeasure? @ActualUsage { get;  set; }
+		IfcDateTime? @ActualStart { get;  set; }
+		IfcDateTime? @ActualFinish { get;  set; }
+		IfcDuration? @RemainingWork { get;  set; }
+		IfcPositiveRatioMeasure? @RemainingUsage { get;  set; }
+		IfcPositiveRatioMeasure? @Completion { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IfcResourceTime", 966)]
+	[ExpressType("IfcResourceTime", 1259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcResourceTime : IfcSchedulingTime, IInstantiableEntity, IIfcResourceTime, IEqualityComparer<@IfcResourceTime>, IEquatable<@IfcResourceTime>
+	public  partial class @IfcResourceTime : IfcSchedulingTime, IInstantiableEntity, IIfcResourceTime, IEquatable<@IfcResourceTime>
 	{
 		#region IIfcResourceTime explicit implementation
-		IfcDuration? IIfcResourceTime.ScheduleWork { get { return @ScheduleWork; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.ScheduleUsage { get { return @ScheduleUsage; } }	
-		IfcDateTime? IIfcResourceTime.ScheduleStart { get { return @ScheduleStart; } }	
-		IfcDateTime? IIfcResourceTime.ScheduleFinish { get { return @ScheduleFinish; } }	
-		IfcLabel? IIfcResourceTime.ScheduleContour { get { return @ScheduleContour; } }	
-		IfcDuration? IIfcResourceTime.LevelingDelay { get { return @LevelingDelay; } }	
-		IfcBoolean? IIfcResourceTime.IsOverAllocated { get { return @IsOverAllocated; } }	
-		IfcDateTime? IIfcResourceTime.StatusTime { get { return @StatusTime; } }	
-		IfcDuration? IIfcResourceTime.ActualWork { get { return @ActualWork; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.ActualUsage { get { return @ActualUsage; } }	
-		IfcDateTime? IIfcResourceTime.ActualStart { get { return @ActualStart; } }	
-		IfcDateTime? IIfcResourceTime.ActualFinish { get { return @ActualFinish; } }	
-		IfcDuration? IIfcResourceTime.RemainingWork { get { return @RemainingWork; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.RemainingUsage { get { return @RemainingUsage; } }	
-		IfcPositiveRatioMeasure? IIfcResourceTime.Completion { get { return @Completion; } }	
+		IfcDuration? IIfcResourceTime.ScheduleWork { 
+ 
+			get { return @ScheduleWork; } 
+			set { ScheduleWork = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.ScheduleUsage { 
+ 
+			get { return @ScheduleUsage; } 
+			set { ScheduleUsage = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ScheduleStart { 
+ 
+			get { return @ScheduleStart; } 
+			set { ScheduleStart = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ScheduleFinish { 
+ 
+			get { return @ScheduleFinish; } 
+			set { ScheduleFinish = value;}
+		}	
+		IfcLabel? IIfcResourceTime.ScheduleContour { 
+ 
+			get { return @ScheduleContour; } 
+			set { ScheduleContour = value;}
+		}	
+		IfcDuration? IIfcResourceTime.LevelingDelay { 
+ 
+			get { return @LevelingDelay; } 
+			set { LevelingDelay = value;}
+		}	
+		IfcBoolean? IIfcResourceTime.IsOverAllocated { 
+ 
+			get { return @IsOverAllocated; } 
+			set { IsOverAllocated = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.StatusTime { 
+ 
+			get { return @StatusTime; } 
+			set { StatusTime = value;}
+		}	
+		IfcDuration? IIfcResourceTime.ActualWork { 
+ 
+			get { return @ActualWork; } 
+			set { ActualWork = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.ActualUsage { 
+ 
+			get { return @ActualUsage; } 
+			set { ActualUsage = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ActualStart { 
+ 
+			get { return @ActualStart; } 
+			set { ActualStart = value;}
+		}	
+		IfcDateTime? IIfcResourceTime.ActualFinish { 
+ 
+			get { return @ActualFinish; } 
+			set { ActualFinish = value;}
+		}	
+		IfcDuration? IIfcResourceTime.RemainingWork { 
+ 
+			get { return @RemainingWork; } 
+			set { RemainingWork = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.RemainingUsage { 
+ 
+			get { return @RemainingUsage; } 
+			set { RemainingUsage = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcResourceTime.Completion { 
+ 
+			get { return @Completion; } 
+			set { Completion = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcResourceTime(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcResourceTime(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -97,13 +159,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleWork;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleWork;
+				Activate();
 				return _scheduleWork;
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleWork = v, _scheduleWork, value,  "ScheduleWork");
+				SetValue( v =>  _scheduleWork = v, _scheduleWork, value,  "ScheduleWork", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -111,13 +173,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleUsage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleUsage;
+				Activate();
 				return _scheduleUsage;
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleUsage = v, _scheduleUsage, value,  "ScheduleUsage");
+				SetValue( v =>  _scheduleUsage = v, _scheduleUsage, value,  "ScheduleUsage", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -125,13 +187,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleStart;
+				Activate();
 				return _scheduleStart;
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart");
+				SetValue( v =>  _scheduleStart = v, _scheduleStart, value,  "ScheduleStart", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -139,13 +201,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleFinish;
+				Activate();
 				return _scheduleFinish;
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish");
+				SetValue( v =>  _scheduleFinish = v, _scheduleFinish, value,  "ScheduleFinish", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -153,13 +215,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleContour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleContour;
+				Activate();
 				return _scheduleContour;
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleContour = v, _scheduleContour, value,  "ScheduleContour");
+				SetValue( v =>  _scheduleContour = v, _scheduleContour, value,  "ScheduleContour", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -167,13 +229,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _levelingDelay;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _levelingDelay;
+				Activate();
 				return _levelingDelay;
 			} 
 			set
 			{
-				SetValue( v =>  _levelingDelay = v, _levelingDelay, value,  "LevelingDelay");
+				SetValue( v =>  _levelingDelay = v, _levelingDelay, value,  "LevelingDelay", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -181,13 +243,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isOverAllocated;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isOverAllocated;
+				Activate();
 				return _isOverAllocated;
 			} 
 			set
 			{
-				SetValue( v =>  _isOverAllocated = v, _isOverAllocated, value,  "IsOverAllocated");
+				SetValue( v =>  _isOverAllocated = v, _isOverAllocated, value,  "IsOverAllocated", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -195,13 +257,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _statusTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _statusTime;
+				Activate();
 				return _statusTime;
 			} 
 			set
 			{
-				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime");
+				SetValue( v =>  _statusTime = v, _statusTime, value,  "StatusTime", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -209,13 +271,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualWork;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualWork;
+				Activate();
 				return _actualWork;
 			} 
 			set
 			{
-				SetValue( v =>  _actualWork = v, _actualWork, value,  "ActualWork");
+				SetValue( v =>  _actualWork = v, _actualWork, value,  "ActualWork", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -223,13 +285,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualUsage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualUsage;
+				Activate();
 				return _actualUsage;
 			} 
 			set
 			{
-				SetValue( v =>  _actualUsage = v, _actualUsage, value,  "ActualUsage");
+				SetValue( v =>  _actualUsage = v, _actualUsage, value,  "ActualUsage", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -237,13 +299,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualStart;
+				Activate();
 				return _actualStart;
 			} 
 			set
 			{
-				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart");
+				SetValue( v =>  _actualStart = v, _actualStart, value,  "ActualStart", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -251,13 +313,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualFinish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualFinish;
+				Activate();
 				return _actualFinish;
 			} 
 			set
 			{
-				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish");
+				SetValue( v =>  _actualFinish = v, _actualFinish, value,  "ActualFinish", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -265,13 +327,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _remainingWork;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _remainingWork;
+				Activate();
 				return _remainingWork;
 			} 
 			set
 			{
-				SetValue( v =>  _remainingWork = v, _remainingWork, value,  "RemainingWork");
+				SetValue( v =>  _remainingWork = v, _remainingWork, value,  "RemainingWork", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -279,13 +341,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _remainingUsage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _remainingUsage;
+				Activate();
 				return _remainingUsage;
 			} 
 			set
 			{
-				SetValue( v =>  _remainingUsage = v, _remainingUsage, value,  "RemainingUsage");
+				SetValue( v =>  _remainingUsage = v, _remainingUsage, value,  "RemainingUsage", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -293,13 +355,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _completion;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _completion;
+				Activate();
 				return _completion;
 			} 
 			set
 			{
-				SetValue( v =>  _completion = v, _completion, value,  "Completion");
+				SetValue( v =>  _completion = v, _completion, value,  "Completion", 18);
 			} 
 		}	
 		#endregion
@@ -307,9 +369,8 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -367,11 +428,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -379,54 +435,6 @@ namespace Xbim.Ifc4.DateTimeResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcResourceTime
-            var root = (@IfcResourceTime)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcResourceTime left, @IfcResourceTime right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcResourceTime left, @IfcResourceTime right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcResourceTime x, @IfcResourceTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcResourceTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

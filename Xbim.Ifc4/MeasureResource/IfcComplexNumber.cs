@@ -14,7 +14,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcComplexNumber", 12)]
+	[ExpressType("IfcComplexNumber", 650)]
 	[DefinedType(typeof(List<double>))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcComplexNumber : IfcMeasureValue, IExpressComplexType, System.IEquatable<List<double>>
@@ -102,11 +102,6 @@ namespace Xbim.Ifc4.MeasureResource
 				_value = new List<double>();
             _value.Add(value.RealVal);
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

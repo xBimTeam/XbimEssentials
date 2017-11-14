@@ -19,6 +19,7 @@
         XbimCurveType,
         XbimCurveSetType,
         XbimMeshType,
-        XbimMeshSetType
+        XbimMeshSetType,
+        XbimCompoundType
     }
 }

@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcDerivedUnitElement : IIfcDerivedUnitElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedUnitElement), 1)]
 		IIfcNamedUnit IIfcDerivedUnitElement.Unit 
 		{ 
 			get
 			{
 				return Unit;
 			} 
+			set
+			{
+				Unit = value as IfcNamedUnit;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDerivedUnitElement), 2)]
 		long IIfcDerivedUnitElement.Exponent 
 		{ 
 			get
 			{
 				return Exponent;
 			} 
+			set
+			{
+				Exponent = value;
+				
+			}
 		}
 	//## Custom code
 	//##

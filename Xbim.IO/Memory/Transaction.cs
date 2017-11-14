@@ -55,20 +55,28 @@ namespace Xbim.IO.Memory
                 throw new Exception("Transaction is closed already");
 
             //from back to front
-            for (var i = _log.Count -1 ; i == 0 ; i--)
+            for (var i = _log.Count -1 ; i >= 0 ; i--)
                 _log[i].UndoAction();
             
             Finish();
         }
 
-        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType)
+        public void DoReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int propertyOrder)
         {
             if (_closed)
                 throw new Exception("Transaction is closed already");
 
+            OnEntityChanging(entity, changeType, propertyOrder);
+            
+            doAction();
             _log.Add(new Change(doAction, undoAction, entity, changeType));
-            _model.HandleEntityChange(changeType, entity);
+            
+            OnEntityChanged(entity, changeType, propertyOrder);
+            _model.HandleEntityChange(changeType, entity, propertyOrder);
         }
+
+        public event EntityChangedHandler EntityChanged;
+        public event EntityChangingHandler EntityChanging;
 
 
         /// <summary>
@@ -115,7 +123,7 @@ namespace Xbim.IO.Memory
                 return; //don't undo multiple times
 
             //from back to front
-            for (var i = _log.Count - 1; i == 0; i--)
+            for (var i = _log.Count - 1; i >= 0; i--)
                 _log[i].UndoAction();
             _undone = true;
         }
@@ -138,6 +146,18 @@ namespace Xbim.IO.Memory
             if (!_closed)
                 RollBack();
             _log.Clear();
+        }
+
+        protected virtual void OnEntityChanged(IPersistEntity entity, ChangeType change, int property)
+        {
+            var handler = EntityChanged;
+            if (handler != null) handler(entity, change, property);
+        }
+
+        protected virtual void OnEntityChanging(IPersistEntity entity, ChangeType change, int property)
+        {
+            var handler = EntityChanging;
+            if (handler != null) handler(entity, change, property);
         }
     }
 }

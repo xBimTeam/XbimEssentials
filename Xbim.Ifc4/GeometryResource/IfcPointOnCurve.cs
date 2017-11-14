@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,36 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPointOnCurve : IIfcPoint
 	{
-		IIfcCurve @BasisCurve { get; }
-		IfcParameterValue @PointParameter { get; }
+		IIfcCurve @BasisCurve { get;  set; }
+		IfcParameterValue @PointParameter { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcPointOnCurve", 825)]
+	[ExpressType("IfcPointOnCurve", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IEqualityComparer<@IfcPointOnCurve>, IEquatable<@IfcPointOnCurve>
+	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IContainsEntityReferences, IEquatable<@IfcPointOnCurve>
 	{
 		#region IIfcPointOnCurve explicit implementation
-		IIfcCurve IIfcPointOnCurve.BasisCurve { get { return @BasisCurve; } }	
-		IfcParameterValue IIfcPointOnCurve.PointParameter { get { return @PointParameter; } }	
+		IIfcCurve IIfcPointOnCurve.BasisCurve { 
+ 
+ 
+			get { return @BasisCurve; } 
+			set { BasisCurve = value as IfcCurve;}
+		}	
+		IfcParameterValue IIfcPointOnCurve.PointParameter { 
+ 
+			get { return @PointParameter; } 
+			set { PointParameter = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPointOnCurve(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcPointOnCurve(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +69,15 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisCurve;
+				Activate();
 				return _basisCurve;
 			} 
 			set
 			{
-				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -72,13 +85,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointParameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointParameter;
+				Activate();
 				return _pointParameter;
 			} 
 			set
 			{
-				SetValue( v =>  _pointParameter = v, _pointParameter, value,  "PointParameter");
+				SetValue( v =>  _pointParameter = v, _pointParameter, value,  "PointParameter", 2);
 			} 
 		}	
 		#endregion
@@ -99,9 +112,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -115,11 +127,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -127,55 +134,18 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPointOnCurve
-            var root = (@IfcPointOnCurve)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPointOnCurve left, @IfcPointOnCurve right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPointOnCurve left, @IfcPointOnCurve right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPointOnCurve x, @IfcPointOnCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPointOnCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisCurve != null)
+					yield return @BasisCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

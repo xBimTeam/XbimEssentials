@@ -6,16 +6,14 @@ namespace Xbim.Common.Geometry
 {
     public class XbimFaceTriangulation
     {
-        private List<int> _indices;
-        private List<XbimPackedNormal> _normals;
+        private readonly List<int> _indices;
+        private readonly List<XbimPackedNormal> _normals;
         public XbimFaceTriangulation(int numTriangles, int numNormals)
         {
             _normals = new List<XbimPackedNormal>(numNormals);
             _indices = new List<int>(numTriangles * 3);
         }
-
-       
-
+        
         internal void AddNormal(XbimPackedNormal xbimPackedNormal)
         {
            _normals.Add(xbimPackedNormal);
@@ -45,6 +43,14 @@ namespace Xbim.Common.Geometry
             get { return _normals; }
         }
 
+        public IList<int> Indices
+        {
+            get
+            {
+                return _indices;
+            }
+        }
+
         public void WriteIndices(BinaryWriter bw, int vertexCount)
         {          
 
@@ -58,26 +64,30 @@ namespace Xbim.Common.Geometry
 
         public void WriteIndicesAndNormals(BinaryWriter bw, int vertexCount)
         {
-            
             if (vertexCount <= 0xFF)
-                for (int i = 0; i < _indices.Count; i++)
+            {
+                for (var i = 0; i < _indices.Count; i++)
                 {
-                    bw.Write((byte)_indices[i]);
+                    bw.Write((byte) _indices[i]);
                     _normals[i].Write(bw);
                 }
-
+            }
             else if (vertexCount <= 0xFFFF)
-                for (int i = 0; i < _indices.Count; i++)
+            {
+                for (var i = 0; i < _indices.Count; i++)
                 {
                     bw.Write((UInt16)_indices[i]);
                     _normals[i].Write(bw);
                 }
+            }
             else
-                for (int i = 0; i < _indices.Count; i++)
+            {
+                for (var i = 0; i < _indices.Count; i++)
                 {
                     bw.Write(_indices[i]);
                     _normals[i].Write(bw);
                 }
+            }
         }
 
         public XbimFaceTriangulation Transform(XbimQuaternion q)

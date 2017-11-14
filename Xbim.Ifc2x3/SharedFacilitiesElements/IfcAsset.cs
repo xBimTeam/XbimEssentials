@@ -19,6 +19,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedFacilitiesElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -28,15 +30,15 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAsset : IIfcGroup
 	{
-		IfcIdentifier @AssetID { get; }
-		IIfcCostValue @OriginalValue { get; }
-		IIfcCostValue @CurrentValue { get; }
-		IIfcCostValue @TotalReplacementCost { get; }
-		IIfcActorSelect @Owner { get; }
-		IIfcActorSelect @User { get; }
-		IIfcPerson @ResponsiblePerson { get; }
-		IIfcCalendarDate @IncorporationDate { get; }
-		IIfcCostValue @DepreciatedValue { get; }
+		IfcIdentifier @AssetID { get;  set; }
+		IIfcCostValue @OriginalValue { get;  set; }
+		IIfcCostValue @CurrentValue { get;  set; }
+		IIfcCostValue @TotalReplacementCost { get;  set; }
+		IIfcActorSelect @Owner { get;  set; }
+		IIfcActorSelect @User { get;  set; }
+		IIfcPerson @ResponsiblePerson { get;  set; }
+		IIfcCalendarDate @IncorporationDate { get;  set; }
+		IIfcCostValue @DepreciatedValue { get;  set; }
 	
 	}
 }
@@ -45,24 +47,68 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcAsset", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IEqualityComparer<@IfcAsset>, IEquatable<@IfcAsset>
+	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IContainsEntityReferences, IEquatable<@IfcAsset>
 	{
 		#region IIfcAsset explicit implementation
-		IfcIdentifier IIfcAsset.AssetID { get { return @AssetID; } }	
-		IIfcCostValue IIfcAsset.OriginalValue { get { return @OriginalValue; } }	
-		IIfcCostValue IIfcAsset.CurrentValue { get { return @CurrentValue; } }	
-		IIfcCostValue IIfcAsset.TotalReplacementCost { get { return @TotalReplacementCost; } }	
-		IIfcActorSelect IIfcAsset.Owner { get { return @Owner; } }	
-		IIfcActorSelect IIfcAsset.User { get { return @User; } }	
-		IIfcPerson IIfcAsset.ResponsiblePerson { get { return @ResponsiblePerson; } }	
-		IIfcCalendarDate IIfcAsset.IncorporationDate { get { return @IncorporationDate; } }	
-		IIfcCostValue IIfcAsset.DepreciatedValue { get { return @DepreciatedValue; } }	
+		IfcIdentifier IIfcAsset.AssetID { 
+ 
+			get { return @AssetID; } 
+			set { AssetID = value;}
+		}	
+		IIfcCostValue IIfcAsset.OriginalValue { 
+ 
+ 
+			get { return @OriginalValue; } 
+			set { OriginalValue = value as IfcCostValue;}
+		}	
+		IIfcCostValue IIfcAsset.CurrentValue { 
+ 
+ 
+			get { return @CurrentValue; } 
+			set { CurrentValue = value as IfcCostValue;}
+		}	
+		IIfcCostValue IIfcAsset.TotalReplacementCost { 
+ 
+ 
+			get { return @TotalReplacementCost; } 
+			set { TotalReplacementCost = value as IfcCostValue;}
+		}	
+		IIfcActorSelect IIfcAsset.Owner { 
+ 
+ 
+			get { return @Owner; } 
+			set { Owner = value as IfcActorSelect;}
+		}	
+		IIfcActorSelect IIfcAsset.User { 
+ 
+ 
+			get { return @User; } 
+			set { User = value as IfcActorSelect;}
+		}	
+		IIfcPerson IIfcAsset.ResponsiblePerson { 
+ 
+ 
+			get { return @ResponsiblePerson; } 
+			set { ResponsiblePerson = value as IfcPerson;}
+		}	
+		IIfcCalendarDate IIfcAsset.IncorporationDate { 
+ 
+ 
+			get { return @IncorporationDate; } 
+			set { IncorporationDate = value as IfcCalendarDate;}
+		}	
+		IIfcCostValue IIfcAsset.DepreciatedValue { 
+ 
+ 
+			get { return @DepreciatedValue; } 
+			set { DepreciatedValue = value as IfcCostValue;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAsset(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcAsset(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -83,13 +129,13 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assetID;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _assetID;
+				Activate();
 				return _assetID;
 			} 
 			set
 			{
-				SetValue( v =>  _assetID = v, _assetID, value,  "AssetID");
+				SetValue( v =>  _assetID = v, _assetID, value,  "AssetID", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -97,13 +143,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _originalValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _originalValue;
+				Activate();
 				return _originalValue;
 			} 
 			set
 			{
-				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -111,13 +159,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _currentValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _currentValue;
+				Activate();
 				return _currentValue;
 			} 
 			set
 			{
-				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -125,13 +175,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _totalReplacementCost;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _totalReplacementCost;
+				Activate();
 				return _totalReplacementCost;
 			} 
 			set
 			{
-				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
@@ -139,13 +191,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _owner;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _owner;
+				Activate();
 				return _owner;
 			} 
 			set
 			{
-				SetValue( v =>  _owner = v, _owner, value,  "Owner");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _owner = v, _owner, value,  "Owner", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
@@ -153,13 +207,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _user;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _user;
+				Activate();
 				return _user;
 			} 
 			set
 			{
-				SetValue( v =>  _user = v, _user, value,  "User");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _user = v, _user, value,  "User", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -167,13 +223,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _responsiblePerson;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _responsiblePerson;
+				Activate();
 				return _responsiblePerson;
 			} 
 			set
 			{
-				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
@@ -181,13 +239,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _incorporationDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _incorporationDate;
+				Activate();
 				return _incorporationDate;
 			} 
 			set
 			{
-				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
@@ -195,13 +255,15 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _depreciatedValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _depreciatedValue;
+				Activate();
 				return _depreciatedValue;
 			} 
 			set
 			{
-				SetValue( v =>  _depreciatedValue = v, _depreciatedValue, value,  "DepreciatedValue");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _depreciatedValue = v, _depreciatedValue, value,  "DepreciatedValue", 14);
 			} 
 		}	
 		#endregion
@@ -209,9 +271,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -253,12 +314,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(Temp <* SELF\IfcGroup.IsGroupedBy.RelatedObjects | NOT('IFC2X3.IFCELEMENT' IN TYPEOF(Temp)))) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -266,55 +321,34 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcAsset
-            var root = (@IfcAsset)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcAsset left, @IfcAsset right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcAsset left, @IfcAsset right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAsset x, @IfcAsset y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAsset obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@OriginalValue != null)
+					yield return @OriginalValue;
+				if (@CurrentValue != null)
+					yield return @CurrentValue;
+				if (@TotalReplacementCost != null)
+					yield return @TotalReplacementCost;
+				if (@Owner != null)
+					yield return @Owner;
+				if (@User != null)
+					yield return @User;
+				if (@ResponsiblePerson != null)
+					yield return @ResponsiblePerson;
+				if (@IncorporationDate != null)
+					yield return @IncorporationDate;
+				if (@DepreciatedValue != null)
+					yield return @DepreciatedValue;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

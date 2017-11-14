@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationOrganizationResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,33 +27,54 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightSourcePositional : IIfcLightSource
 	{
-		IIfcCartesianPoint @Position { get; }
-		IfcPositiveLengthMeasure @Radius { get; }
-		IfcReal @ConstantAttenuation { get; }
-		IfcReal @DistanceAttenuation { get; }
-		IfcReal @QuadricAttenuation { get; }
+		IIfcCartesianPoint @Position { get;  set; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
+		IfcReal @ConstantAttenuation { get;  set; }
+		IfcReal @DistanceAttenuation { get;  set; }
+		IfcReal @QuadricAttenuation { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationOrganizationResource
 {
-	[ExpressType("IfcLightSourcePositional", 741)]
+	[ExpressType("IfcLightSourcePositional", 759)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IEqualityComparer<@IfcLightSourcePositional>, IEquatable<@IfcLightSourcePositional>
+	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IContainsEntityReferences, IEquatable<@IfcLightSourcePositional>
 	{
 		#region IIfcLightSourcePositional explicit implementation
-		IIfcCartesianPoint IIfcLightSourcePositional.Position { get { return @Position; } }	
-		IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius { get { return @Radius; } }	
-		IfcReal IIfcLightSourcePositional.ConstantAttenuation { get { return @ConstantAttenuation; } }	
-		IfcReal IIfcLightSourcePositional.DistanceAttenuation { get { return @DistanceAttenuation; } }	
-		IfcReal IIfcLightSourcePositional.QuadricAttenuation { get { return @QuadricAttenuation; } }	
+		IIfcCartesianPoint IIfcLightSourcePositional.Position { 
+ 
+ 
+			get { return @Position; } 
+			set { Position = value as IfcCartesianPoint;}
+		}	
+		IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius { 
+ 
+			get { return @Radius; } 
+			set { Radius = value;}
+		}	
+		IfcReal IIfcLightSourcePositional.ConstantAttenuation { 
+ 
+			get { return @ConstantAttenuation; } 
+			set { ConstantAttenuation = value;}
+		}	
+		IfcReal IIfcLightSourcePositional.DistanceAttenuation { 
+ 
+			get { return @DistanceAttenuation; } 
+			set { DistanceAttenuation = value;}
+		}	
+		IfcReal IIfcLightSourcePositional.QuadricAttenuation { 
+ 
+			get { return @QuadricAttenuation; } 
+			set { QuadricAttenuation = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcLightSourcePositional(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcLightSourcePositional(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -68,13 +91,15 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _position;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _position;
+				Activate();
 				return _position;
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -82,13 +107,13 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _radius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _radius;
+				Activate();
 				return _radius;
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -96,13 +121,13 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _constantAttenuation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _constantAttenuation;
+				Activate();
 				return _constantAttenuation;
 			} 
 			set
 			{
-				SetValue( v =>  _constantAttenuation = v, _constantAttenuation, value,  "ConstantAttenuation");
+				SetValue( v =>  _constantAttenuation = v, _constantAttenuation, value,  "ConstantAttenuation", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -110,13 +135,13 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _distanceAttenuation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _distanceAttenuation;
+				Activate();
 				return _distanceAttenuation;
 			} 
 			set
 			{
-				SetValue( v =>  _distanceAttenuation = v, _distanceAttenuation, value,  "DistanceAttenuation");
+				SetValue( v =>  _distanceAttenuation = v, _distanceAttenuation, value,  "DistanceAttenuation", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -124,13 +149,13 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _quadricAttenuation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _quadricAttenuation;
+				Activate();
 				return _quadricAttenuation;
 			} 
 			set
 			{
-				SetValue( v =>  _quadricAttenuation = v, _quadricAttenuation, value,  "QuadricAttenuation");
+				SetValue( v =>  _quadricAttenuation = v, _quadricAttenuation, value,  "QuadricAttenuation", 9);
 			} 
 		}	
 		#endregion
@@ -138,9 +163,8 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -169,11 +193,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -181,55 +200,20 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcLightSourcePositional
-            var root = (@IfcLightSourcePositional)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcLightSourcePositional left, @IfcLightSourcePositional right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcLightSourcePositional left, @IfcLightSourcePositional right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightSourcePositional x, @IfcLightSourcePositional y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSourcePositional obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LightColour != null)
+					yield return @LightColour;
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

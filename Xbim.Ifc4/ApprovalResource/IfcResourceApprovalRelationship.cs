@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ApprovalResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,45 +26,51 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResourceApprovalRelationship : IIfcResourceLevelRelationship
 	{
-		IEnumerable<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
-		IIfcApproval @RelatingApproval { get; }
+		IItemSet<IIfcResourceObjectSelect> @RelatedResourceObjects { get; }
+		IIfcApproval @RelatingApproval { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ApprovalResource
 {
-	[IndexedClass]
-	[ExpressType("IfcResourceApprovalRelationship", 963)]
+	[ExpressType("IfcResourceApprovalRelationship", 1256)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IEqualityComparer<@IfcResourceApprovalRelationship>, IEquatable<@IfcResourceApprovalRelationship>
+	public  partial class @IfcResourceApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcResourceApprovalRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcResourceApprovalRelationship>
 	{
 		#region IIfcResourceApprovalRelationship explicit implementation
-		IEnumerable<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { get { return @RelatedResourceObjects; } }	
-		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { get { return @RelatingApproval; } }	
+		IItemSet<IIfcResourceObjectSelect> IIfcResourceApprovalRelationship.RelatedResourceObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcResourceObjectSelect, IIfcResourceObjectSelect>( @RelatedResourceObjects); } 
+		}	
+		IIfcApproval IIfcResourceApprovalRelationship.RelatingApproval { 
+ 
+ 
+			get { return @RelatingApproval; } 
+			set { RelatingApproval = value as IfcApproval;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcResourceApprovalRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0 );
+		internal IfcResourceApprovalRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
+		private readonly ItemSet<IfcResourceObjectSelect> _relatedResourceObjects;
 		private IfcApproval _relatingApproval;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
+		public IItemSet<IfcResourceObjectSelect> @RelatedResourceObjects 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedResourceObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedResourceObjects;
+				Activate();
 				return _relatedResourceObjects;
 			} 
 		}	
@@ -72,13 +80,15 @@ namespace Xbim.Ifc4.ApprovalResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingApproval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingApproval;
+				Activate();
 				return _relatingApproval;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval", 4);
 			} 
 		}	
 		#endregion
@@ -86,9 +96,8 @@ namespace Xbim.Ifc4.ApprovalResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -97,7 +106,6 @@ namespace Xbim.Ifc4.ApprovalResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_relatedResourceObjects == null) _relatedResourceObjects = new ItemSet<IfcResourceObjectSelect>( this );
 					_relatedResourceObjects.InternalAdd((IfcResourceObjectSelect)value.EntityVal);
 					return;
 				case 3: 
@@ -107,11 +115,6 @@ namespace Xbim.Ifc4.ApprovalResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -119,55 +122,35 @@ namespace Xbim.Ifc4.ApprovalResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcResourceApprovalRelationship
-            var root = (@IfcResourceApprovalRelationship)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcResourceApprovalRelationship left, @IfcResourceApprovalRelationship right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcResourceApprovalRelationship left, @IfcResourceApprovalRelationship right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcResourceApprovalRelationship x, @IfcResourceApprovalRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcResourceApprovalRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @RelatedResourceObjects)
+					yield return entity;
+				if (@RelatingApproval != null)
+					yield return @RelatingApproval;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedResourceObjects)
+					yield return entity;
+				if (@RelatingApproval != null)
+					yield return @RelatingApproval;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

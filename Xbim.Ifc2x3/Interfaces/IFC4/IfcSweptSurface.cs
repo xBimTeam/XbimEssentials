@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcSweptSurface : IIfcSweptSurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSweptSurface), 1)]
 		IIfcProfileDef IIfcSweptSurface.SweptCurve 
 		{ 
 			get
 			{
 				return SweptCurve;
 			} 
+			set
+			{
+				SweptCurve = value as ProfileResource.IfcProfileDef;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSweptSurface), 2)]
 		IIfcAxis2Placement3D IIfcSweptSurface.Position 
 		{ 
 			get
 			{
 				return Position;
 			} 
+			set
+			{
+				Position = value as IfcAxis2Placement3D;
+				
+			}
 		}
 	//## Custom code
 	//##

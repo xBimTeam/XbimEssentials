@@ -16,6 +16,9 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.RepresentationResource;
+//## Custom using statements
+using Xbim.Common.Geometry;
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,31 +28,48 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeometricRepresentationSubContext : IIfcGeometricRepresentationContext
 	{
-		IIfcGeometricRepresentationContext @ParentContext { get; }
-		IfcPositiveRatioMeasure? @TargetScale { get; }
-		IfcGeometricProjectionEnum @TargetView { get; }
-		IfcLabel? @UserDefinedTargetView { get; }
+		IIfcGeometricRepresentationContext @ParentContext { get;  set; }
+		IfcPositiveRatioMeasure? @TargetScale { get;  set; }
+		IfcGeometricProjectionEnum @TargetView { get;  set; }
+		IfcLabel? @UserDefinedTargetView { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IfcGeometricRepresentationSubContext", 701)]
+	[ExpressType("IfcGeometricRepresentationSubContext", 556)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IEqualityComparer<@IfcGeometricRepresentationSubContext>, IEquatable<@IfcGeometricRepresentationSubContext>
+	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
 		#region IIfcGeometricRepresentationSubContext explicit implementation
-		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { get { return @ParentContext; } }	
-		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { get { return @TargetScale; } }	
-		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { get { return @TargetView; } }	
-		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { get { return @UserDefinedTargetView; } }	
+		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { 
+ 
+ 
+			get { return @ParentContext; } 
+			set { ParentContext = value as IfcGeometricRepresentationContext;}
+		}	
+		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { 
+ 
+			get { return @TargetScale; } 
+			set { TargetScale = value;}
+		}	
+		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { 
+ 
+			get { return @TargetView; } 
+			set { TargetView = value;}
+		}	
+		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { 
+ 
+			get { return @UserDefinedTargetView; } 
+			set { UserDefinedTargetView = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcGeometricRepresentationSubContext(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcGeometricRepresentationSubContext(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -66,13 +86,15 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parentContext;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parentContext;
+				Activate();
 				return _parentContext;
 			} 
 			set
 			{
-				SetValue( v =>  _parentContext = v, _parentContext, value,  "ParentContext");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _parentContext = v, _parentContext, value,  "ParentContext", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -80,13 +102,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _targetScale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _targetScale;
+				Activate();
 				return _targetScale;
 			} 
 			set
 			{
-				SetValue( v =>  _targetScale = v, _targetScale, value,  "TargetScale");
+				SetValue( v =>  _targetScale = v, _targetScale, value,  "TargetScale", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 12)]
@@ -94,13 +116,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _targetView;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _targetView;
+				Activate();
 				return _targetView;
 			} 
 			set
 			{
-				SetValue( v =>  _targetView = v, _targetView, value,  "TargetView");
+				SetValue( v =>  _targetView = v, _targetView, value,  "TargetView", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -108,13 +130,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedTargetView;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedTargetView;
+				Activate();
 				return _userDefinedTargetView;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedTargetView = v, _userDefinedTargetView, value,  "UserDefinedTargetView");
+				SetValue( v =>  _userDefinedTargetView = v, _userDefinedTargetView, value,  "UserDefinedTargetView", 10);
 			} 
 		}	
 		#endregion
@@ -153,8 +175,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			    if (ParentContext.TrueNorth != null)
 			        return ParentContext.TrueNorth;
                 //IfcConvertDirectionInto2D(SELF\IfcGeometricRepresentationContext.WorldCoordinateSystem.P[2]));
-			    var dir = WorldCoordinateSystem.P[2];
-			    dir.Z = double.NaN;
+			    var dir = new XbimVector3D(WorldCoordinateSystem.P[2].X, WorldCoordinateSystem.P[2].Y, double.NaN);			   
 			    return dir;
 			    //##
 			}
@@ -179,9 +200,8 @@ namespace Xbim.Ifc4.RepresentationResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -209,14 +229,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ParentNoSub:	ParentNoSub : NOT('IFC4.IFCGEOMETRICREPRESENTATIONSUBCONTEXT' IN TYPEOF(ParentContext));*/
-		/*UserTargetProvided:((TargetView =  IfcGeometricProjectionEnum.USERDEFINED) AND EXISTS(UserDefinedTargetView));*/
-		/*NoCoordOperation:	NoCoordOperation : SIZEOF(SELF\IfcGeometricRepresentationContext.HasCoordinateOperation) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -224,55 +236,35 @@ namespace Xbim.Ifc4.RepresentationResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcGeometricRepresentationSubContext
-            var root = (@IfcGeometricRepresentationSubContext)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcGeometricRepresentationSubContext left, @IfcGeometricRepresentationSubContext right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcGeometricRepresentationSubContext left, @IfcGeometricRepresentationSubContext right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeometricRepresentationSubContext x, @IfcGeometricRepresentationSubContext y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeometricRepresentationSubContext obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@WorldCoordinateSystem != null)
+					yield return @WorldCoordinateSystem;
+				if (@TrueNorth != null)
+					yield return @TrueNorth;
+				if (@ParentContext != null)
+					yield return @ParentContext;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ParentContext != null)
+					yield return @ParentContext;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

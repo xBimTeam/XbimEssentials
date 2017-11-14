@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceOfRevolution : IIfcSweptSurface
 	{
-		IIfcAxis1Placement @AxisPosition { get; }
+		IIfcAxis1Placement @AxisPosition { get;  set; }
 		Common.Geometry.XbimLine @AxisLine  { get ; }
 	
 	}
@@ -31,18 +33,23 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcSurfaceOfRevolution", 1065)]
+	[ExpressType("IfcSurfaceOfRevolution", 109)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IEqualityComparer<@IfcSurfaceOfRevolution>, IEquatable<@IfcSurfaceOfRevolution>
+	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IContainsEntityReferences, IEquatable<@IfcSurfaceOfRevolution>
 	{
 		#region IIfcSurfaceOfRevolution explicit implementation
-		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { get { return @AxisPosition; } }	
+		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { 
+ 
+ 
+			get { return @AxisPosition; } 
+			set { AxisPosition = value as IfcAxis1Placement;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSurfaceOfRevolution(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSurfaceOfRevolution(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +62,15 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axisPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axisPosition;
+				Activate();
 				return _axisPosition;
 			} 
 			set
 			{
-				SetValue( v =>  _axisPosition = v, _axisPosition, value,  "AxisPosition");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _axisPosition = v, _axisPosition, value,  "AxisPosition", 3);
 			} 
 		}	
 		#endregion
@@ -90,9 +99,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -107,11 +115,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -119,55 +122,22 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSurfaceOfRevolution
-            var root = (@IfcSurfaceOfRevolution)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSurfaceOfRevolution left, @IfcSurfaceOfRevolution right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSurfaceOfRevolution left, @IfcSurfaceOfRevolution right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceOfRevolution x, @IfcSurfaceOfRevolution y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceOfRevolution obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptCurve != null)
+					yield return @SweptCurve;
+				if (@Position != null)
+					yield return @Position;
+				if (@AxisPosition != null)
+					yield return @AxisPosition;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

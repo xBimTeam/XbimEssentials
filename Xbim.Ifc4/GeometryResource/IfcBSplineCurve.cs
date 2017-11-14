@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,11 +26,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineCurve : IIfcBoundedCurve
 	{
-		IfcInteger @Degree { get; }
-		IEnumerable<IIfcCartesianPoint> @ControlPointsList { get; }
-		IfcBSplineCurveForm @CurveForm { get; }
-		IfcLogical @ClosedCurve { get; }
-		IfcLogical @SelfIntersect { get; }
+		IfcInteger @Degree { get;  set; }
+		IItemSet<IIfcCartesianPoint> @ControlPointsList { get; }
+		IfcBSplineCurveForm @CurveForm { get;  set; }
+		IfcLogical @ClosedCurve { get;  set; }
+		IfcLogical @SelfIntersect { get;  set; }
 		IfcInteger @UpperIndexOnControlPoints  { get ; }
 		List<Common.Geometry.XbimPoint3D> @ControlPoints  { get ; }
 	
@@ -37,28 +39,46 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcBSplineCurve", 430)]
+	[ExpressType("IfcBSplineCurve", 167)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEqualityComparer<@IfcBSplineCurve>, IEquatable<@IfcBSplineCurve>
+	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEquatable<@IfcBSplineCurve>
 	{
 		#region IIfcBSplineCurve explicit implementation
-		IfcInteger IIfcBSplineCurve.Degree { get { return @Degree; } }	
-		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { get { return @ControlPointsList; } }	
-		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { get { return @CurveForm; } }	
-		IfcLogical IIfcBSplineCurve.ClosedCurve { get { return @ClosedCurve; } }	
-		IfcLogical IIfcBSplineCurve.SelfIntersect { get { return @SelfIntersect; } }	
+		IfcInteger IIfcBSplineCurve.Degree { 
+ 
+			get { return @Degree; } 
+			set { Degree = value;}
+		}	
+		IItemSet<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { 
+			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @ControlPointsList); } 
+		}	
+		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { 
+ 
+			get { return @CurveForm; } 
+			set { CurveForm = value;}
+		}	
+		IfcLogical IIfcBSplineCurve.ClosedCurve { 
+ 
+			get { return @ClosedCurve; } 
+			set { ClosedCurve = value;}
+		}	
+		IfcLogical IIfcBSplineCurve.SelfIntersect { 
+ 
+			get { return @SelfIntersect; } 
+			set { SelfIntersect = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBSplineCurve(IModel model) : base(model) 		{ 
-			Model = model; 
-			_controlPointsList = new ItemSet<IfcCartesianPoint>( this, 0 );
+		internal IfcBSplineCurve(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_controlPointsList = new ItemSet<IfcCartesianPoint>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcInteger _degree;
-		private ItemSet<IfcCartesianPoint> _controlPointsList;
+		private readonly ItemSet<IfcCartesianPoint> _controlPointsList;
 		private IfcBSplineCurveForm _curveForm;
 		private IfcLogical _closedCurve;
 		private IfcLogical _selfIntersect;
@@ -70,22 +90,22 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _degree;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _degree;
+				Activate();
 				return _degree;
 			} 
 			set
 			{
-				SetValue( v =>  _degree = v, _degree, value,  "Degree");
+				SetValue( v =>  _degree = v, _degree, value,  "Degree", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
-		public ItemSet<IfcCartesianPoint> @ControlPointsList 
+		public IItemSet<IfcCartesianPoint> @ControlPointsList 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _controlPointsList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _controlPointsList;
+				Activate();
 				return _controlPointsList;
 			} 
 		}	
@@ -94,13 +114,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveForm;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveForm;
+				Activate();
 				return _curveForm;
 			} 
 			set
 			{
-				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm");
+				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -108,13 +128,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _closedCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _closedCurve;
+				Activate();
 				return _closedCurve;
 			} 
 			set
 			{
-				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve");
+				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -122,13 +142,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _selfIntersect;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _selfIntersect;
+				Activate();
 				return _selfIntersect;
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 5);
 			} 
 		}	
 		#endregion
@@ -160,9 +180,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -170,7 +189,6 @@ namespace Xbim.Ifc4.GeometryResource
 					_degree = value.IntegerVal;
 					return;
 				case 1: 
-					if (_controlPointsList == null) _controlPointsList = new ItemSet<IfcCartesianPoint>( this );
 					_controlPointsList.InternalAdd((IfcCartesianPoint)value.EntityVal);
 					return;
 				case 2: 
@@ -186,12 +204,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SameDim:= 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -199,54 +211,6 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBSplineCurve
-            var root = (@IfcBSplineCurve)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBSplineCurve left, @IfcBSplineCurve right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBSplineCurve left, @IfcBSplineCurve right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBSplineCurve x, @IfcBSplineCurve y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBSplineCurve obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

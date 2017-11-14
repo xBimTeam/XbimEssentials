@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTriangulatedFaceSet : IIfcTessellatedFaceSet
 	{
-		IEnumerable<IEnumerable<IfcPositiveInteger>> @CoordIndex { get; }
-		IEnumerable<IEnumerable<IfcPositiveInteger>> @NormalIndex { get; }
+		IItemSet<IItemSet<IfcPositiveInteger>> @CoordIndex { get; }
+		IItemSet<IItemSet<IfcPositiveInteger>> @NormalIndex { get; }
 		IfcInteger @NumberOfTriangles  { get ; }
 	
 	}
@@ -33,46 +35,50 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcTriangulatedFaceSet", 1121)]
+	[ExpressType("IfcTriangulatedFaceSet", 1304)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IEqualityComparer<@IfcTriangulatedFaceSet>, IEquatable<@IfcTriangulatedFaceSet>
+	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IContainsEntityReferences, IEquatable<@IfcTriangulatedFaceSet>
 	{
 		#region IIfcTriangulatedFaceSet explicit implementation
-		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.CoordIndex { get { return @CoordIndex; } }	
-		IEnumerable<IEnumerable<IfcPositiveInteger>> IIfcTriangulatedFaceSet.NormalIndex { get { return @NormalIndex; } }	
+		IItemSet<IItemSet<IfcPositiveInteger>> IIfcTriangulatedFaceSet.CoordIndex { 
+			get { return @CoordIndex; } 
+		}	
+		IItemSet<IItemSet<IfcPositiveInteger>> IIfcTriangulatedFaceSet.NormalIndex { 
+			get { return @NormalIndex; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTriangulatedFaceSet(IModel model) : base(model) 		{ 
-			Model = model; 
-			_coordIndex = new ItemSet<ItemSet<IfcPositiveInteger>>( this, 0 );
-			_normalIndex = new OptionalItemSet<ItemSet<IfcPositiveInteger>>( this, 0 );
+		internal IfcTriangulatedFaceSet(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_coordIndex = new ItemSet<IItemSet<IfcPositiveInteger>>( this, 0,  4);
+			_normalIndex = new OptionalItemSet<IItemSet<IfcPositiveInteger>>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<IfcPositiveInteger>> _coordIndex;
-		private OptionalItemSet<ItemSet<IfcPositiveInteger>> _normalIndex;
+		private readonly ItemSet<IItemSet<IfcPositiveInteger>> _coordIndex;
+		private readonly OptionalItemSet<IItemSet<IfcPositiveInteger>> _normalIndex;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 8)]
-		public ItemSet<ItemSet<IfcPositiveInteger>> @CoordIndex 
+		public IItemSet<IItemSet<IfcPositiveInteger>> @CoordIndex 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coordIndex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coordIndex;
+				Activate();
 				return _coordIndex;
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 9)]
-		public OptionalItemSet<ItemSet<IfcPositiveInteger>> @NormalIndex 
+		public IOptionalItemSet<IItemSet<IfcPositiveInteger>> @NormalIndex 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _normalIndex;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _normalIndex;
+				Activate();
 				return _normalIndex;
 			} 
 		}	
@@ -94,9 +100,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -106,23 +111,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					_coordIndex
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcPositiveInteger>)_coordIndex
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
 					return;
 				case 4: 
-					_normalIndex
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcPositiveInteger>)_normalIndex
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -131,55 +131,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTriangulatedFaceSet
-            var root = (@IfcTriangulatedFaceSet)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTriangulatedFaceSet left, @IfcTriangulatedFaceSet right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTriangulatedFaceSet left, @IfcTriangulatedFaceSet right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTriangulatedFaceSet x, @IfcTriangulatedFaceSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTriangulatedFaceSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Coordinates != null)
+					yield return @Coordinates;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

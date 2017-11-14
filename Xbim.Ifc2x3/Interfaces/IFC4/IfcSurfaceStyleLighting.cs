@@ -10,39 +10,68 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleLighting : IIfcSurfaceStyleLighting
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 1)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour 
 		{ 
 			get
 			{
 				return DiffuseTransmissionColour;
 			} 
+			set
+			{
+				DiffuseTransmissionColour = value as PresentationResource.IfcColourRgb;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 2)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour 
 		{ 
 			get
 			{
 				return DiffuseReflectionColour;
 			} 
+			set
+			{
+				DiffuseReflectionColour = value as PresentationResource.IfcColourRgb;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 3)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour 
 		{ 
 			get
 			{
 				return TransmissionColour;
 			} 
+			set
+			{
+				TransmissionColour = value as PresentationResource.IfcColourRgb;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleLighting), 4)]
 		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour 
 		{ 
 			get
 			{
 				return ReflectanceColour;
 			} 
+			set
+			{
+				ReflectanceColour = value as PresentationResource.IfcColourRgb;
+				
+			}
 		}
 	//## Custom code
 	//##

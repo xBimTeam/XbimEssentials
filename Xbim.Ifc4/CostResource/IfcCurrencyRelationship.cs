@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.CostResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,34 +28,56 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurrencyRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcMonetaryUnit @RelatingMonetaryUnit { get; }
-		IIfcMonetaryUnit @RelatedMonetaryUnit { get; }
-		IfcPositiveRatioMeasure @ExchangeRate { get; }
-		IfcDateTime? @RateDateTime { get; }
-		IIfcLibraryInformation @RateSource { get; }
+		IIfcMonetaryUnit @RelatingMonetaryUnit { get;  set; }
+		IIfcMonetaryUnit @RelatedMonetaryUnit { get;  set; }
+		IfcPositiveRatioMeasure @ExchangeRate { get;  set; }
+		IfcDateTime? @RateDateTime { get;  set; }
+		IIfcLibraryInformation @RateSource { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.CostResource
 {
-	[IndexedClass]
-	[ExpressType("IfcCurrencyRelationship", 554)]
+	[ExpressType("IfcCurrencyRelationship", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurrencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcCurrencyRelationship, IEqualityComparer<@IfcCurrencyRelationship>, IEquatable<@IfcCurrencyRelationship>
+	public  partial class @IfcCurrencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcCurrencyRelationship, IContainsEntityReferences, IEquatable<@IfcCurrencyRelationship>
 	{
 		#region IIfcCurrencyRelationship explicit implementation
-		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { get { return @RelatingMonetaryUnit; } }	
-		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { get { return @RelatedMonetaryUnit; } }	
-		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { get { return @ExchangeRate; } }	
-		IfcDateTime? IIfcCurrencyRelationship.RateDateTime { get { return @RateDateTime; } }	
-		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { get { return @RateSource; } }	
+		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { 
+ 
+ 
+			get { return @RelatingMonetaryUnit; } 
+			set { RelatingMonetaryUnit = value as IfcMonetaryUnit;}
+		}	
+		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { 
+ 
+ 
+			get { return @RelatedMonetaryUnit; } 
+			set { RelatedMonetaryUnit = value as IfcMonetaryUnit;}
+		}	
+		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { 
+ 
+			get { return @ExchangeRate; } 
+			set { ExchangeRate = value;}
+		}	
+		IfcDateTime? IIfcCurrencyRelationship.RateDateTime { 
+ 
+			get { return @RateDateTime; } 
+			set { RateDateTime = value;}
+		}	
+		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { 
+ 
+ 
+			get { return @RateSource; } 
+			set { RateSource = value as IfcLibraryInformation;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCurrencyRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcCurrencyRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -70,13 +94,15 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingMonetaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingMonetaryUnit;
+				Activate();
 				return _relatingMonetaryUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingMonetaryUnit = v, _relatingMonetaryUnit, value,  "RelatingMonetaryUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingMonetaryUnit = v, _relatingMonetaryUnit, value,  "RelatingMonetaryUnit", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -84,13 +110,15 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedMonetaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedMonetaryUnit;
+				Activate();
 				return _relatedMonetaryUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedMonetaryUnit = v, _relatedMonetaryUnit, value,  "RelatedMonetaryUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedMonetaryUnit = v, _relatedMonetaryUnit, value,  "RelatedMonetaryUnit", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -98,13 +126,13 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _exchangeRate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _exchangeRate;
+				Activate();
 				return _exchangeRate;
 			} 
 			set
 			{
-				SetValue( v =>  _exchangeRate = v, _exchangeRate, value,  "ExchangeRate");
+				SetValue( v =>  _exchangeRate = v, _exchangeRate, value,  "ExchangeRate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -112,13 +140,13 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rateDateTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rateDateTime;
+				Activate();
 				return _rateDateTime;
 			} 
 			set
 			{
-				SetValue( v =>  _rateDateTime = v, _rateDateTime, value,  "RateDateTime");
+				SetValue( v =>  _rateDateTime = v, _rateDateTime, value,  "RateDateTime", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -126,13 +154,15 @@ namespace Xbim.Ifc4.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rateSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rateSource;
+				Activate();
 				return _rateSource;
 			} 
 			set
 			{
-				SetValue( v =>  _rateSource = v, _rateSource, value,  "RateSource");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _rateSource = v, _rateSource, value,  "RateSource", 7);
 			} 
 		}	
 		#endregion
@@ -140,9 +170,8 @@ namespace Xbim.Ifc4.CostResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -169,11 +198,6 @@ namespace Xbim.Ifc4.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -181,55 +205,22 @@ namespace Xbim.Ifc4.CostResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCurrencyRelationship
-            var root = (@IfcCurrencyRelationship)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCurrencyRelationship left, @IfcCurrencyRelationship right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCurrencyRelationship left, @IfcCurrencyRelationship right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCurrencyRelationship x, @IfcCurrencyRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurrencyRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingMonetaryUnit != null)
+					yield return @RelatingMonetaryUnit;
+				if (@RelatedMonetaryUnit != null)
+					yield return @RelatedMonetaryUnit;
+				if (@RateSource != null)
+					yield return @RateSource;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

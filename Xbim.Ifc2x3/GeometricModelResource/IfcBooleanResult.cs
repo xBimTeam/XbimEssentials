@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,30 +26,43 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBooleanResult : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect
 	{
-		IfcBooleanOperator @Operator { get; }
-		IIfcBooleanOperand @FirstOperand { get; }
-		IIfcBooleanOperand @SecondOperand { get; }
+		IfcBooleanOperator @Operator { get;  set; }
+		IIfcBooleanOperand @FirstOperand { get;  set; }
+		IIfcBooleanOperand @SecondOperand { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
-	[IndexedClass]
 	[ExpressType("IfcBooleanResult", 339)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IEqualityComparer<@IfcBooleanResult>, IEquatable<@IfcBooleanResult>
+	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IContainsEntityReferences, IEquatable<@IfcBooleanResult>
 	{
 		#region IIfcBooleanResult explicit implementation
-		IfcBooleanOperator IIfcBooleanResult.Operator { get { return @Operator; } }	
-		IIfcBooleanOperand IIfcBooleanResult.FirstOperand { get { return @FirstOperand; } }	
-		IIfcBooleanOperand IIfcBooleanResult.SecondOperand { get { return @SecondOperand; } }	
+		IfcBooleanOperator IIfcBooleanResult.Operator { 
+ 
+			get { return @Operator; } 
+			set { Operator = value;}
+		}	
+		IIfcBooleanOperand IIfcBooleanResult.FirstOperand { 
+ 
+ 
+			get { return @FirstOperand; } 
+			set { FirstOperand = value as IfcBooleanOperand;}
+		}	
+		IIfcBooleanOperand IIfcBooleanResult.SecondOperand { 
+ 
+ 
+			get { return @SecondOperand; } 
+			set { SecondOperand = value as IfcBooleanOperand;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBooleanResult(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcBooleanResult(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +77,13 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operator;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operator;
+				Activate();
 				return _operator;
 			} 
 			set
 			{
-				SetValue( v =>  _operator = v, _operator, value,  "Operator");
+				SetValue( v =>  _operator = v, _operator, value,  "Operator", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -76,13 +91,15 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _firstOperand;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _firstOperand;
+				Activate();
 				return _firstOperand;
 			} 
 			set
 			{
-				SetValue( v =>  _firstOperand = v, _firstOperand, value,  "FirstOperand");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _firstOperand = v, _firstOperand, value,  "FirstOperand", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -90,13 +107,15 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondOperand;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondOperand;
+				Activate();
 				return _secondOperand;
 			} 
 			set
 			{
-				SetValue( v =>  _secondOperand = v, _secondOperand, value,  "SecondOperand");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _secondOperand = v, _secondOperand, value,  "SecondOperand", 3);
 			} 
 		}	
 		#endregion
@@ -117,9 +136,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -136,12 +154,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : FirstOperand.Dim = SecondOperand.Dim;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -149,55 +161,20 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBooleanResult
-            var root = (@IfcBooleanResult)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBooleanResult left, @IfcBooleanResult right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBooleanResult left, @IfcBooleanResult right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBooleanResult x, @IfcBooleanResult y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBooleanResult obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@FirstOperand != null)
+					yield return @FirstOperand;
+				if (@SecondOperand != null)
+					yield return @SecondOperand;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

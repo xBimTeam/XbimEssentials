@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 	[ExpressType("IfcLogical", 54)]
 	[DefinedType(typeof(bool?))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcLogical : IfcSimpleValue, IExpressValueType, System.IEquatable<bool?>
+	public partial struct IfcLogical : IfcSimpleValue, IExpressValueType, IExpressLogicalType, System.IEquatable<bool?>
 	{ 
 		private bool? _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc2x3.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		bool? IExpressLogicalType.Value { get { return _value; } }
 
 		public override string ToString()
         {
@@ -101,11 +104,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             _value = value.BooleanVal;
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

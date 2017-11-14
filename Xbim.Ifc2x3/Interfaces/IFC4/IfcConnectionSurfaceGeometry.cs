@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionSurfaceGeometry : IIfcConnectionSurfaceGeometry
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionSurfaceGeometry), 1)]
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement 
 		{ 
 			get
@@ -32,7 +35,36 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcfacebasedsurfacemodel;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					SurfaceOnRelatingElement = null;
+					return;
+				}	
+				var ifcfacebasedsurfacemodel = value as GeometricModelResource.IfcFaceBasedSurfaceModel;
+				if (ifcfacebasedsurfacemodel != null) 
+				{
+					SurfaceOnRelatingElement = ifcfacebasedsurfacemodel;
+					return;
+				}
+				var ifcfacesurface = value as TopologyResource.IfcFaceSurface;
+				if (ifcfacesurface != null) 
+				{
+					SurfaceOnRelatingElement = ifcfacesurface;
+					return;
+				}
+				var ifcsurface = value as GeometryResource.IfcSurface;
+				if (ifcsurface != null) 
+				{
+					SurfaceOnRelatingElement = ifcsurface;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionSurfaceGeometry), 2)]
 		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement 
 		{ 
 			get
@@ -49,6 +81,33 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcfacebasedsurfacemodel;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					SurfaceOnRelatedElement = null;
+					return;
+				}	
+				var ifcfacebasedsurfacemodel = value as GeometricModelResource.IfcFaceBasedSurfaceModel;
+				if (ifcfacebasedsurfacemodel != null) 
+				{
+					SurfaceOnRelatedElement = ifcfacebasedsurfacemodel;
+					return;
+				}
+				var ifcfacesurface = value as TopologyResource.IfcFaceSurface;
+				if (ifcfacesurface != null) 
+				{
+					SurfaceOnRelatedElement = ifcfacesurface;
+					return;
+				}
+				var ifcsurface = value as GeometryResource.IfcSurface;
+				if (ifcsurface != null) 
+				{
+					SurfaceOnRelatedElement = ifcsurface;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

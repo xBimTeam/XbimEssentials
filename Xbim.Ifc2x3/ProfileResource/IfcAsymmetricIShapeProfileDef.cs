@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAsymmetricIShapeProfileDef : IIfcIShapeProfileDef
 	{
-		IfcPositiveLengthMeasure @TopFlangeWidth { get; }
-		IfcPositiveLengthMeasure? @TopFlangeThickness { get; }
-		IfcPositiveLengthMeasure? @TopFlangeFilletRadius { get; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
+		IfcPositiveLengthMeasure @TopFlangeWidth { get;  set; }
+		IfcPositiveLengthMeasure? @TopFlangeThickness { get;  set; }
+		IfcPositiveLengthMeasure? @TopFlangeFilletRadius { get;  set; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
 	
 	}
 }
@@ -36,19 +38,35 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcAsymmetricIShapeProfileDef", 672)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsymmetricIShapeProfileDef : IfcIShapeProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IEqualityComparer<@IfcAsymmetricIShapeProfileDef>, IEquatable<@IfcAsymmetricIShapeProfileDef>
+	public  partial class @IfcAsymmetricIShapeProfileDef : IfcIShapeProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
 		#region IIfcAsymmetricIShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { get { return @TopFlangeWidth; } }	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { get { return @TopFlangeThickness; } }	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { get { return @TopFlangeFilletRadius; } }	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { 
+ 
+			get { return @TopFlangeWidth; } 
+			set { TopFlangeWidth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { 
+ 
+			get { return @TopFlangeThickness; } 
+			set { TopFlangeThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { 
+ 
+			get { return @TopFlangeFilletRadius; } 
+			set { TopFlangeFilletRadius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.CentreOfGravityInY { 
+ 
+			get { return @CentreOfGravityInY; } 
+			set { CentreOfGravityInY = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAsymmetricIShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcAsymmetricIShapeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -64,13 +82,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeWidth;
+				Activate();
 				return _topFlangeWidth;
 			} 
 			set
 			{
-				SetValue( v =>  _topFlangeWidth = v, _topFlangeWidth, value,  "TopFlangeWidth");
+				SetValue( v =>  _topFlangeWidth = v, _topFlangeWidth, value,  "TopFlangeWidth", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -78,13 +96,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeThickness;
+				Activate();
 				return _topFlangeThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _topFlangeThickness = v, _topFlangeThickness, value,  "TopFlangeThickness");
+				SetValue( v =>  _topFlangeThickness = v, _topFlangeThickness, value,  "TopFlangeThickness", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -92,13 +110,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _topFlangeFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _topFlangeFilletRadius;
+				Activate();
 				return _topFlangeFilletRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _topFlangeFilletRadius = v, _topFlangeFilletRadius, value,  "TopFlangeFilletRadius");
+				SetValue( v =>  _topFlangeFilletRadius = v, _topFlangeFilletRadius, value,  "TopFlangeFilletRadius", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -106,13 +124,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _centreOfGravityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _centreOfGravityInY;
+				Activate();
 				return _centreOfGravityInY;
 			} 
 			set
 			{
-				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY");
+				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY", 12);
 			} 
 		}	
 		#endregion
@@ -120,9 +138,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -152,11 +169,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -164,55 +176,18 @@ namespace Xbim.Ifc2x3.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcAsymmetricIShapeProfileDef
-            var root = (@IfcAsymmetricIShapeProfileDef)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcAsymmetricIShapeProfileDef left, @IfcAsymmetricIShapeProfileDef right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcAsymmetricIShapeProfileDef left, @IfcAsymmetricIShapeProfileDef right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAsymmetricIShapeProfileDef x, @IfcAsymmetricIShapeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAsymmetricIShapeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,49 +25,84 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieConnection : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieConnectionType @ConnectionType { get; }
-		ICobieComponent @ComponentA { get; }
-		ICobieComponent @ComponentB { get; }
-		ICobieComponent @RealizingComponent { get; }
-		string @PortNameA { get; }
-		string @PortNameB { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieConnectionType @ConnectionType { get;  set; }
+		ICobieTypeOrComponent @ComponentA { get;  set; }
+		ICobieTypeOrComponent @ComponentB { get;  set; }
+		ICobieTypeOrComponent @RealizingComponent { get;  set; }
+		string @PortNameA { get;  set; }
+		string @PortNameB { get;  set; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Connection", 24)]
+	[ExpressType("Connection", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IEqualityComparer<@CobieConnection>, IEquatable<@CobieConnection>
+	public  partial class @CobieConnection : CobieReferencedObject, IInstantiableEntity, ICobieConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieConnection>
 	{
 		#region ICobieConnection explicit implementation
-		string ICobieConnection.Name { get { return @Name; } }	
-		string ICobieConnection.Description { get { return @Description; } }	
-		ICobieConnectionType ICobieConnection.ConnectionType { get { return @ConnectionType; } }	
-		ICobieComponent ICobieConnection.ComponentA { get { return @ComponentA; } }	
-		ICobieComponent ICobieConnection.ComponentB { get { return @ComponentB; } }	
-		ICobieComponent ICobieConnection.RealizingComponent { get { return @RealizingComponent; } }	
-		string ICobieConnection.PortNameA { get { return @PortNameA; } }	
-		string ICobieConnection.PortNameB { get { return @PortNameB; } }	
+		string ICobieConnection.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieConnection.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieConnectionType ICobieConnection.ConnectionType { 
+ 
+ 
+			get { return @ConnectionType; } 
+			set { ConnectionType = value as CobieConnectionType;}
+		}	
+		ICobieTypeOrComponent ICobieConnection.ComponentA { 
+ 
+ 
+			get { return @ComponentA; } 
+			set { ComponentA = value as CobieTypeOrComponent;}
+		}	
+		ICobieTypeOrComponent ICobieConnection.ComponentB { 
+ 
+ 
+			get { return @ComponentB; } 
+			set { ComponentB = value as CobieTypeOrComponent;}
+		}	
+		ICobieTypeOrComponent ICobieConnection.RealizingComponent { 
+ 
+ 
+			get { return @RealizingComponent; } 
+			set { RealizingComponent = value as CobieTypeOrComponent;}
+		}	
+		string ICobieConnection.PortNameA { 
+ 
+			get { return @PortNameA; } 
+			set { PortNameA = value;}
+		}	
+		string ICobieConnection.PortNameB { 
+ 
+			get { return @PortNameB; } 
+			set { PortNameB = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieConnection(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal CobieConnection(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
 		private CobieConnectionType _connectionType;
-		private CobieComponent _componentA;
-		private CobieComponent _componentB;
-		private CobieComponent _realizingComponent;
+		private CobieTypeOrComponent _componentA;
+		private CobieTypeOrComponent _componentB;
+		private CobieTypeOrComponent _realizingComponent;
 		private string _portNameA;
 		private string _portNameB;
 		#endregion
@@ -76,13 +113,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -90,13 +127,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -104,58 +141,66 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _connectionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _connectionType;
+				Activate();
 				return _connectionType;
 			} 
 			set
 			{
-				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _connectionType = v, _connectionType, value,  "ConnectionType", 8);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
-		public CobieComponent @ComponentA 
+		public CobieTypeOrComponent @ComponentA 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _componentA;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _componentA;
+				Activate();
 				return _componentA;
 			} 
 			set
 			{
-				SetValue( v =>  _componentA = v, _componentA, value,  "ComponentA");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _componentA = v, _componentA, value,  "ComponentA", 9);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
-		public CobieComponent @ComponentB 
+		public CobieTypeOrComponent @ComponentB 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _componentB;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _componentB;
+				Activate();
 				return _componentB;
 			} 
 			set
 			{
-				SetValue( v =>  _componentB = v, _componentB, value,  "ComponentB");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _componentB = v, _componentB, value,  "ComponentB", 10);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
-		public CobieComponent @RealizingComponent 
+		public CobieTypeOrComponent @RealizingComponent 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _realizingComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _realizingComponent;
+				Activate();
 				return _realizingComponent;
 			} 
 			set
 			{
-				SetValue( v =>  _realizingComponent = v, _realizingComponent, value,  "RealizingComponent");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _realizingComponent = v, _realizingComponent, value,  "RealizingComponent", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -163,13 +208,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _portNameA;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _portNameA;
+				Activate();
 				return _portNameA;
 			} 
 			set
 			{
-				SetValue( v =>  _portNameA = v, _portNameA, value,  "PortNameA");
+				SetValue( v =>  _portNameA = v, _portNameA, value,  "PortNameA", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -177,13 +222,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _portNameB;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _portNameB;
+				Activate();
 				return _portNameB;
 			} 
 			set
 			{
-				SetValue( v =>  _portNameB = v, _portNameB, value,  "PortNameB");
+				SetValue( v =>  _portNameB = v, _portNameB, value,  "PortNameB", 13);
 			} 
 		}	
 		#endregion
@@ -191,9 +236,8 @@ namespace Xbim.CobieExpress
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -214,13 +258,13 @@ namespace Xbim.CobieExpress
 					_connectionType = (CobieConnectionType)(value.EntityVal);
 					return;
 				case 8: 
-					_componentA = (CobieComponent)(value.EntityVal);
+					_componentA = (CobieTypeOrComponent)(value.EntityVal);
 					return;
 				case 9: 
-					_componentB = (CobieComponent)(value.EntityVal);
+					_componentB = (CobieTypeOrComponent)(value.EntityVal);
 					return;
 				case 10: 
-					_realizingComponent = (CobieComponent)(value.EntityVal);
+					_realizingComponent = (CobieTypeOrComponent)(value.EntityVal);
 					return;
 				case 11: 
 					_portNameA = value.StringVal;
@@ -232,11 +276,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -244,55 +283,47 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieConnection
-            var root = (@CobieConnection)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieConnection left, @CobieConnection right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieConnection left, @CobieConnection right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieConnection x, @CobieConnection y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieConnection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@ConnectionType != null)
+					yield return @ConnectionType;
+				if (@ComponentA != null)
+					yield return @ComponentA;
+				if (@ComponentB != null)
+					yield return @ComponentB;
+				if (@RealizingComponent != null)
+					yield return @RealizingComponent;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ComponentA != null)
+					yield return @ComponentA;
+				if (@ComponentB != null)
+					yield return @ComponentB;
+				if (@RealizingComponent != null)
+					yield return @RealizingComponent;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

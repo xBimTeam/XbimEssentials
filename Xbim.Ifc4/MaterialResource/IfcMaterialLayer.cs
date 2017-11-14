@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,13 +26,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayer : IIfcMaterialDefinition
 	{
-		IIfcMaterial @Material { get; }
-		IfcNonNegativeLengthMeasure @LayerThickness { get; }
-		IfcLogical? @IsVentilated { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IfcLabel? @Category { get; }
-		IfcInteger? @Priority { get; }
+		IIfcMaterial @Material { get;  set; }
+		IfcNonNegativeLengthMeasure @LayerThickness { get;  set; }
+		IfcLogical? @IsVentilated { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcLabel? @Category { get;  set; }
+		IfcInteger? @Priority { get;  set; }
 		IIfcMaterialLayerSet @ToMaterialLayerSet {  get; }
 	
 	}
@@ -38,26 +40,54 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[IndexedClass]
-	[ExpressType("IfcMaterialLayer", 755)]
+	[ExpressType("IfcMaterialLayer", 446)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayer : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayer, IEqualityComparer<@IfcMaterialLayer>, IEquatable<@IfcMaterialLayer>
+	public  partial class @IfcMaterialLayer : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayer, IContainsEntityReferences, IEquatable<@IfcMaterialLayer>
 	{
 		#region IIfcMaterialLayer explicit implementation
-		IIfcMaterial IIfcMaterialLayer.Material { get { return @Material; } }	
-		IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness { get { return @LayerThickness; } }	
-		IfcLogical? IIfcMaterialLayer.IsVentilated { get { return @IsVentilated; } }	
-		IfcLabel? IIfcMaterialLayer.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialLayer.Description { get { return @Description; } }	
-		IfcLabel? IIfcMaterialLayer.Category { get { return @Category; } }	
-		IfcInteger? IIfcMaterialLayer.Priority { get { return @Priority; } }	
+		IIfcMaterial IIfcMaterialLayer.Material { 
+ 
+ 
+			get { return @Material; } 
+			set { Material = value as IfcMaterial;}
+		}	
+		IfcNonNegativeLengthMeasure IIfcMaterialLayer.LayerThickness { 
+ 
+			get { return @LayerThickness; } 
+			set { LayerThickness = value;}
+		}	
+		IfcLogical? IIfcMaterialLayer.IsVentilated { 
+ 
+			get { return @IsVentilated; } 
+			set { IsVentilated = value;}
+		}	
+		IfcLabel? IIfcMaterialLayer.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialLayer.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IfcLabel? IIfcMaterialLayer.Category { 
+ 
+			get { return @Category; } 
+			set { Category = value;}
+		}	
+		IfcInteger? IIfcMaterialLayer.Priority { 
+ 
+			get { return @Priority; } 
+			set { Priority = value;}
+		}	
 		 
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialLayer(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMaterialLayer(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -76,13 +106,15 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _material;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _material;
+				Activate();
 				return _material;
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _material = v, _material, value,  "Material", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -90,13 +122,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerThickness;
+				Activate();
 				return _layerThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness");
+				SetValue( v =>  _layerThickness = v, _layerThickness, value,  "LayerThickness", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -104,13 +136,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isVentilated;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isVentilated;
+				Activate();
 				return _isVentilated;
 			} 
 			set
 			{
-				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated");
+				SetValue( v =>  _isVentilated = v, _isVentilated, value,  "IsVentilated", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -118,13 +150,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -132,13 +164,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -146,13 +178,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -160,13 +192,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _priority;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _priority;
+				Activate();
 				return _priority;
 			} 
 			set
 			{
-				SetValue( v =>  _priority = v, _priority, value,  "Priority");
+				SetValue( v =>  _priority = v, _priority, value,  "Priority", 7);
 			} 
 		}	
 		#endregion
@@ -185,9 +217,8 @@ namespace Xbim.Ifc4.MaterialResource
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -216,12 +247,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NormalizedPriority:	NormalizedPriority : NOT(EXISTS(Priority)) OR {0 <= Priority <= 100};*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -229,55 +254,18 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialLayer
-            var root = (@IfcMaterialLayer)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialLayer left, @IfcMaterialLayer right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialLayer left, @IfcMaterialLayer right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialLayer x, @IfcMaterialLayer y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialLayer obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

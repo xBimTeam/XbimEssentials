@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,12 +25,13 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieAttribute : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieStageType @Stage { get; }
-		IAttributeValue @Value { get; }
-		string @Unit { get; }
-		IEnumerable<string> @AllowedValues { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieStageType @Stage { get;  set; }
+		IAttributeValue @Value { get;  set; }
+		string @Unit { get;  set; }
+		IItemSet<string> @AllowedValues { get; }
+		IEnumerable<ICobieAsset> @RelatedAssets {  get; }
 		CobieExternalObject @PropertySet  { get ; }
 	
 	}
@@ -36,25 +39,49 @@ namespace Xbim.CobieExpress.Interfaces
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Attribute", 30)]
+	[ExpressType("Attribute", 31)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieAttribute : CobieReferencedObject, IInstantiableEntity, ICobieAttribute, IEqualityComparer<@CobieAttribute>, IEquatable<@CobieAttribute>
+	public  partial class @CobieAttribute : CobieReferencedObject, IInstantiableEntity, ICobieAttribute, IContainsEntityReferences, IEquatable<@CobieAttribute>
 	{
 		#region ICobieAttribute explicit implementation
-		string ICobieAttribute.Name { get { return @Name; } }	
-		string ICobieAttribute.Description { get { return @Description; } }	
-		ICobieStageType ICobieAttribute.Stage { get { return @Stage; } }	
-		IAttributeValue ICobieAttribute.Value { get { return @Value; } }	
-		string ICobieAttribute.Unit { get { return @Unit; } }	
-		IEnumerable<string> ICobieAttribute.AllowedValues { get { return @AllowedValues; } }	
+		string ICobieAttribute.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieAttribute.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieStageType ICobieAttribute.Stage { 
+ 
+ 
+			get { return @Stage; } 
+			set { Stage = value as CobieStageType;}
+		}	
+		IAttributeValue ICobieAttribute.Value { 
+ 
+ 
+			get { return @Value; } 
+			set { Value = value as AttributeValue;}
+		}	
+		string ICobieAttribute.Unit { 
+ 
+			get { return @Unit; } 
+			set { Unit = value;}
+		}	
+		IItemSet<string> ICobieAttribute.AllowedValues { 
+			get { return @AllowedValues; } 
+		}	
 		 
+		IEnumerable<ICobieAsset> ICobieAttribute.RelatedAssets {  get { return @RelatedAssets; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieAttribute(IModel model) : base(model) 		{ 
-			Model = model; 
-			_allowedValues = new OptionalItemSet<string>( this, 0 );
+		internal CobieAttribute(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_allowedValues = new OptionalItemSet<string>( this, 0,  11);
 		}
 
 		#region Explicit attribute fields
@@ -63,7 +90,7 @@ namespace Xbim.CobieExpress
 		private CobieStageType _stage;
 		private AttributeValue _value;
 		private string _unit;
-		private OptionalItemSet<string> _allowedValues;
+		private readonly OptionalItemSet<string> _allowedValues;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -72,13 +99,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -86,27 +113,29 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieStageType @Stage 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _stage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _stage;
+				Activate();
 				return _stage;
 			} 
 			set
 			{
-				SetValue( v =>  _stage = v, _stage, value,  "Stage");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _stage = v, _stage, value,  "Stage", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -114,13 +143,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _value;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _value;
+				Activate();
 				return _value;
 			} 
 			set
 			{
-				SetValue( v =>  _value = v, _value, value,  "Value");
+				SetValue( v =>  _value = v, _value, value,  "Value", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -128,22 +157,22 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unit;
+				Activate();
 				return _unit;
 			} 
 			set
 			{
-				SetValue( v =>  _unit = v, _unit, value,  "Unit");
+				SetValue( v =>  _unit = v, _unit, value,  "Unit", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 11)]
-		public OptionalItemSet<string> @AllowedValues 
+		public IOptionalItemSet<string> @AllowedValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _allowedValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _allowedValues;
+				Activate();
 				return _allowedValues;
 			} 
 		}	
@@ -164,10 +193,20 @@ namespace Xbim.CobieExpress
 
 		#endregion
 
-
+		#region Inverse attributes
+		[InverseProperty("Attributes")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 12)]
+		public IEnumerable<CobieAsset> @RelatedAssets 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieAsset>(e => e.Attributes != null &&  e.Attributes.Contains(this), "Attributes", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -194,17 +233,11 @@ namespace Xbim.CobieExpress
 					_unit = value.StringVal;
 					return;
 				case 10: 
-					if (_allowedValues == null) _allowedValues = new OptionalItemSet<string>( this );
 					_allowedValues.InternalAdd(value.StringVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -213,55 +246,24 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieAttribute
-            var root = (@CobieAttribute)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieAttribute left, @CobieAttribute right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieAttribute left, @CobieAttribute right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieAttribute x, @CobieAttribute y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieAttribute obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@Stage != null)
+					yield return @Stage;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

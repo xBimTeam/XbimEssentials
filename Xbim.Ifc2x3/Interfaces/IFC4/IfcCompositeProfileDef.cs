@@ -10,22 +10,25 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCompositeProfileDef : IIfcCompositeProfileDef
 	{
-		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles 
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeProfileDef), 3)]
+		IItemSet<IIfcProfileDef> IIfcCompositeProfileDef.Profiles 
 		{ 
 			get
 			{
-				foreach (var member in Profiles)
-				{
-					yield return member as IIfcProfileDef;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>(Profiles);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcLabel? IIfcCompositeProfileDef.Label 
 		{ 
 			get
@@ -33,6 +36,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!Label.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Label.Value);
 			} 
+			set
+			{
+				Label = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

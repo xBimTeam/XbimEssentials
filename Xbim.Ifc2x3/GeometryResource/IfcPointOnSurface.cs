@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPointOnSurface : IIfcPoint
 	{
-		IIfcSurface @BasisSurface { get; }
-		IfcParameterValue @PointParameterU { get; }
-		IfcParameterValue @PointParameterV { get; }
+		IIfcSurface @BasisSurface { get;  set; }
+		IfcParameterValue @PointParameterU { get;  set; }
+		IfcParameterValue @PointParameterV { get;  set; }
 	
 	}
 }
@@ -35,18 +37,31 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPointOnSurface", 65)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IEqualityComparer<@IfcPointOnSurface>, IEquatable<@IfcPointOnSurface>
+	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IContainsEntityReferences, IEquatable<@IfcPointOnSurface>
 	{
 		#region IIfcPointOnSurface explicit implementation
-		IIfcSurface IIfcPointOnSurface.BasisSurface { get { return @BasisSurface; } }	
-		IfcParameterValue IIfcPointOnSurface.PointParameterU { get { return @PointParameterU; } }	
-		IfcParameterValue IIfcPointOnSurface.PointParameterV { get { return @PointParameterV; } }	
+		IIfcSurface IIfcPointOnSurface.BasisSurface { 
+ 
+ 
+			get { return @BasisSurface; } 
+			set { BasisSurface = value as IfcSurface;}
+		}	
+		IfcParameterValue IIfcPointOnSurface.PointParameterU { 
+ 
+			get { return @PointParameterU; } 
+			set { PointParameterU = value;}
+		}	
+		IfcParameterValue IIfcPointOnSurface.PointParameterV { 
+ 
+			get { return @PointParameterV; } 
+			set { PointParameterV = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPointOnSurface(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcPointOnSurface(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +76,15 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisSurface;
+				Activate();
 				return _basisSurface;
 			} 
 			set
 			{
-				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -75,13 +92,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointParameterU;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointParameterU;
+				Activate();
 				return _pointParameterU;
 			} 
 			set
 			{
-				SetValue( v =>  _pointParameterU = v, _pointParameterU, value,  "PointParameterU");
+				SetValue( v =>  _pointParameterU = v, _pointParameterU, value,  "PointParameterU", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -89,13 +106,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointParameterV;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointParameterV;
+				Activate();
 				return _pointParameterV;
 			} 
 			set
 			{
-				SetValue( v =>  _pointParameterV = v, _pointParameterV, value,  "PointParameterV");
+				SetValue( v =>  _pointParameterV = v, _pointParameterV, value,  "PointParameterV", 3);
 			} 
 		}	
 		#endregion
@@ -118,9 +135,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -137,11 +153,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -149,55 +160,18 @@ namespace Xbim.Ifc2x3.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPointOnSurface
-            var root = (@IfcPointOnSurface)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPointOnSurface left, @IfcPointOnSurface right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPointOnSurface left, @IfcPointOnSurface right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPointOnSurface x, @IfcPointOnSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPointOnSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisSurface != null)
+					yield return @BasisSurface;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

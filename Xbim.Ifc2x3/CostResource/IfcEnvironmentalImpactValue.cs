@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEnvironmentalImpactValue : IIfcAppliedValue
 	{
-		IfcLabel @ImpactType { get; }
-		IfcEnvironmentalImpactCategoryEnum @Category { get; }
-		IfcLabel? @UserDefinedCategory { get; }
+		IfcLabel @ImpactType { get;  set; }
+		IfcEnvironmentalImpactCategoryEnum @Category { get;  set; }
+		IfcLabel? @UserDefinedCategory { get;  set; }
 	
 	}
 }
@@ -35,18 +37,30 @@ namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcEnvironmentalImpactValue", 78)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IEqualityComparer<@IfcEnvironmentalImpactValue>, IEquatable<@IfcEnvironmentalImpactValue>
+	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IContainsEntityReferences, IEquatable<@IfcEnvironmentalImpactValue>
 	{
 		#region IIfcEnvironmentalImpactValue explicit implementation
-		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { get { return @ImpactType; } }	
-		IfcEnvironmentalImpactCategoryEnum IIfcEnvironmentalImpactValue.Category { get { return @Category; } }	
-		IfcLabel? IIfcEnvironmentalImpactValue.UserDefinedCategory { get { return @UserDefinedCategory; } }	
+		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { 
+ 
+			get { return @ImpactType; } 
+			set { ImpactType = value;}
+		}	
+		IfcEnvironmentalImpactCategoryEnum IIfcEnvironmentalImpactValue.Category { 
+ 
+			get { return @Category; } 
+			set { Category = value;}
+		}	
+		IfcLabel? IIfcEnvironmentalImpactValue.UserDefinedCategory { 
+ 
+			get { return @UserDefinedCategory; } 
+			set { UserDefinedCategory = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcEnvironmentalImpactValue(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcEnvironmentalImpactValue(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impactType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impactType;
+				Activate();
 				return _impactType;
 			} 
 			set
 			{
-				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
+				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedCategory;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedCategory;
+				Activate();
 				return _userDefinedCategory;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedCategory = v, _userDefinedCategory, value,  "UserDefinedCategory");
+				SetValue( v =>  _userDefinedCategory = v, _userDefinedCategory, value,  "UserDefinedCategory", 9);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc2x3.CostResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -130,12 +143,6 @@ namespace Xbim.Ifc2x3.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((Category = IfcEnvironmentalImpactCategoryEnum.USERDEFINED) AND EXISTS(SELF\IfcEnvironmentalImpactValue.UserDefinedCategory));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,55 +150,22 @@ namespace Xbim.Ifc2x3.CostResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcEnvironmentalImpactValue
-            var root = (@IfcEnvironmentalImpactValue)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcEnvironmentalImpactValue left, @IfcEnvironmentalImpactValue right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcEnvironmentalImpactValue left, @IfcEnvironmentalImpactValue right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEnvironmentalImpactValue x, @IfcEnvironmentalImpactValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEnvironmentalImpactValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@UnitBasis != null)
+					yield return @UnitBasis;
+				if (@ApplicableDate != null)
+					yield return @ApplicableDate;
+				if (@FixedUntilDate != null)
+					yield return @FixedUntilDate;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

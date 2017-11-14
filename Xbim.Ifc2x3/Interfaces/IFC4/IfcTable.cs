@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcTable : IIfcTable
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTable), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTable.Name 
 		{ 
 			get
@@ -26,18 +29,27 @@ namespace Xbim.Ifc2x3.UtilityResource
 			    return new Ifc4.MeasureResource.IfcLabel(Name);
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Name for which no match was found
+			    Name = value;
+			    //##
+				
+			}
 		}
-		IEnumerable<IIfcTableRow> IIfcTable.Rows 
+
+		[CrossSchemaAttribute(typeof(IIfcTable), 2)]
+		IItemSet<IIfcTableRow> IIfcTable.Rows 
 		{ 
 			get
 			{
-				foreach (var member in Rows)
-				{
-					yield return member as IIfcTableRow;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcTableRow, IIfcTableRow>(Rows);
 			} 
 		}
-		IEnumerable<IIfcTableColumn> IIfcTable.Columns 
+
+		[CrossSchemaAttribute(typeof(IIfcTable), 3)]
+		IItemSet<IIfcTableColumn> IIfcTable.Columns 
 		{ 
 			get
 			{

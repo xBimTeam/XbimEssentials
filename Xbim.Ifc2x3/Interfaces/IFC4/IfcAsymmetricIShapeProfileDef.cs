@@ -10,62 +10,102 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcAsymmetricIShapeProfileDef : IIfcAsymmetricIShapeProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeWidth 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeWidth for which no match was found
-			    return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth);
-			    //##
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth);
 			} 
+			set
+			{
+				OverallWidth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.OverallDepth 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallDepth);
 			} 
+			set
+			{
+				OverallDepth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.WebThickness 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WebThickness);
 			} 
+			set
+			{
+				WebThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.BottomFlangeThickness 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeThickness for which no match was found
-                return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
-				//##
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
 			} 
+			set
+			{
+				FlangeThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeFilletRadius 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeFilletRadius for which no match was found
-			    if (FilletRadius.HasValue)
-			        return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
-			    return null;
-			    //##
+				if (!FilletRadius.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
+			set
+			{
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TopFlangeWidth);
 			} 
+			set
+			{
+				TopFlangeWidth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness 
 		{ 
 			get
@@ -73,7 +113,16 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!TopFlangeThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TopFlangeThickness.Value);
 			} 
+			set
+			{
+				TopFlangeThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 11)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius 
 		{ 
 			get
@@ -81,43 +130,81 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!TopFlangeFilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(TopFlangeFilletRadius.Value);
 			} 
+			set
+			{
+				TopFlangeFilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _bottomFlangeEdgeRadius;
+
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 12)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeEdgeRadius 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeEdgeRadius for which no match was found
-                if (!CentreOfGravityInY.HasValue) return null;
-                return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(CentreOfGravityInY.Value);
-				//##
+				return _bottomFlangeEdgeRadius;
 			} 
+			set
+			{
+				SetValue(v => _bottomFlangeEdgeRadius = v, _bottomFlangeEdgeRadius, value, "BottomFlangeEdgeRadius", -12);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _bottomFlangeSlope;
+
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 13)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.BottomFlangeSlope 
 		{ 
 			get
 			{
-				//## Handle return of BottomFlangeSlope for which no match was found
-			    return null;
-			    //##
+				return _bottomFlangeSlope;
 			} 
+			set
+			{
+				SetValue(v => _bottomFlangeSlope = v, _bottomFlangeSlope, value, "BottomFlangeSlope", -13);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _topFlangeEdgeRadius;
+
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 14)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeEdgeRadius 
 		{ 
 			get
 			{
-				//## Handle return of TopFlangeEdgeRadius for which no match was found
-			    return null;
-			    //##
+				return _topFlangeEdgeRadius;
 			} 
+			set
+			{
+				SetValue(v => _topFlangeEdgeRadius = v, _topFlangeEdgeRadius, value, "TopFlangeEdgeRadius", -14);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _topFlangeSlope;
+
+
+		[CrossSchemaAttribute(typeof(IIfcAsymmetricIShapeProfileDef), 15)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeSlope 
 		{ 
 			get
 			{
-				//## Handle return of TopFlangeSlope for which no match was found
-			    return null;
-			    //##
+				return _topFlangeSlope;
 			} 
+			set
+			{
+				SetValue(v => _topFlangeSlope = v, _topFlangeSlope, value, "TopFlangeSlope", -15);
+				
+			}
 		}
 	//## Custom code
 	//##

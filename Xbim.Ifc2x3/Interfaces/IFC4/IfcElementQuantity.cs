@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElementQuantity : IIfcElementQuantity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElementQuantity), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcElementQuantity.MethodOfMeasurement 
 		{ 
 			get
@@ -23,15 +26,22 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!MethodOfMeasurement.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(MethodOfMeasurement.Value);
 			} 
+			set
+			{
+				MethodOfMeasurement = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
+
+		[CrossSchemaAttribute(typeof(IIfcElementQuantity), 6)]
+		IItemSet<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities 
 		{ 
 			get
 			{
-				foreach (var member in Quantities)
-				{
-					yield return member as IIfcPhysicalQuantity;
-				}
+			
+				return new Common.Collections.ProxyItemSet<QuantityResource.IfcPhysicalQuantity, IIfcPhysicalQuantity>(Quantities);
 			} 
 		}
 	//## Custom code

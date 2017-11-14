@@ -10,34 +10,49 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPersonAndOrganization : IIfcPersonAndOrganization
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPersonAndOrganization), 1)]
 		IIfcPerson IIfcPersonAndOrganization.ThePerson 
 		{ 
 			get
 			{
 				return ThePerson;
 			} 
+			set
+			{
+				ThePerson = value as IfcPerson;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPersonAndOrganization), 2)]
 		IIfcOrganization IIfcPersonAndOrganization.TheOrganization 
 		{ 
 			get
 			{
 				return TheOrganization;
 			} 
+			set
+			{
+				TheOrganization = value as IfcOrganization;
+				
+			}
 		}
-		IEnumerable<IIfcActorRole> IIfcPersonAndOrganization.Roles 
+
+		[CrossSchemaAttribute(typeof(IIfcPersonAndOrganization), 3)]
+		IItemSet<IIfcActorRole> IIfcPersonAndOrganization.Roles 
 		{ 
 			get
 			{
-				foreach (var member in Roles)
-				{
-					yield return member as IIfcActorRole;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
 	//## Custom code

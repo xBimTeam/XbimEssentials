@@ -10,20 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcProjectionElement : IIfcProjectionElement
 	{
+
+		private  Ifc4.Interfaces.IfcProjectionElementTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcProjectionElement), 9)]
 		Ifc4.Interfaces.IfcProjectionElementTypeEnum? IIfcProjectionElement.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
+				
+			}
 		}
 	//## Custom code
 	//##

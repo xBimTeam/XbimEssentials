@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,35 +27,46 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialRelationship : IIfcResourceLevelRelationship
 	{
-		IIfcMaterial @RelatingMaterial { get; }
-		IEnumerable<IIfcMaterial> @RelatedMaterials { get; }
-		IfcLabel? @Expression { get; }
+		IIfcMaterial @RelatingMaterial { get;  set; }
+		IItemSet<IIfcMaterial> @RelatedMaterials { get; }
+		IfcLabel? @Expression { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IfcMaterialRelationship", 766)]
+	[ExpressType("IfcMaterialRelationship", 1210)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IEqualityComparer<@IfcMaterialRelationship>, IEquatable<@IfcMaterialRelationship>
+	public  partial class @IfcMaterialRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IIfcMaterialRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialRelationship>
 	{
 		#region IIfcMaterialRelationship explicit implementation
-		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { get { return @RelatingMaterial; } }	
-		IEnumerable<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { get { return @RelatedMaterials; } }	
-		IfcLabel? IIfcMaterialRelationship.Expression { get { return @Expression; } }	
+		IIfcMaterial IIfcMaterialRelationship.RelatingMaterial { 
+ 
+ 
+			get { return @RelatingMaterial; } 
+			set { RelatingMaterial = value as IfcMaterial;}
+		}	
+		IItemSet<IIfcMaterial> IIfcMaterialRelationship.RelatedMaterials { 
+			get { return new Common.Collections.ProxyItemSet<IfcMaterial, IIfcMaterial>( @RelatedMaterials); } 
+		}	
+		IfcLabel? IIfcMaterialRelationship.Expression { 
+ 
+			get { return @Expression; } 
+			set { Expression = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialRelationship(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedMaterials = new ItemSet<IfcMaterial>( this, 0 );
+		internal IfcMaterialRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedMaterials = new ItemSet<IfcMaterial>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcMaterial _relatingMaterial;
-		private ItemSet<IfcMaterial> _relatedMaterials;
+		private readonly ItemSet<IfcMaterial> _relatedMaterials;
 		private IfcLabel? _expression;
 		#endregion
 	
@@ -64,23 +77,25 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingMaterial;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingMaterial;
+				Activate();
 				return _relatingMaterial;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingMaterial = v, _relatingMaterial, value,  "RelatingMaterial", 3);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcMaterial> @RelatedMaterials 
+		public IItemSet<IfcMaterial> @RelatedMaterials 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedMaterials;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedMaterials;
+				Activate();
 				return _relatedMaterials;
 			} 
 		}	
@@ -89,13 +104,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression");
+				SetValue( v =>  _expression = v, _expression, value,  "Expression", 5);
 			} 
 		}	
 		#endregion
@@ -103,9 +118,8 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -117,7 +131,6 @@ namespace Xbim.Ifc4.MaterialResource
 					_relatingMaterial = (IfcMaterial)(value.EntityVal);
 					return;
 				case 3: 
-					if (_relatedMaterials == null) _relatedMaterials = new ItemSet<IfcMaterial>( this );
 					_relatedMaterials.InternalAdd((IfcMaterial)value.EntityVal);
 					return;
 				case 4: 
@@ -127,11 +140,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -139,55 +147,35 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialRelationship
-            var root = (@IfcMaterialRelationship)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialRelationship left, @IfcMaterialRelationship right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialRelationship left, @IfcMaterialRelationship right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialRelationship x, @IfcMaterialRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RelatingMaterial != null)
+					yield return @RelatingMaterial;
+				foreach(var entity in @RelatedMaterials)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingMaterial != null)
+					yield return @RelatingMaterial;
+				foreach(var entity in @RelatedMaterials)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

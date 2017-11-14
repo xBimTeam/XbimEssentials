@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
+using log4net;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
@@ -23,7 +25,7 @@ using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.Ifc
 {
-    public class IfcStore : IModel, IDisposable, IFederatedModel
+    public class IfcStore : IModel, IDisposable, IFederatedModel, IEquatable<IModel>
     {
         private readonly IModel _model;
         private readonly IfcSchemaVersion _schema;
@@ -33,11 +35,29 @@ namespace Xbim.Ifc
         public event NewEntityHandler EntityNew;
         public event ModifiedEntityHandler EntityModified;
         public event DeletedEntityHandler EntityDeleted;
+        public IInverseCache BeginCaching()
+        {
+            return _model.BeginCaching();
+        }
+
+        public void StopCaching()
+        {
+            _model.StopCaching();
+        }
+
+        public IInverseCache InverseCache
+        {
+            get { return _model.InverseCache; }
+        }
+
+        public object Tag { get; set; }
+
         private bool _disposed;
         /// <summary>
-        /// The default largest size in MB for an ifc file to be loaded into memory, above this size the store will choose to use the database storage media to mimise the memory footprint. This size can be set in the config file or in the open statement of this store 
+        /// The default largest size in MB for an IFC file to be loaded into memory, above this size the store will choose to use 
+        /// the database storage media to minimise the memory footprint. This size can be set in the config file or in the open statement of this store 
         /// </summary>
-        public static double DefaultIfcDatabaseSizeThreshHold = 30; //default size set to 30MB
+        public static double DefaultIfcDatabaseSizeThreshHold = 100; //default size set to 100MB
         private IIfcOwnerHistory _ownerHistoryAddObject;
         private IIfcOwnerHistory _ownerHistoryModifyObject;
 
@@ -67,132 +87,213 @@ namespace Xbim.Ifc
                     EditorsOrganisationName = "Unspecified",
                     EditorsGivenName = ""
                 };
-            else _editorDetails = editorDetails;
+            else
+                _editorDetails = editorDetails;
 
+            _model.EntityNew += IfcRootInit;
+            _model.EntityModified += IfcRootModified;
 
-            if (schema == IfcSchemaVersion.Ifc4)
-            {
-                _model.EntityNew += IfcRootInitIfc4;
-                _model.EntityModified += IfcRootModifiedIfc4;
-            }
-            else //its 2x3
-            {
-                _model.EntityNew += IfcRootInitIfc2X3;
-                _model.EntityModified += IfcRootModifiedIfc2X3;
-            }
             LoadReferenceModels();
             CalculateModelFactors();
         }
 
+        protected IfcStore(IModel iModel, IfcSchemaVersion schema)
+        {
+            _model = iModel;
+            _model.EntityNew += _model_EntityNew;
+            _model.EntityDeleted += _model_EntityDeleted;
+            _model.EntityModified += _model_EntityModified;
+            _deleteModelOnClose = true;
+            FileName = null;
+            _xbimFileName = null;
+            _schema = schema;
+            _editorDetails = null;
+        }
+
         private void _model_EntityDeleted(IPersistEntity entity)
         {
-            if (EntityDeleted == null) return;
-            EntityDeleted(entity);
+            if (EntityDeleted != null) EntityDeleted.Invoke(entity);
         }
 
         private void _model_EntityNew(IPersistEntity entity)
         {
-            if (EntityNew == null) return;
-            EntityNew(entity);
+            if (EntityNew != null) EntityNew.Invoke(entity);
         }
 
-        private void _model_EntityModified(IPersistEntity entity)
+        private void _model_EntityModified(IPersistEntity entity, int property)
         {
-            if (EntityModified == null) return;
-            EntityModified(entity);
+            if (EntityModified != null) EntityModified.Invoke(entity, property);
         }
-        //public static IfcStore LoadStep21( Stream inputStream, XbimStorageType storageType, string xbimDbName, XbimDBAccess accessMode = XbimDBAccess.Read, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
-        //{
-        //    var ifcVersion = GetIfcSchemaVersion(inputStream);
-        //    if (ifcVersion == IfcSchemaVersion.Unsupported)
-        //        throw new FileLoadException(filePath + " is not a valid Ifc file format, ifc, ifcxml, ifczip and xBIM are supported");
-        //    if (storageType == XbimStorageType.Xbim) //open the XbimFile
-        //    {
-        //        if (ifcVersion == IfcSchemaVersion.Ifc4)
-        //        {
-        //            var model = new EsentModel(new Ifc4.EntityFactory());
-        //            model.LoadStep21(inputStream, accessMode, progDelegate);
-        //            return new IfcStore(model);
-        //        }
-        //        else //it will be Ifc2x3
-        //        {
-        //            var model = new EsentModel(new Ifc2x3.EntityFactory());
-        //            model.LoadStep21(inputStream, accessMode, progDelegate);
-        //            return new IfcStore(model);
-        //        }
-        //    }
-        //    else //it will be an Ifc file if we are at this point
-        //    {
-        //        var fInfo = new FileInfo(path);
-        //        double ifcMaxLength = (ifcDatabaseSizeThreshHold ?? DefaultIfcDatabaseSizeThreshHold) * 1024 * 1024;
-        //        if (fInfo.Length > ifcMaxLength) //we need to make an esent database
-        //        {
-        //            var tmpFileName = Path.GetTempFileName();
-        //            if (ifcVersion == IfcSchemaVersion.Ifc4)
-        //            {
-        //                var model = new EsentModel(new Ifc4.EntityFactory());
-        //                model.CreateFrom(path, tmpFileName, progDelegate, true);
-        //                return new IfcStore(model);
-        //            }
-        //            else //it will be Ifc2x3
-        //            {
-        //                var model = new EsentModel(new Ifc2x3.EntityFactory());
-        //                model.CreateFrom(path, tmpFileName, progDelegate, true);
-        //                return new IfcStore(model);
-        //            }
-        //        }
-        //        else //we can use a memory model
-        //        {
-        //            if (ifcVersion == IfcSchemaVersion.Ifc4)
-        //            {
-        //                var model = new MemoryModel<Ifc4.EntityFactory>();
-        //                model.LoadStep21(path, progDelegate);
-        //                return new IfcStore(model);
-        //            }
-        //            else //it will be Ifc2x3
-        //            {
-        //                var model = new MemoryModel<Ifc2x3.EntityFactory>();
-        //                model.LoadStep21(path, progDelegate);
-        //                return new IfcStore(model);
-        //            }
-        //        }
-        //    }
-        //}
 
-        public static IfcStore Open(string path, XbimEditorCredentials editorDetails,bool writeAccess = true,
-            double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
+        private static EsentModel CreateEsentModel(IfcSchemaVersion schema)
         {
-            return Open(path, editorDetails, ifcDatabaseSizeThreshHold, progDelegate, writeAccess?XbimDBAccess.ReadWrite : XbimDBAccess.Read);
+            switch (schema)
+            {
+                case IfcSchemaVersion.Ifc4:
+                    return new EsentModel(new Ifc4.EntityFactory());
+                case IfcSchemaVersion.Ifc2X3:
+                    return new EsentModel(new Ifc2x3.EntityFactory());
+                default:
+                    throw new NotSupportedException("IfcStore only supports IFC schemas");
+            }
+        }
+
+        private static MemoryModel CreateMemoryModel(IfcSchemaVersion schema)
+        {
+            switch (schema)
+            {
+                case IfcSchemaVersion.Ifc4:
+                    return new MemoryModel(new Ifc4.EntityFactory());
+                case IfcSchemaVersion.Ifc2X3:
+                    return new MemoryModel(new Ifc2x3.EntityFactory());
+                default:
+                    throw new NotSupportedException("IfcStore only supports IFC schemas");
+            }
         }
 
         /// <summary>
-        /// Opens an Ifc file, Ifcxml, IfcZip, xbim
+        /// You can use this function to open IFC model from stream. You need to know file type (IFC, IFCZIP, IFCXML) and schema type (IFC2x3 or IFC4) to be able to use this function.
+        /// If you don't know you should the overloaded function which takes file pats as an argument. That will automatically detect schema and file type. If you want to open *.xbim
+        /// file you should also use the path based overload because Esent database needs to operate on the file and this function will have to create temporal file if it is not a file stream.
+        /// If it is a FileStream this will close it to keep exclusive access.
+        /// </summary>
+        /// <param name="data">Stream of data</param>
+        /// <param name="dataType">Type of data (*.ifc, *.ifcxml, *.ifczip)</param>
+        /// <param name="schema">IFC schema (IFC2x3, IFC4). Other schemas are not supported by this class.</param>
+        /// <param name="modelType">Type of morel to be used. You can choose between EsentModel and MemoryModel</param>
+        /// <param name="editorDetails">Optional details. You should always pass these if you are going to change the data.</param>
+        /// <param name="accessMode">Access mode to the stream. This is only important if you choose EsentModel. MemoryModel is completely in memory so this is not relevant</param>
+        /// <param name="progDelegate">Progress reporting delegate</param>
+        /// <returns></returns>
+        public static IfcStore Open(Stream data, IfcStorageType dataType, IfcSchemaVersion schema, XbimModelType modelType, XbimEditorCredentials editorDetails = null, XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null)
+        {
+            //any Esent model needs to run from the file so we need to create a temporal one
+            var xbimFilePath = Path.GetTempFileName();
+            xbimFilePath = Path.ChangeExtension(xbimFilePath, ".xbim");
+
+            switch (dataType)
+            {
+                case IfcStorageType.Xbim:
+                    //xBIM file has to be opened from the file so we need to create temporal file if it is not a local file stream
+                    var fStream = data as FileStream;
+                    var localFile = false;
+                    if (fStream != null)
+                    {
+                        var name = fStream.Name;
+                        //if it is an existing local file, just use it
+                        if (File.Exists(name))
+                        {
+                            xbimFilePath = name;
+                            //close the stream from argument to have an exclusive access to the file
+                            data.Close();
+                            localFile = true;
+                        }
+                    }
+                    if (!localFile)
+                    {
+                        using (var tempFile = File.Create(xbimFilePath))
+                        {
+                            data.CopyTo(tempFile);
+                            tempFile.Close();
+                        }
+                    }
+                    {
+                        var model = CreateEsentModel(schema);
+                        model.Open(xbimFilePath, accessMode, progDelegate);
+                        return new IfcStore(model, schema, editorDetails, xbimFilePath);
+                    }
+                case IfcStorageType.IfcXml:
+                    if (modelType == XbimModelType.EsentModel)
+                    {
+                        var model = CreateEsentModel(schema);
+                        if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
+                            return new IfcStore(model, schema, editorDetails, xbimFilePath);
+                        else
+                            throw new XbimException("Failed to create Esent model");
+                    }
+                    if (modelType == XbimModelType.MemoryModel)
+                    {
+                        var model = CreateMemoryModel(schema);
+                        model.LoadXml(data, data.Length, progDelegate);
+                        return new IfcStore(model, schema, editorDetails);
+                    }
+                    throw new ArgumentOutOfRangeException("IfcStore only supports EsentModel and MemoryModel");
+                case IfcStorageType.Stp:
+                case IfcStorageType.Ifc:
+                    if (modelType == XbimModelType.EsentModel)
+                    {
+                        var model = CreateEsentModel(schema);
+                        if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
+                            return new IfcStore(model, schema, editorDetails, xbimFilePath);
+                        else
+                            throw new XbimException("Failed to create Esent model");
+                    }
+                    if (modelType == XbimModelType.MemoryModel)
+                    {
+                        var model = CreateMemoryModel(schema);
+                        model.LoadStep21(data, data.Length, progDelegate);
+                        return new IfcStore(model, schema, editorDetails);
+                    }
+                    throw new ArgumentOutOfRangeException("IfcStore only supports EsentModel and MemoryModel");
+                case IfcStorageType.IfcZip:
+                case IfcStorageType.StpZip:
+                case IfcStorageType.Zip:
+                    if (modelType == XbimModelType.EsentModel)
+                    {
+                        var model = CreateEsentModel(schema);
+                        if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
+                            return new IfcStore(model, schema, editorDetails, xbimFilePath);
+                        else
+                            throw new XbimException("Failed to create Esent model");
+                    }
+                    if (modelType == XbimModelType.MemoryModel)
+                    {
+                        var model = CreateMemoryModel(schema);
+                        model.LoadZip(data, progDelegate);
+                        return new IfcStore(model, schema, editorDetails);
+                    }
+                    throw new ArgumentOutOfRangeException("IfcStore only supports EsentModel and MemoryModel");
+                default:
+                    throw new ArgumentOutOfRangeException("dataType");
+            }
+        }
+
+        //public static IfcStore Open(string path, XbimEditorCredentials editorDetails,bool writeAccess = true,
+        //double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null)
+        //{
+        //    return Open(path, editorDetails, ifcDatabaseSizeThreshHold, progDelegate, writeAccess?XbimDBAccess.ReadWrite : XbimDBAccess.Read);
+        //}
+
+        /// <summary>
+        /// Opens an IFC file, Ifcxml, IfcZip, xbim
         /// </summary>
         /// <param name="path">the file name of the ifc, ifczip, ifcxml or xbim file to be opened</param>
         /// <param name="editorDetails">This is only required if the store is opened for editing</param>
-        /// <param name="ifcDatabaseSizeThreshHold">if not defined the DefaultIfcDatabaseSizeThreshHold is used, Ifc files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be created for all Ifc files that are opened. Xbim files are always opened as databases</param>
+        /// <param name="ifcDatabaseSizeThreshHold">Expressed in MB. If not defined the DefaultIfcDatabaseSizeThreshHold is used, 
+        /// IFC files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be 
+        /// created for all IFC files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
         /// <param name="accessMode"></param>
         public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read)
         {
-            var filePath = Path.GetFullPath(path);
-            if (!Directory.Exists(Path.GetDirectoryName(filePath) ?? ""))
-                throw new DirectoryNotFoundException(Path.GetDirectoryName(filePath) + " directory was not found");
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException(filePath + " file was not found");
+            path = Path.GetFullPath(path);
+            
+            if (!Directory.Exists(Path.GetDirectoryName(path) ?? ""))
+                throw new DirectoryNotFoundException(Path.GetDirectoryName(path) + " directory was not found");
+            if (!File.Exists(path))
+                throw new FileNotFoundException(path + " file was not found");
             var storageType = path.StorageType();
             string schemaIdentifier;
             var ifcVersion = GetIfcSchemaVersion(path, out schemaIdentifier);
             if (ifcVersion == IfcSchemaVersion.Unsupported)
             {
-                if(string.IsNullOrWhiteSpace(schemaIdentifier))
-                    throw new FileLoadException(filePath + " is not a valid IFC file format, ifc, ifcxml, ifczip and xBIM are supported.");
-                throw new FileLoadException(filePath + ", is IFC file version " + schemaIdentifier + ". IFC2x3 and IFC4 are supported. Check your exporter settings please.");
+                if (string.IsNullOrWhiteSpace(schemaIdentifier))
+                    throw new FileLoadException(path + " is not a valid IFC file format, ifc, ifcxml, ifczip and xBIM are supported.");
+                throw new FileLoadException(path + ", is IFC file version " + schemaIdentifier + ". Only IFC2x3 and IFC4 are supported. Check your exporter settings please.");
             }
 
             if (storageType == IfcStorageType.Xbim) //open the XbimFile
             {
-
                 if (ifcVersion == IfcSchemaVersion.Ifc4)
                 {
                     var model = new EsentModel(new Ifc4.EntityFactory());
@@ -206,49 +307,55 @@ namespace Xbim.Ifc
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
             }
-            else //it will be an Ifc file if we are at this point
+            else //it will be an IFC file if we are at this point
             {
                 var fInfo = new FileInfo(path);
                 double ifcMaxLength = (ifcDatabaseSizeThreshHold ?? DefaultIfcDatabaseSizeThreshHold) * 1024 * 1024;
-                if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) //we need to make an esent database, if ifcMaxLength<0 we use in memory
+                if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) //we need to make an Esent database, if ifcMaxLength<0 we use in memory
                 {
                     var tmpFileName = Path.GetTempFileName();
                     if (ifcVersion == IfcSchemaVersion.Ifc4)
                     {
                         var model = new EsentModel(new Ifc4.EntityFactory());
-                        model.CreateFrom(path, tmpFileName, progDelegate, true);
-                        return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        if (model.CreateFrom(path, tmpFileName, progDelegate, true))
+                            return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        throw new FileLoadException(path + " file was not a valid IFC format");
                     }
                     else //it will be Ifc2x3
                     {
                         var model = new EsentModel(new Ifc2x3.EntityFactory());
-                        model.CreateFrom(path, tmpFileName, progDelegate, true);
-                        return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        if (model.CreateFrom(path, tmpFileName, progDelegate, true))
+                            return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                        throw new FileLoadException(path + " file was not a valid IFC format");
                     }
                 }
                 else //we can use a memory model
                 {
                     var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
-                    if (storageType.HasFlag(IfcStorageType.IfcZip) )
+                    if (storageType.HasFlag(IfcStorageType.IfcZip) || storageType.HasFlag(IfcStorageType.Zip))
                     {
-                        using (var zipFile = new ZipFile(path))
+                        using (var zipFileStream = File.OpenRead(path))
                         {
-                            foreach (ZipEntry zipEntry in zipFile)
+                            using (var zipFile = new ZipFile(zipFileStream))
                             {
-                                if (!zipEntry.IsFile) continue; // 
-                                using (var reader = zipFile.GetInputStream(zipEntry))
+                                foreach (ZipEntry zipEntry in zipFile)
                                 {
-                                    var zipStorageType = zipEntry.Name.StorageType();
-                                    if (zipStorageType == IfcStorageType.Ifc)
+                                    if (!zipEntry.IsFile) continue; // 
+                                    var streamSize = zipEntry.Size;
+                                    using (var reader = zipFile.GetInputStream(zipEntry))
                                     {
-                                        model.LoadStep21(reader, progDelegate);
+                                        var zipStorageType = zipEntry.Name.StorageType();
+                                        if (zipStorageType == IfcStorageType.Ifc)
+                                        {
+                                            model.LoadStep21(reader, streamSize, progDelegate);
+                                        }
+                                        else if (zipStorageType == IfcStorageType.IfcXml)
+                                        {
+                                            model.LoadXml(reader, streamSize, progDelegate);
+                                        }
                                     }
-                                    else if (zipStorageType == IfcStorageType.IfcXml)
-                                    {
-                                        model.LoadXml(reader, progDelegate);
-                                    }
+                                    break; //now we have one
                                 }
-                                break; //now we have one
                             }
                         }
                     }
@@ -278,13 +385,13 @@ namespace Xbim.Ifc
                     return IfcSchemaVersion.Ifc4;
                 if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc2X3;
+                if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
+                    return IfcSchemaVersion.Ifc2X3;
+
             }
 
             return IfcSchemaVersion.Unsupported;
         }
-
-        
-
 
         public int UserDefinedId
         {
@@ -312,10 +419,9 @@ namespace Xbim.Ifc
             get { return _model.Instances; }
         }
 
-
-        public bool Activate(IPersistEntity owningEntity, bool write)
+        bool IModel.Activate(IPersistEntity owningEntity)
         {
-            return _model.Activate(owningEntity, write);
+            return _model.Activate(owningEntity);
         }
 
         public void Delete(IPersistEntity entity)
@@ -326,20 +432,17 @@ namespace Xbim.Ifc
         public ITransaction BeginTransaction(string name = null)
         {
             var esentModel = _model as EsentModel;
-            if (esentModel != null) //we need to do transaction handling on esent model, make sure we can write to it
-            { 
+            if (esentModel != null) //we need to do transaction handling on Esent model, make sure we can write to it
+            {
                 esentModel.Header.StampXbimApplication(_schema);
                 return esentModel.BeginTransaction(name);
             }
 
             var memoryModel = _model as MemoryModel;
-                if (memoryModel != null)
-                {
-                    memoryModel.Header.StampXbimApplication(_schema);
-                    return memoryModel.BeginTransaction(name);                   
-                }
-            
-            throw new XbimException("Native store does not support transactions");
+            if (memoryModel == null)
+                throw new XbimException("Native store does not support transactions");
+            memoryModel.Header.StampXbimApplication(_schema);
+            return memoryModel.BeginTransaction(name);
         }
 
         public ITransaction CurrentTransaction
@@ -359,16 +462,20 @@ namespace Xbim.Ifc
 
         public string FileName { get; set; }
 
+        public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
+            bool keepLabels) where T : IPersistEntity
+        {
+            return _model.InsertCopy(toCopy, mappings, propTransform, includeInverses, keepLabels);
+        }
 
         public void ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity
         {
             _model.ForEach(source, body);
         }
 
-
-
         public void Dispose()
         {
+            Close();
             Dispose(true);
             // Take yourself off the Finalization queue 
             // to prevent finalization code for this object
@@ -386,11 +493,20 @@ namespace Xbim.Ifc
                     // and unmanaged resources.
                     if (disposing)
                     {
+                        //release event handlers
+                        if (_model != null)
+                        {
+                            _model.EntityDeleted -= _model_EntityDeleted;
+                            _model.EntityNew -= _model_EntityNew;
+                            _model.EntityModified -= _model_EntityModified;
+                        }
+
                         //managed resources
                         var disposeInterface = _model as IDisposable;
-                        if (disposeInterface != null) disposeInterface.Dispose();
+                        if (disposeInterface != null)
+                            disposeInterface.Dispose();
                     }
-                    //unmanaged, mostly esent related                  
+                    //unmanaged, mostly Esent related                  
                 }
                 catch
                 {
@@ -399,14 +515,20 @@ namespace Xbim.Ifc
             }
             _disposed = true;
         }
+
+
+
         /// <summary>
         /// Closes the store and disposes of all resources, the store is invalid after this call
         /// </summary>
         public void Close()
         {
-            var esent = _model as EsentModel;
-            if (esent != null) esent.Close();
-            Dispose();
+            foreach (var referencedModel in _referencedModels)
+            {
+                AttemptClose(referencedModel.Model);
+            }
+            AttemptClose(_model);
+
             try //try and tidy up if required
             {
                 if (_deleteModelOnClose && !string.IsNullOrWhiteSpace(_xbimFileName) && File.Exists(_xbimFileName))
@@ -416,8 +538,19 @@ namespace Xbim.Ifc
             {
                 // ignored
             }
-
         }
+
+        private static void AttemptClose(IModel referencedModel)
+        {
+            var esentSub = referencedModel as EsentModel;
+            if (esentSub != null)
+                esentSub.Close();
+
+            var ifcStoreSub = referencedModel as IfcStore;
+            if (ifcStoreSub != null)
+                ifcStoreSub.Close();
+        }
+
         /// <summary>
         /// Creates an Database store at the specified location
         /// </summary>
@@ -430,12 +563,12 @@ namespace Xbim.Ifc
             if (ifcVersion == IfcSchemaVersion.Ifc4)
             {
                 var temporaryModel = EsentModel.CreateModel(new Ifc4.EntityFactory(), filePath);
-                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); 
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName);
             }
             else //it will be Ifc2x3
             {
                 var temporaryModel = EsentModel.CreateModel(new Ifc2x3.EntityFactory(), filePath);
-                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); 
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName);
             }
         }
 
@@ -454,72 +587,89 @@ namespace Xbim.Ifc
                     return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); //it will delete itself anyway
                 }
             }
-            else //it will be memory model
-            {
 
+            //it will be memory model
+            if (ifcVersion == IfcSchemaVersion.Ifc4)
+            {
+                var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion, editorDetails);
+            }
+            else //it will be Ifc2x3
+            {
+                var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion, editorDetails);
+            }
+        }
+
+        public static IfcStore Create(IfcSchemaVersion ifcVersion, XbimStoreType storageType)
+        {
+            if (storageType == XbimStoreType.EsentDatabase)
+            {
                 if (ifcVersion == IfcSchemaVersion.Ifc4)
                 {
-                    var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
-                    return new IfcStore(memoryModel, ifcVersion, editorDetails);
+                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4.EntityFactory());
+                    return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
                 }
                 else //it will be Ifc2x3
                 {
-                    var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
-                    return new IfcStore(memoryModel, ifcVersion, editorDetails);
+                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc2x3.EntityFactory());
+                    return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
                 }
             }
-        }
 
+            //it will be memory model
+            if (ifcVersion == IfcSchemaVersion.Ifc4)
+            {
+                var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion);
+            }
+            else //it will be Ifc2x3
+            {
+                var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
+                return new IfcStore(memoryModel, ifcVersion);
+            }
+        }
         #region OwnerHistory Management
 
 
-        private void IfcRootModifiedIfc2X3(IPersistEntity entity)
+        private void IfcRootModified(IPersistEntity entity, int property)
         {
-
-            var root = entity as Ifc2x3.Kernel.IfcRoot;
-
-            if (root == null || root.OwnerHistory == (Ifc2x3.UtilityResource.IfcOwnerHistory)_ownerHistoryAddObject)
+            var root = entity as IIfcRoot;
+            if (root == null || root.OwnerHistory == _ownerHistoryAddObject)
                 return;
 
-            if (root.OwnerHistory != (Ifc2x3.UtilityResource.IfcOwnerHistory)_ownerHistoryModifyObject)
-                root.OwnerHistory = (Ifc2x3.UtilityResource.IfcOwnerHistory)OwnerHistoryModifyObject;
-        }
-
-        private void IfcRootInitIfc2X3(IPersistEntity entity)
-        {
-            var root = entity as Ifc2x3.Kernel.IfcRoot;
-            if (root != null)
+            if (root.OwnerHistory != _ownerHistoryModifyObject)
             {
-                root.OwnerHistory = (Ifc2x3.UtilityResource.IfcOwnerHistory)OwnerHistoryAddObject;
+                root.OwnerHistory = OwnerHistoryModifyObject;
+                OwnerHistoryModifyObject.LastModifiedDate = DateTime.Now;
             }
         }
 
-
-        private void IfcRootModifiedIfc4(IPersistEntity entity)
+        private void IfcRootInit(IPersistEntity entity)
         {
-            var root = entity as Ifc4.Kernel.IfcRoot;
-            if (root == null || root.OwnerHistory == (Ifc4.UtilityResource.IfcOwnerHistory)_ownerHistoryAddObject)
-                return;
-
-            if (root.OwnerHistory != (Ifc4.UtilityResource.IfcOwnerHistory)_ownerHistoryModifyObject)
-                root.OwnerHistory = (Ifc4.UtilityResource.IfcOwnerHistory)OwnerHistoryModifyObject;
-        }
-
-        private void IfcRootInitIfc4(IPersistEntity entity)
-        {
-            var root = entity as Ifc4.Kernel.IfcRoot;
+            var root = entity as IIfcRoot;
             if (root != null)
             {
-                root.OwnerHistory = (Ifc4.UtilityResource.IfcOwnerHistory)OwnerHistoryAddObject;
+                root.OwnerHistory = OwnerHistoryAddObject;
+                root.GlobalId = Guid.NewGuid().ToPart21();
+                OwnerHistoryAddObject.LastModifiedDate = DateTime.Now;
             }
         }
 
-
+        /// <summary>
+        /// Returns default user used to fill in owner history on new or modified objects. This object is only populated if
+        /// you provide XbimEditorCredentials in one of constructors
+        /// </summary>
         public IIfcPersonAndOrganization DefaultOwningUser
         {
             get
             {
                 if (_defaultOwningUser != null) return _defaultOwningUser;
+
+                //data wasn't supplied to create default user and application
+                if (_editorDetails == null)
+                    return null;
+
                 if (_schema == IfcSchemaVersion.Ifc4)
                 {
                     var person = Instances.New<Ifc4.ActorResource.IfcPerson>(p =>
@@ -552,11 +702,20 @@ namespace Xbim.Ifc
             }
         }
 
+        /// <summary>
+        /// Returns default application used to fill in owner history on new or modified objects. This object is only populated if
+        /// you provide XbimEditorCredentials in one of constructors
+        /// </summary>
         public IIfcApplication DefaultOwningApplication
         {
             get
             {
                 if (_defaultOwningApplication != null) return _defaultOwningApplication;
+
+                //data wasn't supplied to create default user and application
+                if (_editorDetails == null)
+                    return null;
+
                 if (_schema == IfcSchemaVersion.Ifc4)
                     return _defaultOwningApplication ??
                          (_defaultOwningApplication =
@@ -565,6 +724,7 @@ namespace Xbim.Ifc
                                  a.ApplicationDeveloper = Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
                                  a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                  a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
+                                 a.Version = _editorDetails.ApplicationVersion;
                              }
                 ));
                 return _defaultOwningApplication ??
@@ -574,6 +734,7 @@ namespace Xbim.Ifc
                                 a.ApplicationDeveloper = Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
                                 a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                 a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
+                                a.Version = _editorDetails.ApplicationVersion;
                             }
                 ));
             }
@@ -583,60 +744,54 @@ namespace Xbim.Ifc
         {
             get
             {
-                if (_ownerHistoryAddObject == null)
+                if (_ownerHistoryAddObject != null)
+                    return _ownerHistoryAddObject;
+                if (_schema == IfcSchemaVersion.Ifc4)
                 {
-                    if (_schema == IfcSchemaVersion.Ifc4)
-                    {
-                        var histAdd = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
-                        histAdd.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                        histAdd.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
-                        histAdd.ChangeAction = IfcChangeActionEnum.ADDED;
-                        _ownerHistoryAddObject = histAdd;
-                    }
-                    else
-                    {
-                        var histAdd = Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
-                        histAdd.OwningUser = (Ifc2x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                        histAdd.OwningApplication = (Ifc2x3.UtilityResource.IfcApplication)DefaultOwningApplication;
-                        histAdd.ChangeAction = Ifc2x3.UtilityResource.IfcChangeActionEnum.ADDED;
-                        _ownerHistoryAddObject = histAdd;
-                    }
+                    var histAdd = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
+                    histAdd.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histAdd.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histAdd.ChangeAction = IfcChangeActionEnum.ADDED;
+                    _ownerHistoryAddObject = histAdd;
+                }
+                else
+                {
+                    var histAdd = Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
+                    histAdd.OwningUser = (Ifc2x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histAdd.OwningApplication = (Ifc2x3.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histAdd.ChangeAction = Ifc2x3.UtilityResource.IfcChangeActionEnum.ADDED;
+                    _ownerHistoryAddObject = histAdd;
                 }
                 return _ownerHistoryAddObject;
             }
         }
 
-        public IfcSchemaVersion IfcSchemaVesion
+        public IfcSchemaVersion IfcSchemaVersion
         {
-            get
-            {
-                return _schema;
-            }
+            get { return _schema; }
         }
 
         internal IIfcOwnerHistory OwnerHistoryModifyObject
         {
             get
             {
-                if (_ownerHistoryModifyObject == null)
+                if (_ownerHistoryModifyObject != null)
+                    return _ownerHistoryModifyObject;
+                if (_schema == IfcSchemaVersion.Ifc4)
                 {
-                    if (_schema == IfcSchemaVersion.Ifc4)
-                    {
-                        var histmod = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
-                        histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                        histmod.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
-                        histmod.ChangeAction = IfcChangeActionEnum.MODIFIED;
-                        _ownerHistoryModifyObject = histmod;
-                    }
-                    else
-                    {
-                        var histmod = Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
-                        histmod.OwningUser = (Ifc2x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                        histmod.OwningApplication = (Ifc2x3.UtilityResource.IfcApplication)DefaultOwningApplication;
-                        histmod.ChangeAction = Ifc2x3.UtilityResource.IfcChangeActionEnum.MODIFIED;
-                        _ownerHistoryModifyObject = histmod;
-                    }
-
+                    var histmod = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
+                    histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histmod.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histmod.ChangeAction = IfcChangeActionEnum.MODIFIED;
+                    _ownerHistoryModifyObject = histmod;
+                }
+                else
+                {
+                    var histmod = Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
+                    histmod.OwningUser = (Ifc2x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histmod.OwningApplication = (Ifc2x3.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histmod.ChangeAction = Ifc2x3.UtilityResource.IfcChangeActionEnum.MODIFIED;
+                    _ownerHistoryModifyObject = histmod;
                 }
                 return _ownerHistoryModifyObject;
             }
@@ -646,10 +801,11 @@ namespace Xbim.Ifc
         {
             get { return _editorDetails; }
         }
+
         #endregion
 
         #region Transaction support
-       
+
 
         #endregion
 
@@ -659,7 +815,7 @@ namespace Xbim.Ifc
         /// <param name="fileName">Name of the file to save to, if no format is specified the extension is used to determine the format</param>
         /// <param name="format">if specified saves in the required format and changes the extension to the correct one</param>
         /// <param name="progDelegate">reports on progress</param>
-        public void SaveAs(string fileName, IfcStorageType? format=null, ReportProgressDelegate progDelegate = null)
+        public void SaveAs(string fileName, IfcStorageType? format = null, ReportProgressDelegate progDelegate = null)
         {
             if (string.IsNullOrWhiteSpace(fileName)) return;
             var extension = Path.GetExtension(fileName).ToLowerInvariant();
@@ -689,7 +845,7 @@ namespace Xbim.Ifc
                 {
                     extension = ".xbim";
                     actualFormat = IfcStorageType.Xbim;
-                }  
+                }
             }
             else
             {
@@ -702,13 +858,20 @@ namespace Xbim.Ifc
                     actualFormat = IfcStorageType.IfcXml;
                 else if (extension == ".xbim")
                     actualFormat = IfcStorageType.Xbim;
-                else
+                else if (extension == ".ifc")
                 {
                     extension = ".ifc";
                     actualFormat = IfcStorageType.Ifc; //the default
                 }
+                else
+                {
+                    // we don't want to loose the original extension required by the user, but we need to add .ifc 
+                    // and set IfcStorageType.Ifc as default
+                    extension = extension + ".ifc";
+                    actualFormat = IfcStorageType.Ifc; //the default
+                }
             }
-            var actualFileName = Path.ChangeExtension(fileName,extension);
+            var actualFileName = Path.ChangeExtension(fileName, extension);
             var esentModel = _model as EsentModel;
             if (esentModel != null)
             {
@@ -735,8 +898,12 @@ namespace Xbim.Ifc
         {
             if (actualFormat.HasFlag(IfcStorageType.Xbim)) //special case for xbim
             {
-                var esentDb = _schema==IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory());
-                esentDb.CreateFrom(_model, actualFileName, progDelegate);
+
+                using (var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory()))
+                {
+                    esentDb.CreateFrom(_model, actualFileName, progDelegate);
+                    esentDb.Close();
+                }
             }
             else
             {
@@ -754,7 +921,7 @@ namespace Xbim.Ifc
             }
         }
 
-        public void SaveAsIfcXml(Stream stream, ReportProgressDelegate progDelegate=null)
+        public void SaveAsIfcXml(Stream stream, ReportProgressDelegate progDelegate = null)
         {
             var settings = new XmlWriterSettings { Indent = true };
             using (var xmlWriter = XmlWriter.Create(stream, settings))
@@ -776,11 +943,11 @@ namespace Xbim.Ifc
                         new IPersistEntity[] { }
                         //start from root
                             .Concat(project)
-                        //add all products not referenced in the project tree
+                            //add all products not referenced in the project tree
                             .Concat(products)
-                        //add all relations which are not inversed
+                            //add all relations which are not inversed
                             .Concat(relations)
-                        //make sure all other objects will get written
+                            //make sure all other objects will get written
                             .Concat(_model.Instances);
 
                     writer.Write(_model, xmlWriter, all);
@@ -791,11 +958,10 @@ namespace Xbim.Ifc
 
         public void SaveAsIfc(Stream stream, ReportProgressDelegate progDelegate = null)
         {
-                
+
             using (TextWriter tw = new StreamWriter(stream))
             {
-                var p21 = new Part21FileWriter();
-                p21.Write(_model, tw, _model.Metadata);
+                Part21Writer.Write(_model, tw, _model.Metadata);
                 tw.Flush();
             }
         }
@@ -810,11 +976,9 @@ namespace Xbim.Ifc
         public void SaveAsIfcZip(Stream stream, string zipEntryName, IfcStorageType storageType, ReportProgressDelegate progDelegate = null)
         {
             Debug.Assert(storageType.HasFlag(IfcStorageType.IfcZip));
-            string fileBody;
-            if (storageType.HasFlag(IfcStorageType.IfcXml)) //set the correct internal format
-                fileBody = Path.ChangeExtension(zipEntryName, "ifcXml");
-            else //it will be ifc
-                fileBody = Path.ChangeExtension(zipEntryName, "ifc");
+            var fileBody = Path.ChangeExtension(zipEntryName,
+                storageType.HasFlag(IfcStorageType.IfcXml) ? "ifcXml" : "ifc"
+                );
             var zipStream = new ZipOutputStream(stream);
             try
             {
@@ -831,7 +995,7 @@ namespace Xbim.Ifc
             {
                 zipStream.IsStreamOwner = false;
                 zipStream.Finish();
-                zipStream.Close();               
+                zipStream.Close();
             }
         }
 
@@ -839,10 +1003,12 @@ namespace Xbim.Ifc
         /// This function is used to generate the .wexbim model files.
         /// </summary>
         /// <param name="binaryStream">An open writable streamer.</param>
-        public void SaveAsWexBim(BinaryWriter binaryStream)
+        /// <param name="products">Optional products to be written to the wexBIM file. If null, all products from the model will be saved</param>
+        public void SaveAsWexBim(BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null)
         {
+            products = products ?? Instances.OfType<IIfcProduct>();
             // ReSharper disable RedundantCast
-            if(GeometryStore==null) throw new XbimException("Geometry store has not been initialised");
+            if (GeometryStore == null) throw new XbimException("Geometry store has not been initialised");
             // ReSharper disable once CollectionNeverUpdated.Local
             var colourMap = new XbimColourMap();
             using (var geomRead = GeometryStore.BeginRead())
@@ -850,44 +1016,47 @@ namespace Xbim.Ifc
 
                 var lookup = geomRead.ShapeGeometries;
                 var styles = geomRead.StyleIds;
-                var regions = geomRead.ContextRegions.SelectMany(r=>r).ToList();
-
+                var regions = geomRead.ContextRegions.SelectMany(r => r).ToList();
+                //we need to get all the default styles for various products
+                var defaultStyles = geomRead.ShapeInstances.Select(i => -(int)i.IfcTypeId).Distinct();
+                var allStyles = defaultStyles.Concat(styles).ToList();
                 int numberOfGeometries = 0;
                 int numberOfVertices = 0;
                 int numberOfTriangles = 0;
                 int numberOfMatrices = 0;
                 int numberOfProducts = 0;
-                int numberOfStyles = styles.Count;
+                int numberOfStyles = allStyles.Count;
                 //start writing out
 
-                binaryStream.Write((Int32) WexBimId); //magic number
+                binaryStream.Write((Int32)WexBimId); //magic number
 
-                binaryStream.Write((byte) 2); //version of stream, arrays now packed as doubles
-                var start = (int) binaryStream.Seek(0, SeekOrigin.Current);
-                binaryStream.Write((Int32) 0); //number of shapes
-                binaryStream.Write((Int32) 0); //number of vertices
-                binaryStream.Write((Int32) 0); //number of triangles
-                binaryStream.Write((Int32) 0); //number of matrices
-                binaryStream.Write((Int32) 0); //number of products
-                binaryStream.Write((Int32) numberOfStyles); //number of styles
+                binaryStream.Write((byte)2); //version of stream, arrays now packed as doubles
+                var start = (int)binaryStream.Seek(0, SeekOrigin.Current);
+                binaryStream.Write((Int32)0); //number of shapes
+                binaryStream.Write((Int32)0); //number of vertices
+                binaryStream.Write((Int32)0); //number of triangles
+                binaryStream.Write((Int32)0); //number of matrices
+                binaryStream.Write((Int32)0); //number of products
+                binaryStream.Write((Int32)numberOfStyles); //number of styles
                 binaryStream.Write(Convert.ToSingle(_model.ModelFactors.OneMetre));
-                    //write out conversion to meter factor
+                //write out conversion to meter factor
 
                 binaryStream.Write(Convert.ToInt16(regions.Count)); //write out the population data
                 foreach (var r in regions)
                 {
-                    binaryStream.Write((Int32) (r.Population));
+                    binaryStream.Write((Int32)(r.Population));
                     var bounds = r.ToXbimRect3D();
                     var centre = r.Centre;
                     //write out the centre of the region
-                    binaryStream.Write((Single) centre.X);
-                    binaryStream.Write((Single) centre.Y);
-                    binaryStream.Write((Single) centre.Z);
+                    binaryStream.Write((Single)centre.X);
+                    binaryStream.Write((Single)centre.Y);
+                    binaryStream.Write((Single)centre.Z);
                     //bounding box of largest region
                     binaryStream.Write(bounds.ToFloatArray());
                 }
                 //textures
-                foreach (var styleId in styles)
+
+                foreach (var styleId in allStyles)
                 {
                     XbimColour colour;
                     if (styleId > 0)
@@ -896,7 +1065,7 @@ namespace Xbim.Ifc
                         var texture = XbimTexture.Create(ss);
                         colour = texture.ColourMap.FirstOrDefault();
                     }
-                    else //use the default in the colour map for th enetity type
+                    else //use the default in the colour map for the enetity type
                     {
                         var theType = _model.Metadata.GetType((short)Math.Abs(styleId));
                         colour = colourMap[theType.Name];
@@ -911,76 +1080,86 @@ namespace Xbim.Ifc
                 }
 
                 //write out all the product bounding boxes
-                foreach (var product in Instances.OfType<IIfcProduct>())
+                var prodIds = new HashSet<int>();
+                foreach (var product in products)
                 {
-                    if (!(product is IIfcFeatureElement))
+                    if (product is IIfcFeatureElement) continue;
+                    prodIds.Add(product.EntityLabel);
+
+                    var bb = XbimRect3D.Empty;
+                    foreach (var si in geomRead.ShapeInstancesOfEntity(product))
                     {
-                        var bb = XbimRect3D.Empty;
-                        foreach (var si in geomRead.ShapeInstancesOfEntity(product))
-                        {
-                            var bbPart = XbimRect3D.TransformBy(si.BoundingBox, si.Transformation);
-                                //make sure we put the box in the right place and then convert to axis aligned
-                            if (bb.IsEmpty) bb = bbPart;
-                            else
-                                bb.Union(bbPart);
-                        }
-                        if (!bb.IsEmpty) //do not write out anything with no geometry
-                        {
-                            binaryStream.Write((Int32) product.EntityLabel);
-                            binaryStream.Write((UInt16) _model.Metadata.ExpressTypeId(product));
-                            binaryStream.Write(bb.ToFloatArray());
-                            numberOfProducts++;
-                        }
+                        var bbPart = XbimRect3D.TransformBy(si.BoundingBox, si.Transformation);
+                        //make sure we put the box in the right place and then convert to axis aligned
+                        if (bb.IsEmpty) bb = bbPart;
+                        else
+                            bb.Union(bbPart);
                     }
+                    //do not write out anything with no geometry
+                    if (bb.IsEmpty) continue;
+
+                    binaryStream.Write((Int32)product.EntityLabel);
+                    binaryStream.Write((UInt16)_model.Metadata.ExpressTypeId(product));
+                    binaryStream.Write(bb.ToFloatArray());
+                    numberOfProducts++;
                 }
 
-                //write out the multiple instances
-                var openingElementId = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
+                //projections and openings have already been applied, 
+
+                var toIgnore = new short[4];
+                toIgnore[0] = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
+                toIgnore[1] = _model.Metadata.ExpressTypeId("IFCPROJECTIONELEMENT");
+                if (IfcSchemaVersion == IfcSchemaVersion.Ifc4)
+                {
+                    toIgnore[2] = _model.Metadata.ExpressTypeId("IFCVOIDINGFEATURE");
+                    toIgnore[3] = _model.Metadata.ExpressTypeId("IFCSURFACEFEATURE");
+                }
+
                 foreach (var geometry in lookup)
                 {
-                    if (geometry.ReferenceCount > 1)
+                    if (geometry.ShapeData.Length <= 0) //no geometry to display so don't write out any products for it
+                        continue;
+                    var instances = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel);
+
+
+
+                    var xbimShapeInstances = instances.Where(si => !toIgnore.Contains(si.IfcTypeId) &&
+                                                                 si.RepresentationType ==
+                                                                 XbimGeometryRepresentationType
+                                                                     .OpeningsAndAdditionsIncluded && prodIds.Contains(si.IfcProductLabel)).ToList();
+                    if (!xbimShapeInstances.Any()) continue;
+                    numberOfGeometries++;
+                    binaryStream.Write(xbimShapeInstances.Count); //the number of repetitions of the geometry
+                    if (xbimShapeInstances.Count > 1)
                     {
-                        var instances = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel);
-                        var xbimShapeInstances = instances as IList<XbimShapeInstance> ?? instances.ToList();
-                        if (!xbimShapeInstances.Any()) continue;
-                        numberOfGeometries++;
-                        binaryStream.Write(geometry.ReferenceCount); //the number of repetitions of the geometry
                         foreach (IXbimShapeInstanceData xbimShapeInstance in xbimShapeInstances)
-                            //write out each of the ids style and transforms
+                        //write out each of the ids style and transforms
                         {
                             binaryStream.Write(xbimShapeInstance.IfcProductLabel);
-                            binaryStream.Write((UInt16) xbimShapeInstance.IfcTypeId);
-                            binaryStream.Write((UInt32) xbimShapeInstance.InstanceLabel);
-                            binaryStream.Write((Int32) xbimShapeInstance.StyleLabel > 0
+                            binaryStream.Write((UInt16)xbimShapeInstance.IfcTypeId);
+                            binaryStream.Write((UInt32)xbimShapeInstance.InstanceLabel);
+                            binaryStream.Write((Int32)xbimShapeInstance.StyleLabel > 0
                                 ? xbimShapeInstance.StyleLabel
-                                : xbimShapeInstance.IfcTypeId*-1);
+                                : xbimShapeInstance.IfcTypeId * -1);
                             binaryStream.Write(xbimShapeInstance.Transformation);
                             numberOfTriangles +=
-                                XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData) geometry).ShapeData);
+                                XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData)geometry).ShapeData);
                             numberOfMatrices++;
                         }
                         numberOfVertices +=
-                            XbimShapeTriangulation.VerticesCount(((IXbimShapeGeometryData) geometry).ShapeData);
+                            XbimShapeTriangulation.VerticesCount(((IXbimShapeGeometryData)geometry).ShapeData);
                         // binaryStream.Write(geometry.ShapeData);
-                        var ms = new MemoryStream(((IXbimShapeGeometryData) geometry).ShapeData);
+                        var ms = new MemoryStream(((IXbimShapeGeometryData)geometry).ShapeData);
                         var br = new BinaryReader(ms);
                         var tr = br.ReadShapeTriangulation();
 
                         tr.Write(binaryStream);
                     }
-                    else if (geometry.ReferenceCount == 1)//now do the single instances
+                    else //now do the single instances
                     {
-                        var xbimShapeInstance = geomRead.ShapeInstancesOfGeometry(geometry.ShapeLabel).FirstOrDefault();
-
-                        if (xbimShapeInstance == null || xbimShapeInstance.IfcTypeId == openingElementId ||
-                            xbimShapeInstance.RepresentationType != XbimGeometryRepresentationType.OpeningsAndAdditionsIncluded)                           
-                            continue;
-                        numberOfGeometries++;
+                        var xbimShapeInstance = xbimShapeInstances[0];
 
                         // IXbimShapeGeometryData geometry = ShapeGeometry(kv.Key);
-                        binaryStream.Write((Int32)1); //the number of repetitions of the geometry (1)
-
-
                         binaryStream.Write((Int32)xbimShapeInstance.IfcProductLabel);
                         binaryStream.Write((UInt16)xbimShapeInstance.IfcTypeId);
                         binaryStream.Write((Int32)xbimShapeInstance.InstanceLabel);
@@ -989,8 +1168,7 @@ namespace Xbim.Ifc
                             : xbimShapeInstance.IfcTypeId * -1);
 
                         //Read all vertices and normals in the geometry stream and transform
-                        if (geometry.ShapeData.Length <= 0)
-                            continue;
+
                         var ms = new MemoryStream(((IXbimShapeGeometryData)geometry).ShapeData);
                         var br = new BinaryReader(ms);
                         var tr = br.ReadShapeTriangulation();
@@ -1000,14 +1178,14 @@ namespace Xbim.Ifc
                         numberOfVertices += XbimShapeTriangulation.VerticesCount(((IXbimShapeGeometryData)geometry).ShapeData);
                     }
                 }
-                
-                
+
+
                 binaryStream.Seek(start, SeekOrigin.Begin);
-                binaryStream.Write((Int32) numberOfGeometries);
-                binaryStream.Write((Int32) numberOfVertices);
-                binaryStream.Write((Int32) numberOfTriangles);
-                binaryStream.Write((Int32) numberOfMatrices);
-                binaryStream.Write((Int32) numberOfProducts);
+                binaryStream.Write((Int32)numberOfGeometries);
+                binaryStream.Write((Int32)numberOfVertices);
+                binaryStream.Write((Int32)numberOfTriangles);
+                binaryStream.Write((Int32)numberOfMatrices);
+                binaryStream.Write((Int32)numberOfProducts);
                 binaryStream.Seek(0, SeekOrigin.End); //go back to end
                 // ReSharper restore RedundantCast
             }
@@ -1016,7 +1194,7 @@ namespace Xbim.Ifc
         public const int WexBimId = 94132117;
 
         /// <summary>
-        /// Calculates and sets the model factors, call everytime a unit of measurement is changed
+        /// Calculates and sets the model factors, call every time a unit of measurement is changed
         /// </summary>
         public void CalculateModelFactors()
         {
@@ -1065,20 +1243,21 @@ namespace Xbim.Ifc
 
             var gcs =
                 Instances.OfType<IIfcGeometricRepresentationContext>();
-            double defaultPrecision = 1e-5;
+            var defaultPrecision = 1e-5;
             //get the Model precision if it is correctly defined
             foreach (var gc in gcs.Where(g => !(g is IIfcGeometricRepresentationSubContext)))
             {
                 if (!gc.ContextType.HasValue || string.Compare(gc.ContextType.Value, "model", true) != 0) continue;
                 if (!gc.Precision.HasValue) continue;
+                if (gc.Precision == 0) continue;
                 defaultPrecision = gc.Precision.Value;
                 break;
             }
-         
+
             //check if angle units are incorrectly defined, this happens in some old models
             if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
             {
-                var trimmed = Instances.Where<IIfcTrimmedCurve>(trimmedCurve =>trimmedCurve.BasisCurve is IIfcConic);
+                var trimmed = Instances.Where<IIfcTrimmedCurve>(trimmedCurve => trimmedCurve.BasisCurve is IIfcConic);
                 foreach (var trimmedCurve in trimmed)
                 {
                     if (trimmedCurve.MasterRepresentation != IfcTrimmingPreference.PARAMETER)
@@ -1092,9 +1271,41 @@ namespace Xbim.Ifc
                     break;
                 }
             }
+
             ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
                 defaultPrecision);
+
+            SetWorkArounds();
         }
+
+        /// <summary>
+        /// Code to determine model specific workarounds (BIM tool IFC exporter quirks)
+        /// </summary>
+        private void SetWorkArounds()
+        {
+            //try Revit first
+            string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
+            if (Header.FileName == null || string.IsNullOrWhiteSpace(Header.FileName.OriginatingSystem))
+                return; //nothing to do
+            var matches = Regex.Matches(Header.FileName.OriginatingSystem, revitPattern, RegexOptions.IgnoreCase);
+            if (matches.Count > 0) //looks like Revit
+            {
+                if (matches[0].Groups.Count == 2) //we have the build versions
+                {
+                    Version modelVersion;
+                    if (Version.TryParse(matches[0].Groups[1].Value, out modelVersion))
+                    {
+                        //SurfaceOfLinearExtrusion bug found in version 17.2.0 and earlier
+                        var surfaceOfLinearExtrusionVersion = new Version(17, 2, 0, 0);
+                        if (modelVersion <= surfaceOfLinearExtrusionVersion)
+                            ((XbimModelFactors)ModelFactors).AddWorkAround("#SurfaceOfLinearExtrusion");
+                    }
+
+                }
+            }
+        }
+
+
 
         #region Reference Model functions
 
@@ -1114,7 +1325,7 @@ namespace Xbim.Ifc
                 {
                     var role = Instances.New<Ifc4.ActorResource.IfcActorRole>();
                     role.RoleString = organisationRole;
-                        // the string is converted appropriately by the IfcActorRoleClass
+                    // the string is converted appropriately by the IfcActorRoleClass
                     var org = Instances.New<Ifc4.ActorResource.IfcOrganization>();
                     org.Name = organisationName;
                     org.Roles.Add(role);
@@ -1128,14 +1339,12 @@ namespace Xbim.Ifc
                     var org = Instances.New<Ifc2x3.ActorResource.IfcOrganization>();
                     org.Name = organisationName;
                     org.Roles.Add(role);
-                     retVal = AddModelReference(refModelPath, org);
-                    
+                    retVal = AddModelReference(refModelPath, org);
                 }
-                txn.Commit();               
-            } 
+                txn.Commit();
+            }
             return retVal;
         }
-
 
         /// <summary>
         /// adds a model as a reference model can be called inside a transaction
@@ -1209,22 +1418,19 @@ namespace Xbim.Ifc
             return retVal;
         }
 
-
-       
-
         /// <summary>
         /// All reference models are opened in a readonly mode.
         /// Their children reference models is invoked iteratively.
         /// 
         /// Loading referenced models defaults to avoiding Exception on file not found; in this way the federated model can still be opened and the error rectified.
         /// </summary>
-        /// <param name="throwReferenceModelExceptions"></param>
-        private void LoadReferenceModels(bool throwReferenceModelExceptions = false)
+        /// <param name="throwErrorOnReferenceModelExceptions">Set to true to enable your own error handling</param>
+        private void LoadReferenceModels(bool throwErrorOnReferenceModelExceptions = false)
         {
             var docInfos = Instances.OfType<IIfcDocumentInformation>().Where(d => d.IntendedUse == RefDocument);
             foreach (var docInfo in docInfos)
             {
-                if (throwReferenceModelExceptions)
+                if (throwErrorOnReferenceModelExceptions)
                 {
                     // throw exception on referenceModel Creation
                     AddModelReference(new XbimReferencedModel(docInfo));
@@ -1236,26 +1442,23 @@ namespace Xbim.Ifc
                     {
                         AddModelReference(new XbimReferencedModel(docInfo));
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        // drop exception in this case
+                        var Log = LogManager.GetLogger("Xbim.Ifc.IfcStore");
+                        Log.Error(
+                            string.Format("Ignored exception on modelreference load for #{0}.", docInfo.EntityLabel),
+                            ex);
                     }
                 }
             }
         }
 
-
         #endregion
         #region Federation
-  
-
 
         public IEnumerable<IReferencedModel> ReferencedModels
         {
-            get
-            {
-                return _referencedModels.AsEnumerable();
-            }
+            get { return _referencedModels.AsEnumerable(); }
         }
 
         public void AddModelReference(IReferencedModel model)
@@ -1263,20 +1466,13 @@ namespace Xbim.Ifc
             _referencedModels.Add(model);
         }
 
-       
-
         /// <summary>
         /// Returns true if the model contains reference models or the model has extension xBIMf
         /// </summary>
         public virtual bool IsFederation
         {
-            get
-            {
-                return _referencedModels.Any();
-            }
+            get { return _referencedModels.Any(); }
         }
-
-
 
         ///// <summary>
         ///// Returns an enumerable of the handles to all entities in the model
@@ -1306,8 +1502,6 @@ namespace Xbim.Ifc
         }
         #endregion
 
- 
-
         public IModel ReferencingModel
         {
             get { return _model; }
@@ -1317,8 +1511,6 @@ namespace Xbim.Ifc
         {
             get { return new FederatedModelInstances(this); }
         }
-
-
 
         public IList<XbimInstanceHandle> FederatedInstanceHandles
         {
@@ -1338,6 +1530,274 @@ namespace Xbim.Ifc
         {
             get { return _model.InstanceHandles.ToList(); }
         }
-    }
 
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return _model.SchemaVersion; }
+        }
+
+        #region Insert products with context
+
+        private List<IIfcProduct> _primaryElements = new List<IIfcProduct>();
+        private readonly List<IIfcProduct> _decomposition = new List<IIfcProduct>();
+        private bool _includeGeometry;
+
+        /// <summary>
+        /// This is a higher level function which uses InsertCopy function alongside with the knowledge of IFC schema to copy over
+        /// products with their types and other related information (classification, aggregation, documents, properties) and optionally
+        /// geometry. It will also bring in spatial hierarchy relevant to selected products. However, resulting model is not guaranteed 
+        /// to be compliant with any Model View Definition unless you explicitly check the compliance. Context of a single product tend to 
+        /// consist from hundreds of objects which need to be identified and copied over so this operation might be potentially expensive.
+        /// You should never call this function more than once between two models. It not only selects objects to be copied over but also
+        /// excludes other objects from being coppied over so that it doesn't bring the entire model in a chain dependencies. This means
+        /// that some objects are modified (like spatial relations) and won't get updated which would lead to an inconsistent copy.
+        /// </summary>
+        /// <param name="products">Products from other model to be inserted into this model</param>
+        /// <param name="includeGeometry">If TRUE, geometry of the products will be copied over.</param>
+        /// <param name="keepLabels">If TRUE, entity labels from original model will be used. Always set this to FALSE
+        /// if you are going to insert products from multiple source models or if you are going to insert products to a non-empty model</param>
+        /// <param name="mappings">Mappings to avoid multiple insertion of objects. Keep a single instance for insertion between two models.
+        /// If you also use InsertCopy() function for some other insertions, use the same instance of mappings.</param>
+        public void InsertCopy(IEnumerable<IIfcProduct> products, bool includeGeometry, bool keepLabels, XbimInstanceHandleMap mappings)
+        {
+            _primaryElements.Clear();
+            _decomposition.Clear();
+            _includeGeometry = includeGeometry;
+
+            var roots = products.Cast<IPersistEntity>().ToList();
+            //return if there is nothing to insert
+            if (!roots.Any())
+                return;
+
+            var source = roots.First().Model;
+            if (source == this)
+                //don't do anything if the source and target are the same
+                return;
+
+            var toInsert = GetEntitiesToInsert(source, roots);
+            //create new cache is none is defined
+            var cache = mappings ?? new XbimInstanceHandleMap(source, this);
+
+            foreach (var entity in toInsert)
+                InsertCopy(entity, cache, Filter, true, keepLabels);
+        }
+
+        private IEnumerable<IPersistEntity> GetEntitiesToInsert(IModel model, List<IPersistEntity> roots)
+        {
+            _primaryElements = roots.OfType<IIfcProduct>().ToList();
+
+            //add any aggregated elements. For example IfcRoof is typically aggregation of one or more slabs so we need to bring
+            //them along to have all the information both for geometry and for properties and materials.
+            //This has to happen before we add spatial hierarchy or it would bring in full hierarchy which is not an intention
+            var decompositionRels = GetAggregations(_primaryElements.ToList(), model).ToList();
+            _primaryElements.AddRange(_decomposition);
+            roots.AddRange(decompositionRels);
+
+            //we should add spatial hierarchy right here so it brings its attributes as well
+            var spatialRels = model.Instances.Where<IIfcRelContainedInSpatialStructure>(
+                r => _primaryElements.Any(e => r.RelatedElements.Contains(e))).ToList();
+            var spatialRefs =
+                model.Instances.Where<IIfcRelReferencedInSpatialStructure>(
+                    r => _primaryElements.Any(e => r.RelatedElements.Contains(e))).ToList();
+            var bottomSpatialHierarchy =
+                spatialRels.Select(r => r.RelatingStructure).Union(spatialRefs.Select(r => r.RelatingStructure)).ToList();
+            var spatialAggregations = GetUpstreamHierarchy(bottomSpatialHierarchy, model).ToList();
+
+            //add all spatial elements from bottom and from upstream hierarchy
+            _primaryElements.AddRange(bottomSpatialHierarchy);
+            _primaryElements.AddRange(spatialAggregations.Select(r => r.RelatingObject).OfType<IIfcProduct>());
+            roots.AddRange(spatialAggregations);
+            roots.AddRange(spatialRels);
+            roots.AddRange(spatialRefs);
+
+            //we should add any feature elements used to subtract mass from a product
+            var featureRels = GetFeatureRelations(_primaryElements).ToList();
+            var openings = featureRels.Select(r => r.RelatedOpeningElement);
+            _primaryElements.AddRange(openings);
+            roots.AddRange(featureRels);
+
+            //object types and properties for all primary products (elements and spatial elements)
+            roots.AddRange(_primaryElements.SelectMany(p => p.IsDefinedBy));
+            roots.AddRange(_primaryElements.SelectMany(p => p.IsTypedBy));
+
+
+
+            //assignmnet to groups will bring in all system aggregarions if defined in the file
+            roots.AddRange(_primaryElements.SelectMany(p => p.HasAssignments));
+
+            //associations with classification, material and documents
+            roots.AddRange(_primaryElements.SelectMany(p => p.HasAssociations));
+
+            return roots;
+        }
+
+        private object Filter(ExpressMetaProperty property, object parentObject)
+        {
+            //ignore inverses except for style
+            if (property.IsInverse)
+                return property.Name == "StyledByItem" ? property.PropertyInfo.GetValue(parentObject, null) : null;
+
+            if (_primaryElements != null && _primaryElements.Any())
+            {
+                if (typeof(IIfcProduct).IsAssignableFrom(property.PropertyInfo.PropertyType))
+                {
+                    var element = property.PropertyInfo.GetValue(parentObject, null) as IIfcProduct;
+                    if (element != null && _primaryElements.Contains(element))
+                        return element;
+                    return null;
+                }
+                if (property.EnumerableType != null && !property.EnumerableType.IsValueType && property.EnumerableType != typeof(string))
+                {
+                    //this can either be a list of IPersistEntity or select type. The very base type is IPersist
+                    var entities = property.PropertyInfo.GetValue(parentObject, null) as IEnumerable<IPersist>;
+                    if (entities != null)
+                    {
+                        var persistEntities = entities as IList<IPersist> ?? entities.ToList();
+                        var elementsToRemove = persistEntities.OfType<IIfcProduct>().Where(e => !_primaryElements.Contains(e)).ToList();
+                        //if there are no IfcElements return what is in there with no care
+                        if (elementsToRemove.Any())
+                            //return original values excluding elements not included in the primary set
+                            return persistEntities.Except(elementsToRemove).ToList();
+                    }
+                }
+            }
+
+            //if geometry is to be included don't filter it out
+            if (_includeGeometry)
+                return property.PropertyInfo.GetValue(parentObject, null);
+
+            //leave out geometry and placement of products
+            if (parentObject is IIfcProduct &&
+                (property.PropertyInfo.Name == "Representation" || property.PropertyInfo.Name == "ObjectPlacement")
+                )
+                return null;
+
+            //leave out representation maps
+            if (parentObject is IIfcTypeProduct && property.PropertyInfo.Name == "RepresentationMaps")
+                return null;
+
+            //leave out eventual connection geometry
+            if (parentObject is IIfcRelSpaceBoundary && property.PropertyInfo.Name == "ConnectionGeometry")
+                return null;
+
+            //return the value for anything else
+            return property.PropertyInfo.GetValue(parentObject, null);
+        }
+
+        private static IEnumerable<IIfcRelVoidsElement> GetFeatureRelations(IEnumerable<IIfcProduct> products)
+        {
+            var elements = products.OfType<IIfcElement>().ToList();
+            if (!elements.Any()) yield break;
+            var model = elements.First().Model;
+            var rels = model.Instances.Where<IIfcRelVoidsElement>(r => elements.Any(e => Equals(e, r.RelatingBuildingElement)));
+            foreach (var rel in rels)
+                yield return rel;
+        }
+
+        private IEnumerable<IIfcRelDecomposes> GetAggregations(List<IIfcProduct> products, IModel model)
+        {
+            _decomposition.Clear();
+            while (true)
+            {
+                if (!products.Any())
+                    yield break;
+
+                var products1 = products;
+                var rels = model.Instances.Where<IIfcRelDecomposes>(r =>
+                {
+                    var aggr = r as IIfcRelAggregates;
+                    if (aggr != null)
+                        return products1.Any(p => Equals(aggr.RelatingObject, p));
+                    var nest = r as IIfcRelNests;
+                    if (nest != null)
+                        return products1.Any(p => Equals(nest.RelatingObject, p));
+                    var prj = r as IIfcRelProjectsElement;
+                    if (prj != null)
+                        return products1.Any(p => Equals(prj.RelatingElement, p));
+                    var voids = r as IIfcRelVoidsElement;
+                    if (voids != null)
+                        return products1.Any(p => Equals(voids.RelatingBuildingElement, p));
+                    return false;
+
+                }).ToList();
+                var relatedProducts = rels.SelectMany(r =>
+                {
+                    var aggr = r as IIfcRelAggregates;
+                    if (aggr != null)
+                        return aggr.RelatedObjects.OfType<IIfcProduct>();
+                    var nest = r as IIfcRelNests;
+                    if (nest != null)
+                        return nest.RelatedObjects.OfType<IIfcProduct>();
+                    var prj = r as IIfcRelProjectsElement;
+                    if (prj != null)
+                        return new IIfcProduct[] { prj.RelatedFeatureElement };
+                    var voids = r as IIfcRelVoidsElement;
+                    if (voids != null)
+                        return new IIfcProduct[] { voids.RelatedOpeningElement };
+                    return null;
+                }).Where(p => p != null).ToList();
+
+                foreach (var rel in rels)
+                    yield return rel;
+
+                products = relatedProducts;
+                _decomposition.AddRange(products);
+            }
+        }
+
+        private static IEnumerable<IIfcRelAggregates> GetUpstreamHierarchy(IEnumerable<IIfcSpatialElement> spatialStructureElements, IModel model)
+        {
+            while (true)
+            {
+                var elements = spatialStructureElements.ToList();
+                if (!elements.Any())
+                    yield break;
+
+                var rels = model.Instances.Where<IIfcRelAggregates>(r => elements.Any(s => r.RelatedObjects.Contains(s))).ToList();
+                var decomposing = rels.Select(r => r.RelatingObject).OfType<IIfcSpatialStructureElement>();
+
+                foreach (var rel in rels)
+                    yield return rel;
+
+                spatialStructureElements = decomposing;
+            }
+        }
+        #endregion
+
+        #region Equality
+
+        public bool Equals(IModel other)
+        {
+            return ReferenceEquals(this, other) || ReferenceEquals(other, _model);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return _model.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _model.GetHashCode();
+        }
+
+        public static bool operator ==(IfcStore store, IModel model)
+        {
+            if (ReferenceEquals(store, model))
+                return true;
+            if (ReferenceEquals(store, null))
+                return false;
+            if (ReferenceEquals(model, null))
+                return false;
+
+            return store._model.Equals(model);
+        }
+
+        public static bool operator !=(IfcStore store, IModel model)
+        {
+            return !(store == model);
+        }
+
+        #endregion
+    }
 }

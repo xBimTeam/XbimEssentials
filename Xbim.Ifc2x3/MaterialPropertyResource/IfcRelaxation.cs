@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelaxation : IPersistEntity
 	{
-		IfcNormalisedRatioMeasure @RelaxationValue { get; }
-		IfcNormalisedRatioMeasure @InitialStress { get; }
+		IfcNormalisedRatioMeasure @RelaxationValue { get;  set; }
+		IfcNormalisedRatioMeasure @InitialStress { get;  set; }
 	
 	}
 }
@@ -36,75 +38,25 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcRelaxation", 364)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelaxation : INotifyPropertyChanged, IInstantiableEntity, IIfcRelaxation, IEqualityComparer<@IfcRelaxation>, IEquatable<@IfcRelaxation>
+	public  partial class @IfcRelaxation : PersistEntity, IInstantiableEntity, IIfcRelaxation, IEquatable<@IfcRelaxation>
 	{
 		#region IIfcRelaxation explicit implementation
-		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { get { return @RelaxationValue; } }	
-		IfcNormalisedRatioMeasure IIfcRelaxation.InitialStress { get { return @InitialStress; } }	
+		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { 
+ 
+			get { return @RelaxationValue; } 
+			set { RelaxationValue = value;}
+		}	
+		IfcNormalisedRatioMeasure IIfcRelaxation.InitialStress { 
+ 
+			get { return @InitialStress; } 
+			set { InitialStress = value;}
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelaxation(IModel model) 		{ 
-			Model = model; 
+		internal IfcRelaxation(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -118,13 +70,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relaxationValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relaxationValue;
+				Activate();
 				return _relaxationValue;
 			} 
 			set
 			{
-				SetValue( v =>  _relaxationValue = v, _relaxationValue, value,  "RelaxationValue");
+				SetValue( v =>  _relaxationValue = v, _relaxationValue, value,  "RelaxationValue", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -132,13 +84,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _initialStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _initialStress;
+				Activate();
 				return _initialStress;
 			} 
 			set
 			{
-				SetValue( v =>  _initialStress = v, _initialStress, value,  "InitialStress");
+				SetValue( v =>  _initialStress = v, _initialStress, value,  "InitialStress", 2);
 			} 
 		}	
 		#endregion
@@ -146,58 +98,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -211,11 +113,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -223,54 +120,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelaxation
-            var root = (@IfcRelaxation)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelaxation left, @IfcRelaxation right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelaxation left, @IfcRelaxation right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelaxation x, @IfcRelaxation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelaxation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

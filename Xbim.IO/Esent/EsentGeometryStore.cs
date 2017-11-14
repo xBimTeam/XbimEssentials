@@ -1,25 +1,45 @@
 ﻿using System;
+using log4net;
 using Xbim.Common.Geometry;
+using static Xbim.IO.Esent.EsentModel;
 
 namespace Xbim.IO.Esent
 {
     internal class EsentGeometryStore : IGeometryStore
     {
+        private static readonly ILog Log = LogManager.GetLogger("Xbim.IO.Esent.EsentGeometryStore");
+
         private readonly EsentModel _esentModel;
 
         private EsentGeometryInitialiser _currentTransaction = null;
         private EsentShapeInstanceCursor _shapeInstanceCursor;
         private EsentShapeGeometryCursor _shapeGeometryCursor;
+        private bool _disposed;
 
         public EsentGeometryStore(EsentModel esentModel )
         {           
             _esentModel = esentModel;
-           
         }
 
         public EsentModel Model
         {
             get { return _esentModel; }
+        }
+
+        private TableStatus _tableStatus = EsentModel.TableStatus.Unknown;
+
+        private TableStatus TableStatus
+        {
+            get
+            {
+                if (_tableStatus == TableStatus.Unknown)
+                {
+                    _tableStatus = _esentModel.Cache.HasTable(EsentShapeGeometryCursor.GeometryTableName)
+                        ? TableStatus.Found
+                        : TableStatus.Missing;
+                }
+                return _tableStatus;
+            }
         }
 
 
@@ -74,13 +94,34 @@ namespace Xbim.IO.Esent
 
         public void Dispose()
         {
-            if (_currentTransaction != null) //we have terminated unexpectedly, the database may be corrupt
+            Dispose(true);
+            // Take yourself off the Finalization queue 
+            // to prevent finalization code for this object
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
+
+
+        public void Dispose(bool disposing)
+        {
+            if (!_disposed)
             {
-                _currentTransaction.Dispose();
-                _currentTransaction = null;
+                // If disposing equals true, dispose all managed 
+                // and unmanaged resources.
+                if (disposing)
+                {
+                    //managed resources                   
+                }
+                //unmanaged, mostly esent related              
+                if (_currentTransaction != null) //we have terminated unexpectedly, the database may be corrupt
+                {
+                    _currentTransaction.Dispose();
+                    _currentTransaction = null;
+                }
+                if (_shapeGeometryCursor != null) _esentModel.FreeTable(_shapeGeometryCursor);
+                if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
             }
-            if (_shapeGeometryCursor != null) _esentModel.FreeTable(_shapeGeometryCursor);
-            if (_shapeInstanceCursor != null) _esentModel.FreeTable(_shapeInstanceCursor);
+            _disposed = true;
         }
 
 
@@ -93,16 +134,28 @@ namespace Xbim.IO.Esent
         {
             get
             {
+                if (TableStatus == TableStatus.Missing)
+                    return true;
                 EsentShapeGeometryCursor shapeGeometryCursor = null;
                 try
                 {
+                    IXbimShapeGeometryData shapeGeometry = new XbimShapeGeometry();
                     shapeGeometryCursor = _esentModel.GetShapeGeometryTable();
-                    return shapeGeometryCursor.TryMoveFirst();
+                    using (var shapeGeometryTransaction = shapeGeometryCursor.BeginReadOnlyTransaction())
+                    {
+                        var isEmpty = !shapeGeometryCursor.TryMoveFirstShapeGeometry(ref shapeGeometry);
+                        return isEmpty;
+                    }
+                }
+                catch (Exception)
+                {
+                    Log.WarnFormat("Esent model {0} does not contain geometry tables.", _esentModel.DatabaseName);
+                    return true;
                 }
                 finally
                 {
-                    if(shapeGeometryCursor!=null) _esentModel.FreeTable(shapeGeometryCursor);
-
+                    if(shapeGeometryCursor!=null)
+                        _esentModel.FreeTable(shapeGeometryCursor);
                 }
             }
         }

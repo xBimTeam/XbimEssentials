@@ -10,20 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralCurveConnection : IIfcStructuralCurveConnection
 	{
+
+		private  IIfcDirection _axis;
+
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralCurveConnection), 9)]
 		IIfcDirection IIfcStructuralCurveConnection.Axis 
 		{ 
 			get
 			{
-				//## Handle return of Axis for which no match was found
-				return new Xbim.Ifc2x3.Interfaces.Conversions.IfcDirectionTransient();
-				//##
+				return _axis;
 			} 
+			set
+			{
+				SetValue(v => _axis = v, _axis, value, "Axis", -9);
+				
+			}
 		}
 	//## Custom code
 	//##

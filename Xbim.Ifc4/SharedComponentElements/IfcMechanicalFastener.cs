@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedComponentElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,29 +26,41 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalFastener : IIfcElementComponent
 	{
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcPositiveLengthMeasure? @NominalLength { get; }
-		IfcMechanicalFastenerTypeEnum? @PredefinedType { get; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcPositiveLengthMeasure? @NominalLength { get;  set; }
+		IfcMechanicalFastenerTypeEnum? @PredefinedType { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.SharedComponentElements
 {
-	[ExpressType("IfcMechanicalFastener", 769)]
+	[ExpressType("IfcMechanicalFastener", 536)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalFastener : IfcElementComponent, IInstantiableEntity, IIfcMechanicalFastener, IEqualityComparer<@IfcMechanicalFastener>, IEquatable<@IfcMechanicalFastener>
+	public  partial class @IfcMechanicalFastener : IfcElementComponent, IInstantiableEntity, IIfcMechanicalFastener, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMechanicalFastener>
 	{
 		#region IIfcMechanicalFastener explicit implementation
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength { get { return @NominalLength; } }	
-		IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType { get { return @PredefinedType; } }	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { 
+ 
+			get { return @NominalDiameter; } 
+			set { NominalDiameter = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength { 
+ 
+			get { return @NominalLength; } 
+			set { NominalLength = value;}
+		}	
+		IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMechanicalFastener(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMechanicalFastener(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc4.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc4.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalLength;
+				Activate();
 				return _nominalLength;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
+				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc4.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 11);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc4.SharedComponentElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -132,13 +145,6 @@ namespace Xbim.Ifc4.SharedComponentElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcMechanicalFastenerTypeEnum.USERDEFINED) AND EXISTS (SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:('IFC4.IFCMECHANICALFASTENERTYPE' IN TYPEOF(SELF\IfcObject.IsTypedBy[1].RelatingType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,55 +152,37 @@ namespace Xbim.Ifc4.SharedComponentElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMechanicalFastener
-            var root = (@IfcMechanicalFastener)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMechanicalFastener left, @IfcMechanicalFastener right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMechanicalFastener left, @IfcMechanicalFastener right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMechanicalFastener x, @IfcMechanicalFastener y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalFastener obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

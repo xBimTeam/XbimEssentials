@@ -12,6 +12,7 @@
 
 #region Directives
 
+using Xbim.Common;
 using Xbim.Ifc2x3.RepresentationResource;
 using Xbim.Ifc2x3.SharedBldgElements;
 
@@ -39,7 +40,7 @@ namespace Xbim.Ifc2x3.Extensions
         /// </summary>
         /// <param name = "lProps"></param>
         /// <returns></returns>
-        public static ItemSet<IfcShapeModel> GetShapeModels(this IfcDoorLiningProperties lProps)
+        public static IItemSet<IfcShapeModel> GetShapeModels(this IfcDoorLiningProperties lProps)
         {
             return lProps.ShapeAspectStyle == null ? 
                 null : 

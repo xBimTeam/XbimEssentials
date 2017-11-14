@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcWorkControl : IIfcWorkControl
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 7)]
 		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.CreationDate 
 		{ 
 			get
@@ -24,17 +27,41 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(CreationDate.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of CreationDate for which no match was found
+			    System.DateTime d = value;
+			    CreationDate = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+			    {
+			        dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+			        {
+			            date.YearComponent = d.Year;
+			            date.MonthComponent = d.Month;
+			            date.DayComponent = d.Day;
+			        });
+			        dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+			        {
+			            t.HourComponent = d.Hour;
+			            t.MinuteComponent = d.Minute;
+			            t.SecondComponent = d.Second;
+			        });
+			    });
+			    //##
+				
+			}
 		}
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators 
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 8)]
+		IItemSet<IIfcPerson> IIfcWorkControl.Creators 
 		{ 
 			get
 			{
-				foreach (var member in Creators)
-				{
-					yield return member as IIfcPerson;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ActorResource.IfcPerson, IIfcPerson>(Creators);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcWorkControl.Purpose 
 		{ 
 			get
@@ -42,7 +69,16 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!Purpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Purpose.Value);
 			} 
+			set
+			{
+				Purpose = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 10)]
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.Duration 
 		{ 
 			get
@@ -52,17 +88,47 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of Duration for which no match was found
+			    if (!value.HasValue)
+			    {
+			        Duration = null;
+			        return;
+			    }
+			    System.TimeSpan span = value.Value;
+                Duration = new MeasureResource.IfcTimeMeasure(span.TotalSeconds);
+			    //##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 11)]
 		Ifc4.DateTimeResource.IfcDuration? IIfcWorkControl.TotalFloat 
 		{ 
 			get
 			{
 				//## Handle return of TotalFloat for which no match was found
-                if (!Duration.HasValue) return null;
-                return new Xbim.Ifc4.DateTimeResource.IfcDuration(Duration.Value.ToISODateTimeString());
+                if (!TotalFloat.HasValue) return null;
+                return new Xbim.Ifc4.DateTimeResource.IfcDuration(TotalFloat.Value.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of TotalFloat for which no match was found
+                if (!value.HasValue)
+                {
+                    Duration = null;
+                    return;
+                }
+                System.TimeSpan span = value.Value;
+                TotalFloat = new MeasureResource.IfcTimeMeasure(span.TotalSeconds);
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 12)]
 		Ifc4.DateTimeResource.IfcDateTime IIfcWorkControl.StartTime 
 		{ 
 			get
@@ -71,7 +137,31 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(StartTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of StartTime for which no match was found
+                System.DateTime d = value;
+                StartTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWorkControl), 13)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcWorkControl.FinishTime 
 		{ 
 			get
@@ -80,6 +170,34 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Xbim.Ifc4.DateTimeResource.IfcDateTime(FinishTime.ToISODateTimeString());
 				//##
 			} 
+			set
+			{
+				//## Handle setting of FinishTime for which no match was found
+			    if (!value.HasValue)
+			    {
+			        FinishTime = null;
+			        return;
+			    }
+
+                System.DateTime d = value.Value;
+                FinishTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
 	//## Custom code
 	//##

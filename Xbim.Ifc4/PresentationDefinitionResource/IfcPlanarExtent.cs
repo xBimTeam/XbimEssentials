@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationDefinitionResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,27 +27,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPlanarExtent : IIfcGeometricRepresentationItem
 	{
-		IfcLengthMeasure @SizeInX { get; }
-		IfcLengthMeasure @SizeInY { get; }
+		IfcLengthMeasure @SizeInX { get;  set; }
+		IfcLengthMeasure @SizeInY { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
-	[ExpressType("IfcPlanarExtent", 819)]
+	[ExpressType("IfcPlanarExtent", 469)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEqualityComparer<@IfcPlanarExtent>, IEquatable<@IfcPlanarExtent>
+	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEquatable<@IfcPlanarExtent>
 	{
 		#region IIfcPlanarExtent explicit implementation
-		IfcLengthMeasure IIfcPlanarExtent.SizeInX { get { return @SizeInX; } }	
-		IfcLengthMeasure IIfcPlanarExtent.SizeInY { get { return @SizeInY; } }	
+		IfcLengthMeasure IIfcPlanarExtent.SizeInX { 
+ 
+			get { return @SizeInX; } 
+			set { SizeInX = value;}
+		}	
+		IfcLengthMeasure IIfcPlanarExtent.SizeInY { 
+ 
+			get { return @SizeInY; } 
+			set { SizeInY = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPlanarExtent(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcPlanarExtent(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +69,13 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sizeInX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sizeInX;
+				Activate();
 				return _sizeInX;
 			} 
 			set
 			{
-				SetValue( v =>  _sizeInX = v, _sizeInX, value,  "SizeInX");
+				SetValue( v =>  _sizeInX = v, _sizeInX, value,  "SizeInX", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -73,13 +83,13 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sizeInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sizeInY;
+				Activate();
 				return _sizeInY;
 			} 
 			set
 			{
-				SetValue( v =>  _sizeInY = v, _sizeInY, value,  "SizeInY");
+				SetValue( v =>  _sizeInY = v, _sizeInY, value,  "SizeInY", 2);
 			} 
 		}	
 		#endregion
@@ -87,9 +97,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -103,11 +112,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -115,54 +119,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPlanarExtent
-            var root = (@IfcPlanarExtent)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPlanarExtent left, @IfcPlanarExtent right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPlanarExtent left, @IfcPlanarExtent right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPlanarExtent x, @IfcPlanarExtent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPlanarExtent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

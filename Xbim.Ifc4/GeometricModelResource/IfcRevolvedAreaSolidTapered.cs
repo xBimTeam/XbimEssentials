@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,25 +26,30 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRevolvedAreaSolidTapered : IIfcRevolvedAreaSolid
 	{
-		IIfcProfileDef @EndSweptArea { get; }
+		IIfcProfileDef @EndSweptArea { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcRevolvedAreaSolidTapered", 968)]
+	[ExpressType("IfcRevolvedAreaSolidTapered", 1260)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolidTapered, IEqualityComparer<@IfcRevolvedAreaSolidTapered>, IEquatable<@IfcRevolvedAreaSolidTapered>
+	public  partial class @IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid, IInstantiableEntity, IIfcRevolvedAreaSolidTapered, IContainsEntityReferences, IEquatable<@IfcRevolvedAreaSolidTapered>
 	{
 		#region IIfcRevolvedAreaSolidTapered explicit implementation
-		IIfcProfileDef IIfcRevolvedAreaSolidTapered.EndSweptArea { get { return @EndSweptArea; } }	
+		IIfcProfileDef IIfcRevolvedAreaSolidTapered.EndSweptArea { 
+ 
+ 
+			get { return @EndSweptArea; } 
+			set { EndSweptArea = value as IfcProfileDef;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRevolvedAreaSolidTapered(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRevolvedAreaSolidTapered(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +62,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _endSweptArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _endSweptArea;
+				Activate();
 				return _endSweptArea;
 			} 
 			set
 			{
-				SetValue( v =>  _endSweptArea = v, _endSweptArea, value,  "EndSweptArea");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _endSweptArea = v, _endSweptArea, value,  "EndSweptArea", 5);
 			} 
 		}	
 		#endregion
@@ -69,9 +78,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -88,12 +96,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectProfileAssignment:	CorrectProfileAssignment : IfcTaperedSweptAreaProfiles(SELF\IfcSweptAreaSolid.SweptArea, SELF.EndSweptArea);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -101,55 +103,24 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRevolvedAreaSolidTapered
-            var root = (@IfcRevolvedAreaSolidTapered)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRevolvedAreaSolidTapered left, @IfcRevolvedAreaSolidTapered right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRevolvedAreaSolidTapered left, @IfcRevolvedAreaSolidTapered right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRevolvedAreaSolidTapered x, @IfcRevolvedAreaSolidTapered y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRevolvedAreaSolidTapered obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptArea != null)
+					yield return @SweptArea;
+				if (@Position != null)
+					yield return @Position;
+				if (@Axis != null)
+					yield return @Axis;
+				if (@EndSweptArea != null)
+					yield return @EndSweptArea;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

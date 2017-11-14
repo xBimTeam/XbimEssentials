@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDraughtingCallout : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IIfcDraughtingCalloutElement> @Contents { get; }
+		IItemSet<IIfcDraughtingCalloutElement> @Contents { get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedFromCallout {  get; }
 		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedToCallout {  get; }
 	
@@ -35,33 +37,35 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCallout", 222)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IEqualityComparer<@IfcDraughtingCallout>, IEquatable<@IfcDraughtingCallout>
+	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IContainsEntityReferences, IEquatable<@IfcDraughtingCallout>
 	{
 		#region IIfcDraughtingCallout explicit implementation
-		IEnumerable<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { get { return @Contents; } }	
+		IItemSet<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { 
+			get { return new Common.Collections.ProxyItemSet<IfcDraughtingCalloutElement, IIfcDraughtingCalloutElement>( @Contents); } 
+		}	
 		 
 		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedFromCallout {  get { return @IsRelatedFromCallout; } }
 		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedToCallout {  get { return @IsRelatedToCallout; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDraughtingCallout(IModel model) : base(model) 		{ 
-			Model = model; 
-			_contents = new ItemSet<IfcDraughtingCalloutElement>( this, 0 );
+		internal IfcDraughtingCallout(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_contents = new ItemSet<IfcDraughtingCalloutElement>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcDraughtingCalloutElement> _contents;
+		private readonly ItemSet<IfcDraughtingCalloutElement> _contents;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcDraughtingCalloutElement> @Contents 
+		public IItemSet<IfcDraughtingCalloutElement> @Contents 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _contents;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _contents;
+				Activate();
 				return _contents;
 			} 
 		}	
@@ -76,7 +80,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatedDraughtingCallout as IfcDraughtingCallout) == this, "RelatedDraughtingCallout", this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => Equals(e.RelatedDraughtingCallout), "RelatedDraughtingCallout", this);
 			} 
 		}
 		[InverseProperty("RelatingDraughtingCallout")]
@@ -85,29 +89,22 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => (e.RelatingDraughtingCallout as IfcDraughtingCallout) == this, "RelatingDraughtingCallout", this);
+				return Model.Instances.Where<IfcDraughtingCalloutRelationship>(e => Equals(e.RelatingDraughtingCallout), "RelatingDraughtingCallout", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_contents == null) _contents = new ItemSet<IfcDraughtingCalloutElement>( this );
 					_contents.InternalAdd((IfcDraughtingCalloutElement)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -116,55 +113,18 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDraughtingCallout
-            var root = (@IfcDraughtingCallout)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDraughtingCallout left, @IfcDraughtingCallout right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDraughtingCallout left, @IfcDraughtingCallout right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDraughtingCallout x, @IfcDraughtingCallout y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDraughtingCallout obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Contents)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralSurfaceMemberVarying : IIfcStructuralSurfaceMember
 	{
-		IEnumerable<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
-		IIfcShapeAspect @VaryingThicknessLocation { get; }
+		IItemSet<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
+		IIfcShapeAspect @VaryingThicknessLocation { get;  set; }
 		List<IfcPositiveLengthMeasure> @VaryingThickness  { get ; }
 	
 	}
@@ -36,33 +38,40 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceMemberVarying", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IEqualityComparer<@IfcStructuralSurfaceMemberVarying>, IEquatable<@IfcStructuralSurfaceMemberVarying>
+	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
 		#region IIfcStructuralSurfaceMemberVarying explicit implementation
-		IEnumerable<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { get { return @SubsequentThickness; } }	
-		IIfcShapeAspect IIfcStructuralSurfaceMemberVarying.VaryingThicknessLocation { get { return @VaryingThicknessLocation; } }	
+		IItemSet<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { 
+			get { return @SubsequentThickness; } 
+		}	
+		IIfcShapeAspect IIfcStructuralSurfaceMemberVarying.VaryingThicknessLocation { 
+ 
+ 
+			get { return @VaryingThicknessLocation; } 
+			set { VaryingThicknessLocation = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralSurfaceMemberVarying(IModel model) : base(model) 		{ 
-			Model = model; 
-			_subsequentThickness = new ItemSet<IfcPositiveLengthMeasure>( this, 0 );
+		internal IfcStructuralSurfaceMemberVarying(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_subsequentThickness = new ItemSet<IfcPositiveLengthMeasure>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcPositiveLengthMeasure> _subsequentThickness;
+		private readonly ItemSet<IfcPositiveLengthMeasure> _subsequentThickness;
 		private IfcShapeAspect _varyingThicknessLocation;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 19)]
-		public ItemSet<IfcPositiveLengthMeasure> @SubsequentThickness 
+		public IItemSet<IfcPositiveLengthMeasure> @SubsequentThickness 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _subsequentThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _subsequentThickness;
+				Activate();
 				return _subsequentThickness;
 			} 
 		}	
@@ -71,13 +80,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _varyingThicknessLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _varyingThicknessLocation;
+				Activate();
 				return _varyingThicknessLocation;
 			} 
 			set
 			{
-				SetValue( v =>  _varyingThicknessLocation = v, _varyingThicknessLocation, value,  "VaryingThicknessLocation");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _varyingThicknessLocation = v, _varyingThicknessLocation, value,  "VaryingThicknessLocation", 11);
 			} 
 		}	
 		#endregion
@@ -100,9 +111,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -118,7 +128,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 9: 
-					if (_subsequentThickness == null) _subsequentThickness = new ItemSet<IfcPositiveLengthMeasure>( this );
 					_subsequentThickness.InternalAdd(value.RealVal);
 					return;
 				case 10: 
@@ -128,14 +137,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR61:	WR61 : EXISTS(SELF\IfcStructuralSurfaceMember.Thickness);*/
-		/*WR62:               )) = 0;*/
-		/*WR63:               )) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,55 +144,39 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralSurfaceMemberVarying
-            var root = (@IfcStructuralSurfaceMemberVarying)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralSurfaceMemberVarying left, @IfcStructuralSurfaceMemberVarying right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralSurfaceMemberVarying left, @IfcStructuralSurfaceMemberVarying right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralSurfaceMemberVarying x, @IfcStructuralSurfaceMemberVarying y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSurfaceMemberVarying obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@VaryingThicknessLocation != null)
+					yield return @VaryingThicknessLocation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,11 +28,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoorPanelProperties : IIfcPropertySetDefinition
 	{
-		IfcPositiveLengthMeasure? @PanelDepth { get; }
-		IfcDoorPanelOperationEnum @PanelOperation { get; }
-		IfcNormalisedRatioMeasure? @PanelWidth { get; }
-		IfcDoorPanelPositionEnum @PanelPosition { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcPositiveLengthMeasure? @PanelDepth { get;  set; }
+		IfcDoorPanelOperationEnum @PanelOperation { get;  set; }
+		IfcNormalisedRatioMeasure? @PanelWidth { get;  set; }
+		IfcDoorPanelPositionEnum @PanelPosition { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
 	
 	}
 }
@@ -39,20 +41,41 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcDoorPanelProperties", 602)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorPanelProperties, IEqualityComparer<@IfcDoorPanelProperties>, IEquatable<@IfcDoorPanelProperties>
+	public  partial class @IfcDoorPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorPanelProperties, IContainsEntityReferences, IEquatable<@IfcDoorPanelProperties>
 	{
 		#region IIfcDoorPanelProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth { get { return @PanelDepth; } }	
-		IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation { get { return @PanelOperation; } }	
-		IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth { get { return @PanelWidth; } }	
-		IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition { get { return @PanelPosition; } }	
-		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth { 
+ 
+			get { return @PanelDepth; } 
+			set { PanelDepth = value;}
+		}	
+		IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation { 
+ 
+			get { return @PanelOperation; } 
+			set { PanelOperation = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth { 
+ 
+			get { return @PanelWidth; } 
+			set { PanelWidth = value;}
+		}	
+		IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition { 
+ 
+			get { return @PanelPosition; } 
+			set { PanelPosition = value;}
+		}	
+		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle { 
+ 
+ 
+			get { return @ShapeAspectStyle; } 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDoorPanelProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcDoorPanelProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -69,13 +92,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _panelDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _panelDepth;
+				Activate();
 				return _panelDepth;
 			} 
 			set
 			{
-				SetValue( v =>  _panelDepth = v, _panelDepth, value,  "PanelDepth");
+				SetValue( v =>  _panelDepth = v, _panelDepth, value,  "PanelDepth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
@@ -83,13 +106,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _panelOperation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _panelOperation;
+				Activate();
 				return _panelOperation;
 			} 
 			set
 			{
-				SetValue( v =>  _panelOperation = v, _panelOperation, value,  "PanelOperation");
+				SetValue( v =>  _panelOperation = v, _panelOperation, value,  "PanelOperation", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -97,13 +120,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _panelWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _panelWidth;
+				Activate();
 				return _panelWidth;
 			} 
 			set
 			{
-				SetValue( v =>  _panelWidth = v, _panelWidth, value,  "PanelWidth");
+				SetValue( v =>  _panelWidth = v, _panelWidth, value,  "PanelWidth", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -111,13 +134,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _panelPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _panelPosition;
+				Activate();
 				return _panelPosition;
 			} 
 			set
 			{
-				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition");
+				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -125,13 +148,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeAspectStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeAspectStyle;
+				Activate();
 				return _shapeAspectStyle;
 			} 
 			set
 			{
-				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle", 9);
 			} 
 		}	
 		#endregion
@@ -139,9 +164,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -170,12 +194,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:             ('IFC2X3.IFCDOORSTYLE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -183,55 +201,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDoorPanelProperties
-            var root = (@IfcDoorPanelProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDoorPanelProperties left, @IfcDoorPanelProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDoorPanelProperties left, @IfcDoorPanelProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoorPanelProperties x, @IfcDoorPanelProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoorPanelProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ShapeAspectStyle != null)
+					yield return @ShapeAspectStyle;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCircle : IIfcCircle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCircle), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircle.Radius 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(Radius);
 			} 
+			set
+			{
+				Radius = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

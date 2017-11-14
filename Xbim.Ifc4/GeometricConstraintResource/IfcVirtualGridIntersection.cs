@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,113 +28,59 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcVirtualGridIntersection : IPersistEntity, IfcGridPlacementDirectionSelect
 	{
-		IEnumerable<IIfcGridAxis> @IntersectingAxes { get; }
-		IEnumerable<IfcLengthMeasure> @OffsetDistances { get; }
+		IItemSet<IIfcGridAxis> @IntersectingAxes { get; }
+		IItemSet<IfcLengthMeasure> @OffsetDistances { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IfcVirtualGridIntersection", 1144)]
+	[ExpressType("IfcVirtualGridIntersection", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualGridIntersection : INotifyPropertyChanged, IInstantiableEntity, IIfcVirtualGridIntersection, IEqualityComparer<@IfcVirtualGridIntersection>, IEquatable<@IfcVirtualGridIntersection>
+	public  partial class @IfcVirtualGridIntersection : PersistEntity, IInstantiableEntity, IIfcVirtualGridIntersection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualGridIntersection>
 	{
 		#region IIfcVirtualGridIntersection explicit implementation
-		IEnumerable<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { get { return @IntersectingAxes; } }	
-		IEnumerable<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { get { return @OffsetDistances; } }	
+		IItemSet<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @IntersectingAxes); } 
+		}	
+		IItemSet<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { 
+			get { return @OffsetDistances; } 
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcVirtualGridIntersection(IModel model) 		{ 
-			Model = model; 
-			_intersectingAxes = new ItemSet<IfcGridAxis>( this, 2 );
-			_offsetDistances = new ItemSet<IfcLengthMeasure>( this, 3 );
+		internal IfcVirtualGridIntersection(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_intersectingAxes = new ItemSet<IfcGridAxis>( this, 2,  1);
+			_offsetDistances = new ItemSet<IfcLengthMeasure>( this, 3,  2);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcGridAxis> _intersectingAxes;
-		private ItemSet<IfcLengthMeasure> _offsetDistances;
+		private readonly ItemSet<IfcGridAxis> _intersectingAxes;
+		private readonly ItemSet<IfcLengthMeasure> _offsetDistances;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 2, 2, 1)]
-		public ItemSet<IfcGridAxis> @IntersectingAxes 
+		public IItemSet<IfcGridAxis> @IntersectingAxes 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _intersectingAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _intersectingAxes;
+				Activate();
 				return _intersectingAxes;
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 2)]
-		public ItemSet<IfcLengthMeasure> @OffsetDistances 
+		public IItemSet<IfcLengthMeasure> @OffsetDistances 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetDistances;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetDistances;
+				Activate();
 				return _offsetDistances;
 			} 
 		}	
@@ -141,77 +89,20 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_intersectingAxes == null) _intersectingAxes = new ItemSet<IfcGridAxis>( this );
 					_intersectingAxes.InternalAdd((IfcGridAxis)value.EntityVal);
 					return;
 				case 1: 
-					if (_offsetDistances == null) _offsetDistances = new ItemSet<IfcLengthMeasure>( this );
 					_offsetDistances.InternalAdd(value.RealVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -220,55 +111,31 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcVirtualGridIntersection
-            var root = (@IfcVirtualGridIntersection)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcVirtualGridIntersection left, @IfcVirtualGridIntersection right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcVirtualGridIntersection left, @IfcVirtualGridIntersection right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcVirtualGridIntersection x, @IfcVirtualGridIntersection y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcVirtualGridIntersection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @IntersectingAxes)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @IntersectingAxes)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

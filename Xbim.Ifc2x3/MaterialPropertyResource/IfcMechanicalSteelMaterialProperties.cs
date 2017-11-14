@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,13 +26,13 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalSteelMaterialProperties : IIfcMechanicalMaterialProperties
 	{
-		IfcPressureMeasure? @YieldStress { get; }
-		IfcPressureMeasure? @UltimateStress { get; }
-		IfcPositiveRatioMeasure? @UltimateStrain { get; }
-		IfcModulusOfElasticityMeasure? @HardeningModule { get; }
-		IfcPressureMeasure? @ProportionalStress { get; }
-		IfcPositiveRatioMeasure? @PlasticStrain { get; }
-		IEnumerable<IIfcRelaxation> @Relaxations { get; }
+		IfcPressureMeasure? @YieldStress { get;  set; }
+		IfcPressureMeasure? @UltimateStress { get;  set; }
+		IfcPositiveRatioMeasure? @UltimateStrain { get;  set; }
+		IfcModulusOfElasticityMeasure? @HardeningModule { get;  set; }
+		IfcPressureMeasure? @ProportionalStress { get;  set; }
+		IfcPositiveRatioMeasure? @PlasticStrain { get;  set; }
+		IItemSet<IIfcRelaxation> @Relaxations { get; }
 	
 	}
 }
@@ -39,23 +41,49 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalSteelMaterialProperties", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IEqualityComparer<@IfcMechanicalSteelMaterialProperties>, IEquatable<@IfcMechanicalSteelMaterialProperties>
+	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{
 		#region IIfcMechanicalSteelMaterialProperties explicit implementation
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { get { return @YieldStress; } }	
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStress { get { return @UltimateStress; } }	
-		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStrain { get { return @UltimateStrain; } }	
-		IfcModulusOfElasticityMeasure? IIfcMechanicalSteelMaterialProperties.HardeningModule { get { return @HardeningModule; } }	
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.ProportionalStress { get { return @ProportionalStress; } }	
-		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.PlasticStrain { get { return @PlasticStrain; } }	
-		IEnumerable<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { get { return @Relaxations; } }	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { 
+ 
+			get { return @YieldStress; } 
+			set { YieldStress = value;}
+		}	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStress { 
+ 
+			get { return @UltimateStress; } 
+			set { UltimateStress = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStrain { 
+ 
+			get { return @UltimateStrain; } 
+			set { UltimateStrain = value;}
+		}	
+		IfcModulusOfElasticityMeasure? IIfcMechanicalSteelMaterialProperties.HardeningModule { 
+ 
+			get { return @HardeningModule; } 
+			set { HardeningModule = value;}
+		}	
+		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.ProportionalStress { 
+ 
+			get { return @ProportionalStress; } 
+			set { ProportionalStress = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.PlasticStrain { 
+ 
+			get { return @PlasticStrain; } 
+			set { PlasticStrain = value;}
+		}	
+		IItemSet<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { 
+			get { return new Common.Collections.ProxyItemSet<IfcRelaxation, IIfcRelaxation>( @Relaxations); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMechanicalSteelMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relaxations = new OptionalItemSet<IfcRelaxation>( this, 0 );
+		internal IfcMechanicalSteelMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relaxations = new OptionalItemSet<IfcRelaxation>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
@@ -65,7 +93,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		private IfcModulusOfElasticityMeasure? _hardeningModule;
 		private IfcPressureMeasure? _proportionalStress;
 		private IfcPositiveRatioMeasure? _plasticStrain;
-		private OptionalItemSet<IfcRelaxation> _relaxations;
+		private readonly OptionalItemSet<IfcRelaxation> _relaxations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -74,13 +102,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yieldStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yieldStress;
+				Activate();
 				return _yieldStress;
 			} 
 			set
 			{
-				SetValue( v =>  _yieldStress = v, _yieldStress, value,  "YieldStress");
+				SetValue( v =>  _yieldStress = v, _yieldStress, value,  "YieldStress", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -88,13 +116,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ultimateStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ultimateStress;
+				Activate();
 				return _ultimateStress;
 			} 
 			set
 			{
-				SetValue( v =>  _ultimateStress = v, _ultimateStress, value,  "UltimateStress");
+				SetValue( v =>  _ultimateStress = v, _ultimateStress, value,  "UltimateStress", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -102,13 +130,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _ultimateStrain;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _ultimateStrain;
+				Activate();
 				return _ultimateStrain;
 			} 
 			set
 			{
-				SetValue( v =>  _ultimateStrain = v, _ultimateStrain, value,  "UltimateStrain");
+				SetValue( v =>  _ultimateStrain = v, _ultimateStrain, value,  "UltimateStrain", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -116,13 +144,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hardeningModule;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hardeningModule;
+				Activate();
 				return _hardeningModule;
 			} 
 			set
 			{
-				SetValue( v =>  _hardeningModule = v, _hardeningModule, value,  "HardeningModule");
+				SetValue( v =>  _hardeningModule = v, _hardeningModule, value,  "HardeningModule", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -130,13 +158,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _proportionalStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _proportionalStress;
+				Activate();
 				return _proportionalStress;
 			} 
 			set
 			{
-				SetValue( v =>  _proportionalStress = v, _proportionalStress, value,  "ProportionalStress");
+				SetValue( v =>  _proportionalStress = v, _proportionalStress, value,  "ProportionalStress", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -144,22 +172,22 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _plasticStrain;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _plasticStrain;
+				Activate();
 				return _plasticStrain;
 			} 
 			set
 			{
-				SetValue( v =>  _plasticStrain = v, _plasticStrain, value,  "PlasticStrain");
+				SetValue( v =>  _plasticStrain = v, _plasticStrain, value,  "PlasticStrain", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 13)]
-		public OptionalItemSet<IfcRelaxation> @Relaxations 
+		public IOptionalItemSet<IfcRelaxation> @Relaxations 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relaxations;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relaxations;
+				Activate();
 				return _relaxations;
 			} 
 		}	
@@ -168,9 +196,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -201,21 +228,11 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					_plasticStrain = value.RealVal;
 					return;
 				case 12: 
-					if (_relaxations == null) _relaxations = new OptionalItemSet<IfcRelaxation>( this );
 					_relaxations.InternalAdd((IfcRelaxation)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT(EXISTS(YieldStress)) OR (YieldStress >= 0.);*/
-		/*WR32:	WR32 : NOT(EXISTS(UltimateStress)) OR (UltimateStress >= 0.);*/
-		/*WR33:	WR33 : NOT(EXISTS(HardeningModule)) OR (HardeningModule >= 0.);*/
-		/*WR34:	WR34 : NOT(EXISTS(ProportionalStress)) OR (ProportionalStress >= 0.);*/
 		}
 		#endregion
 
@@ -224,55 +241,20 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMechanicalSteelMaterialProperties
-            var root = (@IfcMechanicalSteelMaterialProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMechanicalSteelMaterialProperties left, @IfcMechanicalSteelMaterialProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMechanicalSteelMaterialProperties left, @IfcMechanicalSteelMaterialProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMechanicalSteelMaterialProperties x, @IfcMechanicalSteelMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalSteelMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				foreach(var entity in @Relaxations)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

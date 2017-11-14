@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Xbim.Common;
+using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4.Interfaces
@@ -62,7 +64,7 @@ namespace Xbim.Ifc4.MeasureResource
 
         private IfcDimensionalExponents GetOrCreateExponents(IList<int> exponents)
         {
-            var existing = Model.Instances.FirstOrDefault<IfcDimensionalExponents>(e =>
+            var result = Model.Instances.FirstOrDefault<IfcDimensionalExponents>(e =>
                 e.LengthExponent == exponents[0] &&
                 e.MassExponent == exponents[1] &&
                 e.TimeExponent == exponents[2] &&
@@ -71,21 +73,39 @@ namespace Xbim.Ifc4.MeasureResource
                 e.AmountOfSubstanceExponent == exponents[5] &&
                 e.LuminousIntensityExponent == exponents[6]
                 );
-            if (existing != null)
-                return existing;
+            if (result != null)
+                return result;
 
-            return Model.Instances.New<IfcDimensionalExponents>(e =>
+            result = new IfcDimensionalExponents(null, -1, true);
+            for (var i = 0; i < 7; i++)
             {
-                e.LengthExponent = exponents[0];
-                e.MassExponent = exponents[1];
-                e.TimeExponent = exponents[2];
-                e.ElectricCurrentExponent = exponents[3];
-                e.ThermodynamicTemperatureExponent = exponents[4];
-                e.AmountOfSubstanceExponent = exponents[5];
-                e.LuminousIntensityExponent = exponents[6];
-            });
+                result.Parse(i, new PropVal(exponents[i]), null);
 
+            }
+
+            return result;
+           
         }
+
+        private class PropVal : IPropertyValue
+        {
+            public PropVal(long integer)
+            {
+                IntegerVal = integer;
+                Type = StepParserType.Integer;
+            }
+
+            public bool BooleanVal { get; private set; }
+            public string EnumVal { get; private set; }
+            public object EntityVal { get; private set; }
+            public byte[] HexadecimalVal { get; private set; }
+            public long IntegerVal { get; private set; }
+            public double NumberVal { get; private set; }
+            public double RealVal { get; private set; }
+            public string StringVal { get; private set; }
+            public StepParserType Type { get; private set; }
+        }
+
         /// <summary>
         ///   returns the power of the SIUnit prefix, i.e. MILLI = 0.001, if undefined returns 1.0
         /// </summary>

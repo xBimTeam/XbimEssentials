@@ -10,38 +10,63 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcPermit : IIfcPermit
 	{
+
+		private  Ifc4.Interfaces.IfcPermitTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcPermit), 7)]
 		Ifc4.Interfaces.IfcPermitTypeEnum? IIfcPermit.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -7);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _status;
+
+
+		[CrossSchemaAttribute(typeof(IIfcPermit), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPermit.Status 
 		{ 
 			get
 			{
-				//## Handle return of Status for which no match was found
-			    return null;
-			    //##
+				return _status;
 			} 
+			set
+			{
+				SetValue(v => _status = v, _status, value, "Status", -8);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _longDescription;
+
+
+		[CrossSchemaAttribute(typeof(IIfcPermit), 9)]
 		Ifc4.MeasureResource.IfcText? IIfcPermit.LongDescription 
 		{ 
 			get
 			{
-				//## Handle return of LongDescription for which no match was found
-                return null;
-				//##
+				return _longDescription;
 			} 
+			set
+			{
+				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", -9);
+				
+			}
 		}
 	//## Custom code
 	//##

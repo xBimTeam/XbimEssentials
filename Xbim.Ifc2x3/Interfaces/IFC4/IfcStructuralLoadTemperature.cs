@@ -10,47 +10,63 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadTemperature : IIfcStructuralLoadTemperature
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadTemperature), 2)]
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTConstant 
 		{ 
 			get
 			{
-				//## Handle return of DeltaTConstant for which no match was found
-                if (!DeltaT_Constant.HasValue)
-                    return null;
-                else
-                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Constant.Value);
-				//##
+				if (!DeltaT_Constant.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Constant.Value);
 			} 
+			set
+			{
+				DeltaT_Constant = value.HasValue ? 
+					new MeasureResource.IfcThermodynamicTemperatureMeasure(value.Value) :  
+					 new MeasureResource.IfcThermodynamicTemperatureMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadTemperature), 3)]
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTY 
 		{ 
 			get
 			{
-				//## Handle return of DeltaTY for which no match was found
-                if (!DeltaT_Y.HasValue)
-                    return null;
-                else
-                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Y.Value);
-				//##
+				if (!DeltaT_Y.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Y.Value);
 			} 
+			set
+			{
+				DeltaT_Y = value.HasValue ? 
+					new MeasureResource.IfcThermodynamicTemperatureMeasure(value.Value) :  
+					 new MeasureResource.IfcThermodynamicTemperatureMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadTemperature), 4)]
 		Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaTZ 
 		{ 
 			get
 			{
-				//## Handle return of DeltaTZ for which no match was found
-                if (!DeltaT_Z.HasValue) 
-                    return null;
-                else
-                    return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Z.Value);
-				//##
+				if (!DeltaT_Z.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcThermodynamicTemperatureMeasure(DeltaT_Z.Value);
 			} 
+			set
+			{
+				DeltaT_Z = value.HasValue ? 
+					new MeasureResource.IfcThermodynamicTemperatureMeasure(value.Value) :  
+					 new MeasureResource.IfcThermodynamicTemperatureMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

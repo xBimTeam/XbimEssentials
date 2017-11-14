@@ -17,6 +17,7 @@ namespace Xbim.Common.Metadata
         public bool IsInverse { get { return EntityAttribute.Order < 0; } }
         public bool IsDerived { get { return EntityAttribute.State == EntityAttributeState.Derived; } }
         public bool IsExplicit { get { return EntityAttribute.Order > 0; } }
+        public bool IsIndexed { get; internal set; }
     }
 
     /// <summary>
@@ -55,6 +56,7 @@ namespace Xbim.Common.Metadata
         /// </summary>
         private static readonly Dictionary<Module, ExpressMetaData> Cache = new Dictionary<Module, ExpressMetaData>();
 
+        private static readonly object _lock = new object();
         /// <summary>
         /// This method creates metadata model for a specified module based on reflection and custom attributes.
         /// It only creates ExpressMetaData once for any module. If it already exists it is retrieved from a 
@@ -65,13 +67,16 @@ namespace Xbim.Common.Metadata
         /// <returns>Meta data structure for the schema defined within the module</returns>
         public static ExpressMetaData GetMetadata(Module module)
         {
-            ExpressMetaData result;
-            if (Cache.TryGetValue(module, out result))
-                return result;
+            lock (_lock)
+            {
+                ExpressMetaData result;
+                if (Cache.TryGetValue(module, out result))
+                    return result;
 
-            result = new ExpressMetaData(module);
-            Cache.Add(module, result);
-            return result;
+                result = new ExpressMetaData(module);
+                Cache.Add(module, result);
+                return result;
+            }
         }
 
         private ExpressMetaData(Module module)
@@ -138,13 +143,13 @@ namespace Xbim.Common.Metadata
         internal void AddParent(ExpressType child)
         {
             var baseParent = child.Type.BaseType;
-            if (baseParent == null || typeof(object) == baseParent || typeof(ValueType) == baseParent)
+            if (baseParent == null || typeof(object) == baseParent || typeof(ValueType) == baseParent || typeof(PersistEntity) == baseParent)
                 return;
             ExpressType expressParent;
             if (!_typeToExpressTypeLookup.ContainsKey(baseParent))
             {
                 _typeToExpressTypeLookup.Add(baseParent, expressParent = new ExpressType(baseParent));
-                var typeLookup = baseParent.Name.ToUpper();
+                var typeLookup = baseParent.Name.ToUpperInvariant();
                 if (!_typeNameToExpressTypeLookup.ContainsKey(typeLookup))
                     _typeNameToExpressTypeLookup.Add(typeLookup, expressParent);
                 expressParent.SubTypes.Add(child);
@@ -189,12 +194,12 @@ namespace Xbim.Common.Metadata
             return Enumerable.Empty<ExpressType>();
         }
 
-        public IEnumerable<Type> TypesImplementing(Type type)
+        public IEnumerable<ExpressType> TypesImplementing(Type type)
         {
             List<ExpressType> result;
             return _interfaceToExpressTypesLookup.TryGetValue(type, out result) ?
-                result.Select(t => t.Type) :
-                Enumerable.Empty<Type>();
+                result :
+                Enumerable.Empty<ExpressType>();
         }
 
         public IEnumerable<ExpressType> TypesImplementing(string stringType)
@@ -206,6 +211,22 @@ namespace Xbim.Common.Metadata
             return _interfaceToExpressTypesLookup.TryGetValue(exprType.Type, out result) ?
                 result :
                 Enumerable.Empty<ExpressType>();
+        }
+
+        public IEnumerable<short> NonAbstractSubTypes(Type type)
+        {
+            if (type.IsInterface)
+            {
+                List<ExpressType> result;
+                return _interfaceToExpressTypesLookup.TryGetValue(type, out result)
+                    ? result.Where(t => !t.Type.IsAbstract).Select(t => t.TypeId)
+                    : Enumerable.Empty<short>();
+            }
+
+            var eType = ExpressType(type);
+            return eType == null ? 
+                Enumerable.Empty<short>() : 
+                eType.NonAbstractSubTypes.Select(t => t.TypeId);
         }
 
         /// <summary>

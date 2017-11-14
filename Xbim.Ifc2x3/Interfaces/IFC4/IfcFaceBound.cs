@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcFaceBound : IIfcFaceBound
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFaceBound), 1)]
 		IIfcLoop IIfcFaceBound.Bound 
 		{ 
 			get
 			{
 				return Bound;
 			} 
+			set
+			{
+				Bound = value as IfcLoop;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFaceBound), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcFaceBound.Orientation 
 		{ 
 			get
@@ -31,6 +41,11 @@ namespace Xbim.Ifc2x3.TopologyResource
 			    return new Ifc4.MeasureResource.IfcBoolean(Orientation);
 			    //##
 			} 
+			set
+			{
+				Orientation = value;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -6,7 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-using System.Collections.Generic;
 using Xbim.Common;
 
 namespace Xbim.Ifc4
@@ -15,15 +14,7 @@ namespace Xbim.Ifc4
     {
         private bool _initialized;
 
-        internal OptionalItemSet(IPersistEntity entity) : base(entity)
-        {
-        }
-
-        internal OptionalItemSet(IPersistEntity entity, int capacity) : base(entity, capacity)
-        {
-        }
-
-        internal OptionalItemSet(IPersistEntity entity, IEnumerable<T> collection) : base(entity, collection)
+        internal OptionalItemSet(IPersistEntity entity, int capacity, int property) : base(entity, capacity, property)
         {
         }
 

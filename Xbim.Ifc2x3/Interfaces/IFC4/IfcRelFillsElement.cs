@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelFillsElement : IIfcRelFillsElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelFillsElement), 5)]
 		IIfcOpeningElement IIfcRelFillsElement.RelatingOpeningElement 
 		{ 
 			get
 			{
 				return RelatingOpeningElement;
 			} 
+			set
+			{
+				RelatingOpeningElement = value as IfcOpeningElement;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelFillsElement), 6)]
 		IIfcElement IIfcRelFillsElement.RelatedBuildingElement 
 		{ 
 			get
 			{
 				return RelatedBuildingElement;
 			} 
+			set
+			{
+				RelatedBuildingElement = value as IfcElement;
+				
+			}
 		}
 	//## Custom code
 	//##

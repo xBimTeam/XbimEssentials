@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcRepresentationContext : IIfcRepresentationContext
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationContext), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextIdentifier 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!ContextIdentifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ContextIdentifier.Value);
 			} 
+			set
+			{
+				ContextIdentifier = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationContext), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentationContext.ContextType 
 		{ 
 			get
@@ -31,6 +43,13 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!ContextType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ContextType.Value);
 			} 
+			set
+			{
+				ContextType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext 
 		{ 

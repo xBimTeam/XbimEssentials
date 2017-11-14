@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMechanicalConcreteMaterialProperties : IIfcMechanicalMaterialProperties
 	{
-		IfcPressureMeasure? @CompressiveStrength { get; }
-		IfcPositiveLengthMeasure? @MaxAggregateSize { get; }
-		IfcText? @AdmixturesDescription { get; }
-		IfcText? @Workability { get; }
-		IfcNormalisedRatioMeasure? @ProtectivePoreRatio { get; }
-		IfcText? @WaterImpermeability { get; }
+		IfcPressureMeasure? @CompressiveStrength { get;  set; }
+		IfcPositiveLengthMeasure? @MaxAggregateSize { get;  set; }
+		IfcText? @AdmixturesDescription { get;  set; }
+		IfcText? @Workability { get;  set; }
+		IfcNormalisedRatioMeasure? @ProtectivePoreRatio { get;  set; }
+		IfcText? @WaterImpermeability { get;  set; }
 	
 	}
 }
@@ -38,21 +40,45 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalConcreteMaterialProperties", 693)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalConcreteMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalConcreteMaterialProperties, IEqualityComparer<@IfcMechanicalConcreteMaterialProperties>, IEquatable<@IfcMechanicalConcreteMaterialProperties>
+	public  partial class @IfcMechanicalConcreteMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalConcreteMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalConcreteMaterialProperties>
 	{
 		#region IIfcMechanicalConcreteMaterialProperties explicit implementation
-		IfcPressureMeasure? IIfcMechanicalConcreteMaterialProperties.CompressiveStrength { get { return @CompressiveStrength; } }	
-		IfcPositiveLengthMeasure? IIfcMechanicalConcreteMaterialProperties.MaxAggregateSize { get { return @MaxAggregateSize; } }	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.AdmixturesDescription { get { return @AdmixturesDescription; } }	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.Workability { get { return @Workability; } }	
-		IfcNormalisedRatioMeasure? IIfcMechanicalConcreteMaterialProperties.ProtectivePoreRatio { get { return @ProtectivePoreRatio; } }	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.WaterImpermeability { get { return @WaterImpermeability; } }	
+		IfcPressureMeasure? IIfcMechanicalConcreteMaterialProperties.CompressiveStrength { 
+ 
+			get { return @CompressiveStrength; } 
+			set { CompressiveStrength = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMechanicalConcreteMaterialProperties.MaxAggregateSize { 
+ 
+			get { return @MaxAggregateSize; } 
+			set { MaxAggregateSize = value;}
+		}	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.AdmixturesDescription { 
+ 
+			get { return @AdmixturesDescription; } 
+			set { AdmixturesDescription = value;}
+		}	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.Workability { 
+ 
+			get { return @Workability; } 
+			set { Workability = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcMechanicalConcreteMaterialProperties.ProtectivePoreRatio { 
+ 
+			get { return @ProtectivePoreRatio; } 
+			set { ProtectivePoreRatio = value;}
+		}	
+		IfcText? IIfcMechanicalConcreteMaterialProperties.WaterImpermeability { 
+ 
+			get { return @WaterImpermeability; } 
+			set { WaterImpermeability = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMechanicalConcreteMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMechanicalConcreteMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -70,13 +96,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _compressiveStrength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _compressiveStrength;
+				Activate();
 				return _compressiveStrength;
 			} 
 			set
 			{
-				SetValue( v =>  _compressiveStrength = v, _compressiveStrength, value,  "CompressiveStrength");
+				SetValue( v =>  _compressiveStrength = v, _compressiveStrength, value,  "CompressiveStrength", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -84,13 +110,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maxAggregateSize;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maxAggregateSize;
+				Activate();
 				return _maxAggregateSize;
 			} 
 			set
 			{
-				SetValue( v =>  _maxAggregateSize = v, _maxAggregateSize, value,  "MaxAggregateSize");
+				SetValue( v =>  _maxAggregateSize = v, _maxAggregateSize, value,  "MaxAggregateSize", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -98,13 +124,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _admixturesDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _admixturesDescription;
+				Activate();
 				return _admixturesDescription;
 			} 
 			set
 			{
-				SetValue( v =>  _admixturesDescription = v, _admixturesDescription, value,  "AdmixturesDescription");
+				SetValue( v =>  _admixturesDescription = v, _admixturesDescription, value,  "AdmixturesDescription", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -112,13 +138,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _workability;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _workability;
+				Activate();
 				return _workability;
 			} 
 			set
 			{
-				SetValue( v =>  _workability = v, _workability, value,  "Workability");
+				SetValue( v =>  _workability = v, _workability, value,  "Workability", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -126,13 +152,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _protectivePoreRatio;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _protectivePoreRatio;
+				Activate();
 				return _protectivePoreRatio;
 			} 
 			set
 			{
-				SetValue( v =>  _protectivePoreRatio = v, _protectivePoreRatio, value,  "ProtectivePoreRatio");
+				SetValue( v =>  _protectivePoreRatio = v, _protectivePoreRatio, value,  "ProtectivePoreRatio", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -140,13 +166,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _waterImpermeability;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _waterImpermeability;
+				Activate();
 				return _waterImpermeability;
 			} 
 			set
 			{
-				SetValue( v =>  _waterImpermeability = v, _waterImpermeability, value,  "WaterImpermeability");
+				SetValue( v =>  _waterImpermeability = v, _waterImpermeability, value,  "WaterImpermeability", 12);
 			} 
 		}	
 		#endregion
@@ -154,9 +180,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -190,11 +215,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -202,55 +222,18 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMechanicalConcreteMaterialProperties
-            var root = (@IfcMechanicalConcreteMaterialProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMechanicalConcreteMaterialProperties left, @IfcMechanicalConcreteMaterialProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMechanicalConcreteMaterialProperties left, @IfcMechanicalConcreteMaterialProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMechanicalConcreteMaterialProperties x, @IfcMechanicalConcreteMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMechanicalConcreteMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

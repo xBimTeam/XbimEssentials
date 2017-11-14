@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcFaceSurface : IIfcFaceSurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFaceSurface), 2)]
 		IIfcSurface IIfcFaceSurface.FaceSurface 
 		{ 
 			get
 			{
 				return FaceSurface;
 			} 
+			set
+			{
+				FaceSurface = value as GeometryResource.IfcSurface;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFaceSurface), 3)]
 		Ifc4.MeasureResource.IfcBoolean IIfcFaceSurface.SameSense 
 		{ 
 			get
@@ -31,6 +41,11 @@ namespace Xbim.Ifc2x3.TopologyResource
                 return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 				//##
 			} 
+			set
+			{
+				SameSense = value;
+				
+			}
 		}
 	//## Custom code
 	//##

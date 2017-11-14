@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcAxis1Placement : IIfcAxis1Placement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAxis1Placement), 2)]
 		IIfcDirection IIfcAxis1Placement.Axis 
 		{ 
 			get
 			{
 				return Axis;
 			} 
+			set
+			{
+				Axis = value as IfcDirection;
+				
+			}
 		}
 		Common.Geometry.XbimVector3D IIfcAxis1Placement.Z 
 		{

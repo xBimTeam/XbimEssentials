@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedMgmtElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -27,14 +29,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCostSchedule : IIfcControl
 	{
-		IIfcActorSelect @SubmittedBy { get; }
-		IIfcActorSelect @PreparedBy { get; }
-		IIfcDateTimeSelect @SubmittedOn { get; }
-		IfcLabel? @Status { get; }
-		IEnumerable<IIfcActorSelect> @TargetUsers { get; }
-		IIfcDateTimeSelect @UpdateDate { get; }
-		IfcIdentifier @ID { get; }
-		IfcCostScheduleTypeEnum @PredefinedType { get; }
+		IIfcActorSelect @SubmittedBy { get;  set; }
+		IIfcActorSelect @PreparedBy { get;  set; }
+		IIfcDateTimeSelect @SubmittedOn { get;  set; }
+		IfcLabel? @Status { get;  set; }
+		IItemSet<IIfcActorSelect> @TargetUsers { get; }
+		IIfcDateTimeSelect @UpdateDate { get;  set; }
+		IfcIdentifier @ID { get;  set; }
+		IfcCostScheduleTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
@@ -43,24 +45,58 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcCostSchedule", 695)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IEqualityComparer<@IfcCostSchedule>, IEquatable<@IfcCostSchedule>
+	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IContainsEntityReferences, IEquatable<@IfcCostSchedule>
 	{
 		#region IIfcCostSchedule explicit implementation
-		IIfcActorSelect IIfcCostSchedule.SubmittedBy { get { return @SubmittedBy; } }	
-		IIfcActorSelect IIfcCostSchedule.PreparedBy { get { return @PreparedBy; } }	
-		IIfcDateTimeSelect IIfcCostSchedule.SubmittedOn { get { return @SubmittedOn; } }	
-		IfcLabel? IIfcCostSchedule.Status { get { return @Status; } }	
-		IEnumerable<IIfcActorSelect> IIfcCostSchedule.TargetUsers { get { return @TargetUsers; } }	
-		IIfcDateTimeSelect IIfcCostSchedule.UpdateDate { get { return @UpdateDate; } }	
-		IfcIdentifier IIfcCostSchedule.ID { get { return @ID; } }	
-		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { get { return @PredefinedType; } }	
+		IIfcActorSelect IIfcCostSchedule.SubmittedBy { 
+ 
+ 
+			get { return @SubmittedBy; } 
+			set { SubmittedBy = value as IfcActorSelect;}
+		}	
+		IIfcActorSelect IIfcCostSchedule.PreparedBy { 
+ 
+ 
+			get { return @PreparedBy; } 
+			set { PreparedBy = value as IfcActorSelect;}
+		}	
+		IIfcDateTimeSelect IIfcCostSchedule.SubmittedOn { 
+ 
+ 
+			get { return @SubmittedOn; } 
+			set { SubmittedOn = value as IfcDateTimeSelect;}
+		}	
+		IfcLabel? IIfcCostSchedule.Status { 
+ 
+			get { return @Status; } 
+			set { Status = value;}
+		}	
+		IItemSet<IIfcActorSelect> IIfcCostSchedule.TargetUsers { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @TargetUsers); } 
+		}	
+		IIfcDateTimeSelect IIfcCostSchedule.UpdateDate { 
+ 
+ 
+			get { return @UpdateDate; } 
+			set { UpdateDate = value as IfcDateTimeSelect;}
+		}	
+		IfcIdentifier IIfcCostSchedule.ID { 
+ 
+			get { return @ID; } 
+			set { ID = value;}
+		}	
+		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCostSchedule(IModel model) : base(model) 		{ 
-			Model = model; 
-			_targetUsers = new OptionalItemSet<IfcActorSelect>( this, 0 );
+		internal IfcCostSchedule(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_targetUsers = new OptionalItemSet<IfcActorSelect>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -68,7 +104,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		private IfcActorSelect _preparedBy;
 		private IfcDateTimeSelect _submittedOn;
 		private IfcLabel? _status;
-		private OptionalItemSet<IfcActorSelect> _targetUsers;
+		private readonly OptionalItemSet<IfcActorSelect> _targetUsers;
 		private IfcDateTimeSelect _updateDate;
 		private IfcIdentifier _iD;
 		private IfcCostScheduleTypeEnum _predefinedType;
@@ -80,13 +116,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _submittedBy;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _submittedBy;
+				Activate();
 				return _submittedBy;
 			} 
 			set
 			{
-				SetValue( v =>  _submittedBy = v, _submittedBy, value,  "SubmittedBy");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _submittedBy = v, _submittedBy, value,  "SubmittedBy", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -94,13 +132,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _preparedBy;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _preparedBy;
+				Activate();
 				return _preparedBy;
 			} 
 			set
 			{
-				SetValue( v =>  _preparedBy = v, _preparedBy, value,  "PreparedBy");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _preparedBy = v, _preparedBy, value,  "PreparedBy", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -108,13 +148,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _submittedOn;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _submittedOn;
+				Activate();
 				return _submittedOn;
 			} 
 			set
 			{
-				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -122,22 +164,22 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _status;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _status;
+				Activate();
 				return _status;
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 16)]
-		public OptionalItemSet<IfcActorSelect> @TargetUsers 
+		public IOptionalItemSet<IfcActorSelect> @TargetUsers 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _targetUsers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _targetUsers;
+				Activate();
 				return _targetUsers;
 			} 
 		}	
@@ -146,13 +188,15 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _updateDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _updateDate;
+				Activate();
 				return _updateDate;
 			} 
 			set
 			{
-				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -160,13 +204,13 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _iD;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _iD;
+				Activate();
 				return _iD;
 			} 
 			set
 			{
-				SetValue( v =>  _iD = v, _iD, value,  "ID");
+				SetValue( v =>  _iD = v, _iD, value,  "ID", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
@@ -174,13 +218,13 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 13);
 			} 
 		}	
 		#endregion
@@ -188,9 +232,8 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -214,7 +257,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					_status = value.StringVal;
 					return;
 				case 9: 
-					if (_targetUsers == null) _targetUsers = new OptionalItemSet<IfcActorSelect>( this );
 					_targetUsers.InternalAdd((IfcActorSelect)value.EntityVal);
 					return;
 				case 10: 
@@ -230,11 +272,6 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -242,55 +279,28 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCostSchedule
-            var root = (@IfcCostSchedule)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCostSchedule left, @IfcCostSchedule right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCostSchedule left, @IfcCostSchedule right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCostSchedule x, @IfcCostSchedule y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCostSchedule obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@SubmittedBy != null)
+					yield return @SubmittedBy;
+				if (@PreparedBy != null)
+					yield return @PreparedBy;
+				if (@SubmittedOn != null)
+					yield return @SubmittedOn;
+				foreach(var entity in @TargetUsers)
+					yield return entity;
+				if (@UpdateDate != null)
+					yield return @UpdateDate;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

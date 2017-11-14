@@ -10,36 +10,60 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterial : IIfcMaterial
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterial), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcMaterial.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMaterial), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcMaterial.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -2);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _category;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMaterial), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterial.Category 
 		{ 
 			get
 			{
-				//## Handle return of Category for which no match was found
-			    return null;
-			    //##
+				return _category;
 			} 
+			set
+			{
+				SetValue(v => _category = v, _category, value, "Category", -3);
+				
+			}
 		}
 		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation 
 		{ 

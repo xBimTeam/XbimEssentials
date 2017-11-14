@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLibraryReference : IIfcExternalReference, IfcLibrarySelect
 	{
-		IfcText? @Description { get; }
-		IfcLanguageId? @Language { get; }
-		IIfcLibraryInformation @ReferencedLibrary { get; }
+		IfcText? @Description { get;  set; }
+		IfcLanguageId? @Language { get;  set; }
+		IIfcLibraryInformation @ReferencedLibrary { get;  set; }
 		IEnumerable<IIfcRelAssociatesLibrary> @LibraryRefForObjects {  get; }
 	
 	}
@@ -35,22 +37,34 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
-	[IndexedClass]
-	[ExpressType("IfcLibraryReference", 732)]
+	[ExpressType("IfcLibraryReference", 598)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IEqualityComparer<@IfcLibraryReference>, IEquatable<@IfcLibraryReference>
+	public  partial class @IfcLibraryReference : IfcExternalReference, IInstantiableEntity, IIfcLibraryReference, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLibraryReference>
 	{
 		#region IIfcLibraryReference explicit implementation
-		IfcText? IIfcLibraryReference.Description { get { return @Description; } }	
-		IfcLanguageId? IIfcLibraryReference.Language { get { return @Language; } }	
-		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary { get { return @ReferencedLibrary; } }	
+		IfcText? IIfcLibraryReference.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IfcLanguageId? IIfcLibraryReference.Language { 
+ 
+			get { return @Language; } 
+			set { Language = value;}
+		}	
+		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary { 
+ 
+ 
+			get { return @ReferencedLibrary; } 
+			set { ReferencedLibrary = value as IfcLibraryInformation;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects {  get { return @LibraryRefForObjects; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcLibraryReference(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcLibraryReference(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -65,13 +79,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -79,13 +93,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _language;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _language;
+				Activate();
 				return _language;
 			} 
 			set
 			{
-				SetValue( v =>  _language = v, _language, value,  "Language");
+				SetValue( v =>  _language = v, _language, value,  "Language", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -94,13 +108,15 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referencedLibrary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referencedLibrary;
+				Activate();
 				return _referencedLibrary;
 			} 
 			set
 			{
-				SetValue( v =>  _referencedLibrary = v, _referencedLibrary, value,  "ReferencedLibrary");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _referencedLibrary = v, _referencedLibrary, value,  "ReferencedLibrary", 6);
 			} 
 		}	
 		#endregion
@@ -114,14 +130,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => (e.RelatingLibrary as IfcLibraryReference) == this, "RelatingLibrary", this);
+				return Model.Instances.Where<IfcRelAssociatesLibrary>(e => Equals(e.RelatingLibrary), "RelatingLibrary", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -143,11 +158,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -155,55 +165,31 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcLibraryReference
-            var root = (@IfcLibraryReference)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcLibraryReference left, @IfcLibraryReference right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcLibraryReference left, @IfcLibraryReference right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLibraryReference x, @IfcLibraryReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLibraryReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ReferencedLibrary != null)
+					yield return @ReferencedLibrary;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ReferencedLibrary != null)
+					yield return @ReferencedLibrary;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

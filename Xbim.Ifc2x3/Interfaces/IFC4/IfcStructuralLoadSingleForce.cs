@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleForce : IIfcStructuralLoadSingleForce
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 2)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceX 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!ForceX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(ForceX.Value);
 			} 
+			set
+			{
+				ForceX = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 3)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!ForceY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(ForceY.Value);
 			} 
+			set
+			{
+				ForceY = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 4)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ 
 		{ 
 			get
@@ -39,7 +60,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!ForceZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(ForceZ.Value);
 			} 
+			set
+			{
+				ForceZ = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 5)]
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX 
 		{ 
 			get
@@ -47,7 +77,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!MomentX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcTorqueMeasure(MomentX.Value);
 			} 
+			set
+			{
+				MomentX = value.HasValue ? 
+					new MeasureResource.IfcTorqueMeasure(value.Value) :  
+					 new MeasureResource.IfcTorqueMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 6)]
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY 
 		{ 
 			get
@@ -55,7 +94,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!MomentY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcTorqueMeasure(MomentY.Value);
 			} 
+			set
+			{
+				MomentY = value.HasValue ? 
+					new MeasureResource.IfcTorqueMeasure(value.Value) :  
+					 new MeasureResource.IfcTorqueMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForce), 7)]
 		Ifc4.MeasureResource.IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ 
 		{ 
 			get
@@ -63,6 +111,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!MomentZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcTorqueMeasure(MomentZ.Value);
 			} 
+			set
+			{
+				MomentZ = value.HasValue ? 
+					new MeasureResource.IfcTorqueMeasure(value.Value) :  
+					 new MeasureResource.IfcTorqueMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

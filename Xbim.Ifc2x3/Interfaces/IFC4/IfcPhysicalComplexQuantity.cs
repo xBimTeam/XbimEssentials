@@ -10,29 +10,39 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalComplexQuantity : IIfcPhysicalComplexQuantity
 	{
-		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities 
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 3)]
+		IItemSet<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities 
 		{ 
 			get
 			{
-				foreach (var member in HasQuantities)
-				{
-					yield return member as IIfcPhysicalQuantity;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>(HasQuantities);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 4)]
 		Ifc4.MeasureResource.IfcLabel IIfcPhysicalComplexQuantity.Discrimination 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Discrimination);
 			} 
+			set
+			{
+				Discrimination = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Quality 
 		{ 
 			get
@@ -40,7 +50,16 @@ namespace Xbim.Ifc2x3.QuantityResource
 				if (!Quality.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Quality.Value);
 			} 
+			set
+			{
+				Quality = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalComplexQuantity), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPhysicalComplexQuantity.Usage 
 		{ 
 			get
@@ -48,6 +67,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 				if (!Usage.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Usage.Value);
 			} 
+			set
+			{
+				Usage = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

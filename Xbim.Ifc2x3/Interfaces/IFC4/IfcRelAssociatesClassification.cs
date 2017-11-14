@@ -10,21 +10,30 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesClassification : IIfcRelAssociatesClassification
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesClassification), 6)]
 		IIfcClassificationSelect IIfcRelAssociatesClassification.RelatingClassification 
 		{ 
 			get
 			{
 				//## Handle return of RelatingClassification for which no match was found
-                var reference = RelatingClassification as ExternalReferenceResource.IfcClassificationReference;
-			    return reference;
+			    return RelatingClassification as IIfcClassificationSelect;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of RelatingClassification for which no match was found
+				RelatingClassification = value as ExternalReferenceResource.IfcClassificationNotationSelect;
+				//##
+				
+			}
 		}
 	//## Custom code
 	//##

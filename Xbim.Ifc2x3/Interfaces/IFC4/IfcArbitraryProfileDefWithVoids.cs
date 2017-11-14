@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcArbitraryProfileDefWithVoids : IIfcArbitraryProfileDefWithVoids
 	{
-		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves 
+
+		[CrossSchemaAttribute(typeof(IIfcArbitraryProfileDefWithVoids), 4)]
+		IItemSet<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves 
 		{ 
 			get
 			{
-				foreach (var member in InnerCurves)
-				{
-					yield return member as IIfcCurve;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcCurve, IIfcCurve>(InnerCurves);
 			} 
 		}
 	//## Custom code

@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProcessExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -27,16 +29,16 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWorkControl : IIfcControl
 	{
-		IfcIdentifier @Identifier { get; }
-		IIfcDateTimeSelect @CreationDate { get; }
-		IEnumerable<IIfcPerson> @Creators { get; }
-		IfcLabel? @Purpose { get; }
-		IfcTimeMeasure? @Duration { get; }
-		IfcTimeMeasure? @TotalFloat { get; }
-		IIfcDateTimeSelect @StartTime { get; }
-		IIfcDateTimeSelect @FinishTime { get; }
-		IfcWorkControlTypeEnum? @WorkControlType { get; }
-		IfcLabel? @UserDefinedControlType { get; }
+		IfcIdentifier @Identifier { get;  set; }
+		IIfcDateTimeSelect @CreationDate { get;  set; }
+		IItemSet<IIfcPerson> @Creators { get; }
+		IfcLabel? @Purpose { get;  set; }
+		IfcTimeMeasure? @Duration { get;  set; }
+		IfcTimeMeasure? @TotalFloat { get;  set; }
+		IIfcDateTimeSelect @StartTime { get;  set; }
+		IIfcDateTimeSelect @FinishTime { get;  set; }
+		IfcWorkControlTypeEnum? @WorkControlType { get;  set; }
+		IfcLabel? @UserDefinedControlType { get;  set; }
 	
 	}
 }
@@ -45,32 +47,73 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcWorkControl", 185)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEqualityComparer<@IfcWorkControl>, IEquatable<@IfcWorkControl>
+	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEquatable<@IfcWorkControl>
 	{
 		#region IIfcWorkControl explicit implementation
-		IfcIdentifier IIfcWorkControl.Identifier { get { return @Identifier; } }	
-		IIfcDateTimeSelect IIfcWorkControl.CreationDate { get { return @CreationDate; } }	
-		IEnumerable<IIfcPerson> IIfcWorkControl.Creators { get { return @Creators; } }	
-		IfcLabel? IIfcWorkControl.Purpose { get { return @Purpose; } }	
-		IfcTimeMeasure? IIfcWorkControl.Duration { get { return @Duration; } }	
-		IfcTimeMeasure? IIfcWorkControl.TotalFloat { get { return @TotalFloat; } }	
-		IIfcDateTimeSelect IIfcWorkControl.StartTime { get { return @StartTime; } }	
-		IIfcDateTimeSelect IIfcWorkControl.FinishTime { get { return @FinishTime; } }	
-		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { get { return @WorkControlType; } }	
-		IfcLabel? IIfcWorkControl.UserDefinedControlType { get { return @UserDefinedControlType; } }	
+		IfcIdentifier IIfcWorkControl.Identifier { 
+ 
+			get { return @Identifier; } 
+			set { Identifier = value;}
+		}	
+		IIfcDateTimeSelect IIfcWorkControl.CreationDate { 
+ 
+ 
+			get { return @CreationDate; } 
+			set { CreationDate = value as IfcDateTimeSelect;}
+		}	
+		IItemSet<IIfcPerson> IIfcWorkControl.Creators { 
+			get { return new Common.Collections.ProxyItemSet<IfcPerson, IIfcPerson>( @Creators); } 
+		}	
+		IfcLabel? IIfcWorkControl.Purpose { 
+ 
+			get { return @Purpose; } 
+			set { Purpose = value;}
+		}	
+		IfcTimeMeasure? IIfcWorkControl.Duration { 
+ 
+			get { return @Duration; } 
+			set { Duration = value;}
+		}	
+		IfcTimeMeasure? IIfcWorkControl.TotalFloat { 
+ 
+			get { return @TotalFloat; } 
+			set { TotalFloat = value;}
+		}	
+		IIfcDateTimeSelect IIfcWorkControl.StartTime { 
+ 
+ 
+			get { return @StartTime; } 
+			set { StartTime = value as IfcDateTimeSelect;}
+		}	
+		IIfcDateTimeSelect IIfcWorkControl.FinishTime { 
+ 
+ 
+			get { return @FinishTime; } 
+			set { FinishTime = value as IfcDateTimeSelect;}
+		}	
+		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { 
+ 
+			get { return @WorkControlType; } 
+			set { WorkControlType = value;}
+		}	
+		IfcLabel? IIfcWorkControl.UserDefinedControlType { 
+ 
+			get { return @UserDefinedControlType; } 
+			set { UserDefinedControlType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcWorkControl(IModel model) : base(model) 		{ 
-			Model = model; 
-			_creators = new OptionalItemSet<IfcPerson>( this, 0 );
+		internal IfcWorkControl(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_creators = new OptionalItemSet<IfcPerson>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier _identifier;
 		private IfcDateTimeSelect _creationDate;
-		private OptionalItemSet<IfcPerson> _creators;
+		private readonly OptionalItemSet<IfcPerson> _creators;
 		private IfcLabel? _purpose;
 		private IfcTimeMeasure? _duration;
 		private IfcTimeMeasure? _totalFloat;
@@ -86,13 +129,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _identifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _identifier;
+				Activate();
 				return _identifier;
 			} 
 			set
 			{
-				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier");
+				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -100,22 +143,24 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creationDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creationDate;
+				Activate();
 				return _creationDate;
 			} 
 			set
 			{
-				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 14)]
-		public OptionalItemSet<IfcPerson> @Creators 
+		public IOptionalItemSet<IfcPerson> @Creators 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creators;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creators;
+				Activate();
 				return _creators;
 			} 
 		}	
@@ -124,13 +169,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _purpose;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _purpose;
+				Activate();
 				return _purpose;
 			} 
 			set
 			{
-				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
+				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -138,13 +183,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _duration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _duration;
+				Activate();
 				return _duration;
 			} 
 			set
 			{
-				SetValue( v =>  _duration = v, _duration, value,  "Duration");
+				SetValue( v =>  _duration = v, _duration, value,  "Duration", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -152,13 +197,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _totalFloat;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _totalFloat;
+				Activate();
 				return _totalFloat;
 			} 
 			set
 			{
-				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat");
+				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -166,13 +211,15 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startTime;
+				Activate();
 				return _startTime;
 			} 
 			set
 			{
-				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
@@ -180,13 +227,15 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _finishTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _finishTime;
+				Activate();
 				return _finishTime;
 			} 
 			set
 			{
-				SetValue( v =>  _finishTime = v, _finishTime, value,  "FinishTime");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _finishTime = v, _finishTime, value,  "FinishTime", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -194,13 +243,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _workControlType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _workControlType;
+				Activate();
 				return _workControlType;
 			} 
 			set
 			{
-				SetValue( v =>  _workControlType = v, _workControlType, value,  "WorkControlType");
+				SetValue( v =>  _workControlType = v, _workControlType, value,  "WorkControlType", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -208,13 +257,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedControlType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedControlType;
+				Activate();
 				return _userDefinedControlType;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedControlType = v, _userDefinedControlType, value,  "UserDefinedControlType");
+				SetValue( v =>  _userDefinedControlType = v, _userDefinedControlType, value,  "UserDefinedControlType", 15);
 			} 
 		}	
 		#endregion
@@ -222,9 +271,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -242,7 +290,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					_creationDate = (IfcDateTimeSelect)(value.EntityVal);
 					return;
 				case 7: 
-					if (_creators == null) _creators = new OptionalItemSet<IfcPerson>( this );
 					_creators.InternalAdd((IfcPerson)value.EntityVal);
 					return;
 				case 8: 
@@ -270,12 +317,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            ((WorkControlType = IfcWorkControlTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcWorkControl.UserDefinedControlType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -283,54 +324,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcWorkControl
-            var root = (@IfcWorkControl)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcWorkControl left, @IfcWorkControl right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcWorkControl left, @IfcWorkControl right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWorkControl x, @IfcWorkControl y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkControl obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

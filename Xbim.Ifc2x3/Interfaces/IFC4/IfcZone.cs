@@ -10,20 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcZone : IIfcZone
 	{
+
+		private  Ifc4.MeasureResource.IfcLabel? _longName;
+
+
+		[CrossSchemaAttribute(typeof(IIfcZone), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcZone.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                return Name != null ? new Ifc4.MeasureResource.IfcLabel(Name) : null;
-			    //##
+				return _longName;
 			} 
+			set
+			{
+				SetValue(v => _longName = v, _longName, value, "LongName", -6);
+				
+			}
 		}
 		IEnumerable<IIfcRelServicesBuildings> IIfcSystem.ServicesBuildings 
 		{ 

@@ -156,7 +156,8 @@ namespace Xbim.IO.Esent
         public TIfcType New<TIfcType>(Action<TIfcType> initPropertiesFunc) where TIfcType : IInstantiableEntity
         {
             var instance = New<TIfcType>();
-            initPropertiesFunc(instance);
+            if (initPropertiesFunc != null)
+                initPropertiesFunc(instance);
             return instance;
         }
 
@@ -170,7 +171,7 @@ namespace Xbim.IO.Esent
         public IPersistEntity New(Type t)
         {
             var entity = Cache.CreateNew(t);
-            _model.HandleEntityChange(ChangeType.New, entity);
+            _model.HandleEntityChange(ChangeType.New, entity, 0);
             return entity;
 
         }

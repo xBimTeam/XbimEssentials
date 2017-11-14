@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcementDefinitionProperties : IIfcReinforcementDefinitionProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementDefinitionProperties), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType 
 		{ 
 			get
@@ -23,15 +26,22 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!DefinitionType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(DefinitionType.Value);
 			} 
+			set
+			{
+				DefinitionType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcementDefinitionProperties), 6)]
+		IItemSet<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions 
 		{ 
 			get
 			{
-				foreach (var member in ReinforcementSectionDefinitions)
-				{
-					yield return member as IIfcSectionReinforcementProperties;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ProfilePropertyResource.IfcSectionReinforcementProperties, IIfcSectionReinforcementProperties>(ReinforcementSectionDefinitions);
 			} 
 		}
 	//## Custom code

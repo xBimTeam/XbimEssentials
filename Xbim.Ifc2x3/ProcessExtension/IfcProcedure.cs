@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProcessExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProcedure : IIfcProcess
 	{
-		IfcIdentifier @ProcedureID { get; }
-		IfcProcedureTypeEnum @ProcedureType { get; }
-		IfcLabel? @UserDefinedProcedureType { get; }
+		IfcIdentifier @ProcedureID { get;  set; }
+		IfcProcedureTypeEnum @ProcedureType { get;  set; }
+		IfcLabel? @UserDefinedProcedureType { get;  set; }
 	
 	}
 }
@@ -36,18 +38,30 @@ namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcProcedure", 294)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IEqualityComparer<@IfcProcedure>, IEquatable<@IfcProcedure>
+	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IContainsEntityReferences, IEquatable<@IfcProcedure>
 	{
 		#region IIfcProcedure explicit implementation
-		IfcIdentifier IIfcProcedure.ProcedureID { get { return @ProcedureID; } }	
-		IfcProcedureTypeEnum IIfcProcedure.ProcedureType { get { return @ProcedureType; } }	
-		IfcLabel? IIfcProcedure.UserDefinedProcedureType { get { return @UserDefinedProcedureType; } }	
+		IfcIdentifier IIfcProcedure.ProcedureID { 
+ 
+			get { return @ProcedureID; } 
+			set { ProcedureID = value;}
+		}	
+		IfcProcedureTypeEnum IIfcProcedure.ProcedureType { 
+ 
+			get { return @ProcedureType; } 
+			set { ProcedureType = value;}
+		}	
+		IfcLabel? IIfcProcedure.UserDefinedProcedureType { 
+ 
+			get { return @UserDefinedProcedureType; } 
+			set { UserDefinedProcedureType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcProcedure(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcProcedure(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +76,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _procedureID;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _procedureID;
+				Activate();
 				return _procedureID;
 			} 
 			set
 			{
-				SetValue( v =>  _procedureID = v, _procedureID, value,  "ProcedureID");
+				SetValue( v =>  _procedureID = v, _procedureID, value,  "ProcedureID", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
@@ -76,13 +90,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _procedureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _procedureType;
+				Activate();
 				return _procedureType;
 			} 
 			set
 			{
-				SetValue( v =>  _procedureType = v, _procedureType, value,  "ProcedureType");
+				SetValue( v =>  _procedureType = v, _procedureType, value,  "ProcedureType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -90,13 +104,13 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedProcedureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedProcedureType;
+				Activate();
 				return _userDefinedProcedureType;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedProcedureType = v, _userDefinedProcedureType, value,  "UserDefinedProcedureType");
+				SetValue( v =>  _userDefinedProcedureType = v, _userDefinedProcedureType, value,  "UserDefinedProcedureType", 8);
 			} 
 		}	
 		#endregion
@@ -104,9 +118,8 @@ namespace Xbim.Ifc2x3.ProcessExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -130,15 +143,6 @@ namespace Xbim.Ifc2x3.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(temp <* SELF\IfcObjectDefinition.Decomposes | NOT('IFC2X3.IFCRELNESTS' IN TYPEOF(temp)))) = 0;*/
-		/*WR2:	WR2 : SIZEOF(QUERY(temp <* SELF\IfcObjectDefinition.IsDecomposedBy | NOT('IFC2X3.IFCRELNESTS' IN TYPEOF(temp)))) = 0;*/
-		/*WR3:	WR3 : EXISTS(SELF\IfcRoot.Name);*/
-		/*WR4:            ((ProcedureType = IfcProcedureTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcProcedure.UserDefinedProcedureType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -146,55 +150,18 @@ namespace Xbim.Ifc2x3.ProcessExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcProcedure
-            var root = (@IfcProcedure)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcProcedure left, @IfcProcedure right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcProcedure left, @IfcProcedure right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProcedure x, @IfcProcedure y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProcedure obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

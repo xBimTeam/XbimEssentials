@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcDoor : IIfcDoor
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallHeight 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
+			set
+			{
+				OverallHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcDoor.OverallWidth 
 		{ 
 			get
@@ -31,33 +43,64 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallWidth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
+			set
+			{
+				OverallWidth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDoorTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 11)]
 		Ifc4.Interfaces.IfcDoorTypeEnum? IIfcDoor.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDoorTypeOperationEnum? _operationType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 12)]
 		Ifc4.Interfaces.IfcDoorTypeOperationEnum? IIfcDoor.OperationType 
 		{ 
 			get
 			{
-				//## Handle return of OperationType for which no match was found
-			    return null;
-			    //##
+				return _operationType;
 			} 
+			set
+			{
+				SetValue(v => _operationType = v, _operationType, value, "OperationType", -12);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedOperationType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcDoor), 13)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDoor.UserDefinedOperationType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedOperationType for which no match was found
-			    return null;
-			    //##
+				return _userDefinedOperationType;
 			} 
+			set
+			{
+				SetValue(v => _userDefinedOperationType = v, _userDefinedOperationType, value, "UserDefinedOperationType", -13);
+				
+			}
 		}
 	//## Custom code
         /// <summary>

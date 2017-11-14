@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,39 +25,66 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieSpare : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieSpareType @SpareType { get; }
-		ICobieType @Type { get; }
-		IEnumerable<ICobieContact> @Suppliers { get; }
-		string @SetNumber { get; }
-		string @PartNumber { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieSpareType @SpareType { get;  set; }
+		ICobieType @Type { get;  set; }
+		IItemSet<ICobieContact> @Suppliers { get; }
+		string @SetNumber { get;  set; }
+		string @PartNumber { get;  set; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Spare", 25)]
+	[ExpressType("Spare", 26)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IEqualityComparer<@CobieSpare>, IEquatable<@CobieSpare>
+	public  partial class @CobieSpare : CobieReferencedObject, IInstantiableEntity, ICobieSpare, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieSpare>
 	{
 		#region ICobieSpare explicit implementation
-		string ICobieSpare.Name { get { return @Name; } }	
-		string ICobieSpare.Description { get { return @Description; } }	
-		ICobieSpareType ICobieSpare.SpareType { get { return @SpareType; } }	
-		ICobieType ICobieSpare.Type { get { return @Type; } }	
-		IEnumerable<ICobieContact> ICobieSpare.Suppliers { get { return @Suppliers; } }	
-		string ICobieSpare.SetNumber { get { return @SetNumber; } }	
-		string ICobieSpare.PartNumber { get { return @PartNumber; } }	
+		string ICobieSpare.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieSpare.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieSpareType ICobieSpare.SpareType { 
+ 
+ 
+			get { return @SpareType; } 
+			set { SpareType = value as CobieSpareType;}
+		}	
+		ICobieType ICobieSpare.Type { 
+ 
+ 
+			get { return @Type; } 
+			set { Type = value as CobieType;}
+		}	
+		IItemSet<ICobieContact> ICobieSpare.Suppliers { 
+			get { return new Common.Collections.ProxyItemSet<CobieContact, ICobieContact>( @Suppliers); } 
+		}	
+		string ICobieSpare.SetNumber { 
+ 
+			get { return @SetNumber; } 
+			set { SetNumber = value;}
+		}	
+		string ICobieSpare.PartNumber { 
+ 
+			get { return @PartNumber; } 
+			set { PartNumber = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieSpare(IModel model) : base(model) 		{ 
-			Model = model; 
-			_suppliers = new OptionalItemSet<CobieContact>( this, 0 );
+		internal CobieSpare(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_suppliers = new OptionalItemSet<CobieContact>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
@@ -63,7 +92,7 @@ namespace Xbim.CobieExpress
 		private string _description;
 		private CobieSpareType _spareType;
 		private CobieType _type;
-		private OptionalItemSet<CobieContact> _suppliers;
+		private readonly OptionalItemSet<CobieContact> _suppliers;
 		private string _setNumber;
 		private string _partNumber;
 		#endregion
@@ -74,13 +103,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -88,13 +117,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -102,13 +131,15 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spareType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spareType;
+				Activate();
 				return _spareType;
 			} 
 			set
 			{
-				SetValue( v =>  _spareType = v, _spareType, value,  "SpareType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _spareType = v, _spareType, value,  "SpareType", 8);
 			} 
 		}	
 		[IndexedProperty]
@@ -117,22 +148,24 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _type;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _type;
+				Activate();
 				return _type;
 			} 
 			set
 			{
-				SetValue( v =>  _type = v, _type, value,  "Type");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _type = v, _type, value,  "Type", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
-		public OptionalItemSet<CobieContact> @Suppliers 
+		public IOptionalItemSet<CobieContact> @Suppliers 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _suppliers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _suppliers;
+				Activate();
 				return _suppliers;
 			} 
 		}	
@@ -141,13 +174,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _setNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _setNumber;
+				Activate();
 				return _setNumber;
 			} 
 			set
 			{
-				SetValue( v =>  _setNumber = v, _setNumber, value,  "SetNumber");
+				SetValue( v =>  _setNumber = v, _setNumber, value,  "SetNumber", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -155,13 +188,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _partNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _partNumber;
+				Activate();
 				return _partNumber;
 			} 
 			set
 			{
-				SetValue( v =>  _partNumber = v, _partNumber, value,  "PartNumber");
+				SetValue( v =>  _partNumber = v, _partNumber, value,  "PartNumber", 12);
 			} 
 		}	
 		#endregion
@@ -169,9 +202,8 @@ namespace Xbim.CobieExpress
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -195,7 +227,6 @@ namespace Xbim.CobieExpress
 					_type = (CobieType)(value.EntityVal);
 					return;
 				case 9: 
-					if (_suppliers == null) _suppliers = new OptionalItemSet<CobieContact>( this );
 					_suppliers.InternalAdd((CobieContact)value.EntityVal);
 					return;
 				case 10: 
@@ -208,11 +239,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -220,55 +246,41 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieSpare
-            var root = (@CobieSpare)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieSpare left, @CobieSpare right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieSpare left, @CobieSpare right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieSpare x, @CobieSpare y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieSpare obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@SpareType != null)
+					yield return @SpareType;
+				if (@Type != null)
+					yield return @Type;
+				foreach(var entity in @Suppliers)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Type != null)
+					yield return @Type;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

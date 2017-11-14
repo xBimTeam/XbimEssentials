@@ -10,26 +10,43 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRoot : IIfcRoot
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 1)]
 		Ifc4.UtilityResource.IfcGloballyUniqueId IIfcRoot.GlobalId 
 		{ 
 			get
 			{
 				return new Ifc4.UtilityResource.IfcGloballyUniqueId(GlobalId);
 			} 
+			set
+			{
+				GlobalId = new UtilityResource.IfcGloballyUniqueId(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 2)]
 		IIfcOwnerHistory IIfcRoot.OwnerHistory 
 		{ 
 			get
 			{
 				return OwnerHistory;
 			} 
+			set
+			{
+				OwnerHistory = value as UtilityResource.IfcOwnerHistory;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRoot.Name 
 		{ 
 			get
@@ -37,7 +54,16 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRoot), 4)]
 		Ifc4.MeasureResource.IfcText? IIfcRoot.Description 
 		{ 
 			get
@@ -45,6 +71,13 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

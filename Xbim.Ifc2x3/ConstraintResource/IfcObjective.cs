@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcObjective : IIfcConstraint
 	{
-		IIfcMetric @BenchmarkValues { get; }
-		IIfcMetric @ResultValues { get; }
-		IfcObjectiveEnum @ObjectiveQualifier { get; }
-		IfcLabel? @UserDefinedQualifier { get; }
+		IIfcMetric @BenchmarkValues { get;  set; }
+		IIfcMetric @ResultValues { get;  set; }
+		IfcObjectiveEnum @ObjectiveQualifier { get;  set; }
+		IfcLabel? @UserDefinedQualifier { get;  set; }
 	
 	}
 }
@@ -36,19 +38,37 @@ namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcObjective", 518)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IEqualityComparer<@IfcObjective>, IEquatable<@IfcObjective>
+	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IContainsEntityReferences, IEquatable<@IfcObjective>
 	{
 		#region IIfcObjective explicit implementation
-		IIfcMetric IIfcObjective.BenchmarkValues { get { return @BenchmarkValues; } }	
-		IIfcMetric IIfcObjective.ResultValues { get { return @ResultValues; } }	
-		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { get { return @ObjectiveQualifier; } }	
-		IfcLabel? IIfcObjective.UserDefinedQualifier { get { return @UserDefinedQualifier; } }	
+		IIfcMetric IIfcObjective.BenchmarkValues { 
+ 
+ 
+			get { return @BenchmarkValues; } 
+			set { BenchmarkValues = value as IfcMetric;}
+		}	
+		IIfcMetric IIfcObjective.ResultValues { 
+ 
+ 
+			get { return @ResultValues; } 
+			set { ResultValues = value as IfcMetric;}
+		}	
+		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { 
+ 
+			get { return @ObjectiveQualifier; } 
+			set { ObjectiveQualifier = value;}
+		}	
+		IfcLabel? IIfcObjective.UserDefinedQualifier { 
+ 
+			get { return @UserDefinedQualifier; } 
+			set { UserDefinedQualifier = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcObjective(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcObjective(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -64,13 +84,15 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _benchmarkValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _benchmarkValues;
+				Activate();
 				return _benchmarkValues;
 			} 
 			set
 			{
-				SetValue( v =>  _benchmarkValues = v, _benchmarkValues, value,  "BenchmarkValues");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _benchmarkValues = v, _benchmarkValues, value,  "BenchmarkValues", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -78,13 +100,15 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resultValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resultValues;
+				Activate();
 				return _resultValues;
 			} 
 			set
 			{
-				SetValue( v =>  _resultValues = v, _resultValues, value,  "ResultValues");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _resultValues = v, _resultValues, value,  "ResultValues", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 16)]
@@ -92,13 +116,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _objectiveQualifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _objectiveQualifier;
+				Activate();
 				return _objectiveQualifier;
 			} 
 			set
 			{
-				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier");
+				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -106,13 +130,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedQualifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedQualifier;
+				Activate();
 				return _userDefinedQualifier;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier");
+				SetValue( v =>  _userDefinedQualifier = v, _userDefinedQualifier, value,  "UserDefinedQualifier", 11);
 			} 
 		}	
 		#endregion
@@ -120,9 +144,8 @@ namespace Xbim.Ifc2x3.ConstraintResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -151,12 +174,6 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:             ((ObjectiveQualifier = IfcObjectiveEnum.USERDEFINED) AND EXISTS(SELF\IfcObjective.UserDefinedQualifier));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -164,55 +181,24 @@ namespace Xbim.Ifc2x3.ConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcObjective
-            var root = (@IfcObjective)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcObjective left, @IfcObjective right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcObjective left, @IfcObjective right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcObjective x, @IfcObjective y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcObjective obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@CreatingActor != null)
+					yield return @CreatingActor;
+				if (@CreationTime != null)
+					yield return @CreationTime;
+				if (@BenchmarkValues != null)
+					yield return @BenchmarkValues;
+				if (@ResultValues != null)
+					yield return @ResultValues;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

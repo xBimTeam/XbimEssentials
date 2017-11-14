@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcEdgeLoop : IIfcEdgeLoop
 	{
-		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList 
+
+		[CrossSchemaAttribute(typeof(IIfcEdgeLoop), 1)]
+		IItemSet<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList 
 		{ 
 			get
 			{
-				foreach (var member in EdgeList)
-				{
-					yield return member as IIfcOrientedEdge;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcOrientedEdge, IIfcOrientedEdge>(EdgeList);
 			} 
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcEdgeLoop.Ne 

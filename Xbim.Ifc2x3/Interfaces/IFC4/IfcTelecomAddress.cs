@@ -10,32 +10,39 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcTelecomAddress : IIfcTelecomAddress
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.TelephoneNumbers 
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 4)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.TelephoneNumbers 
 		{ 
 			get
 			{
-				foreach (var member in TelephoneNumbers)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(TelephoneNumbers, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 5)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.FacsimileNumbers 
 		{ 
 			get
 			{
-				foreach (var member in FacsimileNumbers)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(FacsimileNumbers, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTelecomAddress.PagerNumber 
 		{ 
 			get
@@ -43,17 +50,28 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!PagerNumber.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(PagerNumber.Value);
 			} 
+			set
+			{
+				PagerNumber = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 7)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses 
 		{ 
 			get
 			{
-				foreach (var member in ElectronicMailAddresses)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(ElectronicMailAddresses, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 8)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcTelecomAddress.WWWHomePageURL 
 		{ 
 			get
@@ -61,8 +79,17 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!WWWHomePageURL.HasValue) return null;
 				return new Ifc4.ExternalReferenceResource.IfcURIReference(WWWHomePageURL.Value);
 			} 
+			set
+			{
+				WWWHomePageURL = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
+
+		[CrossSchemaAttribute(typeof(IIfcTelecomAddress), 9)]
+		IItemSet<Xbim.Ifc4.ExternalReferenceResource.IfcURIReference> IIfcTelecomAddress.MessagingIDs 
 		{ 
 			get
 			{

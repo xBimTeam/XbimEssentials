@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,31 +25,47 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEventTime : IIfcSchedulingTime
 	{
-		IfcDateTime? @ActualDate { get; }
-		IfcDateTime? @EarlyDate { get; }
-		IfcDateTime? @LateDate { get; }
-		IfcDateTime? @ScheduleDate { get; }
+		IfcDateTime? @ActualDate { get;  set; }
+		IfcDateTime? @EarlyDate { get;  set; }
+		IfcDateTime? @LateDate { get;  set; }
+		IfcDateTime? @ScheduleDate { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IfcEventTime", 636)]
+	[ExpressType("IfcEventTime", 1169)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEqualityComparer<@IfcEventTime>, IEquatable<@IfcEventTime>
+	public  partial class @IfcEventTime : IfcSchedulingTime, IInstantiableEntity, IIfcEventTime, IEquatable<@IfcEventTime>
 	{
 		#region IIfcEventTime explicit implementation
-		IfcDateTime? IIfcEventTime.ActualDate { get { return @ActualDate; } }	
-		IfcDateTime? IIfcEventTime.EarlyDate { get { return @EarlyDate; } }	
-		IfcDateTime? IIfcEventTime.LateDate { get { return @LateDate; } }	
-		IfcDateTime? IIfcEventTime.ScheduleDate { get { return @ScheduleDate; } }	
+		IfcDateTime? IIfcEventTime.ActualDate { 
+ 
+			get { return @ActualDate; } 
+			set { ActualDate = value;}
+		}	
+		IfcDateTime? IIfcEventTime.EarlyDate { 
+ 
+			get { return @EarlyDate; } 
+			set { EarlyDate = value;}
+		}	
+		IfcDateTime? IIfcEventTime.LateDate { 
+ 
+			get { return @LateDate; } 
+			set { LateDate = value;}
+		}	
+		IfcDateTime? IIfcEventTime.ScheduleDate { 
+ 
+			get { return @ScheduleDate; } 
+			set { ScheduleDate = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcEventTime(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcEventTime(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -63,13 +81,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actualDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actualDate;
+				Activate();
 				return _actualDate;
 			} 
 			set
 			{
-				SetValue( v =>  _actualDate = v, _actualDate, value,  "ActualDate");
+				SetValue( v =>  _actualDate = v, _actualDate, value,  "ActualDate", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -77,13 +95,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _earlyDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _earlyDate;
+				Activate();
 				return _earlyDate;
 			} 
 			set
 			{
-				SetValue( v =>  _earlyDate = v, _earlyDate, value,  "EarlyDate");
+				SetValue( v =>  _earlyDate = v, _earlyDate, value,  "EarlyDate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -91,13 +109,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lateDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lateDate;
+				Activate();
 				return _lateDate;
 			} 
 			set
 			{
-				SetValue( v =>  _lateDate = v, _lateDate, value,  "LateDate");
+				SetValue( v =>  _lateDate = v, _lateDate, value,  "LateDate", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -105,13 +123,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scheduleDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scheduleDate;
+				Activate();
 				return _scheduleDate;
 			} 
 			set
 			{
-				SetValue( v =>  _scheduleDate = v, _scheduleDate, value,  "ScheduleDate");
+				SetValue( v =>  _scheduleDate = v, _scheduleDate, value,  "ScheduleDate", 7);
 			} 
 		}	
 		#endregion
@@ -119,9 +137,8 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -146,11 +163,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,54 +170,6 @@ namespace Xbim.Ifc4.DateTimeResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcEventTime
-            var root = (@IfcEventTime)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcEventTime left, @IfcEventTime right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcEventTime left, @IfcEventTime right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEventTime x, @IfcEventTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEventTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

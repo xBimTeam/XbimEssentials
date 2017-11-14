@@ -1,23 +1,25 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using Xbim.Common;
+using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
 using Xbim.IO.Xml.BsConf;
-using PropertyTranformDelegate = Xbim.Common.PropertyTranformDelegate;
+using log4net;
 
 namespace Xbim.IO.Memory
 {
     public class MemoryModel : IModel, IDisposable
     {
+        private static readonly ILog Log = LogManager.GetLogger("Xbim.IO.Memory.MemoryModel");
+
         private static ZipEntry GetZipEntry(Stream fileStream)
         {
             // used because - The ZipInputStream has one major advantage over using ZipFile to read a zip: 
@@ -45,7 +47,7 @@ namespace Xbim.IO.Memory
             using (var stream = File.OpenRead(fileName))
             {
 
-                if (storageType.HasFlag(IfcStorageType.IfcZip))
+                if (storageType.HasFlag(IfcStorageType.IfcZip)|| storageType.HasFlag(IfcStorageType.Zip))
                 {
 
                     var zipEntry = GetZipEntry(stream);
@@ -69,14 +71,14 @@ namespace Xbim.IO.Memory
                 }
                 if (storageType.HasFlag(IfcStorageType.IfcXml) )
                     return XbimXmlReader4.ReadHeader(stream);
-                //go for default of Ifc
+                //go for default of IFC
                 return GetStepFileHeader(stream);
             }
         }
 
         public static IStepFileHeader GetStepFileHeader(Stream stream)
         {
-                var parser = new XbimP21Parser(stream, null);
+                var parser = new XbimP21Parser(stream, null,-1);
                 var stepHeader = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
                 parser.EntityCreate += (string name, long? label, bool header, out int[] ints) =>
                 {
@@ -111,13 +113,14 @@ namespace Xbim.IO.Memory
 
         internal IEntityFactory EntityFactory { get { return _entityFactory; } }
 
+        public object Tag { get; set; }
         public int UserDefinedId { get; set; }
-        public MemoryModel(IEntityFactory entityFactory)
+        public MemoryModel(IEntityFactory entityFactory, int labelFrom = 0)
         {
             if (entityFactory == null) throw new ArgumentNullException("entityFactory");
 
             _entityFactory = entityFactory;
-            _instances = new EntityCollection(this);
+            _instances = new EntityCollection(this, labelFrom);
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults);
             foreach (var schemasId in _instances.Factory.SchemasIds)
                 Header.FileSchema.Schemas.Add(schemasId);
@@ -135,14 +138,64 @@ namespace Xbim.IO.Memory
             get { return _instances; }
         }
 
-        public virtual bool Activate(IPersistEntity owningEntity, bool write)
+        bool IModel.Activate(IPersistEntity owningEntity)
         {
+            //always return true because all entities are activated all the time in memory
             return true;
         }
 
         /// <summary>
+        /// This function will try and release a persistent entity from the model, if the entity is referenced by another entity 
+        /// it will stay in the model but can only be accessed via other entities,however if the model is saved and then reloaded 
+        /// the entity will be restored to persisted status
+        /// if the the entity is not referenced it will be garbage collected and removed and lost
+        /// All entities that are directly referenced by this entity will also be made candidates to be dropped and dropped
+        /// inverse references are not pursued
+        /// Once dropped an entity cannot be accessed via the instances collection.
+        /// Returns a collection of entities that have been dropped
+        /// </summary>
+        /// <param name="entity">the root entity to drop</param>
+        public IEnumerable<IPersistEntity> TryDrop(IPersistEntity entity)
+        {
+            var dropped = new HashSet<IPersistEntity>();
+            TryDrop(entity, dropped);
+            return dropped;
+        }
+
+        
+        private void TryDrop(IPersistEntity entity, HashSet<IPersistEntity> dropped)
+        {
+            
+            if (!dropped.Add(entity)) return; //if the entity is in the map do not delete it again
+            if (!_instances.Contains(entity)) return; //already gone
+            _instances.RemoveReversible(entity);
+            var expressType = Metadata.ExpressType(entity);
+            foreach (var ifcProperty in expressType.Properties.Values)
+            //only delete persistent attributes, ignore inverses
+            {
+                if (ifcProperty.EntityAttribute.State != EntityAttributeState.DerivedOverride)
+                {
+                    var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
+                    var iPersist = propVal as IPersistEntity;
+                    if(iPersist != null)
+                        TryDrop(iPersist, dropped);
+                    else if (propVal is IExpressEnumerable)
+                    {
+                        var propType = ifcProperty.PropertyInfo.PropertyType;
+                        //only process lists that are real lists, see Cartesian point
+                        var genType = propType.GetItemTypeFromGenericType();
+                        if (genType != null && typeof(IPersistEntity).IsAssignableFrom(genType))
+                        {
+                            foreach (var item in ((IExpressEnumerable)propVal).OfType<IPersistEntity>())
+                                TryDrop(item,  dropped);
+                        }
+                    }  
+                }
+            }
+        }
+        /// <summary>
         /// This will delete the entity from model dictionary and also from any references in the model.
-        /// Be carefull as this might take a while to check for all occurances of the object. Also make sure 
+        /// Be careful as this might take a while to check for all occurrences of the object. Also make sure 
         /// you don't use this object anymore yourself because it won't get disposed until than. This operation
         /// doesn't guarantee that model is compliant with any kind of schema but it leaves it consistent. So if you
         /// serialize the model there won't be any references to the object which wouldn't be there.
@@ -150,109 +203,16 @@ namespace Xbim.IO.Memory
         /// <param name="entity">Entity to be deleted</param>
         public virtual void Delete(IPersistEntity entity)
         {
-            //remove from entity collection
-            var removed = _instances.RemoveReversible(entity);
-            if (!removed) return;
-
-            var entityType = entity.GetType();
-            List<DeleteCandidateType> candidateTypes;
-            if (!_deteteCandidatesCache.TryGetValue(entityType, out candidateTypes))
-            {
-                candidateTypes = new List<DeleteCandidateType>();
-                _deteteCandidatesCache.Add(entityType, candidateTypes);
-
-                //find all potential references and delete from there
-                var types = Metadata.Types().Where(t => typeof(IInstantiableEntity).IsAssignableFrom(t.Type));
-                // ReSharper disable once LoopCanBeConvertedToQuery
-                foreach (var type in types)
-                {
-                    var toNullify = type.Properties.Values.Where(p =>
-                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                        p.PropertyInfo.PropertyType.IsAssignableFrom(entityType)).ToList();
-                    var toRemove =
-                        type.Properties.Values.Where(p =>
-                            p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                            p.PropertyInfo.PropertyType.IsGenericType &&
-                            p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
-                    if (!toNullify.Any() && !toRemove.Any()) continue;
-
-                    candidateTypes.Add(new DeleteCandidateType { Type = type, ToNullify = toNullify, ToRemove = toRemove });
-                }
-            }
-
-            foreach (var candidateType in candidateTypes)
-                DeleteReferences(entity, candidateType);
+            ModelHelper.Delete(this, entity, e => _instances.RemoveReversible(e));
         }
-
-        /// <summary>
-        /// Deletes references to specified entity from all entities in the model where entity is
-        /// a references as an object or as a member of a collection.
-        /// </summary>
-        /// <param name="entity">Entity to be removed from references</param>
-        /// <param name="candidateType">Candidate type containing reference to the type of entity</param>
-        protected virtual void DeleteReferences(IPersistEntity entity, DeleteCandidateType candidateType)
-        {
-            //get all instances of this type and nullify and remove the entity
-            var entitiesToCheck = _instances.OfType(candidateType.Type.Type);
-            foreach (var toCheck in entitiesToCheck)
-            {
-                //check properties
-                foreach (var pInfo in candidateType.ToNullify.Select(p => p.PropertyInfo))
-                {
-                    var pVal = pInfo.GetValue(toCheck);
-                    if (pVal == null) continue;
-                    //it is enough to compare references
-                    if (!ReferenceEquals(pVal, entity)) continue;
-                    pInfo.SetValue(toCheck, null);
-                }
-
-                foreach (var pInfo in candidateType.ToRemove.Select(p => p.PropertyInfo))
-                {
-                    var pVal = pInfo.GetValue(toCheck);
-                    if (pVal == null) continue;
-
-                    //it might be uninitialized optional item set
-                    var optSet = pVal as IOptionalItemSet;
-                    if (optSet != null && !optSet.Initialized) continue;
-
-                    //or it is non-optional item set implementind IList
-                    var itemSet = pVal as IList;
-                    if (itemSet != null)
-                    {
-                        if (itemSet.Contains(entity))
-                            itemSet.Remove(entity);
-                        continue;
-                    }
-
-                    //fall back operating on common list functions using reflection (this is slow)
-                    var contMethod = pInfo.PropertyType.GetMethod("Contains");
-                    if (contMethod == null) continue;
-                    var contains = (bool)contMethod.Invoke(pVal, new object[] { entity });
-                    if (!contains) continue;
-                    var removeMethod = pInfo.PropertyType.GetMethod("Remove");
-                    if (removeMethod == null) continue;
-                    removeMethod.Invoke(pVal, new object[] { entity });
-                }
-            }
-        }
-
-        /// <summary>
-        /// Helper structure to hold information for reference removal. If multiple objects of the same type are to
-        /// be removed this will cache the information about where to have a look for the references.
-        /// </summary>
-        protected struct DeleteCandidateType
-        {
-            public ExpressType Type;
-            public List<ExpressMetaProperty> ToNullify;
-            public List<ExpressMetaProperty> ToRemove;
-        }
-
-        private readonly Dictionary<Type, List<DeleteCandidateType>> _deteteCandidatesCache = new Dictionary<Type, List<DeleteCandidateType>>(); 
+       
 
         public virtual ITransaction BeginTransaction(string name)
         {
             if (CurrentTransaction != null)
-                throw new Exception("Transaction is opened already.");
+                throw new XbimException("Transaction is opened already.");
+            if(InverseCache != null)
+                throw new XbimException("Transaction can't be open when cache is in operation.");
 
             var txn = new Transaction(this);
             CurrentTransaction = txn;
@@ -266,7 +226,7 @@ namespace Xbim.IO.Memory
         /// <summary>
         /// Weak reference allows garbage collector to collect transaction once it goes out of the scope
         /// even if it is still referenced from model. This is important for the cases where the transaction
-        /// is both not commited and not rolled back either.
+        /// is both not committed and not rolled back either.
         /// </summary>
         private WeakReference _transactionReference;
 
@@ -297,6 +257,7 @@ namespace Xbim.IO.Memory
         public virtual IModelFactors ModelFactors { get; private set; }
         public ExpressMetaData Metadata { get; private set; }
 
+       
         public virtual void ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity
         {
             foreach (var entity in source)
@@ -322,7 +283,51 @@ namespace Xbim.IO.Memory
         /// </summary>
         public event DeletedEntityHandler EntityDeleted;
 
-        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity)
+        public IInverseCache BeginCaching()
+        {
+            if (CurrentTransaction != null)
+                throw new XbimException("Caching is not allowed within active transaction.");
+
+            var c = InverseCache;
+            if (c != null)
+                return c;
+            return InverseCache = new MemoryInverseCache(_instances);
+        }
+
+        public void StopCaching()
+        {
+            var c = InverseCache;
+            if (c == null)
+                return;
+
+            c.Dispose();
+            InverseCache = null;
+        }
+
+        private WeakReference _cacheReference;
+        public IInverseCache InverseCache
+        {
+            get
+            {
+                if (_cacheReference == null || !_cacheReference.IsAlive)
+                    return null;
+                return _cacheReference.Target as IInverseCache;
+            }
+            private set
+            {
+                if (value == null)
+                {
+                    _cacheReference = null;
+                    return;
+                }
+                if (_cacheReference == null)
+                    _cacheReference = new WeakReference(value);
+                else
+                    _cacheReference.Target = value;
+            }
+        }
+
+        internal void HandleEntityChange(ChangeType changeType, IPersistEntity entity, int propertyOrder)
         {
             switch (changeType)
             {
@@ -336,7 +341,7 @@ namespace Xbim.IO.Memory
                     break;
                 case ChangeType.Modified:
                     if (EntityModified != null)
-                        EntityModified(entity);
+                        EntityModified(entity, propertyOrder);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("changeType", changeType, null);
@@ -347,27 +352,34 @@ namespace Xbim.IO.Memory
         {
             using (var file = File.OpenRead(path))
             {
-                LoadXml(file, progDelegate);
+                LoadXml(file, file.Length, progDelegate);
+                file.Close();
             }
         }
 
-        public virtual void LoadXml(Stream stream, ReportProgressDelegate progDelegate = null)
+        public virtual void LoadXml(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null)
         {
             _read.Clear();
-            using (var reader = XmlReader.Create(stream))
+            var schema = _entityFactory.SchemasIds.First();
+            if (string.Equals(schema, "IFC2X3", StringComparison.OrdinalIgnoreCase))
             {
-                var schema = _entityFactory.SchemasIds.First();
-                if (schema == "IFC2X3")
-                {
-                    var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
-                    Header = reader3.Read(reader);
-                }
-                else
-                {
-                    var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
-                    Header = xmlReader.Read(reader);       
-                }
+                var reader3 = new IfcXmlReader(GetOrCreateXMLEntity, entity => { }, Metadata);
+                if (progDelegate != null) reader3.ProgressStatus += progDelegate;
+                Header = reader3.Read(stream);
+                if (progDelegate != null) reader3.ProgressStatus -= progDelegate;
             }
+            else
+            {
+                var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
+                if (progDelegate != null) xmlReader.ProgressStatus += progDelegate;
+                Header = xmlReader.Read(stream);
+                if (progDelegate != null) xmlReader.ProgressStatus -= progDelegate;
+            }
+
+            if(Header.FileSchema.Schemas == null)
+                Header.FileSchema.Schemas = new List<string>();
+            if (!Header.FileSchema.Schemas.Any())
+                Header.FileSchema.Schemas.Add(schema);
 
             //purge
             _read.Clear();
@@ -386,12 +398,20 @@ namespace Xbim.IO.Memory
                         return ent;
         }
 
-        public virtual void LoadZip(string file, ReportProgressDelegate progDelegate = null)
+        /// <summary>
+        /// Loads the content of the model from ZIP archive. If the actual model file inside the archive is XML
+        /// it is supposed to have an extension containing 'XML' like '.ifcxml', '.stpxml' or similar.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="progDelegate"></param>
+        /// <returns>number of parsing errors for step files, -1 otherwise.</returns>
+        public virtual int LoadZip(string file, ReportProgressDelegate progDelegate = null)
         {
             using (var stream = File.OpenRead(file))
             {
-                LoadZip(stream, progDelegate);
+                var errors = LoadZip(stream, progDelegate);
                 stream.Close();
+                return errors;
             }
         }
 
@@ -401,51 +421,63 @@ namespace Xbim.IO.Memory
         /// </summary>
         /// <param name="stream">Input stream of the ZIP archive</param>
         /// <param name="progDelegate"></param>
-        public virtual void LoadZip(Stream stream, ReportProgressDelegate progDelegate = null)
+        /// <returns>number of parsing errors for step files, -1 otherwise.</returns>
+        public virtual int LoadZip(Stream stream, ReportProgressDelegate progDelegate = null)
         {
             using (var zipStream = new ZipInputStream(stream))
             {
                 var entry = zipStream.GetNextEntry();
-                while (entry != null)
+               
+                using (var zipFile = new ZipFile(stream))
                 {
-                    try
+                    while (entry != null)
                     {
-                        var extension = Path.GetExtension(entry.Name) ?? "";
-                        var xml = extension.ToLower().Contains("xml");
-                        using (var zipFile = new ZipFile(stream))
+                        if (!entry.IsFile) 
+                        {
+                            entry = zipStream.GetNextEntry();
+                            continue; 
+                        }
+                        try
                         {
                             using (var reader = zipFile.GetInputStream(entry))
                             {
+                                var errors = -1;
+                                var extension = Path.GetExtension(entry.Name) ?? "";
+                                var xml = extension.ToLower().Contains("xml");
                                 if (xml)
-                                    LoadXml(reader, progDelegate);
+                                    LoadXml(reader, entry.Size, progDelegate);
                                 else
-                                    LoadStep21(reader, progDelegate);
+                                    errors = LoadStep21(reader, entry.Size, progDelegate);
 
                                 reader.Close();
-                                zipFile.Close();
-                                zipStream.Close();
-                                return;
+                                return errors;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex.Message, ex);
+                            //if it crashed try next entry if available
+                            entry = zipStream.GetNextEntry();
+                        }
                     }
-                    catch (Exception)
-                    {
-                        //if it crashed try next entry if available
-                        entry = zipStream.GetNextEntry();
-                    }
+                    zipFile.Close();
                 }
+
+                zipStream.Close();
             }
+            return -1;
         }
 
         /// <summary>
         /// Opens the model from STEP21 file. 
         /// </summary>
         /// <param name="stream">Path to the file</param>
+        /// <param name="streamSize"></param>
         /// <param name="progDelegate"></param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
-        public virtual int LoadStep21(Stream stream, ReportProgressDelegate progDelegate=null)
+        public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate=null)
         {
-            var parser = new XbimP21Parser(stream, Metadata);
+            var parser = new XbimP21Parser(stream, Metadata, streamSize);
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             var first = true;
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
@@ -476,20 +508,60 @@ namespace Xbim.IO.Memory
                 if (first) 
                 {
                     first = false;
-                    if (!Header.FileSchema.Schemas.All(s => _instances.Factory.SchemasIds.Contains(s)))
-                        throw new Exception("Mismatch between schema defined in the file and schemas available in the data model.");
+                    //fix case if necessary
+                    for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
+                    {
+                        var id = Header.FileSchema.Schemas[i];
+                        var sid = _instances.Factory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.InvariantCultureIgnoreCase));
+                        if (sid == null)
+                            throw new Exception("Mismatch between schema defined in the file and schemas available in the data model.");
+
+                        //if the case is different set it to the one from entity factory
+                        if (id != sid)
+                            Header.FileSchema.Schemas[i] = sid;
+                    }
                 }
 
-                var typeId = Metadata.ExpressTypeId(name);
-                var ent = _instances.Factory.New(this, typeId, (int)label, true);
-                _instances.InternalAdd(ent);
+                // ignore entities of unknown type instead of throwing fatal exception
+                var type = Metadata.ExpressType(name);
+                if (null == type)
+                {
+                    Log.Error(string.Format("Error in file at label {0} for type {1} - type is unknown", label, name));
+                    return null;
+                }
 
+                var typeId = type.TypeId;
+                var ent = _instances.Factory.New(this, typeId, (int)label, true);
+
+                // if entity is null do not add so that the file load operation can survive an illegal entity
+                // e.g. an abstract class instantiation.
+                if (ent != null)
+                    _instances.InternalAdd(ent);
+                else
+                {
+                    var msg = string.Format("Error in file at label {0} for type {1}.", label, name);
+                    if (Metadata.ExpressType(typeId).Type.IsAbstract)
+                    {
+                        msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
+                    }
+                    Log.Error(msg);
+                }
+                
                 //make sure that new added entities will have higher labels to avoid any clashes
-                if (label >= _instances.NextLabel)
-                    _instances.NextLabel = (int)label + 1;
+                if (label >= _instances.CurrentLabel)
+                    _instances.CurrentLabel = (int)label;
                 return ent;
             };
-            parser.Parse();
+            try
+            {
+                parser.Parse();
+            }
+            catch (Exception e)
+            {
+                var position = parser.CurrentPosition;
+                throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}, see inner exception for details.", position.EndLine, position.EndColumn), e);
+            }
+            
             if (progDelegate != null) parser.ProgressStatus -= progDelegate;
             return parser.ErrorCount;
         }
@@ -504,7 +576,7 @@ namespace Xbim.IO.Memory
         {
             using (var stream = File.OpenRead(file))
             {
-                var result = LoadStep21(stream, progDelegate);
+                var result = LoadStep21(stream, stream.Length, progDelegate);
                 stream.Close();
                 return result;
             }
@@ -542,6 +614,12 @@ namespace Xbim.IO.Memory
 
         private IEnumerable<IPersistEntity> GetXmlOrderedEntities(string schema)
         {
+            if (schema != null && schema.ToUpper().Contains("COBIE"))
+            {
+                return Instances.OfType("Facility", true)
+                    .Concat(Instances);
+            }
+
             if (schema == null || !schema.StartsWith("IFC"))
                 return Instances;
 
@@ -607,14 +685,12 @@ namespace Xbim.IO.Memory
         /// <param name="progress"></param>
         public virtual void SaveAsStep21(TextWriter writer, ReportProgressDelegate progress = null)
         {
-            var part21Writer = new Part21FileWriter();
-            part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
+            Part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
         }
 
         public void Dispose()
         {
             _instances.Dispose();
-            _deteteCandidatesCache.Clear();
             _transactionReference = null;
         }
 
@@ -622,7 +698,7 @@ namespace Xbim.IO.Memory
         /// Inserts deep copy of an object into this model. The entity must originate from the same schema (the same EntityFactory). 
         /// This operation happens within a transaction which you have to handle yourself unless you set the parameter "noTransaction" to true.
         /// Insert will happen outside of transactional behaviour in that case. Resulting model is not guaranteed to be valid according to any
-        /// model view definition. However, it is granted to be consistent. You can optionaly bring in all inverse relationships. Be carefull as it
+        /// model view definition. However, it is granted to be consistent. You can optionally bring in all inverse relationships. Be careful as it
         /// might easily bring in almost full model.
         /// 
         /// </summary>
@@ -631,91 +707,48 @@ namespace Xbim.IO.Memory
         /// <param name="mappings">Mappings of previous inserts</param>
         /// <param name="includeInverses">Option if to bring in all inverse entities (enumerations in original entity)</param>
         /// <param name="keepLabels">Option if to keep entity labels the same</param>
-        /// <param name="propTransform">Optional delegate which you can use to filter the content which will get coppied over.</param>
-        /// <param name="noTransaction"></param>
+        /// <param name="propTransform">Optional delegate which you can use to filter the content which will get copied over.</param>
         /// <returns>Copy from this model</returns>
-        public T InsertCopy<T>(T toCopy, Dictionary<int, IPersistEntity> mappings, bool includeInverses, bool keepLabels = true, PropertyTranformDelegate propTransform = null, bool noTransaction = false) where T : IPersistEntity
+        public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
+           bool keepLabels) where T : IPersistEntity
+        {
+            return InsertCopy(toCopy, mappings, propTransform, includeInverses, keepLabels, false);
+        }
+
+        /// <summary>
+        /// Inserts deep copy of an object into this model. The entity must originate from the same schema (the same EntityFactory). 
+        /// This operation happens within a transaction which you have to handle yourself unless you set the parameter "noTransaction" to true.
+        /// Insert will happen outside of transactional behaviour in that case. Resulting model is not guaranteed to be valid according to any
+        /// model view definition. However, it is granted to be consistent. You can optionally bring in all inverse relationships. Be careful as it
+        /// might easily bring in almost full model.
+        /// 
+        /// </summary>
+        /// <typeparam name="T">Type of the copied entity</typeparam>
+        /// <param name="toCopy">Entity to be copied</param>
+        /// <param name="mappings">Mappings of previous inserts</param>
+        /// <param name="includeInverses">Option if to bring in all inverse entities (enumerations in original entity)</param>
+        /// <param name="keepLabels">Option if to keep entity labels the same</param>
+        /// <param name="propTransform">Optional delegate which you can use to filter the content which will get copied over.</param>
+        /// <param name="noTransaction">If TRUE all operations inside this function will happen out of transaction. 
+        /// Also no notifications will be fired from objects.</param>
+        /// <returns>Copy from this model</returns>
+        public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
+           bool keepLabels, bool noTransaction) where T : IPersistEntity
         {
             if (noTransaction)
                 IsTransactional = false;
+            T result;
             try
             {
-                var toCopyLabel = toCopy.EntityLabel;
-                IPersistEntity copy;
-                //try to get the value if it was created before
-                if (mappings.TryGetValue(toCopyLabel, out copy))
-                {
-                    return (T) copy;
-                }
-
-                var expressType = Metadata.ExpressType(toCopy);
-                copy = keepLabels ? _instances.New(toCopy.GetType(), toCopyLabel) : _instances.New(toCopy.GetType());
-                //key is the label in original model
-                mappings.Add(toCopyLabel, copy);
-
-                var props = expressType.Properties.Values.Where(p => !p.EntityAttribute.IsDerived);
-                if (includeInverses)
-                    props = props.Union(expressType.Inverses);
-
-                foreach (var prop in props)
-                {
-                    var value = propTransform != null ? propTransform(prop, toCopy) : prop.PropertyInfo.GetValue(toCopy, null);
-                    if (value == null) continue;
-
-                    var isInverse = (prop.EntityAttribute.Order == -1); //don't try and set the values for inverses
-                    var theType = value.GetType();
-                    //if it is an express type or a value type, set the value
-                    if (theType.IsValueType || typeof (ExpressType).IsAssignableFrom(theType))
-                    {
-                        prop.PropertyInfo.SetValue(copy, value, null);
-                    }
-                    else if (!isInverse && typeof (IPersistEntity).IsAssignableFrom(theType))
-                    {
-                        prop.PropertyInfo.SetValue(copy, InsertCopy((IPersistEntity) value, mappings, includeInverses, keepLabels, propTransform, noTransaction), null);
-                    }
-                    else if (!isInverse && typeof (IList).IsAssignableFrom(theType))
-                    {
-                        var itemType = theType.GetItemTypeFromGenericType();
-
-                        var copyColl = prop.PropertyInfo.GetValue(copy, null) as IList;
-                        if (copyColl == null)
-                            throw new Exception(string.Format("Unexpected collection type ({0}) found", itemType.Name));
-
-                        foreach (var item in (IList) value)
-                        {
-                            var actualItemType = item.GetType();
-                            if (actualItemType.IsValueType || typeof (ExpressType).IsAssignableFrom(actualItemType))
-                                copyColl.Add(item);
-                            else if (typeof (IPersistEntity).IsAssignableFrom(actualItemType))
-                            {
-                                var cpy = InsertCopy((IPersistEntity) item, mappings, includeInverses, keepLabels, propTransform, noTransaction);
-                                copyColl.Add(cpy);
-                            }
-                            else
-                                throw new Exception(string.Format("Unexpected collection item type ({0}) found", itemType.Name));
-                        }
-                    }
-                    else if (isInverse && value is IEnumerable<IPersistEntity>) //just an enumeration of IPersistEntity
-                    {
-                        foreach (var ent in (IEnumerable<IPersistEntity>) value)
-                        {
-                            InsertCopy(ent, mappings, includeInverses, keepLabels, propTransform, noTransaction);
-                        }
-                    }
-                    else if (isInverse && value is IPersistEntity) //it is an inverse and has a single value
-                    {
-                        InsertCopy((IPersistEntity) value, mappings, includeInverses, keepLabels, propTransform, noTransaction);
-                    }
-                    else
-                        throw new Exception(string.Format("Unexpected item type ({0})  found", theType.Name));
-                }
-                return (T) copy;
+                result = ModelHelper.InsertCopy(this, toCopy, mappings, propTransform, includeInverses, keepLabels,
+                    (type, i) => _instances.New(type, i));
             }
             finally
             {
                 //make sure model is transactional at the end again
                 IsTransactional = true;
             }
+            return result;
         }
 
 
@@ -738,7 +771,10 @@ namespace Xbim.IO.Memory
             get { return _instances.Select(e => new XbimInstanceHandle(this, e.EntityLabel)).ToList(); }
         }
 
-       
+        public IfcSchemaVersion SchemaVersion
+        {
+            get { return _entityFactory.SchemaVersion; }
+        }
     }
 
     /// <summary>

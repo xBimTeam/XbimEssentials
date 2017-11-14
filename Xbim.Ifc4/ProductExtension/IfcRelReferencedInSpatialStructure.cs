@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,44 +26,51 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelReferencedInSpatialStructure : IIfcRelConnects
 	{
-		IEnumerable<IIfcProduct> @RelatedElements { get; }
-		IIfcSpatialElement @RelatingStructure { get; }
+		IItemSet<IIfcProduct> @RelatedElements { get; }
+		IIfcSpatialElement @RelatingStructure { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcRelReferencedInSpatialStructure", 949)]
+	[ExpressType("IfcRelReferencedInSpatialStructure", 455)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelReferencedInSpatialStructure, IEqualityComparer<@IfcRelReferencedInSpatialStructure>, IEquatable<@IfcRelReferencedInSpatialStructure>
+	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelReferencedInSpatialStructure, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelReferencedInSpatialStructure>
 	{
 		#region IIfcRelReferencedInSpatialStructure explicit implementation
-		IEnumerable<IIfcProduct> IIfcRelReferencedInSpatialStructure.RelatedElements { get { return @RelatedElements; } }	
-		IIfcSpatialElement IIfcRelReferencedInSpatialStructure.RelatingStructure { get { return @RelatingStructure; } }	
+		IItemSet<IIfcProduct> IIfcRelReferencedInSpatialStructure.RelatedElements { 
+			get { return new Common.Collections.ProxyItemSet<IfcProduct, IIfcProduct>( @RelatedElements); } 
+		}	
+		IIfcSpatialElement IIfcRelReferencedInSpatialStructure.RelatingStructure { 
+ 
+ 
+			get { return @RelatingStructure; } 
+			set { RelatingStructure = value as IfcSpatialElement;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelReferencedInSpatialStructure(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedElements = new ItemSet<IfcProduct>( this, 0 );
+		internal IfcRelReferencedInSpatialStructure(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedElements = new ItemSet<IfcProduct>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProduct> _relatedElements;
+		private readonly ItemSet<IfcProduct> _relatedElements;
 		private IfcSpatialElement _relatingStructure;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcProduct> @RelatedElements 
+		public IItemSet<IfcProduct> @RelatedElements 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedElements;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedElements;
+				Activate();
 				return _relatedElements;
 			} 
 		}	
@@ -71,13 +80,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingStructure;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingStructure;
+				Activate();
 				return _relatingStructure;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingStructure = v, _relatingStructure, value,  "RelatingStructure");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingStructure = v, _relatingStructure, value,  "RelatingStructure", 6);
 			} 
 		}	
 		#endregion
@@ -85,9 +96,8 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -98,7 +108,6 @@ namespace Xbim.Ifc4.ProductExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 4: 
-					if (_relatedElements == null) _relatedElements = new ItemSet<IfcProduct>( this );
 					_relatedElements.InternalAdd((IfcProduct)value.EntityVal);
 					return;
 				case 5: 
@@ -108,12 +117,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : SIZEOF(QUERY(temp <* RelatedElements | 'IFC4.IFCSPATIALSTRUCTUREELEMENT' IN TYPEOF(temp))) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -121,55 +124,37 @@ namespace Xbim.Ifc4.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelReferencedInSpatialStructure
-            var root = (@IfcRelReferencedInSpatialStructure)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelReferencedInSpatialStructure left, @IfcRelReferencedInSpatialStructure right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelReferencedInSpatialStructure left, @IfcRelReferencedInSpatialStructure right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelReferencedInSpatialStructure x, @IfcRelReferencedInSpatialStructure y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelReferencedInSpatialStructure obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedElements)
+					yield return entity;
+				if (@RelatingStructure != null)
+					yield return @RelatingStructure;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedElements)
+					yield return entity;
+				if (@RelatingStructure != null)
+					yield return @RelatingStructure;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

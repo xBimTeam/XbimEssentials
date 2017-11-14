@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,36 +26,46 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcComplexPropertyTemplate : IIfcPropertyTemplate
 	{
-		IfcLabel? @UsageName { get; }
-		IfcComplexPropertyTemplateTypeEnum? @TemplateType { get; }
-		IEnumerable<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
+		IfcLabel? @UsageName { get;  set; }
+		IfcComplexPropertyTemplateTypeEnum? @TemplateType { get;  set; }
+		IItemSet<IIfcPropertyTemplate> @HasPropertyTemplates { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcComplexPropertyTemplate", 506)]
+	[ExpressType("IfcComplexPropertyTemplate", 1129)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IEqualityComparer<@IfcComplexPropertyTemplate>, IEquatable<@IfcComplexPropertyTemplate>
+	public  partial class @IfcComplexPropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcComplexPropertyTemplate, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcComplexPropertyTemplate>
 	{
 		#region IIfcComplexPropertyTemplate explicit implementation
-		IfcLabel? IIfcComplexPropertyTemplate.UsageName { get { return @UsageName; } }	
-		IfcComplexPropertyTemplateTypeEnum? IIfcComplexPropertyTemplate.TemplateType { get { return @TemplateType; } }	
-		IEnumerable<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { get { return @HasPropertyTemplates; } }	
+		IfcLabel? IIfcComplexPropertyTemplate.UsageName { 
+ 
+			get { return @UsageName; } 
+			set { UsageName = value;}
+		}	
+		IfcComplexPropertyTemplateTypeEnum? IIfcComplexPropertyTemplate.TemplateType { 
+ 
+			get { return @TemplateType; } 
+			set { TemplateType = value;}
+		}	
+		IItemSet<IIfcPropertyTemplate> IIfcComplexPropertyTemplate.HasPropertyTemplates { 
+			get { return new Common.Collections.ProxyItemSet<IfcPropertyTemplate, IIfcPropertyTemplate>( @HasPropertyTemplates); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcComplexPropertyTemplate(IModel model) : base(model) 		{ 
-			Model = model; 
-			_hasPropertyTemplates = new OptionalItemSet<IfcPropertyTemplate>( this, 0 );
+		internal IfcComplexPropertyTemplate(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_hasPropertyTemplates = new OptionalItemSet<IfcPropertyTemplate>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _usageName;
 		private IfcComplexPropertyTemplateTypeEnum? _templateType;
-		private OptionalItemSet<IfcPropertyTemplate> _hasPropertyTemplates;
+		private readonly OptionalItemSet<IfcPropertyTemplate> _hasPropertyTemplates;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -62,13 +74,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usageName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usageName;
+				Activate();
 				return _usageName;
 			} 
 			set
 			{
-				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
+				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
@@ -76,23 +88,23 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _templateType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _templateType;
+				Activate();
 				return _templateType;
 			} 
 			set
 			{
-				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType");
+				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType", 6);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
-		public OptionalItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
+		public IOptionalItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasPropertyTemplates;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasPropertyTemplates;
+				Activate();
 				return _hasPropertyTemplates;
 			} 
 		}	
@@ -101,9 +113,8 @@ namespace Xbim.Ifc4.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -120,19 +131,11 @@ namespace Xbim.Ifc4.Kernel
                     _templateType = (IfcComplexPropertyTemplateTypeEnum) System.Enum.Parse(typeof (IfcComplexPropertyTemplateTypeEnum), value.EnumVal, true);
 					return;
 				case 6: 
-					if (_hasPropertyTemplates == null) _hasPropertyTemplates = new OptionalItemSet<IfcPropertyTemplate>( this );
 					_hasPropertyTemplates.InternalAdd((IfcPropertyTemplate)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*UniquePropertyNames:	UniquePropertyNames : IfcUniquePropertyTemplateNames(HasPropertyTemplates);*/
-		/*NoSelfReference:	NoSelfReference : SIZEOF(QUERY(temp <* HasPropertyTemplates | SELF :=: temp)) = 0;*/
 		}
 		#endregion
 
@@ -141,55 +144,33 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcComplexPropertyTemplate
-            var root = (@IfcComplexPropertyTemplate)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcComplexPropertyTemplate left, @IfcComplexPropertyTemplate right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcComplexPropertyTemplate left, @IfcComplexPropertyTemplate right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcComplexPropertyTemplate x, @IfcComplexPropertyTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcComplexPropertyTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertyTemplates)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertyTemplates)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

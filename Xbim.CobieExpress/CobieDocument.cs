@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,42 +25,82 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieDocument : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieDocumentType @DocumentType { get; }
-		ICobieApprovalType @ApprovalType { get; }
-		ICobieStageType @Stage { get; }
-		string @URL { get; }
-		string @Reference { get; }
-		string @Directory { get; }
-		string @File { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieDocumentType @DocumentType { get;  set; }
+		ICobieApprovalType @ApprovalType { get;  set; }
+		ICobieStageType @Stage { get;  set; }
+		string @URL { get;  set; }
+		string @Reference { get;  set; }
+		string @Directory { get;  set; }
+		string @File { get;  set; }
+		IEnumerable<ICobieAsset> @RelatedAssets {  get; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Document", 29)]
+	[ExpressType("Document", 30)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IEqualityComparer<@CobieDocument>, IEquatable<@CobieDocument>
+	public  partial class @CobieDocument : CobieReferencedObject, IInstantiableEntity, ICobieDocument, IContainsEntityReferences, IEquatable<@CobieDocument>
 	{
 		#region ICobieDocument explicit implementation
-		string ICobieDocument.Name { get { return @Name; } }	
-		string ICobieDocument.Description { get { return @Description; } }	
-		ICobieDocumentType ICobieDocument.DocumentType { get { return @DocumentType; } }	
-		ICobieApprovalType ICobieDocument.ApprovalType { get { return @ApprovalType; } }	
-		ICobieStageType ICobieDocument.Stage { get { return @Stage; } }	
-		string ICobieDocument.URL { get { return @URL; } }	
-		string ICobieDocument.Reference { get { return @Reference; } }	
-		string ICobieDocument.Directory { get { return @Directory; } }	
-		string ICobieDocument.File { get { return @File; } }	
+		string ICobieDocument.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieDocument.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieDocumentType ICobieDocument.DocumentType { 
+ 
+ 
+			get { return @DocumentType; } 
+			set { DocumentType = value as CobieDocumentType;}
+		}	
+		ICobieApprovalType ICobieDocument.ApprovalType { 
+ 
+ 
+			get { return @ApprovalType; } 
+			set { ApprovalType = value as CobieApprovalType;}
+		}	
+		ICobieStageType ICobieDocument.Stage { 
+ 
+ 
+			get { return @Stage; } 
+			set { Stage = value as CobieStageType;}
+		}	
+		string ICobieDocument.URL { 
+ 
+			get { return @URL; } 
+			set { URL = value;}
+		}	
+		string ICobieDocument.Reference { 
+ 
+			get { return @Reference; } 
+			set { Reference = value;}
+		}	
+		string ICobieDocument.Directory { 
+ 
+			get { return @Directory; } 
+			set { Directory = value;}
+		}	
+		string ICobieDocument.File { 
+ 
+			get { return @File; } 
+			set { File = value;}
+		}	
 		 
+		IEnumerable<ICobieAsset> ICobieDocument.RelatedAssets {  get { return @RelatedAssets; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieDocument(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal CobieDocument(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -79,13 +121,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -93,55 +135,61 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieDocumentType @DocumentType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _documentType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _documentType;
+				Activate();
 				return _documentType;
 			} 
 			set
 			{
-				SetValue( v =>  _documentType = v, _documentType, value,  "DocumentType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _documentType = v, _documentType, value,  "DocumentType", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieApprovalType @ApprovalType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _approvalType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _approvalType;
+				Activate();
 				return _approvalType;
 			} 
 			set
 			{
-				SetValue( v =>  _approvalType = v, _approvalType, value,  "ApprovalType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _approvalType = v, _approvalType, value,  "ApprovalType", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobieStageType @Stage 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _stage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _stage;
+				Activate();
 				return _stage;
 			} 
 			set
 			{
-				SetValue( v =>  _stage = v, _stage, value,  "Stage");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _stage = v, _stage, value,  "Stage", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -149,13 +197,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uRL;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uRL;
+				Activate();
 				return _uRL;
 			} 
 			set
 			{
-				SetValue( v =>  _uRL = v, _uRL, value,  "URL");
+				SetValue( v =>  _uRL = v, _uRL, value,  "URL", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -163,51 +211,61 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reference;
+				Activate();
 				return _reference;
 			} 
 			set
 			{
-				SetValue( v =>  _reference = v, _reference, value,  "Reference");
+				SetValue( v =>  _reference = v, _reference, value,  "Reference", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public string @Directory 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directory;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directory;
+				Activate();
 				return _directory;
 			} 
 			set
 			{
-				SetValue( v =>  _directory = v, _directory, value,  "Directory");
+				SetValue( v =>  _directory = v, _directory, value,  "Directory", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
 		public string @File 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _file;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _file;
+				Activate();
 				return _file;
 			} 
 			set
 			{
-				SetValue( v =>  _file = v, _file, value,  "File");
+				SetValue( v =>  _file = v, _file, value,  "File", 14);
 			} 
 		}	
 		#endregion
 
 
 
-
+		#region Inverse attributes
+		[InverseProperty("Documents")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 15)]
+		public IEnumerable<CobieAsset> @RelatedAssets 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieAsset>(e => e.Documents != null &&  e.Documents.Contains(this), "Documents", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -249,11 +307,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -261,55 +314,28 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieDocument
-            var root = (@CobieDocument)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieDocument left, @CobieDocument right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieDocument left, @CobieDocument right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieDocument x, @CobieDocument y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieDocument obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@DocumentType != null)
+					yield return @DocumentType;
+				if (@ApprovalType != null)
+					yield return @ApprovalType;
+				if (@Stage != null)
+					yield return @Stage;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

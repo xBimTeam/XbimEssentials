@@ -10,73 +10,136 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialLayerSetUsage : IIfcMaterialLayerSetUsage
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 1)]
 		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet 
 		{ 
 			get
 			{
 				return ForLayerSet;
 			} 
+			set
+			{
+				ForLayerSet = value as IfcMaterialLayerSet;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 2)]
 		Ifc4.Interfaces.IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of LayerSetDirection
+				//##
 				switch (LayerSetDirection)
 				{
 					case IfcLayerSetDirectionEnum.AXIS1:
 						return Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS1;
-					
 					case IfcLayerSetDirectionEnum.AXIS2:
 						return Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS2;
-					
 					case IfcLayerSetDirectionEnum.AXIS3:
 						return Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS3;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of LayerSetDirection
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS1:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS1;
+						return;
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS2:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS2;
+						return;
+					case Ifc4.Interfaces.IfcLayerSetDirectionEnum.AXIS3:
+						LayerSetDirection = IfcLayerSetDirectionEnum.AXIS3;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 3)]
 		Ifc4.Interfaces.IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of DirectionSense
+				//##
 				switch (DirectionSense)
 				{
 					case IfcDirectionSenseEnum.POSITIVE:
 						return Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE;
-					
 					case IfcDirectionSenseEnum.NEGATIVE:
 						return Ifc4.Interfaces.IfcDirectionSenseEnum.NEGATIVE;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of DirectionSense
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE:
+						DirectionSense = IfcDirectionSenseEnum.POSITIVE;
+						return;
+					case Ifc4.Interfaces.IfcDirectionSenseEnum.NEGATIVE:
+						DirectionSense = IfcDirectionSenseEnum.NEGATIVE;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(OffsetFromReferenceLine);
 			} 
+			set
+			{
+				OffsetFromReferenceLine = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _referenceExtent;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSetUsage), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMaterialLayerSetUsage.ReferenceExtent 
 		{ 
 			get
 			{
-				//## Handle return of ReferenceExtent for which no match was found
-			    return null;
-			    //##
+				return _referenceExtent;
 			} 
+			set
+			{
+				SetValue(v => _referenceExtent = v, _referenceExtent, value, "ReferenceExtent", -5);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialUsageDefinition.AssociatedTo 
 		{ 

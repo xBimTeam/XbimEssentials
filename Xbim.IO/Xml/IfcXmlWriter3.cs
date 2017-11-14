@@ -301,7 +301,7 @@ namespace Xbim.IO.Xml
             {
                 var properties = ((IExpressComplexType)propVal).Properties;
             }
-            else if (propType.IsValueType) //it might be an in-built value type double, string etc
+            else if (propType.IsValueType || propType == typeof(string) || propType == typeof(byte[])) //it might be an in-built value type double, string etc
             {
                 var pInfoType = propVal.GetType();
 
@@ -371,6 +371,23 @@ namespace Xbim.IO.Xml
                     else
                         output.WriteStartElement(propName);
                     output.WriteValue(string.Format(new Part21Formatter(), "{0}", propVal));
+                }
+                else if (pInfoType.UnderlyingSystemType == typeof(byte[])) //convert  byte array
+                {
+                    if (pos > -1)
+                    {
+                        output.WriteStartElement("ex", "hexBinary-wrapper", null);
+                        output.WriteAttributeString("pos", pos.ToString());
+                    }
+                    else
+                        output.WriteStartElement(propName);
+
+                    var ba = (byte[])propVal;
+                    var hex = new System.Text.StringBuilder(ba.Length * 2);
+                    foreach (byte b in ba)
+                        hex.AppendFormat("{0:X2}", b);
+
+                    output.WriteValue(hex.ToString());
                 }
 
                 else

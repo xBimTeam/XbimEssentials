@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionCurveGeometry : IIfcConnectionCurveGeometry
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionCurveGeometry), 1)]
 		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement 
 		{ 
 			get
@@ -29,7 +32,30 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcedgecurve;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					CurveOnRelatingElement = null;
+					return;
+				}	
+				var ifcboundedcurve = value as GeometryResource.IfcBoundedCurve;
+				if (ifcboundedcurve != null) 
+				{
+					CurveOnRelatingElement = ifcboundedcurve;
+					return;
+				}
+				var ifcedgecurve = value as TopologyResource.IfcEdgeCurve;
+				if (ifcedgecurve != null) 
+				{
+					CurveOnRelatingElement = ifcedgecurve;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionCurveGeometry), 2)]
 		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement 
 		{ 
 			get
@@ -43,6 +69,27 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcedgecurve;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					CurveOnRelatedElement = null;
+					return;
+				}	
+				var ifcboundedcurve = value as GeometryResource.IfcBoundedCurve;
+				if (ifcboundedcurve != null) 
+				{
+					CurveOnRelatedElement = ifcboundedcurve;
+					return;
+				}
+				var ifcedgecurve = value as TopologyResource.IfcEdgeCurve;
+				if (ifcedgecurve != null) 
+				{
+					CurveOnRelatedElement = ifcedgecurve;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

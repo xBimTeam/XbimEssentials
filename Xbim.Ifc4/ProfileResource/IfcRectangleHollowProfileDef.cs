@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,29 +26,41 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangleHollowProfileDef : IIfcRectangleProfileDef
 	{
-		IfcPositiveLengthMeasure @WallThickness { get; }
-		IfcNonNegativeLengthMeasure? @InnerFilletRadius { get; }
-		IfcNonNegativeLengthMeasure? @OuterFilletRadius { get; }
+		IfcPositiveLengthMeasure @WallThickness { get;  set; }
+		IfcNonNegativeLengthMeasure? @InnerFilletRadius { get;  set; }
+		IfcNonNegativeLengthMeasure? @OuterFilletRadius { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IfcRectangleHollowProfileDef", 894)]
+	[ExpressType("IfcRectangleHollowProfileDef", 562)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IEqualityComparer<@IfcRectangleHollowProfileDef>, IEquatable<@IfcRectangleHollowProfileDef>
+	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IContainsEntityReferences, IEquatable<@IfcRectangleHollowProfileDef>
 	{
 		#region IIfcRectangleHollowProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { get { return @WallThickness; } }	
-		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { get { return @InnerFilletRadius; } }	
-		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { get { return @OuterFilletRadius; } }	
+		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { 
+ 
+			get { return @WallThickness; } 
+			set { WallThickness = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { 
+ 
+			get { return @InnerFilletRadius; } 
+			set { InnerFilletRadius = value;}
+		}	
+		IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { 
+ 
+			get { return @OuterFilletRadius; } 
+			set { OuterFilletRadius = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRectangleHollowProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRectangleHollowProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wallThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wallThickness;
+				Activate();
 				return _wallThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness");
+				SetValue( v =>  _wallThickness = v, _wallThickness, value,  "WallThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerFilletRadius;
+				Activate();
 				return _innerFilletRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _innerFilletRadius = v, _innerFilletRadius, value,  "InnerFilletRadius");
+				SetValue( v =>  _innerFilletRadius = v, _innerFilletRadius, value,  "InnerFilletRadius", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _outerFilletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _outerFilletRadius;
+				Activate();
 				return _outerFilletRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _outerFilletRadius = v, _outerFilletRadius, value,  "OuterFilletRadius");
+				SetValue( v =>  _outerFilletRadius = v, _outerFilletRadius, value,  "OuterFilletRadius", 8);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc4.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -129,14 +142,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ValidWallThickness:(WallThickness < (SELF\IfcRectangleProfileDef.YDim/2.));*/
-		/*ValidInnerRadius: (InnerFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2. - WallThickness)));*/
-		/*ValidOuterRadius: (OuterFilletRadius <= (SELF\IfcRectangleProfileDef.YDim/2.)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -144,55 +149,18 @@ namespace Xbim.Ifc4.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRectangleHollowProfileDef
-            var root = (@IfcRectangleHollowProfileDef)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRectangleHollowProfileDef left, @IfcRectangleHollowProfileDef right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRectangleHollowProfileDef left, @IfcRectangleHollowProfileDef right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRectangleHollowProfileDef x, @IfcRectangleHollowProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangleHollowProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

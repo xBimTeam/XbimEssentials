@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator2DnonUniform : IIfcCartesianTransformationOperator2DnonUniform
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator2DnonUniform), 5)]
 		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator2DnonUniform.Scale2 
 		{ 
 			get
@@ -24,6 +27,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return Scale2.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale2.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 				//##
 			} 
+			set
+			{
+				Scale2 = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal IIfcCartesianTransformationOperator2DnonUniform.Scl2 
 		{

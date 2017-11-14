@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,98 +28,58 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAppliedValueRelationship : IPersistEntity
 	{
-		IIfcAppliedValue @ComponentOfTotal { get; }
-		IEnumerable<IIfcAppliedValue> @Components { get; }
-		IfcArithmeticOperatorEnum @ArithmeticOperator { get; }
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
+		IIfcAppliedValue @ComponentOfTotal { get;  set; }
+		IItemSet<IIfcAppliedValue> @Components { get; }
+		IfcArithmeticOperatorEnum @ArithmeticOperator { get;  set; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc2x3.CostResource
 {
-	[IndexedClass]
 	[ExpressType("IfcAppliedValueRelationship", 691)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValueRelationship : INotifyPropertyChanged, IInstantiableEntity, IIfcAppliedValueRelationship, IEqualityComparer<@IfcAppliedValueRelationship>, IEquatable<@IfcAppliedValueRelationship>
+	public  partial class @IfcAppliedValueRelationship : PersistEntity, IInstantiableEntity, IIfcAppliedValueRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAppliedValueRelationship>
 	{
 		#region IIfcAppliedValueRelationship explicit implementation
-		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { get { return @ComponentOfTotal; } }	
-		IEnumerable<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { get { return @Components; } }	
-		IfcArithmeticOperatorEnum IIfcAppliedValueRelationship.ArithmeticOperator { get { return @ArithmeticOperator; } }	
-		IfcLabel? IIfcAppliedValueRelationship.Name { get { return @Name; } }	
-		IfcText? IIfcAppliedValueRelationship.Description { get { return @Description; } }	
+		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { 
+ 
+ 
+			get { return @ComponentOfTotal; } 
+			set { ComponentOfTotal = value as IfcAppliedValue;}
+		}	
+		IItemSet<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { 
+			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @Components); } 
+		}	
+		IfcArithmeticOperatorEnum IIfcAppliedValueRelationship.ArithmeticOperator { 
+ 
+			get { return @ArithmeticOperator; } 
+			set { ArithmeticOperator = value;}
+		}	
+		IfcLabel? IIfcAppliedValueRelationship.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		IfcText? IIfcAppliedValueRelationship.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAppliedValueRelationship(IModel model) 		{ 
-			Model = model; 
-			_components = new ItemSet<IfcAppliedValue>( this, 0 );
+		internal IfcAppliedValueRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_components = new ItemSet<IfcAppliedValue>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcAppliedValue _componentOfTotal;
-		private ItemSet<IfcAppliedValue> _components;
+		private readonly ItemSet<IfcAppliedValue> _components;
 		private IfcArithmeticOperatorEnum _arithmeticOperator;
 		private IfcLabel? _name;
 		private IfcText? _description;
@@ -130,23 +92,25 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _componentOfTotal;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _componentOfTotal;
+				Activate();
 				return _componentOfTotal;
 			} 
 			set
 			{
-				SetValue( v =>  _componentOfTotal = v, _componentOfTotal, value,  "ComponentOfTotal");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _componentOfTotal = v, _componentOfTotal, value,  "ComponentOfTotal", 1);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcAppliedValue> @Components 
+		public IItemSet<IfcAppliedValue> @Components 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _components;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _components;
+				Activate();
 				return _components;
 			} 
 		}	
@@ -155,13 +119,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _arithmeticOperator;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _arithmeticOperator;
+				Activate();
 				return _arithmeticOperator;
 			} 
 			set
 			{
-				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator");
+				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -169,13 +133,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -183,13 +147,13 @@ namespace Xbim.Ifc2x3.CostResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 5);
 			} 
 		}	
 		#endregion
@@ -197,58 +161,8 @@ namespace Xbim.Ifc2x3.CostResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -256,7 +170,6 @@ namespace Xbim.Ifc2x3.CostResource
 					_componentOfTotal = (IfcAppliedValue)(value.EntityVal);
 					return;
 				case 1: 
-					if (_components == null) _components = new ItemSet<IfcAppliedValue>( this );
 					_components.InternalAdd((IfcAppliedValue)value.EntityVal);
 					return;
 				case 2: 
@@ -272,11 +185,6 @@ namespace Xbim.Ifc2x3.CostResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -284,55 +192,35 @@ namespace Xbim.Ifc2x3.CostResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcAppliedValueRelationship
-            var root = (@IfcAppliedValueRelationship)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcAppliedValueRelationship left, @IfcAppliedValueRelationship right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcAppliedValueRelationship left, @IfcAppliedValueRelationship right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAppliedValueRelationship x, @IfcAppliedValueRelationship y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAppliedValueRelationship obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ComponentOfTotal != null)
+					yield return @ComponentOfTotal;
+				foreach(var entity in @Components)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ComponentOfTotal != null)
+					yield return @ComponentOfTotal;
+				foreach(var entity in @Components)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

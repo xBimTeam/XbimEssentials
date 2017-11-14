@@ -10,30 +10,52 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcProfileDef : IIfcProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProfileDef), 1)]
 		Ifc4.Interfaces.IfcProfileTypeEnum IIfcProfileDef.ProfileType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of ProfileType
+				//##
 				switch (ProfileType)
 				{
 					case IfcProfileTypeEnum.CURVE:
 						return Ifc4.Interfaces.IfcProfileTypeEnum.CURVE;
-					
 					case IfcProfileTypeEnum.AREA:
 						return Ifc4.Interfaces.IfcProfileTypeEnum.AREA;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of ProfileType
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcProfileTypeEnum.CURVE:
+						ProfileType = IfcProfileTypeEnum.CURVE;
+						return;
+					case Ifc4.Interfaces.IfcProfileTypeEnum.AREA:
+						ProfileType = IfcProfileTypeEnum.AREA;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProfileDef), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcProfileDef.ProfileName 
 		{ 
 			get
@@ -41,6 +63,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!ProfileName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(ProfileName.Value);
 			} 
+			set
+			{
+				ProfileName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference 
 		{ 

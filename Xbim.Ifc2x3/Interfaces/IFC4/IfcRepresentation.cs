@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcRepresentation : IIfcRepresentation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentation), 1)]
 		IIfcRepresentationContext IIfcRepresentation.ContextOfItems 
 		{ 
 			get
 			{
 				return ContextOfItems;
 			} 
+			set
+			{
+				ContextOfItems = value as IfcRepresentationContext;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentation), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationIdentifier 
 		{ 
 			get
@@ -30,7 +40,16 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!RepresentationIdentifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(RepresentationIdentifier.Value);
 			} 
+			set
+			{
+				RepresentationIdentifier = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentation), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRepresentation.RepresentationType 
 		{ 
 			get
@@ -38,15 +57,22 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!RepresentationType.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(RepresentationType.Value);
 			} 
+			set
+			{
+				RepresentationType = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<IIfcRepresentationItem> IIfcRepresentation.Items 
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentation), 4)]
+		IItemSet<IIfcRepresentationItem> IIfcRepresentation.Items 
 		{ 
 			get
 			{
-				foreach (var member in Items)
-				{
-					yield return member as IIfcRepresentationItem;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcRepresentationItem, IIfcRepresentationItem>(Items);
 			} 
 		}
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap 

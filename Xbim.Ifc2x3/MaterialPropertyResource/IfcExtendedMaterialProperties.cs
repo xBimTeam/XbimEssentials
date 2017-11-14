@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExtendedMaterialProperties : IIfcMaterialProperties
 	{
-		IEnumerable<IIfcProperty> @ExtendedProperties { get; }
-		IfcText? @Description { get; }
-		IfcLabel @Name { get; }
+		IItemSet<IIfcProperty> @ExtendedProperties { get; }
+		IfcText? @Description { get;  set; }
+		IfcLabel @Name { get;  set; }
 	
 	}
 }
@@ -36,35 +38,45 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcExtendedMaterialProperties", 585)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IEqualityComparer<@IfcExtendedMaterialProperties>, IEquatable<@IfcExtendedMaterialProperties>
+	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IContainsEntityReferences, IEquatable<@IfcExtendedMaterialProperties>
 	{
 		#region IIfcExtendedMaterialProperties explicit implementation
-		IEnumerable<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { get { return @ExtendedProperties; } }	
-		IfcText? IIfcExtendedMaterialProperties.Description { get { return @Description; } }	
-		IfcLabel IIfcExtendedMaterialProperties.Name { get { return @Name; } }	
+		IItemSet<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @ExtendedProperties); } 
+		}	
+		IfcText? IIfcExtendedMaterialProperties.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IfcLabel IIfcExtendedMaterialProperties.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcExtendedMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
-			_extendedProperties = new ItemSet<IfcProperty>( this, 0 );
+		internal IfcExtendedMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_extendedProperties = new ItemSet<IfcProperty>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProperty> _extendedProperties;
+		private readonly ItemSet<IfcProperty> _extendedProperties;
 		private IfcText? _description;
 		private IfcLabel _name;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
-		public ItemSet<IfcProperty> @ExtendedProperties 
+		public IItemSet<IfcProperty> @ExtendedProperties 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _extendedProperties;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _extendedProperties;
+				Activate();
 				return _extendedProperties;
 			} 
 		}	
@@ -73,13 +85,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -87,13 +99,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		#endregion
@@ -101,9 +113,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -111,7 +122,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					if (_extendedProperties == null) _extendedProperties = new ItemSet<IfcProperty>( this );
 					_extendedProperties.InternalAdd((IfcProperty)value.EntityVal);
 					return;
 				case 2: 
@@ -124,11 +134,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -136,55 +141,20 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcExtendedMaterialProperties
-            var root = (@IfcExtendedMaterialProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcExtendedMaterialProperties left, @IfcExtendedMaterialProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcExtendedMaterialProperties left, @IfcExtendedMaterialProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExtendedMaterialProperties x, @IfcExtendedMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExtendedMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				foreach(var entity in @ExtendedProperties)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,28 +10,36 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcRelFlowControlElements : IIfcRelFlowControlElements
 	{
-		IEnumerable<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements 
+
+		[CrossSchemaAttribute(typeof(IIfcRelFlowControlElements), 5)]
+		IItemSet<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements 
 		{ 
 			get
 			{
-				foreach (var member in RelatedControlElements)
-				{
-					yield return member as IIfcDistributionControlElement;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcDistributionControlElement, IIfcDistributionControlElement>(RelatedControlElements);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelFlowControlElements), 6)]
 		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement 
 		{ 
 			get
 			{
 				return RelatingFlowElement;
 			} 
+			set
+			{
+				RelatingFlowElement = value as IfcDistributionFlowElement;
+				
+			}
 		}
 	//## Custom code
 	//##

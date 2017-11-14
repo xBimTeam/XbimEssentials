@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcProperty : IIfcProperty
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProperty), 1)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcProperty.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcIdentifier(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProperty), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcProperty.Description 
 		{ 
 			get
@@ -30,6 +40,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		IEnumerable<IIfcPropertySet> IIfcProperty.PartOfPset 
 		{ 
@@ -81,6 +98,7 @@ namespace Xbim.Ifc2x3.PropertyResource
 			} 
 		}
 	//## Custom code
+        
 	//##
 	}
 }

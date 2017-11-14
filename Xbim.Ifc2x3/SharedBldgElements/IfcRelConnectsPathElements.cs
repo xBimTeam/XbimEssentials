@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsPathElements : IIfcRelConnectsElements
 	{
-		IEnumerable<long> @RelatingPriorities { get; }
-		IEnumerable<long> @RelatedPriorities { get; }
-		IfcConnectionTypeEnum @RelatedConnectionType { get; }
-		IfcConnectionTypeEnum @RelatingConnectionType { get; }
+		IItemSet<long> @RelatingPriorities { get; }
+		IItemSet<long> @RelatedPriorities { get; }
+		IfcConnectionTypeEnum @RelatedConnectionType { get;  set; }
+		IfcConnectionTypeEnum @RelatingConnectionType { get;  set; }
 	
 	}
 }
@@ -36,48 +38,60 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRelConnectsPathElements", 668)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IEqualityComparer<@IfcRelConnectsPathElements>, IEquatable<@IfcRelConnectsPathElements>
+	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPathElements>
 	{
 		#region IIfcRelConnectsPathElements explicit implementation
-		IEnumerable<long> IIfcRelConnectsPathElements.RelatingPriorities { get { return @RelatingPriorities; } }	
-		IEnumerable<long> IIfcRelConnectsPathElements.RelatedPriorities { get { return @RelatedPriorities; } }	
-		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { get { return @RelatedConnectionType; } }	
-		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { get { return @RelatingConnectionType; } }	
+		IItemSet<long> IIfcRelConnectsPathElements.RelatingPriorities { 
+			get { return @RelatingPriorities; } 
+		}	
+		IItemSet<long> IIfcRelConnectsPathElements.RelatedPriorities { 
+			get { return @RelatedPriorities; } 
+		}	
+		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { 
+ 
+			get { return @RelatedConnectionType; } 
+			set { RelatedConnectionType = value;}
+		}	
+		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { 
+ 
+			get { return @RelatingConnectionType; } 
+			set { RelatingConnectionType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelConnectsPathElements(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatingPriorities = new ItemSet<long>( this, 0 );
-			_relatedPriorities = new ItemSet<long>( this, 0 );
+		internal IfcRelConnectsPathElements(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatingPriorities = new ItemSet<long>( this, 0,  8);
+			_relatedPriorities = new ItemSet<long>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<long> _relatingPriorities;
-		private ItemSet<long> _relatedPriorities;
+		private readonly ItemSet<long> _relatingPriorities;
+		private readonly ItemSet<long> _relatedPriorities;
 		private IfcConnectionTypeEnum _relatedConnectionType;
 		private IfcConnectionTypeEnum _relatingConnectionType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 8)]
-		public ItemSet<long> @RelatingPriorities 
+		public IItemSet<long> @RelatingPriorities 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingPriorities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingPriorities;
+				Activate();
 				return _relatingPriorities;
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 9)]
-		public ItemSet<long> @RelatedPriorities 
+		public IItemSet<long> @RelatedPriorities 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedPriorities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedPriorities;
+				Activate();
 				return _relatedPriorities;
 			} 
 		}	
@@ -86,13 +100,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedConnectionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedConnectionType;
+				Activate();
 				return _relatedConnectionType;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedConnectionType = v, _relatedConnectionType, value,  "RelatedConnectionType");
+				SetValue( v =>  _relatedConnectionType = v, _relatedConnectionType, value,  "RelatedConnectionType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -100,13 +114,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingConnectionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingConnectionType;
+				Activate();
 				return _relatingConnectionType;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingConnectionType = v, _relatingConnectionType, value,  "RelatingConnectionType");
+				SetValue( v =>  _relatingConnectionType = v, _relatingConnectionType, value,  "RelatingConnectionType", 11);
 			} 
 		}	
 		#endregion
@@ -114,9 +128,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -130,11 +143,9 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_relatingPriorities == null) _relatingPriorities = new ItemSet<long>( this );
 					_relatingPriorities.InternalAdd(value.IntegerVal);
 					return;
 				case 8: 
-					if (_relatedPriorities == null) _relatedPriorities = new ItemSet<long>( this );
 					_relatedPriorities.InternalAdd(value.IntegerVal);
 					return;
 				case 9: 
@@ -147,11 +158,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -159,55 +165,39 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelConnectsPathElements
-            var root = (@IfcRelConnectsPathElements)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelConnectsPathElements left, @IfcRelConnectsPathElements right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelConnectsPathElements left, @IfcRelConnectsPathElements right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsPathElements x, @IfcRelConnectsPathElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsPathElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

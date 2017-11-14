@@ -24,7 +24,7 @@ namespace Xbim.Ifc4.ProductExtension
 {
     public partial class IfcBuildingStorey
     {
-        internal static int CompareStoreysByElevation(IfcBuildingStorey x, IfcBuildingStorey y)
+        internal static int CompareStoreysByElevation(IIfcBuildingStorey x, IIfcBuildingStorey y)
         {
             double a = x.Elevation ?? 0;
             double b = y.Elevation ?? 0;
@@ -39,7 +39,7 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {              
-                return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcSpace>();
+                return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcSpace>();
             }
         }
 
@@ -48,7 +48,7 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcBuildingStorey>().ToList();         
+                var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcBuildingStorey>().ToList();         
                 storeys.Sort(CompareStoreysByElevation);
                 return storeys;
             }
@@ -64,8 +64,8 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
-                            GetQuantity<IfcQuantityArea>("GrossFloorArea");
+                var qArea = GetQuantity<IIfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
+                            GetQuantity<IIfcQuantityArea>("GrossFloorArea");
                 return qArea != null ? (IfcAreaMeasure?)qArea.AreaValue : null;
             }
         }
@@ -74,8 +74,8 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                var qLen = GetQuantity<IfcQuantityLength>("BaseQuantities", "TotalHeight") ??
-                           GetQuantity<IfcQuantityLength>("TotalHeight");
+                var qLen = GetQuantity<IIfcQuantityLength>("BaseQuantities", "TotalHeight") ??
+                           GetQuantity<IIfcQuantityLength>("TotalHeight");
                 return qLen != null ? (IfcLengthMeasure?)qLen.LengthValue : null;
             }
         }

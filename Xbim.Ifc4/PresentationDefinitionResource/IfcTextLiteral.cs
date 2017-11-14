@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.PresentationDefinitionResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,29 +27,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextLiteral : IIfcGeometricRepresentationItem
 	{
-		IfcPresentableText @Literal { get; }
-		IIfcAxis2Placement @Placement { get; }
-		IfcTextPath @Path { get; }
+		IfcPresentableText @Literal { get;  set; }
+		IIfcAxis2Placement @Placement { get;  set; }
+		IfcTextPath @Path { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationDefinitionResource
 {
-	[ExpressType("IfcTextLiteral", 1100)]
+	[ExpressType("IfcTextLiteral", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IEqualityComparer<@IfcTextLiteral>, IEquatable<@IfcTextLiteral>
+	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IContainsEntityReferences, IEquatable<@IfcTextLiteral>
 	{
 		#region IIfcTextLiteral explicit implementation
-		IfcPresentableText IIfcTextLiteral.Literal { get { return @Literal; } }	
-		IIfcAxis2Placement IIfcTextLiteral.Placement { get { return @Placement; } }	
-		IfcTextPath IIfcTextLiteral.Path { get { return @Path; } }	
+		IfcPresentableText IIfcTextLiteral.Literal { 
+ 
+			get { return @Literal; } 
+			set { Literal = value;}
+		}	
+		IIfcAxis2Placement IIfcTextLiteral.Placement { 
+ 
+ 
+			get { return @Placement; } 
+			set { Placement = value as IfcAxis2Placement;}
+		}	
+		IfcTextPath IIfcTextLiteral.Path { 
+ 
+			get { return @Path; } 
+			set { Path = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTextLiteral(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcTextLiteral(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +77,13 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _literal;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _literal;
+				Activate();
 				return _literal;
 			} 
 			set
 			{
-				SetValue( v =>  _literal = v, _literal, value,  "Literal");
+				SetValue( v =>  _literal = v, _literal, value,  "Literal", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -76,13 +91,15 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _placement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _placement;
+				Activate();
 				return _placement;
 			} 
 			set
 			{
-				SetValue( v =>  _placement = v, _placement, value,  "Placement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _placement = v, _placement, value,  "Placement", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
@@ -90,13 +107,13 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _path;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _path;
+				Activate();
 				return _path;
 			} 
 			set
 			{
-				SetValue( v =>  _path = v, _path, value,  "Path");
+				SetValue( v =>  _path = v, _path, value,  "Path", 3);
 			} 
 		}	
 		#endregion
@@ -104,9 +121,8 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -123,11 +139,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -135,55 +146,18 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTextLiteral
-            var root = (@IfcTextLiteral)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTextLiteral left, @IfcTextLiteral right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTextLiteral left, @IfcTextLiteral right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextLiteral x, @IfcTextLiteral y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextLiteral obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Placement != null)
+					yield return @Placement;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

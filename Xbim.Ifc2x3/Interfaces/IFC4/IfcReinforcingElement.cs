@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcReinforcingElement : IIfcReinforcingElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcReinforcingElement), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcReinforcingElement.SteelGrade 
 		{ 
 			get
@@ -23,6 +26,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!SteelGrade.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(SteelGrade.Value);
 			} 
+			set
+			{
+				SteelGrade = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

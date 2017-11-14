@@ -10,25 +10,42 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	public partial class @IfcRelAssociatesConstraint : IIfcRelAssociatesConstraint
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesConstraint), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcRelAssociatesConstraint.Intent 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Intent);
 			} 
+			set
+			{
+				Intent = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesConstraint), 7)]
 		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint 
 		{ 
 			get
 			{
 				return RelatingConstraint;
 			} 
+			set
+			{
+				RelatingConstraint = value as ConstraintResource.IfcConstraint;
+				
+			}
 		}
 	//## Custom code
 	//##

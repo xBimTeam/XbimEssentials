@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,13 +26,13 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineSurface : IIfcBoundedSurface
 	{
-		IfcInteger @UDegree { get; }
-		IfcInteger @VDegree { get; }
-		IEnumerable<IEnumerable<IIfcCartesianPoint>> @ControlPointsList { get; }
-		IfcBSplineSurfaceForm @SurfaceForm { get; }
-		IfcLogical @UClosed { get; }
-		IfcLogical @VClosed { get; }
-		IfcLogical @SelfIntersect { get; }
+		IfcInteger @UDegree { get;  set; }
+		IfcInteger @VDegree { get;  set; }
+		IItemSet<IItemSet<IIfcCartesianPoint>> @ControlPointsList { get; }
+		IfcBSplineSurfaceForm @SurfaceForm { get;  set; }
+		IfcLogical @UClosed { get;  set; }
+		IfcLogical @VClosed { get;  set; }
+		IfcLogical @SelfIntersect { get;  set; }
 		IfcInteger @UUpper  { get ; }
 		IfcInteger @VUpper  { get ; }
 		List<List<Common.Geometry.XbimPoint3D>> @ControlPoints  { get ; }
@@ -40,31 +42,57 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcBSplineSurface", 432)]
+	[ExpressType("IfcBSplineSurface", 1102)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEqualityComparer<@IfcBSplineSurface>, IEquatable<@IfcBSplineSurface>
+	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IIfcBSplineSurface, IEquatable<@IfcBSplineSurface>
 	{
 		#region IIfcBSplineSurface explicit implementation
-		IfcInteger IIfcBSplineSurface.UDegree { get { return @UDegree; } }	
-		IfcInteger IIfcBSplineSurface.VDegree { get { return @VDegree; } }	
-		IEnumerable<IEnumerable<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { get { return @ControlPointsList; } }	
-		IfcBSplineSurfaceForm IIfcBSplineSurface.SurfaceForm { get { return @SurfaceForm; } }	
-		IfcLogical IIfcBSplineSurface.UClosed { get { return @UClosed; } }	
-		IfcLogical IIfcBSplineSurface.VClosed { get { return @VClosed; } }	
-		IfcLogical IIfcBSplineSurface.SelfIntersect { get { return @SelfIntersect; } }	
+		IfcInteger IIfcBSplineSurface.UDegree { 
+ 
+			get { return @UDegree; } 
+			set { UDegree = value;}
+		}	
+		IfcInteger IIfcBSplineSurface.VDegree { 
+ 
+			get { return @VDegree; } 
+			set { VDegree = value;}
+		}	
+		IItemSet<IItemSet<IIfcCartesianPoint>> IIfcBSplineSurface.ControlPointsList { 
+			get { return new Common.Collections.ProxyNestedItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @ControlPointsList); } 
+		}	
+		IfcBSplineSurfaceForm IIfcBSplineSurface.SurfaceForm { 
+ 
+			get { return @SurfaceForm; } 
+			set { SurfaceForm = value;}
+		}	
+		IfcLogical IIfcBSplineSurface.UClosed { 
+ 
+			get { return @UClosed; } 
+			set { UClosed = value;}
+		}	
+		IfcLogical IIfcBSplineSurface.VClosed { 
+ 
+			get { return @VClosed; } 
+			set { VClosed = value;}
+		}	
+		IfcLogical IIfcBSplineSurface.SelfIntersect { 
+ 
+			get { return @SelfIntersect; } 
+			set { SelfIntersect = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBSplineSurface(IModel model) : base(model) 		{ 
-			Model = model; 
-			_controlPointsList = new ItemSet<ItemSet<IfcCartesianPoint>>( this, 0 );
+		internal IfcBSplineSurface(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_controlPointsList = new ItemSet<IItemSet<IfcCartesianPoint>>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcInteger _uDegree;
 		private IfcInteger _vDegree;
-		private ItemSet<ItemSet<IfcCartesianPoint>> _controlPointsList;
+		private readonly ItemSet<IItemSet<IfcCartesianPoint>> _controlPointsList;
 		private IfcBSplineSurfaceForm _surfaceForm;
 		private IfcLogical _uClosed;
 		private IfcLogical _vClosed;
@@ -77,13 +105,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uDegree;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uDegree;
+				Activate();
 				return _uDegree;
 			} 
 			set
 			{
-				SetValue( v =>  _uDegree = v, _uDegree, value,  "UDegree");
+				SetValue( v =>  _uDegree = v, _uDegree, value,  "UDegree", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -91,22 +119,22 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vDegree;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vDegree;
+				Activate();
 				return _vDegree;
 			} 
 			set
 			{
-				SetValue( v =>  _vDegree = v, _vDegree, value,  "VDegree");
+				SetValue( v =>  _vDegree = v, _vDegree, value,  "VDegree", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1, 5)]
-		public ItemSet<ItemSet<IfcCartesianPoint>> @ControlPointsList 
+		public IItemSet<IItemSet<IfcCartesianPoint>> @ControlPointsList 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _controlPointsList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _controlPointsList;
+				Activate();
 				return _controlPointsList;
 			} 
 		}	
@@ -115,13 +143,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _surfaceForm;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _surfaceForm;
+				Activate();
 				return _surfaceForm;
 			} 
 			set
 			{
-				SetValue( v =>  _surfaceForm = v, _surfaceForm, value,  "SurfaceForm");
+				SetValue( v =>  _surfaceForm = v, _surfaceForm, value,  "SurfaceForm", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -129,13 +157,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uClosed;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uClosed;
+				Activate();
 				return _uClosed;
 			} 
 			set
 			{
-				SetValue( v =>  _uClosed = v, _uClosed, value,  "UClosed");
+				SetValue( v =>  _uClosed = v, _uClosed, value,  "UClosed", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -143,13 +171,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vClosed;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vClosed;
+				Activate();
 				return _vClosed;
 			} 
 			set
 			{
-				SetValue( v =>  _vClosed = v, _vClosed, value,  "VClosed");
+				SetValue( v =>  _vClosed = v, _vClosed, value,  "VClosed", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -157,13 +185,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _selfIntersect;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _selfIntersect;
+				Activate();
 				return _selfIntersect;
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect");
+				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 7);
 			} 
 		}	
 		#endregion
@@ -213,9 +241,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -226,8 +253,8 @@ namespace Xbim.Ifc4.GeometryResource
 					_vDegree = value.IntegerVal;
 					return;
 				case 2: 
-					_controlPointsList
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcCartesianPoint>)_controlPointsList
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcCartesianPoint)(value.EntityVal));
 					return;
 				case 3: 
@@ -246,11 +273,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -258,54 +280,6 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBSplineSurface
-            var root = (@IfcBSplineSurface)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBSplineSurface left, @IfcBSplineSurface right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBSplineSurface left, @IfcBSplineSurface right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBSplineSurface x, @IfcBSplineSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBSplineSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

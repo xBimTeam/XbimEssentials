@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,25 +26,29 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToGroupByFactor : IIfcRelAssignsToGroup
 	{
-		IfcRatioMeasure @Factor { get; }
+		IfcRatioMeasure @Factor { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcRelAssignsToGroupByFactor", 914)]
+	[ExpressType("IfcRelAssignsToGroupByFactor", 1248)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IEqualityComparer<@IfcRelAssignsToGroupByFactor>, IEquatable<@IfcRelAssignsToGroupByFactor>
+	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IIfcRelAssignsToGroupByFactor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{
 		#region IIfcRelAssignsToGroupByFactor explicit implementation
-		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { get { return @Factor; } }	
+		IfcRatioMeasure IIfcRelAssignsToGroupByFactor.Factor { 
+ 
+			get { return @Factor; } 
+			set { Factor = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelAssignsToGroupByFactor(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelAssignsToGroupByFactor(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +61,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _factor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _factor;
+				Activate();
 				return _factor;
 			} 
 			set
 			{
-				SetValue( v =>  _factor = v, _factor, value,  "Factor");
+				SetValue( v =>  _factor = v, _factor, value,  "Factor", 8);
 			} 
 		}	
 		#endregion
@@ -69,9 +75,8 @@ namespace Xbim.Ifc4.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -91,11 +96,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -103,55 +103,37 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelAssignsToGroupByFactor
-            var root = (@IfcRelAssignsToGroupByFactor)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelAssignsToGroupByFactor left, @IfcRelAssignsToGroupByFactor right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelAssignsToGroupByFactor left, @IfcRelAssignsToGroupByFactor right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToGroupByFactor x, @IfcRelAssignsToGroupByFactor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToGroupByFactor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingGroup != null)
+					yield return @RelatingGroup;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingGroup != null)
+					yield return @RelatingGroup;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

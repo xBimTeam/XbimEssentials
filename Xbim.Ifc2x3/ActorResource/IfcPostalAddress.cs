@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ActorResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,13 +26,13 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPostalAddress : IIfcAddress
 	{
-		IfcLabel? @InternalLocation { get; }
-		IEnumerable<IfcLabel> @AddressLines { get; }
-		IfcLabel? @PostalBox { get; }
-		IfcLabel? @Town { get; }
-		IfcLabel? @Region { get; }
-		IfcLabel? @PostalCode { get; }
-		IfcLabel? @Country { get; }
+		IfcLabel? @InternalLocation { get;  set; }
+		IItemSet<IfcLabel> @AddressLines { get; }
+		IfcLabel? @PostalBox { get;  set; }
+		IfcLabel? @Town { get;  set; }
+		IfcLabel? @Region { get;  set; }
+		IfcLabel? @PostalCode { get;  set; }
+		IfcLabel? @Country { get;  set; }
 	
 	}
 }
@@ -39,28 +41,54 @@ namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPostalAddress", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEqualityComparer<@IfcPostalAddress>, IEquatable<@IfcPostalAddress>
+	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEquatable<@IfcPostalAddress>
 	{
 		#region IIfcPostalAddress explicit implementation
-		IfcLabel? IIfcPostalAddress.InternalLocation { get { return @InternalLocation; } }	
-		IEnumerable<IfcLabel> IIfcPostalAddress.AddressLines { get { return @AddressLines; } }	
-		IfcLabel? IIfcPostalAddress.PostalBox { get { return @PostalBox; } }	
-		IfcLabel? IIfcPostalAddress.Town { get { return @Town; } }	
-		IfcLabel? IIfcPostalAddress.Region { get { return @Region; } }	
-		IfcLabel? IIfcPostalAddress.PostalCode { get { return @PostalCode; } }	
-		IfcLabel? IIfcPostalAddress.Country { get { return @Country; } }	
+		IfcLabel? IIfcPostalAddress.InternalLocation { 
+ 
+			get { return @InternalLocation; } 
+			set { InternalLocation = value;}
+		}	
+		IItemSet<IfcLabel> IIfcPostalAddress.AddressLines { 
+			get { return @AddressLines; } 
+		}	
+		IfcLabel? IIfcPostalAddress.PostalBox { 
+ 
+			get { return @PostalBox; } 
+			set { PostalBox = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.Town { 
+ 
+			get { return @Town; } 
+			set { Town = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.Region { 
+ 
+			get { return @Region; } 
+			set { Region = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.PostalCode { 
+ 
+			get { return @PostalCode; } 
+			set { PostalCode = value;}
+		}	
+		IfcLabel? IIfcPostalAddress.Country { 
+ 
+			get { return @Country; } 
+			set { Country = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPostalAddress(IModel model) : base(model) 		{ 
-			Model = model; 
-			_addressLines = new OptionalItemSet<IfcLabel>( this, 0 );
+		internal IfcPostalAddress(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_addressLines = new OptionalItemSet<IfcLabel>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
 		private IfcLabel? _internalLocation;
-		private OptionalItemSet<IfcLabel> _addressLines;
+		private readonly OptionalItemSet<IfcLabel> _addressLines;
 		private IfcLabel? _postalBox;
 		private IfcLabel? _town;
 		private IfcLabel? _region;
@@ -74,22 +102,22 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _internalLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _internalLocation;
+				Activate();
 				return _internalLocation;
 			} 
 			set
 			{
-				SetValue( v =>  _internalLocation = v, _internalLocation, value,  "InternalLocation");
+				SetValue( v =>  _internalLocation = v, _internalLocation, value,  "InternalLocation", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
-		public OptionalItemSet<IfcLabel> @AddressLines 
+		public IOptionalItemSet<IfcLabel> @AddressLines 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _addressLines;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _addressLines;
+				Activate();
 				return _addressLines;
 			} 
 		}	
@@ -98,13 +126,13 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _postalBox;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _postalBox;
+				Activate();
 				return _postalBox;
 			} 
 			set
 			{
-				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox");
+				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -112,13 +140,13 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _town;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _town;
+				Activate();
 				return _town;
 			} 
 			set
 			{
-				SetValue( v =>  _town = v, _town, value,  "Town");
+				SetValue( v =>  _town = v, _town, value,  "Town", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -126,13 +154,13 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _region;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _region;
+				Activate();
 				return _region;
 			} 
 			set
 			{
-				SetValue( v =>  _region = v, _region, value,  "Region");
+				SetValue( v =>  _region = v, _region, value,  "Region", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -140,13 +168,13 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _postalCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _postalCode;
+				Activate();
 				return _postalCode;
 			} 
 			set
 			{
-				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode");
+				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -154,13 +182,13 @@ namespace Xbim.Ifc2x3.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _country;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _country;
+				Activate();
 				return _country;
 			} 
 			set
 			{
-				SetValue( v =>  _country = v, _country, value,  "Country");
+				SetValue( v =>  _country = v, _country, value,  "Country", 10);
 			} 
 		}	
 		#endregion
@@ -168,9 +196,8 @@ namespace Xbim.Ifc2x3.ActorResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -183,7 +210,6 @@ namespace Xbim.Ifc2x3.ActorResource
 					_internalLocation = value.StringVal;
 					return;
 				case 4: 
-					if (_addressLines == null) _addressLines = new OptionalItemSet<IfcLabel>( this );
 					_addressLines.InternalAdd(value.StringVal);
 					return;
 				case 5: 
@@ -205,12 +231,6 @@ namespace Xbim.Ifc2x3.ActorResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:            EXISTS (Country);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -218,54 +238,6 @@ namespace Xbim.Ifc2x3.ActorResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPostalAddress
-            var root = (@IfcPostalAddress)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPostalAddress left, @IfcPostalAddress right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPostalAddress left, @IfcPostalAddress right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPostalAddress x, @IfcPostalAddress y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPostalAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

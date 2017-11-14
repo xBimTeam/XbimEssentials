@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLinearActionVarying : IIfcStructuralLinearAction
 	{
-		IIfcShapeAspect @VaryingAppliedLoadLocation { get; }
-		IEnumerable<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
+		IIfcShapeAspect @VaryingAppliedLoadLocation { get;  set; }
+		IItemSet<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
 		List<IfcStructuralLoad> @VaryingAppliedLoads  { get ; }
 	
 	}
@@ -36,23 +38,30 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLinearActionVarying", 464)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLinearActionVarying : IfcStructuralLinearAction, IInstantiableEntity, IIfcStructuralLinearActionVarying, IEqualityComparer<@IfcStructuralLinearActionVarying>, IEquatable<@IfcStructuralLinearActionVarying>
+	public  partial class @IfcStructuralLinearActionVarying : IfcStructuralLinearAction, IInstantiableEntity, IIfcStructuralLinearActionVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralLinearActionVarying>
 	{
 		#region IIfcStructuralLinearActionVarying explicit implementation
-		IIfcShapeAspect IIfcStructuralLinearActionVarying.VaryingAppliedLoadLocation { get { return @VaryingAppliedLoadLocation; } }	
-		IEnumerable<IIfcStructuralLoad> IIfcStructuralLinearActionVarying.SubsequentAppliedLoads { get { return @SubsequentAppliedLoads; } }	
+		IIfcShapeAspect IIfcStructuralLinearActionVarying.VaryingAppliedLoadLocation { 
+ 
+ 
+			get { return @VaryingAppliedLoadLocation; } 
+			set { VaryingAppliedLoadLocation = value as IfcShapeAspect;}
+		}	
+		IItemSet<IIfcStructuralLoad> IIfcStructuralLinearActionVarying.SubsequentAppliedLoads { 
+			get { return new Common.Collections.ProxyItemSet<IfcStructuralLoad, IIfcStructuralLoad>( @SubsequentAppliedLoads); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralLinearActionVarying(IModel model) : base(model) 		{ 
-			Model = model; 
-			_subsequentAppliedLoads = new ItemSet<IfcStructuralLoad>( this, 0 );
+		internal IfcStructuralLinearActionVarying(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_subsequentAppliedLoads = new ItemSet<IfcStructuralLoad>( this, 0,  14);
 		}
 
 		#region Explicit attribute fields
 		private IfcShapeAspect _varyingAppliedLoadLocation;
-		private ItemSet<IfcStructuralLoad> _subsequentAppliedLoads;
+		private readonly ItemSet<IfcStructuralLoad> _subsequentAppliedLoads;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -61,22 +70,24 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _varyingAppliedLoadLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _varyingAppliedLoadLocation;
+				Activate();
 				return _varyingAppliedLoadLocation;
 			} 
 			set
 			{
-				SetValue( v =>  _varyingAppliedLoadLocation = v, _varyingAppliedLoadLocation, value,  "VaryingAppliedLoadLocation");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _varyingAppliedLoadLocation = v, _varyingAppliedLoadLocation, value,  "VaryingAppliedLoadLocation", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
-		public ItemSet<IfcStructuralLoad> @SubsequentAppliedLoads 
+		public IItemSet<IfcStructuralLoad> @SubsequentAppliedLoads 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _subsequentAppliedLoads;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _subsequentAppliedLoads;
+				Activate();
 				return _subsequentAppliedLoads;
 			} 
 		}	
@@ -100,9 +111,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -124,17 +134,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					_varyingAppliedLoadLocation = (IfcShapeAspect)(value.EntityVal);
 					return;
 				case 13: 
-					if (_subsequentAppliedLoads == null) _subsequentAppliedLoads = new ItemSet<IfcStructuralLoad>( this );
 					_subsequentAppliedLoads.InternalAdd((IfcStructuralLoad)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -143,55 +147,47 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralLinearActionVarying
-            var root = (@IfcStructuralLinearActionVarying)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralLinearActionVarying left, @IfcStructuralLinearActionVarying right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralLinearActionVarying left, @IfcStructuralLinearActionVarying right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLinearActionVarying x, @IfcStructuralLinearActionVarying y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLinearActionVarying obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@AppliedLoad != null)
+					yield return @AppliedLoad;
+				if (@CausedBy != null)
+					yield return @CausedBy;
+				if (@VaryingAppliedLoadLocation != null)
+					yield return @VaryingAppliedLoadLocation;
+				foreach(var entity in @SubsequentAppliedLoads)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@CausedBy != null)
+					yield return @CausedBy;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

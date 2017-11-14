@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Xbim.Ifc4.Interfaces;
 // ReSharper disable NonReadonlyMemberInGetHashCode
 
@@ -182,24 +184,49 @@ namespace Xbim.Ifc
         public readonly float ReflectionFactor;
        
         public readonly float SpecularFactor;
-
         
-
         /// <summary>
-        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// Returns a <see cref="System.String"/> that represents the value of this instance, ignoring the name.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
+        /// A <see cref="System.String"/> that represents this instance; it can be used for persistence across invariante cultures if the name is not needed.
         /// </returns>
         public override string ToString()
         {
-            return String.Format("R:{0} G:{1} B:{2} A:{3} DF:{4} TF:{5} DTF:{6} RF:{7} SF:{8}", Red, Green, Blue, Alpha,
-                DiffuseFactor, TransmissionFactor, DiffuseTransmissionFactor, ReflectionFactor, SpecularFactor);
+            return string.Format(CultureInfo.InvariantCulture, "R:{0:r} G:{1:r} B:{2:r} A:{3:r} DF:{4:r} TF:{5:r} DTF:{6:r} RF:{7:r} SF:{8:r}",
+                Red, Green, Blue, Alpha, DiffuseFactor, TransmissionFactor, DiffuseTransmissionFactor, ReflectionFactor, SpecularFactor);
         }
 
+        public static XbimColour FromString(string source)
+        {
+            // for legacy compatibility we replace comma with dot (old versions of the ToString function used local culture).
+            //
+            source = source.Replace(',', '.');
+            var colRegex = new Regex("R:([\\d.]+) G:([\\d.]+) B:([\\d.]+) A:([\\d.]+)( DF:([\\d.]+) TF:([\\d.]+) DTF:([\\d.]+) RF:([\\d.]+) SF:([\\d.]+))*");
+
+            var m = colRegex.Match(source);
+            if (!m.Success)
+                return DefaultColour;
+            var red = float.Parse(m.Groups[1].Value, CultureInfo.InvariantCulture);
+            var green = float.Parse(m.Groups[2].Value, CultureInfo.InvariantCulture);
+            var blue = float.Parse(m.Groups[3].Value, CultureInfo.InvariantCulture);
+            var alpha = float.Parse(m.Groups[4].Value, CultureInfo.InvariantCulture);
+
+            if (m.Groups[5].Value == string.Empty)
+                return new XbimColour(red, green, blue, alpha);
+
+            var diffuseFactor = float.Parse(m.Groups[6].Value, CultureInfo.InvariantCulture);
+            var transmissionFactor = float.Parse(m.Groups[7].Value, CultureInfo.InvariantCulture);
+            var diffuseTransmissionFactor = float.Parse(m.Groups[8].Value, CultureInfo.InvariantCulture);
+            var reflectionFactor = float.Parse(m.Groups[9].Value, CultureInfo.InvariantCulture);
+            var specularFactor = float.Parse(m.Groups[10].Value, CultureInfo.InvariantCulture);
+
+            return new XbimColour(red, green, blue, alpha, diffuseFactor, transmissionFactor, diffuseTransmissionFactor, reflectionFactor, specularFactor);
+        }
+
+
         public static readonly XbimColour DefaultColour;
-
-
+        
         static XbimColour()
         {
             DefaultColour = new XbimColour("Default", 1, 1, 1);
@@ -224,8 +251,6 @@ namespace Xbim.Ifc
             Green = (float)rgbColour.Green;
             Blue = (float)rgbColour.Blue;
             Alpha = 1;
-           // this.Name = string.Format("{0},A={1},D={2},S={3},T={4},R={5},RGB={6}", rgbColour.Name, Alpha, DiffuseFactor, SpecularFactor, TransmissionFactor, ReflectionFactor, rgbColour.EntityLabel);
-            
         }
 
         public XbimColour(IIfcColourRgb ifcColourRgb, double opacity = 1.0, double diffuseFactor = 1.0 , double specularFactor = 0.0, double transmissionFactor = 1.0, double reflectanceFactor = 0.0)
@@ -238,7 +263,18 @@ namespace Xbim.Ifc
             ReflectionFactor = (float)reflectanceFactor;
         }
 
-        
+        public XbimColour(float red, float green, float blue, float alpha = 1.0f, float diffuseFactor = 1.0f, float transmissionFactor = 1.0f, float diffuseTransmissionFactor = 1.0f, float reflectionFactor = 0.0f, float specularFactor = 0.0f)
+        {
+            Red = red;
+            Green = green;
+            Blue = blue;
+            Alpha = alpha;
+            DiffuseFactor = diffuseFactor;
+            TransmissionFactor = transmissionFactor;
+            DiffuseTransmissionFactor = diffuseTransmissionFactor;
+            ReflectionFactor = reflectionFactor;
+            SpecularFactor = specularFactor;
+        }
     }
 }
 

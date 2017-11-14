@@ -18,6 +18,7 @@ namespace Xbim.IO.Esent
         private int _instanceCount;
         private static IntPtr _geometryContextId;
         private static IntPtr _instanceContextId;
+private  bool _disposed;
         public EsentGeometryInitialiser(EsentGeometryStore esentGeometryStore, EsentShapeGeometryCursor shapeGeometryCursor, EsentShapeInstanceCursor shapeInstanceCursor)
         {
             try
@@ -28,12 +29,18 @@ namespace Xbim.IO.Esent
                 _geometryContextId = new IntPtr(_shapeGeometryCursor.GetHashCode()); 
                 _instanceContextId = new IntPtr(_shapeInstanceCursor.GetHashCode());          
                 SetGeometryContext();
-                _shapeGeometryTransaction = _shapeGeometryCursor.BeginLazyTransaction();
-                ResetGeometryContext();
-
+                try
+                {
+                    _shapeGeometryTransaction = _shapeGeometryCursor.BeginLazyTransaction();
+                }
+                finally { ResetGeometryContext(); }
+                 
                 SetInstanceContext();
-                _shapeInstanceTransaction = _shapeInstanceCursor.BeginLazyTransaction();
-                ResetInstanceContext();
+                try
+                {
+                    _shapeInstanceTransaction = _shapeInstanceCursor.BeginLazyTransaction();
+                }
+                finally{ResetInstanceContext();}
               
                 _geometryCount = 0;
                 _instanceCount = 0;
@@ -47,22 +54,27 @@ namespace Xbim.IO.Esent
 
         public int AddShapeGeometry(XbimShapeGeometry shapeGeometry)
         {
-           
+
             lock (_shapeGeometryCursor)
             {
                 SetGeometryContext();
-                long remainder = _geometryCount%TransactionBatchSize; //pulse transactions
-                if (remainder == TransactionBatchSize - 1)
+                try
                 {
-                    _shapeGeometryTransaction.Commit();
-                    _shapeGeometryTransaction.Begin();
+                    long remainder = _geometryCount % TransactionBatchSize; //pulse transactions
+                    if (remainder == TransactionBatchSize - 1)
+                    {
+                        _shapeGeometryTransaction.Commit();
+                        _shapeGeometryTransaction.Begin();
+                    }
+                    _geometryCount++;
+                    return _shapeGeometryCursor.AddGeometry(shapeGeometry);
                 }
-                _geometryCount++;
-                var ret = _shapeGeometryCursor.AddGeometry(shapeGeometry);
-                ResetGeometryContext();
-                return ret;
+                finally
+                {
+                    ResetGeometryContext();
+                }            
             }
-          
+            
         }
 
         public int AddShapeInstance(XbimShapeInstance shapeInstance, int geometryId)
@@ -70,17 +82,22 @@ namespace Xbim.IO.Esent
             lock (_shapeInstanceCursor)
             {
                 SetInstanceContext();
-                long remainder = _instanceCount%TransactionBatchSize; //pulse transactions
-                if (remainder == TransactionBatchSize - 1)
+                try
                 {
-                    _shapeInstanceTransaction.Commit();
-                    _shapeInstanceTransaction.Begin();
+                    long remainder = _instanceCount % TransactionBatchSize; //pulse transactions
+                    if (remainder == TransactionBatchSize - 1)
+                    {
+                        _shapeInstanceTransaction.Commit();
+                        _shapeInstanceTransaction.Begin();
+                    }
+                    _instanceCount++;
+                    shapeInstance.ShapeGeometryLabel = geometryId;
+                    return _shapeInstanceCursor.AddInstance(shapeInstance);
                 }
-                _instanceCount++;
-                shapeInstance.ShapeGeometryLabel = geometryId;
-                var ret = _shapeInstanceCursor.AddInstance(shapeInstance);
-                ResetInstanceContext();
-                return ret;
+                finally
+                {
+                    ResetInstanceContext();
+                }              
             }
         }
 
@@ -89,29 +106,76 @@ namespace Xbim.IO.Esent
             lock (_shapeGeometryCursor)
             {
                 SetGeometryContext();
-                _geometryCount++;
-                var ret = _shapeGeometryCursor.AddGeometry(regions);
-                ResetGeometryContext();
-                return ret;
+                try
+                {
+                    _geometryCount++;
+                    return _shapeGeometryCursor.AddGeometry(regions);
+                }
+                finally
+                {
+                    ResetGeometryContext();
+                }
             }
         }
 
-        
         public void Dispose()
-        {      
-            _shapeInstanceTransaction.Dispose();
-            _shapeGeometryTransaction.Dispose();
+        { 
+            Dispose(true);
+            // Take yourself off the Finalization queue 
+            // to prevent finalization code for this object
+            // from executing a second time.
+            GC.SuppressFinalize(this);
+        }
 
+        public void Dispose(bool disposing)
+        {
+            if (_disposed) return;
+            if (disposing)
+            {
+                SetGeometryContext();
+                try
+                {
+                    _shapeGeometryTransaction.Dispose();
+                }
+                finally
+                {
+                    ResetGeometryContext();
+                }
+
+                SetInstanceContext();
+                try
+                {
+                    _shapeInstanceTransaction.Dispose();
+                }
+                finally
+                {
+                    ResetInstanceContext();
+                }             
+            }
+            _disposed = true;     
         }
 
         internal void Commit()
-        { 
+        {
             SetGeometryContext();
-            _shapeGeometryTransaction.Commit();
-            ResetGeometryContext();
+            try
+            {
+                _shapeGeometryTransaction.Commit();
+            }
+            finally
+            {
+                ResetGeometryContext();
+            }
+
             SetInstanceContext();
-            _shapeInstanceTransaction.Commit();
-            ResetInstanceContext();
+            try
+            {
+                _shapeInstanceTransaction.Commit();
+            }
+            finally
+            {
+                ResetInstanceContext();
+            }
         }
 
         /// <summary>
@@ -123,34 +187,40 @@ namespace Xbim.IO.Esent
             {
                 SetGeometryContext();
                 SetInstanceContext();
-                _shapeGeometryTransaction.Commit();
-                _shapeGeometryTransaction.Begin();
-                _shapeInstanceTransaction.Commit();
-                _shapeInstanceTransaction.Begin();
-                using (var reader = _esentGeometryStore.BeginRead())
+                try
                 {
-                    //Get the meta data about the instances
-                    var counts = reader.ShapeInstances.GroupBy(
-                        i => i.ShapeGeometryLabel,
-                        (label, instances) => new
-                        {
-                            Label = label,
-                            Count = instances.Count()
-                        });
-                    foreach (var item in counts)
+                    _shapeGeometryTransaction.Commit();
+                    _shapeGeometryTransaction.Begin();
+                    _shapeInstanceTransaction.Commit();
+                    _shapeInstanceTransaction.Begin();
+                    using (var reader = _esentGeometryStore.BeginRead())
                     {
-                        long remainder = _geometryCount%TransactionBatchSize; //pulse transactions
-                        if (remainder == TransactionBatchSize - 1)
+                        //Get the meta data about the instances
+                        var counts = reader.ShapeInstances.GroupBy(
+                            i => i.ShapeGeometryLabel,
+                            (label, instances) => new
+                            {
+                                Label = label,
+                                Count = instances.Count()
+                            });
+                        foreach (var item in counts)
                         {
-                            _shapeGeometryTransaction.Commit();
-                            _shapeGeometryTransaction.Begin();
+                            long remainder = _geometryCount%TransactionBatchSize; //pulse transactions
+                            if (remainder == TransactionBatchSize - 1)
+                            {
+                                _shapeGeometryTransaction.Commit();
+                                _shapeGeometryTransaction.Begin();
+                            }
+                            _geometryCount++;
+                            _shapeGeometryCursor.UpdateReferenceCount(item.Label, item.Count);
                         }
-                        _geometryCount++;
-                        _shapeGeometryCursor.UpdateReferenceCount(item.Label, item.Count);
                     }
                 }
-                ResetGeometryContext();
-                ResetInstanceContext();
+                finally
+                {
+                    ResetGeometryContext();
+                    ResetInstanceContext();
+                }
             }
         }
 

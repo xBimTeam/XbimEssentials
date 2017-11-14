@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	public partial class @IfcEdge : IIfcEdge
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcEdge), 1)]
 		IIfcVertex IIfcEdge.EdgeStart 
 		{ 
 			get
 			{
 				return EdgeStart;
 			} 
+			set
+			{
+				EdgeStart = value as IfcVertex;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcEdge), 2)]
 		IIfcVertex IIfcEdge.EdgeEnd 
 		{ 
 			get
 			{
 				return EdgeEnd;
 			} 
+			set
+			{
+				EdgeEnd = value as IfcVertex;
+				
+			}
 		}
 	//## Custom code
 	//##

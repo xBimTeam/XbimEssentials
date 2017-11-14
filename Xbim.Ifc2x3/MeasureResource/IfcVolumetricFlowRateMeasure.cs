@@ -15,7 +15,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 	[ExpressType("IfcVolumetricFlowRateMeasure", 677)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcVolumetricFlowRateMeasure : IfcDerivedMeasureValue, IExpressValueType, System.IEquatable<double>
+	public partial struct IfcVolumetricFlowRateMeasure : IfcDerivedMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         
@@ -24,18 +24,24 @@ namespace Xbim.Ifc2x3.MeasureResource
             get { return _value; }
         }
 
+ 
+		double IExpressRealType.Value { get { return _value; } }
+
 		public override string ToString()
         {
-            return _value.ToString("R");
+            return _value.ToString("R", Culture);
         }
         public IfcVolumetricFlowRateMeasure(double val)
         {
             _value = val;
         }
 
+	    private static readonly System.Globalization.CultureInfo Culture =
+	        System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+
 		public IfcVolumetricFlowRateMeasure(string val)
         {
-			_value = System.Convert.ToDouble(val, System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+			_value = System.Convert.ToDouble(val, Culture);
         }
 
         public static implicit operator IfcVolumetricFlowRateMeasure(double value)
@@ -91,11 +97,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             _value = value.RealVal;
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

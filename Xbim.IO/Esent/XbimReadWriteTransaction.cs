@@ -118,7 +118,7 @@ namespace Xbim.IO.Esent
             try
             {
                 //roll the transaction back to front
-                for (var i = _undoActions.Count - 1; i == 0; i--)
+                for (var i = _undoActions.Count - 1; i >= 0; i--)
                     _undoActions[i]();
                 
                 if (InTransaction) _readWriteTransaction.RollBack();
@@ -131,12 +131,18 @@ namespace Xbim.IO.Esent
             }
         }
 
-        private readonly List<Action> _undoActions = new List<Action>(); 
-        
-        void ITransaction.AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType)
+        private readonly List<Action> _undoActions = new List<Action>();
+
+        void ITransaction.DoReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int property)
         {
+
+            OnEntityChanging(entity, changeType, property);
+
+            doAction();
             _undoActions.Add(undoAction);
-            Model.HandleEntityChange(changeType, entity);
+
+            OnEntityChanged(entity, changeType, property);
+            Model.HandleEntityChange(changeType, entity, property);
         }
     }
 }

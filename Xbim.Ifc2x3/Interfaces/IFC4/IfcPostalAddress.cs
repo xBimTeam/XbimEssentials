@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPostalAddress : IIfcPostalAddress
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 4)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.InternalLocation 
 		{ 
 			get
@@ -23,17 +26,28 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!InternalLocation.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(InternalLocation.Value);
 			} 
+			set
+			{
+				InternalLocation = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 5)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPostalAddress.AddressLines 
 		{ 
 			get
 			{
-				foreach (var member in AddressLines)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(AddressLines, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 6)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalBox 
 		{ 
 			get
@@ -41,7 +55,16 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!PostalBox.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(PostalBox.Value);
 			} 
+			set
+			{
+				PostalBox = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 7)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Town 
 		{ 
 			get
@@ -49,7 +72,16 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Town.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Town.Value);
 			} 
+			set
+			{
+				Town = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Region 
 		{ 
 			get
@@ -57,7 +89,16 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Region.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Region.Value);
 			} 
+			set
+			{
+				Region = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.PostalCode 
 		{ 
 			get
@@ -65,7 +106,16 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!PostalCode.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(PostalCode.Value);
 			} 
+			set
+			{
+				PostalCode = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPostalAddress), 10)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPostalAddress.Country 
 		{ 
 			get
@@ -73,6 +123,13 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Country.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Country.Value);
 			} 
+			set
+			{
+				Country = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

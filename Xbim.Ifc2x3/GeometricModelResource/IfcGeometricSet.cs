@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeometricSet : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IIfcGeometricSetSelect> @Elements { get; }
+		IItemSet<IIfcGeometricSetSelect> @Elements { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -34,31 +36,33 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcGeometricSet", 236)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IEqualityComparer<@IfcGeometricSet>, IEquatable<@IfcGeometricSet>
+	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IContainsEntityReferences, IEquatable<@IfcGeometricSet>
 	{
 		#region IIfcGeometricSet explicit implementation
-		IEnumerable<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { get { return @Elements; } }	
+		IItemSet<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { 
+			get { return new Common.Collections.ProxyItemSet<IfcGeometricSetSelect, IIfcGeometricSetSelect>( @Elements); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcGeometricSet(IModel model) : base(model) 		{ 
-			Model = model; 
-			_elements = new ItemSet<IfcGeometricSetSelect>( this, 0 );
+		internal IfcGeometricSet(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_elements = new ItemSet<IfcGeometricSetSelect>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcGeometricSetSelect> _elements;
+		private readonly ItemSet<IfcGeometricSetSelect> _elements;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcGeometricSetSelect> @Elements 
+		public IItemSet<IfcGeometricSetSelect> @Elements 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elements;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elements;
+				Activate();
 				return _elements;
 			} 
 		}	
@@ -82,25 +86,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_elements == null) _elements = new ItemSet<IfcGeometricSetSelect>( this );
 					_elements.InternalAdd((IfcGeometricSetSelect)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:             = 0;*/
 		}
 		#endregion
 
@@ -109,55 +105,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcGeometricSet
-            var root = (@IfcGeometricSet)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcGeometricSet left, @IfcGeometricSet right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcGeometricSet left, @IfcGeometricSet right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeometricSet x, @IfcGeometricSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeometricSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Elements)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

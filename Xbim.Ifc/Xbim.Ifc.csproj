@@ -48,6 +48,10 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +71,8 @@
     <Compile Include="..\SharedFileVersionInfo.cs">
       <Link>Properties\SharedFileVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Validation\IfcValidator.cs" />
+    <Compile Include="Validation\IfcValidationReporter.cs" />
     <Compile Include="ViewModels\ClassificationViewModel.cs" />
     <Compile Include="ViewModels\ContainedElementsViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
@@ -80,6 +86,7 @@
     <Compile Include="XbimColour.cs" />
     <Compile Include="XbimColourMap.cs" />
     <Compile Include="XbimEditorCredentials.cs" />
+    <Compile Include="XbimModelType.cs" />
     <Compile Include="XbimReferencedModel.cs" />
     <Compile Include="XbimStoreType.cs" />
     <Compile Include="XbimTexture.cs" />
@@ -114,14 +121,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
-    <Month>$([System.DateTime]::Now.ToString("MM"))</Month>
-    <Date>$([System.DateTime]::Now.ToString("dd"))</Date>
-    <Time>$([System.DateTime]::Now.ToString("HH"))</Time>
-    <AssemblyFileVersionAttribute>[assembly:System.Reflection.AssemblyFileVersion("3.1.$(Year)$(Month).$(Date)$(Time)")]</AssemblyFileVersionAttribute>
-  </PropertyGroup>
-  <Target Name="BeforeBuild">
-    <WriteLinesToFile File="..\SharedFileVersionInfo.cs" Lines="$(AssemblyFileVersionAttribute)" Overwrite="true" Encoding="Unicode" />
-  </Target>
 </Project>

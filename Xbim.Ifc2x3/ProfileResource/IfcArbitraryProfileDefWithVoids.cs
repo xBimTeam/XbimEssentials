@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcArbitraryProfileDefWithVoids : IIfcArbitraryClosedProfileDef
 	{
-		IEnumerable<IIfcCurve> @InnerCurves { get; }
+		IItemSet<IIfcCurve> @InnerCurves { get; }
 	
 	}
 }
@@ -33,31 +35,33 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcArbitraryProfileDefWithVoids", 116)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IEqualityComparer<@IfcArbitraryProfileDefWithVoids>, IEquatable<@IfcArbitraryProfileDefWithVoids>
+	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IContainsEntityReferences, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
 		#region IIfcArbitraryProfileDefWithVoids explicit implementation
-		IEnumerable<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { get { return @InnerCurves; } }	
+		IItemSet<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { 
+			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerCurves); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcArbitraryProfileDefWithVoids(IModel model) : base(model) 		{ 
-			Model = model; 
-			_innerCurves = new ItemSet<IfcCurve>( this, 0 );
+		internal IfcArbitraryProfileDefWithVoids(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_innerCurves = new ItemSet<IfcCurve>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcCurve> _innerCurves;
+		private readonly ItemSet<IfcCurve> _innerCurves;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcCurve> @InnerCurves 
+		public IItemSet<IfcCurve> @InnerCurves 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerCurves;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerCurves;
+				Activate();
 				return _innerCurves;
 			} 
 		}	
@@ -66,9 +70,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -78,20 +81,11 @@ namespace Xbim.Ifc2x3.ProfileResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					if (_innerCurves == null) _innerCurves = new ItemSet<IfcCurve>( this );
 					_innerCurves.InternalAdd((IfcCurve)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SELF\IfcProfileDef.ProfileType = AREA;*/
-		/*WR2:	WR2 : SIZEOF(QUERY(temp <* InnerCurves | temp.Dim <> 2)) = 0;*/
-		/*WR3:	WR3 : SIZEOF(QUERY(temp <* InnerCurves | 'IFC2X3.IFCLINE' IN TYPEOF(temp))) = 0;*/
 		}
 		#endregion
 
@@ -100,55 +94,20 @@ namespace Xbim.Ifc2x3.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcArbitraryProfileDefWithVoids
-            var root = (@IfcArbitraryProfileDefWithVoids)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcArbitraryProfileDefWithVoids left, @IfcArbitraryProfileDefWithVoids right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcArbitraryProfileDefWithVoids left, @IfcArbitraryProfileDefWithVoids right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcArbitraryProfileDefWithVoids x, @IfcArbitraryProfileDefWithVoids y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcArbitraryProfileDefWithVoids obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OuterCurve != null)
+					yield return @OuterCurve;
+				foreach(var entity in @InnerCurves)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

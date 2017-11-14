@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,27 +27,36 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcExtrudedAreaSolid : IIfcSweptAreaSolid
 	{
-		IIfcDirection @ExtrudedDirection { get; }
-		IfcPositiveLengthMeasure @Depth { get; }
+		IIfcDirection @ExtrudedDirection { get;  set; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcExtrudedAreaSolid", 647)]
+	[ExpressType("IfcExtrudedAreaSolid", 238)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IEqualityComparer<@IfcExtrudedAreaSolid>, IEquatable<@IfcExtrudedAreaSolid>
+	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IContainsEntityReferences, IEquatable<@IfcExtrudedAreaSolid>
 	{
 		#region IIfcExtrudedAreaSolid explicit implementation
-		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { get { return @ExtrudedDirection; } }	
-		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { get { return @Depth; } }	
+		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { 
+ 
+ 
+			get { return @ExtrudedDirection; } 
+			set { ExtrudedDirection = value as IfcDirection;}
+		}	
+		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { 
+ 
+			get { return @Depth; } 
+			set { Depth = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcExtrudedAreaSolid(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcExtrudedAreaSolid(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +70,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _extrudedDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _extrudedDirection;
+				Activate();
 				return _extrudedDirection;
 			} 
 			set
 			{
-				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _extrudedDirection = v, _extrudedDirection, value,  "ExtrudedDirection", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -73,13 +86,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _depth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _depth;
+				Activate();
 				return _depth;
 			} 
 			set
 			{
-				SetValue( v =>  _depth = v, _depth, value,  "Depth");
+				SetValue( v =>  _depth = v, _depth, value,  "Depth", 4);
 			} 
 		}	
 		#endregion
@@ -87,9 +100,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -107,12 +119,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ValidExtrusionDirection:	ValidExtrusionDirection : IfcDotProduct(IfcRepresentationItem() || IfcGeometricRepresentationItem() || IfcDirection([0.0,0.0,1.0]), SELF.ExtrudedDirection) <> 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -120,55 +126,22 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcExtrudedAreaSolid
-            var root = (@IfcExtrudedAreaSolid)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcExtrudedAreaSolid left, @IfcExtrudedAreaSolid right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcExtrudedAreaSolid left, @IfcExtrudedAreaSolid right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcExtrudedAreaSolid x, @IfcExtrudedAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcExtrudedAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptArea != null)
+					yield return @SweptArea;
+				if (@Position != null)
+					yield return @Position;
+				if (@ExtrudedDirection != null)
+					yield return @ExtrudedDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

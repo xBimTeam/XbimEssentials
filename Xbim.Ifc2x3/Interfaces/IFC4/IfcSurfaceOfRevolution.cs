@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcSurfaceOfRevolution : IIfcSurfaceOfRevolution
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceOfRevolution), 3)]
 		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition 
 		{ 
 			get
 			{
 				return AxisPosition;
 			} 
+			set
+			{
+				AxisPosition = value as IfcAxis1Placement;
+				
+			}
 		}
 		Common.Geometry.XbimLine IIfcSurfaceOfRevolution.AxisLine 
 		{

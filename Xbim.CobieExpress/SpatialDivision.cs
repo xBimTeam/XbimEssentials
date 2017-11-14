@@ -9,6 +9,8 @@
 
 using Xbim.Common;
 using Xbim.CobieExpress.Interfaces;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress
 {

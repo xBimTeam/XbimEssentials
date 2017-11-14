@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,39 +27,74 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSimplePropertyTemplate : IIfcPropertyTemplate
 	{
-		IfcSimplePropertyTemplateTypeEnum? @TemplateType { get; }
-		IfcLabel? @PrimaryMeasureType { get; }
-		IfcLabel? @SecondaryMeasureType { get; }
-		IIfcPropertyEnumeration @Enumerators { get; }
-		IIfcUnit @PrimaryUnit { get; }
-		IIfcUnit @SecondaryUnit { get; }
-		IfcLabel? @Expression { get; }
-		IfcStateEnum? @AccessState { get; }
+		IfcSimplePropertyTemplateTypeEnum? @TemplateType { get;  set; }
+		IfcLabel? @PrimaryMeasureType { get;  set; }
+		IfcLabel? @SecondaryMeasureType { get;  set; }
+		IIfcPropertyEnumeration @Enumerators { get;  set; }
+		IIfcUnit @PrimaryUnit { get;  set; }
+		IIfcUnit @SecondaryUnit { get;  set; }
+		IfcLabel? @Expression { get;  set; }
+		IfcStateEnum? @AccessState { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcSimplePropertyTemplate", 991)]
+	[ExpressType("IfcSimplePropertyTemplate", 1267)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSimplePropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcSimplePropertyTemplate, IEqualityComparer<@IfcSimplePropertyTemplate>, IEquatable<@IfcSimplePropertyTemplate>
+	public  partial class @IfcSimplePropertyTemplate : IfcPropertyTemplate, IInstantiableEntity, IIfcSimplePropertyTemplate, IContainsEntityReferences, IEquatable<@IfcSimplePropertyTemplate>
 	{
 		#region IIfcSimplePropertyTemplate explicit implementation
-		IfcSimplePropertyTemplateTypeEnum? IIfcSimplePropertyTemplate.TemplateType { get { return @TemplateType; } }	
-		IfcLabel? IIfcSimplePropertyTemplate.PrimaryMeasureType { get { return @PrimaryMeasureType; } }	
-		IfcLabel? IIfcSimplePropertyTemplate.SecondaryMeasureType { get { return @SecondaryMeasureType; } }	
-		IIfcPropertyEnumeration IIfcSimplePropertyTemplate.Enumerators { get { return @Enumerators; } }	
-		IIfcUnit IIfcSimplePropertyTemplate.PrimaryUnit { get { return @PrimaryUnit; } }	
-		IIfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { get { return @SecondaryUnit; } }	
-		IfcLabel? IIfcSimplePropertyTemplate.Expression { get { return @Expression; } }	
-		IfcStateEnum? IIfcSimplePropertyTemplate.AccessState { get { return @AccessState; } }	
+		IfcSimplePropertyTemplateTypeEnum? IIfcSimplePropertyTemplate.TemplateType { 
+ 
+			get { return @TemplateType; } 
+			set { TemplateType = value;}
+		}	
+		IfcLabel? IIfcSimplePropertyTemplate.PrimaryMeasureType { 
+ 
+			get { return @PrimaryMeasureType; } 
+			set { PrimaryMeasureType = value;}
+		}	
+		IfcLabel? IIfcSimplePropertyTemplate.SecondaryMeasureType { 
+ 
+			get { return @SecondaryMeasureType; } 
+			set { SecondaryMeasureType = value;}
+		}	
+		IIfcPropertyEnumeration IIfcSimplePropertyTemplate.Enumerators { 
+ 
+ 
+			get { return @Enumerators; } 
+			set { Enumerators = value as IfcPropertyEnumeration;}
+		}	
+		IIfcUnit IIfcSimplePropertyTemplate.PrimaryUnit { 
+ 
+ 
+			get { return @PrimaryUnit; } 
+			set { PrimaryUnit = value as IfcUnit;}
+		}	
+		IIfcUnit IIfcSimplePropertyTemplate.SecondaryUnit { 
+ 
+ 
+			get { return @SecondaryUnit; } 
+			set { SecondaryUnit = value as IfcUnit;}
+		}	
+		IfcLabel? IIfcSimplePropertyTemplate.Expression { 
+ 
+			get { return @Expression; } 
+			set { Expression = value;}
+		}	
+		IfcStateEnum? IIfcSimplePropertyTemplate.AccessState { 
+ 
+			get { return @AccessState; } 
+			set { AccessState = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSimplePropertyTemplate(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSimplePropertyTemplate(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -77,13 +114,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _templateType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _templateType;
+				Activate();
 				return _templateType;
 			} 
 			set
 			{
-				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType");
+				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -91,13 +128,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _primaryMeasureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _primaryMeasureType;
+				Activate();
 				return _primaryMeasureType;
 			} 
 			set
 			{
-				SetValue( v =>  _primaryMeasureType = v, _primaryMeasureType, value,  "PrimaryMeasureType");
+				SetValue( v =>  _primaryMeasureType = v, _primaryMeasureType, value,  "PrimaryMeasureType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -105,13 +142,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondaryMeasureType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondaryMeasureType;
+				Activate();
 				return _secondaryMeasureType;
 			} 
 			set
 			{
-				SetValue( v =>  _secondaryMeasureType = v, _secondaryMeasureType, value,  "SecondaryMeasureType");
+				SetValue( v =>  _secondaryMeasureType = v, _secondaryMeasureType, value,  "SecondaryMeasureType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -119,13 +156,15 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _enumerators;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _enumerators;
+				Activate();
 				return _enumerators;
 			} 
 			set
 			{
-				SetValue( v =>  _enumerators = v, _enumerators, value,  "Enumerators");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _enumerators = v, _enumerators, value,  "Enumerators", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -133,13 +172,15 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _primaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _primaryUnit;
+				Activate();
 				return _primaryUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _primaryUnit = v, _primaryUnit, value,  "PrimaryUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _primaryUnit = v, _primaryUnit, value,  "PrimaryUnit", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -147,13 +188,15 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _secondaryUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _secondaryUnit;
+				Activate();
 				return _secondaryUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _secondaryUnit = v, _secondaryUnit, value,  "SecondaryUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _secondaryUnit = v, _secondaryUnit, value,  "SecondaryUnit", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -161,13 +204,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expression;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expression;
+				Activate();
 				return _expression;
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression");
+				SetValue( v =>  _expression = v, _expression, value,  "Expression", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 16)]
@@ -175,13 +218,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _accessState;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _accessState;
+				Activate();
 				return _accessState;
 			} 
 			set
 			{
-				SetValue( v =>  _accessState = v, _accessState, value,  "AccessState");
+				SetValue( v =>  _accessState = v, _accessState, value,  "AccessState", 12);
 			} 
 		}	
 		#endregion
@@ -189,9 +232,8 @@ namespace Xbim.Ifc4.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -229,11 +271,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -241,55 +278,24 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSimplePropertyTemplate
-            var root = (@IfcSimplePropertyTemplate)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSimplePropertyTemplate left, @IfcSimplePropertyTemplate right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSimplePropertyTemplate left, @IfcSimplePropertyTemplate right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSimplePropertyTemplate x, @IfcSimplePropertyTemplate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSimplePropertyTemplate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@Enumerators != null)
+					yield return @Enumerators;
+				if (@PrimaryUnit != null)
+					yield return @PrimaryUnit;
+				if (@SecondaryUnit != null)
+					yield return @SecondaryUnit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

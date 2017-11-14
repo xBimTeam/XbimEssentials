@@ -10,33 +10,57 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBooleanResult : IIfcBooleanResult
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBooleanResult), 1)]
 		Ifc4.Interfaces.IfcBooleanOperator IIfcBooleanResult.Operator 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Operator
+				//##
 				switch (Operator)
 				{
 					case IfcBooleanOperator.UNION:
 						return Ifc4.Interfaces.IfcBooleanOperator.UNION;
-					
 					case IfcBooleanOperator.INTERSECTION:
 						return Ifc4.Interfaces.IfcBooleanOperator.INTERSECTION;
-					
 					case IfcBooleanOperator.DIFFERENCE:
 						return Ifc4.Interfaces.IfcBooleanOperator.DIFFERENCE;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of Operator
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcBooleanOperator.UNION:
+						Operator = IfcBooleanOperator.UNION;
+						return;
+					case Ifc4.Interfaces.IfcBooleanOperator.INTERSECTION:
+						Operator = IfcBooleanOperator.INTERSECTION;
+						return;
+					case Ifc4.Interfaces.IfcBooleanOperator.DIFFERENCE:
+						Operator = IfcBooleanOperator.DIFFERENCE;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBooleanResult), 2)]
 		IIfcBooleanOperand IIfcBooleanResult.FirstOperand 
 		{ 
 			get
@@ -56,7 +80,42 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					FirstOperand = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					FirstOperand = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					FirstOperand = ifccsgprimitive3d;
+					return;
+				}
+				var ifchalfspacesolid = value as IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+				{
+					FirstOperand = ifchalfspacesolid;
+					return;
+				}
+				var ifcsolidmodel = value as IfcSolidModel;
+				if (ifcsolidmodel != null) 
+				{
+					FirstOperand = ifcsolidmodel;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBooleanResult), 3)]
 		IIfcBooleanOperand IIfcBooleanResult.SecondOperand 
 		{ 
 			get
@@ -76,6 +135,39 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					SecondOperand = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					SecondOperand = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					SecondOperand = ifccsgprimitive3d;
+					return;
+				}
+				var ifchalfspacesolid = value as IfcHalfSpaceSolid;
+				if (ifchalfspacesolid != null) 
+				{
+					SecondOperand = ifchalfspacesolid;
+					return;
+				}
+				var ifcsolidmodel = value as IfcSolidModel;
+				if (ifcsolidmodel != null) 
+				{
+					SecondOperand = ifcsolidmodel;
+					return;
+				}
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 
 		{

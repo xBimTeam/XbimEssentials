@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,37 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIndexedTextureMap : IIfcTextureCoordinate
 	{
-		IIfcTessellatedFaceSet @MappedTo { get; }
-		IIfcTextureVertexList @TexCoords { get; }
+		IIfcTessellatedFaceSet @MappedTo { get;  set; }
+		IIfcTextureVertexList @TexCoords { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcIndexedTextureMap", 716)]
+	[ExpressType("IfcIndexedTextureMap", 1191)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcIndexedTextureMap : IfcTextureCoordinate, IIfcIndexedTextureMap, IEqualityComparer<@IfcIndexedTextureMap>, IEquatable<@IfcIndexedTextureMap>
+	public abstract partial class @IfcIndexedTextureMap : IfcTextureCoordinate, IIfcIndexedTextureMap, IEquatable<@IfcIndexedTextureMap>
 	{
 		#region IIfcIndexedTextureMap explicit implementation
-		IIfcTessellatedFaceSet IIfcIndexedTextureMap.MappedTo { get { return @MappedTo; } }	
-		IIfcTextureVertexList IIfcIndexedTextureMap.TexCoords { get { return @TexCoords; } }	
+		IIfcTessellatedFaceSet IIfcIndexedTextureMap.MappedTo { 
+ 
+ 
+			get { return @MappedTo; } 
+			set { MappedTo = value as IfcTessellatedFaceSet;}
+		}	
+		IIfcTextureVertexList IIfcIndexedTextureMap.TexCoords { 
+ 
+ 
+			get { return @TexCoords; } 
+			set { TexCoords = value as IfcTextureVertexList;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcIndexedTextureMap(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcIndexedTextureMap(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +71,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mappedTo;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mappedTo;
+				Activate();
 				return _mappedTo;
 			} 
 			set
 			{
-				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -73,13 +87,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _texCoords;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _texCoords;
+				Activate();
 				return _texCoords;
 			} 
 			set
 			{
-				SetValue( v =>  _texCoords = v, _texCoords, value,  "TexCoords");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _texCoords = v, _texCoords, value,  "TexCoords", 3);
 			} 
 		}	
 		#endregion
@@ -87,9 +103,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -106,11 +121,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -118,54 +128,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcIndexedTextureMap
-            var root = (@IfcIndexedTextureMap)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcIndexedTextureMap left, @IfcIndexedTextureMap right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcIndexedTextureMap left, @IfcIndexedTextureMap right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIndexedTextureMap x, @IfcIndexedTextureMap y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIndexedTextureMap obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

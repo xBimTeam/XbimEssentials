@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.QuantityResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityCount : IIfcPhysicalSimpleQuantity
 	{
-		IfcCountMeasure @CountValue { get; }
-		IfcLabel? @Formula { get; }
+		IfcCountMeasure @CountValue { get;  set; }
+		IfcLabel? @Formula { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.QuantityResource
 {
-	[ExpressType("IfcQuantityCount", 880)]
+	[ExpressType("IfcQuantityCount", 457)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IEqualityComparer<@IfcQuantityCount>, IEquatable<@IfcQuantityCount>
+	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IContainsEntityReferences, IEquatable<@IfcQuantityCount>
 	{
 		#region IIfcQuantityCount explicit implementation
-		IfcCountMeasure IIfcQuantityCount.CountValue { get { return @CountValue; } }	
-		IfcLabel? IIfcQuantityCount.Formula { get { return @Formula; } }	
+		IfcCountMeasure IIfcQuantityCount.CountValue { 
+ 
+			get { return @CountValue; } 
+			set { CountValue = value;}
+		}	
+		IfcLabel? IIfcQuantityCount.Formula { 
+ 
+			get { return @Formula; } 
+			set { Formula = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcQuantityCount(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcQuantityCount(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +68,13 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _countValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _countValue;
+				Activate();
 				return _countValue;
 			} 
 			set
 			{
-				SetValue( v =>  _countValue = v, _countValue, value,  "CountValue");
+				SetValue( v =>  _countValue = v, _countValue, value,  "CountValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -72,13 +82,13 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _formula;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _formula;
+				Activate();
 				return _formula;
 			} 
 			set
 			{
-				SetValue( v =>  _formula = v, _formula, value,  "Formula");
+				SetValue( v =>  _formula = v, _formula, value,  "Formula", 5);
 			} 
 		}	
 		#endregion
@@ -86,9 +96,8 @@ namespace Xbim.Ifc4.QuantityResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -107,12 +116,6 @@ namespace Xbim.Ifc4.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:	WR21 : CountValue >= 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -120,55 +123,18 @@ namespace Xbim.Ifc4.QuantityResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcQuantityCount
-            var root = (@IfcQuantityCount)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcQuantityCount left, @IfcQuantityCount right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcQuantityCount left, @IfcQuantityCount right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityCount x, @IfcQuantityCount y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityCount obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,16 +28,16 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpaceThermalLoadProperties : IIfcPropertySetDefinition
 	{
-		IfcPositiveRatioMeasure? @ApplicableValueRatio { get; }
-		IfcThermalLoadSourceEnum @ThermalLoadSource { get; }
-		IfcPropertySourceEnum @PropertySource { get; }
-		IfcText? @SourceDescription { get; }
-		IfcPowerMeasure @MaximumValue { get; }
-		IfcPowerMeasure? @MinimumValue { get; }
-		IIfcTimeSeries @ThermalLoadTimeSeriesValues { get; }
-		IfcLabel? @UserDefinedThermalLoadSource { get; }
-		IfcLabel? @UserDefinedPropertySource { get; }
-		IfcThermalLoadTypeEnum @ThermalLoadType { get; }
+		IfcPositiveRatioMeasure? @ApplicableValueRatio { get;  set; }
+		IfcThermalLoadSourceEnum @ThermalLoadSource { get;  set; }
+		IfcPropertySourceEnum @PropertySource { get;  set; }
+		IfcText? @SourceDescription { get;  set; }
+		IfcPowerMeasure @MaximumValue { get;  set; }
+		IfcPowerMeasure? @MinimumValue { get;  set; }
+		IIfcTimeSeries @ThermalLoadTimeSeriesValues { get;  set; }
+		IfcLabel? @UserDefinedThermalLoadSource { get;  set; }
+		IfcLabel? @UserDefinedPropertySource { get;  set; }
+		IfcThermalLoadTypeEnum @ThermalLoadType { get;  set; }
 	
 	}
 }
@@ -44,25 +46,66 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSpaceThermalLoadProperties", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IEqualityComparer<@IfcSpaceThermalLoadProperties>, IEquatable<@IfcSpaceThermalLoadProperties>
+	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IContainsEntityReferences, IEquatable<@IfcSpaceThermalLoadProperties>
 	{
 		#region IIfcSpaceThermalLoadProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { get { return @ApplicableValueRatio; } }	
-		IfcThermalLoadSourceEnum IIfcSpaceThermalLoadProperties.ThermalLoadSource { get { return @ThermalLoadSource; } }	
-		IfcPropertySourceEnum IIfcSpaceThermalLoadProperties.PropertySource { get { return @PropertySource; } }	
-		IfcText? IIfcSpaceThermalLoadProperties.SourceDescription { get { return @SourceDescription; } }	
-		IfcPowerMeasure IIfcSpaceThermalLoadProperties.MaximumValue { get { return @MaximumValue; } }	
-		IfcPowerMeasure? IIfcSpaceThermalLoadProperties.MinimumValue { get { return @MinimumValue; } }	
-		IIfcTimeSeries IIfcSpaceThermalLoadProperties.ThermalLoadTimeSeriesValues { get { return @ThermalLoadTimeSeriesValues; } }	
-		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedThermalLoadSource { get { return @UserDefinedThermalLoadSource; } }	
-		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedPropertySource { get { return @UserDefinedPropertySource; } }	
-		IfcThermalLoadTypeEnum IIfcSpaceThermalLoadProperties.ThermalLoadType { get { return @ThermalLoadType; } }	
+		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { 
+ 
+			get { return @ApplicableValueRatio; } 
+			set { ApplicableValueRatio = value;}
+		}	
+		IfcThermalLoadSourceEnum IIfcSpaceThermalLoadProperties.ThermalLoadSource { 
+ 
+			get { return @ThermalLoadSource; } 
+			set { ThermalLoadSource = value;}
+		}	
+		IfcPropertySourceEnum IIfcSpaceThermalLoadProperties.PropertySource { 
+ 
+			get { return @PropertySource; } 
+			set { PropertySource = value;}
+		}	
+		IfcText? IIfcSpaceThermalLoadProperties.SourceDescription { 
+ 
+			get { return @SourceDescription; } 
+			set { SourceDescription = value;}
+		}	
+		IfcPowerMeasure IIfcSpaceThermalLoadProperties.MaximumValue { 
+ 
+			get { return @MaximumValue; } 
+			set { MaximumValue = value;}
+		}	
+		IfcPowerMeasure? IIfcSpaceThermalLoadProperties.MinimumValue { 
+ 
+			get { return @MinimumValue; } 
+			set { MinimumValue = value;}
+		}	
+		IIfcTimeSeries IIfcSpaceThermalLoadProperties.ThermalLoadTimeSeriesValues { 
+ 
+ 
+			get { return @ThermalLoadTimeSeriesValues; } 
+			set { ThermalLoadTimeSeriesValues = value as IfcTimeSeries;}
+		}	
+		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedThermalLoadSource { 
+ 
+			get { return @UserDefinedThermalLoadSource; } 
+			set { UserDefinedThermalLoadSource = value;}
+		}	
+		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedPropertySource { 
+ 
+			get { return @UserDefinedPropertySource; } 
+			set { UserDefinedPropertySource = value;}
+		}	
+		IfcThermalLoadTypeEnum IIfcSpaceThermalLoadProperties.ThermalLoadType { 
+ 
+			get { return @ThermalLoadType; } 
+			set { ThermalLoadType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSpaceThermalLoadProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSpaceThermalLoadProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -84,13 +127,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableValueRatio;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableValueRatio;
+				Activate();
 				return _applicableValueRatio;
 			} 
 			set
 			{
-				SetValue( v =>  _applicableValueRatio = v, _applicableValueRatio, value,  "ApplicableValueRatio");
+				SetValue( v =>  _applicableValueRatio = v, _applicableValueRatio, value,  "ApplicableValueRatio", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
@@ -98,13 +141,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalLoadSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalLoadSource;
+				Activate();
 				return _thermalLoadSource;
 			} 
 			set
 			{
-				SetValue( v =>  _thermalLoadSource = v, _thermalLoadSource, value,  "ThermalLoadSource");
+				SetValue( v =>  _thermalLoadSource = v, _thermalLoadSource, value,  "ThermalLoadSource", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
@@ -112,13 +155,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _propertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _propertySource;
+				Activate();
 				return _propertySource;
 			} 
 			set
 			{
-				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource");
+				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -126,13 +169,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sourceDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sourceDescription;
+				Activate();
 				return _sourceDescription;
 			} 
 			set
 			{
-				SetValue( v =>  _sourceDescription = v, _sourceDescription, value,  "SourceDescription");
+				SetValue( v =>  _sourceDescription = v, _sourceDescription, value,  "SourceDescription", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -140,13 +183,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maximumValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maximumValue;
+				Activate();
 				return _maximumValue;
 			} 
 			set
 			{
-				SetValue( v =>  _maximumValue = v, _maximumValue, value,  "MaximumValue");
+				SetValue( v =>  _maximumValue = v, _maximumValue, value,  "MaximumValue", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -154,13 +197,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minimumValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minimumValue;
+				Activate();
 				return _minimumValue;
 			} 
 			set
 			{
-				SetValue( v =>  _minimumValue = v, _minimumValue, value,  "MinimumValue");
+				SetValue( v =>  _minimumValue = v, _minimumValue, value,  "MinimumValue", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -168,13 +211,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalLoadTimeSeriesValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalLoadTimeSeriesValues;
+				Activate();
 				return _thermalLoadTimeSeriesValues;
 			} 
 			set
 			{
-				SetValue( v =>  _thermalLoadTimeSeriesValues = v, _thermalLoadTimeSeriesValues, value,  "ThermalLoadTimeSeriesValues");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _thermalLoadTimeSeriesValues = v, _thermalLoadTimeSeriesValues, value,  "ThermalLoadTimeSeriesValues", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -182,13 +227,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedThermalLoadSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedThermalLoadSource;
+				Activate();
 				return _userDefinedThermalLoadSource;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedThermalLoadSource = v, _userDefinedThermalLoadSource, value,  "UserDefinedThermalLoadSource");
+				SetValue( v =>  _userDefinedThermalLoadSource = v, _userDefinedThermalLoadSource, value,  "UserDefinedThermalLoadSource", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -196,13 +241,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedPropertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedPropertySource;
+				Activate();
 				return _userDefinedPropertySource;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource");
+				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 17)]
@@ -210,13 +255,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalLoadType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalLoadType;
+				Activate();
 				return _thermalLoadType;
 			} 
 			set
 			{
-				SetValue( v =>  _thermalLoadType = v, _thermalLoadType, value,  "ThermalLoadType");
+				SetValue( v =>  _thermalLoadType = v, _thermalLoadType, value,  "ThermalLoadType", 14);
 			} 
 		}	
 		#endregion
@@ -224,9 +269,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -270,11 +314,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -282,55 +321,20 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSpaceThermalLoadProperties
-            var root = (@IfcSpaceThermalLoadProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSpaceThermalLoadProperties left, @IfcSpaceThermalLoadProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSpaceThermalLoadProperties left, @IfcSpaceThermalLoadProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpaceThermalLoadProperties x, @IfcSpaceThermalLoadProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpaceThermalLoadProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ThermalLoadTimeSeriesValues != null)
+					yield return @ThermalLoadTimeSeriesValues;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

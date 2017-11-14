@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,37 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsStructuralActivity : IIfcRelConnects
 	{
-		IIfcStructuralActivityAssignmentSelect @RelatingElement { get; }
-		IIfcStructuralActivity @RelatedStructuralActivity { get; }
+		IIfcStructuralActivityAssignmentSelect @RelatingElement { get;  set; }
+		IIfcStructuralActivity @RelatedStructuralActivity { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IfcRelConnectsStructuralActivity", 930)]
+	[ExpressType("IfcRelConnectsStructuralActivity", 211)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IEqualityComparer<@IfcRelConnectsStructuralActivity>, IEquatable<@IfcRelConnectsStructuralActivity>
+	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralActivity>
 	{
 		#region IIfcRelConnectsStructuralActivity explicit implementation
-		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { get { return @RelatingElement; } }	
-		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { get { return @RelatedStructuralActivity; } }	
+		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { 
+ 
+ 
+			get { return @RelatingElement; } 
+			set { RelatingElement = value as IfcStructuralActivityAssignmentSelect;}
+		}	
+		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { 
+ 
+ 
+			get { return @RelatedStructuralActivity; } 
+			set { RelatedStructuralActivity = value as IfcStructuralActivity;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelConnectsStructuralActivity(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelConnectsStructuralActivity(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +71,15 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingElement;
+				Activate();
 				return _relatingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -74,13 +88,15 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedStructuralActivity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedStructuralActivity;
+				Activate();
 				return _relatedStructuralActivity;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedStructuralActivity = v, _relatedStructuralActivity, value,  "RelatedStructuralActivity");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedStructuralActivity = v, _relatedStructuralActivity, value,  "RelatedStructuralActivity", 6);
 			} 
 		}	
 		#endregion
@@ -88,9 +104,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -110,11 +125,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -122,55 +132,37 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelConnectsStructuralActivity
-            var root = (@IfcRelConnectsStructuralActivity)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelConnectsStructuralActivity left, @IfcRelConnectsStructuralActivity right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelConnectsStructuralActivity left, @IfcRelConnectsStructuralActivity right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsStructuralActivity x, @IfcRelConnectsStructuralActivity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsStructuralActivity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedStructuralActivity != null)
+					yield return @RelatedStructuralActivity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedStructuralActivity != null)
+					yield return @RelatedStructuralActivity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

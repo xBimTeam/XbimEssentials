@@ -10,32 +10,54 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelConnectsPorts : IIfcRelConnectsPorts
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPorts), 5)]
 		IIfcPort IIfcRelConnectsPorts.RelatingPort 
 		{ 
 			get
 			{
 				return RelatingPort;
 			} 
+			set
+			{
+				RelatingPort = value as IfcPort;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPorts), 6)]
 		IIfcPort IIfcRelConnectsPorts.RelatedPort 
 		{ 
 			get
 			{
 				return RelatedPort;
 			} 
+			set
+			{
+				RelatedPort = value as IfcPort;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsPorts), 7)]
 		IIfcElement IIfcRelConnectsPorts.RealizingElement 
 		{ 
 			get
 			{
 				return RealizingElement;
 			} 
+			set
+			{
+				RealizingElement = value as IfcElement;
+				
+			}
 		}
 	//## Custom code
 	//##

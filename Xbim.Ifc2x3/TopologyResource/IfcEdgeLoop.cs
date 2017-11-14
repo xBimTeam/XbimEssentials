@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -23,7 +25,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEdgeLoop : IIfcLoop
 	{
-		IEnumerable<IIfcOrientedEdge> @EdgeList { get; }
+		IItemSet<IIfcOrientedEdge> @EdgeList { get; }
 		long @Ne  { get ; }
 	
 	}
@@ -33,31 +35,33 @@ namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcEdgeLoop", 302)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IEqualityComparer<@IfcEdgeLoop>, IEquatable<@IfcEdgeLoop>
+	public  partial class @IfcEdgeLoop : IfcLoop, IInstantiableEntity, IIfcEdgeLoop, IContainsEntityReferences, IEquatable<@IfcEdgeLoop>
 	{
 		#region IIfcEdgeLoop explicit implementation
-		IEnumerable<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { get { return @EdgeList; } }	
+		IItemSet<IIfcOrientedEdge> IIfcEdgeLoop.EdgeList { 
+			get { return new Common.Collections.ProxyItemSet<IfcOrientedEdge, IIfcOrientedEdge>( @EdgeList); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcEdgeLoop(IModel model) : base(model) 		{ 
-			Model = model; 
-			_edgeList = new ItemSet<IfcOrientedEdge>( this, 0 );
+		internal IfcEdgeLoop(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_edgeList = new ItemSet<IfcOrientedEdge>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcOrientedEdge> _edgeList;
+		private readonly ItemSet<IfcOrientedEdge> _edgeList;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcOrientedEdge> @EdgeList 
+		public IItemSet<IfcOrientedEdge> @EdgeList 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _edgeList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _edgeList;
+				Activate();
 				return _edgeList;
 			} 
 		}	
@@ -79,26 +83,17 @@ namespace Xbim.Ifc2x3.TopologyResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_edgeList == null) _edgeList = new ItemSet<IfcOrientedEdge>( this );
 					_edgeList.InternalAdd((IfcOrientedEdge)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : (EdgeList[1].EdgeStart) :=: (EdgeList[Ne].EdgeEnd);*/
-		/*WR2:	WR2 : IfcLoopHeadToTail(SELF);*/
 		}
 		#endregion
 
@@ -107,55 +102,18 @@ namespace Xbim.Ifc2x3.TopologyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcEdgeLoop
-            var root = (@IfcEdgeLoop)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcEdgeLoop left, @IfcEdgeLoop right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcEdgeLoop left, @IfcEdgeLoop right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEdgeLoop x, @IfcEdgeLoop y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEdgeLoop obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @EdgeList)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcEllipse : IIfcEllipse
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcEllipse), 2)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipse.SemiAxis1 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(SemiAxis1);
 			} 
+			set
+			{
+				SemiAxis1 = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcEllipse), 3)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcEllipse.SemiAxis2 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(SemiAxis2);
 			} 
+			set
+			{
+				SemiAxis2 = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

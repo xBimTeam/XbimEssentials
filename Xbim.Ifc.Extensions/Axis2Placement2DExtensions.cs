@@ -44,7 +44,7 @@ namespace Xbim.Ifc2x3.Extensions
             if (axis2.RefDirection != null)
             {
                 XbimVector3D v = axis2.RefDirection.XbimVector3D();
-                v.Normalize();
+                v=v.Normalized();
                 transform = new XbimMatrix3D(v.X, v.Y, 0, 0, v.Y, v.X, 0, 0, 0, 0, 1, 0, axis2.Location.X, axis2.Location.Y, 0, 1);
             }
             else

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssociatesDocument : IIfcRelAssociatesDocument
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesDocument), 6)]
 		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument 
 		{ 
 			get
@@ -29,6 +32,27 @@ namespace Xbim.Ifc2x3.Kernel
 					return ifcdocumentinformation;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingDocument = null;
+					return;
+				}	
+				var ifcdocumentinformation = value as ExternalReferenceResource.IfcDocumentInformation;
+				if (ifcdocumentinformation != null) 
+				{
+					RelatingDocument = ifcdocumentinformation;
+					return;
+				}
+				var ifcdocumentreference = value as ExternalReferenceResource.IfcDocumentReference;
+				if (ifcdocumentreference != null) 
+				{
+					RelatingDocument = ifcdocumentreference;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

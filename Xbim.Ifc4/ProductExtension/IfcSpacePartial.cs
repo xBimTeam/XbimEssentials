@@ -29,8 +29,8 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
-                            GetQuantity<IfcQuantityArea>("GrossFloorArea");
+                var qArea = GetQuantity<IIfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
+                            GetQuantity<IIfcQuantityArea>("GrossFloorArea");
                 return qArea != null ? (IfcAreaMeasure?)qArea.AreaValue : null;
                 //try none schema defined properties
             }
@@ -46,11 +46,11 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                var qArea = GetQuantity<IfcQuantityArea>("BaseQuantities", "NetFloorArea") ??
-                            GetQuantity<IfcQuantityArea>("NetFloorArea");
+                var qArea = GetQuantity<IIfcQuantityArea>("BaseQuantities", "NetFloorArea") ??
+                            GetQuantity<IIfcQuantityArea>("NetFloorArea");
                 if (qArea != null) return qArea.AreaValue;
                 //try none schema defined properties
-                qArea = GetQuantity<IfcQuantityArea>("GSA Space Areas", "GSA BIM Area");
+                qArea = GetQuantity<IIfcQuantityArea>("GSA Space Areas", "GSA BIM Area");
                 if (qArea != null) return qArea.AreaValue;
                 return null;
             }
@@ -63,8 +63,8 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                var qLength = GetQuantity<IfcQuantityLength>("BaseQuantities", "Height") ??
-                              GetQuantity<IfcQuantityLength>("Height");
+                var qLength = GetQuantity<IIfcQuantityLength>("BaseQuantities", "Height") ??
+                              GetQuantity<IIfcQuantityLength>("Height");
                 return qLength != null ? (IfcLengthMeasure?)qLength.LengthValue : null;
                 //try none schema defined properties
             }
@@ -80,8 +80,8 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                var qLength = GetQuantity<IfcQuantityLength>("BaseQuantities", "GrossPerimeter") ??
-                              GetQuantity<IfcQuantityLength>("GrossPerimeter");
+                var qLength = GetQuantity<IIfcQuantityLength>("BaseQuantities", "GrossPerimeter") ??
+                              GetQuantity<IIfcQuantityLength>("GrossPerimeter");
                 if (qLength != null) return qLength.LengthValue;
                 //try none schema defined properties
                 return null;
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.ProductExtension
         {
             get
             {
-                return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcSpace>();
+                return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcSpace>();
             }
         }
     }

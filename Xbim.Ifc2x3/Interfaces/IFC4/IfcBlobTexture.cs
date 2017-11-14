@@ -10,29 +10,47 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcBlobTexture : IIfcBlobTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBlobTexture), 6)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcBlobTexture.RasterFormat 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(RasterFormat);
 			} 
+			set
+			{
+				RasterFormat = new MeasureResource.IfcIdentifier(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBlobTexture), 7)]
 		Ifc4.MeasureResource.IfcBinary IIfcBlobTexture.RasterCode 
 		{ 
 			get
 			{
 				//## Handle return of RasterCode for which no match was found
-			    return 0;
+			    return _rasterCode4;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of RasterCode for which no match was found
+                SetValue(v => _rasterCode4 = v, _rasterCode4, value, "RasterCode", -7);
+				//##
+				
+			}
 		}
 	//## Custom code
-	//##
+	    private Ifc4.MeasureResource.IfcBinary _rasterCode4;
+	    //##
 	}
 }

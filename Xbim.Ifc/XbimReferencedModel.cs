@@ -40,11 +40,10 @@ namespace Xbim.Ifc
             {
                 _model = IfcStore.Open(documentInformation.Name);
             }
-            catch (Exception)
+            catch (Exception ex)
             {                
-                 throw new XbimException("Unable to open reference model: " + documentInformation.Name);
+                 throw new XbimException("Unable to open reference model: " + documentInformation.Name, ex);
             }
-                        
         }
 
         /// <summary>

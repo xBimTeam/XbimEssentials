@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcVector : IIfcVector
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcVector), 1)]
 		IIfcDirection IIfcVector.Orientation 
 		{ 
 			get
 			{
 				return Orientation;
 			} 
+			set
+			{
+				Orientation = value as IfcDirection;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcVector), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcVector.Magnitude 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Magnitude);
 			} 
+			set
+			{
+				Magnitude = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcVector.Dim 
 		{

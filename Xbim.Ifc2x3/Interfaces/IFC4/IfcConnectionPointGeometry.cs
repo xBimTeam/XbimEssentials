@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionPointGeometry : IIfcConnectionPointGeometry
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointGeometry), 1)]
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement 
 		{ 
 			get
@@ -29,7 +32,30 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcvertexpoint;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					PointOnRelatingElement = null;
+					return;
+				}	
+				var ifcpoint = value as GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+				{
+					PointOnRelatingElement = ifcpoint;
+					return;
+				}
+				var ifcvertexpoint = value as TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+				{
+					PointOnRelatingElement = ifcvertexpoint;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointGeometry), 2)]
 		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement 
 		{ 
 			get
@@ -43,6 +69,27 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					return ifcvertexpoint;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					PointOnRelatedElement = null;
+					return;
+				}	
+				var ifcpoint = value as GeometryResource.IfcPoint;
+				if (ifcpoint != null) 
+				{
+					PointOnRelatedElement = ifcpoint;
+					return;
+				}
+				var ifcvertexpoint = value as TopologyResource.IfcVertexPoint;
+				if (ifcvertexpoint != null) 
+				{
+					PointOnRelatedElement = ifcvertexpoint;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

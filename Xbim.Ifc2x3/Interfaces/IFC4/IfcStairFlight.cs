@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcStairFlight : IIfcStairFlight
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 9)]
 		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfRisers 
 		{ 
 			get
@@ -24,7 +27,17 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return NumberOfRiser.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfRiser.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of NumberOfRisers for which no match was found
+			    NumberOfRiser = value;
+			    //##
+				NotifyPropertyChanged("NumberOfRisers");
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 10)]
 		Ifc4.MeasureResource.IfcInteger? IIfcStairFlight.NumberOfTreads 
 		{ 
 			get
@@ -33,7 +46,14 @@ namespace Xbim.Ifc2x3.SharedBldgElements
                 return NumberOfTreads.HasValue ? new Ifc4.MeasureResource.IfcInteger(NumberOfTreads.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 				//##
 			} 
+			set
+			{
+				NumberOfTreads = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 11)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight 
 		{ 
 			get
@@ -41,7 +61,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!RiserHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(RiserHeight.Value);
 			} 
+			set
+			{
+				RiserHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 12)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength 
 		{ 
 			get
@@ -49,15 +78,30 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!TreadLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(TreadLength.Value);
 			} 
+			set
+			{
+				TreadLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcStairFlightTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcStairFlight), 13)]
 		Ifc4.Interfaces.IfcStairFlightTypeEnum? IIfcStairFlight.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -13);
+				
+			}
 		}
 	//## Custom code
 	//##

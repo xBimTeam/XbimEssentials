@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,25 +26,29 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSweptDiskSolidPolygonal : IIfcSweptDiskSolid
 	{
-		IfcPositiveLengthMeasure? @FilletRadius { get; }
+		IfcPositiveLengthMeasure? @FilletRadius { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcSweptDiskSolidPolygonal", 1076)]
+	[ExpressType("IfcSweptDiskSolidPolygonal", 1289)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IEqualityComparer<@IfcSweptDiskSolidPolygonal>, IEquatable<@IfcSweptDiskSolidPolygonal>
+	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IIfcSweptDiskSolidPolygonal, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolidPolygonal>
 	{
 		#region IIfcSweptDiskSolidPolygonal explicit implementation
-		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { get { return @FilletRadius; } }	
+		IfcPositiveLengthMeasure? IIfcSweptDiskSolidPolygonal.FilletRadius { 
+ 
+			get { return @FilletRadius; } 
+			set { FilletRadius = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSweptDiskSolidPolygonal(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSweptDiskSolidPolygonal(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +61,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _filletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _filletRadius;
+				Activate();
 				return _filletRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
+				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius", 6);
 			} 
 		}	
 		#endregion
@@ -69,9 +75,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -89,13 +94,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectRadii:	CorrectRadii : NOT(EXISTS(FilletRadius)) OR (FilletRadius >= SELF\IfcSweptDiskSolid.Radius);*/
-		/*DirectrixIsPolyline:	DirectrixIsPolyline : 'IFC4.IFCPOLYLINE' IN TYPEOF(SELF\IfcSweptDiskSolid.Directrix);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -103,55 +101,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSweptDiskSolidPolygonal
-            var root = (@IfcSweptDiskSolidPolygonal)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSweptDiskSolidPolygonal left, @IfcSweptDiskSolidPolygonal right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSweptDiskSolidPolygonal left, @IfcSweptDiskSolidPolygonal right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSweptDiskSolidPolygonal x, @IfcSweptDiskSolidPolygonal y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptDiskSolidPolygonal obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Directrix != null)
+					yield return @Directrix;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

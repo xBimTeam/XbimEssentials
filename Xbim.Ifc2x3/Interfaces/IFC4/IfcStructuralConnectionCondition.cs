@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralConnectionCondition : IIfcStructuralConnectionCondition
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralConnectionCondition), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcStructuralConnectionCondition.Name 
 		{ 
 			get
@@ -23,6 +26,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,35 +26,46 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCurveBoundedSurface : IIfcBoundedSurface
 	{
-		IIfcSurface @BasisSurface { get; }
-		IEnumerable<IIfcBoundaryCurve> @Boundaries { get; }
-		IfcBoolean @ImplicitOuter { get; }
+		IIfcSurface @BasisSurface { get;  set; }
+		IItemSet<IIfcBoundaryCurve> @Boundaries { get; }
+		IfcBoolean @ImplicitOuter { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcCurveBoundedSurface", 559)]
+	[ExpressType("IfcCurveBoundedSurface", 1146)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IEqualityComparer<@IfcCurveBoundedSurface>, IEquatable<@IfcCurveBoundedSurface>
+	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedSurface, IContainsEntityReferences, IEquatable<@IfcCurveBoundedSurface>
 	{
 		#region IIfcCurveBoundedSurface explicit implementation
-		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { get { return @BasisSurface; } }	
-		IEnumerable<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { get { return @Boundaries; } }	
-		IfcBoolean IIfcCurveBoundedSurface.ImplicitOuter { get { return @ImplicitOuter; } }	
+		IIfcSurface IIfcCurveBoundedSurface.BasisSurface { 
+ 
+ 
+			get { return @BasisSurface; } 
+			set { BasisSurface = value as IfcSurface;}
+		}	
+		IItemSet<IIfcBoundaryCurve> IIfcCurveBoundedSurface.Boundaries { 
+			get { return new Common.Collections.ProxyItemSet<IfcBoundaryCurve, IIfcBoundaryCurve>( @Boundaries); } 
+		}	
+		IfcBoolean IIfcCurveBoundedSurface.ImplicitOuter { 
+ 
+			get { return @ImplicitOuter; } 
+			set { ImplicitOuter = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCurveBoundedSurface(IModel model) : base(model) 		{ 
-			Model = model; 
-			_boundaries = new ItemSet<IfcBoundaryCurve>( this, 0 );
+		internal IfcCurveBoundedSurface(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_boundaries = new ItemSet<IfcBoundaryCurve>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcSurface _basisSurface;
-		private ItemSet<IfcBoundaryCurve> _boundaries;
+		private readonly ItemSet<IfcBoundaryCurve> _boundaries;
 		private IfcBoolean _implicitOuter;
 		#endregion
 	
@@ -62,22 +75,24 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisSurface;
+				Activate();
 				return _basisSurface;
 			} 
 			set
 			{
-				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcBoundaryCurve> @Boundaries 
+		public IItemSet<IfcBoundaryCurve> @Boundaries 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _boundaries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _boundaries;
+				Activate();
 				return _boundaries;
 			} 
 		}	
@@ -86,13 +101,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _implicitOuter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _implicitOuter;
+				Activate();
 				return _implicitOuter;
 			} 
 			set
 			{
-				SetValue( v =>  _implicitOuter = v, _implicitOuter, value,  "ImplicitOuter");
+				SetValue( v =>  _implicitOuter = v, _implicitOuter, value,  "ImplicitOuter", 3);
 			} 
 		}	
 		#endregion
@@ -100,9 +115,8 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -110,7 +124,6 @@ namespace Xbim.Ifc4.GeometryResource
 					_basisSurface = (IfcSurface)(value.EntityVal);
 					return;
 				case 1: 
-					if (_boundaries == null) _boundaries = new ItemSet<IfcBoundaryCurve>( this );
 					_boundaries.InternalAdd((IfcBoundaryCurve)value.EntityVal);
 					return;
 				case 2: 
@@ -120,11 +133,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -132,55 +140,20 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCurveBoundedSurface
-            var root = (@IfcCurveBoundedSurface)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCurveBoundedSurface left, @IfcCurveBoundedSurface right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCurveBoundedSurface left, @IfcCurveBoundedSurface right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCurveBoundedSurface x, @IfcCurveBoundedSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCurveBoundedSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisSurface != null)
+					yield return @BasisSurface;
+				foreach(var entity in @Boundaries)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

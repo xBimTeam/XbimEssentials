@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialList : IIfcMaterialList
 	{
-		IEnumerable<IIfcMaterial> IIfcMaterialList.Materials 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialList), 1)]
+		IItemSet<IIfcMaterial> IIfcMaterialList.Materials 
 		{ 
 			get
 			{
-				foreach (var member in Materials)
-				{
-					yield return member as IIfcMaterial;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcMaterial, IIfcMaterial>(Materials);
 			} 
 		}
 	//## Custom code

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBSplineCurveWithKnots : IIfcBSplineCurveWithKnots
 	{
-		IEnumerable<IfcReal> @WeightsData { get; }
+		IItemSet<IfcReal> @WeightsData { get; }
 		List<IfcReal> @Weights  { get ; }
 	
 	}
@@ -32,33 +34,35 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcRationalBSplineCurveWithKnots", 892)]
+	[ExpressType("IfcRationalBSplineCurveWithKnots", 1241)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IIfcRationalBSplineCurveWithKnots, IEqualityComparer<@IfcRationalBSplineCurveWithKnots>, IEquatable<@IfcRationalBSplineCurveWithKnots>
+	public  partial class @IfcRationalBSplineCurveWithKnots : IfcBSplineCurveWithKnots, IInstantiableEntity, IIfcRationalBSplineCurveWithKnots, IContainsEntityReferences, IEquatable<@IfcRationalBSplineCurveWithKnots>
 	{
 		#region IIfcRationalBSplineCurveWithKnots explicit implementation
-		IEnumerable<IfcReal> IIfcRationalBSplineCurveWithKnots.WeightsData { get { return @WeightsData; } }	
+		IItemSet<IfcReal> IIfcRationalBSplineCurveWithKnots.WeightsData { 
+			get { return @WeightsData; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRationalBSplineCurveWithKnots(IModel model) : base(model) 		{ 
-			Model = model; 
-			_weightsData = new ItemSet<IfcReal>( this, 0 );
+		internal IfcRationalBSplineCurveWithKnots(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_weightsData = new ItemSet<IfcReal>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcReal> _weightsData;
+		private readonly ItemSet<IfcReal> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 11)]
-		public ItemSet<IfcReal> @WeightsData 
+		public IItemSet<IfcReal> @WeightsData 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weightsData;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weightsData;
+				Activate();
 				return _weightsData;
 			} 
 		}	
@@ -80,9 +84,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -97,19 +100,11 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					if (_weightsData == null) _weightsData = new ItemSet<IfcReal>( this );
 					_weightsData.InternalAdd(value.RealVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SameNumOfWeightsAndPoints:	SameNumOfWeightsAndPoints : SIZEOF(WeightsData) = SIZEOF(SELF\IfcBSplineCurve.ControlPointsList);*/
-		/*WeightsGreaterZero:	WeightsGreaterZero : IfcCurveWeightsPositive(SELF);*/
 		}
 		#endregion
 
@@ -118,55 +113,18 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRationalBSplineCurveWithKnots
-            var root = (@IfcRationalBSplineCurveWithKnots)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRationalBSplineCurveWithKnots left, @IfcRationalBSplineCurveWithKnots right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRationalBSplineCurveWithKnots left, @IfcRationalBSplineCurveWithKnots right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRationalBSplineCurveWithKnots x, @IfcRationalBSplineCurveWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRationalBSplineCurveWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @ControlPointsList)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

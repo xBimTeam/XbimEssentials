@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,25 +26,29 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReparametrisedCompositeCurveSegment : IIfcCompositeCurveSegment
 	{
-		IfcParameterValue @ParamLength { get; }
+		IfcParameterValue @ParamLength { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcReparametrisedCompositeCurveSegment", 957)]
+	[ExpressType("IfcReparametrisedCompositeCurveSegment", 1255)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IEqualityComparer<@IfcReparametrisedCompositeCurveSegment>, IEquatable<@IfcReparametrisedCompositeCurveSegment>
+	public  partial class @IfcReparametrisedCompositeCurveSegment : IfcCompositeCurveSegment, IInstantiableEntity, IIfcReparametrisedCompositeCurveSegment, IContainsEntityReferences, IEquatable<@IfcReparametrisedCompositeCurveSegment>
 	{
 		#region IIfcReparametrisedCompositeCurveSegment explicit implementation
-		IfcParameterValue IIfcReparametrisedCompositeCurveSegment.ParamLength { get { return @ParamLength; } }	
+		IfcParameterValue IIfcReparametrisedCompositeCurveSegment.ParamLength { 
+ 
+			get { return @ParamLength; } 
+			set { ParamLength = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcReparametrisedCompositeCurveSegment(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcReparametrisedCompositeCurveSegment(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +61,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _paramLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _paramLength;
+				Activate();
 				return _paramLength;
 			} 
 			set
 			{
-				SetValue( v =>  _paramLength = v, _paramLength, value,  "ParamLength");
+				SetValue( v =>  _paramLength = v, _paramLength, value,  "ParamLength", 4);
 			} 
 		}	
 		#endregion
@@ -69,9 +75,8 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -87,12 +92,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*PositiveLengthParameter:	PositiveLengthParameter : ParamLength > 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -100,55 +99,18 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcReparametrisedCompositeCurveSegment
-            var root = (@IfcReparametrisedCompositeCurveSegment)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcReparametrisedCompositeCurveSegment left, @IfcReparametrisedCompositeCurveSegment right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcReparametrisedCompositeCurveSegment left, @IfcReparametrisedCompositeCurveSegment right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReparametrisedCompositeCurveSegment x, @IfcReparametrisedCompositeCurveSegment y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReparametrisedCompositeCurveSegment obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ParentCurve != null)
+					yield return @ParentCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

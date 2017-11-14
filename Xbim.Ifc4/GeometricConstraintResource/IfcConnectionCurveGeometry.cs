@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,28 +25,37 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionCurveGeometry : IIfcConnectionGeometry
 	{
-		IIfcCurveOrEdgeCurve @CurveOnRelatingElement { get; }
-		IIfcCurveOrEdgeCurve @CurveOnRelatedElement { get; }
+		IIfcCurveOrEdgeCurve @CurveOnRelatingElement { get;  set; }
+		IIfcCurveOrEdgeCurve @CurveOnRelatedElement { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[IndexedClass]
-	[ExpressType("IfcConnectionCurveGeometry", 517)]
+	[ExpressType("IfcConnectionCurveGeometry", 590)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IEqualityComparer<@IfcConnectionCurveGeometry>, IEquatable<@IfcConnectionCurveGeometry>
+	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionCurveGeometry>
 	{
 		#region IIfcConnectionCurveGeometry explicit implementation
-		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { get { return @CurveOnRelatingElement; } }	
-		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement { get { return @CurveOnRelatedElement; } }	
+		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { 
+ 
+ 
+			get { return @CurveOnRelatingElement; } 
+			set { CurveOnRelatingElement = value as IfcCurveOrEdgeCurve;}
+		}	
+		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement { 
+ 
+ 
+			get { return @CurveOnRelatedElement; } 
+			set { CurveOnRelatedElement = value as IfcCurveOrEdgeCurve;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConnectionCurveGeometry(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcConnectionCurveGeometry(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +69,15 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveOnRelatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveOnRelatingElement;
+				Activate();
 				return _curveOnRelatingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _curveOnRelatingElement = v, _curveOnRelatingElement, value,  "CurveOnRelatingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _curveOnRelatingElement = v, _curveOnRelatingElement, value,  "CurveOnRelatingElement", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -72,13 +85,15 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _curveOnRelatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _curveOnRelatedElement;
+				Activate();
 				return _curveOnRelatedElement;
 			} 
 			set
 			{
-				SetValue( v =>  _curveOnRelatedElement = v, _curveOnRelatedElement, value,  "CurveOnRelatedElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _curveOnRelatedElement = v, _curveOnRelatedElement, value,  "CurveOnRelatedElement", 2);
 			} 
 		}	
 		#endregion
@@ -86,9 +101,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -102,11 +116,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -114,55 +123,20 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConnectionCurveGeometry
-            var root = (@IfcConnectionCurveGeometry)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConnectionCurveGeometry left, @IfcConnectionCurveGeometry right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConnectionCurveGeometry left, @IfcConnectionCurveGeometry right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionCurveGeometry x, @IfcConnectionCurveGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionCurveGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@CurveOnRelatingElement != null)
+					yield return @CurveOnRelatingElement;
+				if (@CurveOnRelatedElement != null)
+					yield return @CurveOnRelatedElement;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

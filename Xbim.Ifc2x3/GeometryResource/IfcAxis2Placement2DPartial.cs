@@ -14,7 +14,7 @@ namespace Xbim.Ifc2x3.GeometryResource
             if (RefDirection != null)
             {
                 XbimVector3D v = RefDirection.XbimVector3D();
-                v.Normalize();
+                v.Normalized();
                 transform = new XbimMatrix3D(v.X, v.Y, 0, 0, v.Y, v.X, 0, 0, 0, 0, 1, 0, Location.X, Location.Y, 0, 1);
             }
             else

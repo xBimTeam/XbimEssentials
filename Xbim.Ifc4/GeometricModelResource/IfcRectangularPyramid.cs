@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,29 +26,41 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangularPyramid : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @XLength { get; }
-		IfcPositiveLengthMeasure @YLength { get; }
-		IfcPositiveLengthMeasure @Height { get; }
+		IfcPositiveLengthMeasure @XLength { get;  set; }
+		IfcPositiveLengthMeasure @YLength { get;  set; }
+		IfcPositiveLengthMeasure @Height { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcRectangularPyramid", 896)]
+	[ExpressType("IfcRectangularPyramid", 705)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IEqualityComparer<@IfcRectangularPyramid>, IEquatable<@IfcRectangularPyramid>
+	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IContainsEntityReferences, IEquatable<@IfcRectangularPyramid>
 	{
 		#region IIfcRectangularPyramid explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { get { return @XLength; } }	
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { get { return @YLength; } }	
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { get { return @Height; } }	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { 
+ 
+			get { return @XLength; } 
+			set { XLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { 
+ 
+			get { return @YLength; } 
+			set { YLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { 
+ 
+			get { return @Height; } 
+			set { Height = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRectangularPyramid(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRectangularPyramid(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xLength;
+				Activate();
 				return _xLength;
 			} 
 			set
 			{
-				SetValue( v =>  _xLength = v, _xLength, value,  "XLength");
+				SetValue( v =>  _xLength = v, _xLength, value,  "XLength", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yLength;
+				Activate();
 				return _yLength;
 			} 
 			set
 			{
-				SetValue( v =>  _yLength = v, _yLength, value,  "YLength");
+				SetValue( v =>  _yLength = v, _yLength, value,  "YLength", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _height;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _height;
+				Activate();
 				return _height;
 			} 
 			set
 			{
-				SetValue( v =>  _height = v, _height, value,  "Height");
+				SetValue( v =>  _height = v, _height, value,  "Height", 4);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -125,11 +138,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,55 +145,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRectangularPyramid
-            var root = (@IfcRectangularPyramid)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRectangularPyramid left, @IfcRectangularPyramid right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRectangularPyramid left, @IfcRectangularPyramid right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRectangularPyramid x, @IfcRectangularPyramid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangularPyramid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

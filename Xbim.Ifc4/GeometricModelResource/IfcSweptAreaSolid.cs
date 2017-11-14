@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,27 +27,37 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSweptAreaSolid : IIfcSolidModel
 	{
-		IIfcProfileDef @SweptArea { get; }
-		IIfcAxis2Placement3D @Position { get; }
+		IIfcProfileDef @SweptArea { get;  set; }
+		IIfcAxis2Placement3D @Position { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcSweptAreaSolid", 1074)]
+	[ExpressType("IfcSweptAreaSolid", 239)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEqualityComparer<@IfcSweptAreaSolid>, IEquatable<@IfcSweptAreaSolid>
+	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEquatable<@IfcSweptAreaSolid>
 	{
 		#region IIfcSweptAreaSolid explicit implementation
-		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { get { return @SweptArea; } }	
-		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position { get { return @Position; } }	
+		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { 
+ 
+ 
+			get { return @SweptArea; } 
+			set { SweptArea = value as IfcProfileDef;}
+		}	
+		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position { 
+ 
+ 
+			get { return @Position; } 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSweptAreaSolid(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSweptAreaSolid(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +71,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sweptArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sweptArea;
+				Activate();
 				return _sweptArea;
 			} 
 			set
 			{
-				SetValue( v =>  _sweptArea = v, _sweptArea, value,  "SweptArea");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _sweptArea = v, _sweptArea, value,  "SweptArea", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -73,13 +87,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _position;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _position;
+				Activate();
 				return _position;
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _position = v, _position, value,  "Position", 2);
 			} 
 		}	
 		#endregion
@@ -87,9 +103,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -103,12 +118,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SweptAreaType:	SweptAreaType : SweptArea.ProfileType = IfcProfileTypeEnum.Area;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -116,54 +125,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSweptAreaSolid
-            var root = (@IfcSweptAreaSolid)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSweptAreaSolid left, @IfcSweptAreaSolid right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSweptAreaSolid left, @IfcSweptAreaSolid right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSweptAreaSolid x, @IfcSweptAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -14,7 +14,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcCompoundPlaneAngleMeasure", 13)]
+	[ExpressType("IfcCompoundPlaneAngleMeasure", 255)]
 	[DefinedType(typeof(List<long>))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcCompoundPlaneAngleMeasure : IfcDerivedMeasureValue, IExpressComplexType, System.IEquatable<List<long>>
@@ -102,11 +102,6 @@ namespace Xbim.Ifc4.MeasureResource
 				_value = new List<long>();
             _value.Add(value.IntegerVal);
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

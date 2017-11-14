@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcDocumentInformation : IIfcDocumentInformation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 1)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcDocumentInformation.Identification 
 		{ 
 			get
@@ -24,14 +27,31 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    return new Ifc4.MeasureResource.IfcIdentifier(DocumentId);
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Identification for which no match was found
+				DocumentId = new MeasureResource.IfcIdentifier(value);
+				//##
+				NotifyPropertyChanged("Identification");
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcDocumentInformation.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Description 
 		{ 
 			get
@@ -39,7 +59,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 4)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcDocumentInformation.Location 
 		{ 
 			get
@@ -51,7 +80,28 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Location for which no match was found
+                var reference = DocumentReferences.FirstOrDefault(r => r.Location != null);
+			    if (!value.HasValue)
+			    {
+			        if (reference != null)
+			            reference.Location = null;
+			    }
+			    else
+			    {
+			        if (reference == null)
+			            reference = Model.Instances.New<IfcDocumentReference>();
+			        reference.Location = value.Value.ToString();
+			    }
+				//##
+				NotifyPropertyChanged("Location");
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Purpose 
 		{ 
 			get
@@ -59,7 +109,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Purpose.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Purpose.Value);
 			} 
+			set
+			{
+				Purpose = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 6)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.IntendedUse 
 		{ 
 			get
@@ -67,7 +126,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!IntendedUse.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(IntendedUse.Value);
 			} 
+			set
+			{
+				IntendedUse = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 7)]
 		Ifc4.MeasureResource.IfcText? IIfcDocumentInformation.Scope 
 		{ 
 			get
@@ -75,7 +143,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Scope.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Scope.Value);
 			} 
+			set
+			{
+				Scope = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcDocumentInformation.Revision 
 		{ 
 			get
@@ -83,7 +160,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Revision.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Revision.Value);
 			} 
+			set
+			{
+				Revision = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 9)]
 		IIfcActorSelect IIfcDocumentInformation.DocumentOwner 
 		{ 
 			get
@@ -100,25 +186,46 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					return ifcpersonandorganization;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					DocumentOwner = null;
+					return;
+				}	
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					DocumentOwner = ifcorganization;
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					DocumentOwner = ifcperson;
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					DocumentOwner = ifcpersonandorganization;
+					return;
+				}
+				
+			}
 		}
-		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors 
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 10)]
+		IItemSet<IIfcActorSelect> IIfcDocumentInformation.Editors 
 		{ 
 			get
 			{
-				foreach (var member in Editors)
-				{
-					var ifcorganization = member as ActorResource.IfcOrganization;
-					if (ifcorganization != null) 
-						yield return ifcorganization;
-					var ifcperson = member as ActorResource.IfcPerson;
-					if (ifcperson != null) 
-						yield return ifcperson;
-					var ifcpersonandorganization = member as ActorResource.IfcPersonAndOrganization;
-					if (ifcpersonandorganization != null) 
-						yield return ifcpersonandorganization;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ActorResource.IfcActorSelect, IIfcActorSelect>(Editors);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 11)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.CreationTime 
 		{ 
 			get
@@ -129,7 +236,36 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of CreationTime for which no match was found
+                if (!value.HasValue)
+                {
+                    CreationTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                CreationTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 12)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcDocumentInformation.LastRevisionTime 
 		{ 
 			get
@@ -140,7 +276,36 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of LastRevisionTime for which no match was found
+                if (!value.HasValue)
+                {
+                    LastRevisionTime = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                LastRevisionTime = Model.Instances.New<DateTimeResource.IfcDateAndTime>(dt =>
+                {
+                    dt.DateComponent = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                    {
+                        date.YearComponent = d.Year;
+                        date.MonthComponent = d.Month;
+                        date.DayComponent = d.Day;
+                    });
+                    dt.TimeComponent = Model.Instances.New<DateTimeResource.IfcLocalTime>(t =>
+                    {
+                        t.HourComponent = d.Hour;
+                        t.MinuteComponent = d.Minute;
+                        t.SecondComponent = d.Second;
+                    });
+                });
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 13)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcDocumentInformation.ElectronicFormat 
 		{ 
 			get
@@ -154,10 +319,29 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    string ext = ElectronicFormat.FileExtension.Value;
 			    ext = ext.Trim('.').ToLowerInvariant();
 			    string mime;
-			    return MimeTypeLoopUp.Types.TryGetValue(ext, out mime) ? mime : null;
+			    return MimeTypeLookUp.Types.TryGetValue(ext, out mime) ? mime : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of ElectronicFormat for which no match was found
+			    if (!value.HasValue)
+			    {
+			        if (ElectronicFormat == null)
+			            return;
+			        ElectronicFormat.MimeContentType = null;
+			        return;
+			    }
+			    if (ElectronicFormat == null)
+			        ElectronicFormat = Model.Instances.New<IfcDocumentElectronicFormat>();
+			    ElectronicFormat.MimeContentType = value.Value.ToString();
+
+			    //##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 14)]
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidFrom 
 		{ 
 			get
@@ -168,7 +352,27 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of ValidFrom for which no match was found
+                if (!value.HasValue)
+                {
+                    ValidFrom = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                ValidFrom = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 15)]
 		Ifc4.DateTimeResource.IfcDate? IIfcDocumentInformation.ValidUntil 
 		{ 
 			get
@@ -179,63 +383,147 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                     : null;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of ValidUntil for which no match was found
+                if (!value.HasValue)
+                {
+                    ValidUntil = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                ValidUntil = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 16)]
 		Ifc4.Interfaces.IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Confidentiality
+				//##
 				switch (Confidentiality)
 				{
 					case IfcDocumentConfidentialityEnum.PUBLIC:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC;
-					
 					case IfcDocumentConfidentialityEnum.RESTRICTED:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED;
-					
 					case IfcDocumentConfidentialityEnum.CONFIDENTIAL:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
-					
 					case IfcDocumentConfidentialityEnum.PERSONAL:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL;
-					
 					case IfcDocumentConfidentialityEnum.USERDEFINED:
+						//## Optional custom handling of Confidentiality == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED;
-					
 					case IfcDocumentConfidentialityEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.NOTDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of Confidentiality
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC:
+						Confidentiality = IfcDocumentConfidentialityEnum.PUBLIC;
+						return;
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED:
+						Confidentiality = IfcDocumentConfidentialityEnum.RESTRICTED;
+						return;
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL:
+						Confidentiality = IfcDocumentConfidentialityEnum.CONFIDENTIAL;
+						return;
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL:
+						Confidentiality = IfcDocumentConfidentialityEnum.PERSONAL;
+						return;
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.USERDEFINED:
+						Confidentiality = IfcDocumentConfidentialityEnum.USERDEFINED;
+						return;
+					case Ifc4.Interfaces.IfcDocumentConfidentialityEnum.NOTDEFINED:
+						Confidentiality = IfcDocumentConfidentialityEnum.NOTDEFINED;
+						return;
+					
+					case null:
+						Confidentiality = null;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDocumentInformation), 17)]
 		Ifc4.Interfaces.IfcDocumentStatusEnum? IIfcDocumentInformation.Status 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Status
+				//##
 				switch (Status)
 				{
 					case IfcDocumentStatusEnum.DRAFT:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT;
-					
 					case IfcDocumentStatusEnum.FINALDRAFT:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT;
-					
 					case IfcDocumentStatusEnum.FINAL:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL;
-					
 					case IfcDocumentStatusEnum.REVISION:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION;
-					
 					case IfcDocumentStatusEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.NOTDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of Status
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT:
+						Status = IfcDocumentStatusEnum.DRAFT;
+						return;
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT:
+						Status = IfcDocumentStatusEnum.FINALDRAFT;
+						return;
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL:
+						Status = IfcDocumentStatusEnum.FINAL;
+						return;
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION:
+						Status = IfcDocumentStatusEnum.REVISION;
+						return;
+					case Ifc4.Interfaces.IfcDocumentStatusEnum.NOTDEFINED:
+						Status = IfcDocumentStatusEnum.NOTDEFINED;
+						return;
+					
+					case null:
+						Status = null;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects 
 		{ 

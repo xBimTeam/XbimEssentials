@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcRepresentationMap : IIfcRepresentationMap
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationMap), 1)]
 		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin 
 		{ 
 			get
@@ -29,13 +32,41 @@ namespace Xbim.Ifc2x3.GeometryResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					MappingOrigin = null;
+					return;
+				}	
+				var ifcaxis2placement2d = value as IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+				{
+					MappingOrigin = ifcaxis2placement2d;
+					return;
+				}
+				var ifcaxis2placement3d = value as IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+				{
+					MappingOrigin = ifcaxis2placement3d;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRepresentationMap), 2)]
 		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation 
 		{ 
 			get
 			{
 				return MappedRepresentation;
 			} 
+			set
+			{
+				MappedRepresentation = value as RepresentationResource.IfcRepresentation;
+				
+			}
 		}
 		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects 
 		{ 

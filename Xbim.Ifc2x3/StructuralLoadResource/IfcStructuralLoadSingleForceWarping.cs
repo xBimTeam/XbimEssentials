@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadSingleForceWarping : IIfcStructuralLoadSingleForce
 	{
-		IfcWarpingMomentMeasure? @WarpingMoment { get; }
+		IfcWarpingMomentMeasure? @WarpingMoment { get;  set; }
 	
 	}
 }
@@ -33,16 +35,20 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleForceWarping", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEqualityComparer<@IfcStructuralLoadSingleForceWarping>, IEquatable<@IfcStructuralLoadSingleForceWarping>
+	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{
 		#region IIfcStructuralLoadSingleForceWarping explicit implementation
-		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { get { return @WarpingMoment; } }	
+		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { 
+ 
+			get { return @WarpingMoment; } 
+			set { WarpingMoment = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralLoadSingleForceWarping(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcStructuralLoadSingleForceWarping(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +61,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _warpingMoment;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _warpingMoment;
+				Activate();
 				return _warpingMoment;
 			} 
 			set
 			{
-				SetValue( v =>  _warpingMoment = v, _warpingMoment, value,  "WarpingMoment");
+				SetValue( v =>  _warpingMoment = v, _warpingMoment, value,  "WarpingMoment", 8);
 			} 
 		}	
 		#endregion
@@ -69,9 +75,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -91,11 +96,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -103,54 +103,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralLoadSingleForceWarping
-            var root = (@IfcStructuralLoadSingleForceWarping)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralLoadSingleForceWarping left, @IfcStructuralLoadSingleForceWarping right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralLoadSingleForceWarping left, @IfcStructuralLoadSingleForceWarping right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadSingleForceWarping x, @IfcStructuralLoadSingleForceWarping y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadSingleForceWarping obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

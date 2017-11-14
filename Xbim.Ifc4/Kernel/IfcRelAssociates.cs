@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,41 +25,43 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociates : IIfcRelationship
 	{
-		IEnumerable<IIfcDefinitionSelect> @RelatedObjects { get; }
+		IItemSet<IIfcDefinitionSelect> @RelatedObjects { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcRelAssociates", 918)]
+	[ExpressType("IfcRelAssociates", 308)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelAssociates : IfcRelationship, IIfcRelAssociates, IEqualityComparer<@IfcRelAssociates>, IEquatable<@IfcRelAssociates>
+	public abstract partial class @IfcRelAssociates : IfcRelationship, IIfcRelAssociates, IEquatable<@IfcRelAssociates>
 	{
 		#region IIfcRelAssociates explicit implementation
-		IEnumerable<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects { get { return @RelatedObjects; } }	
+		IItemSet<IIfcDefinitionSelect> IIfcRelAssociates.RelatedObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcDefinitionSelect, IIfcDefinitionSelect>( @RelatedObjects); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelAssociates(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedObjects = new ItemSet<IfcDefinitionSelect>( this, 0 );
+		internal IfcRelAssociates(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedObjects = new ItemSet<IfcDefinitionSelect>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcDefinitionSelect> _relatedObjects;
+		private readonly ItemSet<IfcDefinitionSelect> _relatedObjects;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcDefinitionSelect> @RelatedObjects 
+		public IItemSet<IfcDefinitionSelect> @RelatedObjects 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedObjects;
+				Activate();
 				return _relatedObjects;
 			} 
 		}	
@@ -66,9 +70,8 @@ namespace Xbim.Ifc4.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -79,17 +82,11 @@ namespace Xbim.Ifc4.Kernel
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 4: 
-					if (_relatedObjects == null) _relatedObjects = new ItemSet<IfcDefinitionSelect>( this );
 					_relatedObjects.InternalAdd((IfcDefinitionSelect)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -98,54 +95,6 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelAssociates
-            var root = (@IfcRelAssociates)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelAssociates left, @IfcRelAssociates right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelAssociates left, @IfcRelAssociates right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociates x, @IfcRelAssociates y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociates obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.StructuralElementsDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,31 +26,47 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTendonType : IIfcReinforcingElementType
 	{
-		IfcTendonTypeEnum @PredefinedType { get; }
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
-		IfcPositiveLengthMeasure? @SheethDiameter { get; }
+		IfcTendonTypeEnum @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure? @SheethDiameter { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IfcTendonType", 1097)]
+	[ExpressType("IfcTendonType", 1298)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendonType : IfcReinforcingElementType, IInstantiableEntity, IIfcTendonType, IEqualityComparer<@IfcTendonType>, IEquatable<@IfcTendonType>
+	public  partial class @IfcTendonType : IfcReinforcingElementType, IInstantiableEntity, IIfcTendonType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendonType>
 	{
 		#region IIfcTendonType explicit implementation
-		IfcTendonTypeEnum IIfcTendonType.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure? IIfcTendonType.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcAreaMeasure? IIfcTendonType.CrossSectionArea { get { return @CrossSectionArea; } }	
-		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { get { return @SheethDiameter; } }	
+		IfcTendonTypeEnum IIfcTendonType.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendonType.NominalDiameter { 
+ 
+			get { return @NominalDiameter; } 
+			set { NominalDiameter = value;}
+		}	
+		IfcAreaMeasure? IIfcTendonType.CrossSectionArea { 
+ 
+			get { return @CrossSectionArea; } 
+			set { CrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { 
+ 
+			get { return @SheethDiameter; } 
+			set { SheethDiameter = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTendonType(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcTendonType(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -64,13 +82,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -78,13 +96,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -92,13 +110,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -106,13 +124,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sheethDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sheethDiameter;
+				Activate();
 				return _sheethDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _sheethDiameter = v, _sheethDiameter, value,  "SheethDiameter");
+				SetValue( v =>  _sheethDiameter = v, _sheethDiameter, value,  "SheethDiameter", 13);
 			} 
 		}	
 		#endregion
@@ -120,9 +138,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -153,12 +170,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcTendonTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -166,55 +177,35 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTendonType
-            var root = (@IfcTendonType)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTendonType left, @IfcTendonType right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTendonType left, @IfcTendonType right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTendonType x, @IfcTendonType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTendonType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

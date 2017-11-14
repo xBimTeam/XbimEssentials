@@ -10,22 +10,31 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcBeam : IIfcBeam
 	{
+
+		private  Ifc4.Interfaces.IfcBeamTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcBeam), 9)]
 		Ifc4.Interfaces.IfcBeamTypeEnum? IIfcBeam.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-				return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
+				
+			}
 		}
 	//## Custom code
-	//##
+    //##
 	}
 }

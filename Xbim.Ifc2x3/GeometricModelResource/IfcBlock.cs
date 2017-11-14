@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBlock : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @XLength { get; }
-		IfcPositiveLengthMeasure @YLength { get; }
-		IfcPositiveLengthMeasure @ZLength { get; }
+		IfcPositiveLengthMeasure @XLength { get;  set; }
+		IfcPositiveLengthMeasure @YLength { get;  set; }
+		IfcPositiveLengthMeasure @ZLength { get;  set; }
 	
 	}
 }
@@ -35,18 +37,30 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBlock", 702)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IEqualityComparer<@IfcBlock>, IEquatable<@IfcBlock>
+	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IContainsEntityReferences, IEquatable<@IfcBlock>
 	{
 		#region IIfcBlock explicit implementation
-		IfcPositiveLengthMeasure IIfcBlock.XLength { get { return @XLength; } }	
-		IfcPositiveLengthMeasure IIfcBlock.YLength { get { return @YLength; } }	
-		IfcPositiveLengthMeasure IIfcBlock.ZLength { get { return @ZLength; } }	
+		IfcPositiveLengthMeasure IIfcBlock.XLength { 
+ 
+			get { return @XLength; } 
+			set { XLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcBlock.YLength { 
+ 
+			get { return @YLength; } 
+			set { YLength = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcBlock.ZLength { 
+ 
+			get { return @ZLength; } 
+			set { ZLength = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBlock(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcBlock(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xLength;
+				Activate();
 				return _xLength;
 			} 
 			set
 			{
-				SetValue( v =>  _xLength = v, _xLength, value,  "XLength");
+				SetValue( v =>  _xLength = v, _xLength, value,  "XLength", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yLength;
+				Activate();
 				return _yLength;
 			} 
 			set
 			{
-				SetValue( v =>  _yLength = v, _yLength, value,  "YLength");
+				SetValue( v =>  _yLength = v, _yLength, value,  "YLength", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _zLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _zLength;
+				Activate();
 				return _zLength;
 			} 
 			set
 			{
-				SetValue( v =>  _zLength = v, _zLength, value,  "ZLength");
+				SetValue( v =>  _zLength = v, _zLength, value,  "ZLength", 4);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -125,11 +138,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,55 +145,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBlock
-            var root = (@IfcBlock)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBlock left, @IfcBlock right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBlock left, @IfcBlock right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBlock x, @IfcBlock y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBlock obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

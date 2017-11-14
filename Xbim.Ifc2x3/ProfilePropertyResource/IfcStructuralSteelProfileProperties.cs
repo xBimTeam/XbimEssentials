@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralSteelProfileProperties : IIfcStructuralProfileProperties
 	{
-		IfcAreaMeasure? @ShearAreaZ { get; }
-		IfcAreaMeasure? @ShearAreaY { get; }
-		IfcPositiveRatioMeasure? @PlasticShapeFactorY { get; }
-		IfcPositiveRatioMeasure? @PlasticShapeFactorZ { get; }
+		IfcAreaMeasure? @ShearAreaZ { get;  set; }
+		IfcAreaMeasure? @ShearAreaY { get;  set; }
+		IfcPositiveRatioMeasure? @PlasticShapeFactorY { get;  set; }
+		IfcPositiveRatioMeasure? @PlasticShapeFactorZ { get;  set; }
 	
 	}
 }
@@ -36,19 +38,35 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcStructuralSteelProfileProperties", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IEqualityComparer<@IfcStructuralSteelProfileProperties>, IEquatable<@IfcStructuralSteelProfileProperties>
+	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IContainsEntityReferences, IEquatable<@IfcStructuralSteelProfileProperties>
 	{
 		#region IIfcStructuralSteelProfileProperties explicit implementation
-		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { get { return @ShearAreaZ; } }	
-		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaY { get { return @ShearAreaY; } }	
-		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorY { get { return @PlasticShapeFactorY; } }	
-		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorZ { get { return @PlasticShapeFactorZ; } }	
+		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { 
+ 
+			get { return @ShearAreaZ; } 
+			set { ShearAreaZ = value;}
+		}	
+		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaY { 
+ 
+			get { return @ShearAreaY; } 
+			set { ShearAreaY = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorY { 
+ 
+			get { return @PlasticShapeFactorY; } 
+			set { PlasticShapeFactorY = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorZ { 
+ 
+			get { return @PlasticShapeFactorZ; } 
+			set { PlasticShapeFactorZ = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralSteelProfileProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcStructuralSteelProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -64,13 +82,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearAreaZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearAreaZ;
+				Activate();
 				return _shearAreaZ;
 			} 
 			set
 			{
-				SetValue( v =>  _shearAreaZ = v, _shearAreaZ, value,  "ShearAreaZ");
+				SetValue( v =>  _shearAreaZ = v, _shearAreaZ, value,  "ShearAreaZ", 24);
 			} 
 		}	
 		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
@@ -78,13 +96,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shearAreaY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shearAreaY;
+				Activate();
 				return _shearAreaY;
 			} 
 			set
 			{
-				SetValue( v =>  _shearAreaY = v, _shearAreaY, value,  "ShearAreaY");
+				SetValue( v =>  _shearAreaY = v, _shearAreaY, value,  "ShearAreaY", 25);
 			} 
 		}	
 		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
@@ -92,13 +110,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _plasticShapeFactorY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _plasticShapeFactorY;
+				Activate();
 				return _plasticShapeFactorY;
 			} 
 			set
 			{
-				SetValue( v =>  _plasticShapeFactorY = v, _plasticShapeFactorY, value,  "PlasticShapeFactorY");
+				SetValue( v =>  _plasticShapeFactorY = v, _plasticShapeFactorY, value,  "PlasticShapeFactorY", 26);
 			} 
 		}	
 		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
@@ -106,13 +124,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _plasticShapeFactorZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _plasticShapeFactorZ;
+				Activate();
 				return _plasticShapeFactorZ;
 			} 
 			set
 			{
-				SetValue( v =>  _plasticShapeFactorZ = v, _plasticShapeFactorZ, value,  "PlasticShapeFactorZ");
+				SetValue( v =>  _plasticShapeFactorZ = v, _plasticShapeFactorZ, value,  "PlasticShapeFactorZ", 27);
 			} 
 		}	
 		#endregion
@@ -120,9 +138,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -167,13 +184,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT(EXISTS(ShearAreaY)) OR (ShearAreaY >= 0.);*/
-		/*WR32:	WR32 : NOT(EXISTS(ShearAreaZ)) OR (ShearAreaZ >= 0.);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -181,55 +191,18 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralSteelProfileProperties
-            var root = (@IfcStructuralSteelProfileProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralSteelProfileProperties left, @IfcStructuralSteelProfileProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralSteelProfileProperties left, @IfcStructuralSteelProfileProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralSteelProfileProperties x, @IfcStructuralSteelProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralSteelProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ProfileDefinition != null)
+					yield return @ProfileDefinition;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

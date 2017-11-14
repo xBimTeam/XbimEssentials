@@ -10,38 +10,63 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcMechanicalFastenerType : IIfcMechanicalFastenerType
 	{
+
+		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastenerType), 10)]
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum IIfcMechanicalFastenerType.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return IfcMechanicalFastenerTypeEnum.NOTDEFINED;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _nominalDiameter;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastenerType), 11)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalDiameter 
 		{ 
 			get
 			{
-				//## Handle return of NominalDiameter for which no match was found
-			    return null;
-			    //##
+				return _nominalDiameter;
 			} 
+			set
+			{
+				SetValue(v => _nominalDiameter = v, _nominalDiameter, value, "NominalDiameter", -11);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPositiveLengthMeasure? _nominalLength;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastenerType), 12)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastenerType.NominalLength 
 		{ 
 			get
 			{
-				//## Handle return of NominalLength for which no match was found
-                return null;
-				//##
+				return _nominalLength;
 			} 
+			set
+			{
+				SetValue(v => _nominalLength = v, _nominalLength, value, "NominalLength", -12);
+				
+			}
 		}
 	//## Custom code
 	//##

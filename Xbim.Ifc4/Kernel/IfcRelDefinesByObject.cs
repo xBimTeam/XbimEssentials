@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,44 +25,51 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelDefinesByObject : IIfcRelDefines
 	{
-		IEnumerable<IIfcObject> @RelatedObjects { get; }
-		IIfcObject @RelatingObject { get; }
+		IItemSet<IIfcObject> @RelatedObjects { get; }
+		IIfcObject @RelatingObject { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcRelDefinesByObject", 940)]
+	[ExpressType("IfcRelDefinesByObject", 1250)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByObject : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByObject, IEqualityComparer<@IfcRelDefinesByObject>, IEquatable<@IfcRelDefinesByObject>
+	public  partial class @IfcRelDefinesByObject : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByObject, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByObject>
 	{
 		#region IIfcRelDefinesByObject explicit implementation
-		IEnumerable<IIfcObject> IIfcRelDefinesByObject.RelatedObjects { get { return @RelatedObjects; } }	
-		IIfcObject IIfcRelDefinesByObject.RelatingObject { get { return @RelatingObject; } }	
+		IItemSet<IIfcObject> IIfcRelDefinesByObject.RelatedObjects { 
+			get { return new Common.Collections.ProxyItemSet<IfcObject, IIfcObject>( @RelatedObjects); } 
+		}	
+		IIfcObject IIfcRelDefinesByObject.RelatingObject { 
+ 
+ 
+			get { return @RelatingObject; } 
+			set { RelatingObject = value as IfcObject;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelDefinesByObject(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedObjects = new ItemSet<IfcObject>( this, 0 );
+		internal IfcRelDefinesByObject(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedObjects = new ItemSet<IfcObject>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcObject> _relatedObjects;
+		private readonly ItemSet<IfcObject> _relatedObjects;
 		private IfcObject _relatingObject;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
-		public ItemSet<IfcObject> @RelatedObjects 
+		public IItemSet<IfcObject> @RelatedObjects 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedObjects;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedObjects;
+				Activate();
 				return _relatedObjects;
 			} 
 		}	
@@ -70,13 +79,15 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingObject;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingObject;
+				Activate();
 				return _relatingObject;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingObject = v, _relatingObject, value,  "RelatingObject", 6);
 			} 
 		}	
 		#endregion
@@ -84,9 +95,8 @@ namespace Xbim.Ifc4.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -97,7 +107,6 @@ namespace Xbim.Ifc4.Kernel
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 4: 
-					if (_relatedObjects == null) _relatedObjects = new ItemSet<IfcObject>( this );
 					_relatedObjects.InternalAdd((IfcObject)value.EntityVal);
 					return;
 				case 5: 
@@ -107,11 +116,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -119,55 +123,37 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelDefinesByObject
-            var root = (@IfcRelDefinesByObject)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelDefinesByObject left, @IfcRelDefinesByObject right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelDefinesByObject left, @IfcRelDefinesByObject right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelDefinesByObject x, @IfcRelDefinesByObject y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelDefinesByObject obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingObject != null)
+					yield return @RelatingObject;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingObject != null)
+					yield return @RelatingObject;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

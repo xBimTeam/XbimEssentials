@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -27,21 +29,21 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFluidFlowProperties : IIfcPropertySetDefinition
 	{
-		IfcPropertySourceEnum @PropertySource { get; }
-		IIfcTimeSeries @FlowConditionTimeSeries { get; }
-		IIfcTimeSeries @VelocityTimeSeries { get; }
-		IIfcTimeSeries @FlowrateTimeSeries { get; }
-		IIfcMaterial @Fluid { get; }
-		IIfcTimeSeries @PressureTimeSeries { get; }
-		IfcLabel? @UserDefinedPropertySource { get; }
-		IfcThermodynamicTemperatureMeasure? @TemperatureSingleValue { get; }
-		IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue { get; }
-		IIfcTimeSeries @WetBulbTemperatureTimeSeries { get; }
-		IIfcTimeSeries @TemperatureTimeSeries { get; }
-		IIfcDerivedMeasureValue @FlowrateSingleValue { get; }
-		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get; }
-		IfcLinearVelocityMeasure? @VelocitySingleValue { get; }
-		IfcPressureMeasure? @PressureSingleValue { get; }
+		IfcPropertySourceEnum @PropertySource { get;  set; }
+		IIfcTimeSeries @FlowConditionTimeSeries { get;  set; }
+		IIfcTimeSeries @VelocityTimeSeries { get;  set; }
+		IIfcTimeSeries @FlowrateTimeSeries { get;  set; }
+		IIfcMaterial @Fluid { get;  set; }
+		IIfcTimeSeries @PressureTimeSeries { get;  set; }
+		IfcLabel? @UserDefinedPropertySource { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @TemperatureSingleValue { get;  set; }
+		IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue { get;  set; }
+		IIfcTimeSeries @WetBulbTemperatureTimeSeries { get;  set; }
+		IIfcTimeSeries @TemperatureTimeSeries { get;  set; }
+		IIfcDerivedMeasureValue @FlowrateSingleValue { get;  set; }
+		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get;  set; }
+		IfcLinearVelocityMeasure? @VelocitySingleValue { get;  set; }
+		IfcPressureMeasure? @PressureSingleValue { get;  set; }
 	
 	}
 }
@@ -50,30 +52,98 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFluidFlowProperties", 466)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IEqualityComparer<@IfcFluidFlowProperties>, IEquatable<@IfcFluidFlowProperties>
+	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IContainsEntityReferences, IEquatable<@IfcFluidFlowProperties>
 	{
 		#region IIfcFluidFlowProperties explicit implementation
-		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { get { return @PropertySource; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.FlowConditionTimeSeries { get { return @FlowConditionTimeSeries; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.VelocityTimeSeries { get { return @VelocityTimeSeries; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.FlowrateTimeSeries { get { return @FlowrateTimeSeries; } }	
-		IIfcMaterial IIfcFluidFlowProperties.Fluid { get { return @Fluid; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.PressureTimeSeries { get { return @PressureTimeSeries; } }	
-		IfcLabel? IIfcFluidFlowProperties.UserDefinedPropertySource { get { return @UserDefinedPropertySource; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.TemperatureSingleValue { get { return @TemperatureSingleValue; } }	
-		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { get { return @WetBulbTemperatureSingleValue; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { get { return @WetBulbTemperatureTimeSeries; } }	
-		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { get { return @TemperatureTimeSeries; } }	
-		IIfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { get { return @FlowrateSingleValue; } }	
-		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { get { return @FlowConditionSingleValue; } }	
-		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { get { return @VelocitySingleValue; } }	
-		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { get { return @PressureSingleValue; } }	
+		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { 
+ 
+			get { return @PropertySource; } 
+			set { PropertySource = value;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.FlowConditionTimeSeries { 
+ 
+ 
+			get { return @FlowConditionTimeSeries; } 
+			set { FlowConditionTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.VelocityTimeSeries { 
+ 
+ 
+			get { return @VelocityTimeSeries; } 
+			set { VelocityTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.FlowrateTimeSeries { 
+ 
+ 
+			get { return @FlowrateTimeSeries; } 
+			set { FlowrateTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcMaterial IIfcFluidFlowProperties.Fluid { 
+ 
+ 
+			get { return @Fluid; } 
+			set { Fluid = value as IfcMaterial;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.PressureTimeSeries { 
+ 
+ 
+			get { return @PressureTimeSeries; } 
+			set { PressureTimeSeries = value as IfcTimeSeries;}
+		}	
+		IfcLabel? IIfcFluidFlowProperties.UserDefinedPropertySource { 
+ 
+			get { return @UserDefinedPropertySource; } 
+			set { UserDefinedPropertySource = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.TemperatureSingleValue { 
+ 
+			get { return @TemperatureSingleValue; } 
+			set { TemperatureSingleValue = value;}
+		}	
+		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { 
+ 
+			get { return @WetBulbTemperatureSingleValue; } 
+			set { WetBulbTemperatureSingleValue = value;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { 
+ 
+ 
+			get { return @WetBulbTemperatureTimeSeries; } 
+			set { WetBulbTemperatureTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { 
+ 
+ 
+			get { return @TemperatureTimeSeries; } 
+			set { TemperatureTimeSeries = value as IfcTimeSeries;}
+		}	
+		IIfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { 
+ 
+ 
+			get { return @FlowrateSingleValue; } 
+			set { FlowrateSingleValue = value as IfcDerivedMeasureValue;}
+		}	
+		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { 
+ 
+			get { return @FlowConditionSingleValue; } 
+			set { FlowConditionSingleValue = value;}
+		}	
+		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { 
+ 
+			get { return @VelocitySingleValue; } 
+			set { VelocitySingleValue = value;}
+		}	
+		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { 
+ 
+			get { return @PressureSingleValue; } 
+			set { PressureSingleValue = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcFluidFlowProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcFluidFlowProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -100,13 +170,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _propertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _propertySource;
+				Activate();
 				return _propertySource;
 			} 
 			set
 			{
-				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource");
+				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -114,13 +184,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowConditionTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowConditionTimeSeries;
+				Activate();
 				return _flowConditionTimeSeries;
 			} 
 			set
 			{
-				SetValue( v =>  _flowConditionTimeSeries = v, _flowConditionTimeSeries, value,  "FlowConditionTimeSeries");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _flowConditionTimeSeries = v, _flowConditionTimeSeries, value,  "FlowConditionTimeSeries", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -128,13 +200,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _velocityTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _velocityTimeSeries;
+				Activate();
 				return _velocityTimeSeries;
 			} 
 			set
 			{
-				SetValue( v =>  _velocityTimeSeries = v, _velocityTimeSeries, value,  "VelocityTimeSeries");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _velocityTimeSeries = v, _velocityTimeSeries, value,  "VelocityTimeSeries", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
@@ -142,13 +216,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowrateTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowrateTimeSeries;
+				Activate();
 				return _flowrateTimeSeries;
 			} 
 			set
 			{
-				SetValue( v =>  _flowrateTimeSeries = v, _flowrateTimeSeries, value,  "FlowrateTimeSeries");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _flowrateTimeSeries = v, _flowrateTimeSeries, value,  "FlowrateTimeSeries", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -156,13 +232,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fluid;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fluid;
+				Activate();
 				return _fluid;
 			} 
 			set
 			{
-				SetValue( v =>  _fluid = v, _fluid, value,  "Fluid");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _fluid = v, _fluid, value,  "Fluid", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -170,13 +248,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pressureTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pressureTimeSeries;
+				Activate();
 				return _pressureTimeSeries;
 			} 
 			set
 			{
-				SetValue( v =>  _pressureTimeSeries = v, _pressureTimeSeries, value,  "PressureTimeSeries");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _pressureTimeSeries = v, _pressureTimeSeries, value,  "PressureTimeSeries", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -184,13 +264,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedPropertySource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedPropertySource;
+				Activate();
 				return _userDefinedPropertySource;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource");
+				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -198,13 +278,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _temperatureSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _temperatureSingleValue;
+				Activate();
 				return _temperatureSingleValue;
 			} 
 			set
 			{
-				SetValue( v =>  _temperatureSingleValue = v, _temperatureSingleValue, value,  "TemperatureSingleValue");
+				SetValue( v =>  _temperatureSingleValue = v, _temperatureSingleValue, value,  "TemperatureSingleValue", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -212,13 +292,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wetBulbTemperatureSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wetBulbTemperatureSingleValue;
+				Activate();
 				return _wetBulbTemperatureSingleValue;
 			} 
 			set
 			{
-				SetValue( v =>  _wetBulbTemperatureSingleValue = v, _wetBulbTemperatureSingleValue, value,  "WetBulbTemperatureSingleValue");
+				SetValue( v =>  _wetBulbTemperatureSingleValue = v, _wetBulbTemperatureSingleValue, value,  "WetBulbTemperatureSingleValue", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
@@ -226,13 +306,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wetBulbTemperatureTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wetBulbTemperatureTimeSeries;
+				Activate();
 				return _wetBulbTemperatureTimeSeries;
 			} 
 			set
 			{
-				SetValue( v =>  _wetBulbTemperatureTimeSeries = v, _wetBulbTemperatureTimeSeries, value,  "WetBulbTemperatureTimeSeries");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _wetBulbTemperatureTimeSeries = v, _wetBulbTemperatureTimeSeries, value,  "WetBulbTemperatureTimeSeries", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -240,13 +322,15 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _temperatureTimeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _temperatureTimeSeries;
+				Activate();
 				return _temperatureTimeSeries;
 			} 
 			set
 			{
-				SetValue( v =>  _temperatureTimeSeries = v, _temperatureTimeSeries, value,  "TemperatureTimeSeries");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _temperatureTimeSeries = v, _temperatureTimeSeries, value,  "TemperatureTimeSeries", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
@@ -254,13 +338,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowrateSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowrateSingleValue;
+				Activate();
 				return _flowrateSingleValue;
 			} 
 			set
 			{
-				SetValue( v =>  _flowrateSingleValue = v, _flowrateSingleValue, value,  "FlowrateSingleValue");
+				SetValue( v =>  _flowrateSingleValue = v, _flowrateSingleValue, value,  "FlowrateSingleValue", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -268,13 +352,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flowConditionSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flowConditionSingleValue;
+				Activate();
 				return _flowConditionSingleValue;
 			} 
 			set
 			{
-				SetValue( v =>  _flowConditionSingleValue = v, _flowConditionSingleValue, value,  "FlowConditionSingleValue");
+				SetValue( v =>  _flowConditionSingleValue = v, _flowConditionSingleValue, value,  "FlowConditionSingleValue", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -282,13 +366,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _velocitySingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _velocitySingleValue;
+				Activate();
 				return _velocitySingleValue;
 			} 
 			set
 			{
-				SetValue( v =>  _velocitySingleValue = v, _velocitySingleValue, value,  "VelocitySingleValue");
+				SetValue( v =>  _velocitySingleValue = v, _velocitySingleValue, value,  "VelocitySingleValue", 18);
 			} 
 		}	
 		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -296,13 +380,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pressureSingleValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pressureSingleValue;
+				Activate();
 				return _pressureSingleValue;
 			} 
 			set
 			{
-				SetValue( v =>  _pressureSingleValue = v, _pressureSingleValue, value,  "PressureSingleValue");
+				SetValue( v =>  _pressureSingleValue = v, _pressureSingleValue, value,  "PressureSingleValue", 19);
 			} 
 		}	
 		#endregion
@@ -310,9 +394,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -371,11 +454,6 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -383,55 +461,32 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcFluidFlowProperties
-            var root = (@IfcFluidFlowProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcFluidFlowProperties left, @IfcFluidFlowProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcFluidFlowProperties left, @IfcFluidFlowProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFluidFlowProperties x, @IfcFluidFlowProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFluidFlowProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@FlowConditionTimeSeries != null)
+					yield return @FlowConditionTimeSeries;
+				if (@VelocityTimeSeries != null)
+					yield return @VelocityTimeSeries;
+				if (@FlowrateTimeSeries != null)
+					yield return @FlowrateTimeSeries;
+				if (@Fluid != null)
+					yield return @Fluid;
+				if (@PressureTimeSeries != null)
+					yield return @PressureTimeSeries;
+				if (@WetBulbTemperatureTimeSeries != null)
+					yield return @WetBulbTemperatureTimeSeries;
+				if (@TemperatureTimeSeries != null)
+					yield return @TemperatureTimeSeries;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

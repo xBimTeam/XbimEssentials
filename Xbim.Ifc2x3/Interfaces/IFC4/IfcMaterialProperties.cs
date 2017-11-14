@@ -10,37 +10,63 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	public partial class @IfcMaterialProperties : IIfcMaterialProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 4)]
 		IIfcMaterialDefinition IIfcMaterialProperties.Material 
 		{ 
 			get
 			{
 				return Material as IIfcMaterialDefinition;
 			} 
+			set
+			{
+				Material = value as MaterialResource.IfcMaterial;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _name;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return null;
-			    //##
+				return _name;
 			} 
+			set
+			{
+				SetValue(v => _name = v, _name, value, "Name", -1);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-                return null;
-				//##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -2);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialProperties), 3)]
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get
@@ -66,11 +92,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			                            System.StringComparison.InvariantCultureIgnoreCase) == 0);
 			        if (targetType == null) continue;
 			        var targetValue = System.Activator.CreateInstance(targetType, value) as Ifc4.MeasureResource.IfcValue;
-                    yield return new Interfaces.Conversions.IfcPropertySingleValueTransient
-                    {
-                        Name = name, 
-                        NominalValue = targetValue
-                    };
+                    yield return new Interfaces.Conversions.IfcPropertySingleValueTransient(name, targetValue);
 			    }
 				//##
 			} 

@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcBoxedHalfSpace : IIfcBoxedHalfSpace
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBoxedHalfSpace), 3)]
 		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure 
 		{ 
 			get
 			{
 				return Enclosure;
 			} 
+			set
+			{
+				Enclosure = value as IfcBoundingBox;
+				
+			}
 		}
 	//## Custom code
 	//##

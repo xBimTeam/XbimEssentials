@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceTexture : IIfcSurfaceTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 1)]
 		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatS 
 		{ 
 			get
@@ -24,7 +27,14 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			    return new Ifc4.MeasureResource.IfcBoolean(RepeatS);
 			    //##
 			} 
+			set
+			{
+				RepeatS = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcSurfaceTexture.RepeatT 
 		{ 
 			get
@@ -33,24 +43,46 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
                 return new Ifc4.MeasureResource.IfcBoolean(RepeatT);
 				//##
 			} 
+			set
+			{
+				RepeatT = value;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _mode;
+
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 3)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcSurfaceTexture.Mode 
 		{ 
 			get
 			{
-				//## Handle return of Mode for which no match was found
-                return null;
-				//##
+				return _mode;
 			} 
+			set
+			{
+				SetValue(v => _mode = v, _mode, value, "Mode", -3);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 4)]
 		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform 
 		{ 
 			get
 			{
 				return TextureTransform;
 			} 
+			set
+			{
+				TextureTransform = value as GeometryResource.IfcCartesianTransformationOperator2D;
+				
+			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcSurfaceTexture.Parameter 
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceTexture), 5)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcSurfaceTexture.Parameter 
 		{ 
 			get
 			{

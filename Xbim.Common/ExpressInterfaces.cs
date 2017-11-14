@@ -26,4 +26,39 @@ namespace Xbim.Common
     {
         IEnumerable<object> Properties { get; }
     }
+
+    public interface IExpressBinaryType
+    {
+        byte[] Value { get; }
+    }
+
+    public interface IExpressBooleanType
+    {
+        bool Value { get; }
+    }
+
+    public interface IExpressIntegerType
+    {
+        long Value { get; }
+    }
+
+    public interface IExpressLogicalType
+    {
+        bool? Value { get; }
+    }
+
+    public interface IExpressNumberType
+    {
+        double Value { get; }
+    }
+
+    public interface IExpressRealType
+    {
+        double Value { get; }
+    }
+
+    public interface IExpressStringType
+    {
+        string Value { get; }
+    }
 }

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcTypeObject : IIfcTypeObject
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTypeObject), 5)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcTypeObject.ApplicableOccurrence 
 		{ 
 			get
@@ -23,15 +26,22 @@ namespace Xbim.Ifc2x3.Kernel
 				if (!ApplicableOccurrence.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(ApplicableOccurrence.Value);
 			} 
+			set
+			{
+				ApplicableOccurrence = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 
+
+		[CrossSchemaAttribute(typeof(IIfcTypeObject), 6)]
+		IItemSet<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets 
 		{ 
 			get
 			{
-				foreach (var member in HasPropertySets)
-				{
-					yield return member as IIfcPropertySetDefinition;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcPropertySetDefinition, IIfcPropertySetDefinition>(HasPropertySets);
 			} 
 		}
 		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.Types 
@@ -42,6 +52,14 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 		}
 	//## Custom code
+        IEnumerable<IIfcRelDefinesByProperties> IIfcTypeObject.DefinedByProperties
+        {
+            get
+            {
+                //this will never return anything because IIfcRelDefinesByProperties.RelatedObjects is of different type in IFC4
+                yield break;
+            }
+        }
 	//##
 	}
 }

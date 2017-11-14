@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBSplineCurveWithKnots : IIfcBSplineCurve
 	{
-		IEnumerable<IfcInteger> @KnotMultiplicities { get; }
-		IEnumerable<IfcParameterValue> @Knots { get; }
-		IfcKnotType @KnotSpec { get; }
+		IItemSet<IfcInteger> @KnotMultiplicities { get; }
+		IItemSet<IfcParameterValue> @Knots { get; }
+		IfcKnotType @KnotSpec { get;  set; }
 		IfcInteger @UpperIndexOnKnots  { get ; }
 	
 	}
@@ -34,48 +36,56 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcBSplineCurveWithKnots", 431)]
+	[ExpressType("IfcBSplineCurveWithKnots", 1101)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IEqualityComparer<@IfcBSplineCurveWithKnots>, IEquatable<@IfcBSplineCurveWithKnots>
+	public  partial class @IfcBSplineCurveWithKnots : IfcBSplineCurve, IInstantiableEntity, IIfcBSplineCurveWithKnots, IContainsEntityReferences, IEquatable<@IfcBSplineCurveWithKnots>
 	{
 		#region IIfcBSplineCurveWithKnots explicit implementation
-		IEnumerable<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { get { return @KnotMultiplicities; } }	
-		IEnumerable<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { get { return @Knots; } }	
-		IfcKnotType IIfcBSplineCurveWithKnots.KnotSpec { get { return @KnotSpec; } }	
+		IItemSet<IfcInteger> IIfcBSplineCurveWithKnots.KnotMultiplicities { 
+			get { return @KnotMultiplicities; } 
+		}	
+		IItemSet<IfcParameterValue> IIfcBSplineCurveWithKnots.Knots { 
+			get { return @Knots; } 
+		}	
+		IfcKnotType IIfcBSplineCurveWithKnots.KnotSpec { 
+ 
+			get { return @KnotSpec; } 
+			set { KnotSpec = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBSplineCurveWithKnots(IModel model) : base(model) 		{ 
-			Model = model; 
-			_knotMultiplicities = new ItemSet<IfcInteger>( this, 0 );
-			_knots = new ItemSet<IfcParameterValue>( this, 0 );
+		internal IfcBSplineCurveWithKnots(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_knotMultiplicities = new ItemSet<IfcInteger>( this, 0,  6);
+			_knots = new ItemSet<IfcParameterValue>( this, 0,  7);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcInteger> _knotMultiplicities;
-		private ItemSet<IfcParameterValue> _knots;
+		private readonly ItemSet<IfcInteger> _knotMultiplicities;
+		private readonly ItemSet<IfcParameterValue> _knots;
 		private IfcKnotType _knotSpec;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 8)]
-		public ItemSet<IfcInteger> @KnotMultiplicities 
+		public IItemSet<IfcInteger> @KnotMultiplicities 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _knotMultiplicities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _knotMultiplicities;
+				Activate();
 				return _knotMultiplicities;
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 9)]
-		public ItemSet<IfcParameterValue> @Knots 
+		public IItemSet<IfcParameterValue> @Knots 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _knots;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _knots;
+				Activate();
 				return _knots;
 			} 
 		}	
@@ -84,13 +94,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _knotSpec;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _knotSpec;
+				Activate();
 				return _knotSpec;
 			} 
 			set
 			{
-				SetValue( v =>  _knotSpec = v, _knotSpec, value,  "KnotSpec");
+				SetValue( v =>  _knotSpec = v, _knotSpec, value,  "KnotSpec", 8);
 			} 
 		}	
 		#endregion
@@ -111,9 +121,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -125,11 +134,9 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 5: 
-					if (_knotMultiplicities == null) _knotMultiplicities = new ItemSet<IfcInteger>( this );
 					_knotMultiplicities.InternalAdd(value.IntegerVal);
 					return;
 				case 6: 
-					if (_knots == null) _knots = new ItemSet<IfcParameterValue>( this );
 					_knots.InternalAdd(value.RealVal);
 					return;
 				case 7: 
@@ -139,13 +146,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ConsistentBSpline:UpperIndexOnControlPoints, KnotMultiplicities, Knots);*/
-		/*CorrespondingKnotLists:	CorrespondingKnotLists : SIZEOF(KnotMultiplicities) = UpperIndexOnKnots;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -153,55 +153,18 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBSplineCurveWithKnots
-            var root = (@IfcBSplineCurveWithKnots)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBSplineCurveWithKnots left, @IfcBSplineCurveWithKnots right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBSplineCurveWithKnots left, @IfcBSplineCurveWithKnots right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBSplineCurveWithKnots x, @IfcBSplineCurveWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBSplineCurveWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @ControlPointsList)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -17,6 +17,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ArchitectureDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,33 +28,54 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPermeableCoveringProperties : IIfcPreDefinedPropertySet
 	{
-		IfcPermeableCoveringOperationEnum @OperationType { get; }
-		IfcWindowPanelPositionEnum @PanelPosition { get; }
-		IfcPositiveLengthMeasure? @FrameDepth { get; }
-		IfcPositiveLengthMeasure? @FrameThickness { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcPermeableCoveringOperationEnum @OperationType { get;  set; }
+		IfcWindowPanelPositionEnum @PanelPosition { get;  set; }
+		IfcPositiveLengthMeasure? @FrameDepth { get;  set; }
+		IfcPositiveLengthMeasure? @FrameThickness { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ArchitectureDomain
 {
-	[ExpressType("IfcPermeableCoveringProperties", 803)]
+	[ExpressType("IfcPermeableCoveringProperties", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IEqualityComparer<@IfcPermeableCoveringProperties>, IEquatable<@IfcPermeableCoveringProperties>
+	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IIfcPermeableCoveringProperties, IContainsEntityReferences, IEquatable<@IfcPermeableCoveringProperties>
 	{
 		#region IIfcPermeableCoveringProperties explicit implementation
-		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { get { return @OperationType; } }	
-		IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition { get { return @PanelPosition; } }	
-		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth { get { return @FrameDepth; } }	
-		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness { get { return @FrameThickness; } }	
-		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { 
+ 
+			get { return @OperationType; } 
+			set { OperationType = value;}
+		}	
+		IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition { 
+ 
+			get { return @PanelPosition; } 
+			set { PanelPosition = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth { 
+ 
+			get { return @FrameDepth; } 
+			set { FrameDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness { 
+ 
+			get { return @FrameThickness; } 
+			set { FrameThickness = value;}
+		}	
+		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle { 
+ 
+ 
+			get { return @ShapeAspectStyle; } 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPermeableCoveringProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcPermeableCoveringProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -69,13 +92,13 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operationType;
+				Activate();
 				return _operationType;
 			} 
 			set
 			{
-				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
+				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -83,13 +106,13 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _panelPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _panelPosition;
+				Activate();
 				return _panelPosition;
 			} 
 			set
 			{
-				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition");
+				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -97,13 +120,13 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frameDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frameDepth;
+				Activate();
 				return _frameDepth;
 			} 
 			set
 			{
-				SetValue( v =>  _frameDepth = v, _frameDepth, value,  "FrameDepth");
+				SetValue( v =>  _frameDepth = v, _frameDepth, value,  "FrameDepth", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -111,13 +134,13 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frameThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frameThickness;
+				Activate();
 				return _frameThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _frameThickness = v, _frameThickness, value,  "FrameThickness");
+				SetValue( v =>  _frameThickness = v, _frameThickness, value,  "FrameThickness", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -125,13 +148,15 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeAspectStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeAspectStyle;
+				Activate();
 				return _shapeAspectStyle;
 			} 
 			set
 			{
-				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle", 9);
 			} 
 		}	
 		#endregion
@@ -139,9 +164,8 @@ namespace Xbim.Ifc4.ArchitectureDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -170,11 +194,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -182,55 +201,20 @@ namespace Xbim.Ifc4.ArchitectureDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPermeableCoveringProperties
-            var root = (@IfcPermeableCoveringProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPermeableCoveringProperties left, @IfcPermeableCoveringProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPermeableCoveringProperties left, @IfcPermeableCoveringProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPermeableCoveringProperties x, @IfcPermeableCoveringProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPermeableCoveringProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ShapeAspectStyle != null)
+					yield return @ShapeAspectStyle;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPolyline : IIfcPolyline
 	{
-		IEnumerable<IIfcCartesianPoint> IIfcPolyline.Points 
+
+		[CrossSchemaAttribute(typeof(IIfcPolyline), 1)]
+		IItemSet<IIfcCartesianPoint> IIfcPolyline.Points 
 		{ 
 			get
 			{
-				foreach (var member in Points)
-				{
-					yield return member as IIfcCartesianPoint;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>(Points);
 			} 
 		}
 	//## Custom code

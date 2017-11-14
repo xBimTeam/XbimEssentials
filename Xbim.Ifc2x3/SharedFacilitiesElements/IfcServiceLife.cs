@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedFacilitiesElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcServiceLife : IIfcControl
 	{
-		IfcServiceLifeTypeEnum @ServiceLifeType { get; }
-		IfcTimeMeasure @ServiceLifeDuration { get; }
+		IfcServiceLifeTypeEnum @ServiceLifeType { get;  set; }
+		IfcTimeMeasure @ServiceLifeDuration { get;  set; }
 	
 	}
 }
@@ -35,17 +37,25 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLife", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IEqualityComparer<@IfcServiceLife>, IEquatable<@IfcServiceLife>
+	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IContainsEntityReferences, IEquatable<@IfcServiceLife>
 	{
 		#region IIfcServiceLife explicit implementation
-		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { get { return @ServiceLifeType; } }	
-		IfcTimeMeasure IIfcServiceLife.ServiceLifeDuration { get { return @ServiceLifeDuration; } }	
+		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { 
+ 
+			get { return @ServiceLifeType; } 
+			set { ServiceLifeType = value;}
+		}	
+		IfcTimeMeasure IIfcServiceLife.ServiceLifeDuration { 
+ 
+			get { return @ServiceLifeDuration; } 
+			set { ServiceLifeDuration = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcServiceLife(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcServiceLife(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +69,13 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _serviceLifeType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _serviceLifeType;
+				Activate();
 				return _serviceLifeType;
 			} 
 			set
 			{
-				SetValue( v =>  _serviceLifeType = v, _serviceLifeType, value,  "ServiceLifeType");
+				SetValue( v =>  _serviceLifeType = v, _serviceLifeType, value,  "ServiceLifeType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -73,13 +83,13 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _serviceLifeDuration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _serviceLifeDuration;
+				Activate();
 				return _serviceLifeDuration;
 			} 
 			set
 			{
-				SetValue( v =>  _serviceLifeDuration = v, _serviceLifeDuration, value,  "ServiceLifeDuration");
+				SetValue( v =>  _serviceLifeDuration = v, _serviceLifeDuration, value,  "ServiceLifeDuration", 7);
 			} 
 		}	
 		#endregion
@@ -87,9 +97,8 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -110,11 +119,6 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -122,55 +126,18 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcServiceLife
-            var root = (@IfcServiceLife)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcServiceLife left, @IfcServiceLife right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcServiceLife left, @IfcServiceLife right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcServiceLife x, @IfcServiceLife y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcServiceLife obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

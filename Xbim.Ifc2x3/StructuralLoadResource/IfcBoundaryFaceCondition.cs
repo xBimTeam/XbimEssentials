@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryFaceCondition : IIfcBoundaryCondition
 	{
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaX { get; }
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY { get; }
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ { get; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaX { get;  set; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY { get;  set; }
+		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ { get;  set; }
 	
 	}
 }
@@ -35,18 +37,30 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryFaceCondition", 674)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEqualityComparer<@IfcBoundaryFaceCondition>, IEquatable<@IfcBoundaryFaceCondition>
+	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEquatable<@IfcBoundaryFaceCondition>
 	{
 		#region IIfcBoundaryFaceCondition explicit implementation
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { get { return @LinearStiffnessByAreaX; } }	
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaY { get { return @LinearStiffnessByAreaY; } }	
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaZ { get { return @LinearStiffnessByAreaZ; } }	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { 
+ 
+			get { return @LinearStiffnessByAreaX; } 
+			set { LinearStiffnessByAreaX = value;}
+		}	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaY { 
+ 
+			get { return @LinearStiffnessByAreaY; } 
+			set { LinearStiffnessByAreaY = value;}
+		}	
+		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaZ { 
+ 
+			get { return @LinearStiffnessByAreaZ; } 
+			set { LinearStiffnessByAreaZ = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBoundaryFaceCondition(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcBoundaryFaceCondition(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessByAreaX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessByAreaX;
+				Activate();
 				return _linearStiffnessByAreaX;
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByAreaX = v, _linearStiffnessByAreaX, value,  "LinearStiffnessByAreaX");
+				SetValue( v =>  _linearStiffnessByAreaX = v, _linearStiffnessByAreaX, value,  "LinearStiffnessByAreaX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessByAreaY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessByAreaY;
+				Activate();
 				return _linearStiffnessByAreaY;
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByAreaY = v, _linearStiffnessByAreaY, value,  "LinearStiffnessByAreaY");
+				SetValue( v =>  _linearStiffnessByAreaY = v, _linearStiffnessByAreaY, value,  "LinearStiffnessByAreaY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessByAreaZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessByAreaZ;
+				Activate();
 				return _linearStiffnessByAreaZ;
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessByAreaZ = v, _linearStiffnessByAreaZ, value,  "LinearStiffnessByAreaZ");
+				SetValue( v =>  _linearStiffnessByAreaZ = v, _linearStiffnessByAreaZ, value,  "LinearStiffnessByAreaZ", 4);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -125,11 +138,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,54 +145,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBoundaryFaceCondition
-            var root = (@IfcBoundaryFaceCondition)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBoundaryFaceCondition left, @IfcBoundaryFaceCondition right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBoundaryFaceCondition left, @IfcBoundaryFaceCondition right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoundaryFaceCondition x, @IfcBoundaryFaceCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoundaryFaceCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

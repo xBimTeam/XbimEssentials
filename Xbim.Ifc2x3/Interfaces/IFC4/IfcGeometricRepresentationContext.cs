@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcGeometricRepresentationContext : IIfcGeometricRepresentationContext
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 3)]
 		Ifc4.GeometryResource.IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension 
 		{ 
 			get
 			{
 				return new Ifc4.GeometryResource.IfcDimensionCount(CoordinateSpaceDimension);
 			} 
+			set
+			{
+				CoordinateSpaceDimension = new GeometryResource.IfcDimensionCount(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 4)]
 		Ifc4.MeasureResource.IfcReal? IIfcGeometricRepresentationContext.Precision 
 		{ 
 			get
@@ -31,7 +41,14 @@ namespace Xbim.Ifc2x3.RepresentationResource
                 return Precision.HasValue ? new Ifc4.MeasureResource.IfcReal(Precision.Value) : (Ifc4.MeasureResource.IfcReal?)null;
 			    //##
 			} 
+			set
+			{
+				Precision = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 5)]
 		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem 
 		{ 
 			get
@@ -45,13 +62,41 @@ namespace Xbim.Ifc2x3.RepresentationResource
 					return ifcaxis2placement3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					WorldCoordinateSystem = null;
+					return;
+				}	
+				var ifcaxis2placement2d = value as GeometryResource.IfcAxis2Placement2D;
+				if (ifcaxis2placement2d != null) 
+				{
+					WorldCoordinateSystem = ifcaxis2placement2d;
+					return;
+				}
+				var ifcaxis2placement3d = value as GeometryResource.IfcAxis2Placement3D;
+				if (ifcaxis2placement3d != null) 
+				{
+					WorldCoordinateSystem = ifcaxis2placement3d;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcGeometricRepresentationContext), 6)]
 		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth 
 		{ 
 			get
 			{
 				return TrueNorth;
 			} 
+			set
+			{
+				TrueNorth = value as GeometryResource.IfcDirection;
+				
+			}
 		}
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts 
 		{ 

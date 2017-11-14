@@ -10,20 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	public partial class @IfcConstructionProductResource : IIfcConstructionProductResource
 	{
+
+		private  Ifc4.Interfaces.IfcConstructionProductResourceTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcConstructionProductResource), 11)]
 		Ifc4.Interfaces.IfcConstructionProductResourceTypeEnum? IIfcConstructionProductResource.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
+				
+			}
 		}
 	//## Custom code
 	//##

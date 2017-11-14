@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelAssociatesMaterial : IIfcRelAssociatesMaterial
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssociatesMaterial), 6)]
 		IIfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial 
 		{ 
 			get
@@ -46,6 +49,21 @@ namespace Xbim.Ifc2x3.ProductExtension
 					//##
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingMaterial = null;
+					return;
+				}	
+				var ifcmateriallist = value as MaterialResource.IfcMaterialList;
+				if (ifcmateriallist != null) 
+				{
+					RelatingMaterial = ifcmateriallist;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

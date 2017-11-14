@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToProcess : IIfcRelAssigns
 	{
-		IIfcProcess @RelatingProcess { get; }
-		IIfcMeasureWithUnit @QuantityInProcess { get; }
+		IIfcProcess @RelatingProcess { get;  set; }
+		IIfcMeasureWithUnit @QuantityInProcess { get;  set; }
 	
 	}
 }
@@ -34,17 +36,27 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToProcess", 249)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IEqualityComparer<@IfcRelAssignsToProcess>, IEquatable<@IfcRelAssignsToProcess>
+	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProcess>
 	{
 		#region IIfcRelAssignsToProcess explicit implementation
-		IIfcProcess IIfcRelAssignsToProcess.RelatingProcess { get { return @RelatingProcess; } }	
-		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { get { return @QuantityInProcess; } }	
+		IIfcProcess IIfcRelAssignsToProcess.RelatingProcess { 
+ 
+ 
+			get { return @RelatingProcess; } 
+			set { RelatingProcess = value as IfcProcess;}
+		}	
+		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { 
+ 
+ 
+			get { return @QuantityInProcess; } 
+			set { QuantityInProcess = value as IfcMeasureWithUnit;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelAssignsToProcess(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelAssignsToProcess(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +71,15 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingProcess;
+				Activate();
 				return _relatingProcess;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -73,13 +87,15 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _quantityInProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _quantityInProcess;
+				Activate();
 				return _quantityInProcess;
 			} 
 			set
 			{
-				SetValue( v =>  _quantityInProcess = v, _quantityInProcess, value,  "QuantityInProcess");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _quantityInProcess = v, _quantityInProcess, value,  "QuantityInProcess", 8);
 			} 
 		}	
 		#endregion
@@ -87,9 +103,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -111,12 +126,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(QUERY(Temp <* SELF\IfcRelAssigns.RelatedObjects | RelatingProcess :=: Temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -124,55 +133,39 @@ namespace Xbim.Ifc2x3.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelAssignsToProcess
-            var root = (@IfcRelAssignsToProcess)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelAssignsToProcess left, @IfcRelAssignsToProcess right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelAssignsToProcess left, @IfcRelAssignsToProcess right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToProcess x, @IfcRelAssignsToProcess y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToProcess obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				if (@QuantityInProcess != null)
+					yield return @QuantityInProcess;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

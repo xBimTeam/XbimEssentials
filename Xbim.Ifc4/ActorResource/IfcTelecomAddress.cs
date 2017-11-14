@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ActorResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,68 +27,84 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTelecomAddress : IIfcAddress
 	{
-		IEnumerable<IfcLabel> @TelephoneNumbers { get; }
-		IEnumerable<IfcLabel> @FacsimileNumbers { get; }
-		IfcLabel? @PagerNumber { get; }
-		IEnumerable<IfcLabel> @ElectronicMailAddresses { get; }
-		IfcURIReference? @WWWHomePageURL { get; }
-		IEnumerable<IfcURIReference> @MessagingIDs { get; }
+		IItemSet<IfcLabel> @TelephoneNumbers { get; }
+		IItemSet<IfcLabel> @FacsimileNumbers { get; }
+		IfcLabel? @PagerNumber { get;  set; }
+		IItemSet<IfcLabel> @ElectronicMailAddresses { get; }
+		IfcURIReference? @WWWHomePageURL { get;  set; }
+		IItemSet<IfcURIReference> @MessagingIDs { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ActorResource
 {
-	[ExpressType("IfcTelecomAddress", 1093)]
+	[ExpressType("IfcTelecomAddress", 553)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEqualityComparer<@IfcTelecomAddress>, IEquatable<@IfcTelecomAddress>
+	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEquatable<@IfcTelecomAddress>
 	{
 		#region IIfcTelecomAddress explicit implementation
-		IEnumerable<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { get { return @TelephoneNumbers; } }	
-		IEnumerable<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { get { return @FacsimileNumbers; } }	
-		IfcLabel? IIfcTelecomAddress.PagerNumber { get { return @PagerNumber; } }	
-		IEnumerable<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { get { return @ElectronicMailAddresses; } }	
-		IfcURIReference? IIfcTelecomAddress.WWWHomePageURL { get { return @WWWHomePageURL; } }	
-		IEnumerable<IfcURIReference> IIfcTelecomAddress.MessagingIDs { get { return @MessagingIDs; } }	
+		IItemSet<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { 
+			get { return @TelephoneNumbers; } 
+		}	
+		IItemSet<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { 
+			get { return @FacsimileNumbers; } 
+		}	
+		IfcLabel? IIfcTelecomAddress.PagerNumber { 
+ 
+			get { return @PagerNumber; } 
+			set { PagerNumber = value;}
+		}	
+		IItemSet<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { 
+			get { return @ElectronicMailAddresses; } 
+		}	
+		IfcURIReference? IIfcTelecomAddress.WWWHomePageURL { 
+ 
+			get { return @WWWHomePageURL; } 
+			set { WWWHomePageURL = value;}
+		}	
+		IItemSet<IfcURIReference> IIfcTelecomAddress.MessagingIDs { 
+			get { return @MessagingIDs; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTelecomAddress(IModel model) : base(model) 		{ 
-			Model = model; 
-			_telephoneNumbers = new OptionalItemSet<IfcLabel>( this, 0 );
-			_facsimileNumbers = new OptionalItemSet<IfcLabel>( this, 0 );
-			_electronicMailAddresses = new OptionalItemSet<IfcLabel>( this, 0 );
-			_messagingIDs = new OptionalItemSet<IfcURIReference>( this, 0 );
+		internal IfcTelecomAddress(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_telephoneNumbers = new OptionalItemSet<IfcLabel>( this, 0,  4);
+			_facsimileNumbers = new OptionalItemSet<IfcLabel>( this, 0,  5);
+			_electronicMailAddresses = new OptionalItemSet<IfcLabel>( this, 0,  7);
+			_messagingIDs = new OptionalItemSet<IfcURIReference>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcLabel> _telephoneNumbers;
-		private OptionalItemSet<IfcLabel> _facsimileNumbers;
+		private readonly OptionalItemSet<IfcLabel> _telephoneNumbers;
+		private readonly OptionalItemSet<IfcLabel> _facsimileNumbers;
 		private IfcLabel? _pagerNumber;
-		private OptionalItemSet<IfcLabel> _electronicMailAddresses;
+		private readonly OptionalItemSet<IfcLabel> _electronicMailAddresses;
 		private IfcURIReference? _wWWHomePageURL;
-		private OptionalItemSet<IfcURIReference> _messagingIDs;
+		private readonly OptionalItemSet<IfcURIReference> _messagingIDs;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 6)]
-		public OptionalItemSet<IfcLabel> @TelephoneNumbers 
+		public IOptionalItemSet<IfcLabel> @TelephoneNumbers 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _telephoneNumbers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _telephoneNumbers;
+				Activate();
 				return _telephoneNumbers;
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
-		public OptionalItemSet<IfcLabel> @FacsimileNumbers 
+		public IOptionalItemSet<IfcLabel> @FacsimileNumbers 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _facsimileNumbers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _facsimileNumbers;
+				Activate();
 				return _facsimileNumbers;
 			} 
 		}	
@@ -95,22 +113,22 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pagerNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pagerNumber;
+				Activate();
 				return _pagerNumber;
 			} 
 			set
 			{
-				SetValue( v =>  _pagerNumber = v, _pagerNumber, value,  "PagerNumber");
+				SetValue( v =>  _pagerNumber = v, _pagerNumber, value,  "PagerNumber", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 9)]
-		public OptionalItemSet<IfcLabel> @ElectronicMailAddresses 
+		public IOptionalItemSet<IfcLabel> @ElectronicMailAddresses 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _electronicMailAddresses;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _electronicMailAddresses;
+				Activate();
 				return _electronicMailAddresses;
 			} 
 		}	
@@ -119,22 +137,22 @@ namespace Xbim.Ifc4.ActorResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wWWHomePageURL;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wWWHomePageURL;
+				Activate();
 				return _wWWHomePageURL;
 			} 
 			set
 			{
-				SetValue( v =>  _wWWHomePageURL = v, _wWWHomePageURL, value,  "WWWHomePageURL");
+				SetValue( v =>  _wWWHomePageURL = v, _wWWHomePageURL, value,  "WWWHomePageURL", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 11)]
-		public OptionalItemSet<IfcURIReference> @MessagingIDs 
+		public IOptionalItemSet<IfcURIReference> @MessagingIDs 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _messagingIDs;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _messagingIDs;
+				Activate();
 				return _messagingIDs;
 			} 
 		}	
@@ -143,9 +161,8 @@ namespace Xbim.Ifc4.ActorResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -155,36 +172,26 @@ namespace Xbim.Ifc4.ActorResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					if (_telephoneNumbers == null) _telephoneNumbers = new OptionalItemSet<IfcLabel>( this );
 					_telephoneNumbers.InternalAdd(value.StringVal);
 					return;
 				case 4: 
-					if (_facsimileNumbers == null) _facsimileNumbers = new OptionalItemSet<IfcLabel>( this );
 					_facsimileNumbers.InternalAdd(value.StringVal);
 					return;
 				case 5: 
 					_pagerNumber = value.StringVal;
 					return;
 				case 6: 
-					if (_electronicMailAddresses == null) _electronicMailAddresses = new OptionalItemSet<IfcLabel>( this );
 					_electronicMailAddresses.InternalAdd(value.StringVal);
 					return;
 				case 7: 
 					_wWWHomePageURL = value.StringVal;
 					return;
 				case 8: 
-					if (_messagingIDs == null) _messagingIDs = new OptionalItemSet<IfcURIReference>( this );
 					_messagingIDs.InternalAdd(value.StringVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*MinimumDataProvided:EXISTS (MessagingIDs);*/
 		}
 		#endregion
 
@@ -193,54 +200,6 @@ namespace Xbim.Ifc4.ActorResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTelecomAddress
-            var root = (@IfcTelecomAddress)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTelecomAddress left, @IfcTelecomAddress right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTelecomAddress left, @IfcTelecomAddress right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTelecomAddress x, @IfcTelecomAddress y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTelecomAddress obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

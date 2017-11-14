@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,15 +26,15 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcOpticalMaterialProperties : IIfcMaterialProperties
 	{
-		IfcPositiveRatioMeasure? @VisibleTransmittance { get; }
-		IfcPositiveRatioMeasure? @SolarTransmittance { get; }
-		IfcPositiveRatioMeasure? @ThermalIrTransmittance { get; }
-		IfcPositiveRatioMeasure? @ThermalIrEmissivityBack { get; }
-		IfcPositiveRatioMeasure? @ThermalIrEmissivityFront { get; }
-		IfcPositiveRatioMeasure? @VisibleReflectanceBack { get; }
-		IfcPositiveRatioMeasure? @VisibleReflectanceFront { get; }
-		IfcPositiveRatioMeasure? @SolarReflectanceFront { get; }
-		IfcPositiveRatioMeasure? @SolarReflectanceBack { get; }
+		IfcPositiveRatioMeasure? @VisibleTransmittance { get;  set; }
+		IfcPositiveRatioMeasure? @SolarTransmittance { get;  set; }
+		IfcPositiveRatioMeasure? @ThermalIrTransmittance { get;  set; }
+		IfcPositiveRatioMeasure? @ThermalIrEmissivityBack { get;  set; }
+		IfcPositiveRatioMeasure? @ThermalIrEmissivityFront { get;  set; }
+		IfcPositiveRatioMeasure? @VisibleReflectanceBack { get;  set; }
+		IfcPositiveRatioMeasure? @VisibleReflectanceFront { get;  set; }
+		IfcPositiveRatioMeasure? @SolarReflectanceFront { get;  set; }
+		IfcPositiveRatioMeasure? @SolarReflectanceBack { get;  set; }
 	
 	}
 }
@@ -41,24 +43,60 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcOpticalMaterialProperties", 718)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IEqualityComparer<@IfcOpticalMaterialProperties>, IEquatable<@IfcOpticalMaterialProperties>
+	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcOpticalMaterialProperties>
 	{
 		#region IIfcOpticalMaterialProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { get { return @VisibleTransmittance; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarTransmittance { get { return @SolarTransmittance; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrTransmittance { get { return @ThermalIrTransmittance; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityBack { get { return @ThermalIrEmissivityBack; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityFront { get { return @ThermalIrEmissivityFront; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceBack { get { return @VisibleReflectanceBack; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceFront { get { return @VisibleReflectanceFront; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceFront { get { return @SolarReflectanceFront; } }	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceBack { get { return @SolarReflectanceBack; } }	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { 
+ 
+			get { return @VisibleTransmittance; } 
+			set { VisibleTransmittance = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarTransmittance { 
+ 
+			get { return @SolarTransmittance; } 
+			set { SolarTransmittance = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrTransmittance { 
+ 
+			get { return @ThermalIrTransmittance; } 
+			set { ThermalIrTransmittance = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityBack { 
+ 
+			get { return @ThermalIrEmissivityBack; } 
+			set { ThermalIrEmissivityBack = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityFront { 
+ 
+			get { return @ThermalIrEmissivityFront; } 
+			set { ThermalIrEmissivityFront = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceBack { 
+ 
+			get { return @VisibleReflectanceBack; } 
+			set { VisibleReflectanceBack = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceFront { 
+ 
+			get { return @VisibleReflectanceFront; } 
+			set { VisibleReflectanceFront = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceFront { 
+ 
+			get { return @SolarReflectanceFront; } 
+			set { SolarReflectanceFront = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceBack { 
+ 
+			get { return @SolarReflectanceBack; } 
+			set { SolarReflectanceBack = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcOpticalMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcOpticalMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -79,13 +117,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _visibleTransmittance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _visibleTransmittance;
+				Activate();
 				return _visibleTransmittance;
 			} 
 			set
 			{
-				SetValue( v =>  _visibleTransmittance = v, _visibleTransmittance, value,  "VisibleTransmittance");
+				SetValue( v =>  _visibleTransmittance = v, _visibleTransmittance, value,  "VisibleTransmittance", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -93,13 +131,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _solarTransmittance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _solarTransmittance;
+				Activate();
 				return _solarTransmittance;
 			} 
 			set
 			{
-				SetValue( v =>  _solarTransmittance = v, _solarTransmittance, value,  "SolarTransmittance");
+				SetValue( v =>  _solarTransmittance = v, _solarTransmittance, value,  "SolarTransmittance", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -107,13 +145,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalIrTransmittance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalIrTransmittance;
+				Activate();
 				return _thermalIrTransmittance;
 			} 
 			set
 			{
-				SetValue( v =>  _thermalIrTransmittance = v, _thermalIrTransmittance, value,  "ThermalIrTransmittance");
+				SetValue( v =>  _thermalIrTransmittance = v, _thermalIrTransmittance, value,  "ThermalIrTransmittance", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -121,13 +159,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalIrEmissivityBack;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalIrEmissivityBack;
+				Activate();
 				return _thermalIrEmissivityBack;
 			} 
 			set
 			{
-				SetValue( v =>  _thermalIrEmissivityBack = v, _thermalIrEmissivityBack, value,  "ThermalIrEmissivityBack");
+				SetValue( v =>  _thermalIrEmissivityBack = v, _thermalIrEmissivityBack, value,  "ThermalIrEmissivityBack", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -135,13 +173,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermalIrEmissivityFront;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermalIrEmissivityFront;
+				Activate();
 				return _thermalIrEmissivityFront;
 			} 
 			set
 			{
-				SetValue( v =>  _thermalIrEmissivityFront = v, _thermalIrEmissivityFront, value,  "ThermalIrEmissivityFront");
+				SetValue( v =>  _thermalIrEmissivityFront = v, _thermalIrEmissivityFront, value,  "ThermalIrEmissivityFront", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -149,13 +187,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _visibleReflectanceBack;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _visibleReflectanceBack;
+				Activate();
 				return _visibleReflectanceBack;
 			} 
 			set
 			{
-				SetValue( v =>  _visibleReflectanceBack = v, _visibleReflectanceBack, value,  "VisibleReflectanceBack");
+				SetValue( v =>  _visibleReflectanceBack = v, _visibleReflectanceBack, value,  "VisibleReflectanceBack", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -163,13 +201,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _visibleReflectanceFront;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _visibleReflectanceFront;
+				Activate();
 				return _visibleReflectanceFront;
 			} 
 			set
 			{
-				SetValue( v =>  _visibleReflectanceFront = v, _visibleReflectanceFront, value,  "VisibleReflectanceFront");
+				SetValue( v =>  _visibleReflectanceFront = v, _visibleReflectanceFront, value,  "VisibleReflectanceFront", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -177,13 +215,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _solarReflectanceFront;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _solarReflectanceFront;
+				Activate();
 				return _solarReflectanceFront;
 			} 
 			set
 			{
-				SetValue( v =>  _solarReflectanceFront = v, _solarReflectanceFront, value,  "SolarReflectanceFront");
+				SetValue( v =>  _solarReflectanceFront = v, _solarReflectanceFront, value,  "SolarReflectanceFront", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -191,13 +229,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _solarReflectanceBack;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _solarReflectanceBack;
+				Activate();
 				return _solarReflectanceBack;
 			} 
 			set
 			{
-				SetValue( v =>  _solarReflectanceBack = v, _solarReflectanceBack, value,  "SolarReflectanceBack");
+				SetValue( v =>  _solarReflectanceBack = v, _solarReflectanceBack, value,  "SolarReflectanceBack", 10);
 			} 
 		}	
 		#endregion
@@ -205,9 +243,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -245,11 +282,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -257,55 +289,18 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcOpticalMaterialProperties
-            var root = (@IfcOpticalMaterialProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcOpticalMaterialProperties left, @IfcOpticalMaterialProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcOpticalMaterialProperties left, @IfcOpticalMaterialProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcOpticalMaterialProperties x, @IfcOpticalMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcOpticalMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

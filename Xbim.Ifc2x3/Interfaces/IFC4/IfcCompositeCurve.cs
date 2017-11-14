@@ -10,22 +10,25 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCompositeCurve : IIfcCompositeCurve
 	{
-		IEnumerable<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments 
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurve), 1)]
+		IItemSet<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments 
 		{ 
 			get
 			{
-				foreach (var member in Segments)
-				{
-					yield return member as IIfcCompositeCurveSegment;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCompositeCurveSegment, IIfcCompositeCurveSegment>(Segments);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurve), 2)]
 		Ifc4.MeasureResource.IfcLogical IIfcCompositeCurve.SelfIntersect 
 		{ 
 			get
@@ -34,6 +37,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
+			set
+			{
+				SelfIntersect = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcCompositeCurve.NSegments 
 		{

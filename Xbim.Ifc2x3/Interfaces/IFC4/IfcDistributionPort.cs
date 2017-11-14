@@ -10,53 +10,99 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	public partial class @IfcDistributionPort : IIfcDistributionPort
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDistributionPort), 8)]
 		Ifc4.Interfaces.IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of FlowDirection
+				//##
 				switch (FlowDirection)
 				{
 					case IfcFlowDirectionEnum.SOURCE:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE;
-					
 					case IfcFlowDirectionEnum.SINK:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.SINK;
-					
 					case IfcFlowDirectionEnum.SOURCEANDSINK:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCEANDSINK;
-					
 					case IfcFlowDirectionEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcFlowDirectionEnum.NOTDEFINED;
-					
+					case null: 
+						return null;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of FlowDirection
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCE:
+						FlowDirection = IfcFlowDirectionEnum.SOURCE;
+						return;
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SINK:
+						FlowDirection = IfcFlowDirectionEnum.SINK;
+						return;
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.SOURCEANDSINK:
+						FlowDirection = IfcFlowDirectionEnum.SOURCEANDSINK;
+						return;
+					case Ifc4.Interfaces.IfcFlowDirectionEnum.NOTDEFINED:
+						FlowDirection = IfcFlowDirectionEnum.NOTDEFINED;
+						return;
+					
+					case null:
+						FlowDirection = null;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDistributionPortTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcDistributionPort), 9)]
 		Ifc4.Interfaces.IfcDistributionPortTypeEnum? IIfcDistributionPort.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -9);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcDistributionSystemEnum? _systemType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcDistributionPort), 10)]
 		Ifc4.Interfaces.IfcDistributionSystemEnum? IIfcDistributionPort.SystemType 
 		{ 
 			get
 			{
-				//## Handle return of SystemType for which no match was found
-			    return null;
-			    //##
+				return _systemType;
 			} 
+			set
+			{
+				SetValue(v => _systemType = v, _systemType, value, "SystemType", -10);
+				
+			}
 		}
 	//## Custom code
 	//##

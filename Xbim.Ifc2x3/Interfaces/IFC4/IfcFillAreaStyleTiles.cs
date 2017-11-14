@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyleTiles : IIfcFillAreaStyleTiles
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleTiles), 1)]
 		IEnumerable<IIfcVector> IIfcFillAreaStyleTiles.TilingPattern 
 		{ 
 			get
@@ -25,6 +28,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleTiles), 2)]
 		IEnumerable<IIfcStyledItem> IIfcFillAreaStyleTiles.Tiles 
 		{ 
 			get
@@ -34,12 +39,19 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyleTiles), 3)]
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(TilingScale);
 			} 
+			set
+			{
+				TilingScale = new MeasureResource.IfcPositiveRatioMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDefinitionResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDefinedSymbol : IIfcGeometricRepresentationItem
 	{
-		IIfcDefinedSymbolSelect @Definition { get; }
-		IIfcCartesianTransformationOperator2D @Target { get; }
+		IIfcDefinedSymbolSelect @Definition { get;  set; }
+		IIfcCartesianTransformationOperator2D @Target { get;  set; }
 	
 	}
 }
@@ -34,17 +36,27 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcDefinedSymbol", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IEqualityComparer<@IfcDefinedSymbol>, IEquatable<@IfcDefinedSymbol>
+	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IContainsEntityReferences, IEquatable<@IfcDefinedSymbol>
 	{
 		#region IIfcDefinedSymbol explicit implementation
-		IIfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { get { return @Definition; } }	
-		IIfcCartesianTransformationOperator2D IIfcDefinedSymbol.Target { get { return @Target; } }	
+		IIfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { 
+ 
+ 
+			get { return @Definition; } 
+			set { Definition = value as IfcDefinedSymbolSelect;}
+		}	
+		IIfcCartesianTransformationOperator2D IIfcDefinedSymbol.Target { 
+ 
+ 
+			get { return @Target; } 
+			set { Target = value as IfcCartesianTransformationOperator2D;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDefinedSymbol(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcDefinedSymbol(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +70,15 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _definition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _definition;
+				Activate();
 				return _definition;
 			} 
 			set
 			{
-				SetValue( v =>  _definition = v, _definition, value,  "Definition");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _definition = v, _definition, value,  "Definition", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -72,13 +86,15 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _target;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _target;
+				Activate();
 				return _target;
 			} 
 			set
 			{
-				SetValue( v =>  _target = v, _target, value,  "Target");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _target = v, _target, value,  "Target", 2);
 			} 
 		}	
 		#endregion
@@ -86,9 +102,8 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -102,11 +117,6 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -114,55 +124,20 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDefinedSymbol
-            var root = (@IfcDefinedSymbol)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDefinedSymbol left, @IfcDefinedSymbol right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDefinedSymbol left, @IfcDefinedSymbol right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDefinedSymbol x, @IfcDefinedSymbol y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDefinedSymbol obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Definition != null)
+					yield return @Definition;
+				if (@Target != null)
+					yield return @Target;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

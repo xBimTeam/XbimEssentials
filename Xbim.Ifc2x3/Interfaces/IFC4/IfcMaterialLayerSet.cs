@@ -10,22 +10,25 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	public partial class @IfcMaterialLayerSet : IIfcMaterialLayerSet
 	{
-		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers 
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSet), 1)]
+		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers 
 		{ 
 			get
 			{
-				foreach (var member in MaterialLayers)
-				{
-					yield return member as IIfcMaterialLayer;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>(MaterialLayers);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSet), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcMaterialLayerSet.LayerSetName 
 		{ 
 			get
@@ -33,15 +36,30 @@ namespace Xbim.Ifc2x3.MaterialResource
 				if (!LayerSetName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(LayerSetName.Value);
 			} 
+			set
+			{
+				LayerSetName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialLayerSet), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcMaterialLayerSet.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -3);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialDefinition.AssociatedTo 
 		{ 

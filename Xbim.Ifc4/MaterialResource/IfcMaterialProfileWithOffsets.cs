@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,40 +26,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfileWithOffsets : IIfcMaterialProfile
 	{
-		IEnumerable<IfcLengthMeasure> @OffsetValues { get; }
+		IItemSet<IfcLengthMeasure> @OffsetValues { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IfcMaterialProfileWithOffsets", 764)]
+	[ExpressType("IfcMaterialProfileWithOffsets", 1209)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IIfcMaterialProfileWithOffsets, IEqualityComparer<@IfcMaterialProfileWithOffsets>, IEquatable<@IfcMaterialProfileWithOffsets>
+	public  partial class @IfcMaterialProfileWithOffsets : IfcMaterialProfile, IInstantiableEntity, IIfcMaterialProfileWithOffsets, IContainsEntityReferences, IEquatable<@IfcMaterialProfileWithOffsets>
 	{
 		#region IIfcMaterialProfileWithOffsets explicit implementation
-		IEnumerable<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { get { return @OffsetValues; } }	
+		IItemSet<IfcLengthMeasure> IIfcMaterialProfileWithOffsets.OffsetValues { 
+			get { return @OffsetValues; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialProfileWithOffsets(IModel model) : base(model) 		{ 
-			Model = model; 
-			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2 );
+		internal IfcMaterialProfileWithOffsets(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2,  7);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcLengthMeasure> _offsetValues;
+		private readonly ItemSet<IfcLengthMeasure> _offsetValues;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 11)]
-		public ItemSet<IfcLengthMeasure> @OffsetValues 
+		public IItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetValues;
+				Activate();
 				return _offsetValues;
 			} 
 		}	
@@ -66,9 +70,8 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -81,17 +84,11 @@ namespace Xbim.Ifc4.MaterialResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 6: 
-					if (_offsetValues == null) _offsetValues = new ItemSet<IfcLengthMeasure>( this );
 					_offsetValues.InternalAdd(value.RealVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -100,55 +97,20 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialProfileWithOffsets
-            var root = (@IfcMaterialProfileWithOffsets)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialProfileWithOffsets left, @IfcMaterialProfileWithOffsets right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialProfileWithOffsets left, @IfcMaterialProfileWithOffsets right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialProfileWithOffsets x, @IfcMaterialProfileWithOffsets y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialProfileWithOffsets obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+				if (@Profile != null)
+					yield return @Profile;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

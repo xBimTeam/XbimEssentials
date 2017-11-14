@@ -12,10 +12,10 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
-	[ExpressType("IfcURIReference", 125)]
+	[ExpressType("IfcURIReference", 1001)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcURIReference : IExpressValueType, System.IEquatable<string>
+	public partial struct IfcURIReference : IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.ExternalReferenceResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {
@@ -87,11 +90,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             _value = value.StringVal;
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

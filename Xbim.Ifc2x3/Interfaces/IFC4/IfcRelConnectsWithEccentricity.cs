@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcRelConnectsWithEccentricity : IIfcRelConnectsWithEccentricity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsWithEccentricity), 11)]
 		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint 
 		{ 
 			get
 			{
 				return ConnectionConstraint;
 			} 
+			set
+			{
+				ConnectionConstraint = value as GeometricConstraintResource.IfcConnectionGeometry;
+				
+			}
 		}
 	//## Custom code
 	//##

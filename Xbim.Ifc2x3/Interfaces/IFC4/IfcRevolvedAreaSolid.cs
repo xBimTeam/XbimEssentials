@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcRevolvedAreaSolid : IIfcRevolvedAreaSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRevolvedAreaSolid), 3)]
 		IIfcAxis1Placement IIfcRevolvedAreaSolid.Axis 
 		{ 
 			get
 			{
 				return Axis;
 			} 
+			set
+			{
+				Axis = value as GeometryResource.IfcAxis1Placement;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRevolvedAreaSolid), 4)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure IIfcRevolvedAreaSolid.Angle 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(Angle);
 			} 
+			set
+			{
+				Angle = new MeasureResource.IfcPlaneAngleMeasure(value);
+				
+			}
 		}
 		Common.Geometry.XbimLine IIfcRevolvedAreaSolid.AxisLine 
 		{

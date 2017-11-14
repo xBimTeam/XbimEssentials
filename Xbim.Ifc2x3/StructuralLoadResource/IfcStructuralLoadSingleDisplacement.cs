@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadSingleDisplacement : IIfcStructuralLoadStatic
 	{
-		IfcLengthMeasure? @DisplacementX { get; }
-		IfcLengthMeasure? @DisplacementY { get; }
-		IfcLengthMeasure? @DisplacementZ { get; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRX { get; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRY { get; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRZ { get; }
+		IfcLengthMeasure? @DisplacementX { get;  set; }
+		IfcLengthMeasure? @DisplacementY { get;  set; }
+		IfcLengthMeasure? @DisplacementZ { get;  set; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRX { get;  set; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRY { get;  set; }
+		IfcPlaneAngleMeasure? @RotationalDisplacementRZ { get;  set; }
 	
 	}
 }
@@ -38,21 +40,45 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleDisplacement", 289)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEqualityComparer<@IfcStructuralLoadSingleDisplacement>, IEquatable<@IfcStructuralLoadSingleDisplacement>
+	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEquatable<@IfcStructuralLoadSingleDisplacement>
 	{
 		#region IIfcStructuralLoadSingleDisplacement explicit implementation
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { get { return @DisplacementX; } }	
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY { get { return @DisplacementY; } }	
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ { get { return @DisplacementZ; } }	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { get { return @RotationalDisplacementRX; } }	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { get { return @RotationalDisplacementRY; } }	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { get { return @RotationalDisplacementRZ; } }	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { 
+ 
+			get { return @DisplacementX; } 
+			set { DisplacementX = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY { 
+ 
+			get { return @DisplacementY; } 
+			set { DisplacementY = value;}
+		}	
+		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ { 
+ 
+			get { return @DisplacementZ; } 
+			set { DisplacementZ = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { 
+ 
+			get { return @RotationalDisplacementRX; } 
+			set { RotationalDisplacementRX = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { 
+ 
+			get { return @RotationalDisplacementRY; } 
+			set { RotationalDisplacementRY = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { 
+ 
+			get { return @RotationalDisplacementRZ; } 
+			set { RotationalDisplacementRZ = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralLoadSingleDisplacement(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcStructuralLoadSingleDisplacement(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -70,13 +96,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _displacementX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _displacementX;
+				Activate();
 				return _displacementX;
 			} 
 			set
 			{
-				SetValue( v =>  _displacementX = v, _displacementX, value,  "DisplacementX");
+				SetValue( v =>  _displacementX = v, _displacementX, value,  "DisplacementX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -84,13 +110,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _displacementY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _displacementY;
+				Activate();
 				return _displacementY;
 			} 
 			set
 			{
-				SetValue( v =>  _displacementY = v, _displacementY, value,  "DisplacementY");
+				SetValue( v =>  _displacementY = v, _displacementY, value,  "DisplacementY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -98,13 +124,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _displacementZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _displacementZ;
+				Activate();
 				return _displacementZ;
 			} 
 			set
 			{
-				SetValue( v =>  _displacementZ = v, _displacementZ, value,  "DisplacementZ");
+				SetValue( v =>  _displacementZ = v, _displacementZ, value,  "DisplacementZ", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -112,13 +138,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalDisplacementRX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalDisplacementRX;
+				Activate();
 				return _rotationalDisplacementRX;
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalDisplacementRX = v, _rotationalDisplacementRX, value,  "RotationalDisplacementRX");
+				SetValue( v =>  _rotationalDisplacementRX = v, _rotationalDisplacementRX, value,  "RotationalDisplacementRX", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -126,13 +152,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalDisplacementRY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalDisplacementRY;
+				Activate();
 				return _rotationalDisplacementRY;
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalDisplacementRY = v, _rotationalDisplacementRY, value,  "RotationalDisplacementRY");
+				SetValue( v =>  _rotationalDisplacementRY = v, _rotationalDisplacementRY, value,  "RotationalDisplacementRY", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -140,13 +166,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalDisplacementRZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalDisplacementRZ;
+				Activate();
 				return _rotationalDisplacementRZ;
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalDisplacementRZ = v, _rotationalDisplacementRZ, value,  "RotationalDisplacementRZ");
+				SetValue( v =>  _rotationalDisplacementRZ = v, _rotationalDisplacementRZ, value,  "RotationalDisplacementRZ", 7);
 			} 
 		}	
 		#endregion
@@ -154,9 +180,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -185,11 +210,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -197,54 +217,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralLoadSingleDisplacement
-            var root = (@IfcStructuralLoadSingleDisplacement)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralLoadSingleDisplacement left, @IfcStructuralLoadSingleDisplacement right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralLoadSingleDisplacement left, @IfcStructuralLoadSingleDisplacement right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadSingleDisplacement x, @IfcStructuralLoadSingleDisplacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadSingleDisplacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

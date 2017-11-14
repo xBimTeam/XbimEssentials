@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGrid : IIfcProduct
 	{
-		IEnumerable<IIfcGridAxis> @UAxes { get; }
-		IEnumerable<IIfcGridAxis> @VAxes { get; }
-		IEnumerable<IIfcGridAxis> @WAxes { get; }
+		IItemSet<IIfcGridAxis> @UAxes { get; }
+		IItemSet<IIfcGridAxis> @VAxes { get; }
+		IItemSet<IIfcGridAxis> @WAxes { get; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
 	
 	}
@@ -37,61 +39,67 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcGrid", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IEqualityComparer<@IfcGrid>, IEquatable<@IfcGrid>
+	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
 	{
 		#region IIfcGrid explicit implementation
-		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes { get { return @UAxes; } }	
-		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes { get { return @VAxes; } }	
-		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes { get { return @WAxes; } }	
+		IItemSet<IIfcGridAxis> IIfcGrid.UAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @UAxes); } 
+		}	
+		IItemSet<IIfcGridAxis> IIfcGrid.VAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @VAxes); } 
+		}	
+		IItemSet<IIfcGridAxis> IIfcGrid.WAxes { 
+			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @WAxes); } 
+		}	
 		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure {  get { return @ContainedInStructure; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcGrid(IModel model) : base(model) 		{ 
-			Model = model; 
-			_uAxes = new ItemSet<IfcGridAxis>( this, 0 );
-			_vAxes = new ItemSet<IfcGridAxis>( this, 0 );
-			_wAxes = new OptionalItemSet<IfcGridAxis>( this, 0 );
+		internal IfcGrid(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_uAxes = new ItemSet<IfcGridAxis>( this, 0,  8);
+			_vAxes = new ItemSet<IfcGridAxis>( this, 0,  9);
+			_wAxes = new OptionalItemSet<IfcGridAxis>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcGridAxis> _uAxes;
-		private ItemSet<IfcGridAxis> _vAxes;
-		private OptionalItemSet<IfcGridAxis> _wAxes;
+		private readonly ItemSet<IfcGridAxis> _uAxes;
+		private readonly ItemSet<IfcGridAxis> _vAxes;
+		private readonly OptionalItemSet<IfcGridAxis> _wAxes;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 14)]
-		public ItemSet<IfcGridAxis> @UAxes 
+		public IItemSet<IfcGridAxis> @UAxes 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _uAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _uAxes;
+				Activate();
 				return _uAxes;
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 15)]
-		public ItemSet<IfcGridAxis> @VAxes 
+		public IItemSet<IfcGridAxis> @VAxes 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vAxes;
+				Activate();
 				return _vAxes;
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 16)]
-		public OptionalItemSet<IfcGridAxis> @WAxes 
+		public IOptionalItemSet<IfcGridAxis> @WAxes 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _wAxes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _wAxes;
+				Activate();
 				return _wAxes;
 			} 
 		}	
@@ -111,9 +119,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -127,26 +134,17 @@ namespace Xbim.Ifc2x3.ProductExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 7: 
-					if (_uAxes == null) _uAxes = new ItemSet<IfcGridAxis>( this );
 					_uAxes.InternalAdd((IfcGridAxis)value.EntityVal);
 					return;
 				case 8: 
-					if (_vAxes == null) _vAxes = new ItemSet<IfcGridAxis>( this );
 					_vAxes.InternalAdd((IfcGridAxis)value.EntityVal);
 					return;
 				case 9: 
-					if (_wAxes == null) _wAxes = new OptionalItemSet<IfcGridAxis>( this );
 					_wAxes.InternalAdd((IfcGridAxis)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:	WR41 : EXISTS(SELF\IfcProduct.ObjectPlacement);*/
 		}
 		#endregion
 
@@ -155,55 +153,49 @@ namespace Xbim.Ifc2x3.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcGrid
-            var root = (@IfcGrid)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcGrid left, @IfcGrid right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcGrid left, @IfcGrid right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGrid x, @IfcGrid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGrid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				foreach(var entity in @UAxes)
+					yield return entity;
+				foreach(var entity in @VAxes)
+					yield return entity;
+				foreach(var entity in @WAxes)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				foreach(var entity in @UAxes)
+					yield return entity;
+				foreach(var entity in @VAxes)
+					yield return entity;
+				foreach(var entity in @WAxes)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

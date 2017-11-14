@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureCoordinateGenerator : IIfcTextureCoordinateGenerator
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextureCoordinateGenerator), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcTextureCoordinateGenerator.Mode 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Mode);
 			} 
+			set
+			{
+				Mode = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextureCoordinateGenerator), 3)]
 		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcTextureCoordinateGenerator.Parameter 
 		{ 
 			get

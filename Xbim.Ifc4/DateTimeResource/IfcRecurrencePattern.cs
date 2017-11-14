@@ -17,6 +17,8 @@ using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,112 +28,78 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRecurrencePattern : IPersistEntity
 	{
-		IfcRecurrenceTypeEnum @RecurrenceType { get; }
-		IEnumerable<IfcDayInMonthNumber> @DayComponent { get; }
-		IEnumerable<IfcDayInWeekNumber> @WeekdayComponent { get; }
-		IEnumerable<IfcMonthInYearNumber> @MonthComponent { get; }
-		IfcInteger? @Position { get; }
-		IfcInteger? @Interval { get; }
-		IfcInteger? @Occurrences { get; }
-		IEnumerable<IIfcTimePeriod> @TimePeriods { get; }
+		IfcRecurrenceTypeEnum @RecurrenceType { get;  set; }
+		IItemSet<IfcDayInMonthNumber> @DayComponent { get; }
+		IItemSet<IfcDayInWeekNumber> @WeekdayComponent { get; }
+		IItemSet<IfcMonthInYearNumber> @MonthComponent { get; }
+		IfcInteger? @Position { get;  set; }
+		IfcInteger? @Interval { get;  set; }
+		IfcInteger? @Occurrences { get;  set; }
+		IItemSet<IIfcTimePeriod> @TimePeriods { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IfcRecurrencePattern", 898)]
+	[ExpressType("IfcRecurrencePattern", 1243)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRecurrencePattern : INotifyPropertyChanged, IInstantiableEntity, IIfcRecurrencePattern, IEqualityComparer<@IfcRecurrencePattern>, IEquatable<@IfcRecurrencePattern>
+	public  partial class @IfcRecurrencePattern : PersistEntity, IInstantiableEntity, IIfcRecurrencePattern, IContainsEntityReferences, IEquatable<@IfcRecurrencePattern>
 	{
 		#region IIfcRecurrencePattern explicit implementation
-		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { get { return @RecurrenceType; } }	
-		IEnumerable<IfcDayInMonthNumber> IIfcRecurrencePattern.DayComponent { get { return @DayComponent; } }	
-		IEnumerable<IfcDayInWeekNumber> IIfcRecurrencePattern.WeekdayComponent { get { return @WeekdayComponent; } }	
-		IEnumerable<IfcMonthInYearNumber> IIfcRecurrencePattern.MonthComponent { get { return @MonthComponent; } }	
-		IfcInteger? IIfcRecurrencePattern.Position { get { return @Position; } }	
-		IfcInteger? IIfcRecurrencePattern.Interval { get { return @Interval; } }	
-		IfcInteger? IIfcRecurrencePattern.Occurrences { get { return @Occurrences; } }	
-		IEnumerable<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { get { return @TimePeriods; } }	
+		IfcRecurrenceTypeEnum IIfcRecurrencePattern.RecurrenceType { 
+ 
+			get { return @RecurrenceType; } 
+			set { RecurrenceType = value;}
+		}	
+		IItemSet<IfcDayInMonthNumber> IIfcRecurrencePattern.DayComponent { 
+			get { return @DayComponent; } 
+		}	
+		IItemSet<IfcDayInWeekNumber> IIfcRecurrencePattern.WeekdayComponent { 
+			get { return @WeekdayComponent; } 
+		}	
+		IItemSet<IfcMonthInYearNumber> IIfcRecurrencePattern.MonthComponent { 
+			get { return @MonthComponent; } 
+		}	
+		IfcInteger? IIfcRecurrencePattern.Position { 
+ 
+			get { return @Position; } 
+			set { Position = value;}
+		}	
+		IfcInteger? IIfcRecurrencePattern.Interval { 
+ 
+			get { return @Interval; } 
+			set { Interval = value;}
+		}	
+		IfcInteger? IIfcRecurrencePattern.Occurrences { 
+ 
+			get { return @Occurrences; } 
+			set { Occurrences = value;}
+		}	
+		IItemSet<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { 
+			get { return new Common.Collections.ProxyItemSet<IfcTimePeriod, IIfcTimePeriod>( @TimePeriods); } 
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRecurrencePattern(IModel model) 		{ 
-			Model = model; 
-			_dayComponent = new OptionalItemSet<IfcDayInMonthNumber>( this, 0 );
-			_weekdayComponent = new OptionalItemSet<IfcDayInWeekNumber>( this, 0 );
-			_monthComponent = new OptionalItemSet<IfcMonthInYearNumber>( this, 0 );
-			_timePeriods = new OptionalItemSet<IfcTimePeriod>( this, 0 );
+		internal IfcRecurrencePattern(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_dayComponent = new OptionalItemSet<IfcDayInMonthNumber>( this, 0,  2);
+			_weekdayComponent = new OptionalItemSet<IfcDayInWeekNumber>( this, 0,  3);
+			_monthComponent = new OptionalItemSet<IfcMonthInYearNumber>( this, 0,  4);
+			_timePeriods = new OptionalItemSet<IfcTimePeriod>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcRecurrenceTypeEnum _recurrenceType;
-		private OptionalItemSet<IfcDayInMonthNumber> _dayComponent;
-		private OptionalItemSet<IfcDayInWeekNumber> _weekdayComponent;
-		private OptionalItemSet<IfcMonthInYearNumber> _monthComponent;
+		private readonly OptionalItemSet<IfcDayInMonthNumber> _dayComponent;
+		private readonly OptionalItemSet<IfcDayInWeekNumber> _weekdayComponent;
+		private readonly OptionalItemSet<IfcMonthInYearNumber> _monthComponent;
 		private IfcInteger? _position;
 		private IfcInteger? _interval;
 		private IfcInteger? _occurrences;
-		private OptionalItemSet<IfcTimePeriod> _timePeriods;
+		private readonly OptionalItemSet<IfcTimePeriod> _timePeriods;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -140,42 +108,42 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _recurrenceType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _recurrenceType;
+				Activate();
 				return _recurrenceType;
 			} 
 			set
 			{
-				SetValue( v =>  _recurrenceType = v, _recurrenceType, value,  "RecurrenceType");
+				SetValue( v =>  _recurrenceType = v, _recurrenceType, value,  "RecurrenceType", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 2)]
-		public OptionalItemSet<IfcDayInMonthNumber> @DayComponent 
+		public IOptionalItemSet<IfcDayInMonthNumber> @DayComponent 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dayComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dayComponent;
+				Activate();
 				return _dayComponent;
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 3)]
-		public OptionalItemSet<IfcDayInWeekNumber> @WeekdayComponent 
+		public IOptionalItemSet<IfcDayInWeekNumber> @WeekdayComponent 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weekdayComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weekdayComponent;
+				Activate();
 				return _weekdayComponent;
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 4)]
-		public OptionalItemSet<IfcMonthInYearNumber> @MonthComponent 
+		public IOptionalItemSet<IfcMonthInYearNumber> @MonthComponent 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _monthComponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _monthComponent;
+				Activate();
 				return _monthComponent;
 			} 
 		}	
@@ -184,13 +152,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _position;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _position;
+				Activate();
 				return _position;
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -198,13 +166,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interval;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interval;
+				Activate();
 				return _interval;
 			} 
 			set
 			{
-				SetValue( v =>  _interval = v, _interval, value,  "Interval");
+				SetValue( v =>  _interval = v, _interval, value,  "Interval", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -212,22 +180,22 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _occurrences;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _occurrences;
+				Activate();
 				return _occurrences;
 			} 
 			set
 			{
-				SetValue( v =>  _occurrences = v, _occurrences, value,  "Occurrences");
+				SetValue( v =>  _occurrences = v, _occurrences, value,  "Occurrences", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
-		public OptionalItemSet<IfcTimePeriod> @TimePeriods 
+		public IOptionalItemSet<IfcTimePeriod> @TimePeriods 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timePeriods;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timePeriods;
+				Activate();
 				return _timePeriods;
 			} 
 		}	
@@ -236,58 +204,8 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -295,15 +213,12 @@ namespace Xbim.Ifc4.DateTimeResource
                     _recurrenceType = (IfcRecurrenceTypeEnum) System.Enum.Parse(typeof (IfcRecurrenceTypeEnum), value.EnumVal, true);
 					return;
 				case 1: 
-					if (_dayComponent == null) _dayComponent = new OptionalItemSet<IfcDayInMonthNumber>( this );
 					_dayComponent.InternalAdd(value.IntegerVal);
 					return;
 				case 2: 
-					if (_weekdayComponent == null) _weekdayComponent = new OptionalItemSet<IfcDayInWeekNumber>( this );
 					_weekdayComponent.InternalAdd(value.IntegerVal);
 					return;
 				case 3: 
-					if (_monthComponent == null) _monthComponent = new OptionalItemSet<IfcMonthInYearNumber>( this );
 					_monthComponent.InternalAdd(value.IntegerVal);
 					return;
 				case 4: 
@@ -316,17 +231,11 @@ namespace Xbim.Ifc4.DateTimeResource
 					_occurrences = value.IntegerVal;
 					return;
 				case 7: 
-					if (_timePeriods == null) _timePeriods = new OptionalItemSet<IfcTimePeriod>( this );
 					_timePeriods.InternalAdd((IfcTimePeriod)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -335,55 +244,18 @@ namespace Xbim.Ifc4.DateTimeResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRecurrencePattern
-            var root = (@IfcRecurrencePattern)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRecurrencePattern left, @IfcRecurrencePattern right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRecurrencePattern left, @IfcRecurrencePattern right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRecurrencePattern x, @IfcRecurrencePattern y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRecurrencePattern obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @TimePeriods)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyReferenceValue : IIfcPropertyReferenceValue
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyReferenceValue), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcPropertyReferenceValue.UsageName 
 		{ 
 			get
@@ -23,11 +26,24 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!UsageName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(UsageName.Value);
 			} 
+			set
+			{
+				UsageName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  IIfcObjectReferenceSelect _propertyReference4;
+
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyReferenceValue), 4)]
 		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference 
 		{ 
 			get
 			{
+				if (_propertyReference4 != null) return _propertyReference4;
 				if (PropertyReference == null) return null;
 				var ifcmaterial = PropertyReference as MaterialResource.IfcMaterial;
 				if (ifcmaterial != null) 
@@ -90,6 +106,83 @@ namespace Xbim.Ifc2x3.PropertyResource
 					return ifcappliedvalue;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					PropertyReference = null;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}	
+				var ifcaddress = value as ActorResource.IfcAddress;
+				if (ifcaddress != null) 
+				{
+					PropertyReference = ifcaddress;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifcappliedvalue = value as CostResource.IfcAppliedValue;
+				if (ifcappliedvalue != null) 
+				{
+					PropertyReference = ifcappliedvalue;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifcexternalreference = value as ExternalReferenceResource.IfcExternalReference;
+				if (ifcexternalreference != null) 
+				{
+					PropertyReference = ifcexternalreference;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifcorganization = value as ActorResource.IfcOrganization;
+				if (ifcorganization != null) 
+				{
+					PropertyReference = ifcorganization;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifcperson = value as ActorResource.IfcPerson;
+				if (ifcperson != null) 
+				{
+					PropertyReference = ifcperson;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifcpersonandorganization = value as ActorResource.IfcPersonAndOrganization;
+				if (ifcpersonandorganization != null) 
+				{
+					PropertyReference = ifcpersonandorganization;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifctable = value as UtilityResource.IfcTable;
+				if (ifctable != null) 
+				{
+					//## Handle setting of entity IfcTable which is not a part of the target select interface IIfcObjectReferenceSelect in property PropertyReference
+				    if (PropertyReference != null)
+				        PropertyReference = null;
+                    SetValue(v => _propertyReference4 = v, _propertyReference4, value, "PropertyReference", -4);
+                    return;
+					//##
+				}
+				var ifctimeseries = value as TimeSeriesResource.IfcTimeSeries;
+				if (ifctimeseries != null) 
+				{
+					PropertyReference = ifctimeseries;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPropertyAbstraction.HasExternalReferences 
 		{ 

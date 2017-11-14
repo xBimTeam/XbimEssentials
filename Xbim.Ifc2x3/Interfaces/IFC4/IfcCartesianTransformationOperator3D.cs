@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator3D : IIfcCartesianTransformationOperator3D
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator3D), 5)]
 		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 
 		{ 
 			get
 			{
 				return Axis3;
 			} 
+			set
+			{
+				Axis3 = value as IfcDirection;
+				
+			}
 		}
 		List<Common.Geometry.XbimVector3D> IIfcCartesianTransformationOperator3D.U 
 		{

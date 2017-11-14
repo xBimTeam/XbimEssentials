@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPropertyEnumeratedValue : IIfcSimpleProperty
 	{
-		IEnumerable<IIfcValue> @EnumerationValues { get; }
-		IIfcPropertyEnumeration @EnumerationReference { get; }
+		IItemSet<IIfcValue> @EnumerationValues { get; }
+		IIfcPropertyEnumeration @EnumerationReference { get;  set; }
 	
 	}
 }
@@ -34,33 +36,40 @@ namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyEnumeratedValue", 629)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IEqualityComparer<@IfcPropertyEnumeratedValue>, IEquatable<@IfcPropertyEnumeratedValue>
+	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeratedValue>
 	{
 		#region IIfcPropertyEnumeratedValue explicit implementation
-		IEnumerable<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { get { return @EnumerationValues; } }	
-		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { get { return @EnumerationReference; } }	
+		IItemSet<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @EnumerationValues); } 
+		}	
+		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { 
+ 
+ 
+			get { return @EnumerationReference; } 
+			set { EnumerationReference = value as IfcPropertyEnumeration;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPropertyEnumeratedValue(IModel model) : base(model) 		{ 
-			Model = model; 
-			_enumerationValues = new ItemSet<IfcValue>( this, 0 );
+		internal IfcPropertyEnumeratedValue(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_enumerationValues = new ItemSet<IfcValue>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcValue> _enumerationValues;
+		private readonly ItemSet<IfcValue> _enumerationValues;
 		private IfcPropertyEnumeration _enumerationReference;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcValue> @EnumerationValues 
+		public IItemSet<IfcValue> @EnumerationValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _enumerationValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _enumerationValues;
+				Activate();
 				return _enumerationValues;
 			} 
 		}	
@@ -69,13 +78,15 @@ namespace Xbim.Ifc2x3.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _enumerationReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _enumerationReference;
+				Activate();
 				return _enumerationReference;
 			} 
 			set
 			{
-				SetValue( v =>  _enumerationReference = v, _enumerationReference, value,  "EnumerationReference");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _enumerationReference = v, _enumerationReference, value,  "EnumerationReference", 4);
 			} 
 		}	
 		#endregion
@@ -83,9 +94,8 @@ namespace Xbim.Ifc2x3.PropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -94,7 +104,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_enumerationValues == null) _enumerationValues = new ItemSet<IfcValue>( this );
 					_enumerationValues.InternalAdd((IfcValue)value.EntityVal);
 					return;
 				case 3: 
@@ -104,12 +113,6 @@ namespace Xbim.Ifc2x3.PropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:                = SIZEOF(EnumerationValues));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -117,55 +120,18 @@ namespace Xbim.Ifc2x3.PropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPropertyEnumeratedValue
-            var root = (@IfcPropertyEnumeratedValue)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPropertyEnumeratedValue left, @IfcPropertyEnumeratedValue right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPropertyEnumeratedValue left, @IfcPropertyEnumeratedValue right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPropertyEnumeratedValue x, @IfcPropertyEnumeratedValue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPropertyEnumeratedValue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@EnumerationReference != null)
+					yield return @EnumerationReference;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

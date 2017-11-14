@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,33 +27,54 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSweptDiskSolid : IIfcSolidModel
 	{
-		IIfcCurve @Directrix { get; }
-		IfcPositiveLengthMeasure @Radius { get; }
-		IfcPositiveLengthMeasure? @InnerRadius { get; }
-		IfcParameterValue? @StartParam { get; }
-		IfcParameterValue? @EndParam { get; }
+		IIfcCurve @Directrix { get;  set; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
+		IfcPositiveLengthMeasure? @InnerRadius { get;  set; }
+		IfcParameterValue? @StartParam { get;  set; }
+		IfcParameterValue? @EndParam { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcSweptDiskSolid", 1075)]
+	[ExpressType("IfcSweptDiskSolid", 547)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IEqualityComparer<@IfcSweptDiskSolid>, IEquatable<@IfcSweptDiskSolid>
+	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolid>
 	{
 		#region IIfcSweptDiskSolid explicit implementation
-		IIfcCurve IIfcSweptDiskSolid.Directrix { get { return @Directrix; } }	
-		IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius { get { return @Radius; } }	
-		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { get { return @InnerRadius; } }	
-		IfcParameterValue? IIfcSweptDiskSolid.StartParam { get { return @StartParam; } }	
-		IfcParameterValue? IIfcSweptDiskSolid.EndParam { get { return @EndParam; } }	
+		IIfcCurve IIfcSweptDiskSolid.Directrix { 
+ 
+ 
+			get { return @Directrix; } 
+			set { Directrix = value as IfcCurve;}
+		}	
+		IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius { 
+ 
+			get { return @Radius; } 
+			set { Radius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { 
+ 
+			get { return @InnerRadius; } 
+			set { InnerRadius = value;}
+		}	
+		IfcParameterValue? IIfcSweptDiskSolid.StartParam { 
+ 
+			get { return @StartParam; } 
+			set { StartParam = value;}
+		}	
+		IfcParameterValue? IIfcSweptDiskSolid.EndParam { 
+ 
+			get { return @EndParam; } 
+			set { EndParam = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSweptDiskSolid(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSweptDiskSolid(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -68,13 +91,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directrix;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directrix;
+				Activate();
 				return _directrix;
 			} 
 			set
 			{
-				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -82,13 +107,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _radius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _radius;
+				Activate();
 				return _radius;
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -96,13 +121,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerRadius;
+				Activate();
 				return _innerRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _innerRadius = v, _innerRadius, value,  "InnerRadius");
+				SetValue( v =>  _innerRadius = v, _innerRadius, value,  "InnerRadius", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -110,13 +135,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startParam;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startParam;
+				Activate();
 				return _startParam;
 			} 
 			set
 			{
-				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
+				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -124,13 +149,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _endParam;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _endParam;
+				Activate();
 				return _endParam;
 			} 
 			set
 			{
-				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
+				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam", 5);
 			} 
 		}	
 		#endregion
@@ -138,9 +163,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -163,14 +187,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DirectrixDim:	DirectrixDim : Directrix.Dim = 3;*/
-		/*InnerRadiusSize:	InnerRadiusSize : (NOT EXISTS(InnerRadius)) OR (Radius > InnerRadius);*/
-		/*DirectrixBounded:(SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -178,55 +194,18 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSweptDiskSolid
-            var root = (@IfcSweptDiskSolid)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSweptDiskSolid left, @IfcSweptDiskSolid right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSweptDiskSolid left, @IfcSweptDiskSolid right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSweptDiskSolid x, @IfcSweptDiskSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSweptDiskSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Directrix != null)
+					yield return @Directrix;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

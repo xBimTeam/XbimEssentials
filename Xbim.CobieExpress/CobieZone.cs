@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,42 +25,43 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieZone : ICobieAsset
 	{
-		IEnumerable<ICobieSpace> @Spaces { get; }
+		IItemSet<ICobieSpace> @Spaces { get; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
 	[ExpressType("Zone", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IEqualityComparer<@CobieZone>, IEquatable<@CobieZone>
+	public  partial class @CobieZone : CobieAsset, IInstantiableEntity, ICobieZone, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieZone>
 	{
 		#region ICobieZone explicit implementation
-		IEnumerable<ICobieSpace> ICobieZone.Spaces { get { return @Spaces; } }	
+		IItemSet<ICobieSpace> ICobieZone.Spaces { 
+			get { return new Common.Collections.ProxyItemSet<CobieSpace, ICobieSpace>( @Spaces); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieZone(IModel model) : base(model) 		{ 
-			Model = model; 
-			_spaces = new ItemSet<CobieSpace>( this, 0 );
+		internal CobieZone(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_spaces = new OptionalItemSet<CobieSpace>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<CobieSpace> _spaces;
+		private readonly OptionalItemSet<CobieSpace> _spaces;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 14)]
-		public ItemSet<CobieSpace> @Spaces 
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
+		public IOptionalItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spaces;
+				Activate();
 				return _spaces;
 			} 
 		}	
@@ -67,9 +70,8 @@ namespace Xbim.CobieExpress
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -84,20 +86,15 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
-					if (_spaces == null) _spaces = new ItemSet<CobieSpace>( this );
+				case 12: 
 					_spaces.InternalAdd((CobieSpace)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -106,55 +103,55 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieZone
-            var root = (@CobieZone)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieZone left, @CobieZone right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieZone left, @CobieZone right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieZone x, @CobieZone y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieZone obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				foreach(var entity in @Spaces)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				foreach(var entity in @Spaces)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

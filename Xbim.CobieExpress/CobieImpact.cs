@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,44 +25,89 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieImpact : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieImpactType @ImpactType { get; }
-		ICobieImpactStage @ImpactStage { get; }
-		double @Value { get; }
-		ICobieImpactUnit @ImpactUnit { get; }
-		double @LeadInTime { get; }
-		double @Duration { get; }
-		double @LeadOutTime { get; }
-		ICobieDurationUnit @DurationUnit { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieImpactType @ImpactType { get;  set; }
+		ICobieImpactStage @ImpactStage { get;  set; }
+		double? @Value { get;  set; }
+		ICobieImpactUnit @ImpactUnit { get;  set; }
+		double? @LeadInTime { get;  set; }
+		double? @Duration { get;  set; }
+		double? @LeadOutTime { get;  set; }
+		ICobieDurationUnit @DurationUnit { get;  set; }
+		IEnumerable<ICobieAsset> @RelatedAssets {  get; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Impact", 28)]
+	[ExpressType("Impact", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IEqualityComparer<@CobieImpact>, IEquatable<@CobieImpact>
+	public  partial class @CobieImpact : CobieReferencedObject, IInstantiableEntity, ICobieImpact, IContainsEntityReferences, IEquatable<@CobieImpact>
 	{
 		#region ICobieImpact explicit implementation
-		string ICobieImpact.Name { get { return @Name; } }	
-		string ICobieImpact.Description { get { return @Description; } }	
-		ICobieImpactType ICobieImpact.ImpactType { get { return @ImpactType; } }	
-		ICobieImpactStage ICobieImpact.ImpactStage { get { return @ImpactStage; } }	
-		double ICobieImpact.Value { get { return @Value; } }	
-		ICobieImpactUnit ICobieImpact.ImpactUnit { get { return @ImpactUnit; } }	
-		double ICobieImpact.LeadInTime { get { return @LeadInTime; } }	
-		double ICobieImpact.Duration { get { return @Duration; } }	
-		double ICobieImpact.LeadOutTime { get { return @LeadOutTime; } }	
-		ICobieDurationUnit ICobieImpact.DurationUnit { get { return @DurationUnit; } }	
+		string ICobieImpact.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieImpact.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieImpactType ICobieImpact.ImpactType { 
+ 
+ 
+			get { return @ImpactType; } 
+			set { ImpactType = value as CobieImpactType;}
+		}	
+		ICobieImpactStage ICobieImpact.ImpactStage { 
+ 
+ 
+			get { return @ImpactStage; } 
+			set { ImpactStage = value as CobieImpactStage;}
+		}	
+		double? ICobieImpact.Value { 
+ 
+			get { return @Value; } 
+			set { Value = value;}
+		}	
+		ICobieImpactUnit ICobieImpact.ImpactUnit { 
+ 
+ 
+			get { return @ImpactUnit; } 
+			set { ImpactUnit = value as CobieImpactUnit;}
+		}	
+		double? ICobieImpact.LeadInTime { 
+ 
+			get { return @LeadInTime; } 
+			set { LeadInTime = value;}
+		}	
+		double? ICobieImpact.Duration { 
+ 
+			get { return @Duration; } 
+			set { Duration = value;}
+		}	
+		double? ICobieImpact.LeadOutTime { 
+ 
+			get { return @LeadOutTime; } 
+			set { LeadOutTime = value;}
+		}	
+		ICobieDurationUnit ICobieImpact.DurationUnit { 
+ 
+ 
+			get { return @DurationUnit; } 
+			set { DurationUnit = value as CobieDurationUnit;}
+		}	
 		 
+		IEnumerable<ICobieAsset> ICobieImpact.RelatedAssets {  get { return @RelatedAssets; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieImpact(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal CobieImpact(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -68,11 +115,11 @@ namespace Xbim.CobieExpress
 		private string _description;
 		private CobieImpactType _impactType;
 		private CobieImpactStage _impactStage;
-		private double _value;
+		private double? _value;
 		private CobieImpactUnit _impactUnit;
-		private double _leadInTime;
-		private double _duration;
-		private double _leadOutTime;
+		private double? _leadInTime;
+		private double? _duration;
+		private double? _leadOutTime;
 		private CobieDurationUnit _durationUnit;
 		#endregion
 	
@@ -82,13 +129,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -96,135 +143,153 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieImpactType @ImpactType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impactType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impactType;
+				Activate();
 				return _impactType;
 			} 
 			set
 			{
-				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _impactType = v, _impactType, value,  "ImpactType", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieImpactStage @ImpactStage 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impactStage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impactStage;
+				Activate();
 				return _impactStage;
 			} 
 			set
 			{
-				SetValue( v =>  _impactStage = v, _impactStage, value,  "ImpactStage");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _impactStage = v, _impactStage, value,  "ImpactStage", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
-		public double @Value 
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		public double? @Value 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _value;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _value;
+				Activate();
 				return _value;
 			} 
 			set
 			{
-				SetValue( v =>  _value = v, _value, value,  "Value");
+				SetValue( v =>  _value = v, _value, value,  "Value", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
 		public CobieImpactUnit @ImpactUnit 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impactUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impactUnit;
+				Activate();
 				return _impactUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _impactUnit = v, _impactUnit, value,  "ImpactUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _impactUnit = v, _impactUnit, value,  "ImpactUnit", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
-		public double @LeadInTime 
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		public double? @LeadInTime 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _leadInTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _leadInTime;
+				Activate();
 				return _leadInTime;
 			} 
 			set
 			{
-				SetValue( v =>  _leadInTime = v, _leadInTime, value,  "LeadInTime");
+				SetValue( v =>  _leadInTime = v, _leadInTime, value,  "LeadInTime", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
-		public double @Duration 
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		public double? @Duration 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _duration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _duration;
+				Activate();
 				return _duration;
 			} 
 			set
 			{
-				SetValue( v =>  _duration = v, _duration, value,  "Duration");
+				SetValue( v =>  _duration = v, _duration, value,  "Duration", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
-		public double @LeadOutTime 
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		public double? @LeadOutTime 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _leadOutTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _leadOutTime;
+				Activate();
 				return _leadOutTime;
 			} 
 			set
 			{
-				SetValue( v =>  _leadOutTime = v, _leadOutTime, value,  "LeadOutTime");
+				SetValue( v =>  _leadOutTime = v, _leadOutTime, value,  "LeadOutTime", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _durationUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _durationUnit;
+				Activate();
 				return _durationUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 15);
 			} 
 		}	
 		#endregion
 
 
 
-
+		#region Inverse attributes
+		[InverseProperty("Impacts")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		public IEnumerable<CobieAsset> @RelatedAssets 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieAsset>(e => e.Impacts != null &&  e.Impacts.Contains(this), "Impacts", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -269,11 +334,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -281,55 +341,30 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieImpact
-            var root = (@CobieImpact)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieImpact left, @CobieImpact right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieImpact left, @CobieImpact right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieImpact x, @CobieImpact y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieImpact obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@ImpactType != null)
+					yield return @ImpactType;
+				if (@ImpactStage != null)
+					yield return @ImpactStage;
+				if (@ImpactUnit != null)
+					yield return @ImpactUnit;
+				if (@DurationUnit != null)
+					yield return @DurationUnit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

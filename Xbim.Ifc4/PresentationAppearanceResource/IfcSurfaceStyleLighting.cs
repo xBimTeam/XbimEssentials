@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,31 +26,51 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleLighting : IIfcPresentationItem, IfcSurfaceStyleElementSelect
 	{
-		IIfcColourRgb @DiffuseTransmissionColour { get; }
-		IIfcColourRgb @DiffuseReflectionColour { get; }
-		IIfcColourRgb @TransmissionColour { get; }
-		IIfcColourRgb @ReflectanceColour { get; }
+		IIfcColourRgb @DiffuseTransmissionColour { get;  set; }
+		IIfcColourRgb @DiffuseReflectionColour { get;  set; }
+		IIfcColourRgb @TransmissionColour { get;  set; }
+		IIfcColourRgb @ReflectanceColour { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcSurfaceStyleLighting", 1068)]
+	[ExpressType("IfcSurfaceStyleLighting", 117)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleLighting : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleLighting, IEqualityComparer<@IfcSurfaceStyleLighting>, IEquatable<@IfcSurfaceStyleLighting>
+	public  partial class @IfcSurfaceStyleLighting : IfcPresentationItem, IInstantiableEntity, IIfcSurfaceStyleLighting, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleLighting>
 	{
 		#region IIfcSurfaceStyleLighting explicit implementation
-		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
-		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { get { return @DiffuseReflectionColour; } }	
-		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { get { return @TransmissionColour; } }	
-		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { get { return @ReflectanceColour; } }	
+		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { 
+ 
+ 
+			get { return @DiffuseTransmissionColour; } 
+			set { DiffuseTransmissionColour = value as IfcColourRgb;}
+		}	
+		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { 
+ 
+ 
+			get { return @DiffuseReflectionColour; } 
+			set { DiffuseReflectionColour = value as IfcColourRgb;}
+		}	
+		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { 
+ 
+ 
+			get { return @TransmissionColour; } 
+			set { TransmissionColour = value as IfcColourRgb;}
+		}	
+		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { 
+ 
+ 
+			get { return @ReflectanceColour; } 
+			set { ReflectanceColour = value as IfcColourRgb;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSurfaceStyleLighting(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSurfaceStyleLighting(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -64,13 +86,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseTransmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseTransmissionColour;
+				Activate();
 				return _diffuseTransmissionColour;
 			} 
 			set
 			{
-				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -78,13 +102,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseReflectionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseReflectionColour;
+				Activate();
 				return _diffuseReflectionColour;
 			} 
 			set
 			{
-				SetValue( v =>  _diffuseReflectionColour = v, _diffuseReflectionColour, value,  "DiffuseReflectionColour");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _diffuseReflectionColour = v, _diffuseReflectionColour, value,  "DiffuseReflectionColour", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -92,13 +118,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transmissionColour;
+				Activate();
 				return _transmissionColour;
 			} 
 			set
 			{
-				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -106,13 +134,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reflectanceColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reflectanceColour;
+				Activate();
 				return _reflectanceColour;
 			} 
 			set
 			{
-				SetValue( v =>  _reflectanceColour = v, _reflectanceColour, value,  "ReflectanceColour");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _reflectanceColour = v, _reflectanceColour, value,  "ReflectanceColour", 4);
 			} 
 		}	
 		#endregion
@@ -120,9 +150,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -142,11 +171,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -154,55 +178,24 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSurfaceStyleLighting
-            var root = (@IfcSurfaceStyleLighting)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSurfaceStyleLighting left, @IfcSurfaceStyleLighting right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSurfaceStyleLighting left, @IfcSurfaceStyleLighting right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceStyleLighting x, @IfcSurfaceStyleLighting y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceStyleLighting obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@DiffuseTransmissionColour != null)
+					yield return @DiffuseTransmissionColour;
+				if (@DiffuseReflectionColour != null)
+					yield return @DiffuseReflectionColour;
+				if (@TransmissionColour != null)
+					yield return @TransmissionColour;
+				if (@ReflectanceColour != null)
+					yield return @ReflectanceColour;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

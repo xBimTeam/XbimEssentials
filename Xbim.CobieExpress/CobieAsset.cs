@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,12 +25,13 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieAsset : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		IEnumerable<ICobieCategory> @Categories { get; }
-		IEnumerable<ICobieImpact> @Impacts { get; }
-		IEnumerable<ICobieDocument> @Documents { get; }
-		IEnumerable<ICobieAttribute> @Attributes { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		IItemSet<ICobieCategory> @Categories { get; }
+		IItemSet<ICobieImpact> @Impacts { get; }
+		IItemSet<ICobieDocument> @Documents { get; }
+		IItemSet<ICobieAttribute> @Attributes { get; }
+		IItemSet<ICobieCoordinate> @Representations { get; }
 		IEnumerable<ICobieIssue> @CausingIssues {  get; }
 		IEnumerable<ICobieIssue> @AffectedBy {  get; }
 	
@@ -37,39 +40,59 @@ namespace Xbim.CobieExpress.Interfaces
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
 	[ExpressType("Asset", 13)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @CobieAsset : CobieReferencedObject, ICobieAsset, IEqualityComparer<@CobieAsset>, IEquatable<@CobieAsset>
+	public abstract partial class @CobieAsset : CobieReferencedObject, ICobieAsset, IEquatable<@CobieAsset>
 	{
 		#region ICobieAsset explicit implementation
-		string ICobieAsset.Name { get { return @Name; } }	
-		string ICobieAsset.Description { get { return @Description; } }	
-		IEnumerable<ICobieCategory> ICobieAsset.Categories { get { return @Categories; } }	
-		IEnumerable<ICobieImpact> ICobieAsset.Impacts { get { return @Impacts; } }	
-		IEnumerable<ICobieDocument> ICobieAsset.Documents { get { return @Documents; } }	
-		IEnumerable<ICobieAttribute> ICobieAsset.Attributes { get { return @Attributes; } }	
+		string ICobieAsset.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieAsset.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IItemSet<ICobieCategory> ICobieAsset.Categories { 
+			get { return new Common.Collections.ProxyItemSet<CobieCategory, ICobieCategory>( @Categories); } 
+		}	
+		IItemSet<ICobieImpact> ICobieAsset.Impacts { 
+			get { return new Common.Collections.ProxyItemSet<CobieImpact, ICobieImpact>( @Impacts); } 
+		}	
+		IItemSet<ICobieDocument> ICobieAsset.Documents { 
+			get { return new Common.Collections.ProxyItemSet<CobieDocument, ICobieDocument>( @Documents); } 
+		}	
+		IItemSet<ICobieAttribute> ICobieAsset.Attributes { 
+			get { return new Common.Collections.ProxyItemSet<CobieAttribute, ICobieAttribute>( @Attributes); } 
+		}	
+		IItemSet<ICobieCoordinate> ICobieAsset.Representations { 
+			get { return new Common.Collections.ProxyItemSet<CobieCoordinate, ICobieCoordinate>( @Representations); } 
+		}	
 		 
 		IEnumerable<ICobieIssue> ICobieAsset.CausingIssues {  get { return @CausingIssues; } }
 		IEnumerable<ICobieIssue> ICobieAsset.AffectedBy {  get { return @AffectedBy; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieAsset(IModel model) : base(model) 		{ 
-			Model = model; 
-			_categories = new ItemSet<CobieCategory>( this, 0 );
-			_impacts = new OptionalItemSet<CobieImpact>( this, 0 );
-			_documents = new OptionalItemSet<CobieDocument>( this, 0 );
-			_attributes = new OptionalItemSet<CobieAttribute>( this, 0 );
+		internal CobieAsset(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_categories = new OptionalItemSet<CobieCategory>( this, 0,  8);
+			_impacts = new OptionalItemSet<CobieImpact>( this, 0,  9);
+			_documents = new OptionalItemSet<CobieDocument>( this, 0,  10);
+			_attributes = new OptionalItemSet<CobieAttribute>( this, 0,  11);
+			_representations = new OptionalItemSet<CobieCoordinate>( this, 0,  12);
 		}
 
 		#region Explicit attribute fields
 		private string _name;
 		private string _description;
-		private ItemSet<CobieCategory> _categories;
-		private OptionalItemSet<CobieImpact> _impacts;
-		private OptionalItemSet<CobieDocument> _documents;
-		private OptionalItemSet<CobieAttribute> _attributes;
+		private readonly OptionalItemSet<CobieCategory> _categories;
+		private readonly OptionalItemSet<CobieImpact> _impacts;
+		private readonly OptionalItemSet<CobieDocument> _documents;
+		private readonly OptionalItemSet<CobieAttribute> _attributes;
+		private readonly OptionalItemSet<CobieCoordinate> _representations;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -78,13 +101,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -92,53 +115,67 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
-		public ItemSet<CobieCategory> @Categories 
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
+		public IOptionalItemSet<CobieCategory> @Categories 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _categories;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _categories;
+				Activate();
 				return _categories;
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 9)]
-		public OptionalItemSet<CobieImpact> @Impacts 
+		public IOptionalItemSet<CobieImpact> @Impacts 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impacts;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impacts;
+				Activate();
 				return _impacts;
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 10)]
-		public OptionalItemSet<CobieDocument> @Documents 
+		public IOptionalItemSet<CobieDocument> @Documents 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _documents;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _documents;
+				Activate();
 				return _documents;
 			} 
 		}	
+		[IndexedProperty]
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 11)]
-		public OptionalItemSet<CobieAttribute> @Attributes 
+		public IOptionalItemSet<CobieAttribute> @Attributes 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _attributes;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _attributes;
+				Activate();
 				return _attributes;
+			} 
+		}	
+		[IndexedProperty]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 12)]
+		public IOptionalItemSet<CobieCoordinate> @Representations 
+		{ 
+			get 
+			{
+				if(_activated) return _representations;
+				Activate();
+				return _representations;
 			} 
 		}	
 		#endregion
@@ -147,28 +184,27 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Causing")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 12)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 13)]
 		public IEnumerable<CobieIssue> @CausingIssues 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieIssue>(e => (e.Causing as CobieAsset) == this, "Causing", this);
+				return Model.Instances.Where<CobieIssue>(e => Equals(e.Causing), "Causing", this);
 			} 
 		}
 		[InverseProperty("Affected")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
 		public IEnumerable<CobieIssue> @AffectedBy 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieIssue>(e => (e.Affected as CobieAsset) == this, "Affected", this);
+				return Model.Instances.Where<CobieIssue>(e => Equals(e.Affected), "Affected", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -186,29 +222,23 @@ namespace Xbim.CobieExpress
 					_description = value.StringVal;
 					return;
 				case 7: 
-					if (_categories == null) _categories = new ItemSet<CobieCategory>( this );
 					_categories.InternalAdd((CobieCategory)value.EntityVal);
 					return;
 				case 8: 
-					if (_impacts == null) _impacts = new OptionalItemSet<CobieImpact>( this );
 					_impacts.InternalAdd((CobieImpact)value.EntityVal);
 					return;
 				case 9: 
-					if (_documents == null) _documents = new OptionalItemSet<CobieDocument>( this );
 					_documents.InternalAdd((CobieDocument)value.EntityVal);
 					return;
 				case 10: 
-					if (_attributes == null) _attributes = new OptionalItemSet<CobieAttribute>( this );
 					_attributes.InternalAdd((CobieAttribute)value.EntityVal);
+					return;
+				case 11: 
+					_representations.InternalAdd((CobieCoordinate)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -217,54 +247,6 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieAsset
-            var root = (@CobieAsset)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieAsset left, @CobieAsset right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieAsset left, @CobieAsset right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieAsset x, @CobieAsset y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieAsset obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

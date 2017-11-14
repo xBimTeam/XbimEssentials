@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,25 +25,30 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcAxis2Placement2D : IIfcPlacement, IfcAxis2Placement
 	{
-		IIfcDirection @RefDirection { get; }
+		IIfcDirection @RefDirection { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcAxis2Placement2D", 428)]
+	[ExpressType("IfcAxis2Placement2D", 411)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis2Placement2D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement2D, IEqualityComparer<@IfcAxis2Placement2D>, IEquatable<@IfcAxis2Placement2D>
+	public  partial class @IfcAxis2Placement2D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement2D, IContainsEntityReferences, IEquatable<@IfcAxis2Placement2D>
 	{
 		#region IIfcAxis2Placement2D explicit implementation
-		IIfcDirection IIfcAxis2Placement2D.RefDirection { get { return @RefDirection; } }	
+		IIfcDirection IIfcAxis2Placement2D.RefDirection { 
+ 
+ 
+			get { return @RefDirection; } 
+			set { RefDirection = value as IfcDirection;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAxis2Placement2D(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcAxis2Placement2D(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -54,13 +61,15 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _refDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _refDirection;
+				Activate();
 				return _refDirection;
 			} 
 			set
 			{
-				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection", 2);
 			} 
 		}	
 		#endregion
@@ -92,9 +101,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -108,13 +116,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*RefDirIs2D:	RefDirIs2D : (NOT (EXISTS (RefDirection))) OR (RefDirection.Dim = 2);*/
-		/*LocationIs2D:	LocationIs2D : SELF\IfcPlacement.Location.Dim = 2;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -122,55 +123,20 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcAxis2Placement2D
-            var root = (@IfcAxis2Placement2D)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcAxis2Placement2D left, @IfcAxis2Placement2D right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcAxis2Placement2D left, @IfcAxis2Placement2D right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcAxis2Placement2D x, @IfcAxis2Placement2D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcAxis2Placement2D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Location != null)
+					yield return @Location;
+				if (@RefDirection != null)
+					yield return @RefDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

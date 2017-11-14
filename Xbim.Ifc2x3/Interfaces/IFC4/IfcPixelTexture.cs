@@ -10,39 +10,65 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcPixelTexture : IIfcPixelTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 6)]
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Width 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcInteger(Width);
 			} 
+			set
+			{
+				Width = new MeasureResource.IfcInteger(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 7)]
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.Height 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcInteger(Height);
 			} 
+			set
+			{
+				Height = new MeasureResource.IfcInteger(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 8)]
 		Ifc4.MeasureResource.IfcInteger IIfcPixelTexture.ColourComponents 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcInteger(ColourComponents);
 			} 
+			set
+			{
+				ColourComponents = new MeasureResource.IfcInteger(value);
+				
+			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
+
+		[CrossSchemaAttribute(typeof(IIfcPixelTexture), 9)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcBinary> IIfcPixelTexture.Pixel 
 		{ 
 			get
 			{
 				//## Handle return of Pixel for which no match was found
-                return Pixel.Select(p => (new Ifc4.MeasureResource.IfcBinary(p)));
+                return new Common.Collections.ProxyValueSet<byte[], Ifc4.MeasureResource.IfcBinary>(Pixel,
+                    s => s,
+                    t => t);
 			    //##
 			} 
 		}

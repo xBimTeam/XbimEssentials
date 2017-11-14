@@ -10,27 +10,43 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	public partial class @IfcPerformanceHistory : IIfcPerformanceHistory
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPerformanceHistory), 7)]
 		Ifc4.MeasureResource.IfcLabel IIfcPerformanceHistory.LifeCyclePhase 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(LifeCyclePhase);
 			} 
+			set
+			{
+				LifeCyclePhase = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcPerformanceHistory), 8)]
 		Ifc4.Interfaces.IfcPerformanceHistoryTypeEnum? IIfcPerformanceHistory.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -8);
+				
+			}
 		}
 	//## Custom code
 	//##

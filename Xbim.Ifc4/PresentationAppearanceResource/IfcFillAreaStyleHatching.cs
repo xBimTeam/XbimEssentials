@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,33 +27,57 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFillAreaStyleHatching : IIfcGeometricRepresentationItem, IfcFillStyleSelect
 	{
-		IIfcCurveStyle @HatchLineAppearance { get; }
-		IIfcHatchLineDistanceSelect @StartOfNextHatchLine { get; }
-		IIfcCartesianPoint @PointOfReferenceHatchLine { get; }
-		IIfcCartesianPoint @PatternStart { get; }
-		IfcPlaneAngleMeasure @HatchLineAngle { get; }
+		IIfcCurveStyle @HatchLineAppearance { get;  set; }
+		IIfcHatchLineDistanceSelect @StartOfNextHatchLine { get;  set; }
+		IIfcCartesianPoint @PointOfReferenceHatchLine { get;  set; }
+		IIfcCartesianPoint @PatternStart { get;  set; }
+		IfcPlaneAngleMeasure @HatchLineAngle { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcFillAreaStyleHatching", 665)]
+	[ExpressType("IfcFillAreaStyleHatching", 462)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IEqualityComparer<@IfcFillAreaStyleHatching>, IEquatable<@IfcFillAreaStyleHatching>
+	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleHatching>
 	{
 		#region IIfcFillAreaStyleHatching explicit implementation
-		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { get { return @HatchLineAppearance; } }	
-		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { get { return @StartOfNextHatchLine; } }	
-		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { get { return @PointOfReferenceHatchLine; } }	
-		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { get { return @PatternStart; } }	
-		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { get { return @HatchLineAngle; } }	
+		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { 
+ 
+ 
+			get { return @HatchLineAppearance; } 
+			set { HatchLineAppearance = value as IfcCurveStyle;}
+		}	
+		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { 
+ 
+ 
+			get { return @StartOfNextHatchLine; } 
+			set { StartOfNextHatchLine = value as IfcHatchLineDistanceSelect;}
+		}	
+		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { 
+ 
+ 
+			get { return @PointOfReferenceHatchLine; } 
+			set { PointOfReferenceHatchLine = value as IfcCartesianPoint;}
+		}	
+		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { 
+ 
+ 
+			get { return @PatternStart; } 
+			set { PatternStart = value as IfcCartesianPoint;}
+		}	
+		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { 
+ 
+			get { return @HatchLineAngle; } 
+			set { HatchLineAngle = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcFillAreaStyleHatching(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcFillAreaStyleHatching(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -68,13 +94,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hatchLineAppearance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hatchLineAppearance;
+				Activate();
 				return _hatchLineAppearance;
 			} 
 			set
 			{
-				SetValue( v =>  _hatchLineAppearance = v, _hatchLineAppearance, value,  "HatchLineAppearance");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _hatchLineAppearance = v, _hatchLineAppearance, value,  "HatchLineAppearance", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -82,13 +110,16 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startOfNextHatchLine;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startOfNextHatchLine;
+				Activate();
 				return _startOfNextHatchLine;
 			} 
 			set
 			{
-				SetValue( v =>  _startOfNextHatchLine = v, _startOfNextHatchLine, value,  "StartOfNextHatchLine");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _startOfNextHatchLine = v, _startOfNextHatchLine, value,  "StartOfNextHatchLine", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -96,13 +127,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pointOfReferenceHatchLine;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pointOfReferenceHatchLine;
+				Activate();
 				return _pointOfReferenceHatchLine;
 			} 
 			set
 			{
-				SetValue( v =>  _pointOfReferenceHatchLine = v, _pointOfReferenceHatchLine, value,  "PointOfReferenceHatchLine");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _pointOfReferenceHatchLine = v, _pointOfReferenceHatchLine, value,  "PointOfReferenceHatchLine", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -110,13 +143,15 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _patternStart;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _patternStart;
+				Activate();
 				return _patternStart;
 			} 
 			set
 			{
-				SetValue( v =>  _patternStart = v, _patternStart, value,  "PatternStart");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _patternStart = v, _patternStart, value,  "PatternStart", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -124,13 +159,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hatchLineAngle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hatchLineAngle;
+				Activate();
 				return _hatchLineAngle;
 			} 
 			set
 			{
-				SetValue( v =>  _hatchLineAngle = v, _hatchLineAngle, value,  "HatchLineAngle");
+				SetValue( v =>  _hatchLineAngle = v, _hatchLineAngle, value,  "HatchLineAngle", 5);
 			} 
 		}	
 		#endregion
@@ -138,9 +173,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -163,13 +197,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*PatternStart2D:	PatternStart2D : NOT(EXISTS(PatternStart)) OR (PatternStart.Dim = 2);*/
-		/*RefHatchLine2D:	RefHatchLine2D : NOT(EXISTS(PointOfReferenceHatchLine)) OR (PointOfReferenceHatchLine.Dim = 2);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -177,55 +204,22 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcFillAreaStyleHatching
-            var root = (@IfcFillAreaStyleHatching)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcFillAreaStyleHatching left, @IfcFillAreaStyleHatching right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcFillAreaStyleHatching left, @IfcFillAreaStyleHatching right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFillAreaStyleHatching x, @IfcFillAreaStyleHatching y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFillAreaStyleHatching obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@HatchLineAppearance != null)
+					yield return @HatchLineAppearance;
+				if (@PointOfReferenceHatchLine != null)
+					yield return @PointOfReferenceHatchLine;
+				if (@PatternStart != null)
+					yield return @PatternStart;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

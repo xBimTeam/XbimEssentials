@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpatialElement : IIfcProduct
 	{
-		IfcLabel? @LongName { get; }
+		IfcLabel? @LongName { get;  set; }
 		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainsElements {  get; }
 		IEnumerable<IIfcRelServicesBuildings> @ServicedBySystems {  get; }
 		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencesElements {  get; }
@@ -35,12 +37,16 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcSpatialElement", 1005)]
+	[ExpressType("IfcSpatialElement", 1273)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialElement : IfcProduct, IIfcSpatialElement, IEqualityComparer<@IfcSpatialElement>, IEquatable<@IfcSpatialElement>
+	public abstract partial class @IfcSpatialElement : IfcProduct, IIfcSpatialElement, IEquatable<@IfcSpatialElement>
 	{
 		#region IIfcSpatialElement explicit implementation
-		IfcLabel? IIfcSpatialElement.LongName { get { return @LongName; } }	
+		IfcLabel? IIfcSpatialElement.LongName { 
+ 
+			get { return @LongName; } 
+			set { LongName = value;}
+		}	
 		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements {  get { return @ContainsElements; } }
 		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialElement.ServicedBySystems {  get { return @ServicedBySystems; } }
@@ -48,8 +54,8 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSpatialElement(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSpatialElement(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +68,13 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longName;
+				Activate();
 				return _longName;
 			} 
 			set
 			{
-				SetValue( v =>  _longName = v, _longName, value,  "LongName");
+				SetValue( v =>  _longName = v, _longName, value,  "LongName", 8);
 			} 
 		}	
 		#endregion
@@ -82,7 +88,7 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => (e.RelatingStructure as IfcSpatialElement) == this, "RelatingStructure", this);
+				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => Equals(e.RelatingStructure), "RelatingStructure", this);
 			} 
 		}
 		[InverseProperty("RelatedBuildings")]
@@ -100,14 +106,13 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => (e.RelatingStructure as IfcSpatialElement) == this, "RelatingStructure", this);
+				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => Equals(e.RelatingStructure), "RelatingStructure", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -127,11 +132,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -139,54 +139,6 @@ namespace Xbim.Ifc4.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSpatialElement
-            var root = (@IfcSpatialElement)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSpatialElement left, @IfcSpatialElement right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSpatialElement left, @IfcSpatialElement right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpatialElement x, @IfcSpatialElement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpatialElement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

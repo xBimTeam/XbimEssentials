@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Xbim.Common
 {
@@ -25,14 +22,29 @@ namespace Xbim.Common
            //do nothing
         }
 
-        public void AddReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType)
+        public void DoReversibleAction(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType, int property)
         {
             //do nothing
         }
 
+        public event EntityChangedHandler EntityChanged;
+        public event EntityChangingHandler EntityChanging;
+
         public void Dispose()
         {
            //do nothing
+        }
+
+        protected virtual void OnEntityChanged(IPersistEntity entity, ChangeType change, int property)
+        {
+            var handler = EntityChanged;
+            if (handler != null) handler(entity, change, property);
+        }
+
+        protected virtual void OnEntityChanging(IPersistEntity entity, ChangeType change, int property)
+        {
+            var handler = EntityChanging;
+            if (handler != null) handler(entity, change, property);
         }
     }
 }

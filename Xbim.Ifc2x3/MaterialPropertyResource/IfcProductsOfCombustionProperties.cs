@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcProductsOfCombustionProperties : IIfcMaterialProperties
 	{
-		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get; }
-		IfcPositiveRatioMeasure? @N20Content { get; }
-		IfcPositiveRatioMeasure? @COContent { get; }
-		IfcPositiveRatioMeasure? @CO2Content { get; }
+		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get;  set; }
+		IfcPositiveRatioMeasure? @N20Content { get;  set; }
+		IfcPositiveRatioMeasure? @COContent { get;  set; }
+		IfcPositiveRatioMeasure? @CO2Content { get;  set; }
 	
 	}
 }
@@ -36,19 +38,35 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcProductsOfCombustionProperties", 719)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IIfcProductsOfCombustionProperties, IEqualityComparer<@IfcProductsOfCombustionProperties>, IEquatable<@IfcProductsOfCombustionProperties>
+	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IIfcProductsOfCombustionProperties, IContainsEntityReferences, IEquatable<@IfcProductsOfCombustionProperties>
 	{
 		#region IIfcProductsOfCombustionProperties explicit implementation
-		IfcSpecificHeatCapacityMeasure? IIfcProductsOfCombustionProperties.SpecificHeatCapacity { get { return @SpecificHeatCapacity; } }	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.N20Content { get { return @N20Content; } }	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.COContent { get { return @COContent; } }	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.CO2Content { get { return @CO2Content; } }	
+		IfcSpecificHeatCapacityMeasure? IIfcProductsOfCombustionProperties.SpecificHeatCapacity { 
+ 
+			get { return @SpecificHeatCapacity; } 
+			set { SpecificHeatCapacity = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.N20Content { 
+ 
+			get { return @N20Content; } 
+			set { N20Content = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.COContent { 
+ 
+			get { return @COContent; } 
+			set { COContent = value;}
+		}	
+		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.CO2Content { 
+ 
+			get { return @CO2Content; } 
+			set { CO2Content = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcProductsOfCombustionProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcProductsOfCombustionProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -64,13 +82,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _specificHeatCapacity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _specificHeatCapacity;
+				Activate();
 				return _specificHeatCapacity;
 			} 
 			set
 			{
-				SetValue( v =>  _specificHeatCapacity = v, _specificHeatCapacity, value,  "SpecificHeatCapacity");
+				SetValue( v =>  _specificHeatCapacity = v, _specificHeatCapacity, value,  "SpecificHeatCapacity", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -78,13 +96,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _n20Content;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _n20Content;
+				Activate();
 				return _n20Content;
 			} 
 			set
 			{
-				SetValue( v =>  _n20Content = v, _n20Content, value,  "N20Content");
+				SetValue( v =>  _n20Content = v, _n20Content, value,  "N20Content", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -92,13 +110,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _cOContent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _cOContent;
+				Activate();
 				return _cOContent;
 			} 
 			set
 			{
-				SetValue( v =>  _cOContent = v, _cOContent, value,  "COContent");
+				SetValue( v =>  _cOContent = v, _cOContent, value,  "COContent", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -106,13 +124,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _cO2Content;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _cO2Content;
+				Activate();
 				return _cO2Content;
 			} 
 			set
 			{
-				SetValue( v =>  _cO2Content = v, _cO2Content, value,  "CO2Content");
+				SetValue( v =>  _cO2Content = v, _cO2Content, value,  "CO2Content", 5);
 			} 
 		}	
 		#endregion
@@ -120,9 +138,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -145,11 +162,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -157,55 +169,18 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcProductsOfCombustionProperties
-            var root = (@IfcProductsOfCombustionProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcProductsOfCombustionProperties left, @IfcProductsOfCombustionProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcProductsOfCombustionProperties left, @IfcProductsOfCombustionProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcProductsOfCombustionProperties x, @IfcProductsOfCombustionProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcProductsOfCombustionProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

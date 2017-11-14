@@ -17,6 +17,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedMgmtElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,37 +28,45 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCostItem : IIfcControl
 	{
-		IfcCostItemTypeEnum? @PredefinedType { get; }
-		IEnumerable<IIfcCostValue> @CostValues { get; }
-		IEnumerable<IIfcPhysicalQuantity> @CostQuantities { get; }
+		IfcCostItemTypeEnum? @PredefinedType { get;  set; }
+		IItemSet<IIfcCostValue> @CostValues { get; }
+		IItemSet<IIfcPhysicalQuantity> @CostQuantities { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IfcCostItem", 545)]
+	[ExpressType("IfcCostItem", 694)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IIfcCostItem, IEqualityComparer<@IfcCostItem>, IEquatable<@IfcCostItem>
+	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IIfcCostItem, IContainsEntityReferences, IEquatable<@IfcCostItem>
 	{
 		#region IIfcCostItem explicit implementation
-		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { get { return @PredefinedType; } }	
-		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues { get { return @CostValues; } }	
-		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { get { return @CostQuantities; } }	
+		IfcCostItemTypeEnum? IIfcCostItem.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IItemSet<IIfcCostValue> IIfcCostItem.CostValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcCostValue, IIfcCostValue>( @CostValues); } 
+		}	
+		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { 
+			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @CostQuantities); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCostItem(IModel model) : base(model) 		{ 
-			Model = model; 
-			_costValues = new OptionalItemSet<IfcCostValue>( this, 0 );
-			_costQuantities = new OptionalItemSet<IfcPhysicalQuantity>( this, 0 );
+		internal IfcCostItem(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_costValues = new OptionalItemSet<IfcCostValue>( this, 0,  8);
+			_costQuantities = new OptionalItemSet<IfcPhysicalQuantity>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
 		private IfcCostItemTypeEnum? _predefinedType;
-		private OptionalItemSet<IfcCostValue> _costValues;
-		private OptionalItemSet<IfcPhysicalQuantity> _costQuantities;
+		private readonly OptionalItemSet<IfcCostValue> _costValues;
+		private readonly OptionalItemSet<IfcPhysicalQuantity> _costQuantities;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -65,32 +75,32 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 20)]
-		public OptionalItemSet<IfcCostValue> @CostValues 
+		public IOptionalItemSet<IfcCostValue> @CostValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _costValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _costValues;
+				Activate();
 				return _costValues;
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
-		public OptionalItemSet<IfcPhysicalQuantity> @CostQuantities 
+		public IOptionalItemSet<IfcPhysicalQuantity> @CostQuantities 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _costQuantities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _costQuantities;
+				Activate();
 				return _costQuantities;
 			} 
 		}	
@@ -99,9 +109,8 @@ namespace Xbim.Ifc4.SharedMgmtElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -117,21 +126,14 @@ namespace Xbim.Ifc4.SharedMgmtElements
                     _predefinedType = (IfcCostItemTypeEnum) System.Enum.Parse(typeof (IfcCostItemTypeEnum), value.EnumVal, true);
 					return;
 				case 7: 
-					if (_costValues == null) _costValues = new OptionalItemSet<IfcCostValue>( this );
 					_costValues.InternalAdd((IfcCostValue)value.EntityVal);
 					return;
 				case 8: 
-					if (_costQuantities == null) _costQuantities = new OptionalItemSet<IfcPhysicalQuantity>( this );
 					_costQuantities.InternalAdd((IfcPhysicalQuantity)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -140,55 +142,22 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCostItem
-            var root = (@IfcCostItem)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCostItem left, @IfcCostItem right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCostItem left, @IfcCostItem right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCostItem x, @IfcCostItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCostItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @CostValues)
+					yield return entity;
+				foreach(var entity in @CostQuantities)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

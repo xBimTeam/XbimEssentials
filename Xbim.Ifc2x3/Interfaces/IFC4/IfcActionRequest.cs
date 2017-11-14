@@ -10,38 +10,63 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	public partial class @IfcActionRequest : IIfcActionRequest
 	{
+
+		private  Ifc4.Interfaces.IfcActionRequestTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcActionRequest), 7)]
 		Ifc4.Interfaces.IfcActionRequestTypeEnum? IIfcActionRequest.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return IfcActionRequestTypeEnum.NOTDEFINED;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -7);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _status;
+
+
+		[CrossSchemaAttribute(typeof(IIfcActionRequest), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcActionRequest.Status 
 		{ 
 			get
 			{
-				//## Handle return of Status for which no match was found
-			    return null;
-			    //##
+				return _status;
 			} 
+			set
+			{
+				SetValue(v => _status = v, _status, value, "Status", -8);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _longDescription;
+
+
+		[CrossSchemaAttribute(typeof(IIfcActionRequest), 9)]
 		Ifc4.MeasureResource.IfcText? IIfcActionRequest.LongDescription 
 		{ 
 			get
 			{
-				//## Handle return of LongDescription for which no match was found
-			    return Name != null ? new Ifc4.MeasureResource.IfcText(Name) : null;
-			    //##
+				return _longDescription;
 			} 
+			set
+			{
+				SetValue(v => _longDescription = v, _longDescription, value, "LongDescription", -9);
+				
+			}
 		}
 	//## Custom code
 	//##

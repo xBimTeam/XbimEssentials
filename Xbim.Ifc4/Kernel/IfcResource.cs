@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcResource : IIfcObject, IfcResourceSelect
 	{
-		IfcIdentifier? @Identification { get; }
-		IfcText? @LongDescription { get; }
+		IfcIdentifier? @Identification { get;  set; }
+		IfcText? @LongDescription { get;  set; }
 		IEnumerable<IIfcRelAssignsToResource> @ResourceOf {  get; }
 	
 	}
@@ -33,20 +35,28 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcResource", 962)]
+	[ExpressType("IfcResource", 158)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcResource : IfcObject, IIfcResource, IEqualityComparer<@IfcResource>, IEquatable<@IfcResource>
+	public abstract partial class @IfcResource : IfcObject, IIfcResource, IEquatable<@IfcResource>
 	{
 		#region IIfcResource explicit implementation
-		IfcIdentifier? IIfcResource.Identification { get { return @Identification; } }	
-		IfcText? IIfcResource.LongDescription { get { return @LongDescription; } }	
+		IfcIdentifier? IIfcResource.Identification { 
+ 
+			get { return @Identification; } 
+			set { Identification = value;}
+		}	
+		IfcText? IIfcResource.LongDescription { 
+ 
+			get { return @LongDescription; } 
+			set { LongDescription = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssignsToResource> IIfcResource.ResourceOf {  get { return @ResourceOf; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcResource(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcResource(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -60,13 +70,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _identification;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _identification;
+				Activate();
 				return _identification;
 			} 
 			set
 			{
-				SetValue( v =>  _identification = v, _identification, value,  "Identification");
+				SetValue( v =>  _identification = v, _identification, value,  "Identification", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
@@ -74,13 +84,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longDescription;
+				Activate();
 				return _longDescription;
 			} 
 			set
 			{
-				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
+				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription", 7);
 			} 
 		}	
 		#endregion
@@ -94,14 +104,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToResource>(e => (e.RelatingResource as IfcResource) == this, "RelatingResource", this);
+				return Model.Instances.Where<IfcRelAssignsToResource>(e => Equals(e.RelatingResource), "RelatingResource", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -122,11 +131,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -134,54 +138,6 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcResource
-            var root = (@IfcResource)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcResource left, @IfcResource right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcResource left, @IfcResource right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcResource x, @IfcResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

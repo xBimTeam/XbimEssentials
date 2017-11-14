@@ -18,7 +18,7 @@ namespace Xbim.Ifc2x3.Extensions
                 vec = new XbimVector3D(ifcVec.Orientation.X, ifcVec.Orientation.Y, 0);
             else
                 vec = new XbimVector3D();
-            vec.Normalize(); //orientation is not normalized
+            vec = vec.Normalized(); //orientation is not normalized
             vec *= ifcVec.Magnitude;
             return vec;
         }

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRationalBSplineSurfaceWithKnots : IIfcBSplineSurfaceWithKnots
 	{
-		IEnumerable<IEnumerable<IfcReal>> @WeightsData { get; }
+		IItemSet<IItemSet<IfcReal>> @WeightsData { get; }
 		List<List<IfcReal>> @Weights  { get ; }
 	
 	}
@@ -32,33 +34,35 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcRationalBSplineSurfaceWithKnots", 893)]
+	[ExpressType("IfcRationalBSplineSurfaceWithKnots", 1242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IEqualityComparer<@IfcRationalBSplineSurfaceWithKnots>, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
+	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IIfcRationalBSplineSurfaceWithKnots, IContainsEntityReferences, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{
 		#region IIfcRationalBSplineSurfaceWithKnots explicit implementation
-		IEnumerable<IEnumerable<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { get { return @WeightsData; } }	
+		IItemSet<IItemSet<IfcReal>> IIfcRationalBSplineSurfaceWithKnots.WeightsData { 
+			get { return @WeightsData; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRationalBSplineSurfaceWithKnots(IModel model) : base(model) 		{ 
-			Model = model; 
-			_weightsData = new ItemSet<ItemSet<IfcReal>>( this, 0 );
+		internal IfcRationalBSplineSurfaceWithKnots(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_weightsData = new ItemSet<IItemSet<IfcReal>>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<IfcReal>> _weightsData;
+		private readonly ItemSet<IItemSet<IfcReal>> _weightsData;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, -1, 15)]
-		public ItemSet<ItemSet<IfcReal>> @WeightsData 
+		public IItemSet<IItemSet<IfcReal>> @WeightsData 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weightsData;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weightsData;
+				Activate();
 				return _weightsData;
 			} 
 		}	
@@ -80,9 +84,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -101,20 +104,13 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 12: 
-					_weightsData
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcReal>)_weightsData
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcReal)(value.RealVal));
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrespondingWeightsDataLists:(SIZEOF(WeightsData[1]) = SIZEOF(SELF\IfcBSplineSurface.ControlPointsList[1]));*/
-		/*WeightValuesGreaterZero:	WeightValuesGreaterZero : IfcSurfaceWeightsPositive(SELF);*/
 		}
 		#endregion
 
@@ -123,55 +119,19 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRationalBSplineSurfaceWithKnots
-            var root = (@IfcRationalBSplineSurfaceWithKnots)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRationalBSplineSurfaceWithKnots left, @IfcRationalBSplineSurfaceWithKnots right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRationalBSplineSurfaceWithKnots left, @IfcRationalBSplineSurfaceWithKnots right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRationalBSplineSurfaceWithKnots x, @IfcRationalBSplineSurfaceWithKnots y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRationalBSplineSurfaceWithKnots obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach (var item in @ControlPointsList)
+					foreach (var entity in item)
+						yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

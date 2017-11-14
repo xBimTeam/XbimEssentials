@@ -37,7 +37,7 @@ namespace Xbim.Tessellator
                     var b = new XbimPoint3D(p2.X, p2.Y, p2.Z);
                     var c = new XbimPoint3D(p3.X, p3.Y, p3.Z);
                     var cv = XbimVector3D.CrossProduct(b - a, c - a);
-                    cv.Normalize();
+                    cv=cv.Normalized();
                     return cv;
                 } 
             }
@@ -109,7 +109,7 @@ namespace Xbim.Tessellator
             var b = new XbimPoint3D(p2.X,p2.Y,p2.Z); 
             var c = new XbimPoint3D(p3.X,p3.Y,p3.Z);
             var cv = XbimVector3D.CrossProduct(b - a, c - a );
-            cv.Normalize();
+            cv=cv.Normalized();
             return cv;
         }
 
@@ -541,7 +541,7 @@ namespace Xbim.Tessellator
         public XbimVector3D PointingOutwardFrom(XbimPoint3D point3D)
         {
             var v = point3D - Centroid;
-            v.Normalize();
+            v = v.Normalized();
             return v;
         }
 

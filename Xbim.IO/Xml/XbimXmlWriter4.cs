@@ -270,7 +270,7 @@ namespace Xbim.IO.Xml
                 return;
             }
 
-            if (typeof(IEnumerable).IsAssignableFrom(propType))
+            if (typeof(IEnumerable).IsAssignableFrom(propType) && propType != typeof(string))
             {
                 //special case for IfcRelDefinesByProperties
                 //if (propName == "RelatedObjects" && entity.ExpressType.Name == "IfcRelDefinesByProperties")
@@ -318,7 +318,7 @@ namespace Xbim.IO.Xml
             }
             //this will only be called from within the enumeration
             //as otherwise it will be serialized as XML attribute before
-            if (propType.IsValueType || typeof(string) == propType)
+            if (propType.IsValueType || typeof(string) == propType || typeof(byte[]) == propType)
             {
                 var pInfoType = propVal.GetType();
                 string pValue;
@@ -353,6 +353,16 @@ namespace Xbim.IO.Xml
                 {
                     output.WriteStartElement("string-wrapper");
                     pValue = string.Format(new Part21Formatter(), "{0}", propVal);
+                }
+                else if (pInfoType.UnderlyingSystemType == typeof(byte[]))
+                {
+                    output.WriteStartElement("hexBinary-wrapper");
+
+                    var ba = (byte[])propVal;
+                    var hex = new System.Text.StringBuilder(ba.Length * 2);
+                    foreach (byte b in ba)
+                        hex.AppendFormat("{0:X2}", b);
+                    pValue = hex.ToString();
                 }
                 else
                     throw new NotSupportedException(string.Format("Invalid Value Type {0}", pInfoType.Name));

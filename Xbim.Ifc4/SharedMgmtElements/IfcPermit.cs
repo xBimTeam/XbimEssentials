@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedMgmtElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,29 +27,41 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPermit : IIfcControl
 	{
-		IfcPermitTypeEnum? @PredefinedType { get; }
-		IfcLabel? @Status { get; }
-		IfcText? @LongDescription { get; }
+		IfcPermitTypeEnum? @PredefinedType { get;  set; }
+		IfcLabel? @Status { get;  set; }
+		IfcText? @LongDescription { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.SharedMgmtElements
 {
-	[ExpressType("IfcPermit", 804)]
+	[ExpressType("IfcPermit", 189)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IEqualityComparer<@IfcPermit>, IEquatable<@IfcPermit>
+	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IContainsEntityReferences, IEquatable<@IfcPermit>
 	{
 		#region IIfcPermit explicit implementation
-		IfcPermitTypeEnum? IIfcPermit.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcPermit.Status { get { return @Status; } }	
-		IfcText? IIfcPermit.LongDescription { get { return @LongDescription; } }	
+		IfcPermitTypeEnum? IIfcPermit.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcPermit.Status { 
+ 
+			get { return @Status; } 
+			set { Status = value;}
+		}	
+		IfcText? IIfcPermit.LongDescription { 
+ 
+			get { return @LongDescription; } 
+			set { LongDescription = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPermit(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcPermit(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +76,13 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -76,13 +90,13 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _status;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _status;
+				Activate();
 				return _status;
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -90,13 +104,13 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longDescription;
+				Activate();
 				return _longDescription;
 			} 
 			set
 			{
-				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
+				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription", 9);
 			} 
 		}	
 		#endregion
@@ -104,9 +118,8 @@ namespace Xbim.Ifc4.SharedMgmtElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -131,11 +144,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,55 +151,18 @@ namespace Xbim.Ifc4.SharedMgmtElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPermit
-            var root = (@IfcPermit)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPermit left, @IfcPermit right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPermit left, @IfcPermit right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPermit x, @IfcPermit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPermit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

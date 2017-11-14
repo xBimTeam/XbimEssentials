@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,12 +28,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLightSourceGoniometric : IIfcLightSource
 	{
-		IIfcAxis2Placement3D @Position { get; }
-		IIfcColourRgb @ColourAppearance { get; }
-		IfcThermodynamicTemperatureMeasure @ColourTemperature { get; }
-		IfcLuminousFluxMeasure @LuminousFlux { get; }
-		IfcLightEmissionSourceEnum @LightEmissionSource { get; }
-		IIfcLightDistributionDataSourceSelect @LightDistributionDataSource { get; }
+		IIfcAxis2Placement3D @Position { get;  set; }
+		IIfcColourRgb @ColourAppearance { get;  set; }
+		IfcThermodynamicTemperatureMeasure @ColourTemperature { get;  set; }
+		IfcLuminousFluxMeasure @LuminousFlux { get;  set; }
+		IfcLightEmissionSourceEnum @LightEmissionSource { get;  set; }
+		IIfcLightDistributionDataSourceSelect @LightDistributionDataSource { get;  set; }
 	
 	}
 }
@@ -40,21 +42,48 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceGoniometric", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IEqualityComparer<@IfcLightSourceGoniometric>, IEquatable<@IfcLightSourceGoniometric>
+	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IContainsEntityReferences, IEquatable<@IfcLightSourceGoniometric>
 	{
 		#region IIfcLightSourceGoniometric explicit implementation
-		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { get { return @Position; } }	
-		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance { get { return @ColourAppearance; } }	
-		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { get { return @ColourTemperature; } }	
-		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { get { return @LuminousFlux; } }	
-		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { get { return @LightEmissionSource; } }	
-		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { get { return @LightDistributionDataSource; } }	
+		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { 
+ 
+ 
+			get { return @Position; } 
+			set { Position = value as IfcAxis2Placement3D;}
+		}	
+		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance { 
+ 
+ 
+			get { return @ColourAppearance; } 
+			set { ColourAppearance = value as IfcColourRgb;}
+		}	
+		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { 
+ 
+			get { return @ColourTemperature; } 
+			set { ColourTemperature = value;}
+		}	
+		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { 
+ 
+			get { return @LuminousFlux; } 
+			set { LuminousFlux = value;}
+		}	
+		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { 
+ 
+			get { return @LightEmissionSource; } 
+			set { LightEmissionSource = value;}
+		}	
+		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { 
+ 
+ 
+			get { return @LightDistributionDataSource; } 
+			set { LightDistributionDataSource = value as IfcLightDistributionDataSourceSelect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcLightSourceGoniometric(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcLightSourceGoniometric(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -72,13 +101,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _position;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _position;
+				Activate();
 				return _position;
 			} 
 			set
 			{
-				SetValue( v =>  _position = v, _position, value,  "Position");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -86,13 +117,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _colourAppearance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _colourAppearance;
+				Activate();
 				return _colourAppearance;
 			} 
 			set
 			{
-				SetValue( v =>  _colourAppearance = v, _colourAppearance, value,  "ColourAppearance");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _colourAppearance = v, _colourAppearance, value,  "ColourAppearance", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -100,13 +133,13 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _colourTemperature;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _colourTemperature;
+				Activate();
 				return _colourTemperature;
 			} 
 			set
 			{
-				SetValue( v =>  _colourTemperature = v, _colourTemperature, value,  "ColourTemperature");
+				SetValue( v =>  _colourTemperature = v, _colourTemperature, value,  "ColourTemperature", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -114,13 +147,13 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _luminousFlux;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _luminousFlux;
+				Activate();
 				return _luminousFlux;
 			} 
 			set
 			{
-				SetValue( v =>  _luminousFlux = v, _luminousFlux, value,  "LuminousFlux");
+				SetValue( v =>  _luminousFlux = v, _luminousFlux, value,  "LuminousFlux", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
@@ -128,13 +161,13 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lightEmissionSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lightEmissionSource;
+				Activate();
 				return _lightEmissionSource;
 			} 
 			set
 			{
-				SetValue( v =>  _lightEmissionSource = v, _lightEmissionSource, value,  "LightEmissionSource");
+				SetValue( v =>  _lightEmissionSource = v, _lightEmissionSource, value,  "LightEmissionSource", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -142,13 +175,15 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lightDistributionDataSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lightDistributionDataSource;
+				Activate();
 				return _lightDistributionDataSource;
 			} 
 			set
 			{
-				SetValue( v =>  _lightDistributionDataSource = v, _lightDistributionDataSource, value,  "LightDistributionDataSource");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _lightDistributionDataSource = v, _lightDistributionDataSource, value,  "LightDistributionDataSource", 10);
 			} 
 		}	
 		#endregion
@@ -156,9 +191,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -190,11 +224,6 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -202,55 +231,24 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcLightSourceGoniometric
-            var root = (@IfcLightSourceGoniometric)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcLightSourceGoniometric left, @IfcLightSourceGoniometric right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcLightSourceGoniometric left, @IfcLightSourceGoniometric right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLightSourceGoniometric x, @IfcLightSourceGoniometric y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLightSourceGoniometric obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LightColour != null)
+					yield return @LightColour;
+				if (@Position != null)
+					yield return @Position;
+				if (@ColourAppearance != null)
+					yield return @ColourAppearance;
+				if (@LightDistributionDataSource != null)
+					yield return @LightDistributionDataSource;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

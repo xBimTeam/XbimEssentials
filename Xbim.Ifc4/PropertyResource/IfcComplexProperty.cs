@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,33 +26,39 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcComplexProperty : IIfcProperty
 	{
-		IfcIdentifier @UsageName { get; }
-		IEnumerable<IIfcProperty> @HasProperties { get; }
+		IfcIdentifier @UsageName { get;  set; }
+		IItemSet<IIfcProperty> @HasProperties { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PropertyResource
 {
-	[ExpressType("IfcComplexProperty", 505)]
+	[ExpressType("IfcComplexProperty", 379)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IEqualityComparer<@IfcComplexProperty>, IEquatable<@IfcComplexProperty>
+	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcComplexProperty>
 	{
 		#region IIfcComplexProperty explicit implementation
-		IfcIdentifier IIfcComplexProperty.UsageName { get { return @UsageName; } }	
-		IEnumerable<IIfcProperty> IIfcComplexProperty.HasProperties { get { return @HasProperties; } }	
+		IfcIdentifier IIfcComplexProperty.UsageName { 
+ 
+			get { return @UsageName; } 
+			set { UsageName = value;}
+		}	
+		IItemSet<IIfcProperty> IIfcComplexProperty.HasProperties { 
+			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @HasProperties); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcComplexProperty(IModel model) : base(model) 		{ 
-			Model = model; 
-			_hasProperties = new ItemSet<IfcProperty>( this, 0 );
+		internal IfcComplexProperty(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_hasProperties = new ItemSet<IfcProperty>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier _usageName;
-		private ItemSet<IfcProperty> _hasProperties;
+		private readonly ItemSet<IfcProperty> _hasProperties;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -59,23 +67,23 @@ namespace Xbim.Ifc4.PropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usageName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usageName;
+				Activate();
 				return _usageName;
 			} 
 			set
 			{
-				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName");
+				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName", 3);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
-		public ItemSet<IfcProperty> @HasProperties 
+		public IItemSet<IfcProperty> @HasProperties 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasProperties;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasProperties;
+				Activate();
 				return _hasProperties;
 			} 
 		}	
@@ -84,9 +92,8 @@ namespace Xbim.Ifc4.PropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -98,19 +105,11 @@ namespace Xbim.Ifc4.PropertyResource
 					_usageName = value.StringVal;
 					return;
 				case 3: 
-					if (_hasProperties == null) _hasProperties = new ItemSet<IfcProperty>( this );
 					_hasProperties.InternalAdd((IfcProperty)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:	WR21 : SIZEOF(QUERY(temp <* HasProperties | SELF :=: temp)) = 0;*/
-		/*WR22:	WR22 : IfcUniquePropertyName(HasProperties);*/
 		}
 		#endregion
 
@@ -119,55 +118,31 @@ namespace Xbim.Ifc4.PropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcComplexProperty
-            var root = (@IfcComplexProperty)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcComplexProperty left, @IfcComplexProperty right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcComplexProperty left, @IfcComplexProperty right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcComplexProperty x, @IfcComplexProperty y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcComplexProperty obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @HasProperties)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasProperties)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

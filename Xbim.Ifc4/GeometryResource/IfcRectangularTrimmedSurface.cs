@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,37 +26,66 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangularTrimmedSurface : IIfcBoundedSurface
 	{
-		IIfcSurface @BasisSurface { get; }
-		IfcParameterValue @U1 { get; }
-		IfcParameterValue @V1 { get; }
-		IfcParameterValue @U2 { get; }
-		IfcParameterValue @V2 { get; }
-		IfcBoolean @Usense { get; }
-		IfcBoolean @Vsense { get; }
+		IIfcSurface @BasisSurface { get;  set; }
+		IfcParameterValue @U1 { get;  set; }
+		IfcParameterValue @V1 { get;  set; }
+		IfcParameterValue @U2 { get;  set; }
+		IfcParameterValue @V2 { get;  set; }
+		IfcBoolean @Usense { get;  set; }
+		IfcBoolean @Vsense { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcRectangularTrimmedSurface", 897)]
+	[ExpressType("IfcRectangularTrimmedSurface", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IEqualityComparer<@IfcRectangularTrimmedSurface>, IEquatable<@IfcRectangularTrimmedSurface>
+	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IContainsEntityReferences, IEquatable<@IfcRectangularTrimmedSurface>
 	{
 		#region IIfcRectangularTrimmedSurface explicit implementation
-		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { get { return @BasisSurface; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.U1 { get { return @U1; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.V1 { get { return @V1; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.U2 { get { return @U2; } }	
-		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { get { return @V2; } }	
-		IfcBoolean IIfcRectangularTrimmedSurface.Usense { get { return @Usense; } }	
-		IfcBoolean IIfcRectangularTrimmedSurface.Vsense { get { return @Vsense; } }	
+		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { 
+ 
+ 
+			get { return @BasisSurface; } 
+			set { BasisSurface = value as IfcSurface;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.U1 { 
+ 
+			get { return @U1; } 
+			set { U1 = value;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.V1 { 
+ 
+			get { return @V1; } 
+			set { V1 = value;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.U2 { 
+ 
+			get { return @U2; } 
+			set { U2 = value;}
+		}	
+		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { 
+ 
+			get { return @V2; } 
+			set { V2 = value;}
+		}	
+		IfcBoolean IIfcRectangularTrimmedSurface.Usense { 
+ 
+			get { return @Usense; } 
+			set { Usense = value;}
+		}	
+		IfcBoolean IIfcRectangularTrimmedSurface.Vsense { 
+ 
+			get { return @Vsense; } 
+			set { Vsense = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRectangularTrimmedSurface(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRectangularTrimmedSurface(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -73,13 +104,15 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _basisSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _basisSurface;
+				Activate();
 				return _basisSurface;
 			} 
 			set
 			{
-				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -87,13 +120,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _u1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _u1;
+				Activate();
 				return _u1;
 			} 
 			set
 			{
-				SetValue( v =>  _u1 = v, _u1, value,  "U1");
+				SetValue( v =>  _u1 = v, _u1, value,  "U1", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -101,13 +134,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _v1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _v1;
+				Activate();
 				return _v1;
 			} 
 			set
 			{
-				SetValue( v =>  _v1 = v, _v1, value,  "V1");
+				SetValue( v =>  _v1 = v, _v1, value,  "V1", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -115,13 +148,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _u2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _u2;
+				Activate();
 				return _u2;
 			} 
 			set
 			{
-				SetValue( v =>  _u2 = v, _u2, value,  "U2");
+				SetValue( v =>  _u2 = v, _u2, value,  "U2", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -129,13 +162,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _v2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _v2;
+				Activate();
 				return _v2;
 			} 
 			set
 			{
-				SetValue( v =>  _v2 = v, _v2, value,  "V2");
+				SetValue( v =>  _v2 = v, _v2, value,  "V2", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -143,13 +176,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usense;
+				Activate();
 				return _usense;
 			} 
 			set
 			{
-				SetValue( v =>  _usense = v, _usense, value,  "Usense");
+				SetValue( v =>  _usense = v, _usense, value,  "Usense", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -157,13 +190,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _vsense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _vsense;
+				Activate();
 				return _vsense;
 			} 
 			set
 			{
-				SetValue( v =>  _vsense = v, _vsense, value,  "Vsense");
+				SetValue( v =>  _vsense = v, _vsense, value,  "Vsense", 7);
 			} 
 		}	
 		#endregion
@@ -171,9 +204,8 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -202,15 +234,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*U1AndU2Different:	U1AndU2Different : U1 <> U2;*/
-		/*V1AndV2Different:	V1AndV2Different : V1 <> V2;*/
-		/*UsenseCompatible:         (Usense = (U2 > U1));*/
-		/*VsenseCompatible:	VsenseCompatible : Vsense = (V2 > V1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -218,55 +241,18 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRectangularTrimmedSurface
-            var root = (@IfcRectangularTrimmedSurface)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRectangularTrimmedSurface left, @IfcRectangularTrimmedSurface right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRectangularTrimmedSurface left, @IfcRectangularTrimmedSurface right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRectangularTrimmedSurface x, @IfcRectangularTrimmedSurface y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangularTrimmedSurface obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisSurface != null)
+					yield return @BasisSurface;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

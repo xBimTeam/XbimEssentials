@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.RepresentationResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -30,9 +32,9 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IfcShapeModel", 987)]
+	[ExpressType("IfcShapeModel", 89)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcShapeModel : IfcRepresentation, IIfcShapeModel, IEqualityComparer<@IfcShapeModel>, IEquatable<@IfcShapeModel>
+	public abstract partial class @IfcShapeModel : IfcRepresentation, IIfcShapeModel, IEquatable<@IfcShapeModel>
 	{
 		#region IIfcShapeModel explicit implementation
 		 
@@ -40,8 +42,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcShapeModel(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcShapeModel(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 
@@ -59,9 +61,8 @@ namespace Xbim.Ifc4.RepresentationResource
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -75,12 +76,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR11:(SIZEOF(OfShapeAspect) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -88,54 +83,6 @@ namespace Xbim.Ifc4.RepresentationResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcShapeModel
-            var root = (@IfcShapeModel)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcShapeModel left, @IfcShapeModel right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcShapeModel left, @IfcShapeModel right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcShapeModel x, @IfcShapeModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcShapeModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

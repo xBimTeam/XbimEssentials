@@ -12,10 +12,10 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.UtilityResource
 {
-	[ExpressType("IfcGloballyUniqueId", 38)]
+	[ExpressType("IfcGloballyUniqueId", 443)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcGloballyUniqueId : IExpressValueType, System.IEquatable<string>
+	public partial struct IfcGloballyUniqueId : IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -23,6 +23,9 @@ namespace Xbim.Ifc4.UtilityResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {
@@ -87,11 +90,6 @@ namespace Xbim.Ifc4.UtilityResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             _value = value.StringVal;
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

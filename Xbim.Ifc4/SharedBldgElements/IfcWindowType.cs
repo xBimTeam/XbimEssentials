@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,31 +27,47 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWindowType : IIfcBuildingElementType
 	{
-		IfcWindowTypeEnum @PredefinedType { get; }
-		IfcWindowTypePartitioningEnum @PartitioningType { get; }
-		IfcBoolean? @ParameterTakesPrecedence { get; }
-		IfcLabel? @UserDefinedPartitioningType { get; }
+		IfcWindowTypeEnum @PredefinedType { get;  set; }
+		IfcWindowTypePartitioningEnum @PartitioningType { get;  set; }
+		IfcBoolean? @ParameterTakesPrecedence { get;  set; }
+		IfcLabel? @UserDefinedPartitioningType { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcWindowType", 1157)]
+	[ExpressType("IfcWindowType", 1317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IEqualityComparer<@IfcWindowType>, IEquatable<@IfcWindowType>
+	public  partial class @IfcWindowType : IfcBuildingElementType, IInstantiableEntity, IIfcWindowType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindowType>
 	{
 		#region IIfcWindowType explicit implementation
-		IfcWindowTypeEnum IIfcWindowType.PredefinedType { get { return @PredefinedType; } }	
-		IfcWindowTypePartitioningEnum IIfcWindowType.PartitioningType { get { return @PartitioningType; } }	
-		IfcBoolean? IIfcWindowType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
-		IfcLabel? IIfcWindowType.UserDefinedPartitioningType { get { return @UserDefinedPartitioningType; } }	
+		IfcWindowTypeEnum IIfcWindowType.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcWindowTypePartitioningEnum IIfcWindowType.PartitioningType { 
+ 
+			get { return @PartitioningType; } 
+			set { PartitioningType = value;}
+		}	
+		IfcBoolean? IIfcWindowType.ParameterTakesPrecedence { 
+ 
+			get { return @ParameterTakesPrecedence; } 
+			set { ParameterTakesPrecedence = value;}
+		}	
+		IfcLabel? IIfcWindowType.UserDefinedPartitioningType { 
+ 
+			get { return @UserDefinedPartitioningType; } 
+			set { UserDefinedPartitioningType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcWindowType(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcWindowType(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -65,13 +83,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -79,13 +97,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _partitioningType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _partitioningType;
+				Activate();
 				return _partitioningType;
 			} 
 			set
 			{
-				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType");
+				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -93,13 +111,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parameterTakesPrecedence;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parameterTakesPrecedence;
+				Activate();
 				return _parameterTakesPrecedence;
 			} 
 			set
 			{
-				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
+				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -107,13 +125,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedPartitioningType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedPartitioningType;
+				Activate();
 				return _userDefinedPartitioningType;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedPartitioningType = v, _userDefinedPartitioningType, value,  "UserDefinedPartitioningType");
+				SetValue( v =>  _userDefinedPartitioningType = v, _userDefinedPartitioningType, value,  "UserDefinedPartitioningType", 13);
 			} 
 		}	
 		#endregion
@@ -121,9 +139,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -154,12 +171,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcWindowTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -167,55 +178,35 @@ namespace Xbim.Ifc4.SharedBldgElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcWindowType
-            var root = (@IfcWindowType)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcWindowType left, @IfcWindowType right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcWindowType left, @IfcWindowType right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWindowType x, @IfcWindowType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWindowType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

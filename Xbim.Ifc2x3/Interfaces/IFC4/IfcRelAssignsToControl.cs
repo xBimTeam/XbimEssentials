@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToControl : IIfcRelAssignsToControl
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToControl), 7)]
 		IIfcControl IIfcRelAssignsToControl.RelatingControl 
 		{ 
 			get
 			{
 				return RelatingControl;
 			} 
+			set
+			{
+				RelatingControl = value as IfcControl;
+				
+			}
 		}
 	//## Custom code
 	//##

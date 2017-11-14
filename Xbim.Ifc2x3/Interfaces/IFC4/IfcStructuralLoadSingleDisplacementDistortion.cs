@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleDisplacementDistortion : IIfcStructuralLoadSingleDisplacementDistortion
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacementDistortion), 8)]
 		Ifc4.MeasureResource.IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion 
 		{ 
 			get
@@ -23,6 +26,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!Distortion.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcCurvatureMeasure(Distortion.Value);
 			} 
+			set
+			{
+				Distortion = value.HasValue ? 
+					new MeasureResource.IfcCurvatureMeasure(value.Value) :  
+					 new MeasureResource.IfcCurvatureMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

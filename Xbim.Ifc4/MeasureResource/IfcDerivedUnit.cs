@@ -16,6 +16,8 @@ using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.MeasureResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDerivedUnit : IPersistEntity, IfcUnit
 	{
-		IEnumerable<IIfcDerivedUnitElement> @Elements { get; }
-		IfcDerivedUnitEnum @UnitType { get; }
-		IfcLabel? @UserDefinedType { get; }
+		IItemSet<IIfcDerivedUnitElement> @Elements { get; }
+		IfcDerivedUnitEnum @UnitType { get;  set; }
+		IfcLabel? @UserDefinedType { get;  set; }
 		Common.Geometry.XbimDimensionalExponents @Dimensions  { get ; }
 	
 	}
@@ -35,95 +37,47 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcDerivedUnit", 568)]
+	[ExpressType("IfcDerivedUnit", 630)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnit : INotifyPropertyChanged, IInstantiableEntity, IIfcDerivedUnit, IEqualityComparer<@IfcDerivedUnit>, IEquatable<@IfcDerivedUnit>
+	public  partial class @IfcDerivedUnit : PersistEntity, IInstantiableEntity, IIfcDerivedUnit, IContainsEntityReferences, IEquatable<@IfcDerivedUnit>
 	{
 		#region IIfcDerivedUnit explicit implementation
-		IEnumerable<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { get { return @Elements; } }	
-		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { get { return @UnitType; } }	
-		IfcLabel? IIfcDerivedUnit.UserDefinedType { get { return @UserDefinedType; } }	
+		IItemSet<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { 
+			get { return new Common.Collections.ProxyItemSet<IfcDerivedUnitElement, IIfcDerivedUnitElement>( @Elements); } 
+		}	
+		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { 
+ 
+			get { return @UnitType; } 
+			set { UnitType = value;}
+		}	
+		IfcLabel? IIfcDerivedUnit.UserDefinedType { 
+ 
+			get { return @UserDefinedType; } 
+			set { UserDefinedType = value;}
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDerivedUnit(IModel model) 		{ 
-			Model = model; 
-			_elements = new ItemSet<IfcDerivedUnitElement>( this, 0 );
+		internal IfcDerivedUnit(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_elements = new ItemSet<IfcDerivedUnitElement>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcDerivedUnitElement> _elements;
+		private readonly ItemSet<IfcDerivedUnitElement> _elements;
 		private IfcDerivedUnitEnum _unitType;
 		private IfcLabel? _userDefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcDerivedUnitElement> @Elements 
+		public IItemSet<IfcDerivedUnitElement> @Elements 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elements;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elements;
+				Activate();
 				return _elements;
 			} 
 		}	
@@ -132,13 +86,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _unitType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _unitType;
+				Activate();
 				return _unitType;
 			} 
 			set
 			{
-				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType");
+				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -146,13 +100,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedType;
+				Activate();
 				return _userDefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedType = v, _userDefinedType, value,  "UserDefinedType");
+				SetValue( v =>  _userDefinedType = v, _userDefinedType, value,  "UserDefinedType", 3);
 			} 
 		}	
 		#endregion
@@ -200,63 +154,12 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_elements == null) _elements = new ItemSet<IfcDerivedUnitElement>( this );
 					_elements.InternalAdd((IfcDerivedUnitElement)value.EntityVal);
 					return;
 				case 1: 
@@ -269,13 +172,6 @@ namespace Xbim.Ifc4.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : (SIZEOF (Elements) > 1) OR ((SIZEOF (Elements) = 1) AND (Elements[1].Exponent <> 1 ));*/
-		/*WR2: (EXISTS(SELF.UserDefinedType)));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -283,55 +179,18 @@ namespace Xbim.Ifc4.MeasureResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDerivedUnit
-            var root = (@IfcDerivedUnit)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDerivedUnit left, @IfcDerivedUnit right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDerivedUnit left, @IfcDerivedUnit right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDerivedUnit x, @IfcDerivedUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDerivedUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Elements)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

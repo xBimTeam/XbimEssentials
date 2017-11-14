@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleForceWarping : IIfcStructuralLoadSingleForceWarping
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleForceWarping), 8)]
 		Ifc4.MeasureResource.IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment 
 		{ 
 			get
@@ -23,6 +26,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!WarpingMoment.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcWarpingMomentMeasure(WarpingMoment.Value);
 			} 
+			set
+			{
+				WarpingMoment = value.HasValue ? 
+					new MeasureResource.IfcWarpingMomentMeasure(value.Value) :  
+					 new MeasureResource.IfcWarpingMomentMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

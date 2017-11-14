@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
 	{
-		IIfcCharacterStyleSelect @TextCharacterAppearance { get; }
-		IIfcTextStyleSelect @TextStyle { get; }
-		IIfcTextFontSelect @TextFontStyle { get; }
+		IIfcCharacterStyleSelect @TextCharacterAppearance { get;  set; }
+		IIfcTextStyleSelect @TextStyle { get;  set; }
+		IIfcTextFontSelect @TextFontStyle { get;  set; }
 	
 	}
 }
@@ -35,18 +37,33 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyle", 427)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IEqualityComparer<@IfcTextStyle>, IEquatable<@IfcTextStyle>
+	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IContainsEntityReferences, IEquatable<@IfcTextStyle>
 	{
 		#region IIfcTextStyle explicit implementation
-		IIfcCharacterStyleSelect IIfcTextStyle.TextCharacterAppearance { get { return @TextCharacterAppearance; } }	
-		IIfcTextStyleSelect IIfcTextStyle.TextStyle { get { return @TextStyle; } }	
-		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { get { return @TextFontStyle; } }	
+		IIfcCharacterStyleSelect IIfcTextStyle.TextCharacterAppearance { 
+ 
+ 
+			get { return @TextCharacterAppearance; } 
+			set { TextCharacterAppearance = value as IfcCharacterStyleSelect;}
+		}	
+		IIfcTextStyleSelect IIfcTextStyle.TextStyle { 
+ 
+ 
+			get { return @TextStyle; } 
+			set { TextStyle = value as IfcTextStyleSelect;}
+		}	
+		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { 
+ 
+ 
+			get { return @TextFontStyle; } 
+			set { TextFontStyle = value as IfcTextFontSelect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTextStyle(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcTextStyle(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +78,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textCharacterAppearance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textCharacterAppearance;
+				Activate();
 				return _textCharacterAppearance;
 			} 
 			set
 			{
-				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _textCharacterAppearance = v, _textCharacterAppearance, value,  "TextCharacterAppearance", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -75,13 +94,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textStyle;
+				Activate();
 				return _textStyle;
 			} 
 			set
 			{
-				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _textStyle = v, _textStyle, value,  "TextStyle", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -89,13 +110,15 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _textFontStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _textFontStyle;
+				Activate();
 				return _textFontStyle;
 			} 
 			set
 			{
-				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _textFontStyle = v, _textFontStyle, value,  "TextFontStyle", 4);
 			} 
 		}	
 		#endregion
@@ -103,9 +126,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -125,11 +147,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,55 +154,22 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTextStyle
-            var root = (@IfcTextStyle)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTextStyle left, @IfcTextStyle right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTextStyle left, @IfcTextStyle right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextStyle x, @IfcTextStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@TextCharacterAppearance != null)
+					yield return @TextCharacterAppearance;
+				if (@TextStyle != null)
+					yield return @TextStyle;
+				if (@TextFontStyle != null)
+					yield return @TextFontStyle;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

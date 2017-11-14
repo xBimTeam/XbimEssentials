@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcContextDependentUnit : IIfcContextDependentUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcContextDependentUnit), 3)]
 		Ifc4.MeasureResource.IfcLabel IIfcContextDependentUnit.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new IfcLabel(value);
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcContextDependentUnit.HasExternalReference 
 		{ 

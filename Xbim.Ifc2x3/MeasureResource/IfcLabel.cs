@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 	[ExpressType("IfcLabel", 128)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcLabel : IfcConditionCriterionSelect, IfcSimpleValue, IExpressValueType, System.IEquatable<string>
+	public partial struct IfcLabel : IfcConditionCriterionSelect, IfcSimpleValue, IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         
@@ -24,6 +24,9 @@ namespace Xbim.Ifc2x3.MeasureResource
         {
             get { return _value; }
         }
+
+ 
+		string IExpressStringType.Value { get { return _value; } }
 
 		public override string ToString()
         {
@@ -88,11 +91,6 @@ namespace Xbim.Ifc2x3.MeasureResource
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
             _value = value.StringVal;
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

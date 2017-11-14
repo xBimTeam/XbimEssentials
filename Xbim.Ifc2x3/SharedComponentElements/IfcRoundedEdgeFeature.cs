@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedComponentElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRoundedEdgeFeature : IIfcEdgeFeature
 	{
-		IfcPositiveLengthMeasure? @Radius { get; }
+		IfcPositiveLengthMeasure? @Radius { get;  set; }
 	
 	}
 }
@@ -33,16 +35,20 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcRoundedEdgeFeature", 766)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcRoundedEdgeFeature, IEqualityComparer<@IfcRoundedEdgeFeature>, IEquatable<@IfcRoundedEdgeFeature>
+	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcRoundedEdgeFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoundedEdgeFeature>
 	{
 		#region IIfcRoundedEdgeFeature explicit implementation
-		IfcPositiveLengthMeasure? IIfcRoundedEdgeFeature.Radius { get { return @Radius; } }	
+		IfcPositiveLengthMeasure? IIfcRoundedEdgeFeature.Radius { 
+ 
+			get { return @Radius; } 
+			set { Radius = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRoundedEdgeFeature(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRoundedEdgeFeature(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +61,13 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _radius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _radius;
+				Activate();
 				return _radius;
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 10);
 			} 
 		}	
 		#endregion
@@ -69,9 +75,8 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -93,11 +98,6 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -105,55 +105,37 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRoundedEdgeFeature
-            var root = (@IfcRoundedEdgeFeature)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRoundedEdgeFeature left, @IfcRoundedEdgeFeature right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRoundedEdgeFeature left, @IfcRoundedEdgeFeature right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRoundedEdgeFeature x, @IfcRoundedEdgeFeature y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRoundedEdgeFeature obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

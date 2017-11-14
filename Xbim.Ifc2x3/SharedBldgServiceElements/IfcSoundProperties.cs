@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSoundProperties : IIfcPropertySetDefinition
 	{
-		IfcBoolean @IsAttenuating { get; }
-		IfcSoundScaleEnum? @SoundScale { get; }
-		IEnumerable<IIfcSoundValue> @SoundValues { get; }
+		IfcBoolean @IsAttenuating { get;  set; }
+		IfcSoundScaleEnum? @SoundScale { get;  set; }
+		IItemSet<IIfcSoundValue> @SoundValues { get; }
 	
 	}
 }
@@ -36,25 +38,35 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSoundProperties", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IEqualityComparer<@IfcSoundProperties>, IEquatable<@IfcSoundProperties>
+	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IContainsEntityReferences, IEquatable<@IfcSoundProperties>
 	{
 		#region IIfcSoundProperties explicit implementation
-		IfcBoolean IIfcSoundProperties.IsAttenuating { get { return @IsAttenuating; } }	
-		IfcSoundScaleEnum? IIfcSoundProperties.SoundScale { get { return @SoundScale; } }	
-		IEnumerable<IIfcSoundValue> IIfcSoundProperties.SoundValues { get { return @SoundValues; } }	
+		IfcBoolean IIfcSoundProperties.IsAttenuating { 
+ 
+			get { return @IsAttenuating; } 
+			set { IsAttenuating = value;}
+		}	
+		IfcSoundScaleEnum? IIfcSoundProperties.SoundScale { 
+ 
+			get { return @SoundScale; } 
+			set { SoundScale = value;}
+		}	
+		IItemSet<IIfcSoundValue> IIfcSoundProperties.SoundValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcSoundValue, IIfcSoundValue>( @SoundValues); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSoundProperties(IModel model) : base(model) 		{ 
-			Model = model; 
-			_soundValues = new ItemSet<IfcSoundValue>( this, 8 );
+		internal IfcSoundProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_soundValues = new ItemSet<IfcSoundValue>( this, 8,  7);
 		}
 
 		#region Explicit attribute fields
 		private IfcBoolean _isAttenuating;
 		private IfcSoundScaleEnum? _soundScale;
-		private ItemSet<IfcSoundValue> _soundValues;
+		private readonly ItemSet<IfcSoundValue> _soundValues;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -63,13 +75,13 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isAttenuating;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isAttenuating;
+				Activate();
 				return _isAttenuating;
 			} 
 			set
 			{
-				SetValue( v =>  _isAttenuating = v, _isAttenuating, value,  "IsAttenuating");
+				SetValue( v =>  _isAttenuating = v, _isAttenuating, value,  "IsAttenuating", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
@@ -77,22 +89,22 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _soundScale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _soundScale;
+				Activate();
 				return _soundScale;
 			} 
 			set
 			{
-				SetValue( v =>  _soundScale = v, _soundScale, value,  "SoundScale");
+				SetValue( v =>  _soundScale = v, _soundScale, value,  "SoundScale", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 8, 10)]
-		public ItemSet<IfcSoundValue> @SoundValues 
+		public IItemSet<IfcSoundValue> @SoundValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _soundValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _soundValues;
+				Activate();
 				return _soundValues;
 			} 
 		}	
@@ -101,9 +113,8 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -120,17 +131,11 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
                     _soundScale = (IfcSoundScaleEnum) System.Enum.Parse(typeof (IfcSoundScaleEnum), value.EnumVal, true);
 					return;
 				case 6: 
-					if (_soundValues == null) _soundValues = new ItemSet<IfcSoundValue>( this );
 					_soundValues.InternalAdd((IfcSoundValue)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -139,55 +144,20 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSoundProperties
-            var root = (@IfcSoundProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSoundProperties left, @IfcSoundProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSoundProperties left, @IfcSoundProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSoundProperties x, @IfcSoundProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSoundProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @SoundValues)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

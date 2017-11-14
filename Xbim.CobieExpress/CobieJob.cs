@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,53 +25,113 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieJob : ICobieReferencedObject
 	{
-		string @TaskNumber { get; }
-		string @Name { get; }
-		string @Description { get; }
-		ICobieJobType @JobType { get; }
-		ICobieJobStatusType @JobStatusType { get; }
-		double @Duration { get; }
-		ICobieDurationUnit @DurationUnit { get; }
-		double @Start { get; }
-		ICobieDurationUnit @StartUnit { get; }
-		double @Frequency { get; }
-		ICobieDurationUnit @FrequencyUnit { get; }
-		ICobieJob @Priors { get; }
-		IEnumerable<ICobieResource> @Resources { get; }
-		IEnumerable<ICobieType> @ForTypes {  get; }
+		string @TaskNumber { get;  set; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieJobType @JobType { get;  set; }
+		ICobieJobStatusType @JobStatusType { get;  set; }
+		double? @Duration { get;  set; }
+		ICobieDurationUnit @DurationUnit { get;  set; }
+		double? @Start { get;  set; }
+		ICobieDurationUnit @StartUnit { get;  set; }
+		double? @Frequency { get;  set; }
+		ICobieDurationUnit @FrequencyUnit { get;  set; }
+		ICobieJob @Priors { get;  set; }
+		IItemSet<ICobieResource> @Resources { get; }
+		ICobieType @Type { get;  set; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Job", 27)]
+	[ExpressType("Job", 28)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, ICobieJob, IEqualityComparer<@CobieJob>, IEquatable<@CobieJob>
+	public  partial class @CobieJob : CobieReferencedObject, IInstantiableEntity, ICobieJob, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieJob>
 	{
 		#region ICobieJob explicit implementation
-		string ICobieJob.TaskNumber { get { return @TaskNumber; } }	
-		string ICobieJob.Name { get { return @Name; } }	
-		string ICobieJob.Description { get { return @Description; } }	
-		ICobieJobType ICobieJob.JobType { get { return @JobType; } }	
-		ICobieJobStatusType ICobieJob.JobStatusType { get { return @JobStatusType; } }	
-		double ICobieJob.Duration { get { return @Duration; } }	
-		ICobieDurationUnit ICobieJob.DurationUnit { get { return @DurationUnit; } }	
-		double ICobieJob.Start { get { return @Start; } }	
-		ICobieDurationUnit ICobieJob.StartUnit { get { return @StartUnit; } }	
-		double ICobieJob.Frequency { get { return @Frequency; } }	
-		ICobieDurationUnit ICobieJob.FrequencyUnit { get { return @FrequencyUnit; } }	
-		ICobieJob ICobieJob.Priors { get { return @Priors; } }	
-		IEnumerable<ICobieResource> ICobieJob.Resources { get { return @Resources; } }	
+		string ICobieJob.TaskNumber { 
+ 
+			get { return @TaskNumber; } 
+			set { TaskNumber = value;}
+		}	
+		string ICobieJob.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieJob.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieJobType ICobieJob.JobType { 
+ 
+ 
+			get { return @JobType; } 
+			set { JobType = value as CobieJobType;}
+		}	
+		ICobieJobStatusType ICobieJob.JobStatusType { 
+ 
+ 
+			get { return @JobStatusType; } 
+			set { JobStatusType = value as CobieJobStatusType;}
+		}	
+		double? ICobieJob.Duration { 
+ 
+			get { return @Duration; } 
+			set { Duration = value;}
+		}	
+		ICobieDurationUnit ICobieJob.DurationUnit { 
+ 
+ 
+			get { return @DurationUnit; } 
+			set { DurationUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieJob.Start { 
+ 
+			get { return @Start; } 
+			set { Start = value;}
+		}	
+		ICobieDurationUnit ICobieJob.StartUnit { 
+ 
+ 
+			get { return @StartUnit; } 
+			set { StartUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieJob.Frequency { 
+ 
+			get { return @Frequency; } 
+			set { Frequency = value;}
+		}	
+		ICobieDurationUnit ICobieJob.FrequencyUnit { 
+ 
+ 
+			get { return @FrequencyUnit; } 
+			set { FrequencyUnit = value as CobieDurationUnit;}
+		}	
+		ICobieJob ICobieJob.Priors { 
+ 
+ 
+			get { return @Priors; } 
+			set { Priors = value as CobieJob;}
+		}	
+		IItemSet<ICobieResource> ICobieJob.Resources { 
+			get { return new Common.Collections.ProxyItemSet<CobieResource, ICobieResource>( @Resources); } 
+		}	
+		ICobieType ICobieJob.Type { 
+ 
+ 
+			get { return @Type; } 
+			set { Type = value as CobieType;}
+		}	
 		 
-		IEnumerable<ICobieType> ICobieJob.ForTypes {  get { return @ForTypes; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieJob(IModel model) : base(model) 		{ 
-			Model = model; 
-			_resources = new OptionalItemSet<CobieResource>( this, 0 );
+		internal CobieJob(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_resources = new OptionalItemSet<CobieResource>( this, 0,  18);
 		}
 
 		#region Explicit attribute fields
@@ -78,29 +140,30 @@ namespace Xbim.CobieExpress
 		private string _description;
 		private CobieJobType _jobType;
 		private CobieJobStatusType _jobStatusType;
-		private double _duration;
+		private double? _duration;
 		private CobieDurationUnit _durationUnit;
-		private double _start;
+		private double? _start;
 		private CobieDurationUnit _startUnit;
-		private double _frequency;
+		private double? _frequency;
 		private CobieDurationUnit _frequencyUnit;
 		private CobieJob _priors;
-		private OptionalItemSet<CobieResource> _resources;
+		private readonly OptionalItemSet<CobieResource> _resources;
+		private CobieType _type;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public string @TaskNumber 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _taskNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _taskNumber;
+				Activate();
 				return _taskNumber;
 			} 
 			set
 			{
-				SetValue( v =>  _taskNumber = v, _taskNumber, value,  "TaskNumber");
+				SetValue( v =>  _taskNumber = v, _taskNumber, value,  "TaskNumber", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -108,184 +171,201 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public string @Description 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieJobType @JobType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jobType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _jobType;
+				Activate();
 				return _jobType;
 			} 
 			set
 			{
-				SetValue( v =>  _jobType = v, _jobType, value,  "JobType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _jobType = v, _jobType, value,  "JobType", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobieJobStatusType @JobStatusType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jobStatusType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _jobStatusType;
+				Activate();
 				return _jobStatusType;
 			} 
 			set
 			{
-				SetValue( v =>  _jobStatusType = v, _jobStatusType, value,  "JobStatusType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _jobStatusType = v, _jobStatusType, value,  "JobStatusType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
-		public double @Duration 
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		public double? @Duration 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _duration;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _duration;
+				Activate();
 				return _duration;
 			} 
 			set
 			{
-				SetValue( v =>  _duration = v, _duration, value,  "Duration");
+				SetValue( v =>  _duration = v, _duration, value,  "Duration", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
 		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _durationUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _durationUnit;
+				Activate();
 				return _durationUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
-		public double @Start 
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		public double? @Start 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _start;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _start;
+				Activate();
 				return _start;
 			} 
 			set
 			{
-				SetValue( v =>  _start = v, _start, value,  "Start");
+				SetValue( v =>  _start = v, _start, value,  "Start", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public CobieDurationUnit @StartUnit 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startUnit;
+				Activate();
 				return _startUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _startUnit = v, _startUnit, value,  "StartUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _startUnit = v, _startUnit, value,  "StartUnit", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
-		public double @Frequency 
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		public double? @Frequency 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frequency;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frequency;
+				Activate();
 				return _frequency;
 			} 
 			set
 			{
-				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency");
+				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
 		public CobieDurationUnit @FrequencyUnit 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frequencyUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frequencyUnit;
+				Activate();
 				return _frequencyUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _frequencyUnit = v, _frequencyUnit, value,  "FrequencyUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _frequencyUnit = v, _frequencyUnit, value,  "FrequencyUnit", 16);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
 		public CobieJob @Priors 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _priors;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _priors;
+				Activate();
 				return _priors;
 			} 
 			set
 			{
-				SetValue( v =>  _priors = v, _priors, value,  "Priors");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _priors = v, _priors, value,  "Priors", 17);
 			} 
 		}	
 		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 18)]
-		public OptionalItemSet<CobieResource> @Resources 
+		public IOptionalItemSet<CobieResource> @Resources 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resources;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resources;
+				Activate();
 				return _resources;
+			} 
+		}	
+		[IndexedProperty]
+		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
+		public CobieType @Type 
+		{ 
+			get 
+			{
+				if(_activated) return _type;
+				Activate();
+				return _type;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _type = v, _type, value,  "Type", 19);
 			} 
 		}	
 		#endregion
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Jobs")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 19)]
-		public IEnumerable<CobieType> @ForTypes 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieType>(e => e.Jobs != null &&  e.Jobs.Contains(this), "Jobs", this);
-			} 
-		}
-		#endregion
-
 
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -333,17 +413,14 @@ namespace Xbim.CobieExpress
 					_priors = (CobieJob)(value.EntityVal);
 					return;
 				case 17: 
-					if (_resources == null) _resources = new OptionalItemSet<CobieResource>( this );
 					_resources.InternalAdd((CobieResource)value.EntityVal);
+					return;
+				case 18: 
+					_type = (CobieType)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -352,55 +429,51 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieJob
-            var root = (@CobieJob)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieJob left, @CobieJob right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieJob left, @CobieJob right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieJob x, @CobieJob y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieJob obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@JobType != null)
+					yield return @JobType;
+				if (@JobStatusType != null)
+					yield return @JobStatusType;
+				if (@DurationUnit != null)
+					yield return @DurationUnit;
+				if (@StartUnit != null)
+					yield return @StartUnit;
+				if (@FrequencyUnit != null)
+					yield return @FrequencyUnit;
+				if (@Priors != null)
+					yield return @Priors;
+				foreach(var entity in @Resources)
+					yield return entity;
+				if (@Type != null)
+					yield return @Type;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Type != null)
+					yield return @Type;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

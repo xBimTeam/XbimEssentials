@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,12 +28,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcementBarProperties : IPersistEntity
 	{
-		IfcAreaMeasure @TotalCrossSectionArea { get; }
-		IfcLabel @SteelGrade { get; }
-		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
-		IfcLengthMeasure? @EffectiveDepth { get; }
-		IfcPositiveLengthMeasure? @NominalBarDiameter { get; }
-		IfcCountMeasure? @BarCount { get; }
+		IfcAreaMeasure @TotalCrossSectionArea { get;  set; }
+		IfcLabel @SteelGrade { get;  set; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
+		IfcLengthMeasure? @EffectiveDepth { get;  set; }
+		IfcPositiveLengthMeasure? @NominalBarDiameter { get;  set; }
+		IfcCountMeasure? @BarCount { get;  set; }
 	
 	}
 }
@@ -40,79 +42,45 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcReinforcementBarProperties", 684)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementBarProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcReinforcementBarProperties, IEqualityComparer<@IfcReinforcementBarProperties>, IEquatable<@IfcReinforcementBarProperties>
+	public  partial class @IfcReinforcementBarProperties : PersistEntity, IInstantiableEntity, IIfcReinforcementBarProperties, IEquatable<@IfcReinforcementBarProperties>
 	{
 		#region IIfcReinforcementBarProperties explicit implementation
-		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { get { return @TotalCrossSectionArea; } }	
-		IfcLabel IIfcReinforcementBarProperties.SteelGrade { get { return @SteelGrade; } }	
-		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { get { return @BarSurface; } }	
-		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { get { return @EffectiveDepth; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { get { return @NominalBarDiameter; } }	
-		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { get { return @BarCount; } }	
+		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { 
+ 
+			get { return @TotalCrossSectionArea; } 
+			set { TotalCrossSectionArea = value;}
+		}	
+		IfcLabel IIfcReinforcementBarProperties.SteelGrade { 
+ 
+			get { return @SteelGrade; } 
+			set { SteelGrade = value;}
+		}	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { 
+ 
+			get { return @BarSurface; } 
+			set { BarSurface = value;}
+		}	
+		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { 
+ 
+			get { return @EffectiveDepth; } 
+			set { EffectiveDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { 
+ 
+			get { return @NominalBarDiameter; } 
+			set { NominalBarDiameter = value;}
+		}	
+		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { 
+ 
+			get { return @BarCount; } 
+			set { BarCount = value;}
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcReinforcementBarProperties(IModel model) 		{ 
-			Model = model; 
+		internal IfcReinforcementBarProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -130,13 +98,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _totalCrossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _totalCrossSectionArea;
+				Activate();
 				return _totalCrossSectionArea;
 			} 
 			set
 			{
-				SetValue( v =>  _totalCrossSectionArea = v, _totalCrossSectionArea, value,  "TotalCrossSectionArea");
+				SetValue( v =>  _totalCrossSectionArea = v, _totalCrossSectionArea, value,  "TotalCrossSectionArea", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -144,13 +112,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _steelGrade;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _steelGrade;
+				Activate();
 				return _steelGrade;
 			} 
 			set
 			{
-				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade");
+				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
@@ -158,13 +126,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barSurface;
+				Activate();
 				return _barSurface;
 			} 
 			set
 			{
-				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface");
+				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -172,13 +140,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _effectiveDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _effectiveDepth;
+				Activate();
 				return _effectiveDepth;
 			} 
 			set
 			{
-				SetValue( v =>  _effectiveDepth = v, _effectiveDepth, value,  "EffectiveDepth");
+				SetValue( v =>  _effectiveDepth = v, _effectiveDepth, value,  "EffectiveDepth", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -186,13 +154,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalBarDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalBarDiameter;
+				Activate();
 				return _nominalBarDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalBarDiameter = v, _nominalBarDiameter, value,  "NominalBarDiameter");
+				SetValue( v =>  _nominalBarDiameter = v, _nominalBarDiameter, value,  "NominalBarDiameter", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -200,13 +168,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barCount;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barCount;
+				Activate();
 				return _barCount;
 			} 
 			set
 			{
-				SetValue( v =>  _barCount = v, _barCount, value,  "BarCount");
+				SetValue( v =>  _barCount = v, _barCount, value,  "BarCount", 6);
 			} 
 		}	
 		#endregion
@@ -214,58 +182,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -291,11 +209,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -303,54 +216,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcReinforcementBarProperties
-            var root = (@IfcReinforcementBarProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcReinforcementBarProperties left, @IfcReinforcementBarProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcReinforcementBarProperties left, @IfcReinforcementBarProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcementBarProperties x, @IfcReinforcementBarProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcementBarProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

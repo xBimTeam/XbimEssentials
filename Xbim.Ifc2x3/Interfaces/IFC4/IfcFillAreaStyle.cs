@@ -10,44 +10,39 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcFillAreaStyle : IIfcFillAreaStyle
 	{
-		IEnumerable<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles 
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyle), 2)]
+		IItemSet<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles 
 		{ 
 			get
 			{
-				foreach (var member in FillStyles)
-				{
-					var ifcfillareastylehatching = member as IfcFillAreaStyleHatching;
-					if (ifcfillareastylehatching != null) 
-						yield return ifcfillareastylehatching;
-					var ifcfillareastyletiles = member as IfcFillAreaStyleTiles;
-					if (ifcfillareastyletiles != null) 
-						yield return ifcfillareastyletiles;
-					var ifccolourspecification = member as PresentationResource.IfcColourSpecification;
-					if (ifccolourspecification != null) 
-						yield return ifccolourspecification;
-					var ifcpredefinedcolour = member as PresentationResource.IfcPreDefinedColour;
-					if (ifcpredefinedcolour != null) 
-						yield return ifcpredefinedcolour;
-					var ifcexternallydefinedhatchstyle = member as IfcExternallyDefinedHatchStyle;
-					if (ifcexternallydefinedhatchstyle != null) 
-						yield return ifcexternallydefinedhatchstyle;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcFillStyleSelect, IIfcFillStyleSelect>(FillStyles);
 			} 
 		}
+
+		private  Ifc4.MeasureResource.IfcBoolean? _modelorDraughting;
+
+
+		[CrossSchemaAttribute(typeof(IIfcFillAreaStyle), 3)]
 		Ifc4.MeasureResource.IfcBoolean? IIfcFillAreaStyle.ModelorDraughting 
 		{ 
 			get
 			{
-				//## Handle return of ModelorDraughting for which no match was found
-			    return null;
-			    //##
+				return _modelorDraughting;
 			} 
+			set
+			{
+				SetValue(v => _modelorDraughting = v, _modelorDraughting, value, "ModelorDraughting", -3);
+				
+			}
 		}
 	//## Custom code
 	//##

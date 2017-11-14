@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ElectricalDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcElectricDistributionPoint : IIfcFlowController
 	{
-		IfcElectricDistributionPointFunctionEnum @DistributionPointFunction { get; }
-		IfcLabel? @UserDefinedFunction { get; }
+		IfcElectricDistributionPointFunctionEnum @DistributionPointFunction { get;  set; }
+		IfcLabel? @UserDefinedFunction { get;  set; }
 	
 	}
 }
@@ -35,17 +37,25 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricDistributionPoint", 242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IEqualityComparer<@IfcElectricDistributionPoint>, IEquatable<@IfcElectricDistributionPoint>
+	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricDistributionPoint>
 	{
 		#region IIfcElectricDistributionPoint explicit implementation
-		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { get { return @DistributionPointFunction; } }	
-		IfcLabel? IIfcElectricDistributionPoint.UserDefinedFunction { get { return @UserDefinedFunction; } }	
+		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { 
+ 
+			get { return @DistributionPointFunction; } 
+			set { DistributionPointFunction = value;}
+		}	
+		IfcLabel? IIfcElectricDistributionPoint.UserDefinedFunction { 
+ 
+			get { return @UserDefinedFunction; } 
+			set { UserDefinedFunction = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcElectricDistributionPoint(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcElectricDistributionPoint(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +69,13 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _distributionPointFunction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _distributionPointFunction;
+				Activate();
 				return _distributionPointFunction;
 			} 
 			set
 			{
-				SetValue( v =>  _distributionPointFunction = v, _distributionPointFunction, value,  "DistributionPointFunction");
+				SetValue( v =>  _distributionPointFunction = v, _distributionPointFunction, value,  "DistributionPointFunction", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -73,13 +83,13 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedFunction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedFunction;
+				Activate();
 				return _userDefinedFunction;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedFunction = v, _userDefinedFunction, value,  "UserDefinedFunction");
+				SetValue( v =>  _userDefinedFunction = v, _userDefinedFunction, value,  "UserDefinedFunction", 10);
 			} 
 		}	
 		#endregion
@@ -87,9 +97,8 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -113,12 +122,6 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:             ((DistributionPointFunction = IfcElectricDistributionPointFunctionEnum.USERDEFINED) AND EXISTS(SELF\IfcElectricDistributionPoint.UserDefinedFunction));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -126,55 +129,37 @@ namespace Xbim.Ifc2x3.ElectricalDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcElectricDistributionPoint
-            var root = (@IfcElectricDistributionPoint)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcElectricDistributionPoint left, @IfcElectricDistributionPoint right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcElectricDistributionPoint left, @IfcElectricDistributionPoint right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcElectricDistributionPoint x, @IfcElectricDistributionPoint y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcElectricDistributionPoint obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

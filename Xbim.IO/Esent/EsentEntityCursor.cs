@@ -425,10 +425,9 @@ namespace Xbim.IO.Esent
             }
             catch (Exception e)
             {
-
-                throw new XbimException("Failed to add entity to the database", e);
+                var msg = string.Format("Failed to add entity #{0} to the database", currentLabel);
+                throw new XbimException(msg, e);
             }
-
         }
 
         /// <summary>

@@ -70,6 +70,7 @@ namespace Xbim.Ifc2x3.Extensions
                 var current = i < total ? loop.Polygon[i] : loop.Polygon[0];
                 if (count > 0)
                 {
+                    // ReSharper disable once PossibleNullReferenceException
                     var xn = previous.X;
                     var yn = previous.Y;
                     var zn = previous.Z;
@@ -84,8 +85,7 @@ namespace Xbim.Ifc2x3.Extensions
                 count++;
             }
             var v = new XbimVector3D(x, y, z);
-            v.Normalize();
-            return v;
+            return v.Normalized();         
         }
     }
 }

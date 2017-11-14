@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcArbitraryOpenProfileDef : IIfcArbitraryOpenProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcArbitraryOpenProfileDef), 3)]
 		IIfcBoundedCurve IIfcArbitraryOpenProfileDef.Curve 
 		{ 
 			get
 			{
 				return Curve;
 			} 
+			set
+			{
+				Curve = value as GeometryResource.IfcBoundedCurve;
+				
+			}
 		}
 	//## Custom code
 	//##

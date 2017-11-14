@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadPlanarForce : IIfcStructuralLoadPlanarForce
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadPlanarForce), 2)]
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!PlanarForceX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlanarForceMeasure(PlanarForceX.Value);
 			} 
+			set
+			{
+				PlanarForceX = value.HasValue ? 
+					new MeasureResource.IfcPlanarForceMeasure(value.Value) :  
+					 new MeasureResource.IfcPlanarForceMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadPlanarForce), 3)]
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!PlanarForceY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlanarForceMeasure(PlanarForceY.Value);
 			} 
+			set
+			{
+				PlanarForceY = value.HasValue ? 
+					new MeasureResource.IfcPlanarForceMeasure(value.Value) :  
+					 new MeasureResource.IfcPlanarForceMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadPlanarForce), 4)]
 		Ifc4.MeasureResource.IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ 
 		{ 
 			get
@@ -39,6 +60,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!PlanarForceZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlanarForceMeasure(PlanarForceZ.Value);
 			} 
+			set
+			{
+				PlanarForceZ = value.HasValue ? 
+					new MeasureResource.IfcPlanarForceMeasure(value.Value) :  
+					 new MeasureResource.IfcPlanarForceMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

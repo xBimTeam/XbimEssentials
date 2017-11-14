@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,33 +26,39 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayerWithOffsets : IIfcMaterialLayer
 	{
-		IfcLayerSetDirectionEnum @OffsetDirection { get; }
-		IEnumerable<IfcLengthMeasure> @OffsetValues { get; }
+		IfcLayerSetDirectionEnum @OffsetDirection { get;  set; }
+		IItemSet<IfcLengthMeasure> @OffsetValues { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IfcMaterialLayerWithOffsets", 758)]
+	[ExpressType("IfcMaterialLayerWithOffsets", 1204)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IEqualityComparer<@IfcMaterialLayerWithOffsets>, IEquatable<@IfcMaterialLayerWithOffsets>
+	public  partial class @IfcMaterialLayerWithOffsets : IfcMaterialLayer, IInstantiableEntity, IIfcMaterialLayerWithOffsets, IContainsEntityReferences, IEquatable<@IfcMaterialLayerWithOffsets>
 	{
 		#region IIfcMaterialLayerWithOffsets explicit implementation
-		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { get { return @OffsetDirection; } }	
-		IEnumerable<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { get { return @OffsetValues; } }	
+		IfcLayerSetDirectionEnum IIfcMaterialLayerWithOffsets.OffsetDirection { 
+ 
+			get { return @OffsetDirection; } 
+			set { OffsetDirection = value;}
+		}	
+		IItemSet<IfcLengthMeasure> IIfcMaterialLayerWithOffsets.OffsetValues { 
+			get { return @OffsetValues; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialLayerWithOffsets(IModel model) : base(model) 		{ 
-			Model = model; 
-			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2 );
+		internal IfcMaterialLayerWithOffsets(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_offsetValues = new ItemSet<IfcLengthMeasure>( this, 2,  9);
 		}
 
 		#region Explicit attribute fields
 		private IfcLayerSetDirectionEnum _offsetDirection;
-		private ItemSet<IfcLengthMeasure> _offsetValues;
+		private readonly ItemSet<IfcLengthMeasure> _offsetValues;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -59,22 +67,22 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetDirection;
+				Activate();
 				return _offsetDirection;
 			} 
 			set
 			{
-				SetValue( v =>  _offsetDirection = v, _offsetDirection, value,  "OffsetDirection");
+				SetValue( v =>  _offsetDirection = v, _offsetDirection, value,  "OffsetDirection", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 13)]
-		public ItemSet<IfcLengthMeasure> @OffsetValues 
+		public IItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _offsetValues;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _offsetValues;
+				Activate();
 				return _offsetValues;
 			} 
 		}	
@@ -83,9 +91,8 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -102,17 +109,11 @@ namespace Xbim.Ifc4.MaterialResource
                     _offsetDirection = (IfcLayerSetDirectionEnum) System.Enum.Parse(typeof (IfcLayerSetDirectionEnum), value.EnumVal, true);
 					return;
 				case 8: 
-					if (_offsetValues == null) _offsetValues = new ItemSet<IfcLengthMeasure>( this );
 					_offsetValues.InternalAdd(value.RealVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -121,55 +122,18 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialLayerWithOffsets
-            var root = (@IfcMaterialLayerWithOffsets)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialLayerWithOffsets left, @IfcMaterialLayerWithOffsets right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialLayerWithOffsets left, @IfcMaterialLayerWithOffsets right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialLayerWithOffsets x, @IfcMaterialLayerWithOffsets y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialLayerWithOffsets obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

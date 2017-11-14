@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcConnectionPointEccentricity : IIfcConnectionPointEccentricity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointEccentricity), 3)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (!EccentricityInX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInX.Value);
 			} 
+			set
+			{
+				EccentricityInX = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointEccentricity), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (!EccentricityInY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInY.Value);
 			} 
+			set
+			{
+				EccentricityInY = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConnectionPointEccentricity), 5)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ 
 		{ 
 			get
@@ -39,6 +60,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				if (!EccentricityInZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(EccentricityInZ.Value);
 			} 
+			set
+			{
+				EccentricityInZ = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

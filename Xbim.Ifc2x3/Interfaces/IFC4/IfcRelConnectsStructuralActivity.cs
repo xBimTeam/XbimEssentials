@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcRelConnectsStructuralActivity : IIfcRelConnectsStructuralActivity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralActivity), 5)]
 		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement 
 		{ 
 			get
@@ -29,13 +32,41 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					return ifcelement;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					RelatingElement = null;
+					return;
+				}	
+				var ifcelement = value as ProductExtension.IfcElement;
+				if (ifcelement != null) 
+				{
+					RelatingElement = ifcelement;
+					return;
+				}
+				var ifcstructuralitem = value as IfcStructuralItem;
+				if (ifcstructuralitem != null) 
+				{
+					RelatingElement = ifcstructuralitem;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelConnectsStructuralActivity), 6)]
 		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity 
 		{ 
 			get
 			{
 				return RelatedStructuralActivity;
 			} 
+			set
+			{
+				RelatedStructuralActivity = value as IfcStructuralActivity;
+				
+			}
 		}
 	//## Custom code
 	//##

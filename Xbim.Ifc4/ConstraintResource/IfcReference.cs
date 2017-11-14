@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -27,99 +29,60 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReference : IPersistEntity, IfcAppliedValueSelect, IfcMetricValueSelect
 	{
-		IfcIdentifier? @TypeIdentifier { get; }
-		IfcIdentifier? @AttributeIdentifier { get; }
-		IfcLabel? @InstanceName { get; }
-		IEnumerable<IfcInteger> @ListPositions { get; }
-		IIfcReference @InnerReference { get; }
+		IfcIdentifier? @TypeIdentifier { get;  set; }
+		IfcIdentifier? @AttributeIdentifier { get;  set; }
+		IfcLabel? @InstanceName { get;  set; }
+		IItemSet<IfcInteger> @ListPositions { get; }
+		IIfcReference @InnerReference { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ConstraintResource
 {
-	[ExpressType("IfcReference", 899)]
+	[ExpressType("IfcReference", 1244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReference : INotifyPropertyChanged, IInstantiableEntity, IIfcReference, IEqualityComparer<@IfcReference>, IEquatable<@IfcReference>
+	public  partial class @IfcReference : PersistEntity, IInstantiableEntity, IIfcReference, IContainsEntityReferences, IEquatable<@IfcReference>
 	{
 		#region IIfcReference explicit implementation
-		IfcIdentifier? IIfcReference.TypeIdentifier { get { return @TypeIdentifier; } }	
-		IfcIdentifier? IIfcReference.AttributeIdentifier { get { return @AttributeIdentifier; } }	
-		IfcLabel? IIfcReference.InstanceName { get { return @InstanceName; } }	
-		IEnumerable<IfcInteger> IIfcReference.ListPositions { get { return @ListPositions; } }	
-		IIfcReference IIfcReference.InnerReference { get { return @InnerReference; } }	
+		IfcIdentifier? IIfcReference.TypeIdentifier { 
+ 
+			get { return @TypeIdentifier; } 
+			set { TypeIdentifier = value;}
+		}	
+		IfcIdentifier? IIfcReference.AttributeIdentifier { 
+ 
+			get { return @AttributeIdentifier; } 
+			set { AttributeIdentifier = value;}
+		}	
+		IfcLabel? IIfcReference.InstanceName { 
+ 
+			get { return @InstanceName; } 
+			set { InstanceName = value;}
+		}	
+		IItemSet<IfcInteger> IIfcReference.ListPositions { 
+			get { return @ListPositions; } 
+		}	
+		IIfcReference IIfcReference.InnerReference { 
+ 
+ 
+			get { return @InnerReference; } 
+			set { InnerReference = value as IfcReference;}
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcReference(IModel model) 		{ 
-			Model = model; 
-			_listPositions = new OptionalItemSet<IfcInteger>( this, 0 );
+		internal IfcReference(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_listPositions = new OptionalItemSet<IfcInteger>( this, 0,  4);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier? _typeIdentifier;
 		private IfcIdentifier? _attributeIdentifier;
 		private IfcLabel? _instanceName;
-		private OptionalItemSet<IfcInteger> _listPositions;
+		private readonly OptionalItemSet<IfcInteger> _listPositions;
 		private IfcReference _innerReference;
 		#endregion
 	
@@ -129,13 +92,13 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _typeIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _typeIdentifier;
+				Activate();
 				return _typeIdentifier;
 			} 
 			set
 			{
-				SetValue( v =>  _typeIdentifier = v, _typeIdentifier, value,  "TypeIdentifier");
+				SetValue( v =>  _typeIdentifier = v, _typeIdentifier, value,  "TypeIdentifier", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -143,13 +106,13 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _attributeIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _attributeIdentifier;
+				Activate();
 				return _attributeIdentifier;
 			} 
 			set
 			{
-				SetValue( v =>  _attributeIdentifier = v, _attributeIdentifier, value,  "AttributeIdentifier");
+				SetValue( v =>  _attributeIdentifier = v, _attributeIdentifier, value,  "AttributeIdentifier", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -157,22 +120,22 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _instanceName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _instanceName;
+				Activate();
 				return _instanceName;
 			} 
 			set
 			{
-				SetValue( v =>  _instanceName = v, _instanceName, value,  "InstanceName");
+				SetValue( v =>  _instanceName = v, _instanceName, value,  "InstanceName", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
-		public OptionalItemSet<IfcInteger> @ListPositions 
+		public IOptionalItemSet<IfcInteger> @ListPositions 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _listPositions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _listPositions;
+				Activate();
 				return _listPositions;
 			} 
 		}	
@@ -181,13 +144,15 @@ namespace Xbim.Ifc4.ConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _innerReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _innerReference;
+				Activate();
 				return _innerReference;
 			} 
 			set
 			{
-				SetValue( v =>  _innerReference = v, _innerReference, value,  "InnerReference");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _innerReference = v, _innerReference, value,  "InnerReference", 5);
 			} 
 		}	
 		#endregion
@@ -195,58 +160,8 @@ namespace Xbim.Ifc4.ConstraintResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -260,7 +175,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					_instanceName = value.StringVal;
 					return;
 				case 3: 
-					if (_listPositions == null) _listPositions = new OptionalItemSet<IfcInteger>( this );
 					_listPositions.InternalAdd(value.IntegerVal);
 					return;
 				case 4: 
@@ -270,11 +184,6 @@ namespace Xbim.Ifc4.ConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -282,55 +191,18 @@ namespace Xbim.Ifc4.ConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcReference
-            var root = (@IfcReference)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcReference left, @IfcReference right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcReference left, @IfcReference right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReference x, @IfcReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@InnerReference != null)
+					yield return @InnerReference;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

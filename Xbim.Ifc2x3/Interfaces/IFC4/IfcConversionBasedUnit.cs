@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcConversionBasedUnit : IIfcConversionBasedUnit
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcConversionBasedUnit), 3)]
 		Ifc4.MeasureResource.IfcLabel IIfcConversionBasedUnit.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcConversionBasedUnit), 4)]
 		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor 
 		{ 
 			get
 			{
 				return ConversionFactor;
 			} 
+			set
+			{
+				ConversionFactor = value as IfcMeasureWithUnit;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConversionBasedUnit.HasExternalReference 
 		{ 

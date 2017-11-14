@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,7 +28,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFaceBasedSurfaceModel : IIfcGeometricRepresentationItem, IfcSurfaceOrFaceSurface
 	{
-		IEnumerable<IIfcConnectedFaceSet> @FbsmFaces { get; }
+		IItemSet<IIfcConnectedFaceSet> @FbsmFaces { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -36,31 +38,33 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcFaceBasedSurfaceModel", 438)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IEqualityComparer<@IfcFaceBasedSurfaceModel>, IEquatable<@IfcFaceBasedSurfaceModel>
+	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFaceBasedSurfaceModel, IContainsEntityReferences, IEquatable<@IfcFaceBasedSurfaceModel>
 	{
 		#region IIfcFaceBasedSurfaceModel explicit implementation
-		IEnumerable<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { get { return @FbsmFaces; } }	
+		IItemSet<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { 
+			get { return new Common.Collections.ProxyItemSet<IfcConnectedFaceSet, IIfcConnectedFaceSet>( @FbsmFaces); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcFaceBasedSurfaceModel(IModel model) : base(model) 		{ 
-			Model = model; 
-			_fbsmFaces = new ItemSet<IfcConnectedFaceSet>( this, 0 );
+		internal IfcFaceBasedSurfaceModel(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_fbsmFaces = new ItemSet<IfcConnectedFaceSet>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcConnectedFaceSet> _fbsmFaces;
+		private readonly ItemSet<IfcConnectedFaceSet> _fbsmFaces;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcConnectedFaceSet> @FbsmFaces 
+		public IItemSet<IfcConnectedFaceSet> @FbsmFaces 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fbsmFaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fbsmFaces;
+				Activate();
 				return _fbsmFaces;
 			} 
 		}	
@@ -82,24 +86,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_fbsmFaces == null) _fbsmFaces = new ItemSet<IfcConnectedFaceSet>( this );
 					_fbsmFaces.InternalAdd((IfcConnectedFaceSet)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -108,55 +105,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcFaceBasedSurfaceModel
-            var root = (@IfcFaceBasedSurfaceModel)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcFaceBasedSurfaceModel left, @IfcFaceBasedSurfaceModel right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcFaceBasedSurfaceModel left, @IfcFaceBasedSurfaceModel right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFaceBasedSurfaceModel x, @IfcFaceBasedSurfaceModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFaceBasedSurfaceModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @FbsmFaces)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

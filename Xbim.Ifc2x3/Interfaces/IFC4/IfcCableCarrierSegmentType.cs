@@ -10,41 +10,71 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	public partial class @IfcCableCarrierSegmentType : IIfcCableCarrierSegmentType
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCableCarrierSegmentType), 10)]
 		Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum IIfcCableCarrierSegmentType.PredefinedType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
-					
 					case IfcCableCarrierSegmentTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED;
-					
 					case IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
+						return;
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
+						return;
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
+						return;
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
+						return;
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.USERDEFINED;
+						return;
+					case Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.NOTDEFINED:
+						PredefinedType = IfcCableCarrierSegmentTypeEnum.NOTDEFINED;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

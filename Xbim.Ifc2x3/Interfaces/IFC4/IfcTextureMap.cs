@@ -10,31 +10,46 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcTextureMap : IIfcTextureMap
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTextureMap), 2)]
 		IEnumerable<IIfcTextureVertex> IIfcTextureMap.Vertices 
 		{ 
 			get
 			{
 				//## Handle return of Vertices for which no match was found
-                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcTextureMapTransient(this).Vertices;
-				//##
+			    var map = TextureMaps.FirstOrDefault();
+			    return map == null ? Enumerable.Empty<IIfcTextureVertex>() : map.TextureVertices;
+			    //##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTextureMap), 3)]
 		IIfcFace IIfcTextureMap.MappedTo 
 		{ 
 			get
 			{
 				//## Handle return of MappedTo for which no match was found
-                return new Xbim.Ifc2x3.Interfaces.Conversions.IfcTextureMapTransient(this).MappedTo;
+                return _mappedTo ?? new  Interfaces.Conversions.IfcFaceTransient(TextureMaps.First());;
 				//##
 			} 
+			set
+			{
+				//## Handle setting of MappedTo for which no match was found
+                SetValue(v => _mappedTo = v, _mappedTo, value, "MappedTo", -3);
+			    //##
+				NotifyPropertyChanged("MappedTo");
+				
+			}
 		}
 	//## Custom code
-	//##
+	    private IIfcFace _mappedTo;
+	    //##
 	}
 }

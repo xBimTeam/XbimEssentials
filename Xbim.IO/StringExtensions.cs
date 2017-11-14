@@ -16,6 +16,7 @@ namespace Xbim.IO
             if (ext == ".xbim") return IfcStorageType.Xbim;
             if (ext == ".stp") return IfcStorageType.Stp;
             if (ext == ".stpzip") return IfcStorageType.StpZip;
+            if (ext.Contains("zip")) return IfcStorageType.Zip;
             return IfcStorageType.Invalid;
         }
     }

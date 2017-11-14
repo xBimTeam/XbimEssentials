@@ -17,6 +17,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ProcessExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,31 +28,48 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcEvent : IIfcProcess
 	{
-		IfcEventTypeEnum? @PredefinedType { get; }
-		IfcEventTriggerTypeEnum? @EventTriggerType { get; }
-		IfcLabel? @UserDefinedEventTriggerType { get; }
-		IIfcEventTime @EventOccurenceTime { get; }
+		IfcEventTypeEnum? @PredefinedType { get;  set; }
+		IfcEventTriggerTypeEnum? @EventTriggerType { get;  set; }
+		IfcLabel? @UserDefinedEventTriggerType { get;  set; }
+		IIfcEventTime @EventOccurenceTime { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IfcEvent", 635)]
+	[ExpressType("IfcEvent", 1168)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IEqualityComparer<@IfcEvent>, IEquatable<@IfcEvent>
+	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IIfcEvent, IContainsEntityReferences, IEquatable<@IfcEvent>
 	{
 		#region IIfcEvent explicit implementation
-		IfcEventTypeEnum? IIfcEvent.PredefinedType { get { return @PredefinedType; } }	
-		IfcEventTriggerTypeEnum? IIfcEvent.EventTriggerType { get { return @EventTriggerType; } }	
-		IfcLabel? IIfcEvent.UserDefinedEventTriggerType { get { return @UserDefinedEventTriggerType; } }	
-		IIfcEventTime IIfcEvent.EventOccurenceTime { get { return @EventOccurenceTime; } }	
+		IfcEventTypeEnum? IIfcEvent.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcEventTriggerTypeEnum? IIfcEvent.EventTriggerType { 
+ 
+			get { return @EventTriggerType; } 
+			set { EventTriggerType = value;}
+		}	
+		IfcLabel? IIfcEvent.UserDefinedEventTriggerType { 
+ 
+			get { return @UserDefinedEventTriggerType; } 
+			set { UserDefinedEventTriggerType = value;}
+		}	
+		IIfcEventTime IIfcEvent.EventOccurenceTime { 
+ 
+ 
+			get { return @EventOccurenceTime; } 
+			set { EventOccurenceTime = value as IfcEventTime;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcEvent(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcEvent(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -66,13 +85,13 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
@@ -80,13 +99,13 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eventTriggerType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eventTriggerType;
+				Activate();
 				return _eventTriggerType;
 			} 
 			set
 			{
-				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType");
+				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
@@ -94,13 +113,13 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedEventTriggerType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedEventTriggerType;
+				Activate();
 				return _userDefinedEventTriggerType;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType");
+				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 25)]
@@ -108,13 +127,15 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eventOccurenceTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eventOccurenceTime;
+				Activate();
 				return _eventOccurenceTime;
 			} 
 			set
 			{
-				SetValue( v =>  _eventOccurenceTime = v, _eventOccurenceTime, value,  "EventOccurenceTime");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _eventOccurenceTime = v, _eventOccurenceTime, value,  "EventOccurenceTime", 11);
 			} 
 		}	
 		#endregion
@@ -122,9 +143,8 @@ namespace Xbim.Ifc4.ProcessExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -153,13 +173,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:	CorrectPredefinedType : NOT(EXISTS(PredefinedType)) OR (PredefinedType <> IfcEventTypeEnum.USERDEFINED) OR ((PredefinedType = IfcEventTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		/*CorrectTypeAssigned:	CorrectTypeAssigned : NOT(EXISTS(EventTriggerType)) OR (EventTriggerType <> IfcEventTriggerTypeEnum.USERDEFINED) OR ((EventTriggerType = IfcEventTriggerTypeEnum.USERDEFINED) AND EXISTS(UserDefinedEventTriggerType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -167,55 +180,20 @@ namespace Xbim.Ifc4.ProcessExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcEvent
-            var root = (@IfcEvent)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcEvent left, @IfcEvent right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcEvent left, @IfcEvent right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcEvent x, @IfcEvent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcEvent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@EventOccurenceTime != null)
+					yield return @EventOccurenceTime;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

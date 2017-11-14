@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindow : IIfcWindow
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallHeight 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallHeight.Value);
 			} 
+			set
+			{
+				OverallHeight = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindow.OverallWidth 
 		{ 
 			get
@@ -31,33 +43,64 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!OverallWidth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth.Value);
 			} 
+			set
+			{
+				OverallWidth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcWindowTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 11)]
 		Ifc4.Interfaces.IfcWindowTypeEnum? IIfcWindow.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.Interfaces.IfcWindowTypeEnum.NOTDEFINED;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcWindowTypePartitioningEnum? _partitioningType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 12)]
 		Ifc4.Interfaces.IfcWindowTypePartitioningEnum? IIfcWindow.PartitioningType 
 		{ 
 			get
 			{
-				//## Handle return of PartitioningType for which no match was found
-                return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.NOTDEFINED;
-				//##
+				return _partitioningType;
 			} 
+			set
+			{
+				SetValue(v => _partitioningType = v, _partitioningType, value, "PartitioningType", -12);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _userDefinedPartitioningType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcWindow), 13)]
 		Ifc4.MeasureResource.IfcLabel? IIfcWindow.UserDefinedPartitioningType 
 		{ 
 			get
 			{
-				//## Handle return of UserDefinedPartitioningType for which no match was found
-                return null;
-				//##
+				return _userDefinedPartitioningType;
 			} 
+			set
+			{
+				SetValue(v => _userDefinedPartitioningType = v, _userDefinedPartitioningType, value, "UserDefinedPartitioningType", -13);
+				
+			}
 		}
 	//## Custom code
 

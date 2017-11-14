@@ -10,20 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcControl : IIfcControl
 	{
+
+		private  Ifc4.MeasureResource.IfcIdentifier? _identification;
+
+
+		[CrossSchemaAttribute(typeof(IIfcControl), 6)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcControl.Identification 
 		{ 
 			get
 			{
-				//## Handle return of Identification for which no match was found
-			    return null;
-			    //##
+				return _identification;
 			} 
+			set
+			{
+				SetValue(v => _identification = v, _identification, value, "Identification", -6);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls 
 		{ 

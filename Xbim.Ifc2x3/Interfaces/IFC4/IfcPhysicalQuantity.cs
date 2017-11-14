@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalQuantity : IIfcPhysicalQuantity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalQuantity), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcPhysicalQuantity.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalQuantity), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcPhysicalQuantity.Description 
 		{ 
 			get
@@ -30,6 +40,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPhysicalQuantity.HasExternalReferences 
 		{ 
@@ -46,6 +63,7 @@ namespace Xbim.Ifc2x3.QuantityResource
 			} 
 		}
 	//## Custom code
+       
 	//##
 	}
 }

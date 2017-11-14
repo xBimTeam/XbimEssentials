@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcMaterialDefinitionRepresentation : IIfcMaterialDefinitionRepresentation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMaterialDefinitionRepresentation), 4)]
 		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial 
 		{ 
 			get
 			{
 				return RepresentedMaterial;
 			} 
+			set
+			{
+				RepresentedMaterial = value as MaterialResource.IfcMaterial;
+				
+			}
 		}
 	//## Custom code
 	//##

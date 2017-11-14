@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPhysicalComplexQuantity : IIfcPhysicalQuantity
 	{
-		IEnumerable<IIfcPhysicalQuantity> @HasQuantities { get; }
-		IfcLabel @Discrimination { get; }
-		IfcLabel? @Quality { get; }
-		IfcLabel? @Usage { get; }
+		IItemSet<IIfcPhysicalQuantity> @HasQuantities { get; }
+		IfcLabel @Discrimination { get;  set; }
+		IfcLabel? @Quality { get;  set; }
+		IfcLabel? @Usage { get;  set; }
 	
 	}
 }
@@ -36,24 +38,38 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcPhysicalComplexQuantity", 604)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IEqualityComparer<@IfcPhysicalComplexQuantity>, IEquatable<@IfcPhysicalComplexQuantity>
+	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPhysicalComplexQuantity>
 	{
 		#region IIfcPhysicalComplexQuantity explicit implementation
-		IEnumerable<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { get { return @HasQuantities; } }	
-		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { get { return @Discrimination; } }	
-		IfcLabel? IIfcPhysicalComplexQuantity.Quality { get { return @Quality; } }	
-		IfcLabel? IIfcPhysicalComplexQuantity.Usage { get { return @Usage; } }	
+		IItemSet<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { 
+			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @HasQuantities); } 
+		}	
+		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { 
+ 
+			get { return @Discrimination; } 
+			set { Discrimination = value;}
+		}	
+		IfcLabel? IIfcPhysicalComplexQuantity.Quality { 
+ 
+			get { return @Quality; } 
+			set { Quality = value;}
+		}	
+		IfcLabel? IIfcPhysicalComplexQuantity.Usage { 
+ 
+			get { return @Usage; } 
+			set { Usage = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPhysicalComplexQuantity(IModel model) : base(model) 		{ 
-			Model = model; 
-			_hasQuantities = new ItemSet<IfcPhysicalQuantity>( this, 0 );
+		internal IfcPhysicalComplexQuantity(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_hasQuantities = new ItemSet<IfcPhysicalQuantity>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcPhysicalQuantity> _hasQuantities;
+		private readonly ItemSet<IfcPhysicalQuantity> _hasQuantities;
 		private IfcLabel _discrimination;
 		private IfcLabel? _quality;
 		private IfcLabel? _usage;
@@ -62,12 +78,12 @@ namespace Xbim.Ifc2x3.QuantityResource
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcPhysicalQuantity> @HasQuantities 
+		public IItemSet<IfcPhysicalQuantity> @HasQuantities 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasQuantities;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasQuantities;
+				Activate();
 				return _hasQuantities;
 			} 
 		}	
@@ -76,13 +92,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _discrimination;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _discrimination;
+				Activate();
 				return _discrimination;
 			} 
 			set
 			{
-				SetValue( v =>  _discrimination = v, _discrimination, value,  "Discrimination");
+				SetValue( v =>  _discrimination = v, _discrimination, value,  "Discrimination", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -90,13 +106,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _quality;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _quality;
+				Activate();
 				return _quality;
 			} 
 			set
 			{
-				SetValue( v =>  _quality = v, _quality, value,  "Quality");
+				SetValue( v =>  _quality = v, _quality, value,  "Quality", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -104,13 +120,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usage;
+				Activate();
 				return _usage;
 			} 
 			set
 			{
-				SetValue( v =>  _usage = v, _usage, value,  "Usage");
+				SetValue( v =>  _usage = v, _usage, value,  "Usage", 6);
 			} 
 		}	
 		#endregion
@@ -118,9 +134,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -129,7 +144,6 @@ namespace Xbim.Ifc2x3.QuantityResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_hasQuantities == null) _hasQuantities = new ItemSet<IfcPhysicalQuantity>( this );
 					_hasQuantities.InternalAdd((IfcPhysicalQuantity)value.EntityVal);
 					return;
 				case 3: 
@@ -145,12 +159,6 @@ namespace Xbim.Ifc2x3.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:	WR21 : SIZEOF(QUERY(temp <* HasQuantities | SELF :=: temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -158,55 +166,31 @@ namespace Xbim.Ifc2x3.QuantityResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPhysicalComplexQuantity
-            var root = (@IfcPhysicalComplexQuantity)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPhysicalComplexQuantity left, @IfcPhysicalComplexQuantity right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPhysicalComplexQuantity left, @IfcPhysicalComplexQuantity right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPhysicalComplexQuantity x, @IfcPhysicalComplexQuantity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPhysicalComplexQuantity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @HasQuantities)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasQuantities)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

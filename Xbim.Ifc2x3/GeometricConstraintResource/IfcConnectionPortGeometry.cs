@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionPortGeometry : IIfcConnectionGeometry
 	{
-		IIfcAxis2Placement @LocationAtRelatingElement { get; }
-		IIfcAxis2Placement @LocationAtRelatedElement { get; }
-		IIfcProfileDef @ProfileOfPort { get; }
+		IIfcAxis2Placement @LocationAtRelatingElement { get;  set; }
+		IIfcAxis2Placement @LocationAtRelatedElement { get;  set; }
+		IIfcProfileDef @ProfileOfPort { get;  set; }
 	
 	}
 }
@@ -36,18 +38,33 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPortGeometry", 713)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IEqualityComparer<@IfcConnectionPortGeometry>, IEquatable<@IfcConnectionPortGeometry>
+	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionPortGeometry>
 	{
 		#region IIfcConnectionPortGeometry explicit implementation
-		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { get { return @LocationAtRelatingElement; } }	
-		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatedElement { get { return @LocationAtRelatedElement; } }	
-		IIfcProfileDef IIfcConnectionPortGeometry.ProfileOfPort { get { return @ProfileOfPort; } }	
+		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { 
+ 
+ 
+			get { return @LocationAtRelatingElement; } 
+			set { LocationAtRelatingElement = value as IfcAxis2Placement;}
+		}	
+		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatedElement { 
+ 
+ 
+			get { return @LocationAtRelatedElement; } 
+			set { LocationAtRelatedElement = value as IfcAxis2Placement;}
+		}	
+		IIfcProfileDef IIfcConnectionPortGeometry.ProfileOfPort { 
+ 
+ 
+			get { return @ProfileOfPort; } 
+			set { ProfileOfPort = value as IfcProfileDef;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConnectionPortGeometry(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcConnectionPortGeometry(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +79,15 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _locationAtRelatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _locationAtRelatingElement;
+				Activate();
 				return _locationAtRelatingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _locationAtRelatingElement = v, _locationAtRelatingElement, value,  "LocationAtRelatingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _locationAtRelatingElement = v, _locationAtRelatingElement, value,  "LocationAtRelatingElement", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -76,13 +95,15 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _locationAtRelatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _locationAtRelatedElement;
+				Activate();
 				return _locationAtRelatedElement;
 			} 
 			set
 			{
-				SetValue( v =>  _locationAtRelatedElement = v, _locationAtRelatedElement, value,  "LocationAtRelatedElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _locationAtRelatedElement = v, _locationAtRelatedElement, value,  "LocationAtRelatedElement", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -90,13 +111,15 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileOfPort;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileOfPort;
+				Activate();
 				return _profileOfPort;
 			} 
 			set
 			{
-				SetValue( v =>  _profileOfPort = v, _profileOfPort, value,  "ProfileOfPort");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _profileOfPort = v, _profileOfPort, value,  "ProfileOfPort", 3);
 			} 
 		}	
 		#endregion
@@ -104,9 +127,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -123,11 +145,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -135,55 +152,22 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConnectionPortGeometry
-            var root = (@IfcConnectionPortGeometry)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConnectionPortGeometry left, @IfcConnectionPortGeometry right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConnectionPortGeometry left, @IfcConnectionPortGeometry right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionPortGeometry x, @IfcConnectionPortGeometry y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionPortGeometry obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@LocationAtRelatingElement != null)
+					yield return @LocationAtRelatingElement;
+				if (@LocationAtRelatedElement != null)
+					yield return @LocationAtRelatedElement;
+				if (@ProfileOfPort != null)
+					yield return @ProfileOfPort;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

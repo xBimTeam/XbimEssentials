@@ -71,12 +71,16 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Esent.Interop, Version=1.9.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\ManagedEsent.1.9.2.0\lib\net40\Esent.Interop.dll</HintPath>
+    <Reference Include="Esent.Interop, Version=1.9.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ManagedEsent.1.9.4\lib\net40\Esent.Interop.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -94,11 +98,14 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Delta\TransactionLog.cs" />
     <Compile Include="Esent\EsentGeometryStore.cs" />
     <Compile Include="Esent\EsentGeometryInitialiser.cs" />
     <Compile Include="Esent\EsentGeometryStoreReader.cs" />
     <Compile Include="Esent\XbimSurfaceStyle.cs" />
     <Compile Include="Esent\XbimSurfaceStyleMap.cs" />
+    <Compile Include="Memory\MemoryInverseCache.cs" />
+    <Compile Include="ModelHelper.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="FileReferenceResolver.cs" />
     <Compile Include="JSON\JSONWritter.cs" />
@@ -145,7 +152,7 @@
     <Compile Include="Step21\Parser\StepP21Entity.cs" />
     <Compile Include="Step21\Parser\StepP21Lex.cs" />
     <Compile Include="Step21\Parser\StepP21Parser.cs" />
-    <Compile Include="Step21\Part21FileWriter.cs" />
+    <Compile Include="Step21\Part21Writer.cs" />
     <Compile Include="Step21\Part21Formatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeExtensions.cs" />
@@ -185,7 +192,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Step21\Parser\MAKEPARSER.BAT" />
-    <None Include="Step21\Parser\StepP21IndexerLex.lex" />
     <None Include="Step21\Parser\StepP21Lex.lex" />
     <None Include="Step21\Parser\StepP21Parser.y" />
     <None Include="XbimOpenSourceKeyFile.snk" />

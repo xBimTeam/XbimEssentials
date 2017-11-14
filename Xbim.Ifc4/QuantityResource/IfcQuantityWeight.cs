@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.QuantityResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityWeight : IIfcPhysicalSimpleQuantity
 	{
-		IfcMassMeasure @WeightValue { get; }
-		IfcLabel? @Formula { get; }
+		IfcMassMeasure @WeightValue { get;  set; }
+		IfcLabel? @Formula { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.QuantityResource
 {
-	[ExpressType("IfcQuantityWeight", 885)]
+	[ExpressType("IfcQuantityWeight", 603)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IEqualityComparer<@IfcQuantityWeight>, IEquatable<@IfcQuantityWeight>
+	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IContainsEntityReferences, IEquatable<@IfcQuantityWeight>
 	{
 		#region IIfcQuantityWeight explicit implementation
-		IfcMassMeasure IIfcQuantityWeight.WeightValue { get { return @WeightValue; } }	
-		IfcLabel? IIfcQuantityWeight.Formula { get { return @Formula; } }	
+		IfcMassMeasure IIfcQuantityWeight.WeightValue { 
+ 
+			get { return @WeightValue; } 
+			set { WeightValue = value;}
+		}	
+		IfcLabel? IIfcQuantityWeight.Formula { 
+ 
+			get { return @Formula; } 
+			set { Formula = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcQuantityWeight(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcQuantityWeight(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +68,13 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _weightValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _weightValue;
+				Activate();
 				return _weightValue;
 			} 
 			set
 			{
-				SetValue( v =>  _weightValue = v, _weightValue, value,  "WeightValue");
+				SetValue( v =>  _weightValue = v, _weightValue, value,  "WeightValue", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -72,13 +82,13 @@ namespace Xbim.Ifc4.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _formula;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _formula;
+				Activate();
 				return _formula;
 			} 
 			set
 			{
-				SetValue( v =>  _formula = v, _formula, value,  "Formula");
+				SetValue( v =>  _formula = v, _formula, value,  "Formula", 5);
 			} 
 		}	
 		#endregion
@@ -86,9 +96,8 @@ namespace Xbim.Ifc4.QuantityResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -107,13 +116,6 @@ namespace Xbim.Ifc4.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:   (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.MASSUNIT);*/
-		/*WR22:	WR22 : WeightValue >= 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -121,55 +123,18 @@ namespace Xbim.Ifc4.QuantityResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcQuantityWeight
-            var root = (@IfcQuantityWeight)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcQuantityWeight left, @IfcQuantityWeight right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcQuantityWeight left, @IfcQuantityWeight right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityWeight x, @IfcQuantityWeight y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityWeight obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

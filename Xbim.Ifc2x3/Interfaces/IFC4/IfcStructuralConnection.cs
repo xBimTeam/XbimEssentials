@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralConnection : IIfcStructuralConnection
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralConnection), 8)]
 		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition 
 		{ 
 			get
 			{
 				return AppliedCondition;
 			} 
+			set
+			{
+				AppliedCondition = value as StructuralLoadResource.IfcBoundaryCondition;
+				
+			}
 		}
 		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers 
 		{ 

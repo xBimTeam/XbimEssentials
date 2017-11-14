@@ -18,6 +18,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedFacilitiesElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -27,42 +29,67 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcInventory : IIfcGroup
 	{
-		IfcInventoryTypeEnum? @PredefinedType { get; }
-		IIfcActorSelect @Jurisdiction { get; }
-		IEnumerable<IIfcPerson> @ResponsiblePersons { get; }
-		IfcDate? @LastUpdateDate { get; }
-		IIfcCostValue @CurrentValue { get; }
-		IIfcCostValue @OriginalValue { get; }
+		IfcInventoryTypeEnum? @PredefinedType { get;  set; }
+		IIfcActorSelect @Jurisdiction { get;  set; }
+		IItemSet<IIfcPerson> @ResponsiblePersons { get; }
+		IfcDate? @LastUpdateDate { get;  set; }
+		IIfcCostValue @CurrentValue { get;  set; }
+		IIfcCostValue @OriginalValue { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.SharedFacilitiesElements
 {
-	[ExpressType("IfcInventory", 720)]
+	[ExpressType("IfcInventory", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IEqualityComparer<@IfcInventory>, IEquatable<@IfcInventory>
+	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IContainsEntityReferences, IEquatable<@IfcInventory>
 	{
 		#region IIfcInventory explicit implementation
-		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { get { return @PredefinedType; } }	
-		IIfcActorSelect IIfcInventory.Jurisdiction { get { return @Jurisdiction; } }	
-		IEnumerable<IIfcPerson> IIfcInventory.ResponsiblePersons { get { return @ResponsiblePersons; } }	
-		IfcDate? IIfcInventory.LastUpdateDate { get { return @LastUpdateDate; } }	
-		IIfcCostValue IIfcInventory.CurrentValue { get { return @CurrentValue; } }	
-		IIfcCostValue IIfcInventory.OriginalValue { get { return @OriginalValue; } }	
+		IfcInventoryTypeEnum? IIfcInventory.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IIfcActorSelect IIfcInventory.Jurisdiction { 
+ 
+ 
+			get { return @Jurisdiction; } 
+			set { Jurisdiction = value as IfcActorSelect;}
+		}	
+		IItemSet<IIfcPerson> IIfcInventory.ResponsiblePersons { 
+			get { return new Common.Collections.ProxyItemSet<IfcPerson, IIfcPerson>( @ResponsiblePersons); } 
+		}	
+		IfcDate? IIfcInventory.LastUpdateDate { 
+ 
+			get { return @LastUpdateDate; } 
+			set { LastUpdateDate = value;}
+		}	
+		IIfcCostValue IIfcInventory.CurrentValue { 
+ 
+ 
+			get { return @CurrentValue; } 
+			set { CurrentValue = value as IfcCostValue;}
+		}	
+		IIfcCostValue IIfcInventory.OriginalValue { 
+ 
+ 
+			get { return @OriginalValue; } 
+			set { OriginalValue = value as IfcCostValue;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcInventory(IModel model) : base(model) 		{ 
-			Model = model; 
-			_responsiblePersons = new OptionalItemSet<IfcPerson>( this, 0 );
+		internal IfcInventory(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_responsiblePersons = new OptionalItemSet<IfcPerson>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcInventoryTypeEnum? _predefinedType;
 		private IfcActorSelect _jurisdiction;
-		private OptionalItemSet<IfcPerson> _responsiblePersons;
+		private readonly OptionalItemSet<IfcPerson> _responsiblePersons;
 		private IfcDate? _lastUpdateDate;
 		private IfcCostValue _currentValue;
 		private IfcCostValue _originalValue;
@@ -74,13 +101,13 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
@@ -88,22 +115,24 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jurisdiction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _jurisdiction;
+				Activate();
 				return _jurisdiction;
 			} 
 			set
 			{
-				SetValue( v =>  _jurisdiction = v, _jurisdiction, value,  "Jurisdiction");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _jurisdiction = v, _jurisdiction, value,  "Jurisdiction", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
-		public OptionalItemSet<IfcPerson> @ResponsiblePersons 
+		public IOptionalItemSet<IfcPerson> @ResponsiblePersons 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _responsiblePersons;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _responsiblePersons;
+				Activate();
 				return _responsiblePersons;
 			} 
 		}	
@@ -112,13 +141,13 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lastUpdateDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lastUpdateDate;
+				Activate();
 				return _lastUpdateDate;
 			} 
 			set
 			{
-				SetValue( v =>  _lastUpdateDate = v, _lastUpdateDate, value,  "LastUpdateDate");
+				SetValue( v =>  _lastUpdateDate = v, _lastUpdateDate, value,  "LastUpdateDate", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
@@ -126,13 +155,15 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _currentValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _currentValue;
+				Activate();
 				return _currentValue;
 			} 
 			set
 			{
-				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 23)]
@@ -140,13 +171,15 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _originalValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _originalValue;
+				Activate();
 				return _originalValue;
 			} 
 			set
 			{
-				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue", 11);
 			} 
 		}	
 		#endregion
@@ -154,9 +187,8 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -174,7 +206,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 					_jurisdiction = (IfcActorSelect)(value.EntityVal);
 					return;
 				case 7: 
-					if (_responsiblePersons == null) _responsiblePersons = new OptionalItemSet<IfcPerson>( this );
 					_responsiblePersons.InternalAdd((IfcPerson)value.EntityVal);
 					return;
 				case 8: 
@@ -190,11 +221,6 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -202,55 +228,26 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcInventory
-            var root = (@IfcInventory)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcInventory left, @IfcInventory right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcInventory left, @IfcInventory right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcInventory x, @IfcInventory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcInventory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@Jurisdiction != null)
+					yield return @Jurisdiction;
+				foreach(var entity in @ResponsiblePersons)
+					yield return entity;
+				if (@CurrentValue != null)
+					yield return @CurrentValue;
+				if (@OriginalValue != null)
+					yield return @OriginalValue;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

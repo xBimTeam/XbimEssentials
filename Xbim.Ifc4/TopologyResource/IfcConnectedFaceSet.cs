@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.TopologyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,40 +25,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectedFaceSet : IIfcTopologicalRepresentationItem
 	{
-		IEnumerable<IIfcFace> @CfsFaces { get; }
+		IItemSet<IIfcFace> @CfsFaces { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.TopologyResource
 {
-	[ExpressType("IfcConnectedFaceSet", 516)]
+	[ExpressType("IfcConnectedFaceSet", 160)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IEqualityComparer<@IfcConnectedFaceSet>, IEquatable<@IfcConnectedFaceSet>
+	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IContainsEntityReferences, IEquatable<@IfcConnectedFaceSet>
 	{
 		#region IIfcConnectedFaceSet explicit implementation
-		IEnumerable<IIfcFace> IIfcConnectedFaceSet.CfsFaces { get { return @CfsFaces; } }	
+		IItemSet<IIfcFace> IIfcConnectedFaceSet.CfsFaces { 
+			get { return new Common.Collections.ProxyItemSet<IfcFace, IIfcFace>( @CfsFaces); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConnectedFaceSet(IModel model) : base(model) 		{ 
-			Model = model; 
-			_cfsFaces = new ItemSet<IfcFace>( this, 0 );
+		internal IfcConnectedFaceSet(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_cfsFaces = new ItemSet<IfcFace>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcFace> _cfsFaces;
+		private readonly ItemSet<IfcFace> _cfsFaces;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcFace> @CfsFaces 
+		public IItemSet<IfcFace> @CfsFaces 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _cfsFaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _cfsFaces;
+				Activate();
 				return _cfsFaces;
 			} 
 		}	
@@ -65,24 +69,17 @@ namespace Xbim.Ifc4.TopologyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_cfsFaces == null) _cfsFaces = new ItemSet<IfcFace>( this );
 					_cfsFaces.InternalAdd((IfcFace)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -91,55 +88,18 @@ namespace Xbim.Ifc4.TopologyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConnectedFaceSet
-            var root = (@IfcConnectedFaceSet)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConnectedFaceSet left, @IfcConnectedFaceSet right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConnectedFaceSet left, @IfcConnectedFaceSet right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectedFaceSet x, @IfcConnectedFaceSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectedFaceSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @CfsFaces)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	public partial class @IfcTask : IIfcTask
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTask.Status 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!Status.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Status.Value);
 			} 
+			set
+			{
+				Status = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 9)]
 		Ifc4.MeasureResource.IfcLabel? IIfcTask.WorkMethod 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				if (!WorkMethod.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(WorkMethod.Value);
 			} 
+			set
+			{
+				WorkMethod = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 10)]
 		Ifc4.MeasureResource.IfcBoolean IIfcTask.IsMilestone 
 		{ 
 			get
@@ -40,7 +61,14 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return new Ifc4.MeasureResource.IfcBoolean(IsMilestone);
 				//##
 			} 
+			set
+			{
+				IsMilestone = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 11)]
 		Ifc4.MeasureResource.IfcInteger? IIfcTask.Priority 
 		{ 
 			get
@@ -49,24 +77,45 @@ namespace Xbim.Ifc2x3.ProcessExtension
                 return Priority.HasValue ? new Ifc4.MeasureResource.IfcInteger(Priority.Value) : (Ifc4.MeasureResource.IfcInteger?)null;
 				//##
 			} 
+			set
+			{
+				Priority = value;
+				
+			}
 		}
+
+		private  IIfcTaskTime _taskTime;
+
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 12)]
 		IIfcTaskTime IIfcTask.TaskTime 
 		{ 
 			get
 			{
-				//## Handle return of TaskTime for which no match was found
-                return null;
-				//##
+				return _taskTime;
 			} 
+			set
+			{
+				SetValue(v => _taskTime = v, _taskTime, value, "TaskTime", -12);
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcTaskTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcTask), 13)]
 		Ifc4.Interfaces.IfcTaskTypeEnum? IIfcTask.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-				return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -13);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,14 +26,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSurfaceStyleRendering : IIfcSurfaceStyleShading
 	{
-		IfcNormalisedRatioMeasure? @Transparency { get; }
-		IIfcColourOrFactor @DiffuseColour { get; }
-		IIfcColourOrFactor @TransmissionColour { get; }
-		IIfcColourOrFactor @DiffuseTransmissionColour { get; }
-		IIfcColourOrFactor @ReflectionColour { get; }
-		IIfcColourOrFactor @SpecularColour { get; }
-		IIfcSpecularHighlightSelect @SpecularHighlight { get; }
-		IfcReflectanceMethodEnum @ReflectanceMethod { get; }
+		IfcNormalisedRatioMeasure? @Transparency { get;  set; }
+		IIfcColourOrFactor @DiffuseColour { get;  set; }
+		IIfcColourOrFactor @TransmissionColour { get;  set; }
+		IIfcColourOrFactor @DiffuseTransmissionColour { get;  set; }
+		IIfcColourOrFactor @ReflectionColour { get;  set; }
+		IIfcColourOrFactor @SpecularColour { get;  set; }
+		IIfcSpecularHighlightSelect @SpecularHighlight { get;  set; }
+		IfcReflectanceMethodEnum @ReflectanceMethod { get;  set; }
 	
 	}
 }
@@ -40,23 +42,61 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRendering", 317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IEqualityComparer<@IfcSurfaceStyleRendering>, IEquatable<@IfcSurfaceStyleRendering>
+	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleRendering>
 	{
 		#region IIfcSurfaceStyleRendering explicit implementation
-		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { get { return @Transparency; } }	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { get { return @DiffuseColour; } }	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { get { return @TransmissionColour; } }	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { get { return @DiffuseTransmissionColour; } }	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour { get { return @ReflectionColour; } }	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { get { return @SpecularColour; } }	
-		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { get { return @SpecularHighlight; } }	
-		IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod { get { return @ReflectanceMethod; } }	
+		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { 
+ 
+			get { return @Transparency; } 
+			set { Transparency = value;}
+		}	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { 
+ 
+ 
+			get { return @DiffuseColour; } 
+			set { DiffuseColour = value as IfcColourOrFactor;}
+		}	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { 
+ 
+ 
+			get { return @TransmissionColour; } 
+			set { TransmissionColour = value as IfcColourOrFactor;}
+		}	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { 
+ 
+ 
+			get { return @DiffuseTransmissionColour; } 
+			set { DiffuseTransmissionColour = value as IfcColourOrFactor;}
+		}	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour { 
+ 
+ 
+			get { return @ReflectionColour; } 
+			set { ReflectionColour = value as IfcColourOrFactor;}
+		}	
+		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { 
+ 
+ 
+			get { return @SpecularColour; } 
+			set { SpecularColour = value as IfcColourOrFactor;}
+		}	
+		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { 
+ 
+ 
+			get { return @SpecularHighlight; } 
+			set { SpecularHighlight = value as IfcSpecularHighlightSelect;}
+		}	
+		IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod { 
+ 
+			get { return @ReflectanceMethod; } 
+			set { ReflectanceMethod = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSurfaceStyleRendering(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSurfaceStyleRendering(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -76,13 +116,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transparency;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transparency;
+				Activate();
 				return _transparency;
 			} 
 			set
 			{
-				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency");
+				SetValue( v =>  _transparency = v, _transparency, value,  "Transparency", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
@@ -90,13 +130,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseColour;
+				Activate();
 				return _diffuseColour;
 			} 
 			set
 			{
-				SetValue( v =>  _diffuseColour = v, _diffuseColour, value,  "DiffuseColour");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _diffuseColour = v, _diffuseColour, value,  "DiffuseColour", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -104,13 +147,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transmissionColour;
+				Activate();
 				return _transmissionColour;
 			} 
 			set
 			{
-				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _transmissionColour = v, _transmissionColour, value,  "TransmissionColour", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -118,13 +164,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _diffuseTransmissionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _diffuseTransmissionColour;
+				Activate();
 				return _diffuseTransmissionColour;
 			} 
 			set
 			{
-				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _diffuseTransmissionColour = v, _diffuseTransmissionColour, value,  "DiffuseTransmissionColour", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -132,13 +181,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reflectionColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reflectionColour;
+				Activate();
 				return _reflectionColour;
 			} 
 			set
 			{
-				SetValue( v =>  _reflectionColour = v, _reflectionColour, value,  "ReflectionColour");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _reflectionColour = v, _reflectionColour, value,  "ReflectionColour", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -146,13 +198,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _specularColour;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _specularColour;
+				Activate();
 				return _specularColour;
 			} 
 			set
 			{
-				SetValue( v =>  _specularColour = v, _specularColour, value,  "SpecularColour");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _specularColour = v, _specularColour, value,  "SpecularColour", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -160,13 +215,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _specularHighlight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _specularHighlight;
+				Activate();
 				return _specularHighlight;
 			} 
 			set
 			{
-				SetValue( v =>  _specularHighlight = v, _specularHighlight, value,  "SpecularHighlight");
+				SetValue( v =>  _specularHighlight = v, _specularHighlight, value,  "SpecularHighlight", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
@@ -174,13 +229,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reflectanceMethod;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reflectanceMethod;
+				Activate();
 				return _reflectanceMethod;
 			} 
 			set
 			{
-				SetValue( v =>  _reflectanceMethod = v, _reflectanceMethod, value,  "ReflectanceMethod");
+				SetValue( v =>  _reflectanceMethod = v, _reflectanceMethod, value,  "ReflectanceMethod", 9);
 			} 
 		}	
 		#endregion
@@ -188,9 +243,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -225,11 +279,6 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -237,55 +286,18 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSurfaceStyleRendering
-            var root = (@IfcSurfaceStyleRendering)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSurfaceStyleRendering left, @IfcSurfaceStyleRendering right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSurfaceStyleRendering left, @IfcSurfaceStyleRendering right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSurfaceStyleRendering x, @IfcSurfaceStyleRendering y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSurfaceStyleRendering obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SurfaceColour != null)
+					yield return @SurfaceColour;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

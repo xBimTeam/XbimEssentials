@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRectangleProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @XDim { get; }
-		IfcPositiveLengthMeasure @YDim { get; }
+		IfcPositiveLengthMeasure @XDim { get;  set; }
+		IfcPositiveLengthMeasure @YDim { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IfcRectangleProfileDef", 895)]
+	[ExpressType("IfcRectangleProfileDef", 103)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IEqualityComparer<@IfcRectangleProfileDef>, IEquatable<@IfcRectangleProfileDef>
+	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcRectangleProfileDef, IContainsEntityReferences, IEquatable<@IfcRectangleProfileDef>
 	{
 		#region IIfcRectangleProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim { get { return @XDim; } }	
-		IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim { get { return @YDim; } }	
+		IfcPositiveLengthMeasure IIfcRectangleProfileDef.XDim { 
+ 
+			get { return @XDim; } 
+			set { XDim = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRectangleProfileDef.YDim { 
+ 
+			get { return @YDim; } 
+			set { YDim = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRectangleProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRectangleProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +68,13 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xDim;
+				Activate();
 				return _xDim;
 			} 
 			set
 			{
-				SetValue( v =>  _xDim = v, _xDim, value,  "XDim");
+				SetValue( v =>  _xDim = v, _xDim, value,  "XDim", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -72,13 +82,13 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _yDim;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _yDim;
+				Activate();
 				return _yDim;
 			} 
 			set
 			{
-				SetValue( v =>  _yDim = v, _yDim, value,  "YDim");
+				SetValue( v =>  _yDim = v, _yDim, value,  "YDim", 5);
 			} 
 		}	
 		#endregion
@@ -86,9 +96,8 @@ namespace Xbim.Ifc4.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -107,11 +116,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -119,55 +123,18 @@ namespace Xbim.Ifc4.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRectangleProfileDef
-            var root = (@IfcRectangleProfileDef)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRectangleProfileDef left, @IfcRectangleProfileDef right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRectangleProfileDef left, @IfcRectangleProfileDef right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRectangleProfileDef x, @IfcRectangleProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRectangleProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

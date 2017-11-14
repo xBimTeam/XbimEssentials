@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcOrganization : IIfcOrganization
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOrganization), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcOrganization.Identification 
 		{ 
 			get
@@ -23,14 +26,30 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Id.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Id.Value);
 			} 
+			set
+			{
+				Id = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOrganization), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcOrganization.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOrganization), 3)]
 		Ifc4.MeasureResource.IfcText? IIfcOrganization.Description 
 		{ 
 			get
@@ -38,25 +57,32 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
-		IEnumerable<IIfcActorRole> IIfcOrganization.Roles 
+
+		[CrossSchemaAttribute(typeof(IIfcOrganization), 4)]
+		IItemSet<IIfcActorRole> IIfcOrganization.Roles 
 		{ 
 			get
 			{
-				foreach (var member in Roles)
-				{
-					yield return member as IIfcActorRole;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
-		IEnumerable<IIfcAddress> IIfcOrganization.Addresses 
+
+		[CrossSchemaAttribute(typeof(IIfcOrganization), 5)]
+		IItemSet<IIfcAddress> IIfcOrganization.Addresses 
 		{ 
 			get
 			{
-				foreach (var member in Addresses)
-				{
-					yield return member as IIfcAddress;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>(Addresses);
 			} 
 		}
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy 

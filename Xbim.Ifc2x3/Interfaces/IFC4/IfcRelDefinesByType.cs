@@ -10,28 +10,36 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelDefinesByType : IIfcRelDefinesByType
 	{
-		IEnumerable<IIfcObject> IIfcRelDefinesByType.RelatedObjects 
+
+		[CrossSchemaAttribute(typeof(IIfcRelDefinesByType), 5)]
+		IItemSet<IIfcObject> IIfcRelDefinesByType.RelatedObjects 
 		{ 
 			get
 			{
-				foreach (var member in RelatedObjects)
-				{
-					yield return member as IIfcObject;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcObject, IIfcObject>(RelatedObjects);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelDefinesByType), 6)]
 		IIfcTypeObject IIfcRelDefinesByType.RelatingType 
 		{ 
 			get
 			{
 				return RelatingType;
 			} 
+			set
+			{
+				RelatingType = value as IfcTypeObject;
+				
+			}
 		}
 	//## Custom code
 	//##

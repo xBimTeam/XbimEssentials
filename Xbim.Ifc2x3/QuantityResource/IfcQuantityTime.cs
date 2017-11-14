@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcQuantityTime : IIfcPhysicalSimpleQuantity
 	{
-		IfcTimeMeasure @TimeValue { get; }
+		IfcTimeMeasure @TimeValue { get;  set; }
 	
 	}
 }
@@ -33,16 +35,20 @@ namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityTime", 254)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IEqualityComparer<@IfcQuantityTime>, IEquatable<@IfcQuantityTime>
+	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IContainsEntityReferences, IEquatable<@IfcQuantityTime>
 	{
 		#region IIfcQuantityTime explicit implementation
-		IfcTimeMeasure IIfcQuantityTime.TimeValue { get { return @TimeValue; } }	
+		IfcTimeMeasure IIfcQuantityTime.TimeValue { 
+ 
+			get { return @TimeValue; } 
+			set { TimeValue = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcQuantityTime(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcQuantityTime(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -55,13 +61,13 @@ namespace Xbim.Ifc2x3.QuantityResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeValue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeValue;
+				Activate();
 				return _timeValue;
 			} 
 			set
 			{
-				SetValue( v =>  _timeValue = v, _timeValue, value,  "TimeValue");
+				SetValue( v =>  _timeValue = v, _timeValue, value,  "TimeValue", 4);
 			} 
 		}	
 		#endregion
@@ -69,9 +75,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -87,13 +92,6 @@ namespace Xbim.Ifc2x3.QuantityResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR21:                (SELF\IfcPhysicalSimpleQuantity.Unit.UnitType = IfcUnitEnum.TIMEUNIT);*/
-		/*WR22:	WR22 : TimeValue >= 0.;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -101,55 +99,18 @@ namespace Xbim.Ifc2x3.QuantityResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcQuantityTime
-            var root = (@IfcQuantityTime)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcQuantityTime left, @IfcQuantityTime right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcQuantityTime left, @IfcQuantityTime right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcQuantityTime x, @IfcQuantityTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcQuantityTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

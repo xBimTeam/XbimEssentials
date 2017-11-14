@@ -10,50 +10,59 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcGrid : IIfcGrid
 	{
-		IEnumerable<IIfcGridAxis> IIfcGrid.UAxes 
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 8)]
+		IItemSet<IIfcGridAxis> IIfcGrid.UAxes 
 		{ 
 			get
 			{
-				foreach (var member in UAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(UAxes);
 			} 
 		}
-		IEnumerable<IIfcGridAxis> IIfcGrid.VAxes 
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 9)]
+		IItemSet<IIfcGridAxis> IIfcGrid.VAxes 
 		{ 
 			get
 			{
-				foreach (var member in VAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(VAxes);
 			} 
 		}
-		IEnumerable<IIfcGridAxis> IIfcGrid.WAxes 
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 10)]
+		IItemSet<IIfcGridAxis> IIfcGrid.WAxes 
 		{ 
 			get
 			{
-				foreach (var member in WAxes)
-				{
-					yield return member as IIfcGridAxis;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometricConstraintResource.IfcGridAxis, IIfcGridAxis>(WAxes);
 			} 
 		}
+
+		private  Ifc4.Interfaces.IfcGridTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcGrid), 11)]
 		Ifc4.Interfaces.IfcGridTypeEnum? IIfcGrid.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure 
 		{ 

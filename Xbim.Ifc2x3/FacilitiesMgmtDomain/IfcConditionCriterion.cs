@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.FacilitiesMgmtDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConditionCriterion : IIfcControl
 	{
-		IIfcConditionCriterionSelect @Criterion { get; }
-		IIfcDateTimeSelect @CriterionDateTime { get; }
+		IIfcConditionCriterionSelect @Criterion { get;  set; }
+		IIfcDateTimeSelect @CriterionDateTime { get;  set; }
 	
 	}
 }
@@ -35,17 +37,27 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcConditionCriterion", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IEqualityComparer<@IfcConditionCriterion>, IEquatable<@IfcConditionCriterion>
+	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IContainsEntityReferences, IEquatable<@IfcConditionCriterion>
 	{
 		#region IIfcConditionCriterion explicit implementation
-		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { get { return @Criterion; } }	
-		IIfcDateTimeSelect IIfcConditionCriterion.CriterionDateTime { get { return @CriterionDateTime; } }	
+		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { 
+ 
+ 
+			get { return @Criterion; } 
+			set { Criterion = value as IfcConditionCriterionSelect;}
+		}	
+		IIfcDateTimeSelect IIfcConditionCriterion.CriterionDateTime { 
+ 
+ 
+			get { return @CriterionDateTime; } 
+			set { CriterionDateTime = value as IfcDateTimeSelect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConditionCriterion(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcConditionCriterion(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +71,16 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _criterion;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _criterion;
+				Activate();
 				return _criterion;
 			} 
 			set
 			{
-				SetValue( v =>  _criterion = v, _criterion, value,  "Criterion");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _criterion = v, _criterion, value,  "Criterion", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -73,13 +88,15 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _criterionDateTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _criterionDateTime;
+				Activate();
 				return _criterionDateTime;
 			} 
 			set
 			{
-				SetValue( v =>  _criterionDateTime = v, _criterionDateTime, value,  "CriterionDateTime");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _criterionDateTime = v, _criterionDateTime, value,  "CriterionDateTime", 7);
 			} 
 		}	
 		#endregion
@@ -87,9 +104,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -110,12 +126,6 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(SELF\IfcRoot.Name);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -123,55 +133,20 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConditionCriterion
-            var root = (@IfcConditionCriterion)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConditionCriterion left, @IfcConditionCriterion right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConditionCriterion left, @IfcConditionCriterion right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConditionCriterion x, @IfcConditionCriterion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConditionCriterion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@CriterionDateTime != null)
+					yield return @CriterionDateTime;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

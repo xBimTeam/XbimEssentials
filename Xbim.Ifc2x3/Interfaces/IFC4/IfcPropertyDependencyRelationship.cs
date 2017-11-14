@@ -10,26 +10,43 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	public partial class @IfcPropertyDependencyRelationship : IIfcPropertyDependencyRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 3)]
 		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty 
 		{ 
 			get
 			{
 				return DependingProperty;
 			} 
+			set
+			{
+				DependingProperty = value as IfcProperty;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 4)]
 		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty 
 		{ 
 			get
 			{
 				return DependantProperty;
 			} 
+			set
+			{
+				DependantProperty = value as IfcProperty;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcPropertyDependencyRelationship.Expression 
 		{ 
 			get
@@ -37,24 +54,47 @@ namespace Xbim.Ifc2x3.PropertyResource
 				if (!Expression.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Expression.Value);
 			} 
+			set
+			{
+				Expression = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-                return Name.HasValue ? new Ifc4.MeasureResource.IfcLabel(Name.Value) : null;
-				//##
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPropertyDependencyRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-                return Description.HasValue ? new Ifc4.MeasureResource.IfcText(Description.Value) : null;
-				//##
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

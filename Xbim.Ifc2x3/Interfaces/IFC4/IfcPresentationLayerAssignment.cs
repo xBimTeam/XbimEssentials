@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcPresentationLayerAssignment : IIfcPresentationLayerAssignment
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcPresentationLayerAssignment.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcPresentationLayerAssignment.Description 
 		{ 
 			get
@@ -30,22 +40,26 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
-		IEnumerable<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 3)]
+		IItemSet<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems 
 		{ 
 			get
 			{
-				foreach (var member in AssignedItems)
-				{
-					var ifcrepresentationitem = member as GeometryResource.IfcRepresentationItem;
-					if (ifcrepresentationitem != null) 
-						yield return ifcrepresentationitem;
-					var ifcrepresentation = member as RepresentationResource.IfcRepresentation;
-					if (ifcrepresentation != null) 
-						yield return ifcrepresentation;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcLayeredItem, IIfcLayeredItem>(AssignedItems);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerAssignment), 4)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcPresentationLayerAssignment.Identifier 
 		{ 
 			get
@@ -53,6 +67,13 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				if (!Identifier.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Identifier.Value);
 			} 
+			set
+			{
+				Identifier = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

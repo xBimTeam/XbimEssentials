@@ -1,9 +1,12 @@
-﻿using Xbim.Ifc4.MeasureResource;
+﻿using System;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.Interfaces.Conversions
 {
     internal class IfcQuantityWeightTransient : IfcPhysicalSimpleQuantityTransient, Ifc4.Interfaces.IIfcQuantityWeight
     {
+        private readonly IfcMassMeasure _weightValue;
+
         internal IfcQuantityWeightTransient()
         {
         }
@@ -11,12 +14,21 @@ namespace Xbim.Ifc2x3.Interfaces.Conversions
         internal IfcQuantityWeightTransient(MeasureResource.IfcMeasureWithUnit measure)
         {
             var value = measure.ValueComponent;
-            Unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
+            _unit = measure.UnitComponent as Ifc4.Interfaces.IIfcNamedUnit;
             if (!(value is MeasureResource.IfcMassMeasure)) return;
-            WeightValue = new IfcMassMeasure((MeasureResource.IfcMassMeasure)value);
+            _weightValue = new IfcMassMeasure((MeasureResource.IfcMassMeasure)value);
         }
 
-        public IfcMassMeasure WeightValue { get; internal set; }
-        public IfcLabel? Formula { get; internal set; }
+        public IfcMassMeasure WeightValue
+        {
+            get { return _weightValue; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public IfcLabel? Formula
+        {
+            get { return null; }
+            set { throw new NotSupportedException(); }
+        }
     }
 }

@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.RepresentationResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,35 +26,59 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMapConversion : IIfcCoordinateOperation
 	{
-		IfcLengthMeasure @Eastings { get; }
-		IfcLengthMeasure @Northings { get; }
-		IfcLengthMeasure @OrthogonalHeight { get; }
-		IfcReal? @XAxisAbscissa { get; }
-		IfcReal? @XAxisOrdinate { get; }
-		IfcReal? @Scale { get; }
+		IfcLengthMeasure @Eastings { get;  set; }
+		IfcLengthMeasure @Northings { get;  set; }
+		IfcLengthMeasure @OrthogonalHeight { get;  set; }
+		IfcReal? @XAxisAbscissa { get;  set; }
+		IfcReal? @XAxisOrdinate { get;  set; }
+		IfcReal? @Scale { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.RepresentationResource
 {
-	[ExpressType("IfcMapConversion", 747)]
+	[ExpressType("IfcMapConversion", 1200)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IEqualityComparer<@IfcMapConversion>, IEquatable<@IfcMapConversion>
+	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IIfcMapConversion, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMapConversion>
 	{
 		#region IIfcMapConversion explicit implementation
-		IfcLengthMeasure IIfcMapConversion.Eastings { get { return @Eastings; } }	
-		IfcLengthMeasure IIfcMapConversion.Northings { get { return @Northings; } }	
-		IfcLengthMeasure IIfcMapConversion.OrthogonalHeight { get { return @OrthogonalHeight; } }	
-		IfcReal? IIfcMapConversion.XAxisAbscissa { get { return @XAxisAbscissa; } }	
-		IfcReal? IIfcMapConversion.XAxisOrdinate { get { return @XAxisOrdinate; } }	
-		IfcReal? IIfcMapConversion.Scale { get { return @Scale; } }	
+		IfcLengthMeasure IIfcMapConversion.Eastings { 
+ 
+			get { return @Eastings; } 
+			set { Eastings = value;}
+		}	
+		IfcLengthMeasure IIfcMapConversion.Northings { 
+ 
+			get { return @Northings; } 
+			set { Northings = value;}
+		}	
+		IfcLengthMeasure IIfcMapConversion.OrthogonalHeight { 
+ 
+			get { return @OrthogonalHeight; } 
+			set { OrthogonalHeight = value;}
+		}	
+		IfcReal? IIfcMapConversion.XAxisAbscissa { 
+ 
+			get { return @XAxisAbscissa; } 
+			set { XAxisAbscissa = value;}
+		}	
+		IfcReal? IIfcMapConversion.XAxisOrdinate { 
+ 
+			get { return @XAxisOrdinate; } 
+			set { XAxisOrdinate = value;}
+		}	
+		IfcReal? IIfcMapConversion.Scale { 
+ 
+			get { return @Scale; } 
+			set { Scale = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMapConversion(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMapConversion(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -70,13 +96,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eastings;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eastings;
+				Activate();
 				return _eastings;
 			} 
 			set
 			{
-				SetValue( v =>  _eastings = v, _eastings, value,  "Eastings");
+				SetValue( v =>  _eastings = v, _eastings, value,  "Eastings", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -84,13 +110,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _northings;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _northings;
+				Activate();
 				return _northings;
 			} 
 			set
 			{
-				SetValue( v =>  _northings = v, _northings, value,  "Northings");
+				SetValue( v =>  _northings = v, _northings, value,  "Northings", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -98,13 +124,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orthogonalHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orthogonalHeight;
+				Activate();
 				return _orthogonalHeight;
 			} 
 			set
 			{
-				SetValue( v =>  _orthogonalHeight = v, _orthogonalHeight, value,  "OrthogonalHeight");
+				SetValue( v =>  _orthogonalHeight = v, _orthogonalHeight, value,  "OrthogonalHeight", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -112,13 +138,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xAxisAbscissa;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xAxisAbscissa;
+				Activate();
 				return _xAxisAbscissa;
 			} 
 			set
 			{
-				SetValue( v =>  _xAxisAbscissa = v, _xAxisAbscissa, value,  "XAxisAbscissa");
+				SetValue( v =>  _xAxisAbscissa = v, _xAxisAbscissa, value,  "XAxisAbscissa", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -126,13 +152,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _xAxisOrdinate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _xAxisOrdinate;
+				Activate();
 				return _xAxisOrdinate;
 			} 
 			set
 			{
-				SetValue( v =>  _xAxisOrdinate = v, _xAxisOrdinate, value,  "XAxisOrdinate");
+				SetValue( v =>  _xAxisOrdinate = v, _xAxisOrdinate, value,  "XAxisOrdinate", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -140,13 +166,13 @@ namespace Xbim.Ifc4.RepresentationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale;
+				Activate();
 				return _scale;
 			} 
 			set
 			{
-				SetValue( v =>  _scale = v, _scale, value,  "Scale");
+				SetValue( v =>  _scale = v, _scale, value,  "Scale", 8);
 			} 
 		}	
 		#endregion
@@ -154,9 +180,8 @@ namespace Xbim.Ifc4.RepresentationResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -186,11 +211,6 @@ namespace Xbim.Ifc4.RepresentationResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -198,55 +218,33 @@ namespace Xbim.Ifc4.RepresentationResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMapConversion
-            var root = (@IfcMapConversion)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMapConversion left, @IfcMapConversion right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMapConversion left, @IfcMapConversion right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMapConversion x, @IfcMapConversion y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMapConversion obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SourceCRS != null)
+					yield return @SourceCRS;
+				if (@TargetCRS != null)
+					yield return @TargetCRS;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@SourceCRS != null)
+					yield return @SourceCRS;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

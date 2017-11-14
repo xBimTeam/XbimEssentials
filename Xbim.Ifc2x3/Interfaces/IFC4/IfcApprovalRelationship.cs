@@ -10,47 +10,79 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	public partial class @IfcApprovalRelationship : IIfcApprovalRelationship
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 3)]
 		IIfcApproval IIfcApprovalRelationship.RelatingApproval 
 		{ 
 			get
 			{
 				return RelatingApproval;
 			} 
+			set
+			{
+				RelatingApproval = value as IfcApproval;
+				
+			}
 		}
-		IEnumerable<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 4)]
+		IItemSet<IIfcApproval> IIfcApprovalRelationship.RelatedApprovals 
 		{ 
 			get
 			{
 				//## Handle return of RelatedApprovals for which no match was found
-				yield return RelatedApproval;
+                return _relatedApprovals ?? (_relatedApprovals =  new Common.Collections.ExtendedSingleSet<IfcApproval, IIfcApproval>(
+                    () => RelatedApproval, 
+                    approval => RelatedApproval = approval,
+                    new ItemSet<IIfcApproval>(this, 0, -4),
+                    s => s,
+                    t => t as IfcApproval
+                    ));
 				//##
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcResourceLevelRelationship.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return new Ifc4.MeasureResource.IfcLabel(Name);
-			    //##
+				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApprovalRelationship), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcResourceLevelRelationship.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return new Ifc4.MeasureResource.IfcText(Description);
-			    //##
+				if (!Description.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcApproval> _relatedApprovals;
+	    //##
 	}
 }

@@ -10,21 +10,32 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpace : IIfcSpace
 	{
+
+		private  Ifc4.Interfaces.IfcSpaceTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcSpace), 10)]
 		Ifc4.Interfaces.IfcSpaceTypeEnum? IIfcSpace.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSpace), 11)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcSpace.ElevationWithFlooring 
 		{ 
 			get
@@ -32,15 +43,30 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ElevationWithFlooring.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationWithFlooring.Value);
 			} 
+			set
+			{
+				ElevationWithFlooring = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSpace), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
-				//##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
+			set
+			{
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings 
 		{ 

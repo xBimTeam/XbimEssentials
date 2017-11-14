@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcCurveStyleFontAndScaling : IIfcCurveStyleFontAndScaling
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyleFontAndScaling), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcCurveStyleFontAndScaling.Name 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyleFontAndScaling), 2)]
 		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont 
 		{ 
 			get
@@ -37,13 +49,41 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 					return ifccurvestylefont;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					CurveFont = null;
+					return;
+				}	
+				var ifccurvestylefont = value as IfcCurveStyleFont;
+				if (ifccurvestylefont != null) 
+				{
+					CurveFont = ifccurvestylefont;
+					return;
+				}
+				var ifcpredefinedcurvefont = value as IfcPreDefinedCurveFont;
+				if (ifcpredefinedcurvefont != null) 
+				{
+					CurveFont = ifcpredefinedcurvefont;
+					return;
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveStyleFontAndScaling), 3)]
 		Ifc4.MeasureResource.IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveRatioMeasure(CurveFontScaling);
 			} 
+			set
+			{
+				CurveFontScaling = new MeasureResource.IfcPositiveRatioMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcRectangleHollowProfileDef : IIfcRectangleHollowProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleHollowProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WallThickness);
 			} 
+			set
+			{
+				WallThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleHollowProfileDef), 7)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius 
 		{ 
 			get
@@ -30,7 +40,16 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!InnerFilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(InnerFilletRadius.Value);
 			} 
+			set
+			{
+				InnerFilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRectangleHollowProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius 
 		{ 
 			get
@@ -38,6 +57,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!OuterFilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(OuterFilletRadius.Value);
 			} 
+			set
+			{
+				OuterFilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ActorResource
 {
 	public partial class @IfcPerson : IIfcPerson
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcPerson.Identification 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!Id.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Id.Value);
 			} 
+			set
+			{
+				Id = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.FamilyName 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!FamilyName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(FamilyName.Value);
 			} 
+			set
+			{
+				FamilyName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcPerson.GivenName 
 		{ 
 			get
@@ -39,55 +60,68 @@ namespace Xbim.Ifc2x3.ActorResource
 				if (!GivenName.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(GivenName.Value);
 			} 
+			set
+			{
+				GivenName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 4)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.MiddleNames 
 		{ 
 			get
 			{
-				foreach (var member in MiddleNames)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(MiddleNames, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 5)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.PrefixTitles 
 		{ 
 			get
 			{
-				foreach (var member in PrefixTitles)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(PrefixTitles, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 6)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcPerson.SuffixTitles 
 		{ 
 			get
 			{
-				foreach (var member in SuffixTitles)
-				{
-					yield return new Ifc4.MeasureResource.IfcLabel((string)member);
-				}
+			
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(SuffixTitles, 
+					s => new Ifc4.MeasureResource.IfcLabel(s), 
+					t => new MeasureResource.IfcLabel(t));
 			} 
 		}
-		IEnumerable<IIfcActorRole> IIfcPerson.Roles 
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 7)]
+		IItemSet<IIfcActorRole> IIfcPerson.Roles 
 		{ 
 			get
 			{
-				foreach (var member in Roles)
-				{
-					yield return member as IIfcActorRole;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>(Roles);
 			} 
 		}
-		IEnumerable<IIfcAddress> IIfcPerson.Addresses 
+
+		[CrossSchemaAttribute(typeof(IIfcPerson), 8)]
+		IItemSet<IIfcAddress> IIfcPerson.Addresses 
 		{ 
 			get
 			{
-				foreach (var member in Addresses)
-				{
-					yield return member as IIfcAddress;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>(Addresses);
 			} 
 		}
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn 

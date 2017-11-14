@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcMechanicalFastener : IIfcMechanicalFastener
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastener), 9)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				if (!NominalDiameter.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter.Value);
 			} 
+			set
+			{
+				NominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastener), 10)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength 
 		{ 
 			get
@@ -31,15 +43,30 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 				if (!NominalLength.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalLength.Value);
 			} 
+			set
+			{
+				NominalLength = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcMechanicalFastener), 11)]
 		Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum? IIfcMechanicalFastener.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -11);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <NoWarn>1591;1572;1573;1574</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -69,6 +70,7 @@
     <Compile Include="CobieConnection.cs" />
     <Compile Include="CobieConnectionType.cs" />
     <Compile Include="CobieContact.cs" />
+    <Compile Include="CobieCoordinate.cs" />
     <Compile Include="CobieCreatedInfo.cs" />
     <Compile Include="CobieCurrencyUnit.cs" />
     <Compile Include="CobieDocument.cs" />
@@ -105,9 +107,10 @@
     <Compile Include="CobieStageType.cs" />
     <Compile Include="CobieSystem.cs" />
     <Compile Include="CobieType.cs" />
+    <Compile Include="CobieTypeOrComponent.cs" />
     <Compile Include="CobieVolumeUnit.cs" />
-    <Compile Include="CobieWarranty.cs" />
     <Compile Include="CobieZone.cs" />
+    <Compile Include="CoordinateTypeEnum.cs" />
     <Compile Include="CustomCode\CobieAttribute.cs" />
     <Compile Include="CustomCode\DateTimeValue.cs" />
     <Compile Include="DateTimeValue.cs" />

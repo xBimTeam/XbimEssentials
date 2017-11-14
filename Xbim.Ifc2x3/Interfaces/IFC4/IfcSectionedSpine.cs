@@ -10,37 +10,45 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcSectionedSpine : IIfcSectionedSpine
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSectionedSpine), 1)]
 		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve 
 		{ 
 			get
 			{
 				return SpineCurve;
 			} 
+			set
+			{
+				SpineCurve = value as GeometryResource.IfcCompositeCurve;
+				
+			}
 		}
-		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections 
+
+		[CrossSchemaAttribute(typeof(IIfcSectionedSpine), 2)]
+		IItemSet<IIfcProfileDef> IIfcSectionedSpine.CrossSections 
 		{ 
 			get
 			{
-				foreach (var member in CrossSections)
-				{
-					yield return member as IIfcProfileDef;
-				}
+			
+				return new Common.Collections.ProxyItemSet<ProfileResource.IfcProfileDef, IIfcProfileDef>(CrossSections);
 			} 
 		}
-		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
+
+		[CrossSchemaAttribute(typeof(IIfcSectionedSpine), 3)]
+		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions 
 		{ 
 			get
 			{
-				foreach (var member in CrossSectionPositions)
-				{
-					yield return member as IIfcAxis2Placement3D;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcAxis2Placement3D, IIfcAxis2Placement3D>(CrossSectionPositions);
 			} 
 		}
 		Ifc4.GeometryResource.IfcDimensionCount IIfcSectionedSpine.Dim 

@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcPhysicalSimpleQuantity : IIfcPhysicalSimpleQuantity
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPhysicalSimpleQuantity), 3)]
 		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit 
 		{ 
 			get
 			{
 				return Unit;
 			} 
+			set
+			{
+				Unit = value as MeasureResource.IfcNamedUnit;
+				
+			}
 		}
 	//## Custom code
 	//##

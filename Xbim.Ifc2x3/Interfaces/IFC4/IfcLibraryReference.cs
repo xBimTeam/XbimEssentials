@@ -10,38 +10,63 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcLibraryReference : IIfcLibraryReference
 	{
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryReference), 4)]
 		Ifc4.MeasureResource.IfcText? IIfcLibraryReference.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -4);
+				
+			}
 		}
+
+		private  Ifc4.ExternalReferenceResource.IfcLanguageId? _language;
+
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryReference), 5)]
 		Ifc4.ExternalReferenceResource.IfcLanguageId? IIfcLibraryReference.Language 
 		{ 
 			get
 			{
-				//## Handle return of Language for which no match was found
-			    return null;
-			    //##
+				return _language;
 			} 
+			set
+			{
+				SetValue(v => _language = v, _language, value, "Language", -5);
+				
+			}
 		}
+
+		private  IIfcLibraryInformation _referencedLibrary;
+
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryReference), 6)]
 		IIfcLibraryInformation IIfcLibraryReference.ReferencedLibrary 
 		{ 
 			get
 			{
-				//## Handle return of ReferencedLibrary for which no match was found
-			    return null;
-			    //##
+				return _referencedLibrary;
 			} 
+			set
+			{
+				SetValue(v => _referencedLibrary = v, _referencedLibrary, value, "ReferencedLibrary", -6);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryReference.LibraryRefForObjects 
 		{ 

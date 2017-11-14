@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcMappedItem : IIfcMappedItem
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcMappedItem), 1)]
 		IIfcRepresentationMap IIfcMappedItem.MappingSource 
 		{ 
 			get
 			{
 				return MappingSource;
 			} 
+			set
+			{
+				MappingSource = value as IfcRepresentationMap;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcMappedItem), 2)]
 		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget 
 		{ 
 			get
 			{
 				return MappingTarget;
 			} 
+			set
+			{
+				MappingTarget = value as IfcCartesianTransformationOperator;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -31,24 +33,23 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurveDirectedCallout", 737)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurveDirectedCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcDimensionCurveDirectedCallout, IEqualityComparer<@IfcDimensionCurveDirectedCallout>, IEquatable<@IfcDimensionCurveDirectedCallout>
+	public  partial class @IfcDimensionCurveDirectedCallout : IfcDraughtingCallout, IInstantiableEntity, IIfcDimensionCurveDirectedCallout, IContainsEntityReferences, IEquatable<@IfcDimensionCurveDirectedCallout>
 	{
 		#region IIfcDimensionCurveDirectedCallout explicit implementation
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDimensionCurveDirectedCallout(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcDimensionCurveDirectedCallout(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -59,13 +60,6 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:                  = 1;*/
-		/*WR42:                      TYPEOF (Dc)))) <= 2;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -73,55 +67,18 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDimensionCurveDirectedCallout
-            var root = (@IfcDimensionCurveDirectedCallout)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDimensionCurveDirectedCallout left, @IfcDimensionCurveDirectedCallout right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDimensionCurveDirectedCallout left, @IfcDimensionCurveDirectedCallout right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDimensionCurveDirectedCallout x, @IfcDimensionCurveDirectedCallout y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionCurveDirectedCallout obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Contents)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

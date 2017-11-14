@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcCsgPrimitive3D : IIfcCsgPrimitive3D
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCsgPrimitive3D), 1)]
 		IIfcAxis2Placement3D IIfcCsgPrimitive3D.Position 
 		{ 
 			get
 			{
 				return Position;
 			} 
+			set
+			{
+				Position = value as GeometryResource.IfcAxis2Placement3D;
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 
 		{

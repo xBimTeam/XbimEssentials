@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	public partial class @IfcIrregularTimeSeries : IIfcIrregularTimeSeries
 	{
-		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values 
+
+		[CrossSchemaAttribute(typeof(IIfcIrregularTimeSeries), 9)]
+		IItemSet<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values 
 		{ 
 			get
 			{
-				foreach (var member in Values)
-				{
-					yield return member as IIfcIrregularTimeSeriesValue;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcIrregularTimeSeriesValue, IIfcIrregularTimeSeriesValue>(Values);
 			} 
 		}
 	//## Custom code

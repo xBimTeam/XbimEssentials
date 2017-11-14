@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,44 +25,90 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieIssue : ICobieReferencedObject
 	{
-		string @Name { get; }
-		string @Description { get; }
-		ICobieIssueType @IssueType { get; }
-		ICobieIssueRisk @Risk { get; }
-		ICobieIssueChance @Chance { get; }
-		ICobieIssueImpact @Impact { get; }
-		ICobieContact @Owner { get; }
-		string @Mitigation { get; }
-		ICobieAsset @Causing { get; }
-		ICobieAsset @Affected { get; }
+		string @Name { get;  set; }
+		string @Description { get;  set; }
+		ICobieIssueType @IssueType { get;  set; }
+		ICobieIssueRisk @Risk { get;  set; }
+		ICobieIssueChance @Chance { get;  set; }
+		ICobieIssueImpact @Impact { get;  set; }
+		ICobieContact @Owner { get;  set; }
+		string @Mitigation { get;  set; }
+		ICobieAsset @Causing { get;  set; }
+		ICobieAsset @Affected { get;  set; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Issue", 31)]
+	[ExpressType("Issue", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, ICobieIssue, IEqualityComparer<@CobieIssue>, IEquatable<@CobieIssue>
+	public  partial class @CobieIssue : CobieReferencedObject, IInstantiableEntity, ICobieIssue, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieIssue>
 	{
 		#region ICobieIssue explicit implementation
-		string ICobieIssue.Name { get { return @Name; } }	
-		string ICobieIssue.Description { get { return @Description; } }	
-		ICobieIssueType ICobieIssue.IssueType { get { return @IssueType; } }	
-		ICobieIssueRisk ICobieIssue.Risk { get { return @Risk; } }	
-		ICobieIssueChance ICobieIssue.Chance { get { return @Chance; } }	
-		ICobieIssueImpact ICobieIssue.Impact { get { return @Impact; } }	
-		ICobieContact ICobieIssue.Owner { get { return @Owner; } }	
-		string ICobieIssue.Mitigation { get { return @Mitigation; } }	
-		ICobieAsset ICobieIssue.Causing { get { return @Causing; } }	
-		ICobieAsset ICobieIssue.Affected { get { return @Affected; } }	
+		string ICobieIssue.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		string ICobieIssue.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieIssueType ICobieIssue.IssueType { 
+ 
+ 
+			get { return @IssueType; } 
+			set { IssueType = value as CobieIssueType;}
+		}	
+		ICobieIssueRisk ICobieIssue.Risk { 
+ 
+ 
+			get { return @Risk; } 
+			set { Risk = value as CobieIssueRisk;}
+		}	
+		ICobieIssueChance ICobieIssue.Chance { 
+ 
+ 
+			get { return @Chance; } 
+			set { Chance = value as CobieIssueChance;}
+		}	
+		ICobieIssueImpact ICobieIssue.Impact { 
+ 
+ 
+			get { return @Impact; } 
+			set { Impact = value as CobieIssueImpact;}
+		}	
+		ICobieContact ICobieIssue.Owner { 
+ 
+ 
+			get { return @Owner; } 
+			set { Owner = value as CobieContact;}
+		}	
+		string ICobieIssue.Mitigation { 
+ 
+			get { return @Mitigation; } 
+			set { Mitigation = value;}
+		}	
+		ICobieAsset ICobieIssue.Causing { 
+ 
+ 
+			get { return @Causing; } 
+			set { Causing = value as CobieAsset;}
+		}	
+		ICobieAsset ICobieIssue.Affected { 
+ 
+ 
+			get { return @Affected; } 
+			set { Affected = value as CobieAsset;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieIssue(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal CobieIssue(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -82,141 +130,155 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public string @Description 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
 		public CobieIssueType @IssueType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _issueType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _issueType;
+				Activate();
 				return _issueType;
 			} 
 			set
 			{
-				SetValue( v =>  _issueType = v, _issueType, value,  "IssueType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _issueType = v, _issueType, value,  "IssueType", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
 		public CobieIssueRisk @Risk 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _risk;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _risk;
+				Activate();
 				return _risk;
 			} 
 			set
 			{
-				SetValue( v =>  _risk = v, _risk, value,  "Risk");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _risk = v, _risk, value,  "Risk", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
 		public CobieIssueChance @Chance 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _chance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _chance;
+				Activate();
 				return _chance;
 			} 
 			set
 			{
-				SetValue( v =>  _chance = v, _chance, value,  "Chance");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _chance = v, _chance, value,  "Chance", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
 		public CobieIssueImpact @Impact 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impact;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impact;
+				Activate();
 				return _impact;
 			} 
 			set
 			{
-				SetValue( v =>  _impact = v, _impact, value,  "Impact");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _impact = v, _impact, value,  "Impact", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
 		public CobieContact @Owner 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _owner;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _owner;
+				Activate();
 				return _owner;
 			} 
 			set
 			{
-				SetValue( v =>  _owner = v, _owner, value,  "Owner");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _owner = v, _owner, value,  "Owner", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
 		public string @Mitigation 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _mitigation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _mitigation;
+				Activate();
 				return _mitigation;
 			} 
 			set
 			{
-				SetValue( v =>  _mitigation = v, _mitigation, value,  "Mitigation");
+				SetValue( v =>  _mitigation = v, _mitigation, value,  "Mitigation", 13);
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
 		public CobieAsset @Causing 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _causing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _causing;
+				Activate();
 				return _causing;
 			} 
 			set
 			{
-				SetValue( v =>  _causing = v, _causing, value,  "Causing");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _causing = v, _causing, value,  "Causing", 14);
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
 		public CobieAsset @Affected 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _affected;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _affected;
+				Activate();
 				return _affected;
 			} 
 			set
 			{
-				SetValue( v =>  _affected = v, _affected, value,  "Affected");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _affected = v, _affected, value,  "Affected", 15);
 			} 
 		}	
 		#endregion
@@ -224,9 +286,8 @@ namespace Xbim.CobieExpress
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -271,11 +332,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -283,55 +339,51 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieIssue
-            var root = (@CobieIssue)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieIssue left, @CobieIssue right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieIssue left, @CobieIssue right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieIssue x, @CobieIssue y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieIssue obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				if (@IssueType != null)
+					yield return @IssueType;
+				if (@Risk != null)
+					yield return @Risk;
+				if (@Chance != null)
+					yield return @Chance;
+				if (@Impact != null)
+					yield return @Impact;
+				if (@Owner != null)
+					yield return @Owner;
+				if (@Causing != null)
+					yield return @Causing;
+				if (@Affected != null)
+					yield return @Affected;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Causing != null)
+					yield return @Causing;
+				if (@Affected != null)
+					yield return @Affected;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

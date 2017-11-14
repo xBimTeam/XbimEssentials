@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -23,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGridPlacement : IIfcObjectPlacement
 	{
-		IIfcVirtualGridIntersection @PlacementLocation { get; }
-		IIfcVirtualGridIntersection @PlacementRefDirection { get; }
+		IIfcVirtualGridIntersection @PlacementLocation { get;  set; }
+		IIfcVirtualGridIntersection @PlacementRefDirection { get;  set; }
 	
 	}
 }
@@ -33,17 +35,27 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcGridPlacement", 439)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IEqualityComparer<@IfcGridPlacement>, IEquatable<@IfcGridPlacement>
+	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IContainsEntityReferences, IEquatable<@IfcGridPlacement>
 	{
 		#region IIfcGridPlacement explicit implementation
-		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { get { return @PlacementLocation; } }	
-		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementRefDirection { get { return @PlacementRefDirection; } }	
+		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { 
+ 
+ 
+			get { return @PlacementLocation; } 
+			set { PlacementLocation = value as IfcVirtualGridIntersection;}
+		}	
+		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementRefDirection { 
+ 
+ 
+			get { return @PlacementRefDirection; } 
+			set { PlacementRefDirection = value as IfcVirtualGridIntersection;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcGridPlacement(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcGridPlacement(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -57,13 +69,15 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _placementLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _placementLocation;
+				Activate();
 				return _placementLocation;
 			} 
 			set
 			{
-				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -71,13 +85,15 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _placementRefDirection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _placementRefDirection;
+				Activate();
 				return _placementRefDirection;
 			} 
 			set
 			{
-				SetValue( v =>  _placementRefDirection = v, _placementRefDirection, value,  "PlacementRefDirection");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _placementRefDirection = v, _placementRefDirection, value,  "PlacementRefDirection", 2);
 			} 
 		}	
 		#endregion
@@ -85,9 +101,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -101,11 +116,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -113,55 +123,20 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcGridPlacement
-            var root = (@IfcGridPlacement)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcGridPlacement left, @IfcGridPlacement right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcGridPlacement left, @IfcGridPlacement right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGridPlacement x, @IfcGridPlacement y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGridPlacement obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PlacementLocation != null)
+					yield return @PlacementLocation;
+				if (@PlacementRefDirection != null)
+					yield return @PlacementRefDirection;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

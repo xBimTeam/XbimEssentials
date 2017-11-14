@@ -19,6 +19,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -28,23 +30,23 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentInformation : IPersistEntity, IfcDocumentSelect
 	{
-		IfcIdentifier @DocumentId { get; }
-		IfcLabel @Name { get; }
-		IfcText? @Description { get; }
-		IEnumerable<IIfcDocumentReference> @DocumentReferences { get; }
-		IfcText? @Purpose { get; }
-		IfcText? @IntendedUse { get; }
-		IfcText? @Scope { get; }
-		IfcLabel? @Revision { get; }
-		IIfcActorSelect @DocumentOwner { get; }
-		IEnumerable<IIfcActorSelect> @Editors { get; }
-		IIfcDateAndTime @CreationTime { get; }
-		IIfcDateAndTime @LastRevisionTime { get; }
-		IIfcDocumentElectronicFormat @ElectronicFormat { get; }
-		IIfcCalendarDate @ValidFrom { get; }
-		IIfcCalendarDate @ValidUntil { get; }
-		IfcDocumentConfidentialityEnum? @Confidentiality { get; }
-		IfcDocumentStatusEnum? @Status { get; }
+		IfcIdentifier @DocumentId { get;  set; }
+		IfcLabel @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IItemSet<IIfcDocumentReference> @DocumentReferences { get; }
+		IfcText? @Purpose { get;  set; }
+		IfcText? @IntendedUse { get;  set; }
+		IfcText? @Scope { get;  set; }
+		IfcLabel? @Revision { get;  set; }
+		IIfcActorSelect @DocumentOwner { get;  set; }
+		IItemSet<IIfcActorSelect> @Editors { get; }
+		IIfcDateAndTime @CreationTime { get;  set; }
+		IIfcDateAndTime @LastRevisionTime { get;  set; }
+		IIfcDocumentElectronicFormat @ElectronicFormat { get;  set; }
+		IIfcCalendarDate @ValidFrom { get;  set; }
+		IIfcCalendarDate @ValidUntil { get;  set; }
+		IfcDocumentConfidentialityEnum? @Confidentiality { get;  set; }
+		IfcDocumentStatusEnum? @Status { get;  set; }
 		IEnumerable<IIfcDocumentInformationRelationship> @IsPointedTo {  get; }
 		IEnumerable<IIfcDocumentInformationRelationship> @IsPointer {  get; }
 	
@@ -53,110 +55,121 @@ namespace Xbim.Ifc2x3.Interfaces
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
-	[IndexedClass]
 	[ExpressType("IfcDocumentInformation", 208)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformation : INotifyPropertyChanged, IInstantiableEntity, IIfcDocumentInformation, IEqualityComparer<@IfcDocumentInformation>, IEquatable<@IfcDocumentInformation>
+	public  partial class @IfcDocumentInformation : PersistEntity, IInstantiableEntity, IIfcDocumentInformation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformation>
 	{
 		#region IIfcDocumentInformation explicit implementation
-		IfcIdentifier IIfcDocumentInformation.DocumentId { get { return @DocumentId; } }	
-		IfcLabel IIfcDocumentInformation.Name { get { return @Name; } }	
-		IfcText? IIfcDocumentInformation.Description { get { return @Description; } }	
-		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.DocumentReferences { get { return @DocumentReferences; } }	
-		IfcText? IIfcDocumentInformation.Purpose { get { return @Purpose; } }	
-		IfcText? IIfcDocumentInformation.IntendedUse { get { return @IntendedUse; } }	
-		IfcText? IIfcDocumentInformation.Scope { get { return @Scope; } }	
-		IfcLabel? IIfcDocumentInformation.Revision { get { return @Revision; } }	
-		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { get { return @DocumentOwner; } }	
-		IEnumerable<IIfcActorSelect> IIfcDocumentInformation.Editors { get { return @Editors; } }	
-		IIfcDateAndTime IIfcDocumentInformation.CreationTime { get { return @CreationTime; } }	
-		IIfcDateAndTime IIfcDocumentInformation.LastRevisionTime { get { return @LastRevisionTime; } }	
-		IIfcDocumentElectronicFormat IIfcDocumentInformation.ElectronicFormat { get { return @ElectronicFormat; } }	
-		IIfcCalendarDate IIfcDocumentInformation.ValidFrom { get { return @ValidFrom; } }	
-		IIfcCalendarDate IIfcDocumentInformation.ValidUntil { get { return @ValidUntil; } }	
-		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { get { return @Confidentiality; } }	
-		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { get { return @Status; } }	
+		IfcIdentifier IIfcDocumentInformation.DocumentId { 
+ 
+			get { return @DocumentId; } 
+			set { DocumentId = value;}
+		}	
+		IfcLabel IIfcDocumentInformation.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		IfcText? IIfcDocumentInformation.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IItemSet<IIfcDocumentReference> IIfcDocumentInformation.DocumentReferences { 
+			get { return new Common.Collections.ProxyItemSet<IfcDocumentReference, IIfcDocumentReference>( @DocumentReferences); } 
+		}	
+		IfcText? IIfcDocumentInformation.Purpose { 
+ 
+			get { return @Purpose; } 
+			set { Purpose = value;}
+		}	
+		IfcText? IIfcDocumentInformation.IntendedUse { 
+ 
+			get { return @IntendedUse; } 
+			set { IntendedUse = value;}
+		}	
+		IfcText? IIfcDocumentInformation.Scope { 
+ 
+			get { return @Scope; } 
+			set { Scope = value;}
+		}	
+		IfcLabel? IIfcDocumentInformation.Revision { 
+ 
+			get { return @Revision; } 
+			set { Revision = value;}
+		}	
+		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { 
+ 
+ 
+			get { return @DocumentOwner; } 
+			set { DocumentOwner = value as IfcActorSelect;}
+		}	
+		IItemSet<IIfcActorSelect> IIfcDocumentInformation.Editors { 
+			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @Editors); } 
+		}	
+		IIfcDateAndTime IIfcDocumentInformation.CreationTime { 
+ 
+ 
+			get { return @CreationTime; } 
+			set { CreationTime = value as IfcDateAndTime;}
+		}	
+		IIfcDateAndTime IIfcDocumentInformation.LastRevisionTime { 
+ 
+ 
+			get { return @LastRevisionTime; } 
+			set { LastRevisionTime = value as IfcDateAndTime;}
+		}	
+		IIfcDocumentElectronicFormat IIfcDocumentInformation.ElectronicFormat { 
+ 
+ 
+			get { return @ElectronicFormat; } 
+			set { ElectronicFormat = value as IfcDocumentElectronicFormat;}
+		}	
+		IIfcCalendarDate IIfcDocumentInformation.ValidFrom { 
+ 
+ 
+			get { return @ValidFrom; } 
+			set { ValidFrom = value as IfcCalendarDate;}
+		}	
+		IIfcCalendarDate IIfcDocumentInformation.ValidUntil { 
+ 
+ 
+			get { return @ValidUntil; } 
+			set { ValidUntil = value as IfcCalendarDate;}
+		}	
+		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { 
+ 
+			get { return @Confidentiality; } 
+			set { Confidentiality = value;}
+		}	
+		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { 
+ 
+			get { return @Status; } 
+			set { Status = value;}
+		}	
 		 
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo {  get { return @IsPointedTo; } }
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointer {  get { return @IsPointer; } }
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDocumentInformation(IModel model) 		{ 
-			Model = model; 
-			_documentReferences = new OptionalItemSet<IfcDocumentReference>( this, 0 );
-			_editors = new OptionalItemSet<IfcActorSelect>( this, 0 );
+		internal IfcDocumentInformation(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_documentReferences = new OptionalItemSet<IfcDocumentReference>( this, 0,  4);
+			_editors = new OptionalItemSet<IfcActorSelect>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
 		private IfcIdentifier _documentId;
 		private IfcLabel _name;
 		private IfcText? _description;
-		private OptionalItemSet<IfcDocumentReference> _documentReferences;
+		private readonly OptionalItemSet<IfcDocumentReference> _documentReferences;
 		private IfcText? _purpose;
 		private IfcText? _intendedUse;
 		private IfcText? _scope;
 		private IfcLabel? _revision;
 		private IfcActorSelect _documentOwner;
-		private OptionalItemSet<IfcActorSelect> _editors;
+		private readonly OptionalItemSet<IfcActorSelect> _editors;
 		private IfcDateAndTime _creationTime;
 		private IfcDateAndTime _lastRevisionTime;
 		private IfcDocumentElectronicFormat _electronicFormat;
@@ -172,13 +185,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _documentId;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _documentId;
+				Activate();
 				return _documentId;
 			} 
 			set
 			{
-				SetValue( v =>  _documentId = v, _documentId, value,  "DocumentId");
+				SetValue( v =>  _documentId = v, _documentId, value,  "DocumentId", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -186,13 +199,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -200,23 +213,23 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public OptionalItemSet<IfcDocumentReference> @DocumentReferences 
+		public IOptionalItemSet<IfcDocumentReference> @DocumentReferences 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _documentReferences;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _documentReferences;
+				Activate();
 				return _documentReferences;
 			} 
 		}	
@@ -225,13 +238,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _purpose;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _purpose;
+				Activate();
 				return _purpose;
 			} 
 			set
 			{
-				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
+				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -239,13 +252,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _intendedUse;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _intendedUse;
+				Activate();
 				return _intendedUse;
 			} 
 			set
 			{
-				SetValue( v =>  _intendedUse = v, _intendedUse, value,  "IntendedUse");
+				SetValue( v =>  _intendedUse = v, _intendedUse, value,  "IntendedUse", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -253,13 +266,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scope;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scope;
+				Activate();
 				return _scope;
 			} 
 			set
 			{
-				SetValue( v =>  _scope = v, _scope, value,  "Scope");
+				SetValue( v =>  _scope = v, _scope, value,  "Scope", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -267,13 +280,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _revision;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _revision;
+				Activate();
 				return _revision;
 			} 
 			set
 			{
-				SetValue( v =>  _revision = v, _revision, value,  "Revision");
+				SetValue( v =>  _revision = v, _revision, value,  "Revision", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
@@ -281,22 +294,24 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _documentOwner;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _documentOwner;
+				Activate();
 				return _documentOwner;
 			} 
 			set
 			{
-				SetValue( v =>  _documentOwner = v, _documentOwner, value,  "DocumentOwner");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _documentOwner = v, _documentOwner, value,  "DocumentOwner", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 10)]
-		public OptionalItemSet<IfcActorSelect> @Editors 
+		public IOptionalItemSet<IfcActorSelect> @Editors 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _editors;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _editors;
+				Activate();
 				return _editors;
 			} 
 		}	
@@ -305,13 +320,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _creationTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _creationTime;
+				Activate();
 				return _creationTime;
 			} 
 			set
 			{
-				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _creationTime = v, _creationTime, value,  "CreationTime", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
@@ -319,13 +336,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lastRevisionTime;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lastRevisionTime;
+				Activate();
 				return _lastRevisionTime;
 			} 
 			set
 			{
-				SetValue( v =>  _lastRevisionTime = v, _lastRevisionTime, value,  "LastRevisionTime");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _lastRevisionTime = v, _lastRevisionTime, value,  "LastRevisionTime", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
@@ -333,13 +352,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _electronicFormat;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _electronicFormat;
+				Activate();
 				return _electronicFormat;
 			} 
 			set
 			{
-				SetValue( v =>  _electronicFormat = v, _electronicFormat, value,  "ElectronicFormat");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _electronicFormat = v, _electronicFormat, value,  "ElectronicFormat", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -347,13 +368,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _validFrom;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _validFrom;
+				Activate();
 				return _validFrom;
 			} 
 			set
 			{
-				SetValue( v =>  _validFrom = v, _validFrom, value,  "ValidFrom");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _validFrom = v, _validFrom, value,  "ValidFrom", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
@@ -361,13 +384,15 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _validUntil;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _validUntil;
+				Activate();
 				return _validUntil;
 			} 
 			set
 			{
-				SetValue( v =>  _validUntil = v, _validUntil, value,  "ValidUntil");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _validUntil = v, _validUntil, value,  "ValidUntil", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 16)]
@@ -375,13 +400,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _confidentiality;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _confidentiality;
+				Activate();
 				return _confidentiality;
 			} 
 			set
 			{
-				SetValue( v =>  _confidentiality = v, _confidentiality, value,  "Confidentiality");
+				SetValue( v =>  _confidentiality = v, _confidentiality, value,  "Confidentiality", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 17)]
@@ -389,13 +414,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _status;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _status;
+				Activate();
 				return _status;
 			} 
 			set
 			{
-				SetValue( v =>  _status = v, _status, value,  "Status");
+				SetValue( v =>  _status = v, _status, value,  "Status", 17);
 			} 
 		}	
 		#endregion
@@ -418,63 +443,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => (e.RelatingDocument as IfcDocumentInformation) == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcDocumentInformationRelationship>(e => Equals(e.RelatingDocument), "RelatingDocument", this);
 			} 
 		}
 		#endregion
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -488,7 +463,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					_description = value.StringVal;
 					return;
 				case 3: 
-					if (_documentReferences == null) _documentReferences = new OptionalItemSet<IfcDocumentReference>( this );
 					_documentReferences.InternalAdd((IfcDocumentReference)value.EntityVal);
 					return;
 				case 4: 
@@ -507,7 +481,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					_documentOwner = (IfcActorSelect)(value.EntityVal);
 					return;
 				case 9: 
-					if (_editors == null) _editors = new OptionalItemSet<IfcActorSelect>( this );
 					_editors.InternalAdd((IfcActorSelect)value.EntityVal);
 					return;
 				case 10: 
@@ -535,11 +508,6 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -547,55 +515,45 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDocumentInformation
-            var root = (@IfcDocumentInformation)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDocumentInformation left, @IfcDocumentInformation right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDocumentInformation left, @IfcDocumentInformation right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDocumentInformation x, @IfcDocumentInformation y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDocumentInformation obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @DocumentReferences)
+					yield return entity;
+				if (@DocumentOwner != null)
+					yield return @DocumentOwner;
+				foreach(var entity in @Editors)
+					yield return entity;
+				if (@CreationTime != null)
+					yield return @CreationTime;
+				if (@LastRevisionTime != null)
+					yield return @LastRevisionTime;
+				if (@ElectronicFormat != null)
+					yield return @ElectronicFormat;
+				if (@ValidFrom != null)
+					yield return @ValidFrom;
+				if (@ValidUntil != null)
+					yield return @ValidUntil;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @DocumentReferences)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

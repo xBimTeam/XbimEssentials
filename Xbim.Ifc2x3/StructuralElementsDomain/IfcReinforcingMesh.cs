@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralElementsDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,14 +26,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcingMesh : IIfcReinforcingElement
 	{
-		IfcPositiveLengthMeasure? @MeshLength { get; }
-		IfcPositiveLengthMeasure? @MeshWidth { get; }
-		IfcPositiveLengthMeasure @LongitudinalBarNominalDiameter { get; }
-		IfcPositiveLengthMeasure @TransverseBarNominalDiameter { get; }
-		IfcAreaMeasure @LongitudinalBarCrossSectionArea { get; }
-		IfcAreaMeasure @TransverseBarCrossSectionArea { get; }
-		IfcPositiveLengthMeasure @LongitudinalBarSpacing { get; }
-		IfcPositiveLengthMeasure @TransverseBarSpacing { get; }
+		IfcPositiveLengthMeasure? @MeshLength { get;  set; }
+		IfcPositiveLengthMeasure? @MeshWidth { get;  set; }
+		IfcPositiveLengthMeasure @LongitudinalBarNominalDiameter { get;  set; }
+		IfcPositiveLengthMeasure @TransverseBarNominalDiameter { get;  set; }
+		IfcAreaMeasure @LongitudinalBarCrossSectionArea { get;  set; }
+		IfcAreaMeasure @TransverseBarCrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure @LongitudinalBarSpacing { get;  set; }
+		IfcPositiveLengthMeasure @TransverseBarSpacing { get;  set; }
 	
 	}
 }
@@ -40,23 +42,55 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingMesh", 531)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingMesh, IEqualityComparer<@IfcReinforcingMesh>, IEquatable<@IfcReinforcingMesh>
+	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingMesh, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingMesh>
 	{
 		#region IIfcReinforcingMesh explicit implementation
-		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength { get { return @MeshLength; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshWidth { get { return @MeshWidth; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarNominalDiameter { get { return @LongitudinalBarNominalDiameter; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarNominalDiameter { get { return @TransverseBarNominalDiameter; } }	
-		IfcAreaMeasure IIfcReinforcingMesh.LongitudinalBarCrossSectionArea { get { return @LongitudinalBarCrossSectionArea; } }	
-		IfcAreaMeasure IIfcReinforcingMesh.TransverseBarCrossSectionArea { get { return @TransverseBarCrossSectionArea; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarSpacing { get { return @LongitudinalBarSpacing; } }	
-		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarSpacing { get { return @TransverseBarSpacing; } }	
+		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshLength { 
+ 
+			get { return @MeshLength; } 
+			set { MeshLength = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingMesh.MeshWidth { 
+ 
+			get { return @MeshWidth; } 
+			set { MeshWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarNominalDiameter { 
+ 
+			get { return @LongitudinalBarNominalDiameter; } 
+			set { LongitudinalBarNominalDiameter = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarNominalDiameter { 
+ 
+			get { return @TransverseBarNominalDiameter; } 
+			set { TransverseBarNominalDiameter = value;}
+		}	
+		IfcAreaMeasure IIfcReinforcingMesh.LongitudinalBarCrossSectionArea { 
+ 
+			get { return @LongitudinalBarCrossSectionArea; } 
+			set { LongitudinalBarCrossSectionArea = value;}
+		}	
+		IfcAreaMeasure IIfcReinforcingMesh.TransverseBarCrossSectionArea { 
+ 
+			get { return @TransverseBarCrossSectionArea; } 
+			set { TransverseBarCrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.LongitudinalBarSpacing { 
+ 
+			get { return @LongitudinalBarSpacing; } 
+			set { LongitudinalBarSpacing = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcReinforcingMesh.TransverseBarSpacing { 
+ 
+			get { return @TransverseBarSpacing; } 
+			set { TransverseBarSpacing = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcReinforcingMesh(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcReinforcingMesh(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -76,13 +110,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _meshLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _meshLength;
+				Activate();
 				return _meshLength;
 			} 
 			set
 			{
-				SetValue( v =>  _meshLength = v, _meshLength, value,  "MeshLength");
+				SetValue( v =>  _meshLength = v, _meshLength, value,  "MeshLength", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -90,13 +124,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _meshWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _meshWidth;
+				Activate();
 				return _meshWidth;
 			} 
 			set
 			{
-				SetValue( v =>  _meshWidth = v, _meshWidth, value,  "MeshWidth");
+				SetValue( v =>  _meshWidth = v, _meshWidth, value,  "MeshWidth", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
@@ -104,13 +138,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalBarNominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalBarNominalDiameter;
+				Activate();
 				return _longitudinalBarNominalDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalBarNominalDiameter = v, _longitudinalBarNominalDiameter, value,  "LongitudinalBarNominalDiameter");
+				SetValue( v =>  _longitudinalBarNominalDiameter = v, _longitudinalBarNominalDiameter, value,  "LongitudinalBarNominalDiameter", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 31)]
@@ -118,13 +152,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transverseBarNominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transverseBarNominalDiameter;
+				Activate();
 				return _transverseBarNominalDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _transverseBarNominalDiameter = v, _transverseBarNominalDiameter, value,  "TransverseBarNominalDiameter");
+				SetValue( v =>  _transverseBarNominalDiameter = v, _transverseBarNominalDiameter, value,  "TransverseBarNominalDiameter", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 32)]
@@ -132,13 +166,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalBarCrossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalBarCrossSectionArea;
+				Activate();
 				return _longitudinalBarCrossSectionArea;
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalBarCrossSectionArea = v, _longitudinalBarCrossSectionArea, value,  "LongitudinalBarCrossSectionArea");
+				SetValue( v =>  _longitudinalBarCrossSectionArea = v, _longitudinalBarCrossSectionArea, value,  "LongitudinalBarCrossSectionArea", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
@@ -146,13 +180,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transverseBarCrossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transverseBarCrossSectionArea;
+				Activate();
 				return _transverseBarCrossSectionArea;
 			} 
 			set
 			{
-				SetValue( v =>  _transverseBarCrossSectionArea = v, _transverseBarCrossSectionArea, value,  "TransverseBarCrossSectionArea");
+				SetValue( v =>  _transverseBarCrossSectionArea = v, _transverseBarCrossSectionArea, value,  "TransverseBarCrossSectionArea", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
@@ -160,13 +194,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalBarSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalBarSpacing;
+				Activate();
 				return _longitudinalBarSpacing;
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalBarSpacing = v, _longitudinalBarSpacing, value,  "LongitudinalBarSpacing");
+				SetValue( v =>  _longitudinalBarSpacing = v, _longitudinalBarSpacing, value,  "LongitudinalBarSpacing", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
@@ -174,13 +208,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transverseBarSpacing;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transverseBarSpacing;
+				Activate();
 				return _transverseBarSpacing;
 			} 
 			set
 			{
-				SetValue( v =>  _transverseBarSpacing = v, _transverseBarSpacing, value,  "TransverseBarSpacing");
+				SetValue( v =>  _transverseBarSpacing = v, _transverseBarSpacing, value,  "TransverseBarSpacing", 17);
 			} 
 		}	
 		#endregion
@@ -188,9 +222,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -233,11 +266,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -245,55 +273,37 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcReinforcingMesh
-            var root = (@IfcReinforcingMesh)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcReinforcingMesh left, @IfcReinforcingMesh right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcReinforcingMesh left, @IfcReinforcingMesh right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcingMesh x, @IfcReinforcingMesh y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingMesh obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

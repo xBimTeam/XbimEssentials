@@ -10,36 +10,62 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCompositeCurveSegment : IIfcCompositeCurveSegment
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurveSegment), 1)]
 		Ifc4.Interfaces.IfcTransitionCode IIfcCompositeCurveSegment.Transition 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Transition
+				//##
 				switch (Transition)
 				{
 					case IfcTransitionCode.DISCONTINUOUS:
 						return Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS;
-					
 					case IfcTransitionCode.CONTINUOUS:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS;
-					
 					case IfcTransitionCode.CONTSAMEGRADIENT:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT;
-					
 					case IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of Transition
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS:
+						Transition = IfcTransitionCode.DISCONTINUOUS;
+						return;
+					case Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS:
+						Transition = IfcTransitionCode.CONTINUOUS;
+						return;
+					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT:
+						Transition = IfcTransitionCode.CONTSAMEGRADIENT;
+						return;
+					case Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
+						Transition = IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurveSegment), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcCompositeCurveSegment.SameSense 
 		{ 
 			get
@@ -48,13 +74,25 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcBoolean(SameSense);
 				//##
 			} 
+			set
+			{
+				SameSense = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCompositeCurveSegment), 3)]
 		IIfcCurve IIfcCompositeCurveSegment.ParentCurve 
 		{ 
 			get
 			{
 				return ParentCurve;
 			} 
+			set
+			{
+				ParentCurve = value as IfcCurve;
+				
+			}
 		}
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves 
 		{ 

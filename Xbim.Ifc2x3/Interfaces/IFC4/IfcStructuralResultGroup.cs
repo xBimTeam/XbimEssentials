@@ -10,49 +10,88 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	public partial class @IfcStructuralResultGroup : IIfcStructuralResultGroup
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralResultGroup), 6)]
 		Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of TheoryType
+				//##
 				switch (TheoryType)
 				{
 					case IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
-					
 					case IfcAnalysisTheoryTypeEnum.USERDEFINED:
+						//## Optional custom handling of TheoryType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.USERDEFINED;
-					
 					case IfcAnalysisTheoryTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of TheoryType
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.FIRST_ORDER_THEORY;
+						return;
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.SECOND_ORDER_THEORY;
+						return;
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.THIRD_ORDER_THEORY;
+						return;
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY:
+						TheoryType = IfcAnalysisTheoryTypeEnum.FULL_NONLINEAR_THEORY;
+						return;
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.USERDEFINED:
+						TheoryType = IfcAnalysisTheoryTypeEnum.USERDEFINED;
+						return;
+					case Ifc4.Interfaces.IfcAnalysisTheoryTypeEnum.NOTDEFINED:
+						TheoryType = IfcAnalysisTheoryTypeEnum.NOTDEFINED;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralResultGroup), 7)]
 		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup 
 		{ 
 			get
 			{
 				return ResultForLoadGroup;
 			} 
+			set
+			{
+				ResultForLoadGroup = value as IfcStructuralLoadGroup;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralResultGroup), 8)]
 		Ifc4.MeasureResource.IfcBoolean IIfcStructuralResultGroup.IsLinear 
 		{ 
 			get
@@ -61,6 +100,11 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                 return new Ifc4.MeasureResource.IfcBoolean(IsLinear);
 				//##
 			} 
+			set
+			{
+				IsLinear = value;
+				
+			}
 		}
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor 
 		{ 

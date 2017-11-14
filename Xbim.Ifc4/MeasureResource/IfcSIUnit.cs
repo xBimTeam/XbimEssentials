@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.MeasureResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,27 +25,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSIUnit : IIfcNamedUnit
 	{
-		IfcSIPrefix? @Prefix { get; }
-		IfcSIUnitName @Name { get; }
+		IfcSIPrefix? @Prefix { get;  set; }
+		IfcSIUnitName @Name { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcSIUnit", 975)]
+	[ExpressType("IfcSIUnit", 164)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEqualityComparer<@IfcSIUnit>, IEquatable<@IfcSIUnit>
+	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEquatable<@IfcSIUnit>
 	{
 		#region IIfcSIUnit explicit implementation
-		IfcSIPrefix? IIfcSIUnit.Prefix { get { return @Prefix; } }	
-		IfcSIUnitName IIfcSIUnit.Name { get { return @Name; } }	
+		IfcSIPrefix? IIfcSIUnit.Prefix { 
+ 
+			get { return @Prefix; } 
+			set { Prefix = value;}
+		}	
+		IfcSIUnitName IIfcSIUnit.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSIUnit(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSIUnit(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -57,13 +67,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _prefix;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _prefix;
+				Activate();
 				return _prefix;
 			} 
 			set
 			{
-				SetValue( v =>  _prefix = v, _prefix, value,  "Prefix");
+				SetValue( v =>  _prefix = v, _prefix, value,  "Prefix", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
@@ -71,13 +81,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		#endregion
@@ -99,9 +109,8 @@ namespace Xbim.Ifc4.MeasureResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -119,11 +128,6 @@ namespace Xbim.Ifc4.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -131,54 +135,6 @@ namespace Xbim.Ifc4.MeasureResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSIUnit
-            var root = (@IfcSIUnit)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSIUnit left, @IfcSIUnit right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSIUnit left, @IfcSIUnit right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSIUnit x, @IfcSIUnit y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSIUnit obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

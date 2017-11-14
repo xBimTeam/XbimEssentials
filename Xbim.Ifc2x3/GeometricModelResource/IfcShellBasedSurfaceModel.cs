@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,7 +27,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcShellBasedSurfaceModel : IIfcGeometricRepresentationItem
 	{
-		IEnumerable<IIfcShell> @SbsmBoundary { get; }
+		IItemSet<IIfcShell> @SbsmBoundary { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -35,31 +37,33 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcShellBasedSurfaceModel", 235)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IEqualityComparer<@IfcShellBasedSurfaceModel>, IEquatable<@IfcShellBasedSurfaceModel>
+	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IContainsEntityReferences, IEquatable<@IfcShellBasedSurfaceModel>
 	{
 		#region IIfcShellBasedSurfaceModel explicit implementation
-		IEnumerable<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { get { return @SbsmBoundary; } }	
+		IItemSet<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { 
+			get { return new Common.Collections.ProxyItemSet<IfcShell, IIfcShell>( @SbsmBoundary); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcShellBasedSurfaceModel(IModel model) : base(model) 		{ 
-			Model = model; 
-			_sbsmBoundary = new ItemSet<IfcShell>( this, 0 );
+		internal IfcShellBasedSurfaceModel(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_sbsmBoundary = new ItemSet<IfcShell>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcShell> _sbsmBoundary;
+		private readonly ItemSet<IfcShell> _sbsmBoundary;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public ItemSet<IfcShell> @SbsmBoundary 
+		public IItemSet<IfcShell> @SbsmBoundary 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sbsmBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sbsmBoundary;
+				Activate();
 				return _sbsmBoundary;
 			} 
 		}	
@@ -81,24 +85,17 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_sbsmBoundary == null) _sbsmBoundary = new ItemSet<IfcShell>( this );
 					_sbsmBoundary.InternalAdd((IfcShell)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -107,55 +104,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcShellBasedSurfaceModel
-            var root = (@IfcShellBasedSurfaceModel)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcShellBasedSurfaceModel left, @IfcShellBasedSurfaceModel right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcShellBasedSurfaceModel left, @IfcShellBasedSurfaceModel right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcShellBasedSurfaceModel x, @IfcShellBasedSurfaceModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcShellBasedSurfaceModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @SbsmBoundary)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

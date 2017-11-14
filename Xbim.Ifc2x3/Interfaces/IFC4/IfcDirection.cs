@@ -10,18 +10,23 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcDirection : IIfcDirection
 	{
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcReal> IIfcDirection.DirectionRatios 
+
+		[CrossSchemaAttribute(typeof(IIfcDirection), 1)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcReal> IIfcDirection.DirectionRatios 
 		{ 
 			get
 			{
 				//## Handle return of DirectionRatios for which no match was found
-			    return DirectionRatios.Select(ratio => new Ifc4.MeasureResource.IfcReal(ratio));
+                return new Common.Collections.ProxyValueSet<double, Ifc4.MeasureResource.IfcReal>(DirectionRatios,
+                    s => new Ifc4.MeasureResource.IfcReal(s),
+                    t => t);
 			    //##
 			} 
 		}

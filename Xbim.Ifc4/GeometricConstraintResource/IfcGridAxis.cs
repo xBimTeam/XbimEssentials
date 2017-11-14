@@ -19,6 +19,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -28,9 +30,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGridAxis : IPersistEntity
 	{
-		IfcLabel? @AxisTag { get; }
-		IIfcCurve @AxisCurve { get; }
-		IfcBoolean @SameSense { get; }
+		IfcLabel? @AxisTag { get;  set; }
+		IIfcCurve @AxisCurve { get;  set; }
+		IfcBoolean @SameSense { get;  set; }
 		IEnumerable<IIfcGrid> @PartOfW {  get; }
 		IEnumerable<IIfcGrid> @PartOfV {  get; }
 		IEnumerable<IIfcGrid> @PartOfU {  get; }
@@ -41,14 +43,27 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometricConstraintResource
 {
-	[ExpressType("IfcGridAxis", 704)]
+	[ExpressType("IfcGridAxis", 441)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridAxis : INotifyPropertyChanged, IInstantiableEntity, IIfcGridAxis, IEqualityComparer<@IfcGridAxis>, IEquatable<@IfcGridAxis>
+	public  partial class @IfcGridAxis : PersistEntity, IInstantiableEntity, IIfcGridAxis, IContainsEntityReferences, IEquatable<@IfcGridAxis>
 	{
 		#region IIfcGridAxis explicit implementation
-		IfcLabel? IIfcGridAxis.AxisTag { get { return @AxisTag; } }	
-		IIfcCurve IIfcGridAxis.AxisCurve { get { return @AxisCurve; } }	
-		IfcBoolean IIfcGridAxis.SameSense { get { return @SameSense; } }	
+		IfcLabel? IIfcGridAxis.AxisTag { 
+ 
+			get { return @AxisTag; } 
+			set { AxisTag = value;}
+		}	
+		IIfcCurve IIfcGridAxis.AxisCurve { 
+ 
+ 
+			get { return @AxisCurve; } 
+			set { AxisCurve = value as IfcCurve;}
+		}	
+		IfcBoolean IIfcGridAxis.SameSense { 
+ 
+			get { return @SameSense; } 
+			set { SameSense = value;}
+		}	
 		 
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW {  get { return @PartOfW; } }
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV {  get { return @PartOfV; } }
@@ -56,67 +71,9 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		IEnumerable<IIfcVirtualGridIntersection> IIfcGridAxis.HasIntersections {  get { return @HasIntersections; } }
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcGridAxis(IModel model) 		{ 
-			Model = model; 
+		internal IfcGridAxis(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -131,13 +88,13 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axisTag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axisTag;
+				Activate();
 				return _axisTag;
 			} 
 			set
 			{
-				SetValue( v =>  _axisTag = v, _axisTag, value,  "AxisTag");
+				SetValue( v =>  _axisTag = v, _axisTag, value,  "AxisTag", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
@@ -145,13 +102,15 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _axisCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _axisCurve;
+				Activate();
 				return _axisCurve;
 			} 
 			set
 			{
-				SetValue( v =>  _axisCurve = v, _axisCurve, value,  "AxisCurve");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _axisCurve = v, _axisCurve, value,  "AxisCurve", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -159,13 +118,13 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sameSense;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sameSense;
+				Activate();
 				return _sameSense;
 			} 
 			set
 			{
-				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense");
+				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense", 3);
 			} 
 		}	
 		#endregion
@@ -211,58 +170,8 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		}
 		#endregion
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -279,13 +188,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : AxisCurve.Dim = 2;*/
-		/*WR2:	WR2 : (SIZEOF(PartOfU) = 1) XOR (SIZEOF(PartOfV) = 1) XOR (SIZEOF(PartOfW) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -293,55 +195,18 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcGridAxis
-            var root = (@IfcGridAxis)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcGridAxis left, @IfcGridAxis right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcGridAxis left, @IfcGridAxis right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGridAxis x, @IfcGridAxis y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGridAxis obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@AxisCurve != null)
+					yield return @AxisCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

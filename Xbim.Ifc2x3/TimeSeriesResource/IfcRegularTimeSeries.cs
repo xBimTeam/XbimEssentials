@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TimeSeriesResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRegularTimeSeries : IIfcTimeSeries
 	{
-		IfcTimeMeasure @TimeStep { get; }
-		IEnumerable<IIfcTimeSeriesValue> @Values { get; }
+		IfcTimeMeasure @TimeStep { get;  set; }
+		IItemSet<IIfcTimeSeriesValue> @Values { get; }
 	
 	}
 }
@@ -34,23 +36,29 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcRegularTimeSeries", 417)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcRegularTimeSeries, IEqualityComparer<@IfcRegularTimeSeries>, IEquatable<@IfcRegularTimeSeries>
+	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcRegularTimeSeries, IContainsEntityReferences, IEquatable<@IfcRegularTimeSeries>
 	{
 		#region IIfcRegularTimeSeries explicit implementation
-		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { get { return @TimeStep; } }	
-		IEnumerable<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { get { return @Values; } }	
+		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { 
+ 
+			get { return @TimeStep; } 
+			set { TimeStep = value;}
+		}	
+		IItemSet<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { 
+			get { return new Common.Collections.ProxyItemSet<IfcTimeSeriesValue, IIfcTimeSeriesValue>( @Values); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRegularTimeSeries(IModel model) : base(model) 		{ 
-			Model = model; 
-			_values = new ItemSet<IfcTimeSeriesValue>( this, 0 );
+		internal IfcRegularTimeSeries(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_values = new ItemSet<IfcTimeSeriesValue>( this, 0,  10);
 		}
 
 		#region Explicit attribute fields
 		private IfcTimeMeasure _timeStep;
-		private ItemSet<IfcTimeSeriesValue> _values;
+		private readonly ItemSet<IfcTimeSeriesValue> _values;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -59,22 +67,22 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeStep;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeStep;
+				Activate();
 				return _timeStep;
 			} 
 			set
 			{
-				SetValue( v =>  _timeStep = v, _timeStep, value,  "TimeStep");
+				SetValue( v =>  _timeStep = v, _timeStep, value,  "TimeStep", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 11)]
-		public ItemSet<IfcTimeSeriesValue> @Values 
+		public IItemSet<IfcTimeSeriesValue> @Values 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _values;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _values;
+				Activate();
 				return _values;
 			} 
 		}	
@@ -83,9 +91,8 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -103,17 +110,11 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 					_timeStep = value.RealVal;
 					return;
 				case 9: 
-					if (_values == null) _values = new ItemSet<IfcTimeSeriesValue>( this );
 					_values.InternalAdd((IfcTimeSeriesValue)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -122,55 +123,24 @@ namespace Xbim.Ifc2x3.TimeSeriesResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRegularTimeSeries
-            var root = (@IfcRegularTimeSeries)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRegularTimeSeries left, @IfcRegularTimeSeries right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRegularTimeSeries left, @IfcRegularTimeSeries right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRegularTimeSeries x, @IfcRegularTimeSeries y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRegularTimeSeries obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@StartTime != null)
+					yield return @StartTime;
+				if (@EndTime != null)
+					yield return @EndTime;
+				if (@Unit != null)
+					yield return @Unit;
+				foreach(var entity in @Values)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

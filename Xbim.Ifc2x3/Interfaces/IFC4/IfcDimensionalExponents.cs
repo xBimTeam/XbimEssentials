@@ -10,60 +10,110 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	public partial class @IfcDimensionalExponents : IIfcDimensionalExponents
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 1)]
 		long IIfcDimensionalExponents.LengthExponent 
 		{ 
 			get
 			{
 				return LengthExponent;
 			} 
+			set
+			{
+				LengthExponent = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 2)]
 		long IIfcDimensionalExponents.MassExponent 
 		{ 
 			get
 			{
 				return MassExponent;
 			} 
+			set
+			{
+				MassExponent = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 3)]
 		long IIfcDimensionalExponents.TimeExponent 
 		{ 
 			get
 			{
 				return TimeExponent;
 			} 
+			set
+			{
+				TimeExponent = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 4)]
 		long IIfcDimensionalExponents.ElectricCurrentExponent 
 		{ 
 			get
 			{
 				return ElectricCurrentExponent;
 			} 
+			set
+			{
+				ElectricCurrentExponent = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 5)]
 		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent 
 		{ 
 			get
 			{
 				return ThermodynamicTemperatureExponent;
 			} 
+			set
+			{
+				ThermodynamicTemperatureExponent = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 6)]
 		long IIfcDimensionalExponents.AmountOfSubstanceExponent 
 		{ 
 			get
 			{
 				return AmountOfSubstanceExponent;
 			} 
+			set
+			{
+				AmountOfSubstanceExponent = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcDimensionalExponents), 7)]
 		long IIfcDimensionalExponents.LuminousIntensityExponent 
 		{ 
 			get
 			{
 				return LuminousIntensityExponent;
 			} 
+			set
+			{
+				LuminousIntensityExponent = value;
+				
+			}
 		}
 	//## Custom code
 	//##

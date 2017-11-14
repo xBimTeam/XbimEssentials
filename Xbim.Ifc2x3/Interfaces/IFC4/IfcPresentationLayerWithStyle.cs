@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcPresentationLayerWithStyle : IIfcPresentationLayerWithStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerWithStyle), 5)]
 		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerOn 
 		{ 
 			get
@@ -24,7 +27,14 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 			    return new Ifc4.MeasureResource.IfcLogical(LayerOn);
 			    //##
 			} 
+			set
+			{
+				LayerOn = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerWithStyle), 6)]
 		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerFrozen 
 		{ 
 			get
@@ -33,7 +43,14 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
                 return new Ifc4.MeasureResource.IfcLogical(LayerFrozen);
 				//##
 			} 
+			set
+			{
+				LayerFrozen = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerWithStyle), 7)]
 		Ifc4.MeasureResource.IfcLogical IIfcPresentationLayerWithStyle.LayerBlocked 
 		{ 
 			get
@@ -42,13 +59,20 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
                 return new Ifc4.MeasureResource.IfcLogical(LayerBlocked);
 				//##
 			} 
+			set
+			{
+				LayerBlocked = value;
+				
+			}
 		}
-		IEnumerable<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
+
+		[CrossSchemaAttribute(typeof(IIfcPresentationLayerWithStyle), 8)]
+		IItemSet<IIfcPresentationStyle> IIfcPresentationLayerWithStyle.LayerStyles 
 		{ 
 			get
 			{
 				//## Handle return of LayerStyles for which no match was found
-                return LayerStyles.OfType<IIfcPresentationStyle>();
+                return new Common.Collections.VolatileProxyItemSet<PresentationAppearanceResource.IfcPresentationStyleSelect, IIfcPresentationStyle>(LayerStyles); 
 			    //##
 			} 
 		}

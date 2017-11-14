@@ -14,6 +14,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,27 +25,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralCurveAction : IIfcStructuralAction
 	{
-		IfcProjectedOrTrueLengthEnum? @ProjectedOrTrue { get; }
-		IfcStructuralCurveActivityTypeEnum @PredefinedType { get; }
+		IfcProjectedOrTrueLengthEnum? @ProjectedOrTrue { get;  set; }
+		IfcStructuralCurveActivityTypeEnum @PredefinedType { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralCurveAction", 1023)]
+	[ExpressType("IfcStructuralCurveAction", 1279)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralCurveAction, IEqualityComparer<@IfcStructuralCurveAction>, IEquatable<@IfcStructuralCurveAction>
+	public  partial class @IfcStructuralCurveAction : IfcStructuralAction, IInstantiableEntity, IIfcStructuralCurveAction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveAction>
 	{
 		#region IIfcStructuralCurveAction explicit implementation
-		IfcProjectedOrTrueLengthEnum? IIfcStructuralCurveAction.ProjectedOrTrue { get { return @ProjectedOrTrue; } }	
-		IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType { get { return @PredefinedType; } }	
+		IfcProjectedOrTrueLengthEnum? IIfcStructuralCurveAction.ProjectedOrTrue { 
+ 
+			get { return @ProjectedOrTrue; } 
+			set { ProjectedOrTrue = value;}
+		}	
+		IfcStructuralCurveActivityTypeEnum IIfcStructuralCurveAction.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralCurveAction(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcStructuralCurveAction(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -57,13 +67,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _projectedOrTrue;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _projectedOrTrue;
+				Activate();
 				return _projectedOrTrue;
 			} 
 			set
 			{
-				SetValue( v =>  _projectedOrTrue = v, _projectedOrTrue, value,  "ProjectedOrTrue");
+				SetValue( v =>  _projectedOrTrue = v, _projectedOrTrue, value,  "ProjectedOrTrue", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 25)]
@@ -71,13 +81,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 12);
 			} 
 		}	
 		#endregion
@@ -85,9 +95,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -113,14 +122,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ProjectedIsGlobal: (SELF\IfcStructuralActivity.GlobalOrLocal = GLOBAL_COORDS));*/
-		/*HasObjectType:	HasObjectType : (PredefinedType <> IfcStructuralCurveActivityTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		/*SuitablePredefinedType:	SuitablePredefinedType : PredefinedType <> IfcStructuralCurveActivityTypeEnum.EQUIDISTANT;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -128,55 +129,39 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralCurveAction
-            var root = (@IfcStructuralCurveAction)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralCurveAction left, @IfcStructuralCurveAction right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralCurveAction left, @IfcStructuralCurveAction right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralCurveAction x, @IfcStructuralCurveAction y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralCurveAction obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@AppliedLoad != null)
+					yield return @AppliedLoad;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

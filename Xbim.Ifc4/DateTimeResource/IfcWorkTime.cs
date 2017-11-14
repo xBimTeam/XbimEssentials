@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,29 +25,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcWorkTime : IIfcSchedulingTime
 	{
-		IIfcRecurrencePattern @RecurrencePattern { get; }
-		IfcDate? @Start { get; }
-		IfcDate? @Finish { get; }
+		IIfcRecurrencePattern @RecurrencePattern { get;  set; }
+		IfcDate? @Start { get;  set; }
+		IfcDate? @Finish { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IfcWorkTime", 1162)]
+	[ExpressType("IfcWorkTime", 1319)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkTime : IfcSchedulingTime, IInstantiableEntity, IIfcWorkTime, IEqualityComparer<@IfcWorkTime>, IEquatable<@IfcWorkTime>
+	public  partial class @IfcWorkTime : IfcSchedulingTime, IInstantiableEntity, IIfcWorkTime, IContainsEntityReferences, IEquatable<@IfcWorkTime>
 	{
 		#region IIfcWorkTime explicit implementation
-		IIfcRecurrencePattern IIfcWorkTime.RecurrencePattern { get { return @RecurrencePattern; } }	
-		IfcDate? IIfcWorkTime.Start { get { return @Start; } }	
-		IfcDate? IIfcWorkTime.Finish { get { return @Finish; } }	
+		IIfcRecurrencePattern IIfcWorkTime.RecurrencePattern { 
+ 
+ 
+			get { return @RecurrencePattern; } 
+			set { RecurrencePattern = value as IfcRecurrencePattern;}
+		}	
+		IfcDate? IIfcWorkTime.Start { 
+ 
+			get { return @Start; } 
+			set { Start = value;}
+		}	
+		IfcDate? IIfcWorkTime.Finish { 
+ 
+			get { return @Finish; } 
+			set { Finish = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcWorkTime(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcWorkTime(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -60,13 +75,15 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _recurrencePattern;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _recurrencePattern;
+				Activate();
 				return _recurrencePattern;
 			} 
 			set
 			{
-				SetValue( v =>  _recurrencePattern = v, _recurrencePattern, value,  "RecurrencePattern");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _recurrencePattern = v, _recurrencePattern, value,  "RecurrencePattern", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -74,13 +91,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _start;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _start;
+				Activate();
 				return _start;
 			} 
 			set
 			{
-				SetValue( v =>  _start = v, _start, value,  "Start");
+				SetValue( v =>  _start = v, _start, value,  "Start", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -88,13 +105,13 @@ namespace Xbim.Ifc4.DateTimeResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _finish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _finish;
+				Activate();
 				return _finish;
 			} 
 			set
 			{
-				SetValue( v =>  _finish = v, _finish, value,  "Finish");
+				SetValue( v =>  _finish = v, _finish, value,  "Finish", 6);
 			} 
 		}	
 		#endregion
@@ -102,9 +119,8 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -126,11 +142,6 @@ namespace Xbim.Ifc4.DateTimeResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -138,55 +149,18 @@ namespace Xbim.Ifc4.DateTimeResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcWorkTime
-            var root = (@IfcWorkTime)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcWorkTime left, @IfcWorkTime right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcWorkTime left, @IfcWorkTime right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcWorkTime x, @IfcWorkTime y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcWorkTime obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@RecurrencePattern != null)
+					yield return @RecurrencePattern;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

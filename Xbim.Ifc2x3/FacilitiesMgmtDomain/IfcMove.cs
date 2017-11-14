@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.FacilitiesMgmtDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMove : IIfcTask
 	{
-		IIfcSpatialStructureElement @MoveFrom { get; }
-		IIfcSpatialStructureElement @MoveTo { get; }
-		IEnumerable<IfcText> @PunchList { get; }
+		IIfcSpatialStructureElement @MoveFrom { get;  set; }
+		IIfcSpatialStructureElement @MoveTo { get;  set; }
+		IItemSet<IfcText> @PunchList { get; }
 	
 	}
 }
@@ -37,25 +39,37 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcMove", 74)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IEqualityComparer<@IfcMove>, IEquatable<@IfcMove>
+	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IContainsEntityReferences, IEquatable<@IfcMove>
 	{
 		#region IIfcMove explicit implementation
-		IIfcSpatialStructureElement IIfcMove.MoveFrom { get { return @MoveFrom; } }	
-		IIfcSpatialStructureElement IIfcMove.MoveTo { get { return @MoveTo; } }	
-		IEnumerable<IfcText> IIfcMove.PunchList { get { return @PunchList; } }	
+		IIfcSpatialStructureElement IIfcMove.MoveFrom { 
+ 
+ 
+			get { return @MoveFrom; } 
+			set { MoveFrom = value as IfcSpatialStructureElement;}
+		}	
+		IIfcSpatialStructureElement IIfcMove.MoveTo { 
+ 
+ 
+			get { return @MoveTo; } 
+			set { MoveTo = value as IfcSpatialStructureElement;}
+		}	
+		IItemSet<IfcText> IIfcMove.PunchList { 
+			get { return @PunchList; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMove(IModel model) : base(model) 		{ 
-			Model = model; 
-			_punchList = new OptionalItemSet<IfcText>( this, 0 );
+		internal IfcMove(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_punchList = new OptionalItemSet<IfcText>( this, 0,  13);
 		}
 
 		#region Explicit attribute fields
 		private IfcSpatialStructureElement _moveFrom;
 		private IfcSpatialStructureElement _moveTo;
-		private OptionalItemSet<IfcText> _punchList;
+		private readonly OptionalItemSet<IfcText> _punchList;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -64,13 +78,15 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _moveFrom;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _moveFrom;
+				Activate();
 				return _moveFrom;
 			} 
 			set
 			{
-				SetValue( v =>  _moveFrom = v, _moveFrom, value,  "MoveFrom");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _moveFrom = v, _moveFrom, value,  "MoveFrom", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
@@ -78,22 +94,24 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _moveTo;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _moveTo;
+				Activate();
 				return _moveTo;
 			} 
 			set
 			{
-				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _moveTo = v, _moveTo, value,  "MoveTo", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.None, 1, -1, 21)]
-		public OptionalItemSet<IfcText> @PunchList 
+		public IOptionalItemSet<IfcText> @PunchList 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _punchList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _punchList;
+				Activate();
 				return _punchList;
 			} 
 		}	
@@ -102,9 +120,8 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -127,20 +144,11 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 					_moveTo = (IfcSpatialStructureElement)(value.EntityVal);
 					return;
 				case 12: 
-					if (_punchList == null) _punchList = new OptionalItemSet<IfcText>( this );
 					_punchList.InternalAdd(value.StringVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(SELF\IfcProcess.OperatesOn) >= 1;*/
-		/*WR2:              )) >= 1;*/
-		/*WR3:	WR3 : EXISTS(SELF\IfcRoot.Name);*/
 		}
 		#endregion
 
@@ -149,55 +157,22 @@ namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMove
-            var root = (@IfcMove)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMove left, @IfcMove right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMove left, @IfcMove right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMove x, @IfcMove y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMove obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@MoveFrom != null)
+					yield return @MoveFrom;
+				if (@MoveTo != null)
+					yield return @MoveTo;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

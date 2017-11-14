@@ -10,25 +10,40 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelAssignsToActor : IIfcRelAssignsToActor
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToActor), 7)]
 		IIfcActor IIfcRelAssignsToActor.RelatingActor 
 		{ 
 			get
 			{
 				return RelatingActor;
 			} 
+			set
+			{
+				RelatingActor = value as IfcActor;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelAssignsToActor), 8)]
 		IIfcActorRole IIfcRelAssignsToActor.ActingRole 
 		{ 
 			get
 			{
 				return ActingRole;
 			} 
+			set
+			{
+				ActingRole = value as ActorResource.IfcActorRole;
+				
+			}
 		}
 	//## Custom code
 	//##

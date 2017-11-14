@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcPresentationLayerWithStyle : IIfcPresentationLayerAssignment
 	{
-		bool? @LayerOn { get; }
-		bool? @LayerFrozen { get; }
-		bool? @LayerBlocked { get; }
-		IEnumerable<IIfcPresentationStyleSelect> @LayerStyles { get; }
+		bool? @LayerOn { get;  set; }
+		bool? @LayerFrozen { get;  set; }
+		bool? @LayerBlocked { get;  set; }
+		IItemSet<IIfcPresentationStyleSelect> @LayerStyles { get; }
 	
 	}
 }
@@ -36,27 +38,41 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerWithStyle", 259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IEqualityComparer<@IfcPresentationLayerWithStyle>, IEquatable<@IfcPresentationLayerWithStyle>
+	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerWithStyle>
 	{
 		#region IIfcPresentationLayerWithStyle explicit implementation
-		bool? IIfcPresentationLayerWithStyle.LayerOn { get { return @LayerOn; } }	
-		bool? IIfcPresentationLayerWithStyle.LayerFrozen { get { return @LayerFrozen; } }	
-		bool? IIfcPresentationLayerWithStyle.LayerBlocked { get { return @LayerBlocked; } }	
-		IEnumerable<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { get { return @LayerStyles; } }	
+		bool? IIfcPresentationLayerWithStyle.LayerOn { 
+ 
+			get { return @LayerOn; } 
+			set { LayerOn = value;}
+		}	
+		bool? IIfcPresentationLayerWithStyle.LayerFrozen { 
+ 
+			get { return @LayerFrozen; } 
+			set { LayerFrozen = value;}
+		}	
+		bool? IIfcPresentationLayerWithStyle.LayerBlocked { 
+ 
+			get { return @LayerBlocked; } 
+			set { LayerBlocked = value;}
+		}	
+		IItemSet<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { 
+			get { return new Common.Collections.ProxyItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>( @LayerStyles); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPresentationLayerWithStyle(IModel model) : base(model) 		{ 
-			Model = model; 
-			_layerStyles = new ItemSet<IfcPresentationStyleSelect>( this, 0 );
+		internal IfcPresentationLayerWithStyle(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_layerStyles = new ItemSet<IfcPresentationStyleSelect>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private bool? _layerOn;
 		private bool? _layerFrozen;
 		private bool? _layerBlocked;
-		private ItemSet<IfcPresentationStyleSelect> _layerStyles;
+		private readonly ItemSet<IfcPresentationStyleSelect> _layerStyles;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -65,13 +81,13 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerOn;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerOn;
+				Activate();
 				return _layerOn;
 			} 
 			set
 			{
-				SetValue( v =>  _layerOn = v, _layerOn, value,  "LayerOn");
+				SetValue( v =>  _layerOn = v, _layerOn, value,  "LayerOn", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -79,13 +95,13 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerFrozen;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerFrozen;
+				Activate();
 				return _layerFrozen;
 			} 
 			set
 			{
-				SetValue( v =>  _layerFrozen = v, _layerFrozen, value,  "LayerFrozen");
+				SetValue( v =>  _layerFrozen = v, _layerFrozen, value,  "LayerFrozen", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -93,22 +109,22 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerBlocked;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerBlocked;
+				Activate();
 				return _layerBlocked;
 			} 
 			set
 			{
-				SetValue( v =>  _layerBlocked = v, _layerBlocked, value,  "LayerBlocked");
+				SetValue( v =>  _layerBlocked = v, _layerBlocked, value,  "LayerBlocked", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
-		public ItemSet<IfcPresentationStyleSelect> @LayerStyles 
+		public IItemSet<IfcPresentationStyleSelect> @LayerStyles 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerStyles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerStyles;
+				Activate();
 				return _layerStyles;
 			} 
 		}	
@@ -117,9 +133,8 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -139,17 +154,11 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 					_layerBlocked = value.BooleanVal;
 					return;
 				case 7: 
-					if (_layerStyles == null) _layerStyles = new ItemSet<IfcPresentationStyleSelect>( this );
 					_layerStyles.InternalAdd((IfcPresentationStyleSelect)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -158,55 +167,31 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcPresentationLayerWithStyle
-            var root = (@IfcPresentationLayerWithStyle)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcPresentationLayerWithStyle left, @IfcPresentationLayerWithStyle right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcPresentationLayerWithStyle left, @IfcPresentationLayerWithStyle right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcPresentationLayerWithStyle x, @IfcPresentationLayerWithStyle y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcPresentationLayerWithStyle obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @AssignedItems)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @AssignedItems)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

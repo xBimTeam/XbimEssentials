@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Kernel
         {
             get
             {
-                return Model.Instances.Where<IfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains(this)).Select(s => s.RelatingStructure).FirstOrDefault();
+                return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains(this)).Select(s => s.RelatingStructure).FirstOrDefault();
             }
         }
     }

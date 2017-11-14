@@ -10,33 +10,57 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCartesianTransformationOperator : IIfcCartesianTransformationOperator
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 1)]
 		IIfcDirection IIfcCartesianTransformationOperator.Axis1 
 		{ 
 			get
 			{
 				return Axis1;
 			} 
+			set
+			{
+				Axis1 = value as IfcDirection;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 2)]
 		IIfcDirection IIfcCartesianTransformationOperator.Axis2 
 		{ 
 			get
 			{
 				return Axis2;
 			} 
+			set
+			{
+				Axis2 = value as IfcDirection;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 3)]
 		IIfcCartesianPoint IIfcCartesianTransformationOperator.LocalOrigin 
 		{ 
 			get
 			{
 				return LocalOrigin;
 			} 
+			set
+			{
+				LocalOrigin = value as IfcCartesianPoint;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCartesianTransformationOperator), 4)]
 		Ifc4.MeasureResource.IfcReal? IIfcCartesianTransformationOperator.Scale 
 		{ 
 			get
@@ -45,6 +69,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return Scale.HasValue ? new Ifc4.MeasureResource.IfcReal(Scale.Value) : (Ifc4.MeasureResource.IfcReal?)null;
                 //##
 			} 
+			set
+			{
+				Scale = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcReal IIfcCartesianTransformationOperator.Scl 
 		{

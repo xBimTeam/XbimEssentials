@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,35 +27,46 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStyledItem : IIfcRepresentationItem
 	{
-		IIfcRepresentationItem @Item { get; }
-		IEnumerable<IIfcStyleAssignmentSelect> @Styles { get; }
-		IfcLabel? @Name { get; }
+		IIfcRepresentationItem @Item { get;  set; }
+		IItemSet<IIfcStyleAssignmentSelect> @Styles { get; }
+		IfcLabel? @Name { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcStyledItem", 1056)]
+	[ExpressType("IfcStyledItem", 56)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IIfcStyledItem, IEqualityComparer<@IfcStyledItem>, IEquatable<@IfcStyledItem>
+	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IIfcStyledItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStyledItem>
 	{
 		#region IIfcStyledItem explicit implementation
-		IIfcRepresentationItem IIfcStyledItem.Item { get { return @Item; } }	
-		IEnumerable<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles { get { return @Styles; } }	
-		IfcLabel? IIfcStyledItem.Name { get { return @Name; } }	
+		IIfcRepresentationItem IIfcStyledItem.Item { 
+ 
+ 
+			get { return @Item; } 
+			set { Item = value as IfcRepresentationItem;}
+		}	
+		IItemSet<IIfcStyleAssignmentSelect> IIfcStyledItem.Styles { 
+			get { return new Common.Collections.ProxyItemSet<IfcStyleAssignmentSelect, IIfcStyleAssignmentSelect>( @Styles); } 
+		}	
+		IfcLabel? IIfcStyledItem.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStyledItem(IModel model) : base(model) 		{ 
-			Model = model; 
-			_styles = new ItemSet<IfcStyleAssignmentSelect>( this, 0 );
+		internal IfcStyledItem(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_styles = new ItemSet<IfcStyleAssignmentSelect>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcRepresentationItem _item;
-		private ItemSet<IfcStyleAssignmentSelect> _styles;
+		private readonly ItemSet<IfcStyleAssignmentSelect> _styles;
 		private IfcLabel? _name;
 		#endregion
 	
@@ -64,22 +77,24 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _item;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _item;
+				Activate();
 				return _item;
 			} 
 			set
 			{
-				SetValue( v =>  _item = v, _item, value,  "Item");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _item = v, _item, value,  "Item", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcStyleAssignmentSelect> @Styles 
+		public IItemSet<IfcStyleAssignmentSelect> @Styles 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _styles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _styles;
+				Activate();
 				return _styles;
 			} 
 		}	
@@ -88,13 +103,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 3);
 			} 
 		}	
 		#endregion
@@ -102,9 +117,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -112,7 +126,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					_item = (IfcRepresentationItem)(value.EntityVal);
 					return;
 				case 1: 
-					if (_styles == null) _styles = new ItemSet<IfcStyleAssignmentSelect>( this );
 					_styles.InternalAdd((IfcStyleAssignmentSelect)value.EntityVal);
 					return;
 				case 2: 
@@ -122,12 +135,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*ApplicableItem:	ApplicableItem : NOT('IFC4.IFCSTYLEDITEM' IN TYPEOF(Item));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -135,55 +142,33 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStyledItem
-            var root = (@IfcStyledItem)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStyledItem left, @IfcStyledItem right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStyledItem left, @IfcStyledItem right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStyledItem x, @IfcStyledItem y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStyledItem obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Item != null)
+					yield return @Item;
+				foreach(var entity in @Styles)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Item != null)
+					yield return @Item;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

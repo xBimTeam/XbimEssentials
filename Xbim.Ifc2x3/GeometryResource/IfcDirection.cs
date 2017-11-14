@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDirection : IIfcGeometricRepresentationItem, IfcOrientationSelect, IfcVectorOrDirection
 	{
-		IEnumerable<double> @DirectionRatios { get; }
+		IItemSet<double> @DirectionRatios { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -34,31 +36,33 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcDirection", 344)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEqualityComparer<@IfcDirection>, IEquatable<@IfcDirection>
+	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDirection, IEquatable<@IfcDirection>
 	{
 		#region IIfcDirection explicit implementation
-		IEnumerable<double> IIfcDirection.DirectionRatios { get { return @DirectionRatios; } }	
+		IItemSet<double> IIfcDirection.DirectionRatios { 
+			get { return @DirectionRatios; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDirection(IModel model) : base(model) 		{ 
-			Model = model; 
-			_directionRatios = new ItemSet<double>( this, 3 );
+		internal IfcDirection(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_directionRatios = new ItemSet<double>( this, 3,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<double> _directionRatios;
+		private readonly ItemSet<double> _directionRatios;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 3)]
-		public ItemSet<double> @DirectionRatios 
+		public IItemSet<double> @DirectionRatios 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directionRatios;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directionRatios;
+				Activate();
 				return _directionRatios;
 			} 
 		}	
@@ -80,24 +84,17 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_directionRatios == null) _directionRatios = new ItemSet<double>( this );
 					_directionRatios.InternalAdd(value.RealVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -106,54 +103,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDirection
-            var root = (@IfcDirection)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDirection left, @IfcDirection right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDirection left, @IfcDirection right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDirection x, @IfcDirection y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDirection obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)
@@ -168,12 +117,10 @@ namespace Xbim.Ifc2x3.GeometryResource
         /// <returns></returns>
         public static implicit operator IfcDirection(Common.Geometry.XbimVector3D vector)  // explicit byte to digit conversion operator
         {
-            var result = new IfcDirection(null);
+            var result = new IfcDirection(null, -1, true);
             result._directionRatios.InternalAdd(vector.X);
             result._directionRatios.InternalAdd(vector.Y);
             result._directionRatios.InternalAdd(vector.Z);
-            result.ActivationStatus = ActivationStatus.ActivatedRead;
-            result.EntityLabel = -1;
             return result;
         }
 		//##

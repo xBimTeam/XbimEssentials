@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBlobTexture : IIfcSurfaceTexture
 	{
-		IfcIdentifier @RasterFormat { get; }
-		IfcBinary @RasterCode { get; }
+		IfcIdentifier @RasterFormat { get;  set; }
+		IfcBinary @RasterCode { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcBlobTexture", 437)]
+	[ExpressType("IfcBlobTexture", 723)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IEqualityComparer<@IfcBlobTexture>, IEquatable<@IfcBlobTexture>
+	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IContainsEntityReferences, IEquatable<@IfcBlobTexture>
 	{
 		#region IIfcBlobTexture explicit implementation
-		IfcIdentifier IIfcBlobTexture.RasterFormat { get { return @RasterFormat; } }	
-		IfcBinary IIfcBlobTexture.RasterCode { get { return @RasterCode; } }	
+		IfcIdentifier IIfcBlobTexture.RasterFormat { 
+ 
+			get { return @RasterFormat; } 
+			set { RasterFormat = value;}
+		}	
+		IfcBinary IIfcBlobTexture.RasterCode { 
+ 
+			get { return @RasterCode; } 
+			set { RasterCode = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBlobTexture(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcBlobTexture(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +68,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rasterFormat;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rasterFormat;
+				Activate();
 				return _rasterFormat;
 			} 
 			set
 			{
-				SetValue( v =>  _rasterFormat = v, _rasterFormat, value,  "RasterFormat");
+				SetValue( v =>  _rasterFormat = v, _rasterFormat, value,  "RasterFormat", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -72,13 +82,13 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rasterCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rasterCode;
+				Activate();
 				return _rasterCode;
 			} 
 			set
 			{
-				SetValue( v =>  _rasterCode = v, _rasterCode, value,  "RasterCode");
+				SetValue( v =>  _rasterCode = v, _rasterCode, value,  "RasterCode", 7);
 			} 
 		}	
 		#endregion
@@ -86,9 +96,8 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -109,13 +118,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SupportedRasterFormat:	SupportedRasterFormat : SELF.RasterFormat IN ['BMP', 'JPG', 'GIF', 'PNG'];*/
-		/*RasterCodeByteStream:	RasterCodeByteStream : BLENGTH(RasterCode) MOD 8 = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -123,55 +125,18 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBlobTexture
-            var root = (@IfcBlobTexture)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBlobTexture left, @IfcBlobTexture right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBlobTexture left, @IfcBlobTexture right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBlobTexture x, @IfcBlobTexture y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBlobTexture obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@TextureTransform != null)
+					yield return @TextureTransform;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

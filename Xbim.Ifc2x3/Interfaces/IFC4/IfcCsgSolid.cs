@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcCsgSolid : IIfcCsgSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCsgSolid), 1)]
 		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression 
 		{ 
 			get
@@ -29,6 +32,27 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					return ifccsgprimitive3d;
 				return null;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					TreeRootExpression = null;
+					return;
+				}	
+				var ifcbooleanresult = value as IfcBooleanResult;
+				if (ifcbooleanresult != null) 
+				{
+					TreeRootExpression = ifcbooleanresult;
+					return;
+				}
+				var ifccsgprimitive3d = value as IfcCsgPrimitive3D;
+				if (ifccsgprimitive3d != null) 
+				{
+					TreeRootExpression = ifccsgprimitive3d;
+					return;
+				}
+				
+			}
 		}
 	//## Custom code
 	//##

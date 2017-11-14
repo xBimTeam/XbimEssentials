@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,12 +28,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSectionReinforcementProperties : IPersistEntity
 	{
-		IfcLengthMeasure @LongitudinalStartPosition { get; }
-		IfcLengthMeasure @LongitudinalEndPosition { get; }
-		IfcLengthMeasure? @TransversePosition { get; }
-		IfcReinforcingBarRoleEnum @ReinforcementRole { get; }
-		IIfcSectionProperties @SectionDefinition { get; }
-		IEnumerable<IIfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions { get; }
+		IfcLengthMeasure @LongitudinalStartPosition { get;  set; }
+		IfcLengthMeasure @LongitudinalEndPosition { get;  set; }
+		IfcLengthMeasure? @TransversePosition { get;  set; }
+		IfcReinforcingBarRoleEnum @ReinforcementRole { get;  set; }
+		IIfcSectionProperties @SectionDefinition { get;  set; }
+		IItemSet<IIfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions { get; }
 	
 	}
 }
@@ -40,80 +42,45 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcSectionReinforcementProperties", 508)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionReinforcementProperties : INotifyPropertyChanged, IInstantiableEntity, IIfcSectionReinforcementProperties, IEqualityComparer<@IfcSectionReinforcementProperties>, IEquatable<@IfcSectionReinforcementProperties>
+	public  partial class @IfcSectionReinforcementProperties : PersistEntity, IInstantiableEntity, IIfcSectionReinforcementProperties, IContainsEntityReferences, IEquatable<@IfcSectionReinforcementProperties>
 	{
 		#region IIfcSectionReinforcementProperties explicit implementation
-		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { get { return @LongitudinalStartPosition; } }	
-		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition { get { return @LongitudinalEndPosition; } }	
-		IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition { get { return @TransversePosition; } }	
-		IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole { get { return @ReinforcementRole; } }	
-		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition { get { return @SectionDefinition; } }	
-		IEnumerable<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { get { return @CrossSectionReinforcementDefinitions; } }	
+		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalStartPosition { 
+ 
+			get { return @LongitudinalStartPosition; } 
+			set { LongitudinalStartPosition = value;}
+		}	
+		IfcLengthMeasure IIfcSectionReinforcementProperties.LongitudinalEndPosition { 
+ 
+			get { return @LongitudinalEndPosition; } 
+			set { LongitudinalEndPosition = value;}
+		}	
+		IfcLengthMeasure? IIfcSectionReinforcementProperties.TransversePosition { 
+ 
+			get { return @TransversePosition; } 
+			set { TransversePosition = value;}
+		}	
+		IfcReinforcingBarRoleEnum IIfcSectionReinforcementProperties.ReinforcementRole { 
+ 
+			get { return @ReinforcementRole; } 
+			set { ReinforcementRole = value;}
+		}	
+		IIfcSectionProperties IIfcSectionReinforcementProperties.SectionDefinition { 
+ 
+ 
+			get { return @SectionDefinition; } 
+			set { SectionDefinition = value as IfcSectionProperties;}
+		}	
+		IItemSet<IIfcReinforcementBarProperties> IIfcSectionReinforcementProperties.CrossSectionReinforcementDefinitions { 
+			get { return new Common.Collections.ProxyItemSet<IfcReinforcementBarProperties, IIfcReinforcementBarProperties>( @CrossSectionReinforcementDefinitions); } 
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSectionReinforcementProperties(IModel model) 		{ 
-			Model = model; 
-			_crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this, 0 );
+		internal IfcSectionReinforcementProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
@@ -122,7 +89,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		private IfcLengthMeasure? _transversePosition;
 		private IfcReinforcingBarRoleEnum _reinforcementRole;
 		private IfcSectionProperties _sectionDefinition;
-		private ItemSet<IfcReinforcementBarProperties> _crossSectionReinforcementDefinitions;
+		private readonly ItemSet<IfcReinforcementBarProperties> _crossSectionReinforcementDefinitions;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -131,13 +98,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalStartPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalStartPosition;
+				Activate();
 				return _longitudinalStartPosition;
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition");
+				SetValue( v =>  _longitudinalStartPosition = v, _longitudinalStartPosition, value,  "LongitudinalStartPosition", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -145,13 +112,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longitudinalEndPosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longitudinalEndPosition;
+				Activate();
 				return _longitudinalEndPosition;
 			} 
 			set
 			{
-				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition");
+				SetValue( v =>  _longitudinalEndPosition = v, _longitudinalEndPosition, value,  "LongitudinalEndPosition", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -159,13 +126,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transversePosition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transversePosition;
+				Activate();
 				return _transversePosition;
 			} 
 			set
 			{
-				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition");
+				SetValue( v =>  _transversePosition = v, _transversePosition, value,  "TransversePosition", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
@@ -173,13 +140,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _reinforcementRole;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _reinforcementRole;
+				Activate();
 				return _reinforcementRole;
 			} 
 			set
 			{
-				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole");
+				SetValue( v =>  _reinforcementRole = v, _reinforcementRole, value,  "ReinforcementRole", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
@@ -187,22 +154,24 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sectionDefinition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sectionDefinition;
+				Activate();
 				return _sectionDefinition;
 			} 
 			set
 			{
-				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _sectionDefinition = v, _sectionDefinition, value,  "SectionDefinition", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions 
+		public IItemSet<IfcReinforcementBarProperties> @CrossSectionReinforcementDefinitions 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionReinforcementDefinitions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionReinforcementDefinitions;
+				Activate();
 				return _crossSectionReinforcementDefinitions;
 			} 
 		}	
@@ -211,58 +180,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -282,17 +201,11 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					_sectionDefinition = (IfcSectionProperties)(value.EntityVal);
 					return;
 				case 5: 
-					if (_crossSectionReinforcementDefinitions == null) _crossSectionReinforcementDefinitions = new ItemSet<IfcReinforcementBarProperties>( this );
 					_crossSectionReinforcementDefinitions.InternalAdd((IfcReinforcementBarProperties)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -301,55 +214,20 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSectionReinforcementProperties
-            var root = (@IfcSectionReinforcementProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSectionReinforcementProperties left, @IfcSectionReinforcementProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSectionReinforcementProperties left, @IfcSectionReinforcementProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSectionReinforcementProperties x, @IfcSectionReinforcementProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSectionReinforcementProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SectionDefinition != null)
+					yield return @SectionDefinition;
+				foreach(var entity in @CrossSectionReinforcementDefinitions)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

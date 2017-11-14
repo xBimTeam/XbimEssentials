@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,11 +26,11 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeneralProfileProperties : IIfcProfileProperties
 	{
-		IfcMassPerLengthMeasure? @PhysicalWeight { get; }
-		IfcPositiveLengthMeasure? @Perimeter { get; }
-		IfcPositiveLengthMeasure? @MinimumPlateThickness { get; }
-		IfcPositiveLengthMeasure? @MaximumPlateThickness { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
+		IfcMassPerLengthMeasure? @PhysicalWeight { get;  set; }
+		IfcPositiveLengthMeasure? @Perimeter { get;  set; }
+		IfcPositiveLengthMeasure? @MinimumPlateThickness { get;  set; }
+		IfcPositiveLengthMeasure? @MaximumPlateThickness { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
 	
 	}
 }
@@ -37,20 +39,40 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcGeneralProfileProperties", 648)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IEqualityComparer<@IfcGeneralProfileProperties>, IEquatable<@IfcGeneralProfileProperties>
+	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IContainsEntityReferences, IEquatable<@IfcGeneralProfileProperties>
 	{
 		#region IIfcGeneralProfileProperties explicit implementation
-		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { get { return @PhysicalWeight; } }	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.Perimeter { get { return @Perimeter; } }	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MinimumPlateThickness { get { return @MinimumPlateThickness; } }	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MaximumPlateThickness { get { return @MaximumPlateThickness; } }	
-		IfcAreaMeasure? IIfcGeneralProfileProperties.CrossSectionArea { get { return @CrossSectionArea; } }	
+		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { 
+ 
+			get { return @PhysicalWeight; } 
+			set { PhysicalWeight = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.Perimeter { 
+ 
+			get { return @Perimeter; } 
+			set { Perimeter = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MinimumPlateThickness { 
+ 
+			get { return @MinimumPlateThickness; } 
+			set { MinimumPlateThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MaximumPlateThickness { 
+ 
+			get { return @MaximumPlateThickness; } 
+			set { MaximumPlateThickness = value;}
+		}	
+		IfcAreaMeasure? IIfcGeneralProfileProperties.CrossSectionArea { 
+ 
+			get { return @CrossSectionArea; } 
+			set { CrossSectionArea = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcGeneralProfileProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcGeneralProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -67,13 +89,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _physicalWeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _physicalWeight;
+				Activate();
 				return _physicalWeight;
 			} 
 			set
 			{
-				SetValue( v =>  _physicalWeight = v, _physicalWeight, value,  "PhysicalWeight");
+				SetValue( v =>  _physicalWeight = v, _physicalWeight, value,  "PhysicalWeight", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -81,13 +103,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _perimeter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _perimeter;
+				Activate();
 				return _perimeter;
 			} 
 			set
 			{
-				SetValue( v =>  _perimeter = v, _perimeter, value,  "Perimeter");
+				SetValue( v =>  _perimeter = v, _perimeter, value,  "Perimeter", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -95,13 +117,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minimumPlateThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minimumPlateThickness;
+				Activate();
 				return _minimumPlateThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _minimumPlateThickness = v, _minimumPlateThickness, value,  "MinimumPlateThickness");
+				SetValue( v =>  _minimumPlateThickness = v, _minimumPlateThickness, value,  "MinimumPlateThickness", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -109,13 +131,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maximumPlateThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maximumPlateThickness;
+				Activate();
 				return _maximumPlateThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _maximumPlateThickness = v, _maximumPlateThickness, value,  "MaximumPlateThickness");
+				SetValue( v =>  _maximumPlateThickness = v, _maximumPlateThickness, value,  "MaximumPlateThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -123,13 +145,13 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 7);
 			} 
 		}	
 		#endregion
@@ -137,9 +159,8 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -166,12 +187,6 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : NOT(EXISTS(CrossSectionArea)) OR (CrossSectionArea > 0.);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -179,55 +194,18 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcGeneralProfileProperties
-            var root = (@IfcGeneralProfileProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcGeneralProfileProperties left, @IfcGeneralProfileProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcGeneralProfileProperties left, @IfcGeneralProfileProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeneralProfileProperties x, @IfcGeneralProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeneralProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ProfileDefinition != null)
+					yield return @ProfileDefinition;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

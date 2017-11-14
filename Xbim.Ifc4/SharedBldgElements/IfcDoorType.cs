@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,31 +27,47 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoorType : IIfcBuildingElementType
 	{
-		IfcDoorTypeEnum @PredefinedType { get; }
-		IfcDoorTypeOperationEnum @OperationType { get; }
-		IfcBoolean? @ParameterTakesPrecedence { get; }
-		IfcLabel? @UserDefinedOperationType { get; }
+		IfcDoorTypeEnum @PredefinedType { get;  set; }
+		IfcDoorTypeOperationEnum @OperationType { get;  set; }
+		IfcBoolean? @ParameterTakesPrecedence { get;  set; }
+		IfcLabel? @UserDefinedOperationType { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.SharedBldgElements
 {
-	[ExpressType("IfcDoorType", 593)]
+	[ExpressType("IfcDoorType", 1152)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IIfcDoorType, IEqualityComparer<@IfcDoorType>, IEquatable<@IfcDoorType>
+	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IIfcDoorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoorType>
 	{
 		#region IIfcDoorType explicit implementation
-		IfcDoorTypeEnum IIfcDoorType.PredefinedType { get { return @PredefinedType; } }	
-		IfcDoorTypeOperationEnum IIfcDoorType.OperationType { get { return @OperationType; } }	
-		IfcBoolean? IIfcDoorType.ParameterTakesPrecedence { get { return @ParameterTakesPrecedence; } }	
-		IfcLabel? IIfcDoorType.UserDefinedOperationType { get { return @UserDefinedOperationType; } }	
+		IfcDoorTypeEnum IIfcDoorType.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcDoorTypeOperationEnum IIfcDoorType.OperationType { 
+ 
+			get { return @OperationType; } 
+			set { OperationType = value;}
+		}	
+		IfcBoolean? IIfcDoorType.ParameterTakesPrecedence { 
+ 
+			get { return @ParameterTakesPrecedence; } 
+			set { ParameterTakesPrecedence = value;}
+		}	
+		IfcLabel? IIfcDoorType.UserDefinedOperationType { 
+ 
+			get { return @UserDefinedOperationType; } 
+			set { UserDefinedOperationType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDoorType(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcDoorType(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -65,13 +83,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -79,13 +97,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operationType;
+				Activate();
 				return _operationType;
 			} 
 			set
 			{
-				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType");
+				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -93,13 +111,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parameterTakesPrecedence;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parameterTakesPrecedence;
+				Activate();
 				return _parameterTakesPrecedence;
 			} 
 			set
 			{
-				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence");
+				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -107,13 +125,13 @@ namespace Xbim.Ifc4.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _userDefinedOperationType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _userDefinedOperationType;
+				Activate();
 				return _userDefinedOperationType;
 			} 
 			set
 			{
-				SetValue( v =>  _userDefinedOperationType = v, _userDefinedOperationType, value,  "UserDefinedOperationType");
+				SetValue( v =>  _userDefinedOperationType = v, _userDefinedOperationType, value,  "UserDefinedOperationType", 13);
 			} 
 		}	
 		#endregion
@@ -121,9 +139,8 @@ namespace Xbim.Ifc4.SharedBldgElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -154,12 +171,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcDoorTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -167,55 +178,35 @@ namespace Xbim.Ifc4.SharedBldgElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDoorType
-            var root = (@IfcDoorType)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDoorType left, @IfcDoorType right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDoorType left, @IfcDoorType right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoorType x, @IfcDoorType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoorType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.DateTimeResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,40 +25,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcIrregularTimeSeries : IIfcTimeSeries
 	{
-		IEnumerable<IIfcIrregularTimeSeriesValue> @Values { get; }
+		IItemSet<IIfcIrregularTimeSeriesValue> @Values { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.DateTimeResource
 {
-	[ExpressType("IfcIrregularTimeSeries", 721)]
+	[ExpressType("IfcIrregularTimeSeries", 570)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IEqualityComparer<@IfcIrregularTimeSeries>, IEquatable<@IfcIrregularTimeSeries>
+	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeries>
 	{
 		#region IIfcIrregularTimeSeries explicit implementation
-		IEnumerable<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { get { return @Values; } }	
+		IItemSet<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { 
+			get { return new Common.Collections.ProxyItemSet<IfcIrregularTimeSeriesValue, IIfcIrregularTimeSeriesValue>( @Values); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcIrregularTimeSeries(IModel model) : base(model) 		{ 
-			Model = model; 
-			_values = new ItemSet<IfcIrregularTimeSeriesValue>( this, 0 );
+		internal IfcIrregularTimeSeries(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_values = new ItemSet<IfcIrregularTimeSeriesValue>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcIrregularTimeSeriesValue> _values;
+		private readonly ItemSet<IfcIrregularTimeSeriesValue> _values;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
-		public ItemSet<IfcIrregularTimeSeriesValue> @Values 
+		public IItemSet<IfcIrregularTimeSeriesValue> @Values 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _values;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _values;
+				Activate();
 				return _values;
 			} 
 		}	
@@ -65,9 +69,8 @@ namespace Xbim.Ifc4.DateTimeResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -82,17 +85,11 @@ namespace Xbim.Ifc4.DateTimeResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					if (_values == null) _values = new ItemSet<IfcIrregularTimeSeriesValue>( this );
 					_values.InternalAdd((IfcIrregularTimeSeriesValue)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -101,55 +98,20 @@ namespace Xbim.Ifc4.DateTimeResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcIrregularTimeSeries
-            var root = (@IfcIrregularTimeSeries)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcIrregularTimeSeries left, @IfcIrregularTimeSeries right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcIrregularTimeSeries left, @IfcIrregularTimeSeries right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcIrregularTimeSeries x, @IfcIrregularTimeSeries y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcIrregularTimeSeries obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Unit != null)
+					yield return @Unit;
+				foreach(var entity in @Values)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

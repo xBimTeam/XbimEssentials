@@ -10,25 +10,35 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.Kernel
 {
 	public partial class @IfcRelNests : IIfcRelNests
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelNests), 5)]
 		IIfcObjectDefinition IIfcRelNests.RelatingObject 
 		{ 
 			get
 			{
 				return RelatingObject;
 			} 
+			set
+			{
+				RelatingObject = value as IfcObjectDefinition;
+				
+			}
 		}
-		IEnumerable<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 
+
+		[CrossSchemaAttribute(typeof(IIfcRelNests), 6)]
+		IItemSet<IIfcObjectDefinition> IIfcRelNests.RelatedObjects 
 		{ 
 			get
 			{
 				//## Handle return of RelatedObjects for which no match was found
-                return this.RelatedObjects;
+                return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>(RelatedObjects);
 				//##
 			} 
 		}

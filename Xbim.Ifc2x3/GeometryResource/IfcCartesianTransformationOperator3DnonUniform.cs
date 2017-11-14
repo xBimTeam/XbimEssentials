@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -23,8 +25,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator3DnonUniform : IIfcCartesianTransformationOperator3D
 	{
-		double? @Scale2 { get; }
-		double? @Scale3 { get; }
+		double? @Scale2 { get;  set; }
+		double? @Scale3 { get;  set; }
 		double @Scl2  { get ; }
 		double @Scl3  { get ; }
 	
@@ -35,17 +37,25 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator3DnonUniform", 479)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator3DnonUniform>, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
-		double? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { get { return @Scale2; } }	
-		double? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { get { return @Scale3; } }	
+		double? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { 
+ 
+			get { return @Scale2; } 
+			set { Scale2 = value;}
+		}	
+		double? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { 
+ 
+			get { return @Scale3; } 
+			set { Scale3 = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCartesianTransformationOperator3DnonUniform(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcCartesianTransformationOperator3DnonUniform(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +69,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale2;
+				Activate();
 				return _scale2;
 			} 
 			set
 			{
-				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2");
+				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -73,13 +83,13 @@ namespace Xbim.Ifc2x3.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale3;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale3;
+				Activate();
 				return _scale3;
 			} 
 			set
 			{
-				SetValue( v =>  _scale3 = v, _scale3, value,  "Scale3");
+				SetValue( v =>  _scale3 = v, _scale3, value,  "Scale3", 7);
 			} 
 		}	
 		#endregion
@@ -111,9 +121,8 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -134,13 +143,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : Scl2 > 0.0;*/
-		/*WR2:	WR2 : Scl3 > 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -148,55 +150,24 @@ namespace Xbim.Ifc2x3.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCartesianTransformationOperator3DnonUniform
-            var root = (@IfcCartesianTransformationOperator3DnonUniform)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCartesianTransformationOperator3DnonUniform left, @IfcCartesianTransformationOperator3DnonUniform right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCartesianTransformationOperator3DnonUniform left, @IfcCartesianTransformationOperator3DnonUniform right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianTransformationOperator3DnonUniform x, @IfcCartesianTransformationOperator3DnonUniform y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianTransformationOperator3DnonUniform obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Axis1 != null)
+					yield return @Axis1;
+				if (@Axis2 != null)
+					yield return @Axis2;
+				if (@LocalOrigin != null)
+					yield return @LocalOrigin;
+				if (@Axis3 != null)
+					yield return @Axis3;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

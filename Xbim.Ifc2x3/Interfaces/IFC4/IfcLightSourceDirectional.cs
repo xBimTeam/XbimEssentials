@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	public partial class @IfcLightSourceDirectional : IIfcLightSourceDirectional
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLightSourceDirectional), 5)]
 		IIfcDirection IIfcLightSourceDirectional.Orientation 
 		{ 
 			get
 			{
 				return Orientation;
 			} 
+			set
+			{
+				Orientation = value as GeometryResource.IfcDirection;
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcBSplineCurve : IIfcBSplineCurve
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 1)]
 		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.Degree 
 		{ 
 			get
@@ -24,47 +27,81 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcInteger(Degree);
 				//##
 			} 
+			set
+			{
+				Degree = value;
+				
+			}
 		}
-		IEnumerable<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 2)]
+		IItemSet<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList 
 		{ 
 			get
 			{
-				foreach (var member in ControlPointsList)
-				{
-					yield return member as IIfcCartesianPoint;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>(ControlPointsList);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 3)]
 		Ifc4.Interfaces.IfcBSplineCurveForm IIfcBSplineCurve.CurveForm 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of CurveForm
+				//##
 				switch (CurveForm)
 				{
 					case IfcBSplineCurveForm.POLYLINE_FORM:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM;
-					
 					case IfcBSplineCurveForm.CIRCULAR_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.CIRCULAR_ARC;
-					
 					case IfcBSplineCurveForm.ELLIPTIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.ELLIPTIC_ARC;
-					
 					case IfcBSplineCurveForm.PARABOLIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC;
-					
 					case IfcBSplineCurveForm.HYPERBOLIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.HYPERBOLIC_ARC;
-					
 					case IfcBSplineCurveForm.UNSPECIFIED:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.UNSPECIFIED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of CurveForm
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM:
+						CurveForm = IfcBSplineCurveForm.POLYLINE_FORM;
+						return;
+					case Ifc4.Interfaces.IfcBSplineCurveForm.CIRCULAR_ARC:
+						CurveForm = IfcBSplineCurveForm.CIRCULAR_ARC;
+						return;
+					case Ifc4.Interfaces.IfcBSplineCurveForm.ELLIPTIC_ARC:
+						CurveForm = IfcBSplineCurveForm.ELLIPTIC_ARC;
+						return;
+					case Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC:
+						CurveForm = IfcBSplineCurveForm.PARABOLIC_ARC;
+						return;
+					case Ifc4.Interfaces.IfcBSplineCurveForm.HYPERBOLIC_ARC:
+						CurveForm = IfcBSplineCurveForm.HYPERBOLIC_ARC;
+						return;
+					case Ifc4.Interfaces.IfcBSplineCurveForm.UNSPECIFIED:
+						CurveForm = IfcBSplineCurveForm.UNSPECIFIED;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 4)]
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.ClosedCurve 
 		{ 
 			get
@@ -73,7 +110,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 			    return new Ifc4.MeasureResource.IfcLogical(ClosedCurve);
 			    //##
 			} 
+			set
+			{
+				ClosedCurve = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBSplineCurve), 5)]
 		Ifc4.MeasureResource.IfcLogical IIfcBSplineCurve.SelfIntersect 
 		{ 
 			get
@@ -82,6 +126,11 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
+			set
+			{
+				SelfIntersect = value;
+				
+			}
 		}
 		Ifc4.MeasureResource.IfcInteger IIfcBSplineCurve.UpperIndexOnControlPoints 
 		{

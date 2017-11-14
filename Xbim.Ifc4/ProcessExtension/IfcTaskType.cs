@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ProcessExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,27 +27,35 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTaskType : IIfcTypeProcess
 	{
-		IfcTaskTypeEnum @PredefinedType { get; }
-		IfcLabel? @WorkMethod { get; }
+		IfcTaskTypeEnum @PredefinedType { get;  set; }
+		IfcLabel? @WorkMethod { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProcessExtension
 {
-	[ExpressType("IfcTaskType", 1092)]
+	[ExpressType("IfcTaskType", 1296)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IEqualityComparer<@IfcTaskType>, IEquatable<@IfcTaskType>
+	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IIfcTaskType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTaskType>
 	{
 		#region IIfcTaskType explicit implementation
-		IfcTaskTypeEnum IIfcTaskType.PredefinedType { get { return @PredefinedType; } }	
-		IfcLabel? IIfcTaskType.WorkMethod { get { return @WorkMethod; } }	
+		IfcTaskTypeEnum IIfcTaskType.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcLabel? IIfcTaskType.WorkMethod { 
+ 
+			get { return @WorkMethod; } 
+			set { WorkMethod = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTaskType(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcTaskType(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +69,13 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -73,13 +83,13 @@ namespace Xbim.Ifc4.ProcessExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _workMethod;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _workMethod;
+				Activate();
 				return _workMethod;
 			} 
 			set
 			{
-				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod");
+				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod", 11);
 			} 
 		}	
 		#endregion
@@ -87,9 +97,8 @@ namespace Xbim.Ifc4.ProcessExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -114,12 +123,6 @@ namespace Xbim.Ifc4.ProcessExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:	CorrectPredefinedType : (PredefinedType <> IfcTaskTypeEnum.USERDEFINED) OR ((PredefinedType = IfcTaskTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcTypeProcess.ProcessType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -127,55 +130,33 @@ namespace Xbim.Ifc4.ProcessExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTaskType
-            var root = (@IfcTaskType)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTaskType left, @IfcTaskType right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTaskType left, @IfcTaskType right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTaskType x, @IfcTaskType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTaskType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

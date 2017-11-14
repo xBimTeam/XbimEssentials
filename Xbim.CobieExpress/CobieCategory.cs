@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,28 +25,36 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieCategory : ICobiePickValue
 	{
-		string @Description { get; }
-		ICobieClassification @Classification { get; }
+		string @Description { get;  set; }
+		ICobieClassification @Classification { get;  set; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Category", 33)]
+	[ExpressType("Category", 36)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IEqualityComparer<@CobieCategory>, IEquatable<@CobieCategory>
+	public  partial class @CobieCategory : CobiePickValue, IInstantiableEntity, ICobieCategory, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieCategory>
 	{
 		#region ICobieCategory explicit implementation
-		string ICobieCategory.Description { get { return @Description; } }	
-		ICobieClassification ICobieCategory.Classification { get { return @Classification; } }	
+		string ICobieCategory.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		ICobieClassification ICobieCategory.Classification { 
+ 
+ 
+			get { return @Classification; } 
+			set { Classification = value as CobieClassification;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieCategory(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal CobieCategory(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +68,13 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[IndexedProperty]
@@ -73,13 +83,15 @@ namespace Xbim.CobieExpress
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _classification;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _classification;
+				Activate();
 				return _classification;
 			} 
 			set
 			{
-				SetValue( v =>  _classification = v, _classification, value,  "Classification");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _classification = v, _classification, value,  "Classification", 3);
 			} 
 		}	
 		#endregion
@@ -87,9 +99,8 @@ namespace Xbim.CobieExpress
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -106,11 +117,6 @@ namespace Xbim.CobieExpress
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -118,55 +124,31 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieCategory
-            var root = (@CobieCategory)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieCategory left, @CobieCategory right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieCategory left, @CobieCategory right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieCategory x, @CobieCategory y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieCategory obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Classification != null)
+					yield return @Classification;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@Classification != null)
+					yield return @Classification;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

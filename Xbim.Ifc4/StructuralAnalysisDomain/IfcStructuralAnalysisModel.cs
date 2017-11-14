@@ -17,6 +17,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,42 +28,60 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralAnalysisModel : IIfcSystem
 	{
-		IfcAnalysisModelTypeEnum @PredefinedType { get; }
-		IIfcAxis2Placement3D @OrientationOf2DPlane { get; }
-		IEnumerable<IIfcStructuralLoadGroup> @LoadedBy { get; }
-		IEnumerable<IIfcStructuralResultGroup> @HasResults { get; }
-		IIfcObjectPlacement @SharedPlacement { get; }
+		IfcAnalysisModelTypeEnum @PredefinedType { get;  set; }
+		IIfcAxis2Placement3D @OrientationOf2DPlane { get;  set; }
+		IItemSet<IIfcStructuralLoadGroup> @LoadedBy { get; }
+		IItemSet<IIfcStructuralResultGroup> @HasResults { get; }
+		IIfcObjectPlacement @SharedPlacement { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralAnalysisModel", 1020)]
+	[ExpressType("IfcStructuralAnalysisModel", 230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IEqualityComparer<@IfcStructuralAnalysisModel>, IEquatable<@IfcStructuralAnalysisModel>
+	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralAnalysisModel>
 	{
 		#region IIfcStructuralAnalysisModel explicit implementation
-		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { get { return @PredefinedType; } }	
-		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane { get { return @OrientationOf2DPlane; } }	
-		IEnumerable<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { get { return @LoadedBy; } }	
-		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { get { return @HasResults; } }	
-		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement { get { return @SharedPlacement; } }	
+		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane { 
+ 
+ 
+			get { return @OrientationOf2DPlane; } 
+			set { OrientationOf2DPlane = value as IfcAxis2Placement3D;}
+		}	
+		IItemSet<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { 
+			get { return new Common.Collections.ProxyItemSet<IfcStructuralLoadGroup, IIfcStructuralLoadGroup>( @LoadedBy); } 
+		}	
+		IItemSet<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { 
+			get { return new Common.Collections.ProxyItemSet<IfcStructuralResultGroup, IIfcStructuralResultGroup>( @HasResults); } 
+		}	
+		IIfcObjectPlacement IIfcStructuralAnalysisModel.SharedPlacement { 
+ 
+ 
+			get { return @SharedPlacement; } 
+			set { SharedPlacement = value as IfcObjectPlacement;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralAnalysisModel(IModel model) : base(model) 		{ 
-			Model = model; 
-			_loadedBy = new OptionalItemSet<IfcStructuralLoadGroup>( this, 0 );
-			_hasResults = new OptionalItemSet<IfcStructuralResultGroup>( this, 0 );
+		internal IfcStructuralAnalysisModel(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_loadedBy = new OptionalItemSet<IfcStructuralLoadGroup>( this, 0,  8);
+			_hasResults = new OptionalItemSet<IfcStructuralResultGroup>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
 		private IfcAnalysisModelTypeEnum _predefinedType;
 		private IfcAxis2Placement3D _orientationOf2DPlane;
-		private OptionalItemSet<IfcStructuralLoadGroup> _loadedBy;
-		private OptionalItemSet<IfcStructuralResultGroup> _hasResults;
+		private readonly OptionalItemSet<IfcStructuralLoadGroup> _loadedBy;
+		private readonly OptionalItemSet<IfcStructuralResultGroup> _hasResults;
 		private IfcObjectPlacement _sharedPlacement;
 		#endregion
 	
@@ -71,13 +91,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
@@ -85,34 +105,36 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _orientationOf2DPlane;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _orientationOf2DPlane;
+				Activate();
 				return _orientationOf2DPlane;
 			} 
 			set
 			{
-				SetValue( v =>  _orientationOf2DPlane = v, _orientationOf2DPlane, value,  "OrientationOf2DPlane");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _orientationOf2DPlane = v, _orientationOf2DPlane, value,  "OrientationOf2DPlane", 7);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 21)]
-		public OptionalItemSet<IfcStructuralLoadGroup> @LoadedBy 
+		public IOptionalItemSet<IfcStructuralLoadGroup> @LoadedBy 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _loadedBy;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _loadedBy;
+				Activate();
 				return _loadedBy;
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 22)]
-		public OptionalItemSet<IfcStructuralResultGroup> @HasResults 
+		public IOptionalItemSet<IfcStructuralResultGroup> @HasResults 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _hasResults;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _hasResults;
+				Activate();
 				return _hasResults;
 			} 
 		}	
@@ -121,13 +143,15 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sharedPlacement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sharedPlacement;
+				Activate();
 				return _sharedPlacement;
 			} 
 			set
 			{
-				SetValue( v =>  _sharedPlacement = v, _sharedPlacement, value,  "SharedPlacement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _sharedPlacement = v, _sharedPlacement, value,  "SharedPlacement", 10);
 			} 
 		}	
 		#endregion
@@ -135,9 +159,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -155,11 +178,9 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					_orientationOf2DPlane = (IfcAxis2Placement3D)(value.EntityVal);
 					return;
 				case 7: 
-					if (_loadedBy == null) _loadedBy = new OptionalItemSet<IfcStructuralLoadGroup>( this );
 					_loadedBy.InternalAdd((IfcStructuralLoadGroup)value.EntityVal);
 					return;
 				case 8: 
-					if (_hasResults == null) _hasResults = new OptionalItemSet<IfcStructuralResultGroup>( this );
 					_hasResults.InternalAdd((IfcStructuralResultGroup)value.EntityVal);
 					return;
 				case 9: 
@@ -169,12 +190,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasObjectType:	HasObjectType : (PredefinedType <> IfcAnalysisModelTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -182,55 +197,41 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralAnalysisModel
-            var root = (@IfcStructuralAnalysisModel)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralAnalysisModel left, @IfcStructuralAnalysisModel right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralAnalysisModel left, @IfcStructuralAnalysisModel right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralAnalysisModel x, @IfcStructuralAnalysisModel y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralAnalysisModel obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@OrientationOf2DPlane != null)
+					yield return @OrientationOf2DPlane;
+				foreach(var entity in @LoadedBy)
+					yield return entity;
+				foreach(var entity in @HasResults)
+					yield return entity;
+				if (@SharedPlacement != null)
+					yield return @SharedPlacement;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @LoadedBy)
+					yield return entity;
+				foreach(var entity in @HasResults)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

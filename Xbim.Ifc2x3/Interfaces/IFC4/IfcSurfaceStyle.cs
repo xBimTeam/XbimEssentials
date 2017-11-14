@@ -10,55 +10,63 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyle : IIfcSurfaceStyle
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyle), 2)]
 		Ifc4.Interfaces.IfcSurfaceSide IIfcSurfaceStyle.Side 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of Side
+				//##
 				switch (Side)
 				{
 					case IfcSurfaceSide.POSITIVE:
 						return Ifc4.Interfaces.IfcSurfaceSide.POSITIVE;
-					
 					case IfcSurfaceSide.NEGATIVE:
 						return Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE;
-					
 					case IfcSurfaceSide.BOTH:
 						return Ifc4.Interfaces.IfcSurfaceSide.BOTH;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of Side
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcSurfaceSide.POSITIVE:
+						Side = IfcSurfaceSide.POSITIVE;
+						return;
+					case Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE:
+						Side = IfcSurfaceSide.NEGATIVE;
+						return;
+					case Ifc4.Interfaces.IfcSurfaceSide.BOTH:
+						Side = IfcSurfaceSide.BOTH;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
-		IEnumerable<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyle), 3)]
+		IItemSet<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles 
 		{ 
 			get
 			{
-				foreach (var member in Styles)
-				{
-					var ifcsurfacestyleshading = member as IfcSurfaceStyleShading;
-					if (ifcsurfacestyleshading != null) 
-						yield return ifcsurfacestyleshading;
-					var ifcsurfacestylelighting = member as IfcSurfaceStyleLighting;
-					if (ifcsurfacestylelighting != null) 
-						yield return ifcsurfacestylelighting;
-					var ifcsurfacestylewithtextures = member as IfcSurfaceStyleWithTextures;
-					if (ifcsurfacestylewithtextures != null) 
-						yield return ifcsurfacestylewithtextures;
-					var ifcexternallydefinedsurfacestyle = member as IfcExternallyDefinedSurfaceStyle;
-					if (ifcexternallydefinedsurfacestyle != null) 
-						yield return ifcexternallydefinedsurfacestyle;
-					var ifcsurfacestylerefraction = member as IfcSurfaceStyleRefraction;
-					if (ifcsurfacestylerefraction != null) 
-						yield return ifcsurfacestylerefraction;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcSurfaceStyleElementSelect, IIfcSurfaceStyleElementSelect>(Styles);
 			} 
 		}
 	//## Custom code

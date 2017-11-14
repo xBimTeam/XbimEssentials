@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,11 +26,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialConstituent : IIfcMaterialDefinition
 	{
-		IfcLabel? @Name { get; }
-		IfcText? @Description { get; }
-		IIfcMaterial @Material { get; }
-		IfcNormalisedRatioMeasure? @Fraction { get; }
-		IfcLabel? @Category { get; }
+		IfcLabel? @Name { get;  set; }
+		IfcText? @Description { get;  set; }
+		IIfcMaterial @Material { get;  set; }
+		IfcNormalisedRatioMeasure? @Fraction { get;  set; }
+		IfcLabel? @Category { get;  set; }
 		IIfcMaterialConstituentSet @ToMaterialConstituentSet {  get; }
 	
 	}
@@ -36,23 +38,44 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IfcMaterialConstituent", 751)]
+	[ExpressType("IfcMaterialConstituent", 1201)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialConstituent : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialConstituent, IEqualityComparer<@IfcMaterialConstituent>, IEquatable<@IfcMaterialConstituent>
+	public  partial class @IfcMaterialConstituent : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialConstituent, IContainsEntityReferences, IEquatable<@IfcMaterialConstituent>
 	{
 		#region IIfcMaterialConstituent explicit implementation
-		IfcLabel? IIfcMaterialConstituent.Name { get { return @Name; } }	
-		IfcText? IIfcMaterialConstituent.Description { get { return @Description; } }	
-		IIfcMaterial IIfcMaterialConstituent.Material { get { return @Material; } }	
-		IfcNormalisedRatioMeasure? IIfcMaterialConstituent.Fraction { get { return @Fraction; } }	
-		IfcLabel? IIfcMaterialConstituent.Category { get { return @Category; } }	
+		IfcLabel? IIfcMaterialConstituent.Name { 
+ 
+			get { return @Name; } 
+			set { Name = value;}
+		}	
+		IfcText? IIfcMaterialConstituent.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IIfcMaterial IIfcMaterialConstituent.Material { 
+ 
+ 
+			get { return @Material; } 
+			set { Material = value as IfcMaterial;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcMaterialConstituent.Fraction { 
+ 
+			get { return @Fraction; } 
+			set { Fraction = value;}
+		}	
+		IfcLabel? IIfcMaterialConstituent.Category { 
+ 
+			get { return @Category; } 
+			set { Category = value;}
+		}	
 		 
 		IIfcMaterialConstituentSet IIfcMaterialConstituent.ToMaterialConstituentSet {  get { return @ToMaterialConstituentSet; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialConstituent(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMaterialConstituent(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -69,13 +92,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _name;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _name;
+				Activate();
 				return _name;
 			} 
 			set
 			{
-				SetValue( v =>  _name = v, _name, value,  "Name");
+				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -83,13 +106,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
@@ -97,13 +120,15 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _material;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _material;
+				Activate();
 				return _material;
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _material = v, _material, value,  "Material", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -111,13 +136,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fraction;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fraction;
+				Activate();
 				return _fraction;
 			} 
 			set
 			{
-				SetValue( v =>  _fraction = v, _fraction, value,  "Fraction");
+				SetValue( v =>  _fraction = v, _fraction, value,  "Fraction", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -125,13 +150,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _category;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _category;
+				Activate();
 				return _category;
 			} 
 			set
 			{
-				SetValue( v =>  _category = v, _category, value,  "Category");
+				SetValue( v =>  _category = v, _category, value,  "Category", 5);
 			} 
 		}	
 		#endregion
@@ -150,9 +175,8 @@ namespace Xbim.Ifc4.MaterialResource
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -175,11 +199,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -187,55 +206,18 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialConstituent
-            var root = (@IfcMaterialConstituent)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialConstituent left, @IfcMaterialConstituent right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialConstituent left, @IfcMaterialConstituent right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialConstituent x, @IfcMaterialConstituent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialConstituent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

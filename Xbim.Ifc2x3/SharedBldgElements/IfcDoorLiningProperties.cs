@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,17 +28,17 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDoorLiningProperties : IIfcPropertySetDefinition
 	{
-		IfcPositiveLengthMeasure? @LiningDepth { get; }
-		IfcPositiveLengthMeasure? @LiningThickness { get; }
-		IfcPositiveLengthMeasure? @ThresholdDepth { get; }
-		IfcPositiveLengthMeasure? @ThresholdThickness { get; }
-		IfcPositiveLengthMeasure? @TransomThickness { get; }
-		IfcLengthMeasure? @TransomOffset { get; }
-		IfcLengthMeasure? @LiningOffset { get; }
-		IfcLengthMeasure? @ThresholdOffset { get; }
-		IfcPositiveLengthMeasure? @CasingThickness { get; }
-		IfcPositiveLengthMeasure? @CasingDepth { get; }
-		IIfcShapeAspect @ShapeAspectStyle { get; }
+		IfcPositiveLengthMeasure? @LiningDepth { get;  set; }
+		IfcPositiveLengthMeasure? @LiningThickness { get;  set; }
+		IfcPositiveLengthMeasure? @ThresholdDepth { get;  set; }
+		IfcPositiveLengthMeasure? @ThresholdThickness { get;  set; }
+		IfcPositiveLengthMeasure? @TransomThickness { get;  set; }
+		IfcLengthMeasure? @TransomOffset { get;  set; }
+		IfcLengthMeasure? @LiningOffset { get;  set; }
+		IfcLengthMeasure? @ThresholdOffset { get;  set; }
+		IfcPositiveLengthMeasure? @CasingThickness { get;  set; }
+		IfcPositiveLengthMeasure? @CasingDepth { get;  set; }
+		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
 	
 	}
 }
@@ -45,26 +47,71 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcDoorLiningProperties", 493)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorLiningProperties, IEqualityComparer<@IfcDoorLiningProperties>, IEquatable<@IfcDoorLiningProperties>
+	public  partial class @IfcDoorLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorLiningProperties, IContainsEntityReferences, IEquatable<@IfcDoorLiningProperties>
 	{
 		#region IIfcDoorLiningProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { get { return @LiningDepth; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningThickness { get { return @LiningThickness; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { get { return @ThresholdDepth; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { get { return @ThresholdThickness; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.TransomThickness { get { return @TransomThickness; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { get { return @TransomOffset; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { get { return @LiningOffset; } }	
-		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { get { return @ThresholdOffset; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { get { return @CasingThickness; } }	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { get { return @CasingDepth; } }	
-		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { get { return @ShapeAspectStyle; } }	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { 
+ 
+			get { return @LiningDepth; } 
+			set { LiningDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningThickness { 
+ 
+			get { return @LiningThickness; } 
+			set { LiningThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { 
+ 
+			get { return @ThresholdDepth; } 
+			set { ThresholdDepth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { 
+ 
+			get { return @ThresholdThickness; } 
+			set { ThresholdThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.TransomThickness { 
+ 
+			get { return @TransomThickness; } 
+			set { TransomThickness = value;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { 
+ 
+			get { return @TransomOffset; } 
+			set { TransomOffset = value;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { 
+ 
+			get { return @LiningOffset; } 
+			set { LiningOffset = value;}
+		}	
+		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { 
+ 
+			get { return @ThresholdOffset; } 
+			set { ThresholdOffset = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { 
+ 
+			get { return @CasingThickness; } 
+			set { CasingThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { 
+ 
+			get { return @CasingDepth; } 
+			set { CasingDepth = value;}
+		}	
+		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { 
+ 
+ 
+			get { return @ShapeAspectStyle; } 
+			set { ShapeAspectStyle = value as IfcShapeAspect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDoorLiningProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcDoorLiningProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -87,13 +134,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningDepth;
+				Activate();
 				return _liningDepth;
 			} 
 			set
 			{
-				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth");
+				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -101,13 +148,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningThickness;
+				Activate();
 				return _liningThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness");
+				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -115,13 +162,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thresholdDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thresholdDepth;
+				Activate();
 				return _thresholdDepth;
 			} 
 			set
 			{
-				SetValue( v =>  _thresholdDepth = v, _thresholdDepth, value,  "ThresholdDepth");
+				SetValue( v =>  _thresholdDepth = v, _thresholdDepth, value,  "ThresholdDepth", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -129,13 +176,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thresholdThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thresholdThickness;
+				Activate();
 				return _thresholdThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _thresholdThickness = v, _thresholdThickness, value,  "ThresholdThickness");
+				SetValue( v =>  _thresholdThickness = v, _thresholdThickness, value,  "ThresholdThickness", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -143,13 +190,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transomThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transomThickness;
+				Activate();
 				return _transomThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness");
+				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -157,13 +204,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _transomOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _transomOffset;
+				Activate();
 				return _transomOffset;
 			} 
 			set
 			{
-				SetValue( v =>  _transomOffset = v, _transomOffset, value,  "TransomOffset");
+				SetValue( v =>  _transomOffset = v, _transomOffset, value,  "TransomOffset", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -171,13 +218,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _liningOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _liningOffset;
+				Activate();
 				return _liningOffset;
 			} 
 			set
 			{
-				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset");
+				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
@@ -185,13 +232,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thresholdOffset;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thresholdOffset;
+				Activate();
 				return _thresholdOffset;
 			} 
 			set
 			{
-				SetValue( v =>  _thresholdOffset = v, _thresholdOffset, value,  "ThresholdOffset");
+				SetValue( v =>  _thresholdOffset = v, _thresholdOffset, value,  "ThresholdOffset", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -199,13 +246,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _casingThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _casingThickness;
+				Activate();
 				return _casingThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _casingThickness = v, _casingThickness, value,  "CasingThickness");
+				SetValue( v =>  _casingThickness = v, _casingThickness, value,  "CasingThickness", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -213,13 +260,13 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _casingDepth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _casingDepth;
+				Activate();
 				return _casingDepth;
 			} 
 			set
 			{
-				SetValue( v =>  _casingDepth = v, _casingDepth, value,  "CasingDepth");
+				SetValue( v =>  _casingDepth = v, _casingDepth, value,  "CasingDepth", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
@@ -227,13 +274,15 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shapeAspectStyle;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shapeAspectStyle;
+				Activate();
 				return _shapeAspectStyle;
 			} 
 			set
 			{
-				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle", 15);
 			} 
 		}	
 		#endregion
@@ -241,9 +290,8 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -290,16 +338,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR31:	WR31 : NOT(NOT(EXISTS(LiningDepth)) AND EXISTS(LiningThickness));*/
-		/*WR32:	WR32 : NOT(NOT(EXISTS(ThresholdDepth)) AND EXISTS(ThresholdThickness));*/
-		/*WR33:             (NOT(EXISTS(TransomOffset)) AND NOT(EXISTS(TransomThickness)));*/
-		/*WR34:             (NOT(EXISTS(CasingDepth)) AND NOT(EXISTS(CasingThickness)));*/
-		/*WR35:             ('IFC2X3.IFCDOORSTYLE' IN TYPEOF(SELF\IfcPropertySetDefinition.DefinesType[1]));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -307,55 +345,20 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDoorLiningProperties
-            var root = (@IfcDoorLiningProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDoorLiningProperties left, @IfcDoorLiningProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDoorLiningProperties left, @IfcDoorLiningProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDoorLiningProperties x, @IfcDoorLiningProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDoorLiningProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ShapeAspectStyle != null)
+					yield return @ShapeAspectStyle;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcExternalReference : IIfcExternalReference
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcExternalReference), 1)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcExternalReference.Location 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Location.HasValue) return null;
 				return new Ifc4.ExternalReferenceResource.IfcURIReference(Location.Value);
 			} 
+			set
+			{
+				Location = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcExternalReference), 2)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExternalReference.Identification 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!ItemReference.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(ItemReference.Value);
 			} 
+			set
+			{
+				ItemReference = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcExternalReference), 3)]
 		Ifc4.MeasureResource.IfcLabel? IIfcExternalReference.Name 
 		{ 
 			get
@@ -39,6 +60,13 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources 
 		{ 

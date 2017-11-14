@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRightCircularCone : IIfcCsgPrimitive3D
 	{
-		IfcPositiveLengthMeasure @Height { get; }
-		IfcPositiveLengthMeasure @BottomRadius { get; }
+		IfcPositiveLengthMeasure @Height { get;  set; }
+		IfcPositiveLengthMeasure @BottomRadius { get;  set; }
 	
 	}
 }
@@ -34,17 +36,25 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRightCircularCone", 703)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IEqualityComparer<@IfcRightCircularCone>, IEquatable<@IfcRightCircularCone>
+	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IContainsEntityReferences, IEquatable<@IfcRightCircularCone>
 	{
 		#region IIfcRightCircularCone explicit implementation
-		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { get { return @Height; } }	
-		IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius { get { return @BottomRadius; } }	
+		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { 
+ 
+			get { return @Height; } 
+			set { Height = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius { 
+ 
+			get { return @BottomRadius; } 
+			set { BottomRadius = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRightCircularCone(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRightCircularCone(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -58,13 +68,13 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _height;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _height;
+				Activate();
 				return _height;
 			} 
 			set
 			{
-				SetValue( v =>  _height = v, _height, value,  "Height");
+				SetValue( v =>  _height = v, _height, value,  "Height", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -72,13 +82,13 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bottomRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bottomRadius;
+				Activate();
 				return _bottomRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _bottomRadius = v, _bottomRadius, value,  "BottomRadius");
+				SetValue( v =>  _bottomRadius = v, _bottomRadius, value,  "BottomRadius", 3);
 			} 
 		}	
 		#endregion
@@ -86,9 +96,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -105,11 +114,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -117,55 +121,18 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRightCircularCone
-            var root = (@IfcRightCircularCone)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRightCircularCone left, @IfcRightCircularCone right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRightCircularCone left, @IfcRightCircularCone right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRightCircularCone x, @IfcRightCircularCone y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRightCircularCone obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

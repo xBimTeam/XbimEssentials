@@ -10,56 +10,109 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcTendon : IIfcTendon
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 10)]
 		Ifc4.Interfaces.IfcTendonTypeEnum? IIfcTendon.PredefinedType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of PredefinedType
+				//##
 				switch (PredefinedType)
 				{
 					case IfcTendonTypeEnum.STRAND:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.STRAND;
-					
 					case IfcTendonTypeEnum.WIRE:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.WIRE;
-					
 					case IfcTendonTypeEnum.BAR:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.BAR;
-					
 					case IfcTendonTypeEnum.COATED:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.COATED;
-					
 					case IfcTendonTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
 						return Ifc4.Interfaces.IfcTendonTypeEnum.USERDEFINED;
-					
 					case IfcTendonTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcTendonTypeEnum.NOTDEFINED;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of PredefinedType
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTendonTypeEnum.BAR:
+						PredefinedType = IfcTendonTypeEnum.BAR;
+						return;
+					case Ifc4.Interfaces.IfcTendonTypeEnum.COATED:
+						PredefinedType = IfcTendonTypeEnum.COATED;
+						return;
+					case Ifc4.Interfaces.IfcTendonTypeEnum.STRAND:
+						PredefinedType = IfcTendonTypeEnum.STRAND;
+						return;
+					case Ifc4.Interfaces.IfcTendonTypeEnum.WIRE:
+						PredefinedType = IfcTendonTypeEnum.WIRE;
+						return;
+					case Ifc4.Interfaces.IfcTendonTypeEnum.USERDEFINED:
+						PredefinedType = IfcTendonTypeEnum.USERDEFINED;
+						return;
+					case Ifc4.Interfaces.IfcTendonTypeEnum.NOTDEFINED:
+						PredefinedType = IfcTendonTypeEnum.NOTDEFINED;
+						return;
+					case null:
+						PredefinedType = IfcTendonTypeEnum.NOTDEFINED;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 11)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.NominalDiameter 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(NominalDiameter);
 			} 
+			set
+			{
+				NominalDiameter = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 default(MeasureResource.IfcPositiveLengthMeasure) ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 12)]
 		Ifc4.MeasureResource.IfcAreaMeasure? IIfcTendon.CrossSectionArea 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcAreaMeasure(CrossSectionArea);
 			} 
+			set
+			{
+				CrossSectionArea = value.HasValue ? 
+					new MeasureResource.IfcAreaMeasure(value.Value) :  
+					 default(MeasureResource.IfcAreaMeasure) ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 13)]
 		Ifc4.MeasureResource.IfcForceMeasure? IIfcTendon.TensionForce 
 		{ 
 			get
@@ -67,7 +120,16 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!TensionForce.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcForceMeasure(TensionForce.Value);
 			} 
+			set
+			{
+				TensionForce = value.HasValue ? 
+					new MeasureResource.IfcForceMeasure(value.Value) :  
+					 new MeasureResource.IfcForceMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 14)]
 		Ifc4.MeasureResource.IfcPressureMeasure? IIfcTendon.PreStress 
 		{ 
 			get
@@ -75,7 +137,16 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!PreStress.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPressureMeasure(PreStress.Value);
 			} 
+			set
+			{
+				PreStress = value.HasValue ? 
+					new MeasureResource.IfcPressureMeasure(value.Value) :  
+					 new MeasureResource.IfcPressureMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 15)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient 
 		{ 
 			get
@@ -83,7 +154,16 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!FrictionCoefficient.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FrictionCoefficient.Value);
 			} 
+			set
+			{
+				FrictionCoefficient = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 16)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip 
 		{ 
 			get
@@ -91,7 +171,16 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!AnchorageSlip.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(AnchorageSlip.Value);
 			} 
+			set
+			{
+				AnchorageSlip = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcTendon), 17)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius 
 		{ 
 			get
@@ -99,6 +188,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				if (!MinCurvatureRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(MinCurvatureRadius.Value);
 			} 
+			set
+			{
+				MinCurvatureRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

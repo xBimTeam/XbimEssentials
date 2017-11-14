@@ -10,43 +10,69 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	public partial class @IfcProfileProperties : IIfcProfileProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 4)]
 		IIfcProfileDef IIfcProfileProperties.ProfileDefinition 
 		{ 
 			get
 			{
 				return ProfileDefinition;
 			} 
+			set
+			{
+				ProfileDefinition = value as ProfileResource.IfcProfileDef;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 1)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcExtendedProperties.Name 
 		{ 
 			get
 			{
-				//## Handle return of Name for which no match was found
-			    return new Ifc4.MeasureResource.IfcIdentifier(ProfileName);
-			    //##
+				if (!ProfileName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(ProfileName.Value);
 			} 
+			set
+			{
+				ProfileName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcExtendedProperties.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -2);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProfileProperties), 3)]
 		IEnumerable<IIfcProperty> IIfcExtendedProperties.Properties 
 		{ 
 			get
 			{
 				//## Handle return of Properties for which no match was found
-			    yield break;
+			    return _properties ?? (_properties = new ItemSet<IIfcProperty>(this, 0, -3));
 			    //##
 			} 
 		}
@@ -58,6 +84,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 			} 
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcProperty> _properties;
+	    //##
 	}
 }

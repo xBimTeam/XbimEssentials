@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcManifoldSolidBrep : IIfcManifoldSolidBrep
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcManifoldSolidBrep), 1)]
 		IIfcClosedShell IIfcManifoldSolidBrep.Outer 
 		{ 
 			get
 			{
 				return Outer;
 			} 
+			set
+			{
+				Outer = value as TopologyResource.IfcClosedShell;
+				
+			}
 		}
 	//## Custom code
 	//##

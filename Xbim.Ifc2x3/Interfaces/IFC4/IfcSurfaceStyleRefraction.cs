@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleRefraction : IIfcSurfaceStyleRefraction
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRefraction), 1)]
 		Ifc4.MeasureResource.IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!RefractionIndex.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcReal(RefractionIndex.Value);
 			} 
+			set
+			{
+				RefractionIndex = value.HasValue ? 
+					new MeasureResource.IfcReal(value.Value) :  
+					 new MeasureResource.IfcReal?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleRefraction), 2)]
 		Ifc4.MeasureResource.IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor 
 		{ 
 			get
@@ -31,6 +43,13 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				if (!DispersionFactor.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcReal(DispersionFactor.Value);
 			} 
+			set
+			{
+				DispersionFactor = value.HasValue ? 
+					new MeasureResource.IfcReal(value.Value) :  
+					 new MeasureResource.IfcReal?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

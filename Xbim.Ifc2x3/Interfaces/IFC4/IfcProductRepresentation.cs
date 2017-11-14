@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	public partial class @IfcProductRepresentation : IIfcProductRepresentation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcProductRepresentation), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcProductRepresentation.Name 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!Name.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
+			set
+			{
+				Name = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcProductRepresentation), 2)]
 		Ifc4.MeasureResource.IfcText? IIfcProductRepresentation.Description 
 		{ 
 			get
@@ -31,15 +43,22 @@ namespace Xbim.Ifc2x3.RepresentationResource
 				if (!Description.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcText(Description.Value);
 			} 
+			set
+			{
+				Description = value.HasValue ? 
+					new MeasureResource.IfcText(value.Value) :  
+					 new MeasureResource.IfcText?() ;
+				
+			}
 		}
-		IEnumerable<IIfcRepresentation> IIfcProductRepresentation.Representations 
+
+		[CrossSchemaAttribute(typeof(IIfcProductRepresentation), 3)]
+		IItemSet<IIfcRepresentation> IIfcProductRepresentation.Representations 
 		{ 
 			get
 			{
-				foreach (var member in Representations)
-				{
-					yield return member as IIfcRepresentation;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcRepresentation, IIfcRepresentation>(Representations);
 			} 
 		}
 	//## Custom code

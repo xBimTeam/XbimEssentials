@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTypeProcess : IIfcTypeObject, IfcProcessSelect
 	{
-		IfcIdentifier? @Identification { get; }
-		IfcText? @LongDescription { get; }
-		IfcLabel? @ProcessType { get; }
+		IfcIdentifier? @Identification { get;  set; }
+		IfcText? @LongDescription { get;  set; }
+		IfcLabel? @ProcessType { get;  set; }
 		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
 	
 	}
@@ -34,21 +36,33 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcTypeProcess", 1126)]
+	[ExpressType("IfcTypeProcess", 1306)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEqualityComparer<@IfcTypeProcess>, IEquatable<@IfcTypeProcess>
+	public abstract partial class @IfcTypeProcess : IfcTypeObject, IIfcTypeProcess, IEquatable<@IfcTypeProcess>
 	{
 		#region IIfcTypeProcess explicit implementation
-		IfcIdentifier? IIfcTypeProcess.Identification { get { return @Identification; } }	
-		IfcText? IIfcTypeProcess.LongDescription { get { return @LongDescription; } }	
-		IfcLabel? IIfcTypeProcess.ProcessType { get { return @ProcessType; } }	
+		IfcIdentifier? IIfcTypeProcess.Identification { 
+ 
+			get { return @Identification; } 
+			set { Identification = value;}
+		}	
+		IfcText? IIfcTypeProcess.LongDescription { 
+ 
+			get { return @LongDescription; } 
+			set { LongDescription = value;}
+		}	
+		IfcLabel? IIfcTypeProcess.ProcessType { 
+ 
+			get { return @ProcessType; } 
+			set { ProcessType = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssignsToProcess> IIfcTypeProcess.OperatesOn {  get { return @OperatesOn; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTypeProcess(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcTypeProcess(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -63,13 +77,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _identification;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _identification;
+				Activate();
 				return _identification;
 			} 
 			set
 			{
-				SetValue( v =>  _identification = v, _identification, value,  "Identification");
+				SetValue( v =>  _identification = v, _identification, value,  "Identification", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
@@ -77,13 +91,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _longDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _longDescription;
+				Activate();
 				return _longDescription;
 			} 
 			set
 			{
-				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription");
+				SetValue( v =>  _longDescription = v, _longDescription, value,  "LongDescription", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -91,13 +105,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _processType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _processType;
+				Activate();
 				return _processType;
 			} 
 			set
 			{
-				SetValue( v =>  _processType = v, _processType, value,  "ProcessType");
+				SetValue( v =>  _processType = v, _processType, value,  "ProcessType", 9);
 			} 
 		}	
 		#endregion
@@ -111,14 +125,13 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssignsToProcess>(e => (e.RelatingProcess as IfcTypeProcess) == this, "RelatingProcess", this);
+				return Model.Instances.Where<IfcRelAssignsToProcess>(e => Equals(e.RelatingProcess), "RelatingProcess", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -143,11 +156,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -155,54 +163,6 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTypeProcess
-            var root = (@IfcTypeProcess)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTypeProcess left, @IfcTypeProcess right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTypeProcess left, @IfcTypeProcess right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTypeProcess x, @IfcTypeProcess y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTypeProcess obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

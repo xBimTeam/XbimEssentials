@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,27 +26,37 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssignsToActor : IIfcRelAssigns
 	{
-		IIfcActor @RelatingActor { get; }
-		IIfcActorRole @ActingRole { get; }
+		IIfcActor @RelatingActor { get;  set; }
+		IIfcActorRole @ActingRole { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcRelAssignsToActor", 911)]
+	[ExpressType("IfcRelAssignsToActor", 323)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IEqualityComparer<@IfcRelAssignsToActor>, IEquatable<@IfcRelAssignsToActor>
+	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToActor>
 	{
 		#region IIfcRelAssignsToActor explicit implementation
-		IIfcActor IIfcRelAssignsToActor.RelatingActor { get { return @RelatingActor; } }	
-		IIfcActorRole IIfcRelAssignsToActor.ActingRole { get { return @ActingRole; } }	
+		IIfcActor IIfcRelAssignsToActor.RelatingActor { 
+ 
+ 
+			get { return @RelatingActor; } 
+			set { RelatingActor = value as IfcActor;}
+		}	
+		IIfcActorRole IIfcRelAssignsToActor.ActingRole { 
+ 
+ 
+			get { return @ActingRole; } 
+			set { ActingRole = value as IfcActorRole;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelAssignsToActor(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelAssignsToActor(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +71,15 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingActor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingActor;
+				Activate();
 				return _relatingActor;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingActor = v, _relatingActor, value,  "RelatingActor");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingActor = v, _relatingActor, value,  "RelatingActor", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -73,13 +87,15 @@ namespace Xbim.Ifc4.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actingRole;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actingRole;
+				Activate();
 				return _actingRole;
 			} 
 			set
 			{
-				SetValue( v =>  _actingRole = v, _actingRole, value,  "ActingRole");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _actingRole = v, _actingRole, value,  "ActingRole", 8);
 			} 
 		}	
 		#endregion
@@ -87,9 +103,8 @@ namespace Xbim.Ifc4.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -111,12 +126,6 @@ namespace Xbim.Ifc4.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NoSelfReference:	NoSelfReference : SIZEOF(QUERY(Temp <* SELF\IfcRelAssigns.RelatedObjects | RelatingActor :=: Temp)) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -124,55 +133,39 @@ namespace Xbim.Ifc4.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelAssignsToActor
-            var root = (@IfcRelAssignsToActor)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelAssignsToActor left, @IfcRelAssignsToActor right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelAssignsToActor left, @IfcRelAssignsToActor right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssignsToActor x, @IfcRelAssignsToActor y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssignsToActor obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingActor != null)
+					yield return @RelatingActor;
+				if (@ActingRole != null)
+					yield return @ActingRole;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingActor != null)
+					yield return @RelatingActor;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

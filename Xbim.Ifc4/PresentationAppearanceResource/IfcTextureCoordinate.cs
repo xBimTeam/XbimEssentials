@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.PresentationAppearanceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,41 +26,43 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTextureCoordinate : IIfcPresentationItem
 	{
-		IEnumerable<IIfcSurfaceTexture> @Maps { get; }
+		IItemSet<IIfcSurfaceTexture> @Maps { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {
-	[ExpressType("IfcTextureCoordinate", 1106)]
+	[ExpressType("IfcTextureCoordinate", 732)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTextureCoordinate : IfcPresentationItem, IIfcTextureCoordinate, IEqualityComparer<@IfcTextureCoordinate>, IEquatable<@IfcTextureCoordinate>
+	public abstract partial class @IfcTextureCoordinate : IfcPresentationItem, IIfcTextureCoordinate, IEquatable<@IfcTextureCoordinate>
 	{
 		#region IIfcTextureCoordinate explicit implementation
-		IEnumerable<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { get { return @Maps; } }	
+		IItemSet<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { 
+			get { return new Common.Collections.ProxyItemSet<IfcSurfaceTexture, IIfcSurfaceTexture>( @Maps); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTextureCoordinate(IModel model) : base(model) 		{ 
-			Model = model; 
-			_maps = new ItemSet<IfcSurfaceTexture>( this, 0 );
+		internal IfcTextureCoordinate(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_maps = new ItemSet<IfcSurfaceTexture>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcSurfaceTexture> _maps;
+		private readonly ItemSet<IfcSurfaceTexture> _maps;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
-		public ItemSet<IfcSurfaceTexture> @Maps 
+		public IItemSet<IfcSurfaceTexture> @Maps 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _maps;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _maps;
+				Activate();
 				return _maps;
 			} 
 		}	
@@ -67,24 +71,17 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_maps == null) _maps = new ItemSet<IfcSurfaceTexture>( this );
 					_maps.InternalAdd((IfcSurfaceTexture)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -93,54 +90,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTextureCoordinate
-            var root = (@IfcTextureCoordinate)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTextureCoordinate left, @IfcTextureCoordinate right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTextureCoordinate left, @IfcTextureCoordinate right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTextureCoordinate x, @IfcTextureCoordinate y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTextureCoordinate obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

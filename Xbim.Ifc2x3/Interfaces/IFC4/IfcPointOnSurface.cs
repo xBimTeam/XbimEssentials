@@ -10,32 +10,54 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcPointOnSurface : IIfcPointOnSurface
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnSurface), 1)]
 		IIfcSurface IIfcPointOnSurface.BasisSurface 
 		{ 
 			get
 			{
 				return BasisSurface;
 			} 
+			set
+			{
+				BasisSurface = value as IfcSurface;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnSurface), 2)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterU 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(PointParameterU);
 			} 
+			set
+			{
+				PointParameterU = new MeasureResource.IfcParameterValue(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcPointOnSurface), 3)]
 		Ifc4.MeasureResource.IfcParameterValue IIfcPointOnSurface.PointParameterV 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcParameterValue(PointParameterV);
 			} 
+			set
+			{
+				PointParameterV = new MeasureResource.IfcParameterValue(value);
+				
+			}
 		}
 	//## Custom code
 	//##

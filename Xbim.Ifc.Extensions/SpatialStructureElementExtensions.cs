@@ -88,16 +88,16 @@ namespace Xbim.Ifc2x3.Extensions
             if (prod == null) return;
 
             IEnumerable<IfcRelContainedInSpatialStructure> relatedElements = se.ContainsElements;
-            if (relatedElements.Count() == 0) //none defined create the relationship
+            var ifcRelContainedInSpatialStructures = relatedElements as IList<IfcRelContainedInSpatialStructure> ?? relatedElements.ToList();
+            if (!ifcRelContainedInSpatialStructures.Any()) //none defined create the relationship
             {
-                IfcRelContainedInSpatialStructure relSe =
-                    se.Model.Instances.New<IfcRelContainedInSpatialStructure>();
+                IfcRelContainedInSpatialStructure relSe = se.Model.Instances.New<IfcRelContainedInSpatialStructure>();
                 relSe.RelatingStructure = se;
                 relSe.RelatedElements.Add(prod);
             }
             else
             {
-                relatedElements.First().RelatedElements.Add(prod);
+                ifcRelContainedInSpatialStructures.First().RelatedElements.Add(prod);
             }
         }
 
@@ -110,7 +110,8 @@ namespace Xbim.Ifc2x3.Extensions
                                                      IfcSpatialStructureElement child)
         {
             IEnumerable<IfcRelDecomposes> decomposition = se.IsDecomposedBy;
-            if (decomposition.Count() == 0) //none defined create the relationship
+            var ifcRelDecomposeses = decomposition as IList<IfcRelDecomposes> ?? decomposition.ToList();
+            if (!ifcRelDecomposeses.Any()) //none defined create the relationship
             {
                 IfcRelAggregates relSub = se.Model.Instances.New<IfcRelAggregates>();
                 relSub.RelatingObject = se;
@@ -118,7 +119,7 @@ namespace Xbim.Ifc2x3.Extensions
             }
             else
             {
-                decomposition.First().RelatedObjects.Add(child);
+                ifcRelDecomposeses.First().RelatedObjects.Add(child);
             }
         }
     }

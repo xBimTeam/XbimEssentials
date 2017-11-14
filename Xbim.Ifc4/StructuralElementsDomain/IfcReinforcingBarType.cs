@@ -15,6 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.StructuralElementsDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,38 +26,64 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcReinforcingBarType : IIfcReinforcingElementType
 	{
-		IfcReinforcingBarTypeEnum @PredefinedType { get; }
-		IfcPositiveLengthMeasure? @NominalDiameter { get; }
-		IfcAreaMeasure? @CrossSectionArea { get; }
-		IfcPositiveLengthMeasure? @BarLength { get; }
-		IfcReinforcingBarSurfaceEnum? @BarSurface { get; }
-		IfcLabel? @BendingShapeCode { get; }
-		IEnumerable<IIfcBendingParameterSelect> @BendingParameters { get; }
+		IfcReinforcingBarTypeEnum @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
+		IfcAreaMeasure? @CrossSectionArea { get;  set; }
+		IfcPositiveLengthMeasure? @BarLength { get;  set; }
+		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
+		IfcLabel? @BendingShapeCode { get;  set; }
+		IItemSet<IIfcBendingParameterSelect> @BendingParameters { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.StructuralElementsDomain
 {
-	[ExpressType("IfcReinforcingBarType", 904)]
+	[ExpressType("IfcReinforcingBarType", 1245)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBarType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingBarType, IEqualityComparer<@IfcReinforcingBarType>, IEquatable<@IfcReinforcingBarType>
+	public  partial class @IfcReinforcingBarType : IfcReinforcingElementType, IInstantiableEntity, IIfcReinforcingBarType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingBarType>
 	{
 		#region IIfcReinforcingBarType explicit implementation
-		IfcReinforcingBarTypeEnum IIfcReinforcingBarType.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingBarType.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcAreaMeasure? IIfcReinforcingBarType.CrossSectionArea { get { return @CrossSectionArea; } }	
-		IfcPositiveLengthMeasure? IIfcReinforcingBarType.BarLength { get { return @BarLength; } }	
-		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBarType.BarSurface { get { return @BarSurface; } }	
-		IfcLabel? IIfcReinforcingBarType.BendingShapeCode { get { return @BendingShapeCode; } }	
-		IEnumerable<IIfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { get { return @BendingParameters; } }	
+		IfcReinforcingBarTypeEnum IIfcReinforcingBarType.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingBarType.NominalDiameter { 
+ 
+			get { return @NominalDiameter; } 
+			set { NominalDiameter = value;}
+		}	
+		IfcAreaMeasure? IIfcReinforcingBarType.CrossSectionArea { 
+ 
+			get { return @CrossSectionArea; } 
+			set { CrossSectionArea = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcReinforcingBarType.BarLength { 
+ 
+			get { return @BarLength; } 
+			set { BarLength = value;}
+		}	
+		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBarType.BarSurface { 
+ 
+			get { return @BarSurface; } 
+			set { BarSurface = value;}
+		}	
+		IfcLabel? IIfcReinforcingBarType.BendingShapeCode { 
+ 
+			get { return @BendingShapeCode; } 
+			set { BendingShapeCode = value;}
+		}	
+		IItemSet<IIfcBendingParameterSelect> IIfcReinforcingBarType.BendingParameters { 
+			get { return new Common.Collections.ProxyItemSet<IfcBendingParameterSelect, IIfcBendingParameterSelect>( @BendingParameters); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcReinforcingBarType(IModel model) : base(model) 		{ 
-			Model = model; 
-			_bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this, 0 );
+		internal IfcReinforcingBarType(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this, 0,  16);
 		}
 
 		#region Explicit attribute fields
@@ -65,7 +93,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		private IfcPositiveLengthMeasure? _barLength;
 		private IfcReinforcingBarSurfaceEnum? _barSurface;
 		private IfcLabel? _bendingShapeCode;
-		private OptionalItemSet<IfcBendingParameterSelect> _bendingParameters;
+		private readonly OptionalItemSet<IfcBendingParameterSelect> _bendingParameters;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -74,13 +102,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -88,13 +116,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -102,13 +130,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -116,13 +144,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barLength;
+				Activate();
 				return _barLength;
 			} 
 			set
 			{
-				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength");
+				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
@@ -130,13 +158,13 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barSurface;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barSurface;
+				Activate();
 				return _barSurface;
 			} 
 			set
 			{
-				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface");
+				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
@@ -144,22 +172,22 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bendingShapeCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bendingShapeCode;
+				Activate();
 				return _bendingShapeCode;
 			} 
 			set
 			{
-				SetValue( v =>  _bendingShapeCode = v, _bendingShapeCode, value,  "BendingShapeCode");
+				SetValue( v =>  _bendingShapeCode = v, _bendingShapeCode, value,  "BendingShapeCode", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 25)]
-		public OptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
+		public IOptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _bendingParameters;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _bendingParameters;
+				Activate();
 				return _bendingParameters;
 			} 
 		}	
@@ -168,9 +196,8 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -204,19 +231,11 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					_bendingShapeCode = value.StringVal;
 					return;
 				case 15: 
-					if (_bendingParameters == null) _bendingParameters = new OptionalItemSet<IfcBendingParameterSelect>( this );
 					_bendingParameters.InternalAdd((IfcBendingParameterSelect)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPredefinedType:((PredefinedType = IfcReinforcingBarTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcElementType.ElementType));*/
-		/*BendingShapeCodeProvided:	BendingShapeCodeProvided : NOT EXISTS(BendingParameters) OR EXISTS(BendingShapeCode);*/
 		}
 		#endregion
 
@@ -225,55 +244,35 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcReinforcingBarType
-            var root = (@IfcReinforcingBarType)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcReinforcingBarType left, @IfcReinforcingBarType right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcReinforcingBarType left, @IfcReinforcingBarType right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcReinforcingBarType x, @IfcReinforcingBarType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcReinforcingBarType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				foreach(var entity in @RepresentationMaps)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @HasPropertySets)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

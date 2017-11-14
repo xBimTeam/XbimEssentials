@@ -10,41 +10,74 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcSpatialStructureElement : IIfcSpatialStructureElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcSpatialStructureElement), 9)]
 		Ifc4.Interfaces.IfcElementCompositionEnum? IIfcSpatialStructureElement.CompositionType 
 		{ 
 			get
 			{
+				//## Custom code to handle enumeration of CompositionType
+				//##
 				switch (CompositionType)
 				{
 					case IfcElementCompositionEnum.COMPLEX:
 						return Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX;
-					
 					case IfcElementCompositionEnum.ELEMENT:
 						return Ifc4.Interfaces.IfcElementCompositionEnum.ELEMENT;
-					
 					case IfcElementCompositionEnum.PARTIAL:
 						return Ifc4.Interfaces.IfcElementCompositionEnum.PARTIAL;
-					
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();
 				}
 			} 
+			set
+			{
+				//## Custom code to handle setting of enumeration of CompositionType
+				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcElementCompositionEnum.COMPLEX:
+						CompositionType = IfcElementCompositionEnum.COMPLEX;
+						return;
+					case Ifc4.Interfaces.IfcElementCompositionEnum.ELEMENT:
+						CompositionType = IfcElementCompositionEnum.ELEMENT;
+						return;
+					case Ifc4.Interfaces.IfcElementCompositionEnum.PARTIAL:
+						CompositionType = IfcElementCompositionEnum.PARTIAL;
+						return;
+					case null:
+						CompositionType = IfcElementCompositionEnum.ELEMENT;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcSpatialStructureElement), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-                if (!this.LongName.HasValue) return null; else return new Xbim.Ifc4.MeasureResource.IfcLabel(this.LongName.Value);
-				//##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
+			set
+			{
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

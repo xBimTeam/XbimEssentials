@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ConstructionMgmtDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -27,35 +29,47 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConstructionResource : IIfcResource
 	{
-		IIfcResourceTime @Usage { get; }
-		IEnumerable<IIfcAppliedValue> @BaseCosts { get; }
-		IIfcPhysicalQuantity @BaseQuantity { get; }
+		IIfcResourceTime @Usage { get;  set; }
+		IItemSet<IIfcAppliedValue> @BaseCosts { get; }
+		IIfcPhysicalQuantity @BaseQuantity { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ConstructionMgmtDomain
 {
-	[ExpressType("IfcConstructionResource", 530)]
+	[ExpressType("IfcConstructionResource", 157)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEqualityComparer<@IfcConstructionResource>, IEquatable<@IfcConstructionResource>
+	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEquatable<@IfcConstructionResource>
 	{
 		#region IIfcConstructionResource explicit implementation
-		IIfcResourceTime IIfcConstructionResource.Usage { get { return @Usage; } }	
-		IEnumerable<IIfcAppliedValue> IIfcConstructionResource.BaseCosts { get { return @BaseCosts; } }	
-		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity { get { return @BaseQuantity; } }	
+		IIfcResourceTime IIfcConstructionResource.Usage { 
+ 
+ 
+			get { return @Usage; } 
+			set { Usage = value as IfcResourceTime;}
+		}	
+		IItemSet<IIfcAppliedValue> IIfcConstructionResource.BaseCosts { 
+			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @BaseCosts); } 
+		}	
+		IIfcPhysicalQuantity IIfcConstructionResource.BaseQuantity { 
+ 
+ 
+			get { return @BaseQuantity; } 
+			set { BaseQuantity = value as IfcPhysicalQuantity;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConstructionResource(IModel model) : base(model) 		{ 
-			Model = model; 
-			_baseCosts = new OptionalItemSet<IfcAppliedValue>( this, 0 );
+		internal IfcConstructionResource(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_baseCosts = new OptionalItemSet<IfcAppliedValue>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
 		private IfcResourceTime _usage;
-		private OptionalItemSet<IfcAppliedValue> _baseCosts;
+		private readonly OptionalItemSet<IfcAppliedValue> _baseCosts;
 		private IfcPhysicalQuantity _baseQuantity;
 		#endregion
 	
@@ -65,22 +79,24 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usage;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usage;
+				Activate();
 				return _usage;
 			} 
 			set
 			{
-				SetValue( v =>  _usage = v, _usage, value,  "Usage");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _usage = v, _usage, value,  "Usage", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
-		public OptionalItemSet<IfcAppliedValue> @BaseCosts 
+		public IOptionalItemSet<IfcAppliedValue> @BaseCosts 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseCosts;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseCosts;
+				Activate();
 				return _baseCosts;
 			} 
 		}	
@@ -89,13 +105,15 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseQuantity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseQuantity;
+				Activate();
 				return _baseQuantity;
 			} 
 			set
 			{
-				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _baseQuantity = v, _baseQuantity, value,  "BaseQuantity", 10);
 			} 
 		}	
 		#endregion
@@ -103,9 +121,8 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -122,7 +139,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 					_usage = (IfcResourceTime)(value.EntityVal);
 					return;
 				case 8: 
-					if (_baseCosts == null) _baseCosts = new OptionalItemSet<IfcAppliedValue>( this );
 					_baseCosts.InternalAdd((IfcAppliedValue)value.EntityVal);
 					return;
 				case 9: 
@@ -132,11 +148,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -144,54 +155,6 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConstructionResource
-            var root = (@IfcConstructionResource)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConstructionResource left, @IfcConstructionResource right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConstructionResource left, @IfcConstructionResource right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConstructionResource x, @IfcConstructionResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConstructionResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

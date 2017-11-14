@@ -10,25 +10,62 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	public partial class @IfcGridPlacement : IIfcGridPlacement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcGridPlacement), 1)]
 		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation 
 		{ 
 			get
 			{
 				return PlacementLocation;
 			} 
+			set
+			{
+				PlacementLocation = value as IfcVirtualGridIntersection;
+				
+			}
 		}
+
+		private  IIfcGridPlacementDirectionSelect _placementRefDirection4;
+
+
+		[CrossSchemaAttribute(typeof(IIfcGridPlacement), 2)]
 		IIfcGridPlacementDirectionSelect IIfcGridPlacement.PlacementRefDirection 
 		{ 
 			get
 			{
-				return PlacementRefDirection;
+				return  _placementRefDirection4 ?? PlacementRefDirection;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					PlacementRefDirection = null;
+					if (_placementRefDirection4 != null)
+						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", -2);
+					return;
+				}
+				
+				var val = value as IfcVirtualGridIntersection;
+				if (val != null)
+				{
+					PlacementRefDirection = val;
+					if (_placementRefDirection4 != null)
+						SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, null, "PlacementRefDirection", -2);
+					return;
+				} 
+
+				if(PlacementRefDirection != null)
+					PlacementRefDirection = null;
+				SetValue(v => _placementRefDirection4 = v, _placementRefDirection4, value, "PlacementRefDirection", -2);
+				
+			}
 		}
 	//## Custom code
 	//##

@@ -15,7 +15,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.Kernel
 {
-	[ExpressType("IfcPropertySetDefinitionSet", 90)]
+	[ExpressType("IfcPropertySetDefinitionSet", 996)]
 	[DefinedType(typeof(List<IfcPropertySetDefinition>))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPropertySetDefinitionSet : IfcPropertySetDefinitionSelect, IExpressComplexType, System.IEquatable<List<IfcPropertySetDefinition>>
@@ -103,11 +103,6 @@ namespace Xbim.Ifc4.Kernel
 				_value = new List<IfcPropertySetDefinition>();
             _value.Add(value.EntityVal as IfcPropertySetDefinition);
             
-		}
-
-		string IPersist.WhereRule()
-		{
-            throw new System.NotImplementedException();
 		}
 		#endregion
 

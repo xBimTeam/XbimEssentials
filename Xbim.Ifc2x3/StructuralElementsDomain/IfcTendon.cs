@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralElementsDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,14 +26,14 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTendon : IIfcReinforcingElement
 	{
-		IfcTendonTypeEnum @PredefinedType { get; }
-		IfcPositiveLengthMeasure @NominalDiameter { get; }
-		IfcAreaMeasure @CrossSectionArea { get; }
-		IfcForceMeasure? @TensionForce { get; }
-		IfcPressureMeasure? @PreStress { get; }
-		IfcNormalisedRatioMeasure? @FrictionCoefficient { get; }
-		IfcPositiveLengthMeasure? @AnchorageSlip { get; }
-		IfcPositiveLengthMeasure? @MinCurvatureRadius { get; }
+		IfcTendonTypeEnum @PredefinedType { get;  set; }
+		IfcPositiveLengthMeasure @NominalDiameter { get;  set; }
+		IfcAreaMeasure @CrossSectionArea { get;  set; }
+		IfcForceMeasure? @TensionForce { get;  set; }
+		IfcPressureMeasure? @PreStress { get;  set; }
+		IfcNormalisedRatioMeasure? @FrictionCoefficient { get;  set; }
+		IfcPositiveLengthMeasure? @AnchorageSlip { get;  set; }
+		IfcPositiveLengthMeasure? @MinCurvatureRadius { get;  set; }
 	
 	}
 }
@@ -40,23 +42,55 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcTendon", 261)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IEqualityComparer<@IfcTendon>, IEquatable<@IfcTendon>
+	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendon>
 	{
 		#region IIfcTendon explicit implementation
-		IfcTendonTypeEnum IIfcTendon.PredefinedType { get { return @PredefinedType; } }	
-		IfcPositiveLengthMeasure IIfcTendon.NominalDiameter { get { return @NominalDiameter; } }	
-		IfcAreaMeasure IIfcTendon.CrossSectionArea { get { return @CrossSectionArea; } }	
-		IfcForceMeasure? IIfcTendon.TensionForce { get { return @TensionForce; } }	
-		IfcPressureMeasure? IIfcTendon.PreStress { get { return @PreStress; } }	
-		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { get { return @FrictionCoefficient; } }	
-		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { get { return @AnchorageSlip; } }	
-		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { get { return @MinCurvatureRadius; } }	
+		IfcTendonTypeEnum IIfcTendon.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcTendon.NominalDiameter { 
+ 
+			get { return @NominalDiameter; } 
+			set { NominalDiameter = value;}
+		}	
+		IfcAreaMeasure IIfcTendon.CrossSectionArea { 
+ 
+			get { return @CrossSectionArea; } 
+			set { CrossSectionArea = value;}
+		}	
+		IfcForceMeasure? IIfcTendon.TensionForce { 
+ 
+			get { return @TensionForce; } 
+			set { TensionForce = value;}
+		}	
+		IfcPressureMeasure? IIfcTendon.PreStress { 
+ 
+			get { return @PreStress; } 
+			set { PreStress = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { 
+ 
+			get { return @FrictionCoefficient; } 
+			set { FrictionCoefficient = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { 
+ 
+			get { return @AnchorageSlip; } 
+			set { AnchorageSlip = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { 
+ 
+			get { return @MinCurvatureRadius; } 
+			set { MinCurvatureRadius = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTendon(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcTendon(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -76,13 +110,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
@@ -90,13 +124,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalDiameter;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalDiameter;
+				Activate();
 				return _nominalDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter");
+				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
@@ -104,13 +138,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionArea;
+				Activate();
 				return _crossSectionArea;
 			} 
 			set
 			{
-				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea");
+				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 31)]
@@ -118,13 +152,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tensionForce;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tensionForce;
+				Activate();
 				return _tensionForce;
 			} 
 			set
 			{
-				SetValue( v =>  _tensionForce = v, _tensionForce, value,  "TensionForce");
+				SetValue( v =>  _tensionForce = v, _tensionForce, value,  "TensionForce", 13);
 			} 
 		}	
 		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 32)]
@@ -132,13 +166,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _preStress;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _preStress;
+				Activate();
 				return _preStress;
 			} 
 			set
 			{
-				SetValue( v =>  _preStress = v, _preStress, value,  "PreStress");
+				SetValue( v =>  _preStress = v, _preStress, value,  "PreStress", 14);
 			} 
 		}	
 		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
@@ -146,13 +180,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _frictionCoefficient;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _frictionCoefficient;
+				Activate();
 				return _frictionCoefficient;
 			} 
 			set
 			{
-				SetValue( v =>  _frictionCoefficient = v, _frictionCoefficient, value,  "FrictionCoefficient");
+				SetValue( v =>  _frictionCoefficient = v, _frictionCoefficient, value,  "FrictionCoefficient", 15);
 			} 
 		}	
 		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
@@ -160,13 +194,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _anchorageSlip;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _anchorageSlip;
+				Activate();
 				return _anchorageSlip;
 			} 
 			set
 			{
-				SetValue( v =>  _anchorageSlip = v, _anchorageSlip, value,  "AnchorageSlip");
+				SetValue( v =>  _anchorageSlip = v, _anchorageSlip, value,  "AnchorageSlip", 16);
 			} 
 		}	
 		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
@@ -174,13 +208,13 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _minCurvatureRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _minCurvatureRadius;
+				Activate();
 				return _minCurvatureRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _minCurvatureRadius = v, _minCurvatureRadius, value,  "MinCurvatureRadius");
+				SetValue( v =>  _minCurvatureRadius = v, _minCurvatureRadius, value,  "MinCurvatureRadius", 17);
 			} 
 		}	
 		#endregion
@@ -188,9 +222,8 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -233,12 +266,6 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : (PredefinedType <> IfcTendonTypeEnum.USERDEFINED) OR ((PredefinedType = IfcTendonTypeEnum.USERDEFINED) AND EXISTS(SELF\IfcObject.ObjectType));*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -246,55 +273,37 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTendon
-            var root = (@IfcTendon)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTendon left, @IfcTendon right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTendon left, @IfcTendon right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTendon x, @IfcTendon y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTendon obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

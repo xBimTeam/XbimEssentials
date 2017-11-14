@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSectionedSpine : IIfcGeometricRepresentationItem
 	{
-		IIfcCompositeCurve @SpineCurve { get; }
-		IEnumerable<IIfcProfileDef> @CrossSections { get; }
-		IEnumerable<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
+		IIfcCompositeCurve @SpineCurve { get;  set; }
+		IItemSet<IIfcProfileDef> @CrossSections { get; }
+		IItemSet<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
 		IfcDimensionCount @Dim  { get ; }
 	
 	}
@@ -37,26 +39,35 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSectionedSpine", 300)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IEqualityComparer<@IfcSectionedSpine>, IEquatable<@IfcSectionedSpine>
+	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IContainsEntityReferences, IEquatable<@IfcSectionedSpine>
 	{
 		#region IIfcSectionedSpine explicit implementation
-		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { get { return @SpineCurve; } }	
-		IEnumerable<IIfcProfileDef> IIfcSectionedSpine.CrossSections { get { return @CrossSections; } }	
-		IEnumerable<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { get { return @CrossSectionPositions; } }	
+		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { 
+ 
+ 
+			get { return @SpineCurve; } 
+			set { SpineCurve = value as IfcCompositeCurve;}
+		}	
+		IItemSet<IIfcProfileDef> IIfcSectionedSpine.CrossSections { 
+			get { return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>( @CrossSections); } 
+		}	
+		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { 
+			get { return new Common.Collections.ProxyItemSet<IfcAxis2Placement3D, IIfcAxis2Placement3D>( @CrossSectionPositions); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSectionedSpine(IModel model) : base(model) 		{ 
-			Model = model; 
-			_crossSections = new ItemSet<IfcProfileDef>( this, 0 );
-			_crossSectionPositions = new ItemSet<IfcAxis2Placement3D>( this, 0 );
+		internal IfcSectionedSpine(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_crossSections = new ItemSet<IfcProfileDef>( this, 0,  2);
+			_crossSectionPositions = new ItemSet<IfcAxis2Placement3D>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcCompositeCurve _spineCurve;
-		private ItemSet<IfcProfileDef> _crossSections;
-		private ItemSet<IfcAxis2Placement3D> _crossSectionPositions;
+		private readonly ItemSet<IfcProfileDef> _crossSections;
+		private readonly ItemSet<IfcAxis2Placement3D> _crossSectionPositions;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -65,32 +76,34 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spineCurve;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spineCurve;
+				Activate();
 				return _spineCurve;
 			} 
 			set
 			{
-				SetValue( v =>  _spineCurve = v, _spineCurve, value,  "SpineCurve");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _spineCurve = v, _spineCurve, value,  "SpineCurve", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
-		public ItemSet<IfcProfileDef> @CrossSections 
+		public IItemSet<IfcProfileDef> @CrossSections 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSections;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSections;
+				Activate();
 				return _crossSections;
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 5)]
-		public ItemSet<IfcAxis2Placement3D> @CrossSectionPositions 
+		public IItemSet<IfcAxis2Placement3D> @CrossSectionPositions 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _crossSectionPositions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _crossSectionPositions;
+				Activate();
 				return _crossSectionPositions;
 			} 
 		}	
@@ -112,9 +125,8 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -122,24 +134,14 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 					_spineCurve = (IfcCompositeCurve)(value.EntityVal);
 					return;
 				case 1: 
-					if (_crossSections == null) _crossSections = new ItemSet<IfcProfileDef>( this );
 					_crossSections.InternalAdd((IfcProfileDef)value.EntityVal);
 					return;
 				case 2: 
-					if (_crossSectionPositions == null) _crossSectionPositions = new ItemSet<IfcAxis2Placement3D>( this );
 					_crossSectionPositions.InternalAdd((IfcAxis2Placement3D)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SIZEOF(CrossSections) = SIZEOF(CrossSectionPositions);*/
-		/*WR2:	WR2 : SIZEOF(QUERY(temp <* CrossSections | CrossSections[1].ProfileType <> temp.ProfileType)) = 0;*/
-		/*WR3:	WR3 : SpineCurve.Dim = 3;*/
 		}
 		#endregion
 
@@ -148,55 +150,22 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSectionedSpine
-            var root = (@IfcSectionedSpine)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSectionedSpine left, @IfcSectionedSpine right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSectionedSpine left, @IfcSectionedSpine right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSectionedSpine x, @IfcSectionedSpine y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSectionedSpine obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SpineCurve != null)
+					yield return @SpineCurve;
+				foreach(var entity in @CrossSections)
+					yield return entity;
+				foreach(var entity in @CrossSectionPositions)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

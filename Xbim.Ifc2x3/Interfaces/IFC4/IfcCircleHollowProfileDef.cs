@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcCircleHollowProfileDef : IIfcCircleHollowProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCircleHollowProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WallThickness);
 			} 
+			set
+			{
+				WallThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
 	//## Custom code
 	//##

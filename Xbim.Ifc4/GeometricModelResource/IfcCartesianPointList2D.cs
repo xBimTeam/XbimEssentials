@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,40 +26,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianPointList2D : IIfcCartesianPointList
 	{
-		IEnumerable<IEnumerable<IfcLengthMeasure>> @CoordList { get; }
+		IItemSet<IItemSet<IfcLengthMeasure>> @CoordList { get; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcCartesianPointList2D", 475)]
+	[ExpressType("IfcCartesianPointList2D", 1117)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPointList2D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList2D, IEqualityComparer<@IfcCartesianPointList2D>, IEquatable<@IfcCartesianPointList2D>
+	public  partial class @IfcCartesianPointList2D : IfcCartesianPointList, IInstantiableEntity, IIfcCartesianPointList2D, IEquatable<@IfcCartesianPointList2D>
 	{
 		#region IIfcCartesianPointList2D explicit implementation
-		IEnumerable<IEnumerable<IfcLengthMeasure>> IIfcCartesianPointList2D.CoordList { get { return @CoordList; } }	
+		IItemSet<IItemSet<IfcLengthMeasure>> IIfcCartesianPointList2D.CoordList { 
+			get { return @CoordList; } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCartesianPointList2D(IModel model) : base(model) 		{ 
-			Model = model; 
-			_coordList = new ItemSet<ItemSet<IfcLengthMeasure>>( this, 0 );
+		internal IfcCartesianPointList2D(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_coordList = new ItemSet<IItemSet<IfcLengthMeasure>>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<ItemSet<IfcLengthMeasure>> _coordList;
+		private readonly ItemSet<IItemSet<IfcLengthMeasure>> _coordList;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, 2, 3)]
-		public ItemSet<ItemSet<IfcLengthMeasure>> @CoordList 
+		public IItemSet<IItemSet<IfcLengthMeasure>> @CoordList 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coordList;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coordList;
+				Activate();
 				return _coordList;
 			} 
 		}	
@@ -66,25 +70,19 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					_coordList
-						.InternalGetAt(nestedIndex[0])
+					((ItemSet<IfcLengthMeasure>)_coordList
+						.InternalGetAt(nestedIndex[0]) )
 						.InternalAdd((IfcLengthMeasure)(value.RealVal));
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -93,54 +91,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCartesianPointList2D
-            var root = (@IfcCartesianPointList2D)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCartesianPointList2D left, @IfcCartesianPointList2D right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCartesianPointList2D left, @IfcCartesianPointList2D right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianPointList2D x, @IfcCartesianPointList2D y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianPointList2D obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

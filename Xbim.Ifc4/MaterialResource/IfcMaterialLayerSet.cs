@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialLayerSet : IIfcMaterialDefinition
 	{
-		IEnumerable<IIfcMaterialLayer> @MaterialLayers { get; }
-		IfcLabel? @LayerSetName { get; }
-		IfcText? @Description { get; }
+		IItemSet<IIfcMaterialLayer> @MaterialLayers { get; }
+		IfcLabel? @LayerSetName { get;  set; }
+		IfcText? @Description { get;  set; }
 		IfcLengthMeasure @TotalThickness  { get ; }
 	
 	}
@@ -34,26 +36,35 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[IndexedClass]
-	[ExpressType("IfcMaterialLayerSet", 756)]
+	[ExpressType("IfcMaterialLayerSet", 205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayerSet, IEqualityComparer<@IfcMaterialLayerSet>, IEquatable<@IfcMaterialLayerSet>
+	public  partial class @IfcMaterialLayerSet : IfcMaterialDefinition, IInstantiableEntity, IIfcMaterialLayerSet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialLayerSet>
 	{
 		#region IIfcMaterialLayerSet explicit implementation
-		IEnumerable<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { get { return @MaterialLayers; } }	
-		IfcLabel? IIfcMaterialLayerSet.LayerSetName { get { return @LayerSetName; } }	
-		IfcText? IIfcMaterialLayerSet.Description { get { return @Description; } }	
+		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { 
+			get { return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>( @MaterialLayers); } 
+		}	
+		IfcLabel? IIfcMaterialLayerSet.LayerSetName { 
+ 
+			get { return @LayerSetName; } 
+			set { LayerSetName = value;}
+		}	
+		IfcText? IIfcMaterialLayerSet.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialLayerSet(IModel model) : base(model) 		{ 
-			Model = model; 
-			_materialLayers = new ItemSet<IfcMaterialLayer>( this, 0 );
+		internal IfcMaterialLayerSet(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_materialLayers = new ItemSet<IfcMaterialLayer>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcMaterialLayer> _materialLayers;
+		private readonly ItemSet<IfcMaterialLayer> _materialLayers;
 		private IfcLabel? _layerSetName;
 		private IfcText? _description;
 		#endregion
@@ -61,12 +72,12 @@ namespace Xbim.Ifc4.MaterialResource
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
-		public ItemSet<IfcMaterialLayer> @MaterialLayers 
+		public IItemSet<IfcMaterialLayer> @MaterialLayers 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _materialLayers;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _materialLayers;
+				Activate();
 				return _materialLayers;
 			} 
 		}	
@@ -75,13 +86,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _layerSetName;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _layerSetName;
+				Activate();
 				return _layerSetName;
 			} 
 			set
 			{
-				SetValue( v =>  _layerSetName = v, _layerSetName, value,  "LayerSetName");
+				SetValue( v =>  _layerSetName = v, _layerSetName, value,  "LayerSetName", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -89,13 +100,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
 		#endregion
@@ -116,14 +127,12 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
 				case 0: 
-					if (_materialLayers == null) _materialLayers = new ItemSet<IfcMaterialLayer>( this );
 					_materialLayers.InternalAdd((IfcMaterialLayer)value.EntityVal);
 					return;
 				case 1: 
@@ -136,11 +145,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -148,55 +152,31 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialLayerSet
-            var root = (@IfcMaterialLayerSet)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialLayerSet left, @IfcMaterialLayerSet right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialLayerSet left, @IfcMaterialLayerSet right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialLayerSet x, @IfcMaterialLayerSet y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialLayerSet obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @MaterialLayers)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @MaterialLayers)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -18,6 +18,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -27,12 +29,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsStructuralMember : IIfcRelConnects
 	{
-		IIfcStructuralMember @RelatingStructuralMember { get; }
-		IIfcStructuralConnection @RelatedStructuralConnection { get; }
-		IIfcBoundaryCondition @AppliedCondition { get; }
-		IIfcStructuralConnectionCondition @AdditionalConditions { get; }
-		IfcLengthMeasure? @SupportedLength { get; }
-		IIfcAxis2Placement3D @ConditionCoordinateSystem { get; }
+		IIfcStructuralMember @RelatingStructuralMember { get;  set; }
+		IIfcStructuralConnection @RelatedStructuralConnection { get;  set; }
+		IIfcBoundaryCondition @AppliedCondition { get;  set; }
+		IIfcStructuralConnectionCondition @AdditionalConditions { get;  set; }
+		IfcLengthMeasure? @SupportedLength { get;  set; }
+		IIfcAxis2Placement3D @ConditionCoordinateSystem { get;  set; }
 	
 	}
 }
@@ -41,21 +43,50 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsStructuralMember", 321)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralMember, IEqualityComparer<@IfcRelConnectsStructuralMember>, IEquatable<@IfcRelConnectsStructuralMember>
+	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralMember, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralMember>
 	{
 		#region IIfcRelConnectsStructuralMember explicit implementation
-		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { get { return @RelatingStructuralMember; } }	
-		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection { get { return @RelatedStructuralConnection; } }	
-		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition { get { return @AppliedCondition; } }	
-		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { get { return @AdditionalConditions; } }	
-		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { get { return @SupportedLength; } }	
-		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { get { return @ConditionCoordinateSystem; } }	
+		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { 
+ 
+ 
+			get { return @RelatingStructuralMember; } 
+			set { RelatingStructuralMember = value as IfcStructuralMember;}
+		}	
+		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection { 
+ 
+ 
+			get { return @RelatedStructuralConnection; } 
+			set { RelatedStructuralConnection = value as IfcStructuralConnection;}
+		}	
+		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition { 
+ 
+ 
+			get { return @AppliedCondition; } 
+			set { AppliedCondition = value as IfcBoundaryCondition;}
+		}	
+		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { 
+ 
+ 
+			get { return @AdditionalConditions; } 
+			set { AdditionalConditions = value as IfcStructuralConnectionCondition;}
+		}	
+		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { 
+ 
+			get { return @SupportedLength; } 
+			set { SupportedLength = value;}
+		}	
+		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { 
+ 
+ 
+			get { return @ConditionCoordinateSystem; } 
+			set { ConditionCoordinateSystem = value as IfcAxis2Placement3D;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelConnectsStructuralMember(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelConnectsStructuralMember(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -74,13 +105,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingStructuralMember;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingStructuralMember;
+				Activate();
 				return _relatingStructuralMember;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingStructuralMember = v, _relatingStructuralMember, value,  "RelatingStructuralMember");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingStructuralMember = v, _relatingStructuralMember, value,  "RelatingStructuralMember", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -89,13 +122,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedStructuralConnection;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedStructuralConnection;
+				Activate();
 				return _relatedStructuralConnection;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedStructuralConnection = v, _relatedStructuralConnection, value,  "RelatedStructuralConnection");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedStructuralConnection = v, _relatedStructuralConnection, value,  "RelatedStructuralConnection", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -103,13 +138,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _appliedCondition;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _appliedCondition;
+				Activate();
 				return _appliedCondition;
 			} 
 			set
 			{
-				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -117,13 +154,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _additionalConditions;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _additionalConditions;
+				Activate();
 				return _additionalConditions;
 			} 
 			set
 			{
-				SetValue( v =>  _additionalConditions = v, _additionalConditions, value,  "AdditionalConditions");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _additionalConditions = v, _additionalConditions, value,  "AdditionalConditions", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -131,13 +170,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _supportedLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _supportedLength;
+				Activate();
 				return _supportedLength;
 			} 
 			set
 			{
-				SetValue( v =>  _supportedLength = v, _supportedLength, value,  "SupportedLength");
+				SetValue( v =>  _supportedLength = v, _supportedLength, value,  "SupportedLength", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
@@ -145,13 +184,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _conditionCoordinateSystem;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _conditionCoordinateSystem;
+				Activate();
 				return _conditionCoordinateSystem;
 			} 
 			set
 			{
-				SetValue( v =>  _conditionCoordinateSystem = v, _conditionCoordinateSystem, value,  "ConditionCoordinateSystem");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _conditionCoordinateSystem = v, _conditionCoordinateSystem, value,  "ConditionCoordinateSystem", 10);
 			} 
 		}	
 		#endregion
@@ -159,9 +200,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -193,11 +233,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -205,55 +240,43 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelConnectsStructuralMember
-            var root = (@IfcRelConnectsStructuralMember)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelConnectsStructuralMember left, @IfcRelConnectsStructuralMember right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelConnectsStructuralMember left, @IfcRelConnectsStructuralMember right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsStructuralMember x, @IfcRelConnectsStructuralMember y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsStructuralMember obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingStructuralMember != null)
+					yield return @RelatingStructuralMember;
+				if (@RelatedStructuralConnection != null)
+					yield return @RelatedStructuralConnection;
+				if (@AppliedCondition != null)
+					yield return @AppliedCondition;
+				if (@AdditionalConditions != null)
+					yield return @AdditionalConditions;
+				if (@ConditionCoordinateSystem != null)
+					yield return @ConditionCoordinateSystem;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingStructuralMember != null)
+					yield return @RelatingStructuralMember;
+				if (@RelatedStructuralConnection != null)
+					yield return @RelatedStructuralConnection;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

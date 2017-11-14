@@ -1,41 +1,95 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
+using System.Threading;
+using log4net;
 using Xbim.Common;
 
 namespace Xbim.IO.Memory
 {
     public class EntityCollection : IEntityCollection, IDisposable
     {
-        private readonly MemoryModel _model;
-        private readonly Dictionary<Type, List<IPersistEntity>> _internal = new Dictionary<Type, List<IPersistEntity>>();
-        private readonly KeyedEntityCollection _collection = new KeyedEntityCollection(); 
-        internal IEntityFactory Factory{get { return _model.EntityFactory; }}
-        internal int NextLabel = 1;
-        public EntityCollection(MemoryModel model)
+        private static readonly ILog Log = LogManager.GetLogger("Xbim.IO.Memory.EntityCollection");
+
+        //simpler hasher as all entities will be in this model so no need to use its hash, small performance gain
+        private struct EntityLabelComparer : IEqualityComparer<IPersistEntity>
         {
-            _model = model;
+            public bool Equals(IPersistEntity x, IPersistEntity y)
+            {
+                return x.EntityLabel == y.EntityLabel;
+            }
+
+            public int GetHashCode(IPersistEntity obj)
+            {
+                return obj.EntityLabel;
+            }
         }
 
-        private List<Type> GetQueryTypes(Type type)
+        private readonly MemoryModel _model;
+        private readonly XbimMultiValueDictionary<Type, IPersistEntity> _internal;
+        private readonly Dictionary<int, IPersistEntity> _collection = new Dictionary<int, IPersistEntity>(0x77777);
+
+        private readonly List<int> _naturalOrder = new List<int>(0x77777);
+            //about a default of half a million stops too much growing, and 7 is lucky; 
+
+        internal IEntityFactory Factory
+        {
+            get { return _model.EntityFactory; }
+        }
+
+        internal int CurrentLabel;
+
+        public EntityCollection(MemoryModel model, int labelFrom = 0)
+        {
+            CurrentLabel = Math.Max(CurrentLabel, labelFrom);
+            _model = model;
+            _internal =
+                XbimMultiValueDictionary<Type, IPersistEntity>.Create(
+                    () => new HashSet<IPersistEntity>(new EntityLabelComparer()));
+        }
+
+        private IEnumerable<Type> GetQueryTypes(Type type)
         {
             var expType = _model.Metadata.ExpressType(type);
             if (expType != null)
-                return expType.NonAbstractSubTypes.ToList();
-            
-            if(!type.IsInterface) return new List<Type>();
+                return expType.NonAbstractSubTypes.Select(t => t.Type);
+
+            if (!type.IsInterface) return new List<Type>();
 
             var implementations = _model.Metadata.ExpressTypesImplementing(type).Where(i => !i.Type.IsAbstract);
-            return implementations.Select(e => e.Type).ToList();
+            return implementations.Select(e => e.Type);
         }
 
         public IEnumerable<T> Where<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument)
             where T : IPersistEntity
 
         {
-            return Where(condition);
+            var cache = _model.InverseCache as MemoryInverseCache;
+            if (cache == null)
+                return Where(condition);
+
+            IEnumerable<T> result;
+            if (cache.TryGet(inverseProperty, inverseArgument, out result))
+                return result.Where(condition);
+
+            //build cache for this type
+            lock (cache)
+            {
+                var indexed = OfType<T>().OfType<IContainsIndexedReferences>().ToList();
+                foreach (var item in indexed)
+                {
+                    foreach (var reference in item.IndexedReferences)
+                    {
+                        cache.Add(reference.EntityLabel, item);
+                    }
+                }
+            }
+
+            if (cache.TryGet(inverseProperty, inverseArgument, out result))
+                return result.Where(condition);
+
+            return Enumerable.Empty<T>();
         }
 
         public IEnumerable<T> Where<T>(Func<T, bool> condition) where T : IPersistEntity
@@ -44,25 +98,28 @@ namespace Xbim.IO.Memory
             //get interface implementations and make sure it doesn't overlap
             var resultTypes = GetQueryTypes(queryType);
 
-            foreach (var type in resultTypes)
+            if (condition != null)
             {
-                List<IPersistEntity> candidtes;
-                if (!_internal.TryGetValue(type, out candidtes)) continue;
-
-                if(condition == null)
-                    foreach (var candidte in candidtes)
-                    {
-                        yield return (T)candidte;
-                    }
-                else
+                foreach (var type in resultTypes)
                 {
-                    foreach (var candidte in candidtes.Where(c => condition((T)c)))
-                    {
-                        yield return (T)candidte;
-                    }
+                    ICollection<IPersistEntity> entities;
+                    if (!_internal.TryGetValue(type, out entities)) continue;
+                    foreach (var candidate in entities.Where(c => condition((T) c)))
+                        yield return (T) candidate;
+                }
+            }
+            else
+            {
+                foreach (var type in resultTypes)
+                {
+                    ICollection<IPersistEntity> entities;
+                    if (!_internal.TryGetValue(type, out entities)) continue;
+                    foreach (var candidate in entities)
+                        yield return (T) candidate;
                 }
             }
         }
+
 
         public T FirstOrDefault<T>() where T : IPersistEntity
         {
@@ -74,9 +131,10 @@ namespace Xbim.IO.Memory
             return Where(condition).FirstOrDefault();
         }
 
-        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument) where T : IPersistEntity
+        public T FirstOrDefault<T>(Func<T, bool> condition, string inverseProperty, IPersistEntity inverseArgument)
+            where T : IPersistEntity
         {
-            return FirstOrDefault(condition);
+            return Where(condition, inverseProperty, inverseArgument).FirstOrDefault();
         }
 
         public IEnumerable<T> OfType<T>() where T : IPersistEntity
@@ -85,49 +143,46 @@ namespace Xbim.IO.Memory
             var resultTypes = GetQueryTypes(queryType);
             foreach (var resultType in resultTypes)
             {
-                List<IPersistEntity> subresult;
-                if (!_internal.TryGetValue(resultType, out subresult)) continue;
-                foreach (var entity in subresult)
-                {
-                    yield return (T)entity;
-                }
+                ICollection<IPersistEntity> entities;
+                if (_internal.TryGetValue(resultType, out entities))
+                    foreach (var entity in entities)
+                        yield return (T) entity;
             }
         }
 
-        public IEnumerable<IPersistEntity> OfType(Type queryType) 
+
+        public IEnumerable<IPersistEntity> OfType(Type queryType)
         {
             var resultTypes = GetQueryTypes(queryType);
             foreach (var resultType in resultTypes)
             {
-                List<IPersistEntity> subresult;
-                if (!_internal.TryGetValue(resultType, out subresult)) continue;
-                foreach (var entity in subresult)
-                {
-                    yield return entity;
-                }
+                ICollection<IPersistEntity> entities;
+                if (_internal.TryGetValue(resultType, out entities))
+                    foreach (var entity in entities)
+                        yield return entity;
             }
         }
 
         public IEnumerable<T> OfType<T>(bool activate) where T : IPersistEntity
         {
-            foreach (var entity in OfType<T>())
-            {
-                _model.Activate(entity, true);
-                yield return entity;
-            }
+            //activation doesn't exist because everything is activated by default
+            return OfType<T>();
         }
 
         public IEnumerable<IPersistEntity> OfType(string stringType, bool activate)
         {
             var queryType = _model.Metadata.ExpressType(stringType.ToUpperInvariant());
-            if(queryType == null) 
+            if (queryType == null)
                 throw new ArgumentException("StringType must be a name of the existing persist entity type");
-            return OfType(queryType.Type);
+            foreach (var entity in OfType(queryType.Type))
+            {
+                yield return entity;
+            }
         }
 
         public IPersistEntity New(Type t)
         {
-            var entity = Factory.New(_model, t, NextLabel++, true);
+            var entity = Factory.New(_model, t, Interlocked.Increment(ref CurrentLabel), true);
             AddReversible(entity);
             return entity;
         }
@@ -135,8 +190,7 @@ namespace Xbim.IO.Memory
         internal IPersistEntity New(Type t, int label)
         {
             var entity = Factory.New(_model, t, label, true);
-            if (label >= NextLabel)
-                NextLabel = label + 1;
+            Interlocked.Exchange(ref CurrentLabel, (label >= CurrentLabel) ? label : CurrentLabel);
 
             AddReversible(entity);
             return entity;
@@ -144,14 +198,20 @@ namespace Xbim.IO.Memory
 
         public T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity
         {
-            var entity = Factory.New(_model, initPropertiesFunc, NextLabel++, true);
+            T entity;
+            if (initPropertiesFunc == null)
+                entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel), true);
+            else
+                entity = Factory.New(_model, initPropertiesFunc, Interlocked.Increment(ref CurrentLabel), true);
             AddReversible(entity);
             return entity;
         }
 
         public T New<T>() where T : IInstantiableEntity
         {
-            var entity = Factory.New<T>(_model, NextLabel++, true);
+
+            var entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel), true);
+
             AddReversible(entity);
             return entity;
         }
@@ -160,113 +220,106 @@ namespace Xbim.IO.Memory
         {
             get
             {
-                return _collection[label];
+                IPersistEntity result;
+
+                if (_collection.TryGetValue(label, out result))
+                    return result;
+                return null;
             }
         }
 
         public long Count
         {
-            get { return _internal.Values.Aggregate(0, (c, l)=> c + l.Count); }
+            get { return _collection.Count; }
         }
 
         public long CountOf<T>() where T : IPersistEntity
         {
-            var queryType = typeof(T);
-            return OfType(queryType).Count();
+            return OfType<T>().Count();
         }
 
         internal void InternalAdd(IPersistEntity entity)
         {
             var key = entity.GetType();
-            List<IPersistEntity> list;
-            if (_internal.TryGetValue(key, out list))
+            _internal.Add(key, entity);
+            try
             {
-                list.Add(entity);
+                _collection.Add(entity.EntityLabel, entity);
+                if (_naturalOrder != null) _naturalOrder.Add(entity.EntityLabel);
             }
-            else
+            catch (Exception ex)
             {
-                _internal.Add(key, new List<IPersistEntity> { entity });
+                Log.Error(string.Format("Duplicate entity label: #{0}", entity.EntityLabel), ex);
             }
-            _collection.Add(entity);
         }
 
         private void AddReversible(IPersistEntity entity)
         {
             if (_model.IsTransactional && _model.CurrentTransaction == null) throw new Exception("Operation out of transaction");
             var key = entity.GetType();
-
-            List<IPersistEntity> list;
-            if (_internal.TryGetValue(key, out list))
+            Action undo = () =>
             {
-                Action undo = () =>
-                {
-                    list.Remove(entity);
-                    _collection.Remove(entity);
-                };
-                Action doAction = () =>
-                {
-                    list.Add(entity);
-                    _collection.Add(entity);
-                };
-                doAction();
-
-                if (!_model.IsTransactional) return;
-                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.New);
-            }
-            else
+                _internal.Remove(key,entity);
+                _collection.Remove(entity.EntityLabel);
+                if (_naturalOrder != null) _naturalOrder.Remove(entity.EntityLabel);
+            };
+            Action doAction = () =>
             {
-                Action doAction = () =>
-                {
-                    _internal.Add(key, new List<IPersistEntity> {entity});
-                    _collection.Add(entity);
-                };
-                Action undo = () =>
-                {
-                    _internal.Remove(key);
-                    _collection.Remove(entity);
-                };
+                _internal.Add(key, entity);
+                _collection.Add(entity.EntityLabel, entity);
+                if (_naturalOrder != null) _naturalOrder.Add(entity.EntityLabel);
+            };
+
+            if (!_model.IsTransactional)
+            {
                 doAction();
-
-                if (!_model.IsTransactional) return;
-                _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.New);
+                return;
             }
+            
+            _model.CurrentTransaction.DoReversibleAction(doAction, undo, entity, ChangeType.New, 0);
+        }
 
+        public bool Contains(IPersistEntity entity)
+        {
+            return _collection.Keys.Contains(entity.EntityLabel);
         }
 
         internal bool RemoveReversible(IPersistEntity entity)
         {
             if (_model.IsTransactional && _model.CurrentTransaction == null) throw new Exception("Operation out of transaction");
             var key = entity.GetType();
-
-            if (!_internal.ContainsKey(key) || !_internal[key].Contains(entity))
-                return false;
-
+            bool removed = false;
             Action doAction = () =>
             {
-                _internal[key].Remove(entity);
-                _collection.Remove(entity);
+                _internal.Remove(key,entity);
+                removed =_collection.Remove(entity.EntityLabel);
+                _naturalOrder.Remove(entity.EntityLabel);
             };
             Action undo = () =>
             {
-                _internal[key].Add(entity);
-                _collection.Add(entity);
+                _internal.Add(key,entity);
+                _collection.Add(entity.EntityLabel, entity);
+                _naturalOrder.Add(entity.EntityLabel);
             };
-            doAction();
 
-            if (!_model.IsTransactional) return true;
-            _model.CurrentTransaction.AddReversibleAction(doAction, undo, entity, ChangeType.Deleted);
-            return true;
+            if (!_model.IsTransactional)
+            {
+                doAction();
+                return removed;
+            }
+            _model.CurrentTransaction.DoReversibleAction(doAction, undo, entity, ChangeType.Deleted, 0);
+            return removed;
         }
 
         public IEnumerator<IPersistEntity> GetEnumerator()
         {
-            //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
-            return _collection.GetEnumerator();
+            if(_naturalOrder!=null)
+                return new NaturalOrderEnumerator(_naturalOrder,_collection);
+            return _collection.Values.GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            //return _internal.SelectMany(kv => kv.Value, (pair, entity) => entity).GetEnumerator();
             return _collection.GetEnumerator();
         }
 
@@ -274,13 +327,56 @@ namespace Xbim.IO.Memory
         {
             _internal.Clear();
             _collection.Clear();
-        }
-
-        private class KeyedEntityCollection : KeyedCollection<int, IPersistEntity>
-        {
-            protected override int GetKeyForItem(IPersistEntity item)
+            if (_naturalOrder != null)
             {
-                return item.EntityLabel;
+                _naturalOrder.Clear();
+            }
+        }
+              
+
+        private class NaturalOrderEnumerator : IEnumerator<IPersistEntity>
+        {
+            private readonly Dictionary<int, IPersistEntity> _entities;
+            private readonly List<int> _naturalOrder;
+            private int _current;
+            private IPersistEntity _currentEntity;
+            public NaturalOrderEnumerator(List<int> naturalOrder, Dictionary<int,IPersistEntity> entities)
+            {
+                _naturalOrder = naturalOrder;
+                _entities = entities;
+                Reset();
+            }
+
+            public void Dispose()
+            {
+                
+            }
+
+            public bool MoveNext()
+            {               
+                while (++_current < _naturalOrder.Count )
+                {
+                    if (_entities.TryGetValue(_naturalOrder[_current], out _currentEntity))
+                        return true;
+                }
+                _currentEntity = null;
+                return false;
+            }
+
+            public void Reset()
+            {
+                _current = -1;
+                _currentEntity = null;
+            }
+
+            public IPersistEntity Current
+            {
+                get { return _currentEntity; }
+            } 
+
+            object IEnumerator.Current
+            {
+                get { return _currentEntity; }
             }
         }
     }

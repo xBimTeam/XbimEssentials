@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,8 +28,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralActivity : IIfcProduct
 	{
-		IIfcStructuralLoad @AppliedLoad { get; }
-		IfcGlobalOrLocalEnum @GlobalOrLocal { get; }
+		IIfcStructuralLoad @AppliedLoad { get;  set; }
+		IfcGlobalOrLocalEnum @GlobalOrLocal { get;  set; }
 		IIfcRelConnectsStructuralActivity @AssignedToStructuralItem {  get; }
 	
 	}
@@ -37,18 +39,27 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralActivity", 41)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralActivity : IfcProduct, IIfcStructuralActivity, IEqualityComparer<@IfcStructuralActivity>, IEquatable<@IfcStructuralActivity>
+	public abstract partial class @IfcStructuralActivity : IfcProduct, IIfcStructuralActivity, IEquatable<@IfcStructuralActivity>
 	{
 		#region IIfcStructuralActivity explicit implementation
-		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { get { return @AppliedLoad; } }	
-		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { get { return @GlobalOrLocal; } }	
+		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { 
+ 
+ 
+			get { return @AppliedLoad; } 
+			set { AppliedLoad = value as IfcStructuralLoad;}
+		}	
+		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { 
+ 
+			get { return @GlobalOrLocal; } 
+			set { GlobalOrLocal = value;}
+		}	
 		 
 		IIfcRelConnectsStructuralActivity IIfcStructuralActivity.AssignedToStructuralItem {  get { return @AssignedToStructuralItem; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralActivity(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcStructuralActivity(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +73,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _appliedLoad;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _appliedLoad;
+				Activate();
 				return _appliedLoad;
 			} 
 			set
 			{
-				SetValue( v =>  _appliedLoad = v, _appliedLoad, value,  "AppliedLoad");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _appliedLoad = v, _appliedLoad, value,  "AppliedLoad", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
@@ -76,13 +89,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _globalOrLocal;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _globalOrLocal;
+				Activate();
 				return _globalOrLocal;
 			} 
 			set
 			{
-				SetValue( v =>  _globalOrLocal = v, _globalOrLocal, value,  "GlobalOrLocal");
+				SetValue( v =>  _globalOrLocal = v, _globalOrLocal, value,  "GlobalOrLocal", 9);
 			} 
 		}	
 		#endregion
@@ -96,14 +109,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.FirstOrDefault<IfcRelConnectsStructuralActivity>(e => (e.RelatedStructuralActivity as IfcStructuralActivity) == this, "RelatedStructuralActivity", this);
+				return Model.Instances.FirstOrDefault<IfcRelConnectsStructuralActivity>(e => Equals(e.RelatedStructuralActivity), "RelatedStructuralActivity", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -126,11 +138,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -138,54 +145,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralActivity
-            var root = (@IfcStructuralActivity)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralActivity left, @IfcStructuralActivity right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralActivity left, @IfcStructuralActivity right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralActivity x, @IfcStructuralActivity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralActivity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

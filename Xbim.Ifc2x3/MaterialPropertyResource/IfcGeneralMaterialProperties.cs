@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcGeneralMaterialProperties : IIfcMaterialProperties
 	{
-		IfcMolecularWeightMeasure? @MolecularWeight { get; }
-		IfcNormalisedRatioMeasure? @Porosity { get; }
-		IfcMassDensityMeasure? @MassDensity { get; }
+		IfcMolecularWeightMeasure? @MolecularWeight { get;  set; }
+		IfcNormalisedRatioMeasure? @Porosity { get;  set; }
+		IfcMassDensityMeasure? @MassDensity { get;  set; }
 	
 	}
 }
@@ -35,18 +37,30 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcGeneralMaterialProperties", 716)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IEqualityComparer<@IfcGeneralMaterialProperties>, IEquatable<@IfcGeneralMaterialProperties>
+	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IContainsEntityReferences, IEquatable<@IfcGeneralMaterialProperties>
 	{
 		#region IIfcGeneralMaterialProperties explicit implementation
-		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { get { return @MolecularWeight; } }	
-		IfcNormalisedRatioMeasure? IIfcGeneralMaterialProperties.Porosity { get { return @Porosity; } }	
-		IfcMassDensityMeasure? IIfcGeneralMaterialProperties.MassDensity { get { return @MassDensity; } }	
+		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { 
+ 
+			get { return @MolecularWeight; } 
+			set { MolecularWeight = value;}
+		}	
+		IfcNormalisedRatioMeasure? IIfcGeneralMaterialProperties.Porosity { 
+ 
+			get { return @Porosity; } 
+			set { Porosity = value;}
+		}	
+		IfcMassDensityMeasure? IIfcGeneralMaterialProperties.MassDensity { 
+ 
+			get { return @MassDensity; } 
+			set { MassDensity = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcGeneralMaterialProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcGeneralMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _molecularWeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _molecularWeight;
+				Activate();
 				return _molecularWeight;
 			} 
 			set
 			{
-				SetValue( v =>  _molecularWeight = v, _molecularWeight, value,  "MolecularWeight");
+				SetValue( v =>  _molecularWeight = v, _molecularWeight, value,  "MolecularWeight", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _porosity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _porosity;
+				Activate();
 				return _porosity;
 			} 
 			set
 			{
-				SetValue( v =>  _porosity = v, _porosity, value,  "Porosity");
+				SetValue( v =>  _porosity = v, _porosity, value,  "Porosity", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _massDensity;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _massDensity;
+				Activate();
 				return _massDensity;
 			} 
 			set
 			{
-				SetValue( v =>  _massDensity = v, _massDensity, value,  "MassDensity");
+				SetValue( v =>  _massDensity = v, _massDensity, value,  "MassDensity", 4);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -125,11 +138,6 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -137,55 +145,18 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcGeneralMaterialProperties
-            var root = (@IfcGeneralMaterialProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcGeneralMaterialProperties left, @IfcGeneralMaterialProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcGeneralMaterialProperties left, @IfcGeneralMaterialProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcGeneralMaterialProperties x, @IfcGeneralMaterialProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcGeneralMaterialProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Material != null)
+					yield return @Material;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

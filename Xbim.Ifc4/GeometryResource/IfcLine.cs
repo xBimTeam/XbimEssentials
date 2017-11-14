@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -23,27 +25,37 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcLine : IIfcCurve
 	{
-		IIfcCartesianPoint @Pnt { get; }
-		IIfcVector @Dir { get; }
+		IIfcCartesianPoint @Pnt { get;  set; }
+		IIfcVector @Dir { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcLine", 743)]
+	[ExpressType("IfcLine", 272)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IEqualityComparer<@IfcLine>, IEquatable<@IfcLine>
+	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IContainsEntityReferences, IEquatable<@IfcLine>
 	{
 		#region IIfcLine explicit implementation
-		IIfcCartesianPoint IIfcLine.Pnt { get { return @Pnt; } }	
-		IIfcVector IIfcLine.Dir { get { return @Dir; } }	
+		IIfcCartesianPoint IIfcLine.Pnt { 
+ 
+ 
+			get { return @Pnt; } 
+			set { Pnt = value as IfcCartesianPoint;}
+		}	
+		IIfcVector IIfcLine.Dir { 
+ 
+ 
+			get { return @Dir; } 
+			set { Dir = value as IfcVector;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcLine(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcLine(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -57,13 +69,15 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _pnt;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _pnt;
+				Activate();
 				return _pnt;
 			} 
 			set
 			{
-				SetValue( v =>  _pnt = v, _pnt, value,  "Pnt");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _pnt = v, _pnt, value,  "Pnt", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -71,13 +85,15 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _dir;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _dir;
+				Activate();
 				return _dir;
 			} 
 			set
 			{
-				SetValue( v =>  _dir = v, _dir, value,  "Dir");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _dir = v, _dir, value,  "Dir", 2);
 			} 
 		}	
 		#endregion
@@ -85,9 +101,8 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -101,12 +116,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*SameDim:	SameDim : Dir.Dim = Pnt.Dim;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -114,55 +123,20 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcLine
-            var root = (@IfcLine)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcLine left, @IfcLine right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcLine left, @IfcLine right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcLine x, @IfcLine y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcLine obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Pnt != null)
+					yield return @Pnt;
+				if (@Dir != null)
+					yield return @Dir;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

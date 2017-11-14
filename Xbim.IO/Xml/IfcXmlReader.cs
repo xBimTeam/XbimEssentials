@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
@@ -16,6 +17,7 @@ namespace Xbim.IO.Xml
 
     public class IfcXmlReader
     {
+        public event ReportProgressDelegate ProgressStatus;
         private readonly ExpressMetaData _metadata;
         private readonly GetOrCreateEntity _create;
         private readonly FinishEntity _finish;
@@ -215,9 +217,13 @@ namespace Xbim.IO.Xml
         private string _expressNamespace;
         private string _cTypeAttribute;
         private string _posAttribute;
+        private long _streamSize;
+        private int _percentageParsed;
 
         private void StartElement(XmlReader input)
         {
+           
+
             var elementName = input.LocalName;
             bool isRefType;
             var id = GetId(input, out isRefType);
@@ -582,12 +588,15 @@ namespace Xbim.IO.Xml
 
                     if (pt != StepParserType.Undefined)
                     {
-                        switch (pt.ToString().ToLower())
+                        switch (pt)
                         {
-                            case "string":
+                            case StepParserType.String:
                                 propVal.Init("'" + input.Value + "'", pt);
                                 break;
-                            case "boolean":
+                            case StepParserType.HexaDecimal:
+                                propVal.Init("\"0" + input.Value + "\"", pt);
+                                break;
+                            case StepParserType.Boolean:
                                 propVal.Init(Convert.ToBoolean(input.Value) ? ".T." : ".F", pt);
                                 break;
                             default:
@@ -770,136 +779,163 @@ namespace Xbim.IO.Xml
         }
 
 
-        public StepFileHeader Read(XmlReader input)
+        public StepFileHeader Read(Stream xmlStream)
         {
-            // Read until end of file
-            _idMap = new Dictionary<string, int>();
-            _lastId = 0;
-            _entitiesParsed = 0;
-            var foundHeader = false;
-            var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
-            var headerId="";
-            while (_currentNode == null && input.Read()) //read through to UOS
+            //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
+            using (var input = XmlReader.Create(xmlStream))
             {
-                switch (input.NodeType)
+                _streamSize = xmlStream.Length;
+
+                // Read until end of file
+                _idMap = new Dictionary<string, int>();
+                _lastId = 0;
+                _entitiesParsed = 0;
+                var foundHeader = false;
+                var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty);
+
+                //IFC2x3 was the first IFC mapped to XML so IFC version wasn't explicit. So we need to put it in to keep the data complete
+                header.FileSchema.Schemas.Add("IFC2X3");
+                var headerId = "";               
+
+                while (_currentNode == null && input.Read()) //read through to UOS
                 {
-                    case XmlNodeType.Element:
-                        if (String.Compare(input.LocalName, "uos", StringComparison.OrdinalIgnoreCase) == 0)
-                        {
-                            _currentNode = new XmlUosCollection();
-                           
-                        }
-                        else if (String.Compare(input.LocalName, "iso_10303_28", StringComparison.OrdinalIgnoreCase) == 0)
-                        {
-                            foundHeader = true;
-                           
-                            if (!string.IsNullOrWhiteSpace(input.Prefix))
-                            {
-                                _expressNamespace = input.Prefix;
-                                _cTypeAttribute = _expressNamespace + ":cType";
-                                _posAttribute = _expressNamespace + ":pos";
-                                _expressNamespace += ":";
-                            }
-                            else
-                            {
-                                _cTypeAttribute = "cType";
-                                _posAttribute = "pos";
-                            } //correct the values if the namespace is defined correctly
-                            while (input.MoveToNextAttribute())
-                            {
-                                if (input.Value == "urn:oid:1.0.10303.28.2.1.1" ||
-                                    input.Value =="urn:iso.org:standard:10303:part(28):version(2):xmlschema:common")
-                                {
-                                    _expressNamespace = input.LocalName;
-                                    _cTypeAttribute = _expressNamespace + ":cType";
-                                    _posAttribute = _expressNamespace + ":pos";
-                                    _expressNamespace += ":";
-                                    break;
-                                }  
-                            }
-                        }
-                        else
-                        {
-                            headerId = input.LocalName.ToLower();
-                        }
-                        break;
-                    case XmlNodeType.Text:
-                        switch (headerId)
-                        {
-                            case "name":
-                                header.FileName.Name = input.Value;
-                                break;
-                            case "time_stamp":
-                                header.FileName.TimeStamp= input.Value;
-                                break;
-                            case "author":
-                                header.FileName.AuthorName.Add(input.Value);
-                                break;
-                            case "organization":
-                                header.FileName.Organization.Add(input.Value);
-                                break;
-                            case "preprocessor_version":
-                                header.FileName.PreprocessorVersion = input.Value;
-                                break;
-                            case "originating_system":
-                                header.FileName.OriginatingSystem = input.Value;
-                                break;
-                            case "authorization":
-                                header.FileName.AuthorizationName = input.Value;
-                                break;
-                            case "documentation":
-                                header.FileDescription.Description.Add(input.Value);
-                                break;
-                        }
-                        break;
-                }
-               
-            }
-            if (!foundHeader)
-                throw new Exception("Invalid XML format, iso_10303_28 tag not found");
-           
-            var prevInputType = XmlNodeType.None;
-            var prevInputName = "";
 
-            // set counter for start of every element that is not empty, and reduce it on every end of that element
-
-
-
-            try
-            {
-                while (input.Read())
-                {
                     switch (input.NodeType)
                     {
                         case XmlNodeType.Element:
-                            StartElement(input);
-                            break;
-                        case XmlNodeType.EndElement:
-                            IPersistEntity toWrite;
-                            //if toWrite has a value we have completed an Ifc Entity
-                            EndElement(input, prevInputType, prevInputName, out toWrite);
-                            if (toWrite != null)
+                            if (String.Compare(input.LocalName, "uos", StringComparison.OrdinalIgnoreCase) == 0)
                             {
-                                _entitiesParsed++;
-                                _finish(toWrite);
+                                _currentNode = new XmlUosCollection();
+
+                            }
+                            else if (
+                                String.Compare(input.LocalName, "iso_10303_28", StringComparison.OrdinalIgnoreCase) ==
+                                0)
+                            {
+                                foundHeader = true;
+
+                                if (!string.IsNullOrWhiteSpace(input.Prefix))
+                                {
+                                    _expressNamespace = input.Prefix;
+                                    _cTypeAttribute = _expressNamespace + ":cType";
+                                    _posAttribute = _expressNamespace + ":pos";
+                                    _expressNamespace += ":";
+                                }
+                                else
+                                {
+                                    _cTypeAttribute = "cType";
+                                    _posAttribute = "pos";
+                                } //correct the values if the namespace is defined correctly
+                                while (input.MoveToNextAttribute())
+                                {
+                                    if (input.Value == "urn:oid:1.0.10303.28.2.1.1" ||
+                                        input.Value ==
+                                        "urn:iso.org:standard:10303:part(28):version(2):xmlschema:common")
+                                    {
+                                        _expressNamespace = input.LocalName;
+                                        _cTypeAttribute = _expressNamespace + ":cType";
+                                        _posAttribute = _expressNamespace + ":pos";
+                                        _expressNamespace += ":";
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                headerId = input.LocalName.ToLower();
                             }
                             break;
-                        case XmlNodeType.Whitespace:
-                            SetValue(input, prevInputType);
-                            break;
                         case XmlNodeType.Text:
-                            SetValue(input, prevInputType);
+                            switch (headerId)
+                            {
+                                case "name":
+                                    header.FileName.Name = input.Value;
+                                    break;
+                                case "time_stamp":
+                                    header.FileName.TimeStamp = input.Value;
+                                    break;
+                                case "author":
+                                    header.FileName.AuthorName.Add(input.Value);
+                                    break;
+                                case "organization":
+                                    header.FileName.Organization.Add(input.Value);
+                                    break;
+                                case "preprocessor_version":
+                                    header.FileName.PreprocessorVersion = input.Value;
+                                    break;
+                                case "originating_system":
+                                    header.FileName.OriginatingSystem = input.Value;
+                                    break;
+                                case "authorization":
+                                    header.FileName.AuthorizationName = input.Value;
+                                    break;
+                                case "documentation":
+                                    header.FileDescription.Description.Add(input.Value);
+                                    break;
+                            }
                             break;
                     }
-                    prevInputType = input.NodeType;
-                    prevInputName = input.LocalName;
+
                 }
+                if (!foundHeader)
+                    throw new Exception("Invalid XML format, iso_10303_28 tag not found");
+
+                var prevInputType = XmlNodeType.None;
+                var prevInputName = "";
+
+                // set counter for start of every element that is not empty, and reduce it on every end of that element
+
+
+
+                try
+                {
+                    while (input.Read())
+                    {
+                        if (_streamSize != -1 && ProgressStatus != null)
+                        {
+                            double pos = xmlStream.Position;
+                            var newPercentage = Convert.ToInt32(pos / _streamSize * 100.0);
+                            if (newPercentage > _percentageParsed)
+                            {
+                                ProgressStatus(_percentageParsed, "Parsing");
+                                _percentageParsed = newPercentage;
+                            }
+                        }
+                        switch (input.NodeType)
+                        {
+                            case XmlNodeType.Element:
+                                StartElement(input);
+                                break;
+                            case XmlNodeType.EndElement:
+                                IPersistEntity toWrite;
+                                //if toWrite has a value we have completed an Ifc Entity
+                                EndElement(input, prevInputType, prevInputName, out toWrite);
+                                if (toWrite != null)
+                                {
+                                    _entitiesParsed++;
+                                    _finish(toWrite);
+                                }
+                                break;
+                            case XmlNodeType.Whitespace:
+                                SetValue(input, prevInputType);
+                                break;
+                            case XmlNodeType.Text:
+                                SetValue(input, prevInputType);
+                                break;
+                        }
+                        prevInputType = input.NodeType;
+                        prevInputName = input.LocalName;
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(
+                        String.Format("Error reading XML, Line={0}, Position={1}, Tag='{2}'",
+                            ((IXmlLineInfo) input).LineNumber, ((IXmlLineInfo) input).LinePosition, input.LocalName), e);
+                }
+                if (ProgressStatus != null) ProgressStatus(100, "Parsing");
+                return header;
             }
-            catch(Exception e)
-            {
-                throw new Exception(String.Format("Error reading XML, Line={0}, Position={1}, Tag='{2}'", ((IXmlLineInfo) input).LineNumber, ((IXmlLineInfo) input).LinePosition, input.LocalName), e);
-            }
-            return header;
         }
     }
 

@@ -9,6 +9,8 @@
 
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.PresentationAppearanceResource
 {

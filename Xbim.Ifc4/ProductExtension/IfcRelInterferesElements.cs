@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -26,33 +28,56 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelInterferesElements : IIfcRelConnects
 	{
-		IIfcElement @RelatingElement { get; }
-		IIfcElement @RelatedElement { get; }
-		IIfcConnectionGeometry @InterferenceGeometry { get; }
-		IfcIdentifier? @InterferenceType { get; }
-		bool? @ImpliedOrder { get; }
+		IIfcElement @RelatingElement { get;  set; }
+		IIfcElement @RelatedElement { get;  set; }
+		IIfcConnectionGeometry @InterferenceGeometry { get;  set; }
+		IfcIdentifier? @InterferenceType { get;  set; }
+		bool? @ImpliedOrder { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcRelInterferesElements", 946)]
+	[ExpressType("IfcRelInterferesElements", 1252)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IEqualityComparer<@IfcRelInterferesElements>, IEquatable<@IfcRelInterferesElements>
+	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IIfcRelInterferesElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelInterferesElements>
 	{
 		#region IIfcRelInterferesElements explicit implementation
-		IIfcElement IIfcRelInterferesElements.RelatingElement { get { return @RelatingElement; } }	
-		IIfcElement IIfcRelInterferesElements.RelatedElement { get { return @RelatedElement; } }	
-		IIfcConnectionGeometry IIfcRelInterferesElements.InterferenceGeometry { get { return @InterferenceGeometry; } }	
-		IfcIdentifier? IIfcRelInterferesElements.InterferenceType { get { return @InterferenceType; } }	
-		bool? IIfcRelInterferesElements.ImpliedOrder { get { return @ImpliedOrder; } }	
+		IIfcElement IIfcRelInterferesElements.RelatingElement { 
+ 
+ 
+			get { return @RelatingElement; } 
+			set { RelatingElement = value as IfcElement;}
+		}	
+		IIfcElement IIfcRelInterferesElements.RelatedElement { 
+ 
+ 
+			get { return @RelatedElement; } 
+			set { RelatedElement = value as IfcElement;}
+		}	
+		IIfcConnectionGeometry IIfcRelInterferesElements.InterferenceGeometry { 
+ 
+ 
+			get { return @InterferenceGeometry; } 
+			set { InterferenceGeometry = value as IfcConnectionGeometry;}
+		}	
+		IfcIdentifier? IIfcRelInterferesElements.InterferenceType { 
+ 
+			get { return @InterferenceType; } 
+			set { InterferenceType = value;}
+		}	
+		bool? IIfcRelInterferesElements.ImpliedOrder { 
+ 
+			get { return @ImpliedOrder; } 
+			set { ImpliedOrder = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelInterferesElements(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelInterferesElements(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -70,13 +95,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingElement;
+				Activate();
 				return _relatingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -85,13 +112,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedElement;
+				Activate();
 				return _relatedElement;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -99,13 +128,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interferenceGeometry;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interferenceGeometry;
+				Activate();
 				return _interferenceGeometry;
 			} 
 			set
 			{
-				SetValue( v =>  _interferenceGeometry = v, _interferenceGeometry, value,  "InterferenceGeometry");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _interferenceGeometry = v, _interferenceGeometry, value,  "InterferenceGeometry", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -113,13 +144,13 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interferenceType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interferenceType;
+				Activate();
 				return _interferenceType;
 			} 
 			set
 			{
-				SetValue( v =>  _interferenceType = v, _interferenceType, value,  "InterferenceType");
+				SetValue( v =>  _interferenceType = v, _interferenceType, value,  "InterferenceType", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -127,13 +158,13 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _impliedOrder;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _impliedOrder;
+				Activate();
 				return _impliedOrder;
 			} 
 			set
 			{
-				SetValue( v =>  _impliedOrder = v, _impliedOrder, value,  "ImpliedOrder");
+				SetValue( v =>  _impliedOrder = v, _impliedOrder, value,  "ImpliedOrder", 9);
 			} 
 		}	
 		#endregion
@@ -141,9 +172,8 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -172,12 +202,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NotSelfReference:	NotSelfReference : RelatingElement :<>: RelatedElement;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -185,55 +209,39 @@ namespace Xbim.Ifc4.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelInterferesElements
-            var root = (@IfcRelInterferesElements)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelInterferesElements left, @IfcRelInterferesElements right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelInterferesElements left, @IfcRelInterferesElements right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelInterferesElements x, @IfcRelInterferesElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelInterferesElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				if (@InterferenceGeometry != null)
+					yield return @InterferenceGeometry;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

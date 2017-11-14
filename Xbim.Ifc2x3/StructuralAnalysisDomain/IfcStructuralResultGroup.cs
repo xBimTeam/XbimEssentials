@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralResultGroup : IIfcGroup
 	{
-		IfcAnalysisTheoryTypeEnum @TheoryType { get; }
-		IIfcStructuralLoadGroup @ResultForLoadGroup { get; }
-		bool @IsLinear { get; }
+		IfcAnalysisTheoryTypeEnum @TheoryType { get;  set; }
+		IIfcStructuralLoadGroup @ResultForLoadGroup { get;  set; }
+		bool @IsLinear { get;  set; }
 		IEnumerable<IIfcStructuralAnalysisModel> @ResultGroupFor {  get; }
 	
 	}
@@ -36,19 +38,32 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralResultGroup", 532)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IEqualityComparer<@IfcStructuralResultGroup>, IEquatable<@IfcStructuralResultGroup>
+	public  partial class @IfcStructuralResultGroup : IfcGroup, IInstantiableEntity, IIfcStructuralResultGroup, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralResultGroup>
 	{
 		#region IIfcStructuralResultGroup explicit implementation
-		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { get { return @TheoryType; } }	
-		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { get { return @ResultForLoadGroup; } }	
-		bool IIfcStructuralResultGroup.IsLinear { get { return @IsLinear; } }	
+		IfcAnalysisTheoryTypeEnum IIfcStructuralResultGroup.TheoryType { 
+ 
+			get { return @TheoryType; } 
+			set { TheoryType = value;}
+		}	
+		IIfcStructuralLoadGroup IIfcStructuralResultGroup.ResultForLoadGroup { 
+ 
+ 
+			get { return @ResultForLoadGroup; } 
+			set { ResultForLoadGroup = value as IfcStructuralLoadGroup;}
+		}	
+		bool IIfcStructuralResultGroup.IsLinear { 
+ 
+			get { return @IsLinear; } 
+			set { IsLinear = value;}
+		}	
 		 
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor {  get { return @ResultGroupFor; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralResultGroup(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcStructuralResultGroup(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -63,13 +78,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _theoryType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _theoryType;
+				Activate();
 				return _theoryType;
 			} 
 			set
 			{
-				SetValue( v =>  _theoryType = v, _theoryType, value,  "TheoryType");
+				SetValue( v =>  _theoryType = v, _theoryType, value,  "TheoryType", 6);
 			} 
 		}	
 		[IndexedProperty]
@@ -78,13 +93,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _resultForLoadGroup;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _resultForLoadGroup;
+				Activate();
 				return _resultForLoadGroup;
 			} 
 			set
 			{
-				SetValue( v =>  _resultForLoadGroup = v, _resultForLoadGroup, value,  "ResultForLoadGroup");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _resultForLoadGroup = v, _resultForLoadGroup, value,  "ResultForLoadGroup", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
@@ -92,13 +109,13 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _isLinear;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _isLinear;
+				Activate();
 				return _isLinear;
 			} 
 			set
 			{
-				SetValue( v =>  _isLinear = v, _isLinear, value,  "IsLinear");
+				SetValue( v =>  _isLinear = v, _isLinear, value,  "IsLinear", 8);
 			} 
 		}	
 		#endregion
@@ -117,9 +134,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -143,11 +159,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -155,55 +166,33 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralResultGroup
-            var root = (@IfcStructuralResultGroup)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralResultGroup left, @IfcStructuralResultGroup right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralResultGroup left, @IfcStructuralResultGroup right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralResultGroup x, @IfcStructuralResultGroup y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralResultGroup obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ResultForLoadGroup != null)
+					yield return @ResultForLoadGroup;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ResultForLoadGroup != null)
+					yield return @ResultForLoadGroup;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

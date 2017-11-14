@@ -10,27 +10,35 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelCoversSpaces : IIfcRelCoversSpaces
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcRelCoversSpaces), 5)]
 		IIfcSpace IIfcRelCoversSpaces.RelatingSpace 
 		{ 
 			get
 			{
 				return RelatedSpace;
 			} 
+			set
+			{
+				RelatedSpace = value as IfcSpace;
+				
+			}
 		}
-		IEnumerable<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings 
+
+		[CrossSchemaAttribute(typeof(IIfcRelCoversSpaces), 6)]
+		IItemSet<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings 
 		{ 
 			get
 			{
-				foreach (var member in RelatedCoverings)
-				{
-					yield return member as IIfcCovering;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCovering, IIfcCovering>(RelatedCoverings);
 			} 
 		}
 	//## Custom code

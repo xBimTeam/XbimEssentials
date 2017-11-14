@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,12 +26,12 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcBoundaryNodeCondition : IIfcBoundaryCondition
 	{
-		IfcLinearStiffnessMeasure? @LinearStiffnessX { get; }
-		IfcLinearStiffnessMeasure? @LinearStiffnessY { get; }
-		IfcLinearStiffnessMeasure? @LinearStiffnessZ { get; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessX { get; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessY { get; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessZ { get; }
+		IfcLinearStiffnessMeasure? @LinearStiffnessX { get;  set; }
+		IfcLinearStiffnessMeasure? @LinearStiffnessY { get;  set; }
+		IfcLinearStiffnessMeasure? @LinearStiffnessZ { get;  set; }
+		IfcRotationalStiffnessMeasure? @RotationalStiffnessX { get;  set; }
+		IfcRotationalStiffnessMeasure? @RotationalStiffnessY { get;  set; }
+		IfcRotationalStiffnessMeasure? @RotationalStiffnessZ { get;  set; }
 	
 	}
 }
@@ -38,21 +40,45 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryNodeCondition", 394)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEqualityComparer<@IfcBoundaryNodeCondition>, IEquatable<@IfcBoundaryNodeCondition>
+	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEquatable<@IfcBoundaryNodeCondition>
 	{
 		#region IIfcBoundaryNodeCondition explicit implementation
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessX { get { return @LinearStiffnessX; } }	
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessY { get { return @LinearStiffnessY; } }	
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessZ { get { return @LinearStiffnessZ; } }	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessX { get { return @RotationalStiffnessX; } }	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessY { get { return @RotationalStiffnessY; } }	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessZ { get { return @RotationalStiffnessZ; } }	
+		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessX { 
+ 
+			get { return @LinearStiffnessX; } 
+			set { LinearStiffnessX = value;}
+		}	
+		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessY { 
+ 
+			get { return @LinearStiffnessY; } 
+			set { LinearStiffnessY = value;}
+		}	
+		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessZ { 
+ 
+			get { return @LinearStiffnessZ; } 
+			set { LinearStiffnessZ = value;}
+		}	
+		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessX { 
+ 
+			get { return @RotationalStiffnessX; } 
+			set { RotationalStiffnessX = value;}
+		}	
+		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessY { 
+ 
+			get { return @RotationalStiffnessY; } 
+			set { RotationalStiffnessY = value;}
+		}	
+		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessZ { 
+ 
+			get { return @RotationalStiffnessZ; } 
+			set { RotationalStiffnessZ = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcBoundaryNodeCondition(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcBoundaryNodeCondition(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -70,13 +96,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessX;
+				Activate();
 				return _linearStiffnessX;
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessX = v, _linearStiffnessX, value,  "LinearStiffnessX");
+				SetValue( v =>  _linearStiffnessX = v, _linearStiffnessX, value,  "LinearStiffnessX", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -84,13 +110,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessY;
+				Activate();
 				return _linearStiffnessY;
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessY = v, _linearStiffnessY, value,  "LinearStiffnessY");
+				SetValue( v =>  _linearStiffnessY = v, _linearStiffnessY, value,  "LinearStiffnessY", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -98,13 +124,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _linearStiffnessZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _linearStiffnessZ;
+				Activate();
 				return _linearStiffnessZ;
 			} 
 			set
 			{
-				SetValue( v =>  _linearStiffnessZ = v, _linearStiffnessZ, value,  "LinearStiffnessZ");
+				SetValue( v =>  _linearStiffnessZ = v, _linearStiffnessZ, value,  "LinearStiffnessZ", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -112,13 +138,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessX;
+				Activate();
 				return _rotationalStiffnessX;
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalStiffnessX = v, _rotationalStiffnessX, value,  "RotationalStiffnessX");
+				SetValue( v =>  _rotationalStiffnessX = v, _rotationalStiffnessX, value,  "RotationalStiffnessX", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -126,13 +152,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessY;
+				Activate();
 				return _rotationalStiffnessY;
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalStiffnessY = v, _rotationalStiffnessY, value,  "RotationalStiffnessY");
+				SetValue( v =>  _rotationalStiffnessY = v, _rotationalStiffnessY, value,  "RotationalStiffnessY", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -140,13 +166,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _rotationalStiffnessZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _rotationalStiffnessZ;
+				Activate();
 				return _rotationalStiffnessZ;
 			} 
 			set
 			{
-				SetValue( v =>  _rotationalStiffnessZ = v, _rotationalStiffnessZ, value,  "RotationalStiffnessZ");
+				SetValue( v =>  _rotationalStiffnessZ = v, _rotationalStiffnessZ, value,  "RotationalStiffnessZ", 7);
 			} 
 		}	
 		#endregion
@@ -154,9 +180,8 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -185,11 +210,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -197,54 +217,6 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcBoundaryNodeCondition
-            var root = (@IfcBoundaryNodeCondition)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcBoundaryNodeCondition left, @IfcBoundaryNodeCondition right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcBoundaryNodeCondition left, @IfcBoundaryNodeCondition right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcBoundaryNodeCondition x, @IfcBoundaryNodeCondition y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcBoundaryNodeCondition obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

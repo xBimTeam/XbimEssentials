@@ -10,34 +10,49 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcCurveBoundedPlane : IIfcCurveBoundedPlane
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcCurveBoundedPlane), 1)]
 		IIfcPlane IIfcCurveBoundedPlane.BasisSurface 
 		{ 
 			get
 			{
 				return BasisSurface;
 			} 
+			set
+			{
+				BasisSurface = value as IfcPlane;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcCurveBoundedPlane), 2)]
 		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary 
 		{ 
 			get
 			{
 				return OuterBoundary;
 			} 
+			set
+			{
+				OuterBoundary = value as IfcCurve;
+				
+			}
 		}
-		IEnumerable<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries 
+
+		[CrossSchemaAttribute(typeof(IIfcCurveBoundedPlane), 3)]
+		IItemSet<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries 
 		{ 
 			get
 			{
-				foreach (var member in InnerBoundaries)
-				{
-					yield return member as IIfcCurve;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>(InnerBoundaries);
 			} 
 		}
 	//## Custom code

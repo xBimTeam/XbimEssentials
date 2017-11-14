@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcLibraryInformation : IIfcLibraryInformation
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 1)]
 		Ifc4.MeasureResource.IfcLabel IIfcLibraryInformation.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcLibraryInformation.Version 
 		{ 
 			get
@@ -30,14 +40,52 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 				if (!Version.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLabel(Version.Value);
 			} 
+			set
+			{
+				Version = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
+
+		private  IIfcActorSelect _publisher4;
+
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 3)]
 		IIfcActorSelect IIfcLibraryInformation.Publisher 
 		{ 
 			get
 			{
-				return Publisher;
+				return  _publisher4 ?? Publisher;
 			} 
+			set
+			{
+				if (value == null)
+				{
+					Publisher = null;
+					if (_publisher4 != null)
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", -3);
+					return;
+				}
+				
+				var val = value as ActorResource.IfcOrganization;
+				if (val != null)
+				{
+					Publisher = val;
+					if (_publisher4 != null)
+						SetValue(v => _publisher4 = v, _publisher4, null, "Publisher", -3);
+					return;
+				} 
+
+				if(Publisher != null)
+					Publisher = null;
+				SetValue(v => _publisher4 = v, _publisher4, value, "Publisher", -3);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 4)]
 		Ifc4.DateTimeResource.IfcDateTime? IIfcLibraryInformation.VersionDate 
 		{ 
 			get
@@ -48,7 +96,27 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of VersionDate for which no match was found
+                if (!value.HasValue)
+                {
+                    VersionDate = null;
+                    return;
+                }
+                System.DateTime d = value.Value;
+                VersionDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(date =>
+                {
+                    date.YearComponent = d.Year;
+                    date.MonthComponent = d.Month;
+                    date.DayComponent = d.Day;
+                });
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 5)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcLibraryInformation.Location 
 		{ 
 			get
@@ -61,15 +129,42 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			        : null;
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of Location for which no match was found
+                var reference = LibraryReference.FirstOrDefault(r => r.Location != null);
+                if (!value.HasValue)
+                {
+                    if (reference != null)
+                        reference.Location = null;
+                }
+                else
+                {
+                    if (reference == null)
+                        reference = Model.Instances.New<IfcLibraryReference>();
+                    reference.Location = value.Value.ToString();
+                }
+				//##
+				NotifyPropertyChanged("Location");
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcLibraryInformation), 6)]
 		Ifc4.MeasureResource.IfcText? IIfcLibraryInformation.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -6);
+				
+			}
 		}
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects 
 		{ 

@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDerivedProfileDef : IIfcProfileDef
 	{
-		IIfcProfileDef @ParentProfile { get; }
-		IIfcCartesianTransformationOperator2D @Operator { get; }
-		IfcLabel? @Label { get; }
+		IIfcProfileDef @ParentProfile { get;  set; }
+		IIfcCartesianTransformationOperator2D @Operator { get;  set; }
+		IfcLabel? @Label { get;  set; }
 	
 	}
 }
@@ -36,18 +38,32 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcDerivedProfileDef", 390)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IEqualityComparer<@IfcDerivedProfileDef>, IEquatable<@IfcDerivedProfileDef>
+	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IContainsEntityReferences, IEquatable<@IfcDerivedProfileDef>
 	{
 		#region IIfcDerivedProfileDef explicit implementation
-		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { get { return @ParentProfile; } }	
-		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { get { return @Operator; } }	
-		IfcLabel? IIfcDerivedProfileDef.Label { get { return @Label; } }	
+		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { 
+ 
+ 
+			get { return @ParentProfile; } 
+			set { ParentProfile = value as IfcProfileDef;}
+		}	
+		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { 
+ 
+ 
+			get { return @Operator; } 
+			set { Operator = value as IfcCartesianTransformationOperator2D;}
+		}	
+		IfcLabel? IIfcDerivedProfileDef.Label { 
+ 
+			get { return @Label; } 
+			set { Label = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDerivedProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcDerivedProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +78,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _parentProfile;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _parentProfile;
+				Activate();
 				return _parentProfile;
 			} 
 			set
 			{
-				SetValue( v =>  _parentProfile = v, _parentProfile, value,  "ParentProfile");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _parentProfile = v, _parentProfile, value,  "ParentProfile", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
@@ -76,13 +94,15 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _operator;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _operator;
+				Activate();
 				return _operator;
 			} 
 			set
 			{
-				SetValue( v =>  _operator = v, _operator, value,  "Operator");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _operator = v, _operator, value,  "Operator", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -90,13 +110,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _label;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _label;
+				Activate();
 				return _label;
 			} 
 			set
 			{
-				SetValue( v =>  _label = v, _label, value,  "Label");
+				SetValue( v =>  _label = v, _label, value,  "Label", 5);
 			} 
 		}	
 		#endregion
@@ -104,9 +124,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -127,12 +146,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : SELF\IfcProfileDef.ProfileType = ParentProfile.ProfileType;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -140,55 +153,20 @@ namespace Xbim.Ifc2x3.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDerivedProfileDef
-            var root = (@IfcDerivedProfileDef)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDerivedProfileDef left, @IfcDerivedProfileDef right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDerivedProfileDef left, @IfcDerivedProfileDef right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDerivedProfileDef x, @IfcDerivedProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDerivedProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ParentProfile != null)
+					yield return @ParentProfile;
+				if (@Operator != null)
+					yield return @Operator;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

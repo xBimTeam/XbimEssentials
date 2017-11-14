@@ -1,19 +1,92 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
+using Xbim.Common.XbimExtensions;
 using Xbim.Ifc;
 using Xbim.Ifc4;
+using Xbim.Ifc4.SharedBldgElements;
 using Xbim.IO;
 
-namespace Xbim.EsentModel.Tests
+namespace Xbim.IO.Tests
 {
     [TestClass]
     public class GeometryStoreTests
     {
-        [DeploymentItem("TestFiles")]
         [TestMethod]
+        [DeploymentItem("TestFiles\\OneWall.xBIM")]
+        [DeploymentItem("TestFiles\\ShortRebar.xBIM")]
+        public void GeometryBinaryRead()
+        {
+            ParseGeometry("ShortRebar.xBIM");
+            // ParseGeometry("OneWall.xBIM");
+        }
+
+        private static void ParseGeometry(string name)
+        {
+            using (var model = IfcStore.Open(name))
+            using (var txn = model.GeometryStore.BeginRead())
+            {
+                foreach (IXbimShapeGeometryData geo in txn.ShapeGeometries)
+                {
+                    using (var ms = new MemoryStream(geo.ShapeData))
+                    using (var br = new BinaryReader(ms))
+                    {
+                        var v = br.ReadShapeTriangulation();
+                        List<float[]> pts;
+                        List<int> idxs;
+                        v.ToPointsWithNormalsAndIndices(out pts, out idxs);
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void IfcStoreRegionWorldCoordTest()
+        {
+            XbimMatrix3D WorldCoord = new XbimMatrix3D(-0.228171504575237, -0.973620955248947, 0, 0, 0.973620955248947, -0.228171504575237, 0, 0, 0, 0, 1, 0, 543188712, 259041729, 16000, 1);
+            var creds = new XbimEditorCredentials();
+            using (IfcStore model = IfcStore.Create(@"RegionTest.xbim", creds, IfcSchemaVersion.Ifc2X3))
+            {
+                var geomStore = model.GeometryStore;
+                using (var txn = geomStore.BeginInit())
+                {
+                    //ADD A REGIONCOLLECTION
+                    var regions = new XbimRegionCollection();
+                    regions.ContextLabel = 50;
+                    var bb = new XbimRect3D(new XbimPoint3D(1, 1, 1), new XbimVector3D(10, 20, 30));
+                    regions.Add(new XbimRegion("region1", bb, 100, WorldCoord));
+                    txn.AddRegions(regions);
+
+                    txn.Commit();
+                }
+                model.Close();
+            }
+
+            using (var model = IfcStore.Open(@"RegionTest.xbim"))
+            {
+                var geomStore = model.GeometryStore;
+                Assert.IsFalse(geomStore.IsEmpty);
+                using (var reader = geomStore.BeginRead())
+                {
+                    Assert.IsTrue(reader.ContextIds.Any());
+                    var regioncoll = reader.ContextRegions.First();
+                    var region = regioncoll.FirstOrDefault();
+                    Assert.AreEqual(WorldCoord.OffsetX, region.WorldCoordinateSystem.OffsetX, 1.0);
+                    Assert.AreEqual(WorldCoord.OffsetY, region.WorldCoordinateSystem.OffsetY, 1.0);
+                    Assert.AreEqual(WorldCoord.OffsetZ, region.WorldCoordinateSystem.OffsetZ, 1.0);
+
+                }
+                model.Close();
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
         public void IfcStoreGeometryStoreAddTest()
         {
             using (var model = IfcStore.Open("SampleHouse4.ifc"))
@@ -48,7 +121,7 @@ namespace Xbim.EsentModel.Tests
                     var regions = new XbimRegionCollection();
                     regions.ContextLabel = 50;
                     var bb = new XbimRect3D(new XbimPoint3D(1,1,1),new XbimVector3D(10,20,30));
-                    regions.Add(new XbimRegion("region1",bb,100));
+                    regions.Add(new XbimRegion("region1",bb,100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -59,6 +132,7 @@ namespace Xbim.EsentModel.Tests
             using (var model = IfcStore.Open(@"SampleHouse4.xbim"))
             {
                 var geomStore = model.GeometryStore;
+                Assert.IsFalse(geomStore.IsEmpty);
                 using (var reader = geomStore.BeginRead())
                 {
                     Assert.IsTrue(reader.ContextIds.Any());
@@ -71,7 +145,58 @@ namespace Xbim.EsentModel.Tests
             }
         }
 
-        
+       
+
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void ResourceReleaseTest()
+        {
+            using (var model = IfcStore.Open("SampleHouse4.ifc", null, 0))
+            {
+                var geomStore = model.GeometryStore;
+                using (var txn = geomStore.BeginInit())
+                {
+                    //ADD A GEOMETRY SHAPE
+                    var geomData = new XbimShapeGeometry()
+                    {
+                        IfcShapeLabel = 1,
+                        Format = XbimGeometryType.BoundingBox,
+                        GeometryHash = 0,
+                        LOD = XbimLOD.LOD100,
+                        ReferenceCount = 1,
+                        ShapeData = "2123",
+                        BoundingBox = XbimRect3D.Empty
+                    };
+                    var shapeGeomLabel = txn.AddShapeGeometry(geomData);
+
+                    //ADD A SHAPE INSTANCE
+                    var shapeInstance = new XbimShapeInstance()
+                    {
+                        ShapeGeometryLabel = shapeGeomLabel,
+                        StyleLabel = 5,
+                        RepresentationContext = 50
+
+                    };
+
+                    var instanceId = txn.AddShapeInstance(shapeInstance, shapeGeomLabel);
+                    Assert.IsTrue(instanceId == 1);
+
+                    //ADD A REGIONCOLLECTION
+                    var regions = new XbimRegionCollection();
+                    regions.ContextLabel = 50;
+                    var bb = new XbimRect3D(new XbimPoint3D(1, 1, 1), new XbimVector3D(10, 20, 30));
+                    regions.Add(new XbimRegion("region1", bb, 100, XbimMatrix3D.Identity));
+                    txn.AddRegions(regions);
+                    txn.Commit();
+                }
+                int c = model.Instances.OfType<IfcDoor>().Count();
+                model.Close();
+            }
+            Thread.SpinWait(200);
+            Assert.IsTrue(IO.Esent.EsentModel.ModelOpenCount == 0);
+
+        }
 
         [DeploymentItem("TestFiles")]
         [TestMethod]
@@ -133,7 +258,7 @@ namespace Xbim.EsentModel.Tests
                     }
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -188,7 +313,7 @@ namespace Xbim.EsentModel.Tests
                    
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection { ContextLabel = 50 };
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -238,7 +363,7 @@ namespace Xbim.EsentModel.Tests
 
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection { ContextLabel = 50 };
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -282,7 +407,7 @@ namespace Xbim.EsentModel.Tests
 
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -315,7 +440,7 @@ namespace Xbim.EsentModel.Tests
 
                     //ADD A REGIONCOLLECTION
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
 
                     txn.Commit();
@@ -357,10 +482,10 @@ namespace Xbim.EsentModel.Tests
 
                     //ADD 2 REGIONCOLLECTIONS
                     var regions = new XbimRegionCollection {ContextLabel = 50};
-                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region1", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
                     regions = new XbimRegionCollection {ContextLabel = 51};
-                    regions.Add(new XbimRegion("region2", XbimRect3D.Empty, 100));
+                    regions.Add(new XbimRegion("region2", XbimRect3D.Empty, 100, XbimMatrix3D.Identity));
                     txn.AddRegions(regions);
                     txn.Commit();
                 }

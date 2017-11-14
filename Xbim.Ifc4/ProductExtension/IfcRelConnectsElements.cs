@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,29 +27,44 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelConnectsElements : IIfcRelConnects
 	{
-		IIfcConnectionGeometry @ConnectionGeometry { get; }
-		IIfcElement @RelatingElement { get; }
-		IIfcElement @RelatedElement { get; }
+		IIfcConnectionGeometry @ConnectionGeometry { get;  set; }
+		IIfcElement @RelatingElement { get;  set; }
+		IIfcElement @RelatedElement { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcRelConnectsElements", 926)]
+	[ExpressType("IfcRelConnectsElements", 312)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IEqualityComparer<@IfcRelConnectsElements>, IEquatable<@IfcRelConnectsElements>
+	public  partial class @IfcRelConnectsElements : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsElements>
 	{
 		#region IIfcRelConnectsElements explicit implementation
-		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { get { return @ConnectionGeometry; } }	
-		IIfcElement IIfcRelConnectsElements.RelatingElement { get { return @RelatingElement; } }	
-		IIfcElement IIfcRelConnectsElements.RelatedElement { get { return @RelatedElement; } }	
+		IIfcConnectionGeometry IIfcRelConnectsElements.ConnectionGeometry { 
+ 
+ 
+			get { return @ConnectionGeometry; } 
+			set { ConnectionGeometry = value as IfcConnectionGeometry;}
+		}	
+		IIfcElement IIfcRelConnectsElements.RelatingElement { 
+ 
+ 
+			get { return @RelatingElement; } 
+			set { RelatingElement = value as IfcElement;}
+		}	
+		IIfcElement IIfcRelConnectsElements.RelatedElement { 
+ 
+ 
+			get { return @RelatedElement; } 
+			set { RelatedElement = value as IfcElement;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelConnectsElements(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelConnectsElements(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +79,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _connectionGeometry;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _connectionGeometry;
+				Activate();
 				return _connectionGeometry;
 			} 
 			set
 			{
-				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -77,13 +96,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingElement;
+				Activate();
 				return _relatingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingElement = v, _relatingElement, value,  "RelatingElement", 6);
 			} 
 		}	
 		[IndexedProperty]
@@ -92,13 +113,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedElement;
+				Activate();
 				return _relatedElement;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedElement = v, _relatedElement, value,  "RelatedElement", 7);
 			} 
 		}	
 		#endregion
@@ -106,9 +129,8 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -131,12 +153,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*NoSelfReference:	NoSelfReference : RelatingElement :<>: RelatedElement;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -144,55 +160,39 @@ namespace Xbim.Ifc4.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelConnectsElements
-            var root = (@IfcRelConnectsElements)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelConnectsElements left, @IfcRelConnectsElements right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelConnectsElements left, @IfcRelConnectsElements right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelConnectsElements x, @IfcRelConnectsElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelConnectsElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingElement != null)
+					yield return @RelatingElement;
+				if (@RelatedElement != null)
+					yield return @RelatedElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

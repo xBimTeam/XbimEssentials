@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,7 +26,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCartesianTransformationOperator2DnonUniform : IIfcCartesianTransformationOperator2D
 	{
-		IfcReal? @Scale2 { get; }
+		IfcReal? @Scale2 { get;  set; }
 		IfcReal @Scl2  { get ; }
 	
 	}
@@ -32,18 +34,22 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcCartesianTransformationOperator2DnonUniform", 479)]
+	[ExpressType("IfcCartesianTransformationOperator2DnonUniform", 147)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IIfcCartesianTransformationOperator2DnonUniform, IEqualityComparer<@IfcCartesianTransformationOperator2DnonUniform>, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IIfcCartesianTransformationOperator2DnonUniform, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
 	{
 		#region IIfcCartesianTransformationOperator2DnonUniform explicit implementation
-		IfcReal? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { get { return @Scale2; } }	
+		IfcReal? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { 
+ 
+			get { return @Scale2; } 
+			set { Scale2 = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCartesianTransformationOperator2DnonUniform(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcCartesianTransformationOperator2DnonUniform(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -56,13 +62,13 @@ namespace Xbim.Ifc4.GeometryResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _scale2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _scale2;
+				Activate();
 				return _scale2;
 			} 
 			set
 			{
-				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2");
+				SetValue( v =>  _scale2 = v, _scale2, value,  "Scale2", 5);
 			} 
 		}	
 		#endregion
@@ -83,9 +89,8 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -102,12 +107,6 @@ namespace Xbim.Ifc4.GeometryResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*Scale2GreaterZero:	Scale2GreaterZero : Scl2 > 0.0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -115,55 +114,22 @@ namespace Xbim.Ifc4.GeometryResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCartesianTransformationOperator2DnonUniform
-            var root = (@IfcCartesianTransformationOperator2DnonUniform)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCartesianTransformationOperator2DnonUniform left, @IfcCartesianTransformationOperator2DnonUniform right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCartesianTransformationOperator2DnonUniform left, @IfcCartesianTransformationOperator2DnonUniform right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCartesianTransformationOperator2DnonUniform x, @IfcCartesianTransformationOperator2DnonUniform y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCartesianTransformationOperator2DnonUniform obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Axis1 != null)
+					yield return @Axis1;
+				if (@Axis2 != null)
+					yield return @Axis2;
+				if (@LocalOrigin != null)
+					yield return @LocalOrigin;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

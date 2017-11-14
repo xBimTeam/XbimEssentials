@@ -10,26 +10,43 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	public partial class @IfcOffsetCurve3D : IIfcOffsetCurve3D
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve3D), 1)]
 		IIfcCurve IIfcOffsetCurve3D.BasisCurve 
 		{ 
 			get
 			{
 				return BasisCurve;
 			} 
+			set
+			{
+				BasisCurve = value as IfcCurve;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve3D), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcOffsetCurve3D.Distance 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLengthMeasure(Distance);
 			} 
+			set
+			{
+				Distance = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve3D), 3)]
 		Ifc4.MeasureResource.IfcLogical IIfcOffsetCurve3D.SelfIntersect 
 		{ 
 			get
@@ -38,13 +55,25 @@ namespace Xbim.Ifc2x3.GeometryResource
                 return new Ifc4.MeasureResource.IfcLogical(SelfIntersect);
 				//##
 			} 
+			set
+			{
+				SelfIntersect = value;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve3D), 4)]
 		IIfcDirection IIfcOffsetCurve3D.RefDirection 
 		{ 
 			get
 			{
 				return RefDirection;
 			} 
+			set
+			{
+				RefDirection = value as IfcDirection;
+				
+			}
 		}
 	//## Custom code
 	//##

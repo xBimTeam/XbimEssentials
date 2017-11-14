@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	public partial class @IfcWindowLiningProperties : IIfcWindowLiningProperties
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningDepth 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!LiningDepth.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(LiningDepth.Value);
 			} 
+			set
+			{
+				LiningDepth = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 6)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.LiningThickness 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!LiningThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(LiningThickness.Value);
 			} 
+			set
+			{
+				LiningThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 7)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.TransomThickness 
 		{ 
 			get
@@ -39,7 +60,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!TransomThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(TransomThickness.Value);
 			} 
+			set
+			{
+				TransomThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcWindowLiningProperties.MullionThickness 
 		{ 
 			get
@@ -47,7 +77,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!MullionThickness.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(MullionThickness.Value);
 			} 
+			set
+			{
+				MullionThickness = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 9)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset 
 		{ 
 			get
@@ -55,7 +94,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FirstTransomOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FirstTransomOffset.Value);
 			} 
+			set
+			{
+				FirstTransomOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 10)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset 
 		{ 
 			get
@@ -63,7 +111,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!SecondTransomOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(SecondTransomOffset.Value);
 			} 
+			set
+			{
+				SecondTransomOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 11)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset 
 		{ 
 			get
@@ -71,7 +128,16 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!FirstMullionOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(FirstMullionOffset.Value);
 			} 
+			set
+			{
+				FirstMullionOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 12)]
 		Ifc4.MeasureResource.IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset 
 		{ 
 			get
@@ -79,40 +145,78 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				if (!SecondMullionOffset.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(SecondMullionOffset.Value);
 			} 
+			set
+			{
+				SecondMullionOffset = value.HasValue ? 
+					new MeasureResource.IfcNormalisedRatioMeasure(value.Value) :  
+					 new MeasureResource.IfcNormalisedRatioMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 13)]
 		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle 
 		{ 
 			get
 			{
 				return ShapeAspectStyle;
 			} 
+			set
+			{
+				ShapeAspectStyle = value as RepresentationResource.IfcShapeAspect;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLengthMeasure? _liningOffset;
+
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 14)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningOffset 
 		{ 
 			get
 			{
-				//## Handle return of LiningOffset for which no match was found
-                return null;
-				//##
+				return _liningOffset;
 			} 
+			set
+			{
+				SetValue(v => _liningOffset = v, _liningOffset, value, "LiningOffset", -14);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLengthMeasure? _liningToPanelOffsetX;
+
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 15)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetX 
 		{ 
 			get
 			{
-				//## Handle return of LiningToPanelOffsetX for which no match was found
-                return null;
-				//##
+				return _liningToPanelOffsetX;
 			} 
+			set
+			{
+				SetValue(v => _liningToPanelOffsetX = v, _liningToPanelOffsetX, value, "LiningToPanelOffsetX", -15);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLengthMeasure? _liningToPanelOffsetY;
+
+
+		[CrossSchemaAttribute(typeof(IIfcWindowLiningProperties), 16)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcWindowLiningProperties.LiningToPanelOffsetY 
 		{ 
 			get
 			{
-				//## Handle return of LiningToPanelOffsetY for which no match was found
-                return null;
-				//##
+				return _liningToPanelOffsetY;
 			} 
+			set
+			{
+				SetValue(v => _liningToPanelOffsetY = v, _liningToPanelOffsetY, value, "LiningToPanelOffsetY", -16);
+				
+			}
 		}
 	//## Custom code
 	//##

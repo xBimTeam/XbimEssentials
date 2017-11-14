@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,43 +26,49 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCompositeProfileDef : IIfcProfileDef
 	{
-		IEnumerable<IIfcProfileDef> @Profiles { get; }
-		IfcLabel? @Label { get; }
+		IItemSet<IIfcProfileDef> @Profiles { get; }
+		IfcLabel? @Label { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProfileResource
 {
-	[ExpressType("IfcCompositeProfileDef", 510)]
+	[ExpressType("IfcCompositeProfileDef", 172)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IEqualityComparer<@IfcCompositeProfileDef>, IEquatable<@IfcCompositeProfileDef>
+	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IContainsEntityReferences, IEquatable<@IfcCompositeProfileDef>
 	{
 		#region IIfcCompositeProfileDef explicit implementation
-		IEnumerable<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { get { return @Profiles; } }	
-		IfcLabel? IIfcCompositeProfileDef.Label { get { return @Label; } }	
+		IItemSet<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { 
+			get { return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>( @Profiles); } 
+		}	
+		IfcLabel? IIfcCompositeProfileDef.Label { 
+ 
+			get { return @Label; } 
+			set { Label = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCompositeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
-			_profiles = new ItemSet<IfcProfileDef>( this, 0 );
+		internal IfcCompositeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_profiles = new ItemSet<IfcProfileDef>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private ItemSet<IfcProfileDef> _profiles;
+		private readonly ItemSet<IfcProfileDef> _profiles;
 		private IfcLabel? _label;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 2, -1, 5)]
-		public ItemSet<IfcProfileDef> @Profiles 
+		public IItemSet<IfcProfileDef> @Profiles 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profiles;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profiles;
+				Activate();
 				return _profiles;
 			} 
 		}	
@@ -69,13 +77,13 @@ namespace Xbim.Ifc4.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _label;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _label;
+				Activate();
 				return _label;
 			} 
 			set
 			{
-				SetValue( v =>  _label = v, _label, value,  "Label");
+				SetValue( v =>  _label = v, _label, value,  "Label", 4);
 			} 
 		}	
 		#endregion
@@ -83,9 +91,8 @@ namespace Xbim.Ifc4.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -94,7 +101,6 @@ namespace Xbim.Ifc4.ProfileResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					if (_profiles == null) _profiles = new ItemSet<IfcProfileDef>( this );
 					_profiles.InternalAdd((IfcProfileDef)value.EntityVal);
 					return;
 				case 3: 
@@ -104,13 +110,6 @@ namespace Xbim.Ifc4.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*InvariantProfileType:	InvariantProfileType : SIZEOF(QUERY(temp <* Profiles | temp.ProfileType <> Profiles[1].ProfileType)) = 0;*/
-		/*NoRecursion:	NoRecursion : SIZEOF(QUERY(temp <* Profiles | 'IFC4.IFCCOMPOSITEPROFILEDEF' IN TYPEOF(temp))) = 0;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -118,55 +117,18 @@ namespace Xbim.Ifc4.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCompositeProfileDef
-            var root = (@IfcCompositeProfileDef)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCompositeProfileDef left, @IfcCompositeProfileDef right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCompositeProfileDef left, @IfcCompositeProfileDef right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCompositeProfileDef x, @IfcCompositeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCompositeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				foreach(var entity in @Profiles)
+					yield return entity;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

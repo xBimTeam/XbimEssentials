@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,33 +27,56 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelSpaceBoundary : IIfcRelConnects
 	{
-		IIfcSpaceBoundarySelect @RelatingSpace { get; }
-		IIfcElement @RelatedBuildingElement { get; }
-		IIfcConnectionGeometry @ConnectionGeometry { get; }
-		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get; }
-		IfcInternalOrExternalEnum @InternalOrExternalBoundary { get; }
+		IIfcSpaceBoundarySelect @RelatingSpace { get;  set; }
+		IIfcElement @RelatedBuildingElement { get;  set; }
+		IIfcConnectionGeometry @ConnectionGeometry { get;  set; }
+		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get;  set; }
+		IfcInternalOrExternalEnum @InternalOrExternalBoundary { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcRelSpaceBoundary", 952)]
+	[ExpressType("IfcRelSpaceBoundary", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IEqualityComparer<@IfcRelSpaceBoundary>, IEquatable<@IfcRelSpaceBoundary>
+	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary>
 	{
 		#region IIfcRelSpaceBoundary explicit implementation
-		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace { get { return @RelatingSpace; } }	
-		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { get { return @RelatedBuildingElement; } }	
-		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { get { return @ConnectionGeometry; } }	
-		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { get { return @PhysicalOrVirtualBoundary; } }	
-		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { get { return @InternalOrExternalBoundary; } }	
+		IIfcSpaceBoundarySelect IIfcRelSpaceBoundary.RelatingSpace { 
+ 
+ 
+			get { return @RelatingSpace; } 
+			set { RelatingSpace = value as IfcSpaceBoundarySelect;}
+		}	
+		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { 
+ 
+ 
+			get { return @RelatedBuildingElement; } 
+			set { RelatedBuildingElement = value as IfcElement;}
+		}	
+		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { 
+ 
+ 
+			get { return @ConnectionGeometry; } 
+			set { ConnectionGeometry = value as IfcConnectionGeometry;}
+		}	
+		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { 
+ 
+			get { return @PhysicalOrVirtualBoundary; } 
+			set { PhysicalOrVirtualBoundary = value;}
+		}	
+		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { 
+ 
+			get { return @InternalOrExternalBoundary; } 
+			set { InternalOrExternalBoundary = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelSpaceBoundary(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelSpaceBoundary(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -69,13 +94,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingSpace;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingSpace;
+				Activate();
 				return _relatingSpace;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingSpace = v, _relatingSpace, value,  "RelatingSpace");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingSpace = v, _relatingSpace, value,  "RelatingSpace", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -84,13 +111,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedBuildingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedBuildingElement;
+				Activate();
 				return _relatedBuildingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedBuildingElement = v, _relatedBuildingElement, value,  "RelatedBuildingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedBuildingElement = v, _relatedBuildingElement, value,  "RelatedBuildingElement", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -98,13 +127,15 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _connectionGeometry;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _connectionGeometry;
+				Activate();
 				return _connectionGeometry;
 			} 
 			set
 			{
-				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _connectionGeometry = v, _connectionGeometry, value,  "ConnectionGeometry", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 8)]
@@ -112,13 +143,13 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _physicalOrVirtualBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _physicalOrVirtualBoundary;
+				Activate();
 				return _physicalOrVirtualBoundary;
 			} 
 			set
 			{
-				SetValue( v =>  _physicalOrVirtualBoundary = v, _physicalOrVirtualBoundary, value,  "PhysicalOrVirtualBoundary");
+				SetValue( v =>  _physicalOrVirtualBoundary = v, _physicalOrVirtualBoundary, value,  "PhysicalOrVirtualBoundary", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
@@ -126,13 +157,13 @@ namespace Xbim.Ifc4.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _internalOrExternalBoundary;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _internalOrExternalBoundary;
+				Activate();
 				return _internalOrExternalBoundary;
 			} 
 			set
 			{
-				SetValue( v =>  _internalOrExternalBoundary = v, _internalOrExternalBoundary, value,  "InternalOrExternalBoundary");
+				SetValue( v =>  _internalOrExternalBoundary = v, _internalOrExternalBoundary, value,  "InternalOrExternalBoundary", 9);
 			} 
 		}	
 		#endregion
@@ -140,9 +171,8 @@ namespace Xbim.Ifc4.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -171,12 +201,6 @@ namespace Xbim.Ifc4.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*CorrectPhysOrVirt:(PhysicalOrVirtualBoundary = IfcPhysicalOrVirtualEnum.NotDefined);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -184,55 +208,39 @@ namespace Xbim.Ifc4.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelSpaceBoundary
-            var root = (@IfcRelSpaceBoundary)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelSpaceBoundary left, @IfcRelSpaceBoundary right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelSpaceBoundary left, @IfcRelSpaceBoundary right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelSpaceBoundary x, @IfcRelSpaceBoundary y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSpaceBoundary obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingSpace != null)
+					yield return @RelatingSpace;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				if (@ConnectionGeometry != null)
+					yield return @ConnectionGeometry;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingSpace != null)
+					yield return @RelatingSpace;
+				if (@RelatedBuildingElement != null)
+					yield return @RelatedBuildingElement;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

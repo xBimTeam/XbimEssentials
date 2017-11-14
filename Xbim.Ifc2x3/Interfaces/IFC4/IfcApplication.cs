@@ -10,39 +10,68 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	public partial class @IfcApplication : IIfcApplication
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 1)]
 		IIfcOrganization IIfcApplication.ApplicationDeveloper 
 		{ 
 			get
 			{
 				return ApplicationDeveloper;
 			} 
+			set
+			{
+				ApplicationDeveloper = value as ActorResource.IfcOrganization;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 2)]
 		Ifc4.MeasureResource.IfcLabel IIfcApplication.Version 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Version);
 			} 
+			set
+			{
+				Version = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 3)]
 		Ifc4.MeasureResource.IfcLabel IIfcApplication.ApplicationFullName 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(ApplicationFullName);
 			} 
+			set
+			{
+				ApplicationFullName = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcApplication), 4)]
 		Ifc4.MeasureResource.IfcIdentifier IIfcApplication.ApplicationIdentifier 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcIdentifier(ApplicationIdentifier);
 			} 
+			set
+			{
+				ApplicationIdentifier = new MeasureResource.IfcIdentifier(value);
+				
+			}
 		}
 	//## Custom code
 	//##

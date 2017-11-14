@@ -10,19 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	public partial class @IfcHalfSpaceSolid : IIfcHalfSpaceSolid
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcHalfSpaceSolid), 1)]
 		IIfcSurface IIfcHalfSpaceSolid.BaseSurface 
 		{ 
 			get
 			{
 				return BaseSurface;
 			} 
+			set
+			{
+				BaseSurface = value as GeometryResource.IfcSurface;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcHalfSpaceSolid), 2)]
 		Ifc4.MeasureResource.IfcBoolean IIfcHalfSpaceSolid.AgreementFlag 
 		{ 
 			get
@@ -31,6 +41,11 @@ namespace Xbim.Ifc2x3.GeometricModelResource
                 return new Ifc4.MeasureResource.IfcBoolean(AgreementFlag);
 				//##
 			} 
+			set
+			{
+				AgreementFlag = value;
+				
+			}
 		}
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcBooleanOperand.Dim 
 		{

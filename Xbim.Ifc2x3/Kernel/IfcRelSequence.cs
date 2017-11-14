@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,10 +26,10 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelSequence : IIfcRelConnects
 	{
-		IIfcProcess @RelatingProcess { get; }
-		IIfcProcess @RelatedProcess { get; }
-		IfcTimeMeasure @TimeLag { get; }
-		IfcSequenceEnum @SequenceType { get; }
+		IIfcProcess @RelatingProcess { get;  set; }
+		IIfcProcess @RelatedProcess { get;  set; }
+		IfcTimeMeasure @TimeLag { get;  set; }
+		IfcSequenceEnum @SequenceType { get;  set; }
 	
 	}
 }
@@ -36,19 +38,37 @@ namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelSequence", 490)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IEqualityComparer<@IfcRelSequence>, IEquatable<@IfcRelSequence>
+	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IIfcRelSequence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSequence>
 	{
 		#region IIfcRelSequence explicit implementation
-		IIfcProcess IIfcRelSequence.RelatingProcess { get { return @RelatingProcess; } }	
-		IIfcProcess IIfcRelSequence.RelatedProcess { get { return @RelatedProcess; } }	
-		IfcTimeMeasure IIfcRelSequence.TimeLag { get { return @TimeLag; } }	
-		IfcSequenceEnum IIfcRelSequence.SequenceType { get { return @SequenceType; } }	
+		IIfcProcess IIfcRelSequence.RelatingProcess { 
+ 
+ 
+			get { return @RelatingProcess; } 
+			set { RelatingProcess = value as IfcProcess;}
+		}	
+		IIfcProcess IIfcRelSequence.RelatedProcess { 
+ 
+ 
+			get { return @RelatedProcess; } 
+			set { RelatedProcess = value as IfcProcess;}
+		}	
+		IfcTimeMeasure IIfcRelSequence.TimeLag { 
+ 
+			get { return @TimeLag; } 
+			set { TimeLag = value;}
+		}	
+		IfcSequenceEnum IIfcRelSequence.SequenceType { 
+ 
+			get { return @SequenceType; } 
+			set { SequenceType = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelSequence(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelSequence(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -65,13 +85,15 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingProcess;
+				Activate();
 				return _relatingProcess;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 5);
 			} 
 		}	
 		[IndexedProperty]
@@ -80,13 +102,15 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedProcess;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedProcess;
+				Activate();
 				return _relatedProcess;
 			} 
 			set
 			{
-				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatedProcess = v, _relatedProcess, value,  "RelatedProcess", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -94,13 +118,13 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeLag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeLag;
+				Activate();
 				return _timeLag;
 			} 
 			set
 			{
-				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag");
+				SetValue( v =>  _timeLag = v, _timeLag, value,  "TimeLag", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 8)]
@@ -108,13 +132,13 @@ namespace Xbim.Ifc2x3.Kernel
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sequenceType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sequenceType;
+				Activate();
 				return _sequenceType;
 			} 
 			set
 			{
-				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType");
+				SetValue( v =>  _sequenceType = v, _sequenceType, value,  "SequenceType", 8);
 			} 
 		}	
 		#endregion
@@ -122,9 +146,8 @@ namespace Xbim.Ifc2x3.Kernel
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -150,12 +173,6 @@ namespace Xbim.Ifc2x3.Kernel
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : RelatingProcess :<>: RelatedProcess;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -163,55 +180,37 @@ namespace Xbim.Ifc2x3.Kernel
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelSequence
-            var root = (@IfcRelSequence)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelSequence left, @IfcRelSequence right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelSequence left, @IfcRelSequence right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelSequence x, @IfcRelSequence y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelSequence obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				if (@RelatedProcess != null)
+					yield return @RelatedProcess;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingProcess != null)
+					yield return @RelatingProcess;
+				if (@RelatedProcess != null)
+					yield return @RelatedProcess;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

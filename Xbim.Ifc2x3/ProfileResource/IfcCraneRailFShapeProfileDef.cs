@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,15 +26,15 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCraneRailFShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @OverallHeight { get; }
-		IfcPositiveLengthMeasure @HeadWidth { get; }
-		IfcPositiveLengthMeasure? @Radius { get; }
-		IfcPositiveLengthMeasure @HeadDepth2 { get; }
-		IfcPositiveLengthMeasure @HeadDepth3 { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @BaseDepth1 { get; }
-		IfcPositiveLengthMeasure @BaseDepth2 { get; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
+		IfcPositiveLengthMeasure @OverallHeight { get;  set; }
+		IfcPositiveLengthMeasure @HeadWidth { get;  set; }
+		IfcPositiveLengthMeasure? @Radius { get;  set; }
+		IfcPositiveLengthMeasure @HeadDepth2 { get;  set; }
+		IfcPositiveLengthMeasure @HeadDepth3 { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @BaseDepth1 { get;  set; }
+		IfcPositiveLengthMeasure @BaseDepth2 { get;  set; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
 	
 	}
 }
@@ -41,24 +43,60 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCraneRailFShapeProfileDef", 112)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IEqualityComparer<@IfcCraneRailFShapeProfileDef>, IEquatable<@IfcCraneRailFShapeProfileDef>
+	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCraneRailFShapeProfileDef>
 	{
 		#region IIfcCraneRailFShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.OverallHeight { get { return @OverallHeight; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadWidth { get { return @HeadWidth; } }	
-		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.Radius { get { return @Radius; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth2 { get { return @HeadDepth2; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth3 { get { return @HeadDepth3; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth1 { get { return @BaseDepth1; } }	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth2 { get { return @BaseDepth2; } }	
-		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.OverallHeight { 
+ 
+			get { return @OverallHeight; } 
+			set { OverallHeight = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadWidth { 
+ 
+			get { return @HeadWidth; } 
+			set { HeadWidth = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.Radius { 
+ 
+			get { return @Radius; } 
+			set { Radius = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth2 { 
+ 
+			get { return @HeadDepth2; } 
+			set { HeadDepth2 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth3 { 
+ 
+			get { return @HeadDepth3; } 
+			set { HeadDepth3 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.WebThickness { 
+ 
+			get { return @WebThickness; } 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth1 { 
+ 
+			get { return @BaseDepth1; } 
+			set { BaseDepth1 = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth2 { 
+ 
+			get { return @BaseDepth2; } 
+			set { BaseDepth2 = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.CentreOfGravityInY { 
+ 
+			get { return @CentreOfGravityInY; } 
+			set { CentreOfGravityInY = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCraneRailFShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcCraneRailFShapeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -79,13 +117,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _overallHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _overallHeight;
+				Activate();
 				return _overallHeight;
 			} 
 			set
 			{
-				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight");
+				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -93,13 +131,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _headWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _headWidth;
+				Activate();
 				return _headWidth;
 			} 
 			set
 			{
-				SetValue( v =>  _headWidth = v, _headWidth, value,  "HeadWidth");
+				SetValue( v =>  _headWidth = v, _headWidth, value,  "HeadWidth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -107,13 +145,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _radius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _radius;
+				Activate();
 				return _radius;
 			} 
 			set
 			{
-				SetValue( v =>  _radius = v, _radius, value,  "Radius");
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -121,13 +159,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _headDepth2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _headDepth2;
+				Activate();
 				return _headDepth2;
 			} 
 			set
 			{
-				SetValue( v =>  _headDepth2 = v, _headDepth2, value,  "HeadDepth2");
+				SetValue( v =>  _headDepth2 = v, _headDepth2, value,  "HeadDepth2", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -135,13 +173,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _headDepth3;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _headDepth3;
+				Activate();
 				return _headDepth3;
 			} 
 			set
 			{
-				SetValue( v =>  _headDepth3 = v, _headDepth3, value,  "HeadDepth3");
+				SetValue( v =>  _headDepth3 = v, _headDepth3, value,  "HeadDepth3", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -149,13 +187,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _webThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _webThickness;
+				Activate();
 				return _webThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
+				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -163,13 +201,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseDepth1;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseDepth1;
+				Activate();
 				return _baseDepth1;
 			} 
 			set
 			{
-				SetValue( v =>  _baseDepth1 = v, _baseDepth1, value,  "BaseDepth1");
+				SetValue( v =>  _baseDepth1 = v, _baseDepth1, value,  "BaseDepth1", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -177,13 +215,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _baseDepth2;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _baseDepth2;
+				Activate();
 				return _baseDepth2;
 			} 
 			set
 			{
-				SetValue( v =>  _baseDepth2 = v, _baseDepth2, value,  "BaseDepth2");
+				SetValue( v =>  _baseDepth2 = v, _baseDepth2, value,  "BaseDepth2", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -191,13 +229,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _centreOfGravityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _centreOfGravityInY;
+				Activate();
 				return _centreOfGravityInY;
 			} 
 			set
 			{
-				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY");
+				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY", 12);
 			} 
 		}	
 		#endregion
@@ -205,9 +243,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -247,11 +284,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -259,55 +291,18 @@ namespace Xbim.Ifc2x3.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcCraneRailFShapeProfileDef
-            var root = (@IfcCraneRailFShapeProfileDef)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcCraneRailFShapeProfileDef left, @IfcCraneRailFShapeProfileDef right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcCraneRailFShapeProfileDef left, @IfcCraneRailFShapeProfileDef right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcCraneRailFShapeProfileDef x, @IfcCraneRailFShapeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcCraneRailFShapeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

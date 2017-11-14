@@ -10,27 +10,35 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	public partial class @IfcAnnotationFillArea : IIfcAnnotationFillArea
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcAnnotationFillArea), 1)]
 		IIfcCurve IIfcAnnotationFillArea.OuterBoundary 
 		{ 
 			get
 			{
 				return OuterBoundary;
 			} 
+			set
+			{
+				OuterBoundary = value as GeometryResource.IfcCurve;
+				
+			}
 		}
-		IEnumerable<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
+
+		[CrossSchemaAttribute(typeof(IIfcAnnotationFillArea), 2)]
+		IItemSet<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries 
 		{ 
 			get
 			{
-				foreach (var member in InnerBoundaries)
-				{
-					yield return member as IIfcCurve;
-				}
+			
+				return new Common.Collections.ProxyItemSet<GeometryResource.IfcCurve, IIfcCurve>(InnerBoundaries);
 			} 
 		}
 	//## Custom code

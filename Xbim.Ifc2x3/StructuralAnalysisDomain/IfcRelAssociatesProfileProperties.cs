@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelAssociatesProfileProperties : IIfcRelAssociates
 	{
-		IIfcProfileProperties @RelatingProfileProperties { get; }
-		IIfcShapeAspect @ProfileSectionLocation { get; }
-		IIfcOrientationSelect @ProfileOrientation { get; }
+		IIfcProfileProperties @RelatingProfileProperties { get;  set; }
+		IIfcShapeAspect @ProfileSectionLocation { get;  set; }
+		IIfcOrientationSelect @ProfileOrientation { get;  set; }
 	
 	}
 }
@@ -37,18 +39,33 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelAssociatesProfileProperties", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IEqualityComparer<@IfcRelAssociatesProfileProperties>, IEquatable<@IfcRelAssociatesProfileProperties>
+	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesProfileProperties>
 	{
 		#region IIfcRelAssociatesProfileProperties explicit implementation
-		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { get { return @RelatingProfileProperties; } }	
-		IIfcShapeAspect IIfcRelAssociatesProfileProperties.ProfileSectionLocation { get { return @ProfileSectionLocation; } }	
-		IIfcOrientationSelect IIfcRelAssociatesProfileProperties.ProfileOrientation { get { return @ProfileOrientation; } }	
+		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { 
+ 
+ 
+			get { return @RelatingProfileProperties; } 
+			set { RelatingProfileProperties = value as IfcProfileProperties;}
+		}	
+		IIfcShapeAspect IIfcRelAssociatesProfileProperties.ProfileSectionLocation { 
+ 
+ 
+			get { return @ProfileSectionLocation; } 
+			set { ProfileSectionLocation = value as IfcShapeAspect;}
+		}	
+		IIfcOrientationSelect IIfcRelAssociatesProfileProperties.ProfileOrientation { 
+ 
+ 
+			get { return @ProfileOrientation; } 
+			set { ProfileOrientation = value as IfcOrientationSelect;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelAssociatesProfileProperties(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcRelAssociatesProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -63,13 +80,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingProfileProperties;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingProfileProperties;
+				Activate();
 				return _relatingProfileProperties;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingProfileProperties = v, _relatingProfileProperties, value,  "RelatingProfileProperties");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingProfileProperties = v, _relatingProfileProperties, value,  "RelatingProfileProperties", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
@@ -77,13 +96,15 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileSectionLocation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileSectionLocation;
+				Activate();
 				return _profileSectionLocation;
 			} 
 			set
 			{
-				SetValue( v =>  _profileSectionLocation = v, _profileSectionLocation, value,  "ProfileSectionLocation");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _profileSectionLocation = v, _profileSectionLocation, value,  "ProfileSectionLocation", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -91,13 +112,16 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _profileOrientation;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _profileOrientation;
+				Activate();
 				return _profileOrientation;
 			} 
 			set
 			{
-				SetValue( v =>  _profileOrientation = v, _profileOrientation, value,  "ProfileOrientation");
+				var entity = value as IPersistEntity;
+				if (entity != null && !(ReferenceEquals(Model, entity.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _profileOrientation = v, _profileOrientation, value,  "ProfileOrientation", 8);
 			} 
 		}	
 		#endregion
@@ -105,9 +129,8 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -131,11 +154,6 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -143,55 +161,37 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelAssociatesProfileProperties
-            var root = (@IfcRelAssociatesProfileProperties)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelAssociatesProfileProperties left, @IfcRelAssociatesProfileProperties right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelAssociatesProfileProperties left, @IfcRelAssociatesProfileProperties right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelAssociatesProfileProperties x, @IfcRelAssociatesProfileProperties y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelAssociatesProfileProperties obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				if (@RelatingProfileProperties != null)
+					yield return @RelatingProfileProperties;
+				if (@ProfileSectionLocation != null)
+					yield return @ProfileSectionLocation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @RelatedObjects)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

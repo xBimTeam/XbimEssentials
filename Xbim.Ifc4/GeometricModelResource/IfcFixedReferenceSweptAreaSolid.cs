@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometricModelResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,31 +27,49 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcFixedReferenceSweptAreaSolid : IIfcSweptAreaSolid
 	{
-		IIfcCurve @Directrix { get; }
-		IfcParameterValue? @StartParam { get; }
-		IfcParameterValue? @EndParam { get; }
-		IIfcDirection @FixedReference { get; }
+		IIfcCurve @Directrix { get;  set; }
+		IfcParameterValue? @StartParam { get;  set; }
+		IfcParameterValue? @EndParam { get;  set; }
+		IIfcDirection @FixedReference { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcFixedReferenceSweptAreaSolid", 671)]
+	[ExpressType("IfcFixedReferenceSweptAreaSolid", 1180)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IEqualityComparer<@IfcFixedReferenceSweptAreaSolid>, IEquatable<@IfcFixedReferenceSweptAreaSolid>
+	public  partial class @IfcFixedReferenceSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcFixedReferenceSweptAreaSolid, IContainsEntityReferences, IEquatable<@IfcFixedReferenceSweptAreaSolid>
 	{
 		#region IIfcFixedReferenceSweptAreaSolid explicit implementation
-		IIfcCurve IIfcFixedReferenceSweptAreaSolid.Directrix { get { return @Directrix; } }	
-		IfcParameterValue? IIfcFixedReferenceSweptAreaSolid.StartParam { get { return @StartParam; } }	
-		IfcParameterValue? IIfcFixedReferenceSweptAreaSolid.EndParam { get { return @EndParam; } }	
-		IIfcDirection IIfcFixedReferenceSweptAreaSolid.FixedReference { get { return @FixedReference; } }	
+		IIfcCurve IIfcFixedReferenceSweptAreaSolid.Directrix { 
+ 
+ 
+			get { return @Directrix; } 
+			set { Directrix = value as IfcCurve;}
+		}	
+		IfcParameterValue? IIfcFixedReferenceSweptAreaSolid.StartParam { 
+ 
+			get { return @StartParam; } 
+			set { StartParam = value;}
+		}	
+		IfcParameterValue? IIfcFixedReferenceSweptAreaSolid.EndParam { 
+ 
+			get { return @EndParam; } 
+			set { EndParam = value;}
+		}	
+		IIfcDirection IIfcFixedReferenceSweptAreaSolid.FixedReference { 
+ 
+ 
+			get { return @FixedReference; } 
+			set { FixedReference = value as IfcDirection;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcFixedReferenceSweptAreaSolid(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcFixedReferenceSweptAreaSolid(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -65,13 +85,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _directrix;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _directrix;
+				Activate();
 				return _directrix;
 			} 
 			set
 			{
-				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -79,13 +101,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _startParam;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _startParam;
+				Activate();
 				return _startParam;
 			} 
 			set
 			{
-				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam");
+				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -93,13 +115,13 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _endParam;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _endParam;
+				Activate();
 				return _endParam;
 			} 
 			set
 			{
-				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam");
+				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
@@ -107,13 +129,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _fixedReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _fixedReference;
+				Activate();
 				return _fixedReference;
 			} 
 			set
 			{
-				SetValue( v =>  _fixedReference = v, _fixedReference, value,  "FixedReference");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _fixedReference = v, _fixedReference, value,  "FixedReference", 6);
 			} 
 		}	
 		#endregion
@@ -121,9 +145,8 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -147,12 +170,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*DirectrixBounded:(SIZEOF(['IFC4.IFCCONIC', 'IFC4.IFCBOUNDEDCURVE'] * TYPEOF(Directrix)) = 1);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -160,55 +177,24 @@ namespace Xbim.Ifc4.GeometricModelResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcFixedReferenceSweptAreaSolid
-            var root = (@IfcFixedReferenceSweptAreaSolid)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcFixedReferenceSweptAreaSolid left, @IfcFixedReferenceSweptAreaSolid right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcFixedReferenceSweptAreaSolid left, @IfcFixedReferenceSweptAreaSolid right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcFixedReferenceSweptAreaSolid x, @IfcFixedReferenceSweptAreaSolid y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcFixedReferenceSweptAreaSolid obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@SweptArea != null)
+					yield return @SweptArea;
+				if (@Position != null)
+					yield return @Position;
+				if (@Directrix != null)
+					yield return @Directrix;
+				if (@FixedReference != null)
+					yield return @FixedReference;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

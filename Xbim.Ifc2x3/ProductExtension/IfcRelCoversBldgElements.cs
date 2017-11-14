@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcRelCoversBldgElements : IIfcRelConnects
 	{
-		IIfcElement @RelatingBuildingElement { get; }
-		IEnumerable<IIfcCovering> @RelatedCoverings { get; }
+		IIfcElement @RelatingBuildingElement { get;  set; }
+		IItemSet<IIfcCovering> @RelatedCoverings { get; }
 	
 	}
 }
@@ -34,23 +36,30 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelCoversBldgElements", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IEqualityComparer<@IfcRelCoversBldgElements>, IEquatable<@IfcRelCoversBldgElements>
+	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversBldgElements>
 	{
 		#region IIfcRelCoversBldgElements explicit implementation
-		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { get { return @RelatingBuildingElement; } }	
-		IEnumerable<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings { get { return @RelatedCoverings; } }	
+		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { 
+ 
+ 
+			get { return @RelatingBuildingElement; } 
+			set { RelatingBuildingElement = value as IfcElement;}
+		}	
+		IItemSet<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings { 
+			get { return new Common.Collections.ProxyItemSet<IfcCovering, IIfcCovering>( @RelatedCoverings); } 
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcRelCoversBldgElements(IModel model) : base(model) 		{ 
-			Model = model; 
-			_relatedCoverings = new ItemSet<IfcCovering>( this, 0 );
+		internal IfcRelCoversBldgElements(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_relatedCoverings = new ItemSet<IfcCovering>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
 		private IfcElement _relatingBuildingElement;
-		private ItemSet<IfcCovering> _relatedCoverings;
+		private readonly ItemSet<IfcCovering> _relatedCoverings;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -60,23 +69,25 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatingBuildingElement;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatingBuildingElement;
+				Activate();
 				return _relatingBuildingElement;
 			} 
 			set
 			{
-				SetValue( v =>  _relatingBuildingElement = v, _relatingBuildingElement, value,  "RelatingBuildingElement");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _relatingBuildingElement = v, _relatingBuildingElement, value,  "RelatingBuildingElement", 5);
 			} 
 		}	
 		[IndexedProperty]
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 6)]
-		public ItemSet<IfcCovering> @RelatedCoverings 
+		public IItemSet<IfcCovering> @RelatedCoverings 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _relatedCoverings;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _relatedCoverings;
+				Activate();
 				return _relatedCoverings;
 			} 
 		}	
@@ -85,9 +96,8 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -101,17 +111,11 @@ namespace Xbim.Ifc2x3.ProductExtension
 					_relatingBuildingElement = (IfcElement)(value.EntityVal);
 					return;
 				case 5: 
-					if (_relatedCoverings == null) _relatedCoverings = new ItemSet<IfcCovering>( this );
 					_relatedCoverings.InternalAdd((IfcCovering)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -120,55 +124,37 @@ namespace Xbim.Ifc2x3.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcRelCoversBldgElements
-            var root = (@IfcRelCoversBldgElements)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcRelCoversBldgElements left, @IfcRelCoversBldgElements right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcRelCoversBldgElements left, @IfcRelCoversBldgElements right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcRelCoversBldgElements x, @IfcRelCoversBldgElements y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcRelCoversBldgElements obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@RelatingBuildingElement != null)
+					yield return @RelatingBuildingElement;
+				foreach(var entity in @RelatedCoverings)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@RelatingBuildingElement != null)
+					yield return @RelatingBuildingElement;
+				foreach(var entity in @RelatedCoverings)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

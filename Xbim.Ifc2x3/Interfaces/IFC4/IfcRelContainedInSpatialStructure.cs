@@ -10,28 +10,36 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcRelContainedInSpatialStructure : IIfcRelContainedInSpatialStructure
 	{
-		IEnumerable<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements 
+
+		[CrossSchemaAttribute(typeof(IIfcRelContainedInSpatialStructure), 5)]
+		IItemSet<IIfcProduct> IIfcRelContainedInSpatialStructure.RelatedElements 
 		{ 
 			get
 			{
-				foreach (var member in RelatedElements)
-				{
-					yield return member as IIfcProduct;
-				}
+			
+				return new Common.Collections.ProxyItemSet<Kernel.IfcProduct, IIfcProduct>(RelatedElements);
 			} 
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcRelContainedInSpatialStructure), 6)]
 		IIfcSpatialElement IIfcRelContainedInSpatialStructure.RelatingStructure 
 		{ 
 			get
 			{
 				return RelatingStructure as IIfcSpatialElement;
 			} 
+			set
+			{
+				RelatingStructure = value as IfcSpatialStructureElement;
+				
+			}
 		}
 	//## Custom code
 	//##

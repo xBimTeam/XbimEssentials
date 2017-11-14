@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,16 +26,16 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTShapeProfileDef : IIfcParameterizedProfileDef
 	{
-		IfcPositiveLengthMeasure @Depth { get; }
-		IfcPositiveLengthMeasure @FlangeWidth { get; }
-		IfcPositiveLengthMeasure @WebThickness { get; }
-		IfcPositiveLengthMeasure @FlangeThickness { get; }
-		IfcPositiveLengthMeasure? @FilletRadius { get; }
-		IfcPositiveLengthMeasure? @FlangeEdgeRadius { get; }
-		IfcPositiveLengthMeasure? @WebEdgeRadius { get; }
-		IfcPlaneAngleMeasure? @WebSlope { get; }
-		IfcPlaneAngleMeasure? @FlangeSlope { get; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get; }
+		IfcPositiveLengthMeasure @Depth { get;  set; }
+		IfcPositiveLengthMeasure @FlangeWidth { get;  set; }
+		IfcPositiveLengthMeasure @WebThickness { get;  set; }
+		IfcPositiveLengthMeasure @FlangeThickness { get;  set; }
+		IfcPositiveLengthMeasure? @FilletRadius { get;  set; }
+		IfcPositiveLengthMeasure? @FlangeEdgeRadius { get;  set; }
+		IfcPositiveLengthMeasure? @WebEdgeRadius { get;  set; }
+		IfcPlaneAngleMeasure? @WebSlope { get;  set; }
+		IfcPlaneAngleMeasure? @FlangeSlope { get;  set; }
+		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
 	
 	}
 }
@@ -42,25 +44,65 @@ namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcTShapeProfileDef", 671)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTShapeProfileDef, IEqualityComparer<@IfcTShapeProfileDef>, IEquatable<@IfcTShapeProfileDef>
+	public  partial class @IfcTShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcTShapeProfileDef>
 	{
 		#region IIfcTShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcTShapeProfileDef.Depth { get { return @Depth; } }	
-		IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeWidth { get { return @FlangeWidth; } }	
-		IfcPositiveLengthMeasure IIfcTShapeProfileDef.WebThickness { get { return @WebThickness; } }	
-		IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeThickness { get { return @FlangeThickness; } }	
-		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.FilletRadius { get { return @FilletRadius; } }	
-		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.FlangeEdgeRadius { get { return @FlangeEdgeRadius; } }	
-		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.WebEdgeRadius { get { return @WebEdgeRadius; } }	
-		IfcPlaneAngleMeasure? IIfcTShapeProfileDef.WebSlope { get { return @WebSlope; } }	
-		IfcPlaneAngleMeasure? IIfcTShapeProfileDef.FlangeSlope { get { return @FlangeSlope; } }	
-		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.CentreOfGravityInY { get { return @CentreOfGravityInY; } }	
+		IfcPositiveLengthMeasure IIfcTShapeProfileDef.Depth { 
+ 
+			get { return @Depth; } 
+			set { Depth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeWidth { 
+ 
+			get { return @FlangeWidth; } 
+			set { FlangeWidth = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcTShapeProfileDef.WebThickness { 
+ 
+			get { return @WebThickness; } 
+			set { WebThickness = value;}
+		}	
+		IfcPositiveLengthMeasure IIfcTShapeProfileDef.FlangeThickness { 
+ 
+			get { return @FlangeThickness; } 
+			set { FlangeThickness = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.FilletRadius { 
+ 
+			get { return @FilletRadius; } 
+			set { FilletRadius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.FlangeEdgeRadius { 
+ 
+			get { return @FlangeEdgeRadius; } 
+			set { FlangeEdgeRadius = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.WebEdgeRadius { 
+ 
+			get { return @WebEdgeRadius; } 
+			set { WebEdgeRadius = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcTShapeProfileDef.WebSlope { 
+ 
+			get { return @WebSlope; } 
+			set { WebSlope = value;}
+		}	
+		IfcPlaneAngleMeasure? IIfcTShapeProfileDef.FlangeSlope { 
+ 
+			get { return @FlangeSlope; } 
+			set { FlangeSlope = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcTShapeProfileDef.CentreOfGravityInY { 
+ 
+			get { return @CentreOfGravityInY; } 
+			set { CentreOfGravityInY = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTShapeProfileDef(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcTShapeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -82,13 +124,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _depth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _depth;
+				Activate();
 				return _depth;
 			} 
 			set
 			{
-				SetValue( v =>  _depth = v, _depth, value,  "Depth");
+				SetValue( v =>  _depth = v, _depth, value,  "Depth", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -96,13 +138,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flangeWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flangeWidth;
+				Activate();
 				return _flangeWidth;
 			} 
 			set
 			{
-				SetValue( v =>  _flangeWidth = v, _flangeWidth, value,  "FlangeWidth");
+				SetValue( v =>  _flangeWidth = v, _flangeWidth, value,  "FlangeWidth", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -110,13 +152,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _webThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _webThickness;
+				Activate();
 				return _webThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness");
+				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -124,13 +166,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flangeThickness;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flangeThickness;
+				Activate();
 				return _flangeThickness;
 			} 
 			set
 			{
-				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness");
+				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
@@ -138,13 +180,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _filletRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _filletRadius;
+				Activate();
 				return _filletRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius");
+				SetValue( v =>  _filletRadius = v, _filletRadius, value,  "FilletRadius", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
@@ -152,13 +194,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flangeEdgeRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flangeEdgeRadius;
+				Activate();
 				return _flangeEdgeRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _flangeEdgeRadius = v, _flangeEdgeRadius, value,  "FlangeEdgeRadius");
+				SetValue( v =>  _flangeEdgeRadius = v, _flangeEdgeRadius, value,  "FlangeEdgeRadius", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
@@ -166,13 +208,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _webEdgeRadius;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _webEdgeRadius;
+				Activate();
 				return _webEdgeRadius;
 			} 
 			set
 			{
-				SetValue( v =>  _webEdgeRadius = v, _webEdgeRadius, value,  "WebEdgeRadius");
+				SetValue( v =>  _webEdgeRadius = v, _webEdgeRadius, value,  "WebEdgeRadius", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
@@ -180,13 +222,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _webSlope;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _webSlope;
+				Activate();
 				return _webSlope;
 			} 
 			set
 			{
-				SetValue( v =>  _webSlope = v, _webSlope, value,  "WebSlope");
+				SetValue( v =>  _webSlope = v, _webSlope, value,  "WebSlope", 11);
 			} 
 		}	
 		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
@@ -194,13 +236,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _flangeSlope;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _flangeSlope;
+				Activate();
 				return _flangeSlope;
 			} 
 			set
 			{
-				SetValue( v =>  _flangeSlope = v, _flangeSlope, value,  "FlangeSlope");
+				SetValue( v =>  _flangeSlope = v, _flangeSlope, value,  "FlangeSlope", 12);
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
@@ -208,13 +250,13 @@ namespace Xbim.Ifc2x3.ProfileResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _centreOfGravityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _centreOfGravityInY;
+				Activate();
 				return _centreOfGravityInY;
 			} 
 			set
 			{
-				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY");
+				SetValue( v =>  _centreOfGravityInY = v, _centreOfGravityInY, value,  "CentreOfGravityInY", 13);
 			} 
 		}	
 		#endregion
@@ -222,9 +264,8 @@ namespace Xbim.Ifc2x3.ProfileResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -267,13 +308,6 @@ namespace Xbim.Ifc2x3.ProfileResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : FlangeThickness < Depth;*/
-		/*WR2:	WR2 : WebThickness < FlangeWidth;*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -281,55 +315,18 @@ namespace Xbim.Ifc2x3.ProfileResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTShapeProfileDef
-            var root = (@IfcTShapeProfileDef)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTShapeProfileDef left, @IfcTShapeProfileDef right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTShapeProfileDef left, @IfcTShapeProfileDef right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTShapeProfileDef x, @IfcTShapeProfileDef y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTShapeProfileDef obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

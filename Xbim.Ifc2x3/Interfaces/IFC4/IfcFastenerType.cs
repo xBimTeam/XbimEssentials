@@ -10,20 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	public partial class @IfcFastenerType : IIfcFastenerType
 	{
+
+		private  Ifc4.Interfaces.IfcFastenerTypeEnum _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcFastenerType), 10)]
 		Ifc4.Interfaces.IfcFastenerTypeEnum IIfcFastenerType.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return Ifc4.Interfaces.IfcFastenerTypeEnum.NOTDEFINED;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
+				
+			}
 		}
 	//## Custom code
 	//##

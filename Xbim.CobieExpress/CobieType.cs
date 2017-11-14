@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -21,93 +23,217 @@ namespace Xbim.CobieExpress.Interfaces
     /// Readonly interface for CobieType
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobieType : ICobieAsset
+	public partial interface @ICobieType : ICobieTypeOrComponent
 	{
-		ICobieAssetType @AssetType { get; }
-		ICobieContact @Manufacturer { get; }
-		string @ModelNumber { get; }
-		ICobieWarranty @Warranty { get; }
-		double? @ReplacementCost { get; }
-		double? @ExpectedLife { get; }
-		ICobieDurationUnit @DurationUnit { get; }
-		double @NominalLength { get; }
-		double @NominalWidth { get; }
-		double @NominalHeight { get; }
-		string @ModelReference { get; }
-		string @Shape { get; }
-		string @Size { get; }
-		string @Color { get; }
-		string @Finish { get; }
-		string @Grade { get; }
-		string @Material { get; }
-		string @Constituents { get; }
-		string @Features { get; }
-		string @AccessibilityPerformance { get; }
-		string @CodePerformance { get; }
-		string @SustainabilityPerformance { get; }
-		IEnumerable<ICobieType> @AssemblyOf { get; }
-		IEnumerable<ICobieJob> @Jobs { get; }
+		ICobieAssetType @AssetType { get;  set; }
+		ICobieContact @Manufacturer { get;  set; }
+		string @ModelNumber { get;  set; }
+		string @WarrantyDescription { get;  set; }
+		ICobieContact @WarrantyGuarantorParts { get;  set; }
+		double? @WarrantyDurationParts { get;  set; }
+		ICobieContact @WarrantyGuarantorLabor { get;  set; }
+		double? @WarrantyDurationLabor { get;  set; }
+		ICobieDurationUnit @WarrantyDurationUnit { get;  set; }
+		double? @ReplacementCost { get;  set; }
+		double? @ExpectedLife { get;  set; }
+		ICobieDurationUnit @DurationUnit { get;  set; }
+		double? @NominalLength { get;  set; }
+		double? @NominalWidth { get;  set; }
+		double? @NominalHeight { get;  set; }
+		string @ModelReference { get;  set; }
+		string @Shape { get;  set; }
+		string @Size { get;  set; }
+		string @Color { get;  set; }
+		string @Finish { get;  set; }
+		string @Grade { get;  set; }
+		string @Material { get;  set; }
+		string @Constituents { get;  set; }
+		string @Features { get;  set; }
+		string @AccessibilityPerformance { get;  set; }
+		string @CodePerformance { get;  set; }
+		string @SustainabilityPerformance { get;  set; }
 		IEnumerable<ICobieComponent> @Components {  get; }
 		IEnumerable<ICobieSpare> @Spares {  get; }
+		IEnumerable<ICobieJob> @Jobs {  get; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Type", 20)]
+	[ExpressType("Type", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieType : CobieAsset, IInstantiableEntity, ICobieType, IEqualityComparer<@CobieType>, IEquatable<@CobieType>
+	public  partial class @CobieType : CobieTypeOrComponent, IInstantiableEntity, ICobieType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieType>
 	{
 		#region ICobieType explicit implementation
-		ICobieAssetType ICobieType.AssetType { get { return @AssetType; } }	
-		ICobieContact ICobieType.Manufacturer { get { return @Manufacturer; } }	
-		string ICobieType.ModelNumber { get { return @ModelNumber; } }	
-		ICobieWarranty ICobieType.Warranty { get { return @Warranty; } }	
-		double? ICobieType.ReplacementCost { get { return @ReplacementCost; } }	
-		double? ICobieType.ExpectedLife { get { return @ExpectedLife; } }	
-		ICobieDurationUnit ICobieType.DurationUnit { get { return @DurationUnit; } }	
-		double ICobieType.NominalLength { get { return @NominalLength; } }	
-		double ICobieType.NominalWidth { get { return @NominalWidth; } }	
-		double ICobieType.NominalHeight { get { return @NominalHeight; } }	
-		string ICobieType.ModelReference { get { return @ModelReference; } }	
-		string ICobieType.Shape { get { return @Shape; } }	
-		string ICobieType.Size { get { return @Size; } }	
-		string ICobieType.Color { get { return @Color; } }	
-		string ICobieType.Finish { get { return @Finish; } }	
-		string ICobieType.Grade { get { return @Grade; } }	
-		string ICobieType.Material { get { return @Material; } }	
-		string ICobieType.Constituents { get { return @Constituents; } }	
-		string ICobieType.Features { get { return @Features; } }	
-		string ICobieType.AccessibilityPerformance { get { return @AccessibilityPerformance; } }	
-		string ICobieType.CodePerformance { get { return @CodePerformance; } }	
-		string ICobieType.SustainabilityPerformance { get { return @SustainabilityPerformance; } }	
-		IEnumerable<ICobieType> ICobieType.AssemblyOf { get { return @AssemblyOf; } }	
-		IEnumerable<ICobieJob> ICobieType.Jobs { get { return @Jobs; } }	
+		ICobieAssetType ICobieType.AssetType { 
+ 
+ 
+			get { return @AssetType; } 
+			set { AssetType = value as CobieAssetType;}
+		}	
+		ICobieContact ICobieType.Manufacturer { 
+ 
+ 
+			get { return @Manufacturer; } 
+			set { Manufacturer = value as CobieContact;}
+		}	
+		string ICobieType.ModelNumber { 
+ 
+			get { return @ModelNumber; } 
+			set { ModelNumber = value;}
+		}	
+		string ICobieType.WarrantyDescription { 
+ 
+			get { return @WarrantyDescription; } 
+			set { WarrantyDescription = value;}
+		}	
+		ICobieContact ICobieType.WarrantyGuarantorParts { 
+ 
+ 
+			get { return @WarrantyGuarantorParts; } 
+			set { WarrantyGuarantorParts = value as CobieContact;}
+		}	
+		double? ICobieType.WarrantyDurationParts { 
+ 
+			get { return @WarrantyDurationParts; } 
+			set { WarrantyDurationParts = value;}
+		}	
+		ICobieContact ICobieType.WarrantyGuarantorLabor { 
+ 
+ 
+			get { return @WarrantyGuarantorLabor; } 
+			set { WarrantyGuarantorLabor = value as CobieContact;}
+		}	
+		double? ICobieType.WarrantyDurationLabor { 
+ 
+			get { return @WarrantyDurationLabor; } 
+			set { WarrantyDurationLabor = value;}
+		}	
+		ICobieDurationUnit ICobieType.WarrantyDurationUnit { 
+ 
+ 
+			get { return @WarrantyDurationUnit; } 
+			set { WarrantyDurationUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieType.ReplacementCost { 
+ 
+			get { return @ReplacementCost; } 
+			set { ReplacementCost = value;}
+		}	
+		double? ICobieType.ExpectedLife { 
+ 
+			get { return @ExpectedLife; } 
+			set { ExpectedLife = value;}
+		}	
+		ICobieDurationUnit ICobieType.DurationUnit { 
+ 
+ 
+			get { return @DurationUnit; } 
+			set { DurationUnit = value as CobieDurationUnit;}
+		}	
+		double? ICobieType.NominalLength { 
+ 
+			get { return @NominalLength; } 
+			set { NominalLength = value;}
+		}	
+		double? ICobieType.NominalWidth { 
+ 
+			get { return @NominalWidth; } 
+			set { NominalWidth = value;}
+		}	
+		double? ICobieType.NominalHeight { 
+ 
+			get { return @NominalHeight; } 
+			set { NominalHeight = value;}
+		}	
+		string ICobieType.ModelReference { 
+ 
+			get { return @ModelReference; } 
+			set { ModelReference = value;}
+		}	
+		string ICobieType.Shape { 
+ 
+			get { return @Shape; } 
+			set { Shape = value;}
+		}	
+		string ICobieType.Size { 
+ 
+			get { return @Size; } 
+			set { Size = value;}
+		}	
+		string ICobieType.Color { 
+ 
+			get { return @Color; } 
+			set { Color = value;}
+		}	
+		string ICobieType.Finish { 
+ 
+			get { return @Finish; } 
+			set { Finish = value;}
+		}	
+		string ICobieType.Grade { 
+ 
+			get { return @Grade; } 
+			set { Grade = value;}
+		}	
+		string ICobieType.Material { 
+ 
+			get { return @Material; } 
+			set { Material = value;}
+		}	
+		string ICobieType.Constituents { 
+ 
+			get { return @Constituents; } 
+			set { Constituents = value;}
+		}	
+		string ICobieType.Features { 
+ 
+			get { return @Features; } 
+			set { Features = value;}
+		}	
+		string ICobieType.AccessibilityPerformance { 
+ 
+			get { return @AccessibilityPerformance; } 
+			set { AccessibilityPerformance = value;}
+		}	
+		string ICobieType.CodePerformance { 
+ 
+			get { return @CodePerformance; } 
+			set { CodePerformance = value;}
+		}	
+		string ICobieType.SustainabilityPerformance { 
+ 
+			get { return @SustainabilityPerformance; } 
+			set { SustainabilityPerformance = value;}
+		}	
 		 
 		IEnumerable<ICobieComponent> ICobieType.Components {  get { return @Components; } }
 		IEnumerable<ICobieSpare> ICobieType.Spares {  get { return @Spares; } }
+		IEnumerable<ICobieJob> ICobieType.Jobs {  get { return @Jobs; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieType(IModel model) : base(model) 		{ 
-			Model = model; 
-			_assemblyOf = new OptionalItemSet<CobieType>( this, 0 );
-			_jobs = new OptionalItemSet<CobieJob>( this, 0 );
+		internal CobieType(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
 		private CobieAssetType _assetType;
 		private CobieContact _manufacturer;
 		private string _modelNumber;
-		private CobieWarranty _warranty;
+		private string _warrantyDescription;
+		private CobieContact _warrantyGuarantorParts;
+		private double? _warrantyDurationParts;
+		private CobieContact _warrantyGuarantorLabor;
+		private double? _warrantyDurationLabor;
+		private CobieDurationUnit _warrantyDurationUnit;
 		private double? _replacementCost;
 		private double? _expectedLife;
 		private CobieDurationUnit _durationUnit;
-		private double _nominalLength;
-		private double _nominalWidth;
-		private double _nominalHeight;
+		private double? _nominalLength;
+		private double? _nominalWidth;
+		private double? _nominalHeight;
 		private string _modelReference;
 		private string _shape;
 		private string _size;
@@ -120,338 +246,397 @@ namespace Xbim.CobieExpress
 		private string _accessibilityPerformance;
 		private string _codePerformance;
 		private string _sustainabilityPerformance;
-		private OptionalItemSet<CobieType> _assemblyOf;
-		private OptionalItemSet<CobieJob> _jobs;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public CobieAssetType @AssetType 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assetType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _assetType;
+				Activate();
 				return _assetType;
 			} 
 			set
 			{
-				SetValue( v =>  _assetType = v, _assetType, value,  "AssetType");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _assetType = v, _assetType, value,  "AssetType", 14);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
 		public CobieContact @Manufacturer 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _manufacturer;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _manufacturer;
+				Activate();
 				return _manufacturer;
 			} 
 			set
 			{
-				SetValue( v =>  _manufacturer = v, _manufacturer, value,  "Manufacturer");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _manufacturer = v, _manufacturer, value,  "Manufacturer", 15);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public string @ModelNumber 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _modelNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _modelNumber;
+				Activate();
 				return _modelNumber;
 			} 
 			set
 			{
-				SetValue( v =>  _modelNumber = v, _modelNumber, value,  "ModelNumber");
+				SetValue( v =>  _modelNumber = v, _modelNumber, value,  "ModelNumber", 16);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
-		public CobieWarranty @Warranty 
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		public string @WarrantyDescription 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _warranty;
-				((IPersistEntity)this).Activate(false);
-				return _warranty;
+				if(_activated) return _warrantyDescription;
+				Activate();
+				return _warrantyDescription;
 			} 
 			set
 			{
-				SetValue( v =>  _warranty = v, _warranty, value,  "Warranty");
+				SetValue( v =>  _warrantyDescription = v, _warrantyDescription, value,  "WarrantyDescription", 17);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 23)]
+		public CobieContact @WarrantyGuarantorParts 
+		{ 
+			get 
+			{
+				if(_activated) return _warrantyGuarantorParts;
+				Activate();
+				return _warrantyGuarantorParts;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _warrantyGuarantorParts = v, _warrantyGuarantorParts, value,  "WarrantyGuarantorParts", 18);
+			} 
+		}	
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		public double? @WarrantyDurationParts 
+		{ 
+			get 
+			{
+				if(_activated) return _warrantyDurationParts;
+				Activate();
+				return _warrantyDurationParts;
+			} 
+			set
+			{
+				SetValue( v =>  _warrantyDurationParts = v, _warrantyDurationParts, value,  "WarrantyDurationParts", 19);
+			} 
+		}	
+		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 25)]
+		public CobieContact @WarrantyGuarantorLabor 
+		{ 
+			get 
+			{
+				if(_activated) return _warrantyGuarantorLabor;
+				Activate();
+				return _warrantyGuarantorLabor;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _warrantyGuarantorLabor = v, _warrantyGuarantorLabor, value,  "WarrantyGuarantorLabor", 20);
+			} 
+		}	
+		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
+		public double? @WarrantyDurationLabor 
+		{ 
+			get 
+			{
+				if(_activated) return _warrantyDurationLabor;
+				Activate();
+				return _warrantyDurationLabor;
+			} 
+			set
+			{
+				SetValue( v =>  _warrantyDurationLabor = v, _warrantyDurationLabor, value,  "WarrantyDurationLabor", 21);
+			} 
+		}	
+		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 27)]
+		public CobieDurationUnit @WarrantyDurationUnit 
+		{ 
+			get 
+			{
+				if(_activated) return _warrantyDurationUnit;
+				Activate();
+				return _warrantyDurationUnit;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _warrantyDurationUnit = v, _warrantyDurationUnit, value,  "WarrantyDurationUnit", 22);
+			} 
+		}	
+		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
 		public double? @ReplacementCost 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _replacementCost;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _replacementCost;
+				Activate();
 				return _replacementCost;
 			} 
 			set
 			{
-				SetValue( v =>  _replacementCost = v, _replacementCost, value,  "ReplacementCost");
+				SetValue( v =>  _replacementCost = v, _replacementCost, value,  "ReplacementCost", 23);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(24, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
 		public double? @ExpectedLife 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _expectedLife;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _expectedLife;
+				Activate();
 				return _expectedLife;
 			} 
 			set
 			{
-				SetValue( v =>  _expectedLife = v, _expectedLife, value,  "ExpectedLife");
+				SetValue( v =>  _expectedLife = v, _expectedLife, value,  "ExpectedLife", 24);
 			} 
 		}	
-		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 30)]
 		public CobieDurationUnit @DurationUnit 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _durationUnit;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _durationUnit;
+				Activate();
 				return _durationUnit;
 			} 
 			set
 			{
-				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _durationUnit = v, _durationUnit, value,  "DurationUnit", 25);
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
-		public double @NominalLength 
+		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 31)]
+		public double? @NominalLength 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalLength;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalLength;
+				Activate();
 				return _nominalLength;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength");
+				SetValue( v =>  _nominalLength = v, _nominalLength, value,  "NominalLength", 26);
 			} 
 		}	
-		[EntityAttribute(20, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
-		public double @NominalWidth 
+		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 32)]
+		public double? @NominalWidth 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalWidth;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalWidth;
+				Activate();
 				return _nominalWidth;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalWidth = v, _nominalWidth, value,  "NominalWidth");
+				SetValue( v =>  _nominalWidth = v, _nominalWidth, value,  "NominalWidth", 27);
 			} 
 		}	
-		[EntityAttribute(21, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
-		public double @NominalHeight 
+		[EntityAttribute(28, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
+		public double? @NominalHeight 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _nominalHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _nominalHeight;
+				Activate();
 				return _nominalHeight;
 			} 
 			set
 			{
-				SetValue( v =>  _nominalHeight = v, _nominalHeight, value,  "NominalHeight");
+				SetValue( v =>  _nominalHeight = v, _nominalHeight, value,  "NominalHeight", 28);
 			} 
 		}	
-		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(29, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
 		public string @ModelReference 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _modelReference;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _modelReference;
+				Activate();
 				return _modelReference;
 			} 
 			set
 			{
-				SetValue( v =>  _modelReference = v, _modelReference, value,  "ModelReference");
+				SetValue( v =>  _modelReference = v, _modelReference, value,  "ModelReference", 29);
 			} 
 		}	
-		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
+		[EntityAttribute(30, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
 		public string @Shape 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _shape;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _shape;
+				Activate();
 				return _shape;
 			} 
 			set
 			{
-				SetValue( v =>  _shape = v, _shape, value,  "Shape");
+				SetValue( v =>  _shape = v, _shape, value,  "Shape", 30);
 			} 
 		}	
-		[EntityAttribute(24, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
+		[EntityAttribute(31, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 36)]
 		public string @Size 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _size;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _size;
+				Activate();
 				return _size;
 			} 
 			set
 			{
-				SetValue( v =>  _size = v, _size, value,  "Size");
+				SetValue( v =>  _size = v, _size, value,  "Size", 31);
 			} 
 		}	
-		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
+		[EntityAttribute(32, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 37)]
 		public string @Color 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _color;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _color;
+				Activate();
 				return _color;
 			} 
 			set
 			{
-				SetValue( v =>  _color = v, _color, value,  "Color");
+				SetValue( v =>  _color = v, _color, value,  "Color", 32);
 			} 
 		}	
-		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
+		[EntityAttribute(33, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 38)]
 		public string @Finish 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _finish;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _finish;
+				Activate();
 				return _finish;
 			} 
 			set
 			{
-				SetValue( v =>  _finish = v, _finish, value,  "Finish");
+				SetValue( v =>  _finish = v, _finish, value,  "Finish", 33);
 			} 
 		}	
-		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
+		[EntityAttribute(34, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 39)]
 		public string @Grade 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _grade;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _grade;
+				Activate();
 				return _grade;
 			} 
 			set
 			{
-				SetValue( v =>  _grade = v, _grade, value,  "Grade");
+				SetValue( v =>  _grade = v, _grade, value,  "Grade", 34);
 			} 
 		}	
-		[EntityAttribute(28, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
+		[EntityAttribute(35, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 40)]
 		public string @Material 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _material;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _material;
+				Activate();
 				return _material;
 			} 
 			set
 			{
-				SetValue( v =>  _material = v, _material, value,  "Material");
+				SetValue( v =>  _material = v, _material, value,  "Material", 35);
 			} 
 		}	
-		[EntityAttribute(29, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 31)]
+		[EntityAttribute(36, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 41)]
 		public string @Constituents 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _constituents;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _constituents;
+				Activate();
 				return _constituents;
 			} 
 			set
 			{
-				SetValue( v =>  _constituents = v, _constituents, value,  "Constituents");
+				SetValue( v =>  _constituents = v, _constituents, value,  "Constituents", 36);
 			} 
 		}	
-		[EntityAttribute(30, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 32)]
+		[EntityAttribute(37, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 42)]
 		public string @Features 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _features;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _features;
+				Activate();
 				return _features;
 			} 
 			set
 			{
-				SetValue( v =>  _features = v, _features, value,  "Features");
+				SetValue( v =>  _features = v, _features, value,  "Features", 37);
 			} 
 		}	
-		[EntityAttribute(31, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
+		[EntityAttribute(38, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 43)]
 		public string @AccessibilityPerformance 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _accessibilityPerformance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _accessibilityPerformance;
+				Activate();
 				return _accessibilityPerformance;
 			} 
 			set
 			{
-				SetValue( v =>  _accessibilityPerformance = v, _accessibilityPerformance, value,  "AccessibilityPerformance");
+				SetValue( v =>  _accessibilityPerformance = v, _accessibilityPerformance, value,  "AccessibilityPerformance", 38);
 			} 
 		}	
-		[EntityAttribute(32, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
+		[EntityAttribute(39, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 44)]
 		public string @CodePerformance 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _codePerformance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _codePerformance;
+				Activate();
 				return _codePerformance;
 			} 
 			set
 			{
-				SetValue( v =>  _codePerformance = v, _codePerformance, value,  "CodePerformance");
+				SetValue( v =>  _codePerformance = v, _codePerformance, value,  "CodePerformance", 39);
 			} 
 		}	
-		[EntityAttribute(33, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 35)]
+		[EntityAttribute(40, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 45)]
 		public string @SustainabilityPerformance 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sustainabilityPerformance;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sustainabilityPerformance;
+				Activate();
 				return _sustainabilityPerformance;
 			} 
 			set
 			{
-				SetValue( v =>  _sustainabilityPerformance = v, _sustainabilityPerformance, value,  "SustainabilityPerformance");
-			} 
-		}	
-		[EntityAttribute(34, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 36)]
-		public OptionalItemSet<CobieType> @AssemblyOf 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assemblyOf;
-				((IPersistEntity)this).Activate(false);
-				return _assemblyOf;
-			} 
-		}	
-		[IndexedProperty]
-		[EntityAttribute(35, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 0, -1, 37)]
-		public OptionalItemSet<CobieJob> @Jobs 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jobs;
-				((IPersistEntity)this).Activate(false);
-				return _jobs;
+				SetValue( v =>  _sustainabilityPerformance = v, _sustainabilityPerformance, value,  "SustainabilityPerformance", 40);
 			} 
 		}	
 		#endregion
@@ -460,28 +645,36 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Type")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 38)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 46)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieComponent>(e => (e.Type as CobieType) == this, "Type", this);
+				return Model.Instances.Where<CobieComponent>(e => Equals(e.Type), "Type", this);
 			} 
 		}
 		[InverseProperty("Type")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 39)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 47)]
 		public IEnumerable<CobieSpare> @Spares 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<CobieSpare>(e => (e.Type as CobieType) == this, "Type", this);
+				return Model.Instances.Where<CobieSpare>(e => Equals(e.Type), "Type", this);
+			} 
+		}
+		[InverseProperty("Type")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 48)]
+		public IEnumerable<CobieJob> @Jobs 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<CobieJob>(e => Equals(e.Type), "Type", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -496,90 +689,94 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
+				case 12: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
+				case 13: 
 					_assetType = (CobieAssetType)(value.EntityVal);
 					return;
-				case 12: 
+				case 14: 
 					_manufacturer = (CobieContact)(value.EntityVal);
 					return;
-				case 13: 
+				case 15: 
 					_modelNumber = value.StringVal;
 					return;
-				case 14: 
-					_warranty = (CobieWarranty)(value.EntityVal);
-					return;
-				case 15: 
-					_replacementCost = value.RealVal;
-					return;
 				case 16: 
-					_expectedLife = value.RealVal;
+					_warrantyDescription = value.StringVal;
 					return;
 				case 17: 
-					_durationUnit = (CobieDurationUnit)(value.EntityVal);
+					_warrantyGuarantorParts = (CobieContact)(value.EntityVal);
 					return;
 				case 18: 
-					_nominalLength = value.RealVal;
+					_warrantyDurationParts = value.RealVal;
 					return;
 				case 19: 
-					_nominalWidth = value.RealVal;
+					_warrantyGuarantorLabor = (CobieContact)(value.EntityVal);
 					return;
 				case 20: 
-					_nominalHeight = value.RealVal;
+					_warrantyDurationLabor = value.RealVal;
 					return;
 				case 21: 
-					_modelReference = value.StringVal;
+					_warrantyDurationUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				case 22: 
-					_shape = value.StringVal;
+					_replacementCost = value.RealVal;
 					return;
 				case 23: 
-					_size = value.StringVal;
+					_expectedLife = value.RealVal;
 					return;
 				case 24: 
-					_color = value.StringVal;
+					_durationUnit = (CobieDurationUnit)(value.EntityVal);
 					return;
 				case 25: 
-					_finish = value.StringVal;
+					_nominalLength = value.RealVal;
 					return;
 				case 26: 
-					_grade = value.StringVal;
+					_nominalWidth = value.RealVal;
 					return;
 				case 27: 
-					_material = value.StringVal;
+					_nominalHeight = value.RealVal;
 					return;
 				case 28: 
-					_constituents = value.StringVal;
+					_modelReference = value.StringVal;
 					return;
 				case 29: 
-					_features = value.StringVal;
+					_shape = value.StringVal;
 					return;
 				case 30: 
-					_accessibilityPerformance = value.StringVal;
+					_size = value.StringVal;
 					return;
 				case 31: 
-					_codePerformance = value.StringVal;
+					_color = value.StringVal;
 					return;
 				case 32: 
-					_sustainabilityPerformance = value.StringVal;
+					_finish = value.StringVal;
 					return;
 				case 33: 
-					if (_assemblyOf == null) _assemblyOf = new OptionalItemSet<CobieType>( this );
-					_assemblyOf.InternalAdd((CobieType)value.EntityVal);
+					_grade = value.StringVal;
 					return;
 				case 34: 
-					if (_jobs == null) _jobs = new OptionalItemSet<CobieJob>( this );
-					_jobs.InternalAdd((CobieJob)value.EntityVal);
+					_material = value.StringVal;
+					return;
+				case 35: 
+					_constituents = value.StringVal;
+					return;
+				case 36: 
+					_features = value.StringVal;
+					return;
+				case 37: 
+					_accessibilityPerformance = value.StringVal;
+					return;
+				case 38: 
+					_codePerformance = value.StringVal;
+					return;
+				case 39: 
+					_sustainabilityPerformance = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -588,55 +785,65 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieType
-            var root = (@CobieType)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieType left, @CobieType right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieType left, @CobieType right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieType x, @CobieType y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieType obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				foreach(var entity in @AssemblyOf)
+					yield return entity;
+				if (@AssetType != null)
+					yield return @AssetType;
+				if (@Manufacturer != null)
+					yield return @Manufacturer;
+				if (@WarrantyGuarantorParts != null)
+					yield return @WarrantyGuarantorParts;
+				if (@WarrantyGuarantorLabor != null)
+					yield return @WarrantyGuarantorLabor;
+				if (@WarrantyDurationUnit != null)
+					yield return @WarrantyDurationUnit;
+				if (@DurationUnit != null)
+					yield return @DurationUnit;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

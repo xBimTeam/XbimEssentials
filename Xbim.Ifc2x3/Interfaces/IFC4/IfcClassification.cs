@@ -10,26 +10,47 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	public partial class @IfcClassification : IIfcClassification
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 1)]
 		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Source 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Source);
 			} 
+			set
+			{
+				Source = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 2)]
 		Ifc4.MeasureResource.IfcLabel? IIfcClassification.Edition 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Edition);
 			} 
+			set
+			{
+				Edition = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 default(MeasureResource.IfcLabel) ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 3)]
 		Ifc4.DateTimeResource.IfcDate? IIfcClassification.EditionDate 
 		{ 
 			get
@@ -38,33 +59,76 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
                 return EditionDate == null ? null : new Ifc4.DateTimeResource.IfcDate(EditionDate.ToISODateTimeString());
 			    //##
 			} 
+			set
+			{
+				//## Handle setting of EditionDate for which no match was found
+                if (!value.HasValue)
+                {
+                    EditionDate = null;
+                    return;
+                }
+                System.DateTime date = value.Value;
+                EditionDate = Model.Instances.New<DateTimeResource.IfcCalendarDate>(d =>
+                {
+                    d.YearComponent = date.Year;
+                    d.MonthComponent = date.Month;
+                    d.DayComponent = date.Day;
+                });
+				//##
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 4)]
 		Ifc4.MeasureResource.IfcLabel IIfcClassification.Name 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcLabel(Name);
 			} 
+			set
+			{
+				Name = new MeasureResource.IfcLabel(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcText? _description;
+
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 5)]
 		Ifc4.MeasureResource.IfcText? IIfcClassification.Description 
 		{ 
 			get
 			{
-				//## Handle return of Description for which no match was found
-			    return null;
-			    //##
+				return _description;
 			} 
+			set
+			{
+				SetValue(v => _description = v, _description, value, "Description", -5);
+				
+			}
 		}
+
+		private  Ifc4.ExternalReferenceResource.IfcURIReference? _location;
+
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 6)]
 		Ifc4.ExternalReferenceResource.IfcURIReference? IIfcClassification.Location 
 		{ 
 			get
 			{
-				//## Handle return of Location for which no match was found
-			    return null;
-			    //##
+				return _location;
 			} 
+			set
+			{
+				SetValue(v => _location = v, _location, value, "Location", -6);
+				
+			}
 		}
-		IEnumerable<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
+
+		[CrossSchemaAttribute(typeof(IIfcClassification), 7)]
+		IItemSet<Xbim.Ifc4.MeasureResource.IfcIdentifier> IIfcClassification.ReferenceTokens 
 		{ 
 			get
 			{

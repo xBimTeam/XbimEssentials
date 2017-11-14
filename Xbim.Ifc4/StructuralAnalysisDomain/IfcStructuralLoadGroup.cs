@@ -16,6 +16,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.StructuralAnalysisDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,11 +27,11 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcStructuralLoadGroup : IIfcGroup
 	{
-		IfcLoadGroupTypeEnum @PredefinedType { get; }
-		IfcActionTypeEnum @ActionType { get; }
-		IfcActionSourceTypeEnum @ActionSource { get; }
-		IfcRatioMeasure? @Coefficient { get; }
-		IfcLabel? @Purpose { get; }
+		IfcLoadGroupTypeEnum @PredefinedType { get;  set; }
+		IfcActionTypeEnum @ActionType { get;  set; }
+		IfcActionSourceTypeEnum @ActionSource { get;  set; }
+		IfcRatioMeasure? @Coefficient { get;  set; }
+		IfcLabel? @Purpose { get;  set; }
 		IEnumerable<IIfcStructuralResultGroup> @SourceOfResultGroup {  get; }
 		IEnumerable<IIfcStructuralAnalysisModel> @LoadGroupFor {  get; }
 	
@@ -38,24 +40,44 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralLoadGroup", 1033)]
+	[ExpressType("IfcStructuralLoadGroup", 573)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IEqualityComparer<@IfcStructuralLoadGroup>, IEquatable<@IfcStructuralLoadGroup>
+	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IContainsEntityReferences, IEquatable<@IfcStructuralLoadGroup>
 	{
 		#region IIfcStructuralLoadGroup explicit implementation
-		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { get { return @PredefinedType; } }	
-		IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType { get { return @ActionType; } }	
-		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { get { return @ActionSource; } }	
-		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { get { return @Coefficient; } }	
-		IfcLabel? IIfcStructuralLoadGroup.Purpose { get { return @Purpose; } }	
+		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { 
+ 
+			get { return @PredefinedType; } 
+			set { PredefinedType = value;}
+		}	
+		IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType { 
+ 
+			get { return @ActionType; } 
+			set { ActionType = value;}
+		}	
+		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { 
+ 
+			get { return @ActionSource; } 
+			set { ActionSource = value;}
+		}	
+		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { 
+ 
+			get { return @Coefficient; } 
+			set { Coefficient = value;}
+		}	
+		IfcLabel? IIfcStructuralLoadGroup.Purpose { 
+ 
+			get { return @Purpose; } 
+			set { Purpose = value;}
+		}	
 		 
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup {  get { return @SourceOfResultGroup; } }
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor {  get { return @LoadGroupFor; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcStructuralLoadGroup(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcStructuralLoadGroup(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -72,13 +94,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _predefinedType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _predefinedType;
+				Activate();
 				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType");
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
@@ -86,13 +108,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actionType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actionType;
+				Activate();
 				return _actionType;
 			} 
 			set
 			{
-				SetValue( v =>  _actionType = v, _actionType, value,  "ActionType");
+				SetValue( v =>  _actionType = v, _actionType, value,  "ActionType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
@@ -100,13 +122,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _actionSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _actionSource;
+				Activate();
 				return _actionSource;
 			} 
 			set
 			{
-				SetValue( v =>  _actionSource = v, _actionSource, value,  "ActionSource");
+				SetValue( v =>  _actionSource = v, _actionSource, value,  "ActionSource", 8);
 			} 
 		}	
 		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
@@ -114,13 +136,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _coefficient;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _coefficient;
+				Activate();
 				return _coefficient;
 			} 
 			set
 			{
-				SetValue( v =>  _coefficient = v, _coefficient, value,  "Coefficient");
+				SetValue( v =>  _coefficient = v, _coefficient, value,  "Coefficient", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
@@ -128,13 +150,13 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _purpose;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _purpose;
+				Activate();
 				return _purpose;
 			} 
 			set
 			{
-				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose");
+				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 10);
 			} 
 		}	
 		#endregion
@@ -148,7 +170,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcStructuralResultGroup>(e => (e.ResultForLoadGroup as IfcStructuralLoadGroup) == this, "ResultForLoadGroup", this);
+				return Model.Instances.Where<IfcStructuralResultGroup>(e => Equals(e.ResultForLoadGroup), "ResultForLoadGroup", this);
 			} 
 		}
 		[InverseProperty("LoadedBy")]
@@ -162,9 +184,8 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -194,12 +215,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*HasObjectType:) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -207,55 +222,18 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcStructuralLoadGroup
-            var root = (@IfcStructuralLoadGroup)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcStructuralLoadGroup left, @IfcStructuralLoadGroup right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcStructuralLoadGroup left, @IfcStructuralLoadGroup right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcStructuralLoadGroup x, @IfcStructuralLoadGroup y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcStructuralLoadGroup obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

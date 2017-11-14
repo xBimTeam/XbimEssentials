@@ -10,27 +10,43 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	public partial class @IfcQuantityCount : IIfcQuantityCount
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcQuantityCount), 4)]
 		Ifc4.MeasureResource.IfcCountMeasure IIfcQuantityCount.CountValue 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcCountMeasure(CountValue);
 			} 
+			set
+			{
+				CountValue = new MeasureResource.IfcCountMeasure(value);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcLabel? _formula;
+
+
+		[CrossSchemaAttribute(typeof(IIfcQuantityCount), 5)]
 		Ifc4.MeasureResource.IfcLabel? IIfcQuantityCount.Formula 
 		{ 
 			get
 			{
-				//## Handle return of Formula for which no match was found
-                return null;
-				//##
+				return _formula;
 			} 
+			set
+			{
+				SetValue(v => _formula = v, _formula, value, "Formula", -5);
+				
+			}
 		}
 	//## Custom code
 	//##

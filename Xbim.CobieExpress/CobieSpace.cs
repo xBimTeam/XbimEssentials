@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -23,11 +25,11 @@ namespace Xbim.CobieExpress.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @ICobieSpace : ICobieAsset, SpatialDivision
 	{
-		string @RoomTag { get; }
-		double? @UsableHeight { get; }
-		double? @GrossArea { get; }
-		double? @NetArea { get; }
-		ICobieFloor @Floor { get; }
+		string @RoomTag { get;  set; }
+		double? @UsableHeight { get;  set; }
+		double? @GrossArea { get;  set; }
+		double? @NetArea { get;  set; }
+		ICobieFloor @Floor { get;  set; }
 		IEnumerable<ICobieComponent> @Components {  get; }
 		IEnumerable<ICobieZone> @InZones {  get; }
 	
@@ -36,25 +38,45 @@ namespace Xbim.CobieExpress.Interfaces
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
 	[ExpressType("Space", 18)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IEqualityComparer<@CobieSpace>, IEquatable<@CobieSpace>
+	public  partial class @CobieSpace : CobieAsset, IInstantiableEntity, ICobieSpace, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieSpace>
 	{
 		#region ICobieSpace explicit implementation
-		string ICobieSpace.RoomTag { get { return @RoomTag; } }	
-		double? ICobieSpace.UsableHeight { get { return @UsableHeight; } }	
-		double? ICobieSpace.GrossArea { get { return @GrossArea; } }	
-		double? ICobieSpace.NetArea { get { return @NetArea; } }	
-		ICobieFloor ICobieSpace.Floor { get { return @Floor; } }	
+		string ICobieSpace.RoomTag { 
+ 
+			get { return @RoomTag; } 
+			set { RoomTag = value;}
+		}	
+		double? ICobieSpace.UsableHeight { 
+ 
+			get { return @UsableHeight; } 
+			set { UsableHeight = value;}
+		}	
+		double? ICobieSpace.GrossArea { 
+ 
+			get { return @GrossArea; } 
+			set { GrossArea = value;}
+		}	
+		double? ICobieSpace.NetArea { 
+ 
+			get { return @NetArea; } 
+			set { NetArea = value;}
+		}	
+		ICobieFloor ICobieSpace.Floor { 
+ 
+ 
+			get { return @Floor; } 
+			set { Floor = value as CobieFloor;}
+		}	
 		 
 		IEnumerable<ICobieComponent> ICobieSpace.Components {  get { return @Components; } }
 		IEnumerable<ICobieZone> ICobieSpace.InZones {  get { return @InZones; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieSpace(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal CobieSpace(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -66,75 +88,77 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
 		public string @RoomTag 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _roomTag;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _roomTag;
+				Activate();
 				return _roomTag;
 			} 
 			set
 			{
-				SetValue( v =>  _roomTag = v, _roomTag, value,  "RoomTag");
+				SetValue( v =>  _roomTag = v, _roomTag, value,  "RoomTag", 13);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
 		public double? @UsableHeight 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _usableHeight;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _usableHeight;
+				Activate();
 				return _usableHeight;
 			} 
 			set
 			{
-				SetValue( v =>  _usableHeight = v, _usableHeight, value,  "UsableHeight");
+				SetValue( v =>  _usableHeight = v, _usableHeight, value,  "UsableHeight", 14);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
 		public double? @GrossArea 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _grossArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _grossArea;
+				Activate();
 				return _grossArea;
 			} 
 			set
 			{
-				SetValue( v =>  _grossArea = v, _grossArea, value,  "GrossArea");
+				SetValue( v =>  _grossArea = v, _grossArea, value,  "GrossArea", 15);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
 		public double? @NetArea 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _netArea;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _netArea;
+				Activate();
 				return _netArea;
 			} 
 			set
 			{
-				SetValue( v =>  _netArea = v, _netArea, value,  "NetArea");
+				SetValue( v =>  _netArea = v, _netArea, value,  "NetArea", 16);
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
 		public CobieFloor @Floor 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _floor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _floor;
+				Activate();
 				return _floor;
 			} 
 			set
 			{
-				SetValue( v =>  _floor = v, _floor, value,  "Floor");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _floor = v, _floor, value,  "Floor", 17);
 			} 
 		}	
 		#endregion
@@ -143,7 +167,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Spaces")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 20)]
 		public IEnumerable<CobieComponent> @Components 
 		{ 
 			get 
@@ -152,7 +176,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Spaces")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 20)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 21)]
 		public IEnumerable<CobieZone> @InZones 
 		{ 
 			get 
@@ -162,9 +186,8 @@ namespace Xbim.CobieExpress
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -179,31 +202,27 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
+				case 12: 
 					_roomTag = value.StringVal;
 					return;
-				case 12: 
+				case 13: 
 					_usableHeight = value.RealVal;
 					return;
-				case 13: 
+				case 14: 
 					_grossArea = value.RealVal;
 					return;
-				case 14: 
+				case 15: 
 					_netArea = value.RealVal;
 					return;
-				case 15: 
+				case 16: 
 					_floor = (CobieFloor)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -212,55 +231,55 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieSpace
-            var root = (@CobieSpace)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieSpace left, @CobieSpace right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieSpace left, @CobieSpace right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieSpace x, @CobieSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				if (@Floor != null)
+					yield return @Floor;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				if (@Floor != null)
+					yield return @Floor;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

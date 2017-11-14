@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,8 +27,8 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDocumentReference : IIfcExternalReference, IfcDocumentSelect
 	{
-		IfcText? @Description { get; }
-		IIfcDocumentInformation @ReferencedDocument { get; }
+		IfcText? @Description { get;  set; }
+		IIfcDocumentInformation @ReferencedDocument { get;  set; }
 		IEnumerable<IIfcRelAssociatesDocument> @DocumentRefForObjects {  get; }
 	
 	}
@@ -34,21 +36,29 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
-	[IndexedClass]
-	[ExpressType("IfcDocumentReference", 587)]
+	[ExpressType("IfcDocumentReference", 450)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEqualityComparer<@IfcDocumentReference>, IEquatable<@IfcDocumentReference>
+	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentReference>
 	{
 		#region IIfcDocumentReference explicit implementation
-		IfcText? IIfcDocumentReference.Description { get { return @Description; } }	
-		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument { get { return @ReferencedDocument; } }	
+		IfcText? IIfcDocumentReference.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IIfcDocumentInformation IIfcDocumentReference.ReferencedDocument { 
+ 
+ 
+			get { return @ReferencedDocument; } 
+			set { ReferencedDocument = value as IfcDocumentInformation;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects {  get { return @DocumentRefForObjects; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDocumentReference(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcDocumentReference(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +72,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 4);
 			} 
 		}	
 		[IndexedProperty]
@@ -77,13 +87,15 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referencedDocument;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referencedDocument;
+				Activate();
 				return _referencedDocument;
 			} 
 			set
 			{
-				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _referencedDocument = v, _referencedDocument, value,  "ReferencedDocument", 5);
 			} 
 		}	
 		#endregion
@@ -97,14 +109,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesDocument>(e => (e.RelatingDocument as IfcDocumentReference) == this, "RelatingDocument", this);
+				return Model.Instances.Where<IfcRelAssociatesDocument>(e => Equals(e.RelatingDocument), "RelatingDocument", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -123,12 +134,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR1:	WR1 : EXISTS(Name) XOR EXISTS(ReferencedDocument);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -136,55 +141,31 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDocumentReference
-            var root = (@IfcDocumentReference)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDocumentReference left, @IfcDocumentReference right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDocumentReference left, @IfcDocumentReference right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDocumentReference x, @IfcDocumentReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDocumentReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ReferencedDocument != null)
+					yield return @ReferencedDocument;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ReferencedDocument != null)
+					yield return @ReferencedDocument;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

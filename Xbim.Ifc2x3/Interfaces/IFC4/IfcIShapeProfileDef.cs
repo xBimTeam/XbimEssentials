@@ -10,40 +10,71 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	public partial class @IfcIShapeProfileDef : IIfcIShapeProfileDef
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 4)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallWidth 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallWidth);
 			} 
+			set
+			{
+				OverallWidth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 5)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.OverallDepth 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(OverallDepth);
 			} 
+			set
+			{
+				OverallDepth = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 6)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.WebThickness 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(WebThickness);
 			} 
+			set
+			{
+				WebThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 7)]
 		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcIShapeProfileDef.FlangeThickness 
 		{ 
 			get
 			{
 				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(FlangeThickness);
 			} 
+			set
+			{
+				FlangeThickness = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 8)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FilletRadius 
 		{ 
 			get
@@ -51,24 +82,47 @@ namespace Xbim.Ifc2x3.ProfileResource
 				if (!FilletRadius.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcNonNegativeLengthMeasure(FilletRadius.Value);
 			} 
+			set
+			{
+				FilletRadius = value.HasValue ? 
+					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? _flangeEdgeRadius;
+
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 9)]
 		Ifc4.MeasureResource.IfcNonNegativeLengthMeasure? IIfcIShapeProfileDef.FlangeEdgeRadius 
 		{ 
 			get
 			{
-				//## Handle return of FlangeEdgeRadius for which no match was found
-			    return null;
-			    //##
+				return _flangeEdgeRadius;
 			} 
+			set
+			{
+				SetValue(v => _flangeEdgeRadius = v, _flangeEdgeRadius, value, "FlangeEdgeRadius", -9);
+				
+			}
 		}
+
+		private  Ifc4.MeasureResource.IfcPlaneAngleMeasure? _flangeSlope;
+
+
+		[CrossSchemaAttribute(typeof(IIfcIShapeProfileDef), 10)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcIShapeProfileDef.FlangeSlope 
 		{ 
 			get
 			{
-				//## Handle return of FlangeSlope for which no match was found
-			    return null;
-			    //##
+				return _flangeSlope;
 			} 
+			set
+			{
+				SetValue(v => _flangeSlope = v, _flangeSlope, value, "FlangeSlope", -10);
+				
+			}
 		}
 	//## Custom code
 	//##

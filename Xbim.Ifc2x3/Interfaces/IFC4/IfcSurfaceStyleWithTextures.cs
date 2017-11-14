@@ -10,20 +10,21 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcSurfaceStyleWithTextures : IIfcSurfaceStyleWithTextures
 	{
-		IEnumerable<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures 
+
+		[CrossSchemaAttribute(typeof(IIfcSurfaceStyleWithTextures), 1)]
+		IItemSet<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures 
 		{ 
 			get
 			{
-				foreach (var member in Textures)
-				{
-					yield return member as IIfcSurfaceTexture;
-				}
+			
+				return new Common.Collections.ProxyItemSet<IfcSurfaceTexture, IIfcSurfaceTexture>(Textures);
 			} 
 		}
 	//## Custom code

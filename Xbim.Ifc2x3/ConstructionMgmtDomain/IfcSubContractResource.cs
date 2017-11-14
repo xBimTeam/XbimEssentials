@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstructionMgmtDomain;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -25,8 +27,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSubContractResource : IIfcConstructionResource
 	{
-		IIfcActorSelect @SubContractor { get; }
-		IfcText? @JobDescription { get; }
+		IIfcActorSelect @SubContractor { get;  set; }
+		IfcText? @JobDescription { get;  set; }
 	
 	}
 }
@@ -35,17 +37,26 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcSubContractResource", 594)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IEqualityComparer<@IfcSubContractResource>, IEquatable<@IfcSubContractResource>
+	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IContainsEntityReferences, IEquatable<@IfcSubContractResource>
 	{
 		#region IIfcSubContractResource explicit implementation
-		IIfcActorSelect IIfcSubContractResource.SubContractor { get { return @SubContractor; } }	
-		IfcText? IIfcSubContractResource.JobDescription { get { return @JobDescription; } }	
+		IIfcActorSelect IIfcSubContractResource.SubContractor { 
+ 
+ 
+			get { return @SubContractor; } 
+			set { SubContractor = value as IfcActorSelect;}
+		}	
+		IfcText? IIfcSubContractResource.JobDescription { 
+ 
+			get { return @JobDescription; } 
+			set { JobDescription = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSubContractResource(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSubContractResource(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -59,13 +70,15 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _subContractor;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _subContractor;
+				Activate();
 				return _subContractor;
 			} 
 			set
 			{
-				SetValue( v =>  _subContractor = v, _subContractor, value,  "SubContractor");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _subContractor = v, _subContractor, value,  "SubContractor", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
@@ -73,13 +86,13 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _jobDescription;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _jobDescription;
+				Activate();
 				return _jobDescription;
 			} 
 			set
 			{
-				SetValue( v =>  _jobDescription = v, _jobDescription, value,  "JobDescription");
+				SetValue( v =>  _jobDescription = v, _jobDescription, value,  "JobDescription", 11);
 			} 
 		}	
 		#endregion
@@ -87,9 +100,8 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -114,11 +126,6 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -126,55 +133,22 @@ namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSubContractResource
-            var root = (@IfcSubContractResource)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSubContractResource left, @IfcSubContractResource right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSubContractResource left, @IfcSubContractResource right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSubContractResource x, @IfcSubContractResource y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSubContractResource obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@BaseQuantity != null)
+					yield return @BaseQuantity;
+				if (@SubContractor != null)
+					yield return @SubContractor;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

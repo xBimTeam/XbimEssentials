@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	public partial class @IfcStructuralLoadSingleDisplacement : IIfcStructuralLoadSingleDisplacement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!DisplacementX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(DisplacementX.Value);
 			} 
+			set
+			{
+				DisplacementX = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 3)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY 
 		{ 
 			get
@@ -31,7 +43,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!DisplacementY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(DisplacementY.Value);
 			} 
+			set
+			{
+				DisplacementY = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 4)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ 
 		{ 
 			get
@@ -39,7 +60,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!DisplacementZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(DisplacementZ.Value);
 			} 
+			set
+			{
+				DisplacementZ = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 5)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX 
 		{ 
 			get
@@ -47,7 +77,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!RotationalDisplacementRX.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(RotationalDisplacementRX.Value);
 			} 
+			set
+			{
+				RotationalDisplacementRX = value.HasValue ? 
+					new MeasureResource.IfcPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcPlaneAngleMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 6)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY 
 		{ 
 			get
@@ -55,7 +94,16 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!RotationalDisplacementRY.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(RotationalDisplacementRY.Value);
 			} 
+			set
+			{
+				RotationalDisplacementRY = value.HasValue ? 
+					new MeasureResource.IfcPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcPlaneAngleMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcStructuralLoadSingleDisplacement), 7)]
 		Ifc4.MeasureResource.IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ 
 		{ 
 			get
@@ -63,6 +111,13 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				if (!RotationalDisplacementRZ.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcPlaneAngleMeasure(RotationalDisplacementRZ.Value);
 			} 
+			set
+			{
+				RotationalDisplacementRZ = value.HasValue ? 
+					new MeasureResource.IfcPlaneAngleMeasure(value.Value) :  
+					 new MeasureResource.IfcPlaneAngleMeasure?() ;
+				
+			}
 		}
 	//## Custom code
 	//##

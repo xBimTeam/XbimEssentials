@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,8 +26,8 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcSpace : IIfcSpatialStructureElement
 	{
-		IfcInternalOrExternalEnum @InteriorOrExteriorSpace { get; }
-		IfcLengthMeasure? @ElevationWithFlooring { get; }
+		IfcInternalOrExternalEnum @InteriorOrExteriorSpace { get;  set; }
+		IfcLengthMeasure? @ElevationWithFlooring { get;  set; }
 		IEnumerable<IIfcRelCoversSpaces> @HasCoverings {  get; }
 		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
 	
@@ -36,19 +38,27 @@ namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSpace", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IEqualityComparer<@IfcSpace>, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpace>
 	{
 		#region IIfcSpace explicit implementation
-		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { get { return @InteriorOrExteriorSpace; } }	
-		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { get { return @ElevationWithFlooring; } }	
+		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { 
+ 
+			get { return @InteriorOrExteriorSpace; } 
+			set { InteriorOrExteriorSpace = value;}
+		}	
+		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { 
+ 
+			get { return @ElevationWithFlooring; } 
+			set { ElevationWithFlooring = value;}
+		}	
 		 
 		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings {  get { return @HasCoverings; } }
 		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy {  get { return @BoundedBy; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSpace(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcSpace(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -62,13 +72,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _interiorOrExteriorSpace;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _interiorOrExteriorSpace;
+				Activate();
 				return _interiorOrExteriorSpace;
 			} 
 			set
 			{
-				SetValue( v =>  _interiorOrExteriorSpace = v, _interiorOrExteriorSpace, value,  "InteriorOrExteriorSpace");
+				SetValue( v =>  _interiorOrExteriorSpace = v, _interiorOrExteriorSpace, value,  "InteriorOrExteriorSpace", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
@@ -76,13 +86,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _elevationWithFlooring;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _elevationWithFlooring;
+				Activate();
 				return _elevationWithFlooring;
 			} 
 			set
 			{
-				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring");
+				SetValue( v =>  _elevationWithFlooring = v, _elevationWithFlooring, value,  "ElevationWithFlooring", 11);
 			} 
 		}	
 		#endregion
@@ -96,7 +106,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelCoversSpaces>(e => (e.RelatedSpace as IfcSpace) == this, "RelatedSpace", this);
+				return Model.Instances.Where<IfcRelCoversSpaces>(e => Equals(e.RelatedSpace), "RelatedSpace", this);
 			} 
 		}
 		[InverseProperty("RelatingSpace")]
@@ -105,14 +115,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcSpace) == this, "RelatingSpace", this);
+				return Model.Instances.Where<IfcRelSpaceBoundary>(e => Equals(e.RelatingSpace), "RelatingSpace", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -137,11 +146,6 @@ namespace Xbim.Ifc2x3.ProductExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -149,55 +153,37 @@ namespace Xbim.Ifc2x3.ProductExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcSpace
-            var root = (@IfcSpace)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcSpace left, @IfcSpace right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcSpace left, @IfcSpace right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcSpace x, @IfcSpace y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcSpace obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcBuilding : IIfcBuilding
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 10)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight 
 		{ 
 			get
@@ -23,7 +26,16 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ElevationOfRefHeight.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfRefHeight.Value);
 			} 
+			set
+			{
+				ElevationOfRefHeight = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 11)]
 		Ifc4.MeasureResource.IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain 
 		{ 
 			get
@@ -31,22 +43,44 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!ElevationOfTerrain.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcLengthMeasure(ElevationOfTerrain.Value);
 			} 
+			set
+			{
+				ElevationOfTerrain = value.HasValue ? 
+					new MeasureResource.IfcLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcLengthMeasure?() ;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 12)]
 		IIfcPostalAddress IIfcBuilding.BuildingAddress 
 		{ 
 			get
 			{
 				return BuildingAddress;
 			} 
+			set
+			{
+				BuildingAddress = value as ActorResource.IfcPostalAddress;
+				
+			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcBuilding), 8)]
 		Ifc4.MeasureResource.IfcLabel? IIfcSpatialElement.LongName 
 		{ 
 			get
 			{
-				//## Handle return of LongName for which no match was found
-			    return !Name.HasValue ? null : new Ifc4.MeasureResource.IfcLabel(Name.Value);
-			    //##
+				if (!LongName.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(LongName.Value);
 			} 
+			set
+			{
+				LongName = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialElement.ContainsElements 
 		{ 

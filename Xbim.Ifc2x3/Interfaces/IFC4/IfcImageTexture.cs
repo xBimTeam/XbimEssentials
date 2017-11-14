@@ -10,18 +10,26 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	public partial class @IfcImageTexture : IIfcImageTexture
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcImageTexture), 6)]
 		Ifc4.ExternalReferenceResource.IfcURIReference IIfcImageTexture.URLReference 
 		{ 
 			get
 			{
 				return new Ifc4.ExternalReferenceResource.IfcURIReference(UrlReference);
 			} 
+			set
+			{
+				UrlReference = new MeasureResource.IfcIdentifier(value);
+				
+			}
 		}
 	//## Custom code
 	//##

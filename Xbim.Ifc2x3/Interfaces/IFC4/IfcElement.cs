@@ -10,12 +10,15 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	public partial class @IfcElement : IIfcElement
 	{
+
+		[CrossSchemaAttribute(typeof(IIfcElement), 8)]
 		Ifc4.MeasureResource.IfcIdentifier? IIfcElement.Tag 
 		{ 
 			get
@@ -23,6 +26,13 @@ namespace Xbim.Ifc2x3.ProductExtension
 				if (!Tag.HasValue) return null;
 				return new Ifc4.MeasureResource.IfcIdentifier(Tag.Value);
 			} 
+			set
+			{
+				Tag = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
+				
+			}
 		}
 		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids 
 		{ 

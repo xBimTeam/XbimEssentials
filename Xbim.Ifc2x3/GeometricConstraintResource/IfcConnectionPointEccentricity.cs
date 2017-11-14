@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricConstraintResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -24,9 +26,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcConnectionPointEccentricity : IIfcConnectionPointGeometry
 	{
-		IfcLengthMeasure? @EccentricityInX { get; }
-		IfcLengthMeasure? @EccentricityInY { get; }
-		IfcLengthMeasure? @EccentricityInZ { get; }
+		IfcLengthMeasure? @EccentricityInX { get;  set; }
+		IfcLengthMeasure? @EccentricityInY { get;  set; }
+		IfcLengthMeasure? @EccentricityInZ { get;  set; }
 	
 	}
 }
@@ -35,18 +37,30 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPointEccentricity", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IEqualityComparer<@IfcConnectionPointEccentricity>, IEquatable<@IfcConnectionPointEccentricity>
+	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IContainsEntityReferences, IEquatable<@IfcConnectionPointEccentricity>
 	{
 		#region IIfcConnectionPointEccentricity explicit implementation
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { get { return @EccentricityInX; } }	
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { get { return @EccentricityInY; } }	
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { get { return @EccentricityInZ; } }	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { 
+ 
+			get { return @EccentricityInX; } 
+			set { EccentricityInX = value;}
+		}	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { 
+ 
+			get { return @EccentricityInY; } 
+			set { EccentricityInY = value;}
+		}	
+		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { 
+ 
+			get { return @EccentricityInZ; } 
+			set { EccentricityInZ = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcConnectionPointEccentricity(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcConnectionPointEccentricity(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +75,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eccentricityInX;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eccentricityInX;
+				Activate();
 				return _eccentricityInX;
 			} 
 			set
 			{
-				SetValue( v =>  _eccentricityInX = v, _eccentricityInX, value,  "EccentricityInX");
+				SetValue( v =>  _eccentricityInX = v, _eccentricityInX, value,  "EccentricityInX", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -75,13 +89,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eccentricityInY;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eccentricityInY;
+				Activate();
 				return _eccentricityInY;
 			} 
 			set
 			{
-				SetValue( v =>  _eccentricityInY = v, _eccentricityInY, value,  "EccentricityInY");
+				SetValue( v =>  _eccentricityInY = v, _eccentricityInY, value,  "EccentricityInY", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -89,13 +103,13 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _eccentricityInZ;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _eccentricityInZ;
+				Activate();
 				return _eccentricityInZ;
 			} 
 			set
 			{
-				SetValue( v =>  _eccentricityInZ = v, _eccentricityInZ, value,  "EccentricityInZ");
+				SetValue( v =>  _eccentricityInZ = v, _eccentricityInZ, value,  "EccentricityInZ", 5);
 			} 
 		}	
 		#endregion
@@ -103,9 +117,8 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -126,11 +139,6 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -138,55 +146,20 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcConnectionPointEccentricity
-            var root = (@IfcConnectionPointEccentricity)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcConnectionPointEccentricity left, @IfcConnectionPointEccentricity right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcConnectionPointEccentricity left, @IfcConnectionPointEccentricity right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcConnectionPointEccentricity x, @IfcConnectionPointEccentricity y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcConnectionPointEccentricity obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@PointOnRelatingElement != null)
+					yield return @PointOnRelatingElement;
+				if (@PointOnRelatedElement != null)
+					yield return @PointOnRelatedElement;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

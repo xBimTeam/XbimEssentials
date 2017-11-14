@@ -55,6 +55,8 @@ namespace Xbim.IO.Esent
         public EsentShapeGeometryCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
             : base(model, database, mode)
         {
+            
+
             Api.JetOpenTable(this.Sesid, this.DbId, GeometryTableName, null, 0, mode == OpenDatabaseGrbit.ReadOnly ? OpenTableGrbit.ReadOnly :
                                                                                 mode == OpenDatabaseGrbit.Exclusive ? OpenTableGrbit.DenyWrite : OpenTableGrbit.None,
                                                                                 out this.Table);

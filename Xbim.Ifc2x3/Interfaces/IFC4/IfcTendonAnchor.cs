@@ -10,20 +10,29 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	public partial class @IfcTendonAnchor : IIfcTendonAnchor
 	{
+
+		private  Ifc4.Interfaces.IfcTendonAnchorTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcTendonAnchor), 10)]
 		Ifc4.Interfaces.IfcTendonAnchorTypeEnum? IIfcTendonAnchor.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-                return null;
-				//##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -10);
+				
+			}
 		}
 	//## Custom code
 	//##

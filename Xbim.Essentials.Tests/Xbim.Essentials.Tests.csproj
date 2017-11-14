@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -48,15 +49,20 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FederationTestsForIfcStore.cs" />
     <Compile Include="Federation Tests.cs" />
     <Compile Include="GeometryCacheTests.cs" />
     <Compile Include="GeometryPersistencyTables.cs" />
     <Compile Include="GeometryTests.cs" />
+    <Compile Include="LinqTest.cs" />
+    <Compile Include="PartialClassesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PackedNormalTests.cs" />
     <Compile Include="IfcHeaderTests.cs" />
@@ -69,6 +75,20 @@
     <Compile Include="InterfacesDataRetrieval.cs" />
     <Compile Include="NullStyleTests.cs" />
     <Compile Include="ListOfListTest.cs" />
+    <Compile Include="Ifc4DateTimeTests.cs" />
+    <Compile Include="SearchTests.cs" />
+    <Compile Include="TransactionalChanges.cs" />
+    <Compile Include="InverseCacheTests.cs" />
+    <Compile Include="CrossAccessTests.cs" />
+    <Compile Include="EditableInterfaces.cs" />
+    <Compile Include="Pure4Tests.cs" />
+    <Compile Include="UnitNameTest.cs" />
+    <Compile Include="OwnerHistoryTests.cs" />
+    <Compile Include="NullableInterfaceEnumMemberTest.cs" />
+    <Compile Include="AngleTests.cs" />
+    <Compile Include="ValidationTests.cs" />
+    <Compile Include="BinaryDataTests.cs" />
+    <Compile Include="XbimColourTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj">
@@ -101,6 +121,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="GeometryCacheTestFiles\Monolith-NoGeomTables.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -113,7 +134,25 @@
     <None Include="TestSourceFiles\4walls1floorSite.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestSourceFiles\4walls1floorSite.ifczip">
+    <None Include="TestSourceFiles\email.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\InvalidContentFC4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\AlmostEmptyIFC4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Axis2PlacementError.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\SampleHouse4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\TestZip.ifczip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\House.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\IfcBSplineSurfaceWithKnots.ifc">
@@ -140,6 +179,14 @@
     <None Include="GeometryCacheTestFiles\Monolith_v20.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\ValidationTests2x3.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestSourceFiles\xbim.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

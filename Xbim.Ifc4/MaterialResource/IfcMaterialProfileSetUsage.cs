@@ -15,6 +15,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MaterialResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -24,29 +26,42 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcMaterialProfileSetUsage : IIfcMaterialUsageDefinition
 	{
-		IIfcMaterialProfileSet @ForProfileSet { get; }
-		IfcCardinalPointReference? @CardinalPoint { get; }
-		IfcPositiveLengthMeasure? @ReferenceExtent { get; }
+		IIfcMaterialProfileSet @ForProfileSet { get;  set; }
+		IfcCardinalPointReference? @CardinalPoint { get;  set; }
+		IfcPositiveLengthMeasure? @ReferenceExtent { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.MaterialResource
 {
-	[ExpressType("IfcMaterialProfileSetUsage", 762)]
+	[ExpressType("IfcMaterialProfileSetUsage", 1207)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialProfileSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialProfileSetUsage, IEqualityComparer<@IfcMaterialProfileSetUsage>, IEquatable<@IfcMaterialProfileSetUsage>
+	public  partial class @IfcMaterialProfileSetUsage : IfcMaterialUsageDefinition, IInstantiableEntity, IIfcMaterialProfileSetUsage, IContainsEntityReferences, IEquatable<@IfcMaterialProfileSetUsage>
 	{
 		#region IIfcMaterialProfileSetUsage explicit implementation
-		IIfcMaterialProfileSet IIfcMaterialProfileSetUsage.ForProfileSet { get { return @ForProfileSet; } }	
-		IfcCardinalPointReference? IIfcMaterialProfileSetUsage.CardinalPoint { get { return @CardinalPoint; } }	
-		IfcPositiveLengthMeasure? IIfcMaterialProfileSetUsage.ReferenceExtent { get { return @ReferenceExtent; } }	
+		IIfcMaterialProfileSet IIfcMaterialProfileSetUsage.ForProfileSet { 
+ 
+ 
+			get { return @ForProfileSet; } 
+			set { ForProfileSet = value as IfcMaterialProfileSet;}
+		}	
+		IfcCardinalPointReference? IIfcMaterialProfileSetUsage.CardinalPoint { 
+ 
+			get { return @CardinalPoint; } 
+			set { CardinalPoint = value;}
+		}	
+		IfcPositiveLengthMeasure? IIfcMaterialProfileSetUsage.ReferenceExtent { 
+ 
+			get { return @ReferenceExtent; } 
+			set { ReferenceExtent = value;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcMaterialProfileSetUsage(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcMaterialProfileSetUsage(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -61,13 +76,15 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _forProfileSet;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _forProfileSet;
+				Activate();
 				return _forProfileSet;
 			} 
 			set
 			{
-				SetValue( v =>  _forProfileSet = v, _forProfileSet, value,  "ForProfileSet");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _forProfileSet = v, _forProfileSet, value,  "ForProfileSet", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -75,13 +92,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _cardinalPoint;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _cardinalPoint;
+				Activate();
 				return _cardinalPoint;
 			} 
 			set
 			{
-				SetValue( v =>  _cardinalPoint = v, _cardinalPoint, value,  "CardinalPoint");
+				SetValue( v =>  _cardinalPoint = v, _cardinalPoint, value,  "CardinalPoint", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -89,13 +106,13 @@ namespace Xbim.Ifc4.MaterialResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referenceExtent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referenceExtent;
+				Activate();
 				return _referenceExtent;
 			} 
 			set
 			{
-				SetValue( v =>  _referenceExtent = v, _referenceExtent, value,  "ReferenceExtent");
+				SetValue( v =>  _referenceExtent = v, _referenceExtent, value,  "ReferenceExtent", 3);
 			} 
 		}	
 		#endregion
@@ -103,9 +120,8 @@ namespace Xbim.Ifc4.MaterialResource
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -122,11 +138,6 @@ namespace Xbim.Ifc4.MaterialResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -134,55 +145,18 @@ namespace Xbim.Ifc4.MaterialResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcMaterialProfileSetUsage
-            var root = (@IfcMaterialProfileSetUsage)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcMaterialProfileSetUsage left, @IfcMaterialProfileSetUsage right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcMaterialProfileSetUsage left, @IfcMaterialProfileSetUsage right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcMaterialProfileSetUsage x, @IfcMaterialProfileSetUsage y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcMaterialProfileSetUsage obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ForProfileSet != null)
+					yield return @ForProfileSet;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

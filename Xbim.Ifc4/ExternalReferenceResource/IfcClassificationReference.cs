@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ExternalReferenceResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,9 +27,9 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcClassificationReference : IIfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect
 	{
-		IIfcClassificationReferenceSelect @ReferencedSource { get; }
-		IfcText? @Description { get; }
-		IfcIdentifier? @Sort { get; }
+		IIfcClassificationReferenceSelect @ReferencedSource { get;  set; }
+		IfcText? @Description { get;  set; }
+		IfcIdentifier? @Sort { get;  set; }
 		IEnumerable<IIfcRelAssociatesClassification> @ClassificationRefForObjects {  get; }
 		IEnumerable<IIfcClassificationReference> @HasReferences {  get; }
 	
@@ -36,23 +38,35 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.ExternalReferenceResource
 {
-	[IndexedClass]
-	[ExpressType("IfcClassificationReference", 493)]
+	[ExpressType("IfcClassificationReference", 209)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IEqualityComparer<@IfcClassificationReference>, IEquatable<@IfcClassificationReference>
+	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationReference>
 	{
 		#region IIfcClassificationReference explicit implementation
-		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { get { return @ReferencedSource; } }	
-		IfcText? IIfcClassificationReference.Description { get { return @Description; } }	
-		IfcIdentifier? IIfcClassificationReference.Sort { get { return @Sort; } }	
+		IIfcClassificationReferenceSelect IIfcClassificationReference.ReferencedSource { 
+ 
+ 
+			get { return @ReferencedSource; } 
+			set { ReferencedSource = value as IfcClassificationReferenceSelect;}
+		}	
+		IfcText? IIfcClassificationReference.Description { 
+ 
+			get { return @Description; } 
+			set { Description = value;}
+		}	
+		IfcIdentifier? IIfcClassificationReference.Sort { 
+ 
+			get { return @Sort; } 
+			set { Sort = value;}
+		}	
 		 
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects {  get { return @ClassificationRefForObjects; } }
 		IEnumerable<IIfcClassificationReference> IIfcClassificationReference.HasReferences {  get { return @HasReferences; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcClassificationReference(IModel model) : base(model) 		{ 
-			Model = model; 
+		internal IfcClassificationReference(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -68,13 +82,15 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _referencedSource;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _referencedSource;
+				Activate();
 				return _referencedSource;
 			} 
 			set
 			{
-				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -82,13 +98,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _description;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _description;
+				Activate();
 				return _description;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description");
+				SetValue( v =>  _description = v, _description, value,  "Description", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -96,13 +112,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _sort;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _sort;
+				Activate();
 				return _sort;
 			} 
 			set
 			{
-				SetValue( v =>  _sort = v, _sort, value,  "Sort");
+				SetValue( v =>  _sort = v, _sort, value,  "Sort", 6);
 			} 
 		}	
 		#endregion
@@ -116,7 +132,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelAssociatesClassification>(e => (e.RelatingClassification as IfcClassificationReference) == this, "RelatingClassification", this);
+				return Model.Instances.Where<IfcRelAssociatesClassification>(e => Equals(e.RelatingClassification), "RelatingClassification", this);
 			} 
 		}
 		[InverseProperty("ReferencedSource")]
@@ -125,14 +141,13 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcClassificationReference>(e => (e.ReferencedSource as IfcClassificationReference) == this, "ReferencedSource", this);
+				return Model.Instances.Where<IfcClassificationReference>(e => Equals(e.ReferencedSource), "ReferencedSource", this);
 			} 
 		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -154,11 +169,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -166,55 +176,31 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcClassificationReference
-            var root = (@IfcClassificationReference)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcClassificationReference left, @IfcClassificationReference right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcClassificationReference left, @IfcClassificationReference right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcClassificationReference x, @IfcClassificationReference y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcClassificationReference obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@ReferencedSource != null)
+					yield return @ReferencedSource;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ReferencedSource != null)
+					yield return @ReferencedSource;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

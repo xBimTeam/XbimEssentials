@@ -17,6 +17,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ControlExtension;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc2x3.Interfaces
 {
@@ -26,9 +28,9 @@ namespace Xbim.Ifc2x3.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTimeSeriesSchedule : IIfcControl
 	{
-		IEnumerable<IIfcDateTimeSelect> @ApplicableDates { get; }
-		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get; }
-		IIfcTimeSeries @TimeSeries { get; }
+		IItemSet<IIfcDateTimeSelect> @ApplicableDates { get; }
+		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get;  set; }
+		IIfcTimeSeries @TimeSeries { get;  set; }
 	
 	}
 }
@@ -37,35 +39,46 @@ namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcTimeSeriesSchedule", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IEqualityComparer<@IfcTimeSeriesSchedule>, IEquatable<@IfcTimeSeriesSchedule>
+	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IContainsEntityReferences, IEquatable<@IfcTimeSeriesSchedule>
 	{
 		#region IIfcTimeSeriesSchedule explicit implementation
-		IEnumerable<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { get { return @ApplicableDates; } }	
-		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { get { return @TimeSeriesScheduleType; } }	
-		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { get { return @TimeSeries; } }	
+		IItemSet<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { 
+			get { return new Common.Collections.ProxyItemSet<IfcDateTimeSelect, IIfcDateTimeSelect>( @ApplicableDates); } 
+		}	
+		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { 
+ 
+			get { return @TimeSeriesScheduleType; } 
+			set { TimeSeriesScheduleType = value;}
+		}	
+		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { 
+ 
+ 
+			get { return @TimeSeries; } 
+			set { TimeSeries = value as IfcTimeSeries;}
+		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcTimeSeriesSchedule(IModel model) : base(model) 		{ 
-			Model = model; 
-			_applicableDates = new OptionalItemSet<IfcDateTimeSelect>( this, 0 );
+		internal IfcTimeSeriesSchedule(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_applicableDates = new OptionalItemSet<IfcDateTimeSelect>( this, 0,  6);
 		}
 
 		#region Explicit attribute fields
-		private OptionalItemSet<IfcDateTimeSelect> _applicableDates;
+		private readonly OptionalItemSet<IfcDateTimeSelect> _applicableDates;
 		private IfcTimeSeriesScheduleTypeEnum _timeSeriesScheduleType;
 		private IfcTimeSeries _timeSeries;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 12)]
-		public OptionalItemSet<IfcDateTimeSelect> @ApplicableDates 
+		public IOptionalItemSet<IfcDateTimeSelect> @ApplicableDates 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _applicableDates;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _applicableDates;
+				Activate();
 				return _applicableDates;
 			} 
 		}	
@@ -74,13 +87,13 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeSeriesScheduleType;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeSeriesScheduleType;
+				Activate();
 				return _timeSeriesScheduleType;
 			} 
 			set
 			{
-				SetValue( v =>  _timeSeriesScheduleType = v, _timeSeriesScheduleType, value,  "TimeSeriesScheduleType");
+				SetValue( v =>  _timeSeriesScheduleType = v, _timeSeriesScheduleType, value,  "TimeSeriesScheduleType", 7);
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
@@ -88,13 +101,15 @@ namespace Xbim.Ifc2x3.ControlExtension
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeSeries;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeSeries;
+				Activate();
 				return _timeSeries;
 			} 
 			set
 			{
-				SetValue( v =>  _timeSeries = v, _timeSeries, value,  "TimeSeries");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _timeSeries = v, _timeSeries, value,  "TimeSeries", 8);
 			} 
 		}	
 		#endregion
@@ -102,9 +117,8 @@ namespace Xbim.Ifc2x3.ControlExtension
 
 
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -116,7 +130,6 @@ namespace Xbim.Ifc2x3.ControlExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 5: 
-					if (_applicableDates == null) _applicableDates = new OptionalItemSet<IfcDateTimeSelect>( this );
 					_applicableDates.InternalAdd((IfcDateTimeSelect)value.EntityVal);
 					return;
 				case 6: 
@@ -129,12 +142,6 @@ namespace Xbim.Ifc2x3.ControlExtension
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public  override string WhereRule() 
-		{
-            throw new System.NotImplementedException();
-		/*WR41:	WR41 : NOT(TimeSeriesScheduleType=IfcTimeSeriesScheduleTypeEnum.USERDEFINED) OR EXISTS(SELF\IfcObject.ObjectType);*/
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -142,55 +149,22 @@ namespace Xbim.Ifc2x3.ControlExtension
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcTimeSeriesSchedule
-            var root = (@IfcTimeSeriesSchedule)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcTimeSeriesSchedule left, @IfcTimeSeriesSchedule right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcTimeSeriesSchedule left, @IfcTimeSeriesSchedule right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcTimeSeriesSchedule x, @IfcTimeSeriesSchedule y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcTimeSeriesSchedule obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				foreach(var entity in @ApplicableDates)
+					yield return entity;
+				if (@TimeSeries != null)
+					yield return @TimeSeries;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

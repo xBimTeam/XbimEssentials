@@ -16,6 +16,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
+//## Custom using statements
+//##
 
 namespace Xbim.Ifc4.Interfaces
 {
@@ -25,95 +27,65 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcDimensionalExponents : IPersistEntity
 	{
-		long @LengthExponent { get; }
-		long @MassExponent { get; }
-		long @TimeExponent { get; }
-		long @ElectricCurrentExponent { get; }
-		long @ThermodynamicTemperatureExponent { get; }
-		long @AmountOfSubstanceExponent { get; }
-		long @LuminousIntensityExponent { get; }
+		long @LengthExponent { get;  set; }
+		long @MassExponent { get;  set; }
+		long @TimeExponent { get;  set; }
+		long @ElectricCurrentExponent { get;  set; }
+		long @ThermodynamicTemperatureExponent { get;  set; }
+		long @AmountOfSubstanceExponent { get;  set; }
+		long @LuminousIntensityExponent { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.MeasureResource
 {
-	[ExpressType("IfcDimensionalExponents", 570)]
+	[ExpressType("IfcDimensionalExponents", 303)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionalExponents : INotifyPropertyChanged, IInstantiableEntity, IIfcDimensionalExponents, IEqualityComparer<@IfcDimensionalExponents>, IEquatable<@IfcDimensionalExponents>
+	public  partial class @IfcDimensionalExponents : PersistEntity, IInstantiableEntity, IIfcDimensionalExponents, IEquatable<@IfcDimensionalExponents>
 	{
 		#region IIfcDimensionalExponents explicit implementation
-		long IIfcDimensionalExponents.LengthExponent { get { return @LengthExponent; } }	
-		long IIfcDimensionalExponents.MassExponent { get { return @MassExponent; } }	
-		long IIfcDimensionalExponents.TimeExponent { get { return @TimeExponent; } }	
-		long IIfcDimensionalExponents.ElectricCurrentExponent { get { return @ElectricCurrentExponent; } }	
-		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { get { return @ThermodynamicTemperatureExponent; } }	
-		long IIfcDimensionalExponents.AmountOfSubstanceExponent { get { return @AmountOfSubstanceExponent; } }	
-		long IIfcDimensionalExponents.LuminousIntensityExponent { get { return @LuminousIntensityExponent; } }	
+		long IIfcDimensionalExponents.LengthExponent { 
+ 
+			get { return @LengthExponent; } 
+			set { LengthExponent = value;}
+		}	
+		long IIfcDimensionalExponents.MassExponent { 
+ 
+			get { return @MassExponent; } 
+			set { MassExponent = value;}
+		}	
+		long IIfcDimensionalExponents.TimeExponent { 
+ 
+			get { return @TimeExponent; } 
+			set { TimeExponent = value;}
+		}	
+		long IIfcDimensionalExponents.ElectricCurrentExponent { 
+ 
+			get { return @ElectricCurrentExponent; } 
+			set { ElectricCurrentExponent = value;}
+		}	
+		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { 
+ 
+			get { return @ThermodynamicTemperatureExponent; } 
+			set { ThermodynamicTemperatureExponent = value;}
+		}	
+		long IIfcDimensionalExponents.AmountOfSubstanceExponent { 
+ 
+			get { return @AmountOfSubstanceExponent; } 
+			set { AmountOfSubstanceExponent = value;}
+		}	
+		long IIfcDimensionalExponents.LuminousIntensityExponent { 
+ 
+			get { return @LuminousIntensityExponent; } 
+			set { LuminousIntensityExponent = value;}
+		}	
 		 
 		#endregion
 
-		#region Implementation of IPersistEntity
-
-		public int EntityLabel {get; internal set;}
-		
-		public IModel Model { get; internal set; }
-
-		/// <summary>
-        /// This property is deprecated and likely to be removed. Use just 'Model' instead.
-        /// </summary>
-		[Obsolete("This property is deprecated and likely to be removed. Use just 'Model' instead.")]
-        public IModel ModelOf { get { return Model; } }
-		
-	    internal ActivationStatus ActivationStatus = ActivationStatus.NotActivated;
-
-	    ActivationStatus IPersistEntity.ActivationStatus { get { return ActivationStatus; } }
-		
-		void IPersistEntity.Activate(bool write)
-		{
-			switch (ActivationStatus)
-		    {
-		        case ActivationStatus.ActivatedReadWrite:
-		            return;
-		        case ActivationStatus.NotActivated:
-		            lock (this)
-		            {
-                        //check again in the lock
-		                if (ActivationStatus == ActivationStatus.NotActivated)
-		                {
-		                    if (Model.Activate(this, write))
-		                    {
-		                        ActivationStatus = write
-		                            ? ActivationStatus.ActivatedReadWrite
-		                            : ActivationStatus.ActivatedRead;
-		                    }
-		                }
-		            }
-		            break;
-		        case ActivationStatus.ActivatedRead:
-		            if (!write) return;
-		            if (Model.Activate(this, true))
-                        ActivationStatus = ActivationStatus.ActivatedReadWrite;
-		            break;
-		        default:
-		            throw new ArgumentOutOfRangeException();
-		    }
-		}
-
-		void IPersistEntity.Activate (Action activation)
-		{
-			if (ActivationStatus != ActivationStatus.NotActivated) return; //activation can only happen once in a lifetime of the object
-			
-			activation();
-			ActivationStatus = ActivationStatus.ActivatedRead;
-		}
-
-		ExpressType IPersistEntity.ExpressType { get { return Model.Metadata.ExpressType(this);  } }
-		#endregion
-
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDimensionalExponents(IModel model) 		{ 
-			Model = model; 
+		internal IfcDimensionalExponents(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
 		}
 
 		#region Explicit attribute fields
@@ -132,13 +104,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _lengthExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _lengthExponent;
+				Activate();
 				return _lengthExponent;
 			} 
 			set
 			{
-				SetValue( v =>  _lengthExponent = v, _lengthExponent, value,  "LengthExponent");
+				SetValue( v =>  _lengthExponent = v, _lengthExponent, value,  "LengthExponent", 1);
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
@@ -146,13 +118,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _massExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _massExponent;
+				Activate();
 				return _massExponent;
 			} 
 			set
 			{
-				SetValue( v =>  _massExponent = v, _massExponent, value,  "MassExponent");
+				SetValue( v =>  _massExponent = v, _massExponent, value,  "MassExponent", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
@@ -160,13 +132,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _timeExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _timeExponent;
+				Activate();
 				return _timeExponent;
 			} 
 			set
 			{
-				SetValue( v =>  _timeExponent = v, _timeExponent, value,  "TimeExponent");
+				SetValue( v =>  _timeExponent = v, _timeExponent, value,  "TimeExponent", 3);
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
@@ -174,13 +146,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _electricCurrentExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _electricCurrentExponent;
+				Activate();
 				return _electricCurrentExponent;
 			} 
 			set
 			{
-				SetValue( v =>  _electricCurrentExponent = v, _electricCurrentExponent, value,  "ElectricCurrentExponent");
+				SetValue( v =>  _electricCurrentExponent = v, _electricCurrentExponent, value,  "ElectricCurrentExponent", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
@@ -188,13 +160,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _thermodynamicTemperatureExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _thermodynamicTemperatureExponent;
+				Activate();
 				return _thermodynamicTemperatureExponent;
 			} 
 			set
 			{
-				SetValue( v =>  _thermodynamicTemperatureExponent = v, _thermodynamicTemperatureExponent, value,  "ThermodynamicTemperatureExponent");
+				SetValue( v =>  _thermodynamicTemperatureExponent = v, _thermodynamicTemperatureExponent, value,  "ThermodynamicTemperatureExponent", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
@@ -202,13 +174,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _amountOfSubstanceExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _amountOfSubstanceExponent;
+				Activate();
 				return _amountOfSubstanceExponent;
 			} 
 			set
 			{
-				SetValue( v =>  _amountOfSubstanceExponent = v, _amountOfSubstanceExponent, value,  "AmountOfSubstanceExponent");
+				SetValue( v =>  _amountOfSubstanceExponent = v, _amountOfSubstanceExponent, value,  "AmountOfSubstanceExponent", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
@@ -216,13 +188,13 @@ namespace Xbim.Ifc4.MeasureResource
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _luminousIntensityExponent;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _luminousIntensityExponent;
+				Activate();
 				return _luminousIntensityExponent;
 			} 
 			set
 			{
-				SetValue( v =>  _luminousIntensityExponent = v, _luminousIntensityExponent, value,  "LuminousIntensityExponent");
+				SetValue( v =>  _luminousIntensityExponent = v, _luminousIntensityExponent, value,  "LuminousIntensityExponent", 7);
 			} 
 		}	
 		#endregion
@@ -230,58 +202,8 @@ namespace Xbim.Ifc4.MeasureResource
 
 
 
-		#region INotifyPropertyChanged implementation
-		 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void NotifyPropertyChanged( string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-		#endregion
-
-		#region Transactional property setting
-
-		protected void SetValue<TProperty>(Action<TProperty> setter, TProperty oldValue, TProperty newValue, string notifyPropertyName)
-		{
-			//activate for write if it is not activated yet
-			if (ActivationStatus != ActivationStatus.ActivatedReadWrite)
-				((IPersistEntity)this).Activate(true);
-
-			//just set the value if the model is marked as non-transactional
-			if (!Model.IsTransactional)
-			{
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-				return;
-			}
-
-			//check there is a transaction
-			var txn = Model.CurrentTransaction;
-			if (txn == null) throw new Exception("Operation out of transaction.");
-
-			Action doAction = () => {
-				setter(newValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			Action undoAction = () => {
-				setter(oldValue);
-				NotifyPropertyChanged(notifyPropertyName);
-			};
-			doAction();
-
-			//do action and THAN add to transaction so that it gets the object in new state
-			txn.AddReversibleAction(doAction, undoAction, this, ChangeType.Modified);
-		}
-
-		#endregion
-
 		#region IPersist implementation
-		public virtual void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -310,11 +232,6 @@ namespace Xbim.Ifc4.MeasureResource
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
 		}
-		
-		public virtual string WhereRule() 
-		{
-			return "";
-		}
 		#endregion
 
 		#region Equality comparers and operators
@@ -322,54 +239,6 @@ namespace Xbim.Ifc4.MeasureResource
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @IfcDimensionalExponents
-            var root = (@IfcDimensionalExponents)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@IfcDimensionalExponents left, @IfcDimensionalExponents right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@IfcDimensionalExponents left, @IfcDimensionalExponents right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@IfcDimensionalExponents x, @IfcDimensionalExponents y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@IfcDimensionalExponents obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
 
 		#region Custom code (will survive code regeneration)

@@ -14,7 +14,7 @@ namespace Xbim.Common.Metadata
         private readonly List<ExpressMetaProperty> _inverses = new List<ExpressMetaProperty>();
         private readonly List<ExpressMetaProperty> _derives = new List<ExpressMetaProperty>();
         private readonly List<ExpressType> _subTypes = new List<ExpressType>();
-        private List<Type> _nonAbstractSubTypes;
+        private List<ExpressType> _nonAbstractSubTypes;
         private readonly List<ExpressMetaProperty> _expressEnumerableProperties = new List<ExpressMetaProperty>();
         private readonly string _expressName;
         private readonly short _typeId;
@@ -75,7 +75,7 @@ namespace Xbim.Common.Metadata
         /// <summary>
         /// Don't ask for this before types hierarchy is finished or it will cache incomplete result.
         /// </summary>
-        public IEnumerable<Type> NonAbstractSubTypes
+        public IEnumerable<ExpressType> NonAbstractSubTypes
         {
             get
             {
@@ -83,7 +83,7 @@ namespace Xbim.Common.Metadata
                 {
                     //this needs to be set up after hierarchy is set up
                     if (_nonAbstractSubTypes != null) return _nonAbstractSubTypes;
-                    _nonAbstractSubTypes = new List<Type>();
+                    _nonAbstractSubTypes = new List<ExpressType>();
                     AddNonAbstractTypes(this, _nonAbstractSubTypes);
                 }
                 return _nonAbstractSubTypes;
@@ -104,7 +104,8 @@ namespace Xbim.Common.Metadata
             _expressName = ((ExpressTypeAttribute)entNameAttr).Name;
             _expressNameUpper = _expressName.ToUpperInvariant();
 
-            IndexedClass = type.GetCustomAttributes(typeof(IndexedClass), true).Any();
+            //it is not an indexed class by default. If it has any indexed properties it is an indexed class but that is detected later on.
+            IndexedClass = false;
 
             var dta = type.GetCustomAttributes(typeof(DefinedTypeAttribute), false).FirstOrDefault() as DefinedTypeAttribute;
             if (dta != null)
@@ -131,19 +132,6 @@ namespace Xbim.Common.Metadata
                 if (attribute.Order > 0)
                 {
                     _properties.Add(attribute.Order, metaProperty);
-                    if (propInfo.PropertyType.IsGenericType && typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
-                    {
-                        var eType = propInfo.PropertyType;
-                        while (typeof(IEnumerable).IsAssignableFrom(eType))
-                        {
-                            var genArgs = eType.GetGenericArguments();
-                            if(genArgs.Any())
-                                eType = genArgs[0];
-                            else
-                                break;
-                        }
-                        metaProperty.EnumerableType = eType;
-                    }
                 }
                 else if (attribute.State == EntityAttributeState.Derived)
                 {
@@ -155,9 +143,25 @@ namespace Xbim.Common.Metadata
                     metaProperty.InverseAttributeProperty = invAttr;
                     _inverses.Add(metaProperty);
                 }
-               
+
+                //set up enumerable type
+                if (propInfo.PropertyType.IsGenericType && typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType))
+                {
+                    var eType = propInfo.PropertyType;
+                    while (typeof(IEnumerable).IsAssignableFrom(eType))
+                    {
+                        var genArgs = eType.GetGenericArguments();
+                        if (genArgs.Any())
+                            eType = genArgs[0];
+                        else
+                            break;
+                    }
+                    metaProperty.EnumerableType = eType;
+                }
+
                 var isIndexed =
                     propInfo.GetCustomAttributes(typeof(IndexedProperty), false).Any();
+                metaProperty.IsIndexed = isIndexed;
                 if (!isIndexed) continue;
 
                 //TODO: MC: Review with Steve. This is not true for IfcRelDefinesByProperties.RelatingPropertyDefinition in IFC4
@@ -214,21 +218,22 @@ namespace Xbim.Common.Metadata
                     var h = entity.EntityLabel;
                     keys.Add(h); //normally there are only one or two keys so don't worry about performance of contains on a list
                 }
-                else if (o is IExpressEnumerable)
+                else if (o is IExpressEnumerable && o!=null) //null checking has been added for models that contain missing entities
                 {
-                    foreach (var obj in (IExpressEnumerable)o)
+                    foreach (var obj in (IExpressEnumerable)o) 
                     {
-                        var h =((IPersistEntity)obj).EntityLabel;
-                        keys.Add(h); //normally there are only one or two keys so don't worry about performance of contains on a list
+                        if (obj != null)
+                        {
+                            var h = ((IPersistEntity)obj).EntityLabel;
+                            keys.Add(h); //normally there are only one or two keys so don't worry about performance of contains on a list
+                        }
                     }                    
                 }
-                //TODO: MC: This won't be true for IfcRelDefinesByProperties.RelatingPropertyDefinition where 'o' might be only IPersist (IfcPropertySetDefinitionSet is a value type)
-
             }
             return keys;
         }
 
-        internal IEnumerable<PropertyInfo> IndexedProperties
+        public IEnumerable<PropertyInfo> IndexedProperties
         {
             get { return _indexedProperties ?? Enumerable.Empty<PropertyInfo>(); }
         }
@@ -238,10 +243,10 @@ namespace Xbim.Common.Metadata
             get { return _indexedValues; }
         }
 
-        private static void AddNonAbstractTypes(ExpressType expressType, ICollection<Type> nonAbstractTypes)
+        private static void AddNonAbstractTypes(ExpressType expressType, ICollection<ExpressType> nonAbstractTypes)
         {
             if (!expressType.Type.IsAbstract) //this is a concrete type so add it
-                nonAbstractTypes.Add(expressType.Type);
+                nonAbstractTypes.Add(expressType);
             foreach (var subType in expressType._subTypes)
                 AddNonAbstractTypes(subType, nonAbstractTypes);
         }
@@ -280,6 +285,26 @@ namespace Xbim.Common.Metadata
         public List<ExpressType> SubTypes
         {
             get { return _subTypes; }
+        }
+
+        /// <summary>
+        /// deep enumeration of all subtypes down in the inheritance hierarchy
+        /// </summary>
+        public IEnumerable<ExpressType> AllSubTypes
+        {
+            get
+            {
+                if(_subTypes == null)
+                    yield break;
+                foreach (var type in _subTypes)
+                {
+                    yield return type;
+                    foreach (var subType in type.AllSubTypes)
+                    {
+                        yield return subType;
+                    }
+                }
+            }
         }
 
         public Type UnderlyingType

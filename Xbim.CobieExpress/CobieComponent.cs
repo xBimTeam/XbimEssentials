@@ -14,6 +14,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.CobieExpress.Interfaces;
 using Xbim.CobieExpress;
+//## Custom using statements
+//##
 
 namespace Xbim.CobieExpress.Interfaces
 {
@@ -21,54 +23,75 @@ namespace Xbim.CobieExpress.Interfaces
     /// Readonly interface for CobieComponent
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @ICobieComponent : ICobieAsset
+	public partial interface @ICobieComponent : ICobieTypeOrComponent
 	{
-		string @SerialNumber { get; }
-		DateTimeValue? @InstallationDate { get; }
-		DateTimeValue? @WarrantyStartDate { get; }
-		string @TagNumber { get; }
-		string @BarCode { get; }
-		string @AssetIdentifier { get; }
-		ICobieType @Type { get; }
-		IEnumerable<ICobieSpace> @Spaces { get; }
-		IEnumerable<ICobieComponent> @AssemblyOf { get; }
+		string @SerialNumber { get;  set; }
+		DateTimeValue? @InstallationDate { get;  set; }
+		DateTimeValue? @WarrantyStartDate { get;  set; }
+		string @TagNumber { get;  set; }
+		string @BarCode { get;  set; }
+		string @AssetIdentifier { get;  set; }
+		ICobieType @Type { get;  set; }
+		IItemSet<ICobieSpace> @Spaces { get; }
 		IEnumerable<ICobieSystem> @InSystems {  get; }
-		IEnumerable<ICobieConnection> @ConnectedBefore {  get; }
-		IEnumerable<ICobieConnection> @ConnectedAfter {  get; }
-		IEnumerable<ICobieConnection> @Connecting {  get; }
 	
 	}
 }
 
 namespace Xbim.CobieExpress
 {
-	[IndexedClass]
-	[ExpressType("Component", 22)]
+	[ExpressType("Component", 23)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @CobieComponent : CobieAsset, IInstantiableEntity, ICobieComponent, IEqualityComparer<@CobieComponent>, IEquatable<@CobieComponent>
+	public  partial class @CobieComponent : CobieTypeOrComponent, IInstantiableEntity, ICobieComponent, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@CobieComponent>
 	{
 		#region ICobieComponent explicit implementation
-		string ICobieComponent.SerialNumber { get { return @SerialNumber; } }	
-		DateTimeValue? ICobieComponent.InstallationDate { get { return @InstallationDate; } }	
-		DateTimeValue? ICobieComponent.WarrantyStartDate { get { return @WarrantyStartDate; } }	
-		string ICobieComponent.TagNumber { get { return @TagNumber; } }	
-		string ICobieComponent.BarCode { get { return @BarCode; } }	
-		string ICobieComponent.AssetIdentifier { get { return @AssetIdentifier; } }	
-		ICobieType ICobieComponent.Type { get { return @Type; } }	
-		IEnumerable<ICobieSpace> ICobieComponent.Spaces { get { return @Spaces; } }	
-		IEnumerable<ICobieComponent> ICobieComponent.AssemblyOf { get { return @AssemblyOf; } }	
+		string ICobieComponent.SerialNumber { 
+ 
+			get { return @SerialNumber; } 
+			set { SerialNumber = value;}
+		}	
+		DateTimeValue? ICobieComponent.InstallationDate { 
+ 
+			get { return @InstallationDate; } 
+			set { InstallationDate = value;}
+		}	
+		DateTimeValue? ICobieComponent.WarrantyStartDate { 
+ 
+			get { return @WarrantyStartDate; } 
+			set { WarrantyStartDate = value;}
+		}	
+		string ICobieComponent.TagNumber { 
+ 
+			get { return @TagNumber; } 
+			set { TagNumber = value;}
+		}	
+		string ICobieComponent.BarCode { 
+ 
+			get { return @BarCode; } 
+			set { BarCode = value;}
+		}	
+		string ICobieComponent.AssetIdentifier { 
+ 
+			get { return @AssetIdentifier; } 
+			set { AssetIdentifier = value;}
+		}	
+		ICobieType ICobieComponent.Type { 
+ 
+ 
+			get { return @Type; } 
+			set { Type = value as CobieType;}
+		}	
+		IItemSet<ICobieSpace> ICobieComponent.Spaces { 
+			get { return new Common.Collections.ProxyItemSet<CobieSpace, ICobieSpace>( @Spaces); } 
+		}	
 		 
 		IEnumerable<ICobieSystem> ICobieComponent.InSystems {  get { return @InSystems; } }
-		IEnumerable<ICobieConnection> ICobieComponent.ConnectedBefore {  get { return @ConnectedBefore; } }
-		IEnumerable<ICobieConnection> ICobieComponent.ConnectedAfter {  get { return @ConnectedAfter; } }
-		IEnumerable<ICobieConnection> ICobieComponent.Connecting {  get { return @Connecting; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal CobieComponent(IModel model) : base(model) 		{ 
-			Model = model; 
-			_spaces = new ItemSet<CobieSpace>( this, 2 );
-			_assemblyOf = new OptionalItemSet<CobieComponent>( this, 0 );
+		internal CobieComponent(IModel model, int label, bool activated) : base(model, label, activated)  
+		{
+			_spaces = new ItemSet<CobieSpace>( this, 2,  21);
 		}
 
 		#region Explicit attribute fields
@@ -79,129 +102,120 @@ namespace Xbim.CobieExpress
 		private string _barCode;
 		private string _assetIdentifier;
 		private CobieType _type;
-		private ItemSet<CobieSpace> _spaces;
-		private OptionalItemSet<CobieComponent> _assemblyOf;
+		private readonly ItemSet<CobieSpace> _spaces;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
 		public string @SerialNumber 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _serialNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _serialNumber;
+				Activate();
 				return _serialNumber;
 			} 
 			set
 			{
-				SetValue( v =>  _serialNumber = v, _serialNumber, value,  "SerialNumber");
+				SetValue( v =>  _serialNumber = v, _serialNumber, value,  "SerialNumber", 14);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
 		public DateTimeValue? @InstallationDate 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _installationDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _installationDate;
+				Activate();
 				return _installationDate;
 			} 
 			set
 			{
-				SetValue( v =>  _installationDate = v, _installationDate, value,  "InstallationDate");
+				SetValue( v =>  _installationDate = v, _installationDate, value,  "InstallationDate", 15);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
 		public DateTimeValue? @WarrantyStartDate 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _warrantyStartDate;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _warrantyStartDate;
+				Activate();
 				return _warrantyStartDate;
 			} 
 			set
 			{
-				SetValue( v =>  _warrantyStartDate = v, _warrantyStartDate, value,  "WarrantyStartDate");
+				SetValue( v =>  _warrantyStartDate = v, _warrantyStartDate, value,  "WarrantyStartDate", 16);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
 		public string @TagNumber 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _tagNumber;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _tagNumber;
+				Activate();
 				return _tagNumber;
 			} 
 			set
 			{
-				SetValue( v =>  _tagNumber = v, _tagNumber, value,  "TagNumber");
+				SetValue( v =>  _tagNumber = v, _tagNumber, value,  "TagNumber", 17);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
 		public string @BarCode 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _barCode;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _barCode;
+				Activate();
 				return _barCode;
 			} 
 			set
 			{
-				SetValue( v =>  _barCode = v, _barCode, value,  "BarCode");
+				SetValue( v =>  _barCode = v, _barCode, value,  "BarCode", 18);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
 		public string @AssetIdentifier 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assetIdentifier;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _assetIdentifier;
+				Activate();
 				return _assetIdentifier;
 			} 
 			set
 			{
-				SetValue( v =>  _assetIdentifier = v, _assetIdentifier, value,  "AssetIdentifier");
+				SetValue( v =>  _assetIdentifier = v, _assetIdentifier, value,  "AssetIdentifier", 19);
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(20, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 25)]
 		public CobieType @Type 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _type;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _type;
+				Activate();
 				return _type;
 			} 
 			set
 			{
-				SetValue( v =>  _type = v, _type, value,  "Type");
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _type = v, _type, value,  "Type", 20);
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 2, 21)]
-		public ItemSet<CobieSpace> @Spaces 
+		[EntityAttribute(21, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 2, 26)]
+		public IItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
 			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _spaces;
-				((IPersistEntity)this).Activate(false);
+				if(_activated) return _spaces;
+				Activate();
 				return _spaces;
-			} 
-		}	
-		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 22)]
-		public OptionalItemSet<CobieComponent> @AssemblyOf 
-		{ 
-			get 
-			{
-				if(ActivationStatus != ActivationStatus.NotActivated) return _assemblyOf;
-				((IPersistEntity)this).Activate(false);
-				return _assemblyOf;
 			} 
 		}	
 		#endregion
@@ -210,7 +224,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Components")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 27)]
 		public IEnumerable<CobieSystem> @InSystems 
 		{ 
 			get 
@@ -218,38 +232,10 @@ namespace Xbim.CobieExpress
 				return Model.Instances.Where<CobieSystem>(e => e.Components != null &&  e.Components.Contains(this), "Components", this);
 			} 
 		}
-		[InverseProperty("ComponentA")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 24)]
-		public IEnumerable<CobieConnection> @ConnectedBefore 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentA as CobieComponent) == this, "ComponentA", this);
-			} 
-		}
-		[InverseProperty("ComponentB")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 25)]
-		public IEnumerable<CobieConnection> @ConnectedAfter 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieConnection>(e => (e.ComponentB as CobieComponent) == this, "ComponentB", this);
-			} 
-		}
-		[InverseProperty("RealizingComponent")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 26)]
-		public IEnumerable<CobieConnection> @Connecting 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<CobieConnection>(e => (e.RealizingComponent as CobieComponent) == this, "RealizingComponent", this);
-			} 
-		}
 		#endregion
 
-
 		#region IPersist implementation
-		public  override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
+		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
 			switch (propIndex)
 			{
@@ -264,45 +250,37 @@ namespace Xbim.CobieExpress
 				case 8: 
 				case 9: 
 				case 10: 
+				case 11: 
+				case 12: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 11: 
+				case 13: 
 					_serialNumber = value.StringVal;
 					return;
-				case 12: 
+				case 14: 
 					_installationDate = value.StringVal;
 					return;
-				case 13: 
+				case 15: 
 					_warrantyStartDate = value.StringVal;
 					return;
-				case 14: 
+				case 16: 
 					_tagNumber = value.StringVal;
 					return;
-				case 15: 
+				case 17: 
 					_barCode = value.StringVal;
 					return;
-				case 16: 
+				case 18: 
 					_assetIdentifier = value.StringVal;
 					return;
-				case 17: 
+				case 19: 
 					_type = (CobieType)(value.EntityVal);
 					return;
-				case 18: 
-					if (_spaces == null) _spaces = new ItemSet<CobieSpace>( this );
+				case 20: 
 					_spaces.InternalAdd((CobieSpace)value.EntityVal);
-					return;
-				case 19: 
-					if (_assemblyOf == null) _assemblyOf = new OptionalItemSet<CobieComponent>( this );
-					_assemblyOf.InternalAdd((CobieComponent)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
-		}
-		
-		public  override string WhereRule() 
-		{
-			return "";
 		}
 		#endregion
 
@@ -311,55 +289,61 @@ namespace Xbim.CobieExpress
 	    {
 	        return this == other;
 	    }
-
-	    public override bool Equals(object obj)
-        {
-            // Check for null
-            if (obj == null) return false;
-
-            // Check for type
-            if (GetType() != obj.GetType()) return false;
-
-            // Cast as @CobieComponent
-            var root = (@CobieComponent)obj;
-            return this == root;
-        }
-        public override int GetHashCode()
-        {
-            //good enough as most entities will be in collections of  only one model, equals distinguishes for model
-            return EntityLabel.GetHashCode(); 
-        }
-
-        public static bool operator ==(@CobieComponent left, @CobieComponent right)
-        {
-            // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(left, right))
-                return true;
-
-            // If one is null, but not both, return false.
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-                return false;
-
-            return (left.EntityLabel == right.EntityLabel) && (left.Model == right.Model);
-
-        }
-
-        public static bool operator !=(@CobieComponent left, @CobieComponent right)
-        {
-            return !(left == right);
-        }
-
-
-        public bool Equals(@CobieComponent x, @CobieComponent y)
-        {
-            return x == y;
-        }
-
-        public int GetHashCode(@CobieComponent obj)
-        {
-            return obj == null ? -1 : obj.GetHashCode();
-        }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Created != null)
+					yield return @Created;
+				if (@ExternalSystem != null)
+					yield return @ExternalSystem;
+				if (@ExternalObject != null)
+					yield return @ExternalObject;
+				foreach(var entity in @Categories)
+					yield return entity;
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				foreach(var entity in @AssemblyOf)
+					yield return entity;
+				if (@Type != null)
+					yield return @Type;
+				foreach(var entity in @Spaces)
+					yield return entity;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				foreach(var entity in @Impacts)
+					yield return entity;
+				foreach(var entity in @Documents)
+					yield return entity;
+				foreach(var entity in @Attributes)
+					yield return entity;
+				foreach(var entity in @Representations)
+					yield return entity;
+				if (@Type != null)
+					yield return @Type;
+				foreach(var entity in @Spaces)
+					yield return entity;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

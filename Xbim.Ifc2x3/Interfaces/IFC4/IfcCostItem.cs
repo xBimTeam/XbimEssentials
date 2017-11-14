@@ -10,40 +10,55 @@
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Xbim.Common;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	public partial class @IfcCostItem : IIfcCostItem
 	{
+
+		private  Ifc4.Interfaces.IfcCostItemTypeEnum? _predefinedType;
+
+
+		[CrossSchemaAttribute(typeof(IIfcCostItem), 7)]
 		Ifc4.Interfaces.IfcCostItemTypeEnum? IIfcCostItem.PredefinedType 
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-			    return null;
-			    //##
+				return _predefinedType;
 			} 
+			set
+			{
+				SetValue(v => _predefinedType = v, _predefinedType, value, "PredefinedType", -7);
+				
+			}
 		}
-		IEnumerable<IIfcCostValue> IIfcCostItem.CostValues 
+
+		[CrossSchemaAttribute(typeof(IIfcCostItem), 8)]
+		IItemSet<IIfcCostValue> IIfcCostItem.CostValues 
 		{ 
 			get
 			{
 				//## Handle return of CostValues for which no match was found
-				yield break;
-				//##
+			    return _costValues ?? (_costValues = new ItemSet<IIfcCostValue>(this, 0, -8));
+			    //##
 			} 
 		}
-		IEnumerable<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
+
+		[CrossSchemaAttribute(typeof(IIfcCostItem), 9)]
+		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities 
 		{ 
 			get
 			{
 				//## Handle return of CostQuantities for which no match was found
-				yield break;
+                return _costQuantities ?? (_costQuantities = new ItemSet<IIfcPhysicalQuantity>(this, 0, -9));
 				//##
 			} 
 		}
 	//## Custom code
-	//##
+	    private IItemSet<IIfcCostValue> _costValues;
+	    private IItemSet<IIfcPhysicalQuantity> _costQuantities;
+	    //##
 	}
 }
