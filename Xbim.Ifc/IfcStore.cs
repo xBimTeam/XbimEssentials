@@ -172,8 +172,10 @@ namespace Xbim.Ifc
         /// <param name="editorDetails">Optional details. You should always pass these if you are going to change the data.</param>
         /// <param name="accessMode">Access mode to the stream. This is only important if you choose EsentModel. MemoryModel is completely in memory so this is not relevant</param>
         /// <param name="progDelegate">Progress reporting delegate</param>
-        /// <returns></returns>
-        public static IfcStore Open(Stream data, IfcStorageType dataType, IfcSchemaVersion schema, XbimModelType modelType, XbimEditorCredentials editorDetails = null, XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codepageOverride = -1)
+        /// <param name="codePageOverride">
+        /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
+        /// encoding will be used accoring to the Ifc specification. </param>/// <returns></returns>
+        public static IfcStore Open(Stream data, IfcStorageType dataType, IfcSchemaVersion schema, XbimModelType modelType, XbimEditorCredentials editorDetails = null, XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1)
         {
             //any Esent model needs to run from the file so we need to create a temporal one
             var xbimFilePath = Path.GetTempFileName();
@@ -206,14 +208,14 @@ namespace Xbim.Ifc
                         }
                     }
                     {
-                        var model = CreateEsentModel(schema, codepageOverride);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         model.Open(xbimFilePath, accessMode, progDelegate);
                         return new IfcStore(model, schema, editorDetails, xbimFilePath);
                     }
                 case IfcStorageType.IfcXml:
                     if (modelType == XbimModelType.EsentModel)
                     {
-                        var model = CreateEsentModel(schema, codepageOverride);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
                             return new IfcStore(model, schema, editorDetails, xbimFilePath);
                         else
@@ -230,7 +232,7 @@ namespace Xbim.Ifc
                 case IfcStorageType.Ifc:
                     if (modelType == XbimModelType.EsentModel)
                     {
-                        var model = CreateEsentModel(schema, codepageOverride);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
                             return new IfcStore(model, schema, editorDetails, xbimFilePath);
                         else
@@ -248,7 +250,7 @@ namespace Xbim.Ifc
                 case IfcStorageType.Zip:
                     if (modelType == XbimModelType.EsentModel)
                     {
-                        var model = CreateEsentModel(schema, codepageOverride);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
                             return new IfcStore(model, schema, editorDetails, xbimFilePath);
                         else
@@ -272,18 +274,20 @@ namespace Xbim.Ifc
         //    return Open(path, editorDetails, ifcDatabaseSizeThreshHold, progDelegate, writeAccess?XbimDBAccess.ReadWrite : XbimDBAccess.Read);
         //}
 
-	    /// <summary>
-	    /// Opens an IFC file, Ifcxml, IfcZip, xbim
-	    /// </summary>
-	    /// <param name="path">the file name of the ifc, ifczip, ifcxml or xbim file to be opened</param>
-	    /// <param name="editorDetails">This is only required if the store is opened for editing</param>
-	    /// <param name="ifcDatabaseSizeThreshHold">Expressed in MB. If not defined the DefaultIfcDatabaseSizeThreshHold is used, 
-	    /// IFC files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be 
-	    /// created for all IFC files that are opened. Xbim files are always opened as databases</param>
-	    /// <param name="codePageOverride">
-	    /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
-	    /// encoding will be used accoring to the Ifc specification.</param>
-	    public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read, int codePageOverride = -1)
+        /// <summary>
+        /// Opens an IFC file, Ifcxml, IfcZip, xbim
+        /// </summary>
+        /// <param name="path">the file name of the ifc, ifczip, ifcxml or xbim file to be opened</param>
+        /// <param name="editorDetails">This is only required if the store is opened for editing</param>
+        /// <param name="ifcDatabaseSizeThreshHold">Expressed in MB. If not defined the DefaultIfcDatabaseSizeThreshHold is used, 
+        /// IFC files below this size will be opened in memory, above this size a database will be created. If -1 is specified an in memory model will be 
+        /// created for all IFC files that are opened. Xbim files are always opened as databases</param>
+        /// <param name="progDelegate"></param>
+        /// <param name="accessMode"></param>
+        /// <param name="codePageOverride">
+        /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
+        /// encoding will be used accoring to the Ifc specification. </param>
+        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read, int codePageOverride = -1)
         {
             path = Path.GetFullPath(path);
             
