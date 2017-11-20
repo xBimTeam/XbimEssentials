@@ -279,13 +279,6 @@ namespace Xbim.IO.TableStore
             if (valType == null)
                 return;
 
-            //this context has a data which means all upper level contexts have some data to use.
-            HasData = true;
-            var parent = this;
-            while ((parent = parent.ParentContext) != null)
-                parent.HasData = true;
-            
-
             //if there is any enumeration on the path this needs to be treated as a list of values
             if (HasEnumerationOnPath)
             {
@@ -300,7 +293,7 @@ namespace Xbim.IO.TableStore
             }
             else
             {
-                if (cell != null &&
+                if (cell != null && cell.CellType != CellType.Blank &&
                     (cell.CellType != CellType.String ||
                      !string.Equals(cell.StringCellValue, Mapping.DefaultValue, StringComparison.OrdinalIgnoreCase)))
                 {
@@ -309,7 +302,18 @@ namespace Xbim.IO.TableStore
                     Values = new[] {Store.CreateSimpleValue(valType, cell)};
                 }
             }
+
+            if (Values != null && Values.Length > 0)
+            {
+                //this context has a data which means all upper level contexts have some data to use.
+                HasData = true;
+                var parent = this;
+                while ((parent = parent.ParentContext) != null)
+                    parent.HasData = true;
+            }
         }
+
+      
 
         private void AddMapping(PropertyMapping pMapping, List<string> segments)
         {
