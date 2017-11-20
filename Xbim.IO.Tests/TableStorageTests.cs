@@ -24,7 +24,7 @@ namespace Xbim.IO.Tests
         public void ContactsImport()
         {
             const string file = @"c:\Users\Martin\Source\Samples\cutdown.xlsx";
-            using (var model = CobieModel.ImportFromTable(file, out string report))
+            using (var model = CobieModel.ImportFromTable(file, out report))
             {
                 var contacts = model.Instances.OfType<CobieContact>().ToList();
                 Assert.IsTrue(contacts.Count > 0);
