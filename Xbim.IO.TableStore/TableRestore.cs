@@ -198,6 +198,21 @@ namespace Xbim.IO.TableStore
                 }
                 emptyCells = 0;
 
+                //load data into the context
+                context.LoadData(row, true);
+
+                // check if there are any data to create entity
+                if (!context.HasData)
+                {
+                    continue;
+                }
+
+                // if mapping defines identity data, check if there is any
+                if (context.HasKeyRequirements && !context.HasKeyData)
+                {
+                    continue;
+                }
+
                 //last row might be used in case this is a MultiRow
                 lastEntity = LoadFromRow(row, context, lastRow, lastEntity);
                 lastRow = row;
@@ -251,9 +266,6 @@ namespace Xbim.IO.TableStore
 
         private IPersistEntity LoadFromRow(IRow row, ReferenceContext context, IRow lastRow, IPersistEntity lastEntity)
         {
-            //load data into the context
-            context.LoadData(row, true);
-
             var multirow = IsMultiRow(row, context.CMapping, lastRow);
             if (multirow)
             {
