@@ -31,7 +31,7 @@ Please note: all the applications are provided to demonstrate how to use the Xbi
 
 ## Licence
 
-The XBIM library is made available under the CDDL Open Source licence.  See the licences folder for a full text.
+The XBIM library is made available under [the CDDL Open Source licence](LICENCE.md).
 
 All licences should support the commercial usage of the XBIM system within a 'Larger Work', as long as you honour 
 the licence agreements.
