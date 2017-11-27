@@ -6,15 +6,15 @@
 
 * If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/xBimTeam/XbimEssentials/issues/new). 
 Be sure to include a **title and clear description**, as much relevant information as possible; if useful an IFC file should be attached to 
-the issue and a **code sample** demonstrating the fault.
+the issue and a **code sample** demonstrating the fault. xBIM can be used to extract parts of IFC file to isolate the problem if it is data-related.
 
 * The Xbim toolkit is composed of a collection of projects, please ensure that you post your issue under the relevant project.
 
 ## **Did you write a patch that fixes a bug?**
 
-* Open a new GitHub pull request with the patch.
+* Open a new [GitHub pull](https://help.github.com/articles/about-pull-requests/) request with the patch.
 
-* we have two branches in the project, please work on the development branch; your contribution will me merged there and then to master upon the next release.
+* we have two branches in the project, please work on the development branch; your contribution will be merged there and then to master upon the next release.
 
 * Ensure the PR description clearly describes the problem and solution. Include a relevant issue number if applicable.
 
@@ -24,7 +24,7 @@ We are still likely to accept your PR in this case, patches that improve the doc
 
 ## **Do you intend to add a new feature or change an existing one?**
 
-* open an issue on GitHub to collect feedback about the change, before submitting a PR.
+* open an issue on GitHub to collect feedback about the change, before submitting a [PR](https://help.github.com/articles/creating-a-pull-request/).
 
 ## **Do you have questions about the source code?**
 
