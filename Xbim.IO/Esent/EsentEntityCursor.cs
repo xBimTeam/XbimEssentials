@@ -8,6 +8,8 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
+using System.Diagnostics;
+using log4net;
 
 namespace Xbim.IO.Esent
 {
@@ -380,16 +382,30 @@ namespace Xbim.IO.Esent
         /// <param name="data">property data</param>
         internal void AddEntity(int currentLabel, short typeId, IEnumerable<int> indexKeys, byte[] data, bool? indexed, EsentLazyDBTransaction? trans = null)
         {
+            //Debug.WriteLine(currentLabel);
             try
             {
-                if (indexed.HasValue && indexed.Value == false) indexed = null;
+                if (indexed.HasValue && indexed.Value == false)
+                    indexed = null;
                 using (var update = new Update(Sesid, Table, JET_prep.Insert))
                 {
-                    //first put a record in with a null type key
-                    SetEntityRowValues(currentLabel, typeId, data, indexed);
-                    Api.SetColumns(Sesid, Table, _colValues);
-                    update.Save();
-                    UpdateCount(1);
+                    
+                    try
+                    {
+                        // this populates the _colValues array 
+                        SetEntityRowValues(currentLabel, typeId, data, indexed);
+                        Api.SetColumns(Sesid, Table, _colValues);
+                        update.Save();
+                        UpdateCount(1);
+                    }
+                    catch (Exception ex)
+                    {
+                        update.Cancel();
+                        var msg = string.Format("Failed to add (probably clashing) entity #{0} to the database", currentLabel);
+                        var Log = LogManager.GetLogger("Xbim.IO.Esent.EsentEntityCursor");
+                        Log.Error(msg, ex);
+                        return;
+                    }
                 }
                 //set the main variables of label and type just ones
                 SetEntityIndexRowValues(typeId, -1, currentLabel);
