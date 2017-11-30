@@ -159,6 +159,7 @@
     <Compile Include="Interfaces\IFC4\IfcLayeredItem.cs" />
     <Compile Include="Interfaces\IFC4\IfcLibrarySelect.cs" />
     <Compile Include="Interfaces\IFC4\IfcLightDistributionDataSourceSelect.cs" />
+    <Compile Include="Interfaces\IFC4\IfcMaterialSelect.cs" />
     <Compile Include="Interfaces\IFC4\IfcPointOrVertexPoint.cs" />
     <Compile Include="Interfaces\IFC4\IfcShell.cs" />
     <Compile Include="Interfaces\IFC4\IfcStructuralActivityAssignmentSelect.cs" />
