@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Ifc2x3", "Xbim.Ifc2x3\Xbim.Ifc2x3.csproj", "{B6668419-D7A4-4736-B4D8-018756CCF134}"
 EndProject
@@ -35,6 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.Parsing", "Profil
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8CF88033-2F9A-4A2E-BDA5-4B7B972A0915}"
 	ProjectSection(SolutionItems) = preProject
+		CodeMapDirectReferences.dgml = CodeMapDirectReferences.dgml
 		Install.ps1 = Install.ps1
 		Xbim.Cobie.nuspec = Xbim.Cobie.nuspec
 		Xbim.Essentials.nuspec = Xbim.Essentials.nuspec
@@ -176,5 +177,8 @@ Global
 		{6AF1A6D7-F7EB-494F-9493-F94A2505D81E} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
 		{B9A4BF67-5B1C-4231-96EA-23A510A46943} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
 		{748ADC2C-7F2F-456D-90FE-E15F508475A3} = {2CD5B49F-FB73-4B6D-B570-E51B32905A25}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32AC9A25-F4C2-4AED-B32C-CF82CB0116E7}
 	EndGlobalSection
 EndGlobal
