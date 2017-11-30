@@ -65,13 +65,13 @@ namespace Xbim.Ifc4.GeometryResource
 	    }
         #endregion
 
-        #region Custom code (will survive code regeneration)
-        //## Custom code
+		#region Custom code (will survive code regeneration)
+		//## Custom code
         /// <summary>
         /// This is always overriden in specific non-abstract classes
         /// </summary>
         IfcDimensionCount IfcGeometricSetSelect.Dim { get { return 0; } }
         //##
-        #endregion
-    }
+		#endregion
+	}
 }

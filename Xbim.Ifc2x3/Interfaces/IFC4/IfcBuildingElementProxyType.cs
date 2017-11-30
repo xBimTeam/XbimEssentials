@@ -75,12 +75,12 @@ namespace Xbim.Ifc2x3.ProductExtension
 				        return;
 						//##
 										case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PROVISIONFORSPACE:
-                        //## Handle setting of PROVISIONFORSPACE member from IfcBuildingElementProxyTypeEnum in property PredefinedType
+						//## Handle setting of PROVISIONFORSPACE member from IfcBuildingElementProxyTypeEnum in property PredefinedType
                         ElementType = value.ToString();
                         PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
                         return;
                         //##
-                    case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED:
+										case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.USERDEFINED:
 						PredefinedType = IfcBuildingElementProxyTypeEnum.USERDEFINED;
 						return;
 					case Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.NOTDEFINED:

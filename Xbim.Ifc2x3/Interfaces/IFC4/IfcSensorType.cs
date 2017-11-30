@@ -77,12 +77,12 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 				switch (value)
 				{
 					case Ifc4.Interfaces.IfcSensorTypeEnum.COSENSOR:
-                        //## Handle setting of COSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//## Handle setting of COSENSOR member from IfcSensorTypeEnum in property PredefinedType
                         ElementType = value.ToString();
                         PredefinedType = IfcSensorTypeEnum.USERDEFINED;
                         return;
                         //##
-                    case Ifc4.Interfaces.IfcSensorTypeEnum.CO2SENSOR:
+										case Ifc4.Interfaces.IfcSensorTypeEnum.CO2SENSOR:
 						PredefinedType = IfcSensorTypeEnum.CO2SENSOR;
 						return;
 					case Ifc4.Interfaces.IfcSensorTypeEnum.CONDUCTANCESENSOR:
@@ -91,7 +91,7 @@ namespace Xbim.Ifc2x3.BuildingcontrolsDomain
                         PredefinedType = IfcSensorTypeEnum.USERDEFINED;
 				        return;
 						//##
-					case Ifc4.Interfaces.IfcSensorTypeEnum.CONTACTSENSOR:
+										case Ifc4.Interfaces.IfcSensorTypeEnum.CONTACTSENSOR:
 						//## Handle setting of CONTACTSENSOR member from IfcSensorTypeEnum in property PredefinedType
 						ElementType = value.ToString();
                         PredefinedType = IfcSensorTypeEnum.USERDEFINED;
