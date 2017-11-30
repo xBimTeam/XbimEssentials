@@ -868,6 +868,13 @@ namespace Xbim.Ifc2x3.ConstraintResource
 					SetValue(v => _dataValue4 = v, _dataValue4, value, "DataValue", -10);
 					return;
 				}
+				if (value is Ifc4.MeasureResource.IfcBinary) 
+				{
+					if (DataValue != null)
+						DataValue = null;
+					SetValue(v => _dataValue4 = v, _dataValue4, value, "DataValue", -10);
+					return;
+				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 
 				{
 					if (DataValue != null)

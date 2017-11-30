@@ -14,6 +14,7 @@ namespace Xbim.Ifc4.Interfaces
 		@ELEMENT ,
 		@PARTIAL ,
 		@PROVISIONFORVOID ,
+		@PROVISIONFORSPACE ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

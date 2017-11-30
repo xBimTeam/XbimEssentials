@@ -15,7 +15,7 @@ namespace Xbim.Ifc4.MeasureResource
 	[ExpressType("IfcBinary", 986)]
 	[DefinedType(typeof(byte[]))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcBinary : IExpressValueType, IExpressBinaryType, System.IEquatable<byte[]>
+	public partial struct IfcBinary : IfcSimpleValue, IExpressValueType, IExpressBinaryType, System.IEquatable<byte[]>
 	{ 
 		private byte[] _value;
         

@@ -14,73 +14,60 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
-using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.GeometricModelResource;
 //## Custom using statements
 //##
 
 namespace Xbim.Ifc4.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for IfcCartesianPoint
+    /// Readonly interface for IfcIndexedPolygonalFaceWithVoids
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCartesianPoint : IIfcPoint, IfcTrimmingSelect
+	public partial interface @IIfcIndexedPolygonalFaceWithVoids : IIfcIndexedPolygonalFace
 	{
-		IItemSet<IfcLengthMeasure> @Coordinates { get; }
+		IItemSet<IItemSet<IfcPositiveInteger>> @InnerCoordIndices { get; }
 	
 	}
 }
 
-namespace Xbim.Ifc4.GeometryResource
+namespace Xbim.Ifc4.GeometricModelResource
 {
-	[ExpressType("IfcCartesianPoint", 410)]
+	[ExpressType("IfcIndexedPolygonalFaceWithVoids", 1322)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
+	public  partial class @IfcIndexedPolygonalFaceWithVoids : IfcIndexedPolygonalFace, IInstantiableEntity, IIfcIndexedPolygonalFaceWithVoids, IEquatable<@IfcIndexedPolygonalFaceWithVoids>
 	{
-		#region IIfcCartesianPoint explicit implementation
-		IItemSet<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { 
-			get { return @Coordinates; } 
+		#region IIfcIndexedPolygonalFaceWithVoids explicit implementation
+		IItemSet<IItemSet<IfcPositiveInteger>> IIfcIndexedPolygonalFaceWithVoids.InnerCoordIndices { 
+			get { return @InnerCoordIndices; } 
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCartesianPoint(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcIndexedPolygonalFaceWithVoids(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_coordinates = new ItemSet<IfcLengthMeasure>( this, 3,  1);
+			_innerCoordIndices = new ItemSet<IItemSet<IfcPositiveInteger>>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcLengthMeasure> _coordinates;
+		private readonly ItemSet<IItemSet<IfcPositiveInteger>> _innerCoordIndices;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, 3, 3)]
-		public IItemSet<IfcLengthMeasure> @Coordinates 
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 3, -1, 5)]
+		public IItemSet<IItemSet<IfcPositiveInteger>> @InnerCoordIndices 
 		{ 
 			get 
 			{
-				if(_activated) return _coordinates;
+				if(_activated) return _innerCoordIndices;
 				Activate();
-				return _coordinates;
+				return _innerCoordIndices;
 			} 
 		}	
 		#endregion
 
 
-		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
-		public IfcDimensionCount @Dim 
-		{
-			get 
-			{
-				//## Getter for Dim
-                return Coordinates.Count;
-				//##
-			}
-		}
-
-		#endregion
 
 
 		#region IPersist implementation
@@ -89,7 +76,12 @@ namespace Xbim.Ifc4.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_coordinates.InternalAdd(value.RealVal);
+					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 1: 
+					((ItemSet<IfcPositiveInteger>)_innerCoordIndices
+						.InternalGetAt(nestedIndex[0]) )
+						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -98,7 +90,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcCartesianPoint other)
+        public bool Equals(@IfcIndexedPolygonalFaceWithVoids other)
 	    {
 	        return this == other;
 	    }

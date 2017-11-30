@@ -7,8 +7,8 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.PresentationAppearanceResource;
+using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +25,9 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcTessellatedFaceSet
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTessellatedFaceSet : IIfcTessellatedItem
+	public partial interface @IIfcTessellatedFaceSet : IIfcTessellatedItem, IfcBooleanOperand
 	{
 		IIfcCartesianPointList3D @Coordinates { get;  set; }
-		IItemSet<IItemSet<IfcParameterValue>> @Normals { get; }
-		IfcBoolean? @Closed { get;  set; }
 		IEnumerable<IIfcIndexedColourMap> @HasColours {  get; }
 		IEnumerable<IIfcIndexedTextureMap> @HasTextures {  get; }
 	
@@ -49,14 +47,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @Coordinates; } 
 			set { Coordinates = value as IfcCartesianPointList3D;}
 		}	
-		IItemSet<IItemSet<IfcParameterValue>> IIfcTessellatedFaceSet.Normals { 
-			get { return @Normals; } 
-		}	
-		IfcBoolean? IIfcTessellatedFaceSet.Closed { 
- 
-			get { return @Closed; } 
-			set { Closed = value;}
-		}	
 		 
 		IEnumerable<IIfcIndexedColourMap> IIfcTessellatedFaceSet.HasColours {  get { return @HasColours; } }
 		IEnumerable<IIfcIndexedTextureMap> IIfcTessellatedFaceSet.HasTextures {  get { return @HasTextures; } }
@@ -65,13 +55,10 @@ namespace Xbim.Ifc4.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTessellatedFaceSet(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_normals = new OptionalItemSet<IItemSet<IfcParameterValue>>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcCartesianPointList3D _coordinates;
-		private readonly OptionalItemSet<IItemSet<IfcParameterValue>> _normals;
-		private IfcBoolean? _closed;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -91,37 +78,27 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _coordinates = v, _coordinates, value,  "Coordinates", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 4)]
-		public IOptionalItemSet<IItemSet<IfcParameterValue>> @Normals 
-		{ 
-			get 
-			{
-				if(_activated) return _normals;
-				Activate();
-				return _normals;
-			} 
-		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
-		public IfcBoolean? @Closed 
-		{ 
-			get 
-			{
-				if(_activated) return _closed;
-				Activate();
-				return _closed;
-			} 
-			set
-			{
-				SetValue( v =>  _closed = v, _closed, value,  "Closed", 3);
-			} 
-		}	
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+				//TODO: Implement getter for derived attribute Dim
+				throw new NotImplementedException();
+				//##
+			}
+		}
+
+		#endregion
 
 		#region Inverse attributes
 		[InverseProperty("MappedTo")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 6)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 4)]
 		public IEnumerable<IfcIndexedColourMap> @HasColours 
 		{ 
 			get 
@@ -130,7 +107,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}
 		[InverseProperty("MappedTo")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
 		public IEnumerable<IfcIndexedTextureMap> @HasTextures 
 		{ 
 			get 
@@ -147,14 +124,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			{
 				case 0: 
 					_coordinates = (IfcCartesianPointList3D)(value.EntityVal);
-					return;
-				case 1: 
-					((ItemSet<IfcParameterValue>)_normals
-						.InternalGetAt(nestedIndex[0]) )
-						.InternalAdd((IfcParameterValue)(value.RealVal));
-					return;
-				case 2: 
-					_closed = value.BooleanVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

@@ -891,6 +891,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 						SetValue(v => _nominalValue4 = v, _nominalValue4, null, "NominalValue", -3);
 					return;
 				}
+				if (value is Ifc4.MeasureResource.IfcBinary) 
+				{
+					if (NominalValue != null)
+						NominalValue = null;
+					SetValue(v => _nominalValue4 = v, _nominalValue4, value, "NominalValue", -3);
+					return;
+				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 
 				{
 					NominalValue = new MeasureResource.IfcBoolean((Ifc4.MeasureResource.IfcBoolean)value);

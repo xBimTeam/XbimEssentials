@@ -21,66 +21,58 @@ using Xbim.Ifc4.GeometryResource;
 namespace Xbim.Ifc4.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for IfcCartesianPoint
+    /// Readonly interface for IfcSphericalSurface
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCartesianPoint : IIfcPoint, IfcTrimmingSelect
+	public partial interface @IIfcSphericalSurface : IIfcElementarySurface
 	{
-		IItemSet<IfcLengthMeasure> @Coordinates { get; }
+		IfcPositiveLengthMeasure @Radius { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcCartesianPoint", 410)]
+	[ExpressType("IfcSphericalSurface", 1326)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
+	public  partial class @IfcSphericalSurface : IfcElementarySurface, IInstantiableEntity, IIfcSphericalSurface, IContainsEntityReferences, IEquatable<@IfcSphericalSurface>
 	{
-		#region IIfcCartesianPoint explicit implementation
-		IItemSet<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { 
-			get { return @Coordinates; } 
+		#region IIfcSphericalSurface explicit implementation
+		IfcPositiveLengthMeasure IIfcSphericalSurface.Radius { 
+ 
+			get { return @Radius; } 
+			set { Radius = value;}
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCartesianPoint(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcSphericalSurface(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_coordinates = new ItemSet<IfcLengthMeasure>( this, 3,  1);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcLengthMeasure> _coordinates;
+		private IfcPositiveLengthMeasure _radius;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, 3, 3)]
-		public IItemSet<IfcLengthMeasure> @Coordinates 
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		public IfcPositiveLengthMeasure @Radius 
 		{ 
 			get 
 			{
-				if(_activated) return _coordinates;
+				if(_activated) return _radius;
 				Activate();
-				return _coordinates;
+				return _radius;
+			} 
+			set
+			{
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 2);
 			} 
 		}	
 		#endregion
 
 
-		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
-		public IfcDimensionCount @Dim 
-		{
-			get 
-			{
-				//## Getter for Dim
-                return Coordinates.Count;
-				//##
-			}
-		}
-
-		#endregion
 
 
 		#region IPersist implementation
@@ -89,7 +81,10 @@ namespace Xbim.Ifc4.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_coordinates.InternalAdd(value.RealVal);
+					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 1: 
+					_radius = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -98,11 +93,22 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcCartesianPoint other)
+        public bool Equals(@IfcSphericalSurface other)
 	    {
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

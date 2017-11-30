@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.GeometricModelResource;
-using Xbim.Ifc4.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +20,10 @@ using Xbim.Ifc4.GeometryResource;
 namespace Xbim.Ifc4.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for IfcPoint
+    /// Readonly interface for IfcSeamCurve
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPoint : IIfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcPointOrVertexPoint
+	public partial interface @IIfcSeamCurve : IIfcSurfaceCurve
 	{
 	
 	}
@@ -33,16 +31,16 @@ namespace Xbim.Ifc4.Interfaces
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcPoint", 66)]
+	[ExpressType("IfcSeamCurve", 1325)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPoint : IfcGeometricRepresentationItem, IIfcPoint, IEquatable<@IfcPoint>
+	public  partial class @IfcSeamCurve : IfcSurfaceCurve, IInstantiableEntity, IIfcSeamCurve, IContainsEntityReferences, IEquatable<@IfcSeamCurve>
 	{
-		#region IIfcPoint explicit implementation
+		#region IIfcSeamCurve explicit implementation
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPoint(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcSeamCurve(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
@@ -53,25 +51,42 @@ namespace Xbim.Ifc4.GeometryResource
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
-			//there are no attributes defined for this entity
-            throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
+			switch (propIndex)
+			{
+				case 0: 
+				case 1: 
+				case 2: 
+					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				default:
+					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
+			}
 		}
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcPoint other)
+        public bool Equals(@IfcSeamCurve other)
 	    {
 	        return this == other;
 	    }
         #endregion
 
-        #region Custom code (will survive code regeneration)
-        //## Custom code
-        /// <summary>
-        /// This is always overriden in specific non-abstract classes
-        /// </summary>
-        IfcDimensionCount IfcGeometricSetSelect.Dim { get { return 0; } }
-        //##
-        #endregion
-    }
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Curve3D != null)
+					yield return @Curve3D;
+				foreach(var entity in @AssociatedGeometry)
+					yield return entity;
+			}
+		}
+		#endregion
+
+		#region Custom code (will survive code regeneration)
+		//## Custom code
+		//##
+		#endregion
+	}
 }

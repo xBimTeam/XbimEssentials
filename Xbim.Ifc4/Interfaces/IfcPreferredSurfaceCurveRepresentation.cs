@@ -8,13 +8,10 @@
 // ------------------------------------------------------------------------------
 namespace Xbim.Ifc4.Interfaces
 {
-	public enum IfcExternalSpatialElementTypeEnum : byte
+	public enum IfcPreferredSurfaceCurveRepresentation : byte
 	{
-		@EXTERNAL ,
-		@EXTERNAL_EARTH ,
-		@EXTERNAL_WATER ,
-		@EXTERNAL_FIRE ,
-		@USERDEFINED ,
-		@NOTDEFINED 
+		@CURVE3D ,
+		@PCURVE_S1 ,
+		@PCURVE_S2 
 	}
 }
