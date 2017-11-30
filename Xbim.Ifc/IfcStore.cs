@@ -934,7 +934,7 @@ namespace Xbim.Ifc
                 }
                 else if (_schema == IfcSchemaVersion.Ifc4)
                 {
-                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                    var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                     var project = _model.Instances.OfType<Ifc4.Kernel.IfcProject>();
                     var products = _model.Instances.OfType<Ifc4.Kernel.IfcObject>();
                     var relations = _model.Instances.OfType<Ifc4.Kernel.IfcRelationship>();

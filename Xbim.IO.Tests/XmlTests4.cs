@@ -50,7 +50,7 @@ namespace Xbim.MemoryModel.Tests
 
                 using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings{Indent = true}))
                 {
-                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                    var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                     writer.Write(model, xml);   
                     xml.Close();
                 }
@@ -73,7 +73,7 @@ namespace Xbim.MemoryModel.Tests
             using (var file = File.OpenRead(outPath))
             {
                 var header = XbimXmlReader4.ReadHeader(file);
-                Assert.AreEqual("IFC4, IFC4Add1", header.SchemaVersion);
+                Assert.AreEqual("IFC4", header.SchemaVersion);
             }
         }
 
@@ -464,7 +464,7 @@ namespace Xbim.MemoryModel.Tests
         {
             using (var xml = XmlWriter.Create(path, new XmlWriterSettings { Indent = true }))
             {
-                var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add1);
                 var project = model.Instances.OfType<IfcProject>();
                 var products = model.Instances.OfType<IfcObject>();
                 var relations = model.Instances.OfType<IfcRelationship>();
@@ -489,7 +489,7 @@ namespace Xbim.MemoryModel.Tests
         {
             using (var xml = new JSONWritter(File.CreateText(path)))
             {
-                var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add1);
                 var project = model.Instances.OfType<IfcProject>();
                 var products = model.Instances.OfType<IfcObject>();
                 var relations = model.Instances.OfType<IfcRelationship>();

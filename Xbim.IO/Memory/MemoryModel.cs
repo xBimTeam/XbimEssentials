@@ -596,15 +596,15 @@ namespace Xbim.IO.Memory
                         writer3.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     case "IFC4":
-                        var writer4 = new XbimXmlWriter4(configuration.IFC4Add1, XbimXmlSettings.IFC4Add1);
+                        var writer4 = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                         writer4.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     case "COBIE_EXPRESS":
-                        var writerCobie = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
+                        var writerCobie = new XbimXmlWriter4(XbimXmlSettings.COBieExpress);
                         writerCobie.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     default:
-                        var writer = new XbimXmlWriter4(configuration, xbimSettings);
+                        var writer = new XbimXmlWriter4(xbimSettings);
                         writer.Write(this, xmlWriter);
                         break;
                 }
