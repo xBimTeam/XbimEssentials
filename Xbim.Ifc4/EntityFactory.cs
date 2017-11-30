@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using Xbim.Common.Step21;
 using Xbim.Ifc4.SharedMgmtElements;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.ActorResource;
@@ -47,7 +48,6 @@ using Xbim.Ifc4.ControlExtension;
 using Xbim.Ifc4.QuantityResource;
 using Xbim.Ifc4.StructuralAnalysisDomain;
 using Xbim.Common;
-using Xbim.Common.Step21;
 
 namespace Xbim.Ifc4
 {
@@ -1543,6 +1543,15 @@ namespace Xbim.Ifc4
 		private static readonly List<string> _schemasIds = new List<string> { "IFC4" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-        public IfcSchemaVersion SchemaVersion { get { return IfcSchemaVersion.Ifc4; } }
-    }
+		/// <summary>
+        /// Gets the Ifc Schema version of the model if this is IFC schema
+        /// </summary>
+		public IfcSchemaVersion SchemaVersion { 
+			get
+			{
+				return IfcSchemaVersion.Ifc4;
+			}
+		}
+
+	}
 }
