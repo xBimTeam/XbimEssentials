@@ -95,7 +95,7 @@ namespace Xbim.IO.Step21
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
         }
 
-        public bool Parse()
+        public bool Parse(bool onlyHeader = false)
         {
             var skipping = SkipTypes.Any();
             var eofToken = (int)Tokens.EOF;
@@ -113,6 +113,8 @@ namespace Xbim.IO.Step21
                                 BeginHeader();
                                 break;
                             case Tokens.ENDSEC:
+                                if (_inHeader && onlyHeader)
+                                    return true;
                                 EndSec();
                                 break;
                             case Tokens.DATA:
