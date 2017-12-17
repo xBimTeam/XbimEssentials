@@ -1025,14 +1025,14 @@ namespace Xbim.IO.TableStore
                 }
                 try
                 {
-                    var eValue = cell.StringCellValue;
+                    var eValue = cell.StringCellValue.Replace("-", "_");  // Hyphens aren't valid in c# enums, but have been seen in live data
                     var eMember = GetAliasEnumName(type, eValue);
                     //if there was no alias try to parse the value
                     var val = Enum.Parse(type, eMember ?? eValue, true);
                     return val;
                 }
                 catch (Exception)
-                {
+                {                                  
                     Log.WriteLine("There is no suitable value for {0} in cell {1}{2}, sheet {3}", propType.Name, CellReference.ConvertNumToColString(cell.ColumnIndex), cell.RowIndex + 1, cell.Sheet.SheetName);
                 }
             }
