@@ -92,6 +92,7 @@
     <Compile Include="ReadingFileWithComments.cs" />
     <Compile Include="TableStorageTests.cs" />
     <Compile Include="ActivationTests.cs" />
+    <Compile Include="TessellatorTests.cs" />
     <Compile Include="TransactionLogTests.cs" />
     <Compile Include="NoHeaderSerialization.cs" />
     <Compile Include="IfcStoreStreamOpeningTests.cs" />
@@ -196,6 +197,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\OneWall.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Roof-01_BCAD.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\SampleHouse4.ifc">
