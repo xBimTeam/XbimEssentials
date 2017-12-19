@@ -512,7 +512,7 @@ namespace Xbim.IO.Memory
                     for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
                     {
                         var id = Header.FileSchema.Schemas[i];
-                        var sid = _instances.Factory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.InvariantCultureIgnoreCase));
+                        var sid = _instances.Factory.SchemasIds.FirstOrDefault(s => id.ToLowerInvariant().StartsWith(s.ToLowerInvariant())); //E.g. 'IFC2X3' is contained in 'IFC2X3_FINAL'
                         if (sid == null)
                             throw new Exception("Mismatch between schema defined in the file and schemas available in the data model.");
 

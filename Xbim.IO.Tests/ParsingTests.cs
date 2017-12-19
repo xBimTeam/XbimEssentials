@@ -628,5 +628,21 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        [DeploymentItem("TestFiles\\ifc2x3_final_wall.ifc")]
+        public void Ifc2x3FinalSchemaTest()
+        {
+            using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
+            {
+                var errCount = model.LoadStep21("ifc2x3_final_wall.ifc");
+                Assert.AreEqual(0, errCount);
+            }
+
+            using (var model = new Xbim.IO.Esent.EsentModel(new Ifc2x3.EntityFactory()))
+            {
+                var errCount = model.CreateFrom("ifc2x3_final_wall.ifc");
+                Assert.AreEqual(true, errCount);
+            }
+        }
     }
 }
