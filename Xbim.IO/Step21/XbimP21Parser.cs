@@ -448,9 +448,10 @@ namespace Xbim.IO.Step21
                         expressType.Properties[paramIndex+1].PropertyInfo.Name;
                 var label = host is IPersistEntity ? ((IPersistEntity)host).EntityLabel : -1;
                 var refType = "UNKNOWN_TYPE";
-                if (_entities.TryGetValue(refId, out IPersist refPers) && refPers is IPersistEntity refEntity)
+                IPersist refEntity;
+                if (_entities.TryGetValue(refId, out refEntity) && refEntity is IPersistEntity)
                 {
-                    refType = refEntity.GetType().Name.ToUpperInvariant();
+                    refType = ((IPersistEntity)refEntity).GetType().Name.ToUpperInvariant();
                 }
 
                 Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = #{4}={5}",
