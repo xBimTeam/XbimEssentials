@@ -9,7 +9,7 @@ Start condition INITIAL:
 Start condition COMMENT:
   number of patterns = 1, number of nfsa states = 4, accept states = 1
 =============================================================================
-GPLEX: NFSA built.    5 msec
+GPLEX: NFSA built.    7 msec
 =============================================================================
 GPLEX: DFSA built.   16 msec
 =============================================================================
@@ -25,7 +25,7 @@ Start condition INITIAL:
 Start condition COMMENT:
   number of dfsa states = 3, number of accept states = 1
 =============================================================================
-GPLEX: C# file emitted.   16 msec
+GPLEX: C# file emitted.   19 msec
 =============================================================================
 GPLEX Summary
 =============================================================================

@@ -5,10 +5,10 @@
 //  See accompanying file GPLEXcopyright.rtf.
 //
 //  GPLEX Version:  1.2.2
-//  Machine:  DESKTOP-S5GEMU1
-//  DateTime: 23/01/2017 10:53:26
-//  UserName: Claudio
-//  GPLEX input file <StepP21Lex.LEX - 22/01/2017 19:29:43>
+//  Machine:  DESKTOP-VAJP4OB
+//  DateTime: 12/01/2018 09:49:54
+//  UserName: Martin
+//  GPLEX input file <StepP21Lex.LEX - 12/01/2018 09:49:44>
 //  GPLEX frame file <embedded resource>
 //
 //  Option settings: verbose, parser, minimize
@@ -31,6 +31,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Diagnostics.CodeAnalysis;
 
+using QUT.Gppg;
 
 namespace Xbim.IO.Parser
 {   
@@ -1028,6 +1029,7 @@ int NextState() {
         // ============== The main tokenizer code =================
 
         int Scan() {
+            try {
                 for (; ; ) {
                     int next;              // next state to enter
 #if LEFTANCHORS
@@ -1252,6 +1254,12 @@ BEGIN(INITIAL);
 #endregion
                     }
                 }
+            } // end try
+            finally {
+// User-specified epilog to scan()
+yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
+// End, user-specified epilog
+            } // end finally
         }
 
 #if BACKUP

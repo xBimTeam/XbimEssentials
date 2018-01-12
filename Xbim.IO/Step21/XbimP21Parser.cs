@@ -446,9 +446,19 @@ namespace Xbim.IO.Step21
                 var expressType = Metadata.ExpressType(host);
                 var propertyName = paramIndex+1 > expressType.Properties.Count ? "[UnknownProperty]" :
                         expressType.Properties[paramIndex+1].PropertyInfo.Name;
-                Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3}",
-                                           refId, expressType.Type.Name.ToUpper(), paramIndex + 1,
-                                           propertyName);
+                var label = host is IPersistEntity ? ((IPersistEntity)host).EntityLabel : -1;
+                var refType = "UNKNOWN_TYPE";
+                if (_entities.TryGetValue(refId, out IPersist refPers) && refPers is IPersistEntity refEntity)
+                {
+                    refType = refEntity.GetType().Name.ToUpperInvariant();
+                }
+
+                Logger.ErrorFormat("Entity #{0,-5} {1}, error at parameter {2}-{3} value = #{4}={5}",
+                                           label, expressType.Type.Name.ToUpper(), paramIndex + 1,
+                                           propertyName, refId, refType);
+
+                // this means the case is handled. It would be added to defered references and caused new errors
+                return true;
                 
             }
             return false;
