@@ -257,10 +257,10 @@ namespace Xbim.Common.Collections
             if (!OwningEntity.Activated)
                 Model.Activate(OwningEntity);
 
-
+            var result = false;
             Action doAction = () =>
             {
-                Internal.Remove(item);
+                result = Internal.Remove(item);
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, item);
                 NotifyCountChanged();
             };
@@ -279,7 +279,7 @@ namespace Xbim.Common.Collections
 
             Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
 
-            return true;
+            return result;
         }
 
         #endregion
