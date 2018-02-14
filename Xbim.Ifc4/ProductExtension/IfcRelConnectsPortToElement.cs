@@ -119,7 +119,13 @@ namespace Xbim.Ifc4.ProductExtension
 					_relatingPort = (IfcPort)(value.EntityVal);
 					return;
 				case 5: 
-					_relatedElement = (IfcDistributionElement)(value.EntityVal);
+					if (value.EntityVal is IIfcDistributionElement)
+					{
+						_relatedElement = (IfcDistributionElement)(value.EntityVal);
+					}
+					else
+						_relatedElement = null;
+
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
