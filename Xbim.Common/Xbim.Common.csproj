@@ -61,6 +61,7 @@
     <Compile Include="Collections\ProxyNestedItemSet.cs" />
     <Compile Include="Collections\ReverseProxyItemSet.cs" />
     <Compile Include="Collections\VolatileProxyItemSet.cs" />
+    <Compile Include="Enumerations\XbimIFCType.cs" />
     <Compile Include="Exceptions\XbimInitializationFailedException.cs" />
     <Compile Include="Federation\ReferencedModelCollection.cs" />
     <Compile Include="Federation\FederatedModelInstances.cs" />
