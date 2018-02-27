@@ -674,7 +674,7 @@ namespace Xbim.IO.Memory
         {
             using (var writer = new StreamWriter(stream))
             {
-                SaveAsStep21(writer);       
+                SaveAsStep21(writer, progress);       
             }
         }
 
@@ -685,7 +685,7 @@ namespace Xbim.IO.Memory
         /// <param name="progress"></param>
         public virtual void SaveAsStep21(TextWriter writer, ReportProgressDelegate progress = null)
         {
-            Part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
+            Part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>(), progress);
         }
 
         public void Dispose()
