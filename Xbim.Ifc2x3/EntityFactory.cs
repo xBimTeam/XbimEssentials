@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using Xbim.Common.Step21;
 using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 using Xbim.Ifc2x3.Kernel;
@@ -54,7 +55,6 @@ using Xbim.Ifc2x3.ProcessExtension;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 using Xbim.Common;
 using System.Reflection;
-using Xbim.Common.Step21;
 
 namespace Xbim.Ifc2x3
 {
@@ -1359,5 +1359,5 @@ namespace Xbim.Ifc2x3
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
         public XbimSchemaVersion SchemaVersion { get { return XbimSchemaVersion.Ifc2X3; } }
-    }
+	}
 }

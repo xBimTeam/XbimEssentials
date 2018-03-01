@@ -46,6 +46,46 @@ namespace Xbim.IO.Tests
         }
 
         [TestMethod]
+        public void IfcStoreRegionWorldCoordTest()
+        {
+            XbimMatrix3D WorldCoord = new XbimMatrix3D(-0.228171504575237, -0.973620955248947, 0, 0, 0.973620955248947, -0.228171504575237, 0, 0, 0, 0, 1, 0, 543188712, 259041729, 16000, 1);
+            var creds = new XbimEditorCredentials();
+            using (IfcStore model = IfcStore.Create(@"RegionTest.xbim", creds, IfcSchemaVersion.Ifc2X3))
+            {
+                var geomStore = model.GeometryStore;
+                using (var txn = geomStore.BeginInit())
+                {
+                    //ADD A REGIONCOLLECTION
+                    var regions = new XbimRegionCollection();
+                    regions.ContextLabel = 50;
+                    var bb = new XbimRect3D(new XbimPoint3D(1, 1, 1), new XbimVector3D(10, 20, 30));
+                    regions.Add(new XbimRegion("region1", bb, 100, WorldCoord));
+                    txn.AddRegions(regions);
+
+                    txn.Commit();
+                }
+                model.Close();
+            }
+
+            using (var model = IfcStore.Open(@"RegionTest.xbim"))
+            {
+                var geomStore = model.GeometryStore;
+                Assert.IsFalse(geomStore.IsEmpty);
+                using (var reader = geomStore.BeginRead())
+                {
+                    Assert.IsTrue(reader.ContextIds.Any());
+                    var regioncoll = reader.ContextRegions.First();
+                    var region = regioncoll.FirstOrDefault();
+                    Assert.AreEqual(WorldCoord.OffsetX, region.WorldCoordinateSystem.OffsetX, 1.0);
+                    Assert.AreEqual(WorldCoord.OffsetY, region.WorldCoordinateSystem.OffsetY, 1.0);
+                    Assert.AreEqual(WorldCoord.OffsetZ, region.WorldCoordinateSystem.OffsetZ, 1.0);
+
+                }
+                model.Close();
+            }
+        }
+
+        [TestMethod]
         [DeploymentItem("TestFiles")]
         public void IfcStoreGeometryStoreAddTest()
         {
@@ -105,11 +145,13 @@ namespace Xbim.IO.Tests
             }
         }
 
+       
+
+
         [TestMethod]
         [DeploymentItem("TestFiles")]
         public void ResourceReleaseTest()
         {
-
             using (var model = IfcStore.Open("SampleHouse4.ifc", null, 0))
             {
                 var geomStore = model.GeometryStore;

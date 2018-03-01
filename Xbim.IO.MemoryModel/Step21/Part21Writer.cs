@@ -32,7 +32,7 @@ namespace Xbim.IO.Step21
         /// <param name="output">Output writer</param>
         /// <param name="metadata">Metadata to be used for serialization</param>
         /// <param name="map">Optional map can be used to map occurrences in the file</param>
-        public static void Write(IModel model, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null)
+        public static void Write(IModel model, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null, ReportProgressDelegate progress = null)
         {
             var header = model.Header ?? new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults,model);
             string fallBackSchema = null;
@@ -57,11 +57,29 @@ namespace Xbim.IO.Step21
             WriteHeader(header, output, fallBackSchema);
                 
             foreach (var entity in model.Instances)
+            var count = model.Instances.Count;
+            var counter = 0;
+            var report = progress != null;
+
             {
                 WriteEntity(entity, output, metadata, map);
                 output.WriteLine();
+
+                if (report)
+                {
+                    counter++;
+                    // report every 1000 entities
+                    if (counter % 1000 == 0)
+                    {
+                        var percent = (int)((float)counter / (float)count);
+                        progress(percent, null);
+                    }
+                }
             }
             WriteFooter(output);
+
+            if (progress != null)
+                progress(100, null);
         }
 
         /// <summary>

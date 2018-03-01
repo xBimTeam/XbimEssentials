@@ -180,7 +180,6 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void ExcelRoundTrip()
         {
-
             using (var model = new CobieModel(CreateTestModel()))
             {
                 string excelExported = "exported.xlsx";
@@ -198,7 +197,6 @@ namespace Xbim.MemoryModel.Tests
                     //CompareTrees(model, model);
                 }
             }
-
         }
 
         private void CompareTrees(IModel left, IModel right)
@@ -215,7 +213,7 @@ namespace Xbim.MemoryModel.Tests
             Assert.AreEqual(facilityLeft.AltExternalId, facilityRight.AltExternalId);
             Assert.AreEqual(facilityLeft.Name, facilityRight.Name);
 
-            Assert.AreEqual(facilityLeft.Floors.Count(), facilityRight.Floors.Count(), "Floor count missmatch");
+            Assert.AreEqual(facilityLeft.Floors.Count(), facilityRight.Floors.Count(), "Floor count mismatch");
 
             if (facilityLeft.Floors.Count() == facilityRight.Floors.Count())
             {
@@ -235,7 +233,7 @@ namespace Xbim.MemoryModel.Tests
             Assert.AreEqual(floorLeft.AltExternalId, floorRight.AltExternalId);
             Assert.AreEqual(floorLeft.Name, floorRight.Name);
 
-            Assert.AreEqual(floorLeft.Spaces.Count(), floorRight.Spaces.Count(), "Space count missmatch");
+            Assert.AreEqual(floorLeft.Spaces.Count(), floorRight.Spaces.Count(), "Space count mismatch");
 
             if (floorLeft.Spaces.Count() == floorRight.Spaces.Count())
             {

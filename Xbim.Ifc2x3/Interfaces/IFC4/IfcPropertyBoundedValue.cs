@@ -891,6 +891,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 						SetValue(v => _upperBoundValue4 = v, _upperBoundValue4, null, "UpperBoundValue", -3);
 					return;
 				}
+				if (value is Ifc4.MeasureResource.IfcBinary) 
+				{
+					if (UpperBoundValue != null)
+						UpperBoundValue = null;
+					SetValue(v => _upperBoundValue4 = v, _upperBoundValue4, value, "UpperBoundValue", -3);
+					return;
+				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 
 				{
 					UpperBoundValue = new MeasureResource.IfcBoolean((Ifc4.MeasureResource.IfcBoolean)value);
@@ -1857,6 +1864,13 @@ namespace Xbim.Ifc2x3.PropertyResource
 					LowerBoundValue = new MeasureResource.IfcVolumeMeasure((Ifc4.MeasureResource.IfcVolumeMeasure)value);
 					if (_lowerBoundValue4 != null)
 						SetValue(v => _lowerBoundValue4 = v, _lowerBoundValue4, null, "LowerBoundValue", -4);
+					return;
+				}
+				if (value is Ifc4.MeasureResource.IfcBinary) 
+				{
+					if (LowerBoundValue != null)
+						LowerBoundValue = null;
+					SetValue(v => _lowerBoundValue4 = v, _lowerBoundValue4, value, "LowerBoundValue", -4);
 					return;
 				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 

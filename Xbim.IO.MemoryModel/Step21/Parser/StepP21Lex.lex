@@ -1,4 +1,6 @@
 %namespace Xbim.IO.Parser
+%using QUT.Gppg;
+
 %x COMMENT
 %option verbose, summary, noCompressNext, noPersistBuffer
 
@@ -63,6 +65,10 @@ ENDSCOPE	{ return((int)Tokens.ENDSCOPE); }
 ![a-zA-Z0-9_]+	{ SetValue(); return((int)Tokens.TYPE); }
 [^)]		{SetValue();  return((int)Tokens.MISC); } 
 
+
+%{
+	yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
+%}
 
 %%
 

@@ -15,11 +15,23 @@ using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.SharedBldgElements;
 using Xbim.IO.TableStore;
 
-namespace Xbim.MemoryModel.Tests
+namespace Xbim.IO.Tests
 {
     [TestClass]
     public class TableStorageTests
     {
+        //[TestMethod]
+        public void ContactsImport()
+        {
+            const string file = @"c:\Users\Martin\Source\Samples\cutdown.xlsx";
+            string report;
+            using (var model = CobieModel.ImportFromTable(file, out report))
+            {
+                var contacts = model.Instances.OfType<CobieContact>().ToList();
+                Assert.IsTrue(contacts.Count > 0);
+            }
+        }
+
         //[TestMethod]
         public void SplitAndExport()
         {
@@ -89,7 +101,7 @@ namespace Xbim.MemoryModel.Tests
 
             var w = new Stopwatch();
             w.Start();
-            var storage = new TableStore(model, mapping);
+            var storage = new TableStore.TableStore(model, mapping);
             storage.Store(file);
             w.Stop();
             //Debug.WriteLine(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds);
@@ -98,7 +110,7 @@ namespace Xbim.MemoryModel.Tests
             var loaded = new IO.Memory.MemoryModel(new Ifc4.EntityFactory());
             using (var txn = loaded.BeginTransaction("Import from XLSX"))
             {
-                storage = new TableStore(loaded, mapping);
+                storage = new TableStore.TableStore(loaded, mapping);
                 storage.LoadFrom(file);
                 txn.Commit();
             }
@@ -164,7 +176,7 @@ namespace Xbim.MemoryModel.Tests
 
             var w = new Stopwatch();
             w.Start();
-            var storage = new TableStore(model, mapping);
+            var storage = new TableStore.TableStore(model, mapping);
             storage.Store(file);
             w.Stop();
             //Debug.WriteLine(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds);
@@ -173,7 +185,7 @@ namespace Xbim.MemoryModel.Tests
             var loaded = new IO.Memory.MemoryModel(new Ifc4.EntityFactory());
             using (var txn = loaded.BeginTransaction("Import from XLSX"))
             {
-                storage = new TableStore(loaded, mapping);
+                storage = new TableStore.TableStore(loaded, mapping);
                 storage.LoadFrom(file);
                 txn.Commit();
             }

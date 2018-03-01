@@ -42,7 +42,7 @@ namespace Xbim.IO.Step21
         protected PropertyValue PropertyValue;
         private readonly List<DeferredReference> _deferredReferences;
         private readonly double _streamSize = -1;
-        public static int MaxErrorCount = 100;
+        public static int MaxErrorCount = 200;
         private int _percentageParsed;
         private bool _deferListItems;
         public bool Cancel = false;
@@ -212,6 +212,12 @@ namespace Xbim.IO.Step21
 
         protected override void EndEntity()
         {
+            // Check if stack is empty to avoid exception
+            if (0 == _processStack.Count)
+            {
+                Logger.Error("Stack is empty");
+                return;
+            }
             var p21 = _processStack.Pop();
             //Debug.Assert(_processStack.Count == 0);
             CurrentInstance = null;
@@ -407,6 +413,9 @@ namespace Xbim.IO.Step21
                 ErrorCount++;
                 Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}",
                                            refId, host.GetType().Name.ToUpper(), paramIndex + 1);
+
+                // this means the case is handled. It would be added to defered references and caused new errors
+                return true;
 
             }
             return false;

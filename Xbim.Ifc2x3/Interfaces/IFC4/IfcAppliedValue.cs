@@ -746,6 +746,13 @@ namespace Xbim.Ifc2x3.CostResource
 					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
 					return;
 				}
+				if (value is Ifc4.MeasureResource.IfcBinary) 
+				{
+					if (AppliedValue != null)
+						AppliedValue = null;
+					SetValue(v => _appliedValue4 = v, _appliedValue4, value, "AppliedValue", -3);
+					return;
+				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 
 				{
 					if (AppliedValue != null)
