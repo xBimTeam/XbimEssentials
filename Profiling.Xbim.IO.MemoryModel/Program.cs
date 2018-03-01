@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using Xbim.Common.Step21;
 using Xbim.Ifc4;
-using Xbim.Ifc2x3.TopologyResource;
-using Xbim.Ifc2x3.GeometricModelResource;
-using Xbim.Ifc2x3.GeometryResource;
 using Xbim.IO.Memory;
-using Xbim.IO.Parser;
-using Xbim.IO.Step21;
-using ValueType = Xbim.IO.Parser.ValueType;
 using Xbim.Ifc4.Interfaces;
 
 namespace Profiling.Xbim.IO
