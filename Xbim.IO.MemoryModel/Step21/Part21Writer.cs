@@ -56,11 +56,11 @@ namespace Xbim.IO.Step21
 
             WriteHeader(header, output, fallBackSchema);
                 
-            foreach (var entity in model.Instances)
             var count = model.Instances.Count;
             var counter = 0;
             var report = progress != null;
 
+            foreach (var entity in model.Instances)
             {
                 WriteEntity(entity, output, metadata, map);
                 output.WriteLine();
