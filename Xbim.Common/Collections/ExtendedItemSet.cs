@@ -184,7 +184,9 @@ namespace Xbim.Common.Collections
             if (item == null)
                 return false;
 
-            return _extendedSet.Remove(item) || _innerSet.Remove(_transformIn(item));
+            return 
+                _extendedSet.Remove(item) || 
+                _innerSet.Remove(_transformIn(item));
         }
 
         public void CopyTo(Array array, int index)

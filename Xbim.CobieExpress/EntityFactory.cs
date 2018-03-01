@@ -8,8 +8,8 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using Xbim.Common;
 using Xbim.Common.Step21;
+using Xbim.Common;
 
 namespace Xbim.CobieExpress
 {
@@ -229,6 +229,15 @@ namespace Xbim.CobieExpress
 		private static readonly List<string> _schemasIds = new List<string> { "COBIE_EXPRESS" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-        public IfcSchemaVersion SchemaVersion { get { return IfcSchemaVersion.Cobie2X4; } }
-    }
+		/// <summary>
+        /// Gets the Ifc Schema version of the model if this is IFC schema
+        /// </summary>
+		public IfcSchemaVersion SchemaVersion { 
+			get
+			{
+				return IfcSchemaVersion.Cobie2X4;
+			}
+		}
+
+	}
 }

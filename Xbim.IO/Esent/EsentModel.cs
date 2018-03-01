@@ -43,6 +43,9 @@ namespace Xbim.IO.Esent
         private bool _disposed;
 
         private EsentEntityCursor _editTransactionEntityCursor;
+
+        
+
         private bool _deleteOnClose;
 
 
@@ -1131,6 +1134,12 @@ namespace Xbim.IO.Esent
             return _editTransactionEntityCursor;
         }
 
+        internal enum TableStatus
+        {
+            Unknown,
+            Found,
+            Missing
+        }
 
 
         public XbimGeometryData GetGeometryData(XbimGeometryHandle handle)
@@ -1147,14 +1156,7 @@ namespace Xbim.IO.Esent
         {
             return InstanceCache.GetGeometryData(handles);
         }
-
-
-
-
-
-
-
-
+               
 
         public object Tag { get; set; }
 

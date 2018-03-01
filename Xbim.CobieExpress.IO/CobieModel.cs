@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Xbim.CobieExpress.IO.Resolvers;
 using Xbim.Common;
 using Xbim.Common.Geometry;
@@ -130,7 +131,7 @@ namespace Xbim.CobieExpress.IO
             }
         }
 
-        public void ExportToTable(string file, out string report, ModelMapping mapping = null)
+        public void ExportToTable(string file, out string report, ModelMapping mapping = null, Stream template = null)
         {
             var ext = (Path.GetExtension(file) ?? "").ToLower();
             if (ext != ".xls" && ext != ".xlsx")
@@ -138,15 +139,15 @@ namespace Xbim.CobieExpress.IO
 
             mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
             var storage = GetTableStore(this, mapping);
-            storage.Store(file);
+            storage.Store(file, template);
             report = storage.Log.ToString();
         }
 
-        public void ExportToTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null)
+        public void ExportToTable(Stream file, ExcelTypeEnum typeEnum, out string report, ModelMapping mapping = null, Stream template = null)
         {
             mapping = mapping ?? ModelMapping.Load(Properties.Resources.COBieUK2012);
             var storage = GetTableStore(this, mapping);
-            storage.Store(file, typeEnum);
+            storage.Store(file, typeEnum, template);
             report = storage.Log.ToString();
         }
 
@@ -159,6 +160,13 @@ namespace Xbim.CobieExpress.IO
             using (var txn = loaded.BeginTransaction("Loading XLSX"))
             {
                 storage.LoadFrom(file);
+
+                //assign all levels to facility because COBie XLS standard contains this implicitly
+                var facility = loaded.Instances.FirstOrDefault<CobieFacility>();
+                var floors = loaded.Instances.OfType<CobieFloor>().ToList();
+                if (facility != null && floors.Any())
+                    floors.ForEach(f => f.Facility = facility);
+
                 txn.Commit();
             }
 

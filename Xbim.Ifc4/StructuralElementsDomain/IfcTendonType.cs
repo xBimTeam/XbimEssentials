@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.Interfaces
 		IfcTendonTypeEnum @PredefinedType { get;  set; }
 		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
 		IfcAreaMeasure? @CrossSectionArea { get;  set; }
-		IfcPositiveLengthMeasure? @SheethDiameter { get;  set; }
+		IfcPositiveLengthMeasure? @SheathDiameter { get;  set; }
 	
 	}
 }
@@ -56,10 +56,10 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			get { return @CrossSectionArea; } 
 			set { CrossSectionArea = value;}
 		}	
-		IfcPositiveLengthMeasure? IIfcTendonType.SheethDiameter { 
+		IfcPositiveLengthMeasure? IIfcTendonType.SheathDiameter { 
  
-			get { return @SheethDiameter; } 
-			set { SheethDiameter = value;}
+			get { return @SheathDiameter; } 
+			set { SheathDiameter = value;}
 		}	
 		 
 		#endregion
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		private IfcTendonTypeEnum _predefinedType;
 		private IfcPositiveLengthMeasure? _nominalDiameter;
 		private IfcAreaMeasure? _crossSectionArea;
-		private IfcPositiveLengthMeasure? _sheethDiameter;
+		private IfcPositiveLengthMeasure? _sheathDiameter;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -120,17 +120,17 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			} 
 		}	
 		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
-		public IfcPositiveLengthMeasure? @SheethDiameter 
+		public IfcPositiveLengthMeasure? @SheathDiameter 
 		{ 
 			get 
 			{
-				if(_activated) return _sheethDiameter;
+				if(_activated) return _sheathDiameter;
 				Activate();
-				return _sheethDiameter;
+				return _sheathDiameter;
 			} 
 			set
 			{
-				SetValue( v =>  _sheethDiameter = v, _sheethDiameter, value,  "SheethDiameter", 13);
+				SetValue( v =>  _sheathDiameter = v, _sheathDiameter, value,  "SheathDiameter", 13);
 			} 
 		}	
 		#endregion
@@ -164,7 +164,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 					_crossSectionArea = value.RealVal;
 					return;
 				case 12: 
-					_sheethDiameter = value.RealVal;
+					_sheathDiameter = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

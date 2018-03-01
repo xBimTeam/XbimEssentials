@@ -891,6 +891,13 @@ namespace Xbim.Ifc2x3.MeasureResource
 						SetValue(v => _valueComponent4 = v, _valueComponent4, null, "ValueComponent", -1);
 					return;
 				}
+				if (value is Ifc4.MeasureResource.IfcBinary) 
+				{
+					if (ValueComponent != null)
+						ValueComponent = null;
+					SetValue(v => _valueComponent4 = v, _valueComponent4, value, "ValueComponent", -1);
+					return;
+				}
 				if (value is Ifc4.MeasureResource.IfcBoolean) 
 				{
 					ValueComponent = new IfcBoolean((Ifc4.MeasureResource.IfcBoolean)value);

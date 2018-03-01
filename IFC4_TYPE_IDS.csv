@@ -261,6 +261,7 @@ IfcPileTypeEnum,871
 IfcPipeFittingTypeEnum,872
 IfcPipeSegmentTypeEnum,873
 IfcPlateTypeEnum,874
+IfcPreferredSurfaceCurveRepresentation,1320
 IfcProcedureTypeEnum,875
 IfcProfileTypeEnum,876
 IfcProjectOrderTypeEnum,878
@@ -715,10 +716,13 @@ IfcIShapeProfileDef,352
 IfcImageTexture,727
 IfcIndexedColourMap,1189
 IfcIndexedPolyCurve,1190
+IfcIndexedPolygonalFace,1321
+IfcIndexedPolygonalFaceWithVoids,1322
 IfcIndexedTextureMap,1191
 IfcIndexedTriangleTextureMap,1192
 IfcInterceptor,1193
 IfcInterceptorType,1194
+IfcIntersectionCurve,1323
 IfcInventory,768
 IfcIrregularTimeSeries,570
 IfcIrregularTimeSeriesValue,609
@@ -828,6 +832,7 @@ IfcPointOnCurve,654
 IfcPointOnSurface,65
 IfcPolyLoop,200
 IfcPolygonalBoundedHalfSpace,623
+IfcPolygonalFaceSet,1324
 IfcPolyline,500
 IfcPort,179
 IfcPostalAddress,662
@@ -978,6 +983,7 @@ IfcSIUnit,164
 IfcSanitaryTerminal,1262
 IfcSanitaryTerminalType,435
 IfcSchedulingTime,1263
+IfcSeamCurve,1325
 IfcSectionProperties,184
 IfcSectionReinforcementProperties,508
 IfcSectionedSpine,300
@@ -1011,6 +1017,7 @@ IfcSpatialStructureElementType,530
 IfcSpatialZone,1275
 IfcSpatialZoneType,1276
 IfcSphere,706
+IfcSphericalSurface,1326
 IfcStackTerminal,1277
 IfcStackTerminalType,476
 IfcStair,346
@@ -1061,6 +1068,7 @@ IfcSubContractResource,594
 IfcSubContractResourceType,1286
 IfcSubedge,487
 IfcSurface,111
+IfcSurfaceCurve,1327
 IfcSurfaceCurveSweptAreaSolid,480
 IfcSurfaceFeature,1287
 IfcSurfaceOfLinearExtrusion,256
@@ -1115,6 +1123,7 @@ IfcTimeSeries,418
 IfcTimeSeriesValue,35
 IfcTopologicalRepresentationItem,84
 IfcTopologyRepresentation,88
+IfcToroidalSurface,1328
 IfcTransformer,1303
 IfcTransformerType,549
 IfcTransportElement,416

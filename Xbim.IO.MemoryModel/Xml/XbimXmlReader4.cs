@@ -156,6 +156,11 @@ namespace Xbim.IO.Xml
                         header.FileSchema.Schemas.Add("IFC4");
                         break;
                     }
+                    if (input.Value == "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2")
+                    {
+                        header.FileSchema.Schemas.Add("IFC4");
+                        break;
+                    }
                 }
                 input.MoveToElement();
             }            
@@ -674,6 +679,9 @@ namespace Xbim.IO.Xml
 
                     if (string.Equals(input.Value, "http://www.buildingsmart-tech.org/ifcXML/IFC4/final", StringComparison.OrdinalIgnoreCase))
                         return XmlSchemaVersion.Ifc4;
+
+                    if (string.Equals(input.Value, "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2", StringComparison.OrdinalIgnoreCase))
+                        return XmlSchemaVersion.Ifc4Add2;
                 }
                 input.MoveToElement();
             }
@@ -686,6 +694,7 @@ namespace Xbim.IO.Xml
         // ReSharper disable once InconsistentNaming
         Ifc2x3,
         Ifc4Add1,
+        Ifc4Add2,
         Ifc4,
         Unknown
     }

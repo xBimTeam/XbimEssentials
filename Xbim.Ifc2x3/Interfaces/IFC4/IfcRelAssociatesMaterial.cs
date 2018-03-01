@@ -56,6 +56,30 @@ namespace Xbim.Ifc2x3.ProductExtension
 					RelatingMaterial = null;
 					return;
 				}	
+				var ifcmaterial = value as MaterialResource.IfcMaterial;
+				if (ifcmaterial != null) 
+				{
+					RelatingMaterial = ifcmaterial;
+					return;
+				}
+				var ifcmateriallayer = value as MaterialResource.IfcMaterialLayer;
+				if (ifcmateriallayer != null) 
+				{
+					RelatingMaterial = ifcmateriallayer;
+					return;
+				}
+				var ifcmateriallayerset = value as MaterialResource.IfcMaterialLayerSet;
+				if (ifcmateriallayerset != null) 
+				{
+					RelatingMaterial = ifcmateriallayerset;
+					return;
+				}
+				var ifcmateriallayersetusage = value as MaterialResource.IfcMaterialLayerSetUsage;
+				if (ifcmateriallayersetusage != null) 
+				{
+					RelatingMaterial = ifcmateriallayersetusage;
+					return;
+				}
 				var ifcmateriallist = value as MaterialResource.IfcMaterialList;
 				if (ifcmateriallist != null) 
 				{

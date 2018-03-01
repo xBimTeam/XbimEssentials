@@ -10,6 +10,15 @@ namespace Xbim.IO.Xml.BsConf
 {
     public partial class configuration
     {
+        public static configuration IFC4Add2
+        {
+            get
+            {
+                var data = Properties.Resources.IFC4_ADD2_config;
+                return Deserialize(data);
+            }
+        }
+
         public static configuration IFC4Add1
         {
             get

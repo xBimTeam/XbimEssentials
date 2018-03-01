@@ -7,6 +7,7 @@ using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.Ifc4.Interfaces;
 using IfcAirTerminalTypeEnum = Xbim.Ifc4.Interfaces.IfcAirTerminalTypeEnum;
 using IfcBeamTypeEnum = Xbim.Ifc4.Interfaces.IfcBeamTypeEnum;
+using Xbim.Common.Step21;
 
 namespace Xbim.Essentials.Tests
 {
@@ -14,6 +15,36 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem("TestSourceFiles/4walls1floorSite.ifc")]
     public class CrossAccessTests
     {
+        [TestMethod]
+        public void CollectionRemoval()
+        {
+            // arrange
+            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
+            using (var txn = model.BeginTransaction())
+            {
+                IfcWall wall1 = model.Instances.New<IfcWall>();
+                IfcWall wall2 = model.Instances.New<IfcWall>();
+
+                var propertySet = model.Instances.New<Ifc2x3.Kernel.IfcPropertySet>();
+                propertySet.HasProperties.Add(model.Instances.New<Ifc2x3.PropertyResource.IfcPropertySingleValue>());
+
+                // Changing the type of the rel variable from interface to IfcRelDefinesByProperties solves the issue.
+                IIfcRelDefinesByProperties rel = model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByProperties>();
+
+                rel.RelatingPropertyDefinition = propertySet;
+                rel.RelatedObjects.Add(wall1);
+                rel.RelatedObjects.Add(wall2);
+
+                // act
+                rel.RelatedObjects.Remove(wall1);
+
+                // assert failed. Expected: 1, actual: 2 (null, wall2).
+                Assert.AreEqual(1, rel.RelatedObjects.Count);
+
+                txn.Commit();
+            }
+        }
+
         [TestMethod]
         public void SettingNamesTest()
         {

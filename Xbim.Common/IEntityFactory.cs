@@ -20,7 +20,7 @@ namespace Xbim.Common
 
 		IEnumerable<string> SchemasIds { get; }
         /// <summary>
-        /// Gets the Ifc Schema version of the model
+        /// Gets the Ifc Schema version of the model if this is IFC schema
         /// </summary>
         XbimSchemaVersion SchemaVersion { get; }
     }

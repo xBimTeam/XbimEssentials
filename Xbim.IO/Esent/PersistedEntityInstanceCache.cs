@@ -66,11 +66,7 @@ namespace Xbim.IO.Esent
         private readonly EsentCursor[] _geometryTables;
         private XbimDBAccess _accessMode;
         private string _systemPath;
-
-
-
-
-
+        
         #endregion
         #region Cached data
         private readonly ConcurrentDictionary<int, IPersistEntity> _read = new ConcurrentDictionary<int, IPersistEntity>();
@@ -165,7 +161,6 @@ namespace Xbim.IO.Esent
             }
             catch (Exception e)
             {
-
                 throw new Exception("Could not clear existing geometry tables", e);
             }
         }
@@ -2365,7 +2360,7 @@ namespace Xbim.IO.Esent
             return HasTable(XbimGeometryCursor.GeometryTableName);
         }
 
-        private bool HasTable(string name)
+        internal bool HasTable(string name)
         {
             return HasTable(name, _session, _databaseId);
         }

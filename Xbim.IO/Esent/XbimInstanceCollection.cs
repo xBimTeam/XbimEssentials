@@ -156,7 +156,8 @@ namespace Xbim.IO.Esent
         public TIfcType New<TIfcType>(Action<TIfcType> initPropertiesFunc) where TIfcType : IInstantiableEntity
         {
             var instance = New<TIfcType>();
-            initPropertiesFunc(instance);
+            if (initPropertiesFunc != null)
+                initPropertiesFunc(instance);
             return instance;
         }
 

@@ -48,9 +48,9 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\Output\Debug\</OutputPath>
-    <DefineConstants>DEBUG;RUNNING_ON_4</DefineConstants>
-    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">RUNNING_ON_4</DefineConstants>
-    <DefineConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.0' ">NOT_RUNNING_ON_4</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">DEBUG;RUNNING_ON_4</DefineConstants>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.0' ">DEBUG;NOT_RUNNING_ON_4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -60,7 +60,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\Output\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">RUNNING_ON_4</DefineConstants>
     <DefineConstants Condition=" '$(TargetFrameworkVersion)' != 'v4.0' ">NOT_RUNNING_ON_4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -217,6 +218,7 @@
   <ItemGroup>
     <Content Include="Xml\BsConf\IFC4_ADD1_config.xml" />
     <Content Include="Xml\BsConf\COBieExpress_config.xml" />
+    <Content Include="Xml\BsConf\IFC4_ADD2_config.xml" />
     <Content Include="Xml\BsConf\IFC4_config.xml" />
   </ItemGroup>
   <ItemGroup>
