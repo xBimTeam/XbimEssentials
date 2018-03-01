@@ -31,8 +31,7 @@ namespace Xbim.IO.Step21
 {
     public class XbimP21Parser : P21Parser
     {
-        private ILogger _logger;
-        public ILogger Logger { get { return _logger; } set { _logger = value; } }
+        public ILogger Logger { get; private set; }
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         protected int ListNestLevel = -1;
@@ -53,10 +52,10 @@ namespace Xbim.IO.Step21
             get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; }
         }
 
-        public XbimP21Parser(Stream strm, long streamSize)
+        public XbimP21Parser(Stream strm, long streamSize , ILogger logger)
             : base(strm)
         {
-            //Metadata = metadata;
+            Logger = logger;
             var entityApproxCount = 5000;
             if (streamSize > 0)
             {
@@ -69,9 +68,9 @@ namespace Xbim.IO.Step21
             ErrorCount = 0;
         }
 
-        protected XbimP21Parser()
+        protected XbimP21Parser(ILogger logger)
         {
-            //Metadata = metadata;
+            Logger = logger;
             const int entityApproxCount = 5000;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
@@ -215,7 +214,7 @@ namespace Xbim.IO.Step21
             // Check if stack is empty to avoid exception
             if (0 == _processStack.Count)
             {
-                Logger.Error("Stack is empty");
+                Logger.LogError("Stack is empty");
                 return;
             }
             var p21 = _processStack.Pop();

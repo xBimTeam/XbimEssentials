@@ -14,7 +14,7 @@ namespace Xbim.IO.Xml.BsConf
         {
             get
             {
-                var data = Properties.Resources.IFC4_ADD2_config;
+                var data = Resources.IFC4_ADD2_config;
                 return Deserialize(data);
             }
         }
@@ -46,17 +46,17 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
-        public option Option { get { return Items == null ? null : Items.OfType<option>().FirstOrDefault(); } }
+        public option Option { get { return Items?.OfType<option>().FirstOrDefault(); } }
 
-        public schema Schema { get { return Items == null ? null : Items.OfType<schema>().FirstOrDefault(); } }
+        public schema Schema { get { return Items?.OfType<schema>().FirstOrDefault(); } }
 
-        public uosElement RootElement { get { return Items == null ? null : Items.OfType<uosElement>().FirstOrDefault(); } }
+        public uosElement RootElement { get { return Items?.OfType<uosElement>().FirstOrDefault(); } }
 
-        public IEnumerable<entity> Entities { get { return Items == null ? null : Items.OfType<entity>(); } }
+        public IEnumerable<entity> Entities { get { return Items?.OfType<entity>(); } }
 
-        public IEnumerable<type> Types { get { return Items == null ? null : Items.OfType<type>(); } }
+        public IEnumerable<type> Types { get { return Items?.OfType<type>(); } }
 
-        public @namespace Namespace { get { return Schema == null ? null : Schema.Items.OfType<@namespace>().FirstOrDefault(); } }
+        public @namespace Namespace { get { return Schema?.Items.OfType<@namespace>().FirstOrDefault(); } }
 
         public IEnumerable<entity> ChangedInverses { get
         {
@@ -81,11 +81,7 @@ namespace Xbim.IO.Xml.BsConf
 
         private entity GetEntity(string name)
         {
-            return Items == null ?
-                null :
-                
-                    Items
-                        .OfType<entity>().FirstOrDefault(e => string.Compare(e.EntityName, name, StringComparison.OrdinalIgnoreCase) == 0);
+            return Items?.OfType<entity>().FirstOrDefault(e => string.Compare(e.EntityName, name, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
         public IEnumerable<entity> GetEntities(ExpressType type)
@@ -161,9 +157,7 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
-        public string EntityName { get { return select != null
-            ? select.FirstOrDefault():
-            null; } }
+        public string EntityName { get { return select?.FirstOrDefault(); } }
 
         public attribute GetOrCreateAttribute(string attributeName)
         {
