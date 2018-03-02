@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Xbim.IO.MemoryModel.Local {
+namespace Xbim.IO.MemoryModel {
     using System;
     
     

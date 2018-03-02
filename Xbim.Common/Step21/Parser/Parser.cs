@@ -139,7 +139,7 @@ namespace Xbim.IO.Parser
         {
         }
 
-        internal virtual void SetErrorMessage()
+        protected virtual void SetErrorMessage()
         {
         }
 

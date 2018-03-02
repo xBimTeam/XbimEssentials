@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Xbim.Common;
 
 namespace Xbim.Common.Model
 {
