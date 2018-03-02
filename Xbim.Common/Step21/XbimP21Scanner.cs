@@ -55,6 +55,8 @@ namespace Xbim.IO.Step21
         private bool _deferListItems;
         private readonly List<int> _nestedIndex = new List<int>();
 
+        private readonly ParserErrorRegistry _errors = new ParserErrorRegistry();
+
         public HashSet<string> SkipTypes { get; } = new HashSet<string>();
         private HashSet<long> SkipEntities { get; } = new HashSet<long>();
 
@@ -90,7 +92,7 @@ namespace Xbim.IO.Step21
             _scanner.SetSource(data, 0);
             _streamSize = data.Length;
 
-            var entityApproxCount = (int)_streamSize/50;
+            var entityApproxCount = (int)_streamSize / 50;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
         }
@@ -100,6 +102,7 @@ namespace Xbim.IO.Step21
             var skipping = SkipTypes.Any();
             var eofToken = (int)Tokens.EOF;
             var tok = _scanner.yylex();
+            int endEntityToken = ';';
             while (tok != eofToken && !Cancel)
             {
                 try
@@ -129,15 +132,16 @@ namespace Xbim.IO.Step21
                                 {
                                     var current = _processStack.Pop();
                                     SkipEntities.Add(current.EntityLabel);
-                                    int endEntityToken = ';';
                                     while (tok != endEntityToken)
-                                    {
                                         tok = _scanner.yylex();
-                                    }
+                                    break;
                                 }
-                                else
+
+                                if (!SetType(type))
                                 {
-                                    SetType(type);
+                                    // move to the end of entity if we couldn't create it
+                                    while (tok != endEntityToken)
+                                        tok = _scanner.yylex();
                                 }
                                 break;
                             case Tokens.INTEGER:
@@ -217,14 +221,8 @@ namespace Xbim.IO.Step21
                 //and start from there
                 catch (Exception e)
                 {
-                    _errorCount++;
                     Logger?.LogError(e.Message);
-                    if (_errorCount > MaxErrorCount)
-                    {
-                        Logger?.LogError($"Too many errors in the input file {ErrorCount}");
-                        return false;
-                    }
-
+                    ErrorCount++;
 
                     // clear current entity stack to make sure there are no residuals
                     _processStack.Clear();
@@ -266,6 +264,10 @@ namespace Xbim.IO.Step21
                                                       defRef.ReferenceId);
             }
             _deferredReferences.Clear();
+
+            if (_errors.Any)
+                Logger?.LogWarning(_errors.Summary);
+
             ProgressStatus?.Invoke(100, "Parsing finished.");
         }
 
@@ -365,30 +367,44 @@ namespace Xbim.IO.Step21
             ProgressStatus(percentage, "Parsing");
         }
 
-        protected void SetType(string entityTypeName)
+        protected bool SetType(string entityTypeName)
         {
-            if (_inHeader)
+            try
             {
-                // instantiates an empty IPersist from the header information
-                var t = EntityCreate(entityTypeName, null, _inHeader);
-                // then attaches it to a new Part21Entity, this will be processed later from the _processStack
-                // to debug value initialisation place a breakpoint on the Parse() function of 
-                // StepFileName, StepFileSchema or StepFileDescription classes.
-                CurrentInstance = new Part21Entity(t);
-                if (CurrentInstance != null) _processStack.Push(CurrentInstance);
-            }
-            else
-            {
-                if (ListNestLevel == -1)
+                if (_inHeader)
                 {
-                    var p21 = _processStack.Peek();
-                    p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, _inHeader);
+                    // instantiates an empty IPersist from the header information
+                    var t = EntityCreate(entityTypeName, null, _inHeader);
+                    // then attaches it to a new Part21Entity, this will be processed later from the _processStack
+                    // to debug value initialisation place a breakpoint on the Parse() function of 
+                    // StepFileName, StepFileSchema or StepFileDescription classes.
+                    CurrentInstance = new Part21Entity(t);
+                    if (CurrentInstance != null) _processStack.Push(CurrentInstance);
                 }
                 else
                 {
-                    BeginNestedType(entityTypeName);
+                    if (ListNestLevel == -1)
+                    {
+                        var p21 = _processStack.Peek();
+                        p21.Entity = EntityCreate(entityTypeName, p21.EntityLabel, _inHeader);
+                    }
+                    else
+                    {
+                        BeginNestedType(entityTypeName);
+                    }
                 }
+                return true;
             }
+            catch (Exception)
+            {
+                if (_errors.AddTypeNotCreated(entityTypeName))
+                {
+                    Logger?.LogError($"Could not create type {entityTypeName}");
+                    ErrorCount++;
+                }
+                return false;
+            }
+
         }
 
         protected void EndEntity()
@@ -402,10 +418,9 @@ namespace Xbim.IO.Step21
                 {
                     _entities.Add(p21.EntityLabel, p21.Entity);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    var msg = string.Format("Duplicate entity label: #{0}", p21.EntityLabel);
-                    Logger?.LogError(msg, ex);
+                    Logger?.LogError($"Duplicate entity label: #{p21.EntityLabel}");
                     ErrorCount++;
                 }
             }
@@ -536,9 +551,12 @@ namespace Xbim.IO.Step21
                 if (CurrentInstance.Entity != null)
                     CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                ErrorCount++;
+                // return silently if this kind of error has already been reported
+                if (!_errors.AddPropertyNotSet(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, PropertyValue, e))
+                    return;
+
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
@@ -551,6 +569,7 @@ namespace Xbim.IO.Step21
                 {
                     Logger?.LogError("Unhandled Parser error, in Parser.cs EndNestedType");
                 }
+                ErrorCount++;
             }
             if (ListNestLevel == 0)
             {
@@ -575,9 +594,12 @@ namespace Xbim.IO.Step21
                 if (CurrentInstance.Entity != null)
                     CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                ErrorCount++;
+                // return silently if this kind of error has already been reported
+                if (!_errors.AddPropertyNotSet(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, PropertyValue, e))
+                    return;
+
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
@@ -591,6 +613,7 @@ namespace Xbim.IO.Step21
                 {
                     Logger?.LogError("Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
+                ErrorCount++;
             }
             if (ListNestLevel == 0)
             {
@@ -616,12 +639,14 @@ namespace Xbim.IO.Step21
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                ErrorCount++;
-                Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}",
-                                           refId, host.GetType().Name.ToUpper(), paramIndex + 1
-                                           );
+                // return silently if this kind of error has already been reported
+                if (_errors.AddPropertyNotSet(host, paramIndex, PropertyValue, e))
+                {
+                    Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}", refId, host.GetType().Name.ToUpper(), paramIndex + 1 );
+                    ErrorCount++;
+                }
 
             }
             return false;
