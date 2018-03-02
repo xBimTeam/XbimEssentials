@@ -40,9 +40,9 @@ namespace Xbim.Tessellator
 {
     public struct Vec3EqualityComparer : IEqualityComparer<Vec3>
     {
-        private readonly float _precision2;
-        private readonly float _gridDim;
-        public Vec3EqualityComparer(float precision)
+        private readonly double _precision2;
+        private readonly double _gridDim;
+        public Vec3EqualityComparer(double precision)
         {
             _precision2 = precision * precision;
             _gridDim = precision*10;//coursen  up
@@ -106,12 +106,7 @@ namespace Xbim.Tessellator
             // ReSharper restore CompareOfFloatsByEqualityOperator
         }
 
-        public Vec3(float x, float y, float z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
+       
 
         public Vec3(double x, double y, double z)
         {
