@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading;
 using Xbim.Common.Geometry;
 
-namespace Xbim.IO.Memory
+namespace Xbim.Common.Model
 {
-    public class InMemoryGeometryStore : IGeometryStore
+    internal class InMemoryGeometryStore : IGeometryStore
     {
         private ConcurrentDictionary<int, XbimShapeGeometry> _shapeGeometries=new ConcurrentDictionary<int, XbimShapeGeometry>();
         private ConcurrentDictionary<int, XbimShapeInstance> _shapeInstances=new ConcurrentDictionary<int, XbimShapeInstance>();

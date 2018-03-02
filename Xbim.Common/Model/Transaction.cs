@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 
-namespace Xbim.IO.Memory
+namespace Xbim.Common.Model
 {
-    public class Transaction : ITransaction
+    internal class Transaction : ITransaction
     {
-        private readonly MemoryModel _model;
+        private readonly StepModel _model;
         private bool _closed;
         private bool _undone;
         private readonly List<Change> _log = new List<Change>();
@@ -28,13 +28,13 @@ namespace Xbim.IO.Memory
             }
         }
 
-        public Transaction(MemoryModel model, string name)
+        public Transaction(StepModel model, string name)
         {
             Name = name;
             _model = model;
         }
 
-        public Transaction(MemoryModel model)
+        public Transaction(StepModel model)
         {
             _model = model;
         }
