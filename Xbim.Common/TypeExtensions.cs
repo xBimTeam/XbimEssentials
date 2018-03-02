@@ -5,7 +5,7 @@ namespace Xbim.IO
 {
     public static class TypeExtensions
     {
-        internal static Type GetItemTypeFromGenericType(this Type genericType)
+        public static Type GetItemTypeFromGenericType(this Type genericType)
         {
             while (true)
             {
@@ -23,7 +23,7 @@ namespace Xbim.IO
 
         #region Extensions for .Net40 compatibility
 
-        internal static bool GenericTypeArgumentIsAssignableFrom(this Type genericType, Type assignableType)
+        public static bool GenericTypeArgumentIsAssignableFrom(this Type genericType, Type assignableType)
         {
             if (genericType.GetTypeInfo().IsGenericType && !genericType.GetTypeInfo().IsGenericTypeDefinition)
             {

@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Xbim.Common;
+using Xbim.IO;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
+using Xbim.IO.Step21;
 
-namespace Xbim.IO
+namespace Xbim.Common
 {
     public class ModelHelper
     {
@@ -403,7 +404,7 @@ namespace Xbim.IO
             if (written.Contains(entity.EntityLabel))
                 return;
 
-            Step21.Part21Writer.WriteEntity(entity, writer, metadata);
+            Part21Writer.WriteEntity(entity, writer, metadata);
             written.Add(entity.EntityLabel);
 
             var references = entity as IContainsEntityReferences;
