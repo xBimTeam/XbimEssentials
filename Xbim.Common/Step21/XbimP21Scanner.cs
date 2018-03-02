@@ -214,14 +214,14 @@ namespace Xbim.IO.Step21
                 //XbimParserException is a reason to terminate execution
                 catch (XbimParserException e)
                 {
-                    Logger?.LogError(e.Message);
+                    Logger?.LogError(LogEventIds.ParserFailure, e, e.Message);
                     return false;
                 }
                 //other exceptions might occure but those should just make the parser to wait for the next start of entity
                 //and start from there
                 catch (Exception e)
                 {
-                    Logger?.LogError(e.Message);
+                    Logger?.LogError(LogEventIds.FailedEntity, e, e.Message);
                     ErrorCount++;
 
                     // clear current entity stack to make sure there are no residuals
@@ -338,7 +338,7 @@ namespace Xbim.IO.Step21
             if (_processStack.Count > 0)
             {
                 var last = _processStack.Pop();
-                Logger.LogError($"Entity #{last.EntityLabel}={last.Entity?.GetType().Name.ToUpperInvariant()} wasn't closed and finished properly.");
+                Logger.LogError(LogEventIds.FailedEntity, $"Entity #{last.EntityLabel}={last.Entity?.GetType().Name.ToUpperInvariant()} wasn't closed and finished properly.");
                 _processStack.Clear();
 
                 ErrorCount++;
@@ -395,11 +395,11 @@ namespace Xbim.IO.Step21
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if (_errors.AddTypeNotCreated(entityTypeName))
                 {
-                    Logger?.LogError($"Could not create type {entityTypeName}");
+                    Logger?.LogError(LogEventIds.FailedEntity, e, $"Could not create type {entityTypeName}");
                     ErrorCount++;
                 }
                 return false;
@@ -420,7 +420,7 @@ namespace Xbim.IO.Step21
                 }
                 catch (Exception)
                 {
-                    Logger?.LogError($"Duplicate entity label: #{p21.EntityLabel}");
+                    Logger?.LogError(LogEventIds.FailedEntity, $"Duplicate entity label: #{p21.EntityLabel}");
                     ErrorCount++;
                 }
             }
@@ -560,14 +560,14 @@ namespace Xbim.IO.Step21
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}",
+                    Logger?.LogError(LogEventIds.FailedEntity, e,  "Entity #{0,-5} {1}, error at parameter {2}",
                                                mainEntity.EntityLabel, mainEntity.Entity.GetType().Name.ToUpper(),
                                                mainEntity.CurrentParamIndex + 1
                                                );
                 }
                 else
                 {
-                    Logger?.LogError("Unhandled Parser error, in Parser.cs EndNestedType");
+                    Logger?.LogError(LogEventIds.FailedEntity, e, "Unhandled Parser error, in Parser.cs EndNestedType");
                 }
                 ErrorCount++;
             }
@@ -603,7 +603,7 @@ namespace Xbim.IO.Step21
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
+                    Logger?.LogError(LogEventIds.FailedPropertySetter, e, "Entity #{0,-5} {1}, error at parameter {2} value = {3}",
                        mainEntity.EntityLabel,
                        mainEntity.Entity.GetType().Name.ToUpper(),
                        mainEntity.CurrentParamIndex + 1,
@@ -611,7 +611,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    Logger?.LogError("Unhandled Parser error, in Parser.cs SetEntityParameter");
+                    Logger?.LogError(LogEventIds.FailedPropertySetter, e, "Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
                 ErrorCount++;
             }
@@ -644,7 +644,7 @@ namespace Xbim.IO.Step21
                 // return silently if this kind of error has already been reported
                 if (_errors.AddPropertyNotSet(host, paramIndex, PropertyValue, e))
                 {
-                    Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}", refId, host.GetType().Name.ToUpper(), paramIndex + 1 );
+                    Logger?.LogError(LogEventIds.FailedPropertySetter, e, "Entity #{0,-5} {1}, error at parameter {2}", refId, host.GetType().Name.ToUpper(), paramIndex + 1 );
                     ErrorCount++;
                 }
 
