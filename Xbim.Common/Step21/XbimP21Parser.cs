@@ -90,7 +90,7 @@ namespace Xbim.IO.Step21
             }
         }
 
-        internal override void SetErrorMessage()
+        protected override void SetErrorMessage()
         {
         }
 

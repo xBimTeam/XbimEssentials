@@ -336,10 +336,6 @@ namespace Xbim.IO.Memory
                         var writer4 = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                         writer4.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
-                    case "COBIE_EXPRESS":
-                        var writerCobie = new XbimXmlWriter4(XbimXmlSettings.COBieExpress);
-                        writerCobie.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
-                        break;
                     default:
                         var writer = new XbimXmlWriter4(xbimSettings);
                         writer.Write(this, xmlWriter);

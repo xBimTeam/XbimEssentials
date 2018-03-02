@@ -18,13 +18,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.IO.MemoryModel.Local",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Profiling", "Profiling", "{7741350E-EB4B-41CE-BD94-DDB48717F90F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.InverseCacheImpact", "Profiling.InverseCacheImpact\Profiling.InverseCacheImpact.csproj", "{748ADC2C-7F2F-456D-90FE-E15F508475A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Profiling.InverseCacheImpact", "Profiling.InverseCacheImpact\Profiling.InverseCacheImpact.csproj", "{748ADC2C-7F2F-456D-90FE-E15F508475A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.Parsing", "Profiling.Parsing\Profiling.Parsing.csproj", "{AC6D600C-548E-4FA7-B89E-3183E3BC2522}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Profiling.Parsing", "Profiling.Parsing\Profiling.Parsing.csproj", "{AC6D600C-548E-4FA7-B89E-3183E3BC2522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.ReadingXML", "Profiling.ReadingXML\Profiling.ReadingXML.csproj", "{6EB77477-67E1-4514-9E2A-C3592DE9B1C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Profiling.ReadingXML", "Profiling.ReadingXML\Profiling.ReadingXML.csproj", "{6EB77477-67E1-4514-9E2A-C3592DE9B1C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiling.WritingXml", "Profiling.WritingXml\Profiling.WritingXml.csproj", "{603F1338-048B-4EDC-B982-2344914A47DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Profiling.WritingXml", "Profiling.WritingXml\Profiling.WritingXml.csproj", "{603F1338-048B-4EDC-B982-2344914A47DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.IO.Esent.Local", "Xbim.IO.Esent\Xbim.IO.Esent.Local.csproj", "{DD99499B-3E46-4A5D-8142-A5CA5CA196F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{603F1338-048B-4EDC-B982-2344914A47DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{603F1338-048B-4EDC-B982-2344914A47DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{603F1338-048B-4EDC-B982-2344914A47DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD99499B-3E46-4A5D-8142-A5CA5CA196F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD99499B-3E46-4A5D-8142-A5CA5CA196F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD99499B-3E46-4A5D-8142-A5CA5CA196F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD99499B-3E46-4A5D-8142-A5CA5CA196F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
