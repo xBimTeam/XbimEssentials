@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using Xbim.Common;
 
-namespace Xbim.IO.Memory
+namespace Xbim.Common.Model
 {
-    public class MemoryInverseCache : IInverseCache
+    internal class MemoryInverseCache : IInverseCache
     {
         private Dictionary<Type, Dictionary<int, HashSet<int>>> _index = new Dictionary<Type, Dictionary<int, HashSet<int>>>();
         private EntityCollection _entities;

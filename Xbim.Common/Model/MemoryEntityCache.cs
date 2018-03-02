@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using Xbim.Common;
 
-namespace Xbim.IO.Memory
+namespace Xbim.Common.Model
 {
     internal class MemoryEntityCache : IEntityCache
     {
-        MemoryModel _model;
+        StepModel _model;
 
-        public MemoryEntityCache(MemoryModel model)
+        public MemoryEntityCache(StepModel model)
         {
             _model = model;
         }

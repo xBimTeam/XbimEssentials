@@ -3,7 +3,7 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Geometry;
 
-namespace Xbim.IO.Memory
+namespace Xbim.Common.Model
 {
     internal class InMemoryGeometryStoreReader : IGeometryStoreReader
     {

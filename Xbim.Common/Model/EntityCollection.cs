@@ -7,9 +7,9 @@ using System.Reflection;
 using System.Threading;
 using Xbim.Common;
 
-namespace Xbim.IO.Memory
+namespace Xbim.Common.Model
 {
-    public class EntityCollection : IEntityCollection, IDisposable
+    internal class EntityCollection : IEntityCollection, IDisposable
     {
         //simpler hasher as all entities will be in this model so no need to use its hash, small performance gain
         private struct EntityLabelComparer : IEqualityComparer<IPersistEntity>
@@ -24,7 +24,7 @@ namespace Xbim.IO.Memory
                 return obj.EntityLabel;
             }
         }
-        private readonly MemoryModel _model;
+        private readonly StepModel _model;
         private readonly XbimMultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int, IPersistEntity> _collection = new Dictionary<int, IPersistEntity>(0x77777);
 
@@ -38,7 +38,7 @@ namespace Xbim.IO.Memory
 
         internal int CurrentLabel;
 
-        public EntityCollection(MemoryModel model, int labelFrom = 0)
+        public EntityCollection(StepModel model, int labelFrom = 0)
         {
             CurrentLabel = Math.Max(CurrentLabel, labelFrom);
             _model = model;

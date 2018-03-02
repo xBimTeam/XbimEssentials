@@ -9,6 +9,7 @@ using Xbim.IO;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
 using Xbim.IO.Step21;
+using Xbim.IO.Parser;
 
 namespace Xbim.Common
 {
@@ -415,6 +416,52 @@ namespace Xbim.Common
             {
                 WriteEntityRecursive(item, metadata, writer, written);
             }
+        }
+        #endregion
+
+        #region Schema Version
+        public static List<string> GetStepFileSchemaVersion(Stream stream)
+        {
+            var scanner = new Scanner(stream);
+            int tok = scanner.yylex();
+            int dataToken = (int)Tokens.DATA;
+            int eof = (int)Tokens.EOF;
+            int typeToken = (int)Tokens.TYPE;
+            int stringToken = (int)Tokens.STRING;
+
+            //looking for: FILE_SCHEMA(('IFC2X3'));
+            var schemas = new List<string>();
+
+            while (tok != dataToken && tok != eof)
+            {
+                if (tok != typeToken)
+                {
+                    tok = scanner.yylex();
+                    continue;
+                }
+
+                if (!string.Equals(scanner.yylval.strVal, "FILE_SCHEMA", StringComparison.OrdinalIgnoreCase))
+                {
+                    tok = scanner.yylex();
+                    continue;
+                }
+
+                tok = scanner.yylex();
+                //go until closing bracket
+                while (tok != ')')
+                {
+                    if (tok != stringToken)
+                    {
+                        tok = scanner.yylex();
+                        continue;
+                    }
+
+                    schemas.Add(scanner.yylval.strVal.Trim('\''));
+                    tok = scanner.yylex();
+                }
+                break;
+            }
+            return schemas;
         }
         #endregion
     }

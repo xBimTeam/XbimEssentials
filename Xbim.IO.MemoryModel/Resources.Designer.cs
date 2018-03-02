@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Xbim.IO.MemoryModel {
+namespace Xbim.IO.MemoryModel.Local {
     using System;
     
     
@@ -57,18 +57,6 @@ namespace Xbim.IO.MemoryModel {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
-        ///&lt;configuration xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; id=&quot;COBieExpress&quot; configuration-location=&quot;&quot; xmlns=&quot;urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language&quot;&gt;
-        ///  &lt;option inheritance=&quot;true&quot; concrete-attribute=&quot;attribute-content&quot; naming-convention=&quot;preserve-case&quot; generate-keys=&quot;false&quot; /&gt;
-        ///  &lt;schema targetNamespace=&quot;http://www.openbim.org/COBieExpress/1.0&quot; elementFormDefault=&quot;qualified&quot; attributeFormDefault=&quot;unq [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string COBieExpress_config {
-            get {
-                return ResourceManager.GetString("COBieExpress_config", resourceCulture);
             }
         }
         
