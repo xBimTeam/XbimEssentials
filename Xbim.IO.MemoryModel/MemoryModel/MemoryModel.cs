@@ -11,6 +11,8 @@ using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
@@ -257,6 +259,76 @@ namespace Xbim.IO.Memory
         public virtual IEntityCollection Instances
         {
             get { return _instances; }
+        }
+
+        private void CalculateModelFactors()
+        {
+            double angleToRadiansConversionFactor = 1; //assume radians
+            double lengthToMetresConversionFactor = 1; //assume metres
+            var instOfType = Instances.OfType<IIfcUnitAssignment>();
+            var ua = instOfType.FirstOrDefault();
+            if (ua != null)
+            {
+                foreach (var unit in ua.Units)
+                {
+                    var value = 1.0;
+                    var cbUnit = unit as IIfcConversionBasedUnit;
+                    var siUnit = unit as IIfcSIUnit;
+                    if (cbUnit != null)
+                    {
+                        var mu = cbUnit.ConversionFactor;
+                        var component = mu.UnitComponent as IIfcSIUnit;
+                        if (component != null)
+                            siUnit = component;
+                        var et = ((IExpressValueType)mu.ValueComponent);
+
+                        if (et.UnderlyingSystemType == typeof(double))
+                            value *= (double)et.Value;
+                        else if (et.UnderlyingSystemType == typeof(int))
+                            value *= (int)et.Value;
+                        else if (et.UnderlyingSystemType == typeof(long))
+                            value *= (long)et.Value;
+                    }
+                    if (siUnit == null) continue;
+                    value *= siUnit.Power;
+                    switch (siUnit.UnitType)
+                    {
+                        case IfcUnitEnum.LENGTHUNIT:
+                            lengthToMetresConversionFactor = value;
+                            break;
+                        case IfcUnitEnum.PLANEANGLEUNIT:
+                            angleToRadiansConversionFactor = value;
+                            //need to guarantee precision to avoid errors in Boolean operations
+                            if (Math.Abs(angleToRadiansConversionFactor - (Math.PI / 180)) < 1e-9)
+                                angleToRadiansConversionFactor = Math.PI / 180;
+                            break;
+                    }
+                }
+            }
+
+            var gcs = Instances.OfType<IIfcGeometricRepresentationContext>();
+            var defaultPrecision = 1e-5;
+            //get the Model precision if it is correctly defined
+            foreach (var gc in gcs.Where(g => !(g is IIfcGeometricRepresentationSubContext)).Where(gc => gc.ContextType.HasValue && string.Compare(gc.ContextType.Value, "model", true) == 0).Where(gc => gc.Precision.HasValue))
+            {
+                if (gc.Precision != null) defaultPrecision = gc.Precision.Value;
+                break;
+            }
+            //sort out precision, esp for some legacy models
+            if (defaultPrecision > 1e-8) //sometimes found in old revit models where the precision should really be 1e-5
+                defaultPrecision = 1e-5;
+            defaultPrecision = Math.Max(defaultPrecision, 1e-7); //if greater than 1e-7 make it 1e-7
+            defaultPrecision *= 1.1; //this fixes errors where things are nearly coincidental like faces
+            //check if angle units are incorrectly defined, this happens in some old models
+            if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
+            {
+                var trimmed = Instances.Where<IIfcTrimmedCurve>(trimmedCurve => trimmedCurve.BasisCurve is IIfcConic);
+                if (trimmed.Where(trimmedCurve => trimmedCurve.MasterRepresentation == IfcTrimmingPreference.PARAMETER).Any(trimmedCurve => trimmedCurve.Trim1.Concat(trimmedCurve.Trim2).OfType<IfcParameterValue>().Select(trim => (double)trim.Value).Any(val => val > Math.PI * 2)))
+                {
+                    angleToRadiansConversionFactor = Math.PI / 180;
+                }
+            }
+            ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor, defaultPrecision);
         }
 
         bool IModel.Activate(IPersistEntity owningEntity)
@@ -677,7 +749,7 @@ namespace Xbim.IO.Memory
                 if (id != sid)
                     Header.FileSchema.Schemas[i] = sid;
             }
-
+            CalculateModelFactors();
             return parser.ErrorCount;
         }
 
