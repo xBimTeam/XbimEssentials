@@ -358,7 +358,7 @@ namespace Xbim.Common.Model
         }
 
 
-        private int LoadStep21(XbimP21Scanner parser)
+        protected virtual int LoadStep21(XbimP21Scanner parser)
         {
             if (Header == null)
                 Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
