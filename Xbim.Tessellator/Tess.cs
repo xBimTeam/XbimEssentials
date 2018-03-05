@@ -104,8 +104,8 @@ namespace Xbim.Tessellator
 
         public Vec3 Normal { get { return _normal; } set { _normal = value; } }
 
-        public float SUnitX = 1.0f;
-        public float SUnitY = 1.0f;
+        public double SUnitX = 1.0;
+        public double SUnitY = 1.0;
 
         public ContourVertex[] Vertices { get { return _vertices; } }
         public int VertexCount { get { return _vertexCount; } }
@@ -184,7 +184,7 @@ namespace Xbim.Tessellator
                 // All points lie on a single line -- any decent normal will do
                 norm = Vec3.Zero;
                 i = Vec3.LongAxis(ref d1);
-                norm[i] = 1.0f;
+                norm[i] = 1.0;
             }
         }
 
@@ -265,13 +265,13 @@ namespace Xbim.Tessellator
 
             int i = Vec3.LongAxis(ref norm);
 
-            _sUnit[i] = 0.0f;
+            _sUnit[i] = 0.0;
             _sUnit[(i + 1) % 3] = SUnitX;
             _sUnit[(i + 2) % 3] = SUnitY;
 
-            _tUnit[i] = 0.0f;
-            _tUnit[(i + 1) % 3] = norm[i] > 0.0f ? -SUnitY : SUnitY;
-            _tUnit[(i + 2) % 3] = norm[i] > 0.0f ? SUnitX : -SUnitX;
+            _tUnit[i] = 0.0;
+            _tUnit[(i + 1) % 3] = norm[i] > 0.0 ? -SUnitY : SUnitY;
+            _tUnit[(i + 2) % 3] = norm[i] > 0.0 ? SUnitX : -SUnitX;
 
             // Project the vertices onto the sweep plane
             for (var v = _mesh._vHead._next; v != _mesh._vHead; v = v._next)
