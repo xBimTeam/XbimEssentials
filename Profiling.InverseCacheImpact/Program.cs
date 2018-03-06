@@ -6,6 +6,7 @@ using Xbim.Common;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc4.Interfaces;
+using Xbim.IO.Memory;
 
 namespace Profiling.InverseCacheImpact
 {
@@ -19,7 +20,7 @@ namespace Profiling.InverseCacheImpact
 
             //using (var model = IfcStore.Open(@"c:\Users\Martin\Source\Samples\2011-09-14-Clinic-IFC\Clinic_MEP_20110906.ifc", null, -1))
             var w = Stopwatch.StartNew();
-            using (var model = IfcStore.Open(@"..\..\..\Profiling.Parsing\Lakeside.ifc", null, 1))
+            using (var model = MemoryModel.OpenRead(@"..\..\..\Profiling.Parsing\Lakeside.ifc"))
             {
                 w.Stop();
                 Console.WriteLine("{0}ms to open the file", w.ElapsedMilliseconds);
@@ -31,7 +32,7 @@ namespace Profiling.InverseCacheImpact
                                 .Any(r => r.RelatingType.Name == "Basic Wall:nbl_Int_PlstrbrdGyp-GalvStlStud-PlstrbrdGyp")).ToList();
                 w.Stop();
                 Console.WriteLine(@"{0}ms to find {1} objects with speficic type without cache.", w.ElapsedMilliseconds, objects1.Count);
-                using (var cache = model.BeginCaching())
+                using (var cache = model.BeginInverseCaching())
                 {
                     w.Restart();
                     var objects2 =

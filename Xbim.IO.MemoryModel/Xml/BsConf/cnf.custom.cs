@@ -37,15 +37,6 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
-        public static configuration COBieExpress
-        {
-            get
-            {
-                var data = Resources.COBieExpress_config;
-                return Deserialize(data);
-            }
-        }
-
         public option Option { get { return Items?.OfType<option>().FirstOrDefault(); } }
 
         public schema Schema { get { return Items?.OfType<schema>().FirstOrDefault(); } }

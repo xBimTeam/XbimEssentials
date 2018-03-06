@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using Xbim.Ifc;
 using Xbim.Ifc2x3;
-using Xbim.Ifc2x3.IO;
 using Xbim.IO.Memory;
 
 namespace Profiling.Parsing
@@ -23,21 +22,11 @@ namespace Profiling.Parsing
             }
             var w = new Stopwatch();
             w.Start();
-            using (var model =  IfcStore.Open(modelName,null,-1))
+            using (var model =  MemoryModel.OpenRead(modelName))
             {               
-                model.Close();
                 w.Stop();
                 Console.WriteLine(@"{0:F2} ms to create in memory model", w.ElapsedMilliseconds);
             }
-            w.Restart();;
-            using (var model = IfcStore.Open(modelName, null, 0))
-            {          
-                model.Close();
-                w.Stop();
-                Console.WriteLine(@"{0:F2} ms to create database model", w.ElapsedMilliseconds);
-            }
-            Console.WriteLine(@"Press any key to exit");
-            Console.ReadKey();
         }
     }
 }
