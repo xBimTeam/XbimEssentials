@@ -1,5 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+
+using Newtonsoft.Json;
+
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc
@@ -26,6 +33,7 @@ namespace Xbim.Ifc
    
     public class XbimColourMap : KeyedCollection<string, XbimColour>
     {
+        private const string ProductTypeDefaultColoursConfigPath = "ProductTypeDefaultColours.json";
 
         public override int GetHashCode()
         {
@@ -129,31 +137,49 @@ namespace Xbim.Ifc
         /// </summary>
         public void SetProductTypeColourMap()
         {
+            try
+            {
+                SetProductTypeColourMapFromConfig();
+            }
+            catch (Exception)
+            {
+                Clear();
+                Add(new XbimColour("Default", 0.98, 0.92, 0.74));
+                Add(new XbimColour("IfcWall", 0.98, 0.92, 0.74));
+                Add(new XbimColour("IfcWallStandardCase", 0.98, 0.92, 0.74));
+                Add(new XbimColour("IfcRoof", 0.28, 0.24, 0.55));
+                Add(new XbimColour("IfcBeam", 0.0, 0.0, 0.55));
+                Add(new XbimColour("IfcBuildingElementProxy", 0.95, 0.94, 0.74));
+                Add(new XbimColour("IfcColumn", 0.0, 0.0, 0.55));
+                Add(new XbimColour("IfcSlab", 0.47, 0.53, 0.60));
+                Add(new XbimColour("IfcWindow", 0.68, 0.85, 0.90, 0.5));
+                Add(new XbimColour("IfcCurtainWall", 0.68, 0.85, 0.90, 0.4));
+                Add(new XbimColour("IfcPlate", 0.68, 0.85, 0.90, 0.4));
+                Add(new XbimColour("IfcDoor", 0.97, 0.19, 0));
+                Add(new XbimColour("IfcSpace", 0.68, 0.85, 0.90, 0.4));
+                Add(new XbimColour("IfcMember", 0.34, 0.34, 0.34));
+                Add(new XbimColour("IfcDistributionElement", 0.0, 0.0, 0.55));
+                Add(new XbimColour("IfcFurnishingElement", 1, 0, 0));
+                Add(new XbimColour("IfcOpeningElement", 0.2, 0.2, 0.8, 0.2));
+                Add(new XbimColour("IfcFeatureElementSubtraction", 1.0, 1.0, 1.0));
+                Add(new XbimColour("IfcFlowTerminal", 0.95, 0.94, 0.74));
+                Add(new XbimColour("IfcFlowSegment", 0.95, 0.94, 0.74));
+                Add(new XbimColour("IfcDistributionFlowElement", 0.95, 0.94, 0.74));
+                Add(new XbimColour("IfcFlowFitting", 0.95, 0.94, 0.74));
+                Add(new XbimColour("IfcRailing", 0.95, 0.94, 0.74));
+                Add(new XbimColour("IfcGrid", 1.0, 0.9, 0));
+            }
+        }
+
+        private void SetProductTypeColourMapFromConfig()
+        {
+            string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string configFile = Path.Combine(assemblyFolder ?? string.Empty, ProductTypeDefaultColoursConfigPath);
+            string json = File.ReadAllText(configFile);
+            var productTypeDefaultXbimColours = JsonConvert.DeserializeObject<List<XbimColourDTO>>(json);
+
             Clear();
-            Add(new XbimColour("Default", 0.98, 0.92, 0.74));
-            Add(new XbimColour("IfcWall", 0.98, 0.92, 0.74));
-            Add(new XbimColour("IfcWallStandardCase", 0.98, 0.92, 0.74));
-            Add(new XbimColour("IfcRoof", 0.28, 0.24, 0.55));
-            Add(new XbimColour("IfcBeam", 0.0, 0.0, 0.55));
-            Add(new XbimColour("IfcBuildingElementProxy", 0.95, 0.94, 0.74));
-            Add(new XbimColour("IfcColumn", 0.0, 0.0, 0.55));
-            Add(new XbimColour("IfcSlab", 0.47, 0.53, 0.60));
-            Add(new XbimColour("IfcWindow", 0.68, 0.85, 0.90, 0.5));
-            Add(new XbimColour("IfcCurtainWall", 0.68, 0.85, 0.90, 0.4));
-            Add(new XbimColour("IfcPlate", 0.68, 0.85, 0.90, 0.4));
-            Add(new XbimColour("IfcDoor", 0.97, 0.19, 0));
-            Add(new XbimColour("IfcSpace", 0.68, 0.85, 0.90, 0.4));
-            Add(new XbimColour("IfcMember", 0.34, 0.34, 0.34));
-            Add(new XbimColour("IfcDistributionElement", 0.0, 0.0, 0.55));
-            Add(new XbimColour("IfcFurnishingElement", 1, 0, 0));
-            Add(new XbimColour("IfcOpeningElement", 0.2, 0.2, 0.8, 0.2));
-            Add(new XbimColour("IfcFeatureElementSubtraction", 1.0, 1.0, 1.0));
-            Add(new XbimColour("IfcFlowTerminal", 0.95, 0.94, 0.74));
-            Add(new XbimColour("IfcFlowSegment", 0.95, 0.94, 0.74));
-            Add(new XbimColour("IfcDistributionFlowElement", 0.95, 0.94, 0.74));
-            Add(new XbimColour("IfcFlowFitting", 0.95, 0.94, 0.74));
-            Add(new XbimColour("IfcRailing", 0.95, 0.94, 0.74));
-            Add(new XbimColour("IfcGrid", 1.0, 0.9, 0));
+            productTypeDefaultXbimColours.ForEach(x => Add(x.ToXbimColour()));
         }
     }
 }
