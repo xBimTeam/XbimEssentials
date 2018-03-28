@@ -165,7 +165,7 @@ namespace Xbim.IO
                         // SUPPORT: if the code breaks here there's a problem with the order attribut in a class property
                         ifcType.IfcProperties.Add(ifcAttributes[0].Order,
                                                     new IfcMetaProperty { PropertyInfo = propInfo, IfcAttribute = ifcAttributes[0] });
-                        attributeIdx = ifcAttributes[0].Order;                     
+                        attributeIdx = ifcAttributes[0].Order;
                     }
 
                     else
@@ -192,7 +192,7 @@ namespace Xbim.IO
             if (!TypeToIfcTypeLookup.Contains(baseParent))
             {
                 TypeToIfcTypeLookup.Add(ifcParent = new IfcType { Type = baseParent });
-                string typeLookup = baseParent.Name.ToUpper();
+                string typeLookup = baseParent.Name.ToUpperInvariant();
                 if (!TypeNameToIfcTypeLookup.ContainsKey(typeLookup))
                     TypeNameToIfcTypeLookup.Add(typeLookup, ifcParent);
                 ifcParent.IfcSubTypes.Add(child);
@@ -256,7 +256,7 @@ namespace Xbim.IO
 	            {
                     yield return item;
 	            }
-            }            
+            }
         }
 
         /// <summary>
@@ -357,6 +357,6 @@ namespace Xbim.IO
             }
         }
 
-        
+
     }
 }
