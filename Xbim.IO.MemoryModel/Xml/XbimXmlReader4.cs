@@ -192,7 +192,6 @@ namespace Xbim.IO.Xml
                 throw new XbimParserException(typeName + "is not an IPersistEntity type");
             }
 
-            var id = GetId(input, out bool isRef);
             var id = GetId(input, expType, out bool isRef);
             if (!id.HasValue)
                 throw new XbimParserException("Wrong entity XML format");
