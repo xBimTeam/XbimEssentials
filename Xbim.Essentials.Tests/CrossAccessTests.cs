@@ -8,6 +8,8 @@ using Xbim.Ifc4.Interfaces;
 using IfcAirTerminalTypeEnum = Xbim.Ifc4.Interfaces.IfcAirTerminalTypeEnum;
 using IfcBeamTypeEnum = Xbim.Ifc4.Interfaces.IfcBeamTypeEnum;
 using Xbim.Common.Step21;
+using Xbim.IO.Memory;
+using Xbim.Essentials.Tests.Utilities;
 
 namespace Xbim.Essentials.Tests
 {
@@ -19,8 +21,8 @@ namespace Xbim.Essentials.Tests
         public void CollectionRemoval()
         {
             // arrange
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
-            using (var txn = model.BeginTransaction())
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var txn = model.BeginTransaction(""))
             {
                 IfcWall wall1 = model.Instances.New<IfcWall>();
                 IfcWall wall2 = model.Instances.New<IfcWall>();
@@ -48,9 +50,9 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void SettingNamesTest()
         {
-            using (var model = IfcStore.Open("4walls1floorSite.ifc"))
+            using (var model = MemoryModel.OpenRead("4walls1floorSite.ifc"))
             {
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction(""))
                 {
                     //setting names to new value
                     var walls = model.Instances.OfType<IIfcWall>().ToList();
@@ -81,7 +83,6 @@ namespace Xbim.Essentials.Tests
 
                     txn.RollBack();
                 }
-                model.Close();
             }
         }
     }
