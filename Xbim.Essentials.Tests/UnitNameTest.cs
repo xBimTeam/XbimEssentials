@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
+using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
 {
@@ -11,10 +12,10 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NamedUnitTest2X3()
         {
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
             {
                 Ifc2x3.MeasureResource.IfcSIUnit unit;
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction(""))
                 {
                     unit = model.Instances.New<Ifc2x3.MeasureResource.IfcSIUnit>(u =>
                     {
@@ -33,11 +34,11 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(unit.Dimensions.TimeExponent == 0);
                 Assert.IsTrue(unit.Dimensions.ThermodynamicTemperatureExponent == 0);
 
-                using (model.BeginTransaction())
+                using (model.BeginTransaction(""))
                 {
                     try
                     {
-                        //this should throw an exception because dimensions ade derived attribute and it is read-only.
+                        //this should throw an exception because dimensions are derived attribute and it is read-only.
                         unit.Dimensions.LengthExponent = 2;
                         Assert.IsTrue(false);
                     }
@@ -52,10 +53,10 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NamedUnitTest4()
         {
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
+            using (var model = new MemoryModel(new Ifc4.EntityFactory()))
             {
                 Ifc4.MeasureResource.IfcSIUnit unit;
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction(""))
                 {
                     unit = model.Instances.New<Ifc4.MeasureResource.IfcSIUnit>(u =>
                     {
@@ -74,11 +75,11 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(unit.Dimensions.TimeExponent == 0);
                 Assert.IsTrue(unit.Dimensions.ThermodynamicTemperatureExponent == 0);
 
-                using (model.BeginTransaction())
+                using (model.BeginTransaction(""))
                 {
                     try
                     {
-                        //this should throw an exception because dimensions ade derived attribute and it is read-only.
+                        //this should throw an exception because dimensions are derived attribute and it is read-only.
                         unit.Dimensions.LengthExponent = 2;
                         Assert.IsTrue(false);
                     }

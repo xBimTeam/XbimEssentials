@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc;
 using System.Diagnostics;
 using Xbim.Ifc4.Interfaces;
-using Xbim.IO.Esent;
-using Xbim.Common.Step21;
+using Xbim.Essentials.Tests.Utilities;
 
 namespace Xbim.Essentials.Tests
 {
@@ -21,20 +18,9 @@ namespace Xbim.Essentials.Tests
         [DeploymentItem("TestSourceFiles\\" + _file)]
         public void CacheCreation()
         {
-            IfcSchemaVersion version;
-
-            //as a MemoryModel
-            using (var model = IfcStore.Open(_file, null, -1))
+            using (var models = new ModelFactory(_file))
             {
-                CacheCreation(model);
-                version = model.IfcSchemaVersion;
-            }
-
-            //as EsentModel
-            using (var model = new EsentModel(version == IfcSchemaVersion.Ifc4 ? (new Ifc4.EntityFactory() as IEntityFactory) : (new Ifc2x3.EntityFactory() as IEntityFactory)))
-            {
-                model.CreateFrom(_file, null, null, true, true, IO.IfcStorageType.Ifc);
-                CacheCreation(model);
+                models.Do(CacheCreation);
             }
         }
 
@@ -43,7 +29,7 @@ namespace Xbim.Essentials.Tests
             using (model.BeginTransaction("Test"))
             {
                 //opening transaction while inverse cache is running should throw an exception
-                Assert.IsTrue(ThrowsXbimException(() => model.BeginCaching()));
+                Assert.IsTrue(ThrowsXbimException(() => model.BeginInverseCaching()));
             }
 
             var cachingTime = 0L;
@@ -58,7 +44,7 @@ namespace Xbim.Essentials.Tests
             w.Stop();
             noCachingTime = w.ElapsedMilliseconds;
 
-            using (model.BeginCaching())
+            using (var cache = model.BeginInverseCaching())
             {
                 Assert.IsTrue(ThrowsXbimException(() => model.BeginTransaction("Exception")));
 
@@ -70,11 +56,9 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(a);
                 w.Stop();
                 cachingTime = w.ElapsedMilliseconds;
-                model.StopCaching();
             }
 
             Assert.IsTrue(noCachingTime > cachingTime);
-
         }
 
 

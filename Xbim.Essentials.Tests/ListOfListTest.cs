@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc;
-using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
 {
@@ -15,7 +13,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ReadListOfListFromIfcFile()
         {
-            using (var model = IfcStore.Open(@"IfcBSplineSurfaceWithKnots.ifc"))
+            using (var model = MemoryModel.OpenRead(@"IfcBSplineSurfaceWithKnots.ifc"))
             {
                 var surface = model.Instances.OfType<IfcBSplineSurfaceWithKnots>().FirstOrDefault();
                 Assert.IsTrue(surface.ControlPointsList.Count==4);

@@ -5,6 +5,7 @@ using Xbim.Ifc;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Common;
+using Xbim.Essentials.Tests.Utilities;
 
 namespace Xbim.Essentials.Tests
 {
@@ -14,33 +15,9 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void IndependentCreation()
         {
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
-            {
-                CreateDataWithInitializers(model);
-
-                CreateDataWithoutInitializers(model);
-            }
-
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.EsentDatabase))
-            {
-                CreateDataWithInitializers(model);
-
-                CreateDataWithoutInitializers(model);
-            }
-
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
-            {
-                CreateDataWithInitializers(model);
-
-                CreateDataWithoutInitializers(model);
-            }
-
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc4, XbimStoreType.EsentDatabase))
-            {
-                CreateDataWithInitializers(model);
-
-                CreateDataWithoutInitializers(model);
-            }
+            // neither should throw an exception
+            ModelFactory.Create(XbimSchemaVersion.Ifc2X3, CreateDataWithInitializers);
+            ModelFactory.Create(XbimSchemaVersion.Ifc2X3, CreateDataWithoutInitializers);
         }
 
         public void CreateDataWithoutInitializers(IModel model)

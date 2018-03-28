@@ -8,6 +8,7 @@ using Xbim.Common.Geometry;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
+using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
 {
@@ -20,29 +21,22 @@ namespace Xbim.Essentials.Tests
             const string path = @"x:\path1\path2\filename.ifc";
             const string umlaut = "name with umlaut ü";
 
-            var testFile = new FileInfo("testOutput.ifc");
-            Debug.WriteLine("testing file: " + testFile.FullName);
+            var testFile = "EscapeHeaderTests.ifc";
 
-            using (var model = Ifc2x3.IO.XbimModel.CreateTemporaryModel())
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
             {
-
-                model.Initialise("Creating Author", " Creating Organisation", "This Application", "This Developer", "v1.1");
-                using (var txn = model.BeginTransaction())
-                {
-                    model.IfcProject.Name = "Project Name";
-                    txn.Commit();
-                }
-
                 model.Header.FileName.Name = path;
-                model.Header.FileName.Organization.Add(umlaut); 
-                model.SaveAs(testFile.FullName);
+                model.Header.FileName.Organization.Add(umlaut);
+                using (var file = File.Create(testFile))
+                {
+                model.SaveAsStep21(file);
+                    file.Close();
+                }
             }
-            using (var model = new Ifc2x3.IO.XbimModel())
+            using (var model = MemoryModel.OpenRead(testFile))
             {
-                model.CreateFrom(testFile.FullName, null, null, true);
                 Assert.IsTrue(model.Header.FileName.Name == path);
                 Assert.IsTrue(model.Header.FileName.Organization.FirstOrDefault() == umlaut);
-                model.Close();
             }
         }
 
@@ -56,7 +50,7 @@ namespace Xbim.Essentials.Tests
           
             foreach (var file in files)
             {
-                using (var store = IfcStore.Open(file))
+                using (var store = MemoryModel.OpenRead(file))
                 {
                     var matches = Regex.Matches(store.Header.FileName.OriginatingSystem, revitPattern,
                         RegexOptions.IgnoreCase);

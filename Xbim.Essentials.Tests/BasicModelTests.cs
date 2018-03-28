@@ -2,8 +2,8 @@
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
+using Xbim.Essentials.Tests.Utilities;
 using Xbim.IO;
-using XbimModel = Xbim.Ifc2x3.IO.XbimModel;
 
 namespace Xbim.Essentials.Tests
 {
@@ -14,80 +14,35 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void OpenIfcFile()
         {
-            using (var model = new XbimModel())
+            using (var models = new ModelFactory("4walls1floorSite.ifc"))
             {
-                model.CreateFrom("4walls1floorSite.ifc");
-                model.Close();
+                models.Do(m => 
+                    Assert.IsTrue(m.Instances.Count > 0)
+                );
             }
-
         }
 
         [TestMethod]
         public void OpenIfcZipFile()
         {
-            int percent = 0;
-            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            using (var models = new ModelFactory("TestZip.ifczip"))
             {
-                percent = percentProgress;
-
-            };
-            using (var model = new XbimModel())
-            {
-                var fileName = Guid.NewGuid() + ".xbim";
-
-                model.CreateFrom("TestZip.ifczip", fileName, progDelegate);
-                model.Close();
-                Console.WriteLine(percent);
-                Assert.IsTrue(percent == 100);
+                models.Do(m =>
+                    Assert.IsTrue(m.Instances.Count > 0)
+                );
             }
         }
+
         [TestMethod]
         public void OpenIfcXmlFile()
         {
-            int percent = 0;
-            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            using (var models = new ModelFactory("4walls1floorSite.ifcxml"))
             {
-                percent = percentProgress;
-
-            };
-            using (var model = new XbimModel())
-            {
-
-                model.CreateFrom("4walls1floorSite.ifcxml",null,progDelegate);
-                model.Close();
-                Assert.IsTrue(percent==100);
+                models.Do(m =>
+                    Assert.IsTrue(m.Instances.Count > 0)
+                );
             }
-
         }
-        [TestMethod]
-        public void OpenIfcFileFromStream()
-        {
-            using (var fileStream = new FileStream("4walls1floorSite.ifc", FileMode.Open,FileAccess.Read))
-            {
-                using (var model = new XbimModel())
-                {
-                    model.CreateFrom(fileStream, fileStream.Length, IfcStorageType.Ifc, "4walls1floorSite.xbim", null, true);                  
-                    model.Close();
-                }
-                fileStream.Close();
-            }
-
-        }
-
-       
-        [TestMethod]
-        public void OpenIfcXmlFileFromStream()
-        {
-            using (var fileStream = new FileStream("4walls1floorSite.ifcxml", FileMode.Open, FileAccess.Read))
-            {
-                using (var model = new XbimModel())
-                {
-                    model.CreateFrom(fileStream, fileStream.Length, IfcStorageType.IfcXml, "4walls1floorSite.xbim");
-                    model.Close();
-                }
-                fileStream.Close();
-            }
-
-        }
+        
     }
 }
