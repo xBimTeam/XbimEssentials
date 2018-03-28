@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Cobie</id>
-    <version>4.0.30-V007</version>
+    <version>4.0.30-V008</version>
     <title>xBIM Cobie</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -20,7 +20,7 @@
     <tags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</tags>
     <dependencies>
       <dependency id="NPOI" version="2.3.0" />
-      <dependency id="Xbim.Essentials" version="4.0.30-V007" />
+      <dependency id="Xbim.Essentials" version="4.0.30-V008" />
     </dependencies>
   </metadata>
   <files>

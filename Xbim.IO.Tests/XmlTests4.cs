@@ -11,17 +11,14 @@ using Xbim.Ifc4;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.MaterialResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.SharedBldgElements;
 using Xbim.Ifc4.StructuralLoadResource;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.IO.JSON;
 using Xbim.IO.Memory;
 using Xbim.IO.Xml;
-using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -29,7 +26,18 @@ namespace Xbim.MemoryModel.Tests
     [DeploymentItem("TestFiles")]
     public class XmlTests4
     {
-       
+        [TestMethod]
+        public void ReadIFC4Xml()
+        {
+            var path = @"ImplicitPropertyTyping.ifcxml";
+
+            ValidateIfc4(path);
+
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            {
+                model.LoadXml(path);
+            }
+        }
 
         [TestMethod]
         public void Ifc4HeaderSerialization()
