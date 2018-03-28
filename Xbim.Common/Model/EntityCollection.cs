@@ -67,13 +67,16 @@ namespace Xbim.Common.Model
             if (cache == null)
                 return Where(condition);
 
-            IEnumerable<T> result;
-            if (cache.TryGet(inverseProperty, inverseArgument, out result))
+            if (cache.TryGet(inverseProperty, inverseArgument, out IEnumerable<T> result))
                 return result.Where(condition);
 
             //build cache for this type
             lock (cache)
             {
+                // check the condition again for case it was computed whilewaiting for access
+                if (cache.TryGet(inverseProperty, inverseArgument, out result))
+                    return result.Where(condition);
+
                 var indexed = OfType<T>().OfType<IContainsIndexedReferences>().ToList();
                 foreach (var item in indexed)
                 {
