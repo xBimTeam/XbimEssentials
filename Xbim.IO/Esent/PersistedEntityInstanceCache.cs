@@ -155,15 +155,33 @@ namespace Xbim.IO.Esent
                     _geometryTables[i].Dispose();
                     _geometryTables[i] = null;
                 }
-                Api.JetDeleteTable(_session, _databaseId, EsentShapeGeometryCursor.GeometryTableName);
-                Api.JetDeleteTable(_session, _databaseId, EsentShapeInstanceCursor.InstanceTableName);
+
+                try
+                {
+                    Api.JetDeleteTable(_session, _databaseId, EsentShapeGeometryCursor.GeometryTableName);
+                }
+                catch (Exception)
+                {
+                    //
+                }
+
+                try
+                {
+                    Api.JetDeleteTable(_session, _databaseId, EsentShapeInstanceCursor.InstanceTableName);
+                }
+                catch (Exception)
+                {
+                    //
+                }
                 EnsureGeometryTables(_session, _databaseId);
             }
             catch (Exception e)
             {
                 throw new Exception("Could not clear existing geometry tables", e);
             }
+            
         }
+
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
         {
 
