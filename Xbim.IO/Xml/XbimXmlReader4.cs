@@ -33,12 +33,9 @@ namespace Xbim.IO.Xml
         /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
         public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata)
         {
-            if (getOrCreate == null) throw new ArgumentNullException("getOrCreate");
-            if (finish == null) throw new ArgumentNullException("finish");
-            if (metadata == null) throw new ArgumentNullException("metadata");
-            _getOrCreate = getOrCreate;
-            _finish = finish;
-            _metadata = metadata;
+            _getOrCreate = getOrCreate ?? throw new ArgumentNullException("getOrCreate");
+            _finish = finish ?? throw new ArgumentNullException("finish");
+            _metadata = metadata ?? throw new ArgumentNullException("metadata");
         }
 
         private XbimXmlReader4()
@@ -182,15 +179,21 @@ namespace Xbim.IO.Xml
             return expType;    
         }
 
-        private IPersistEntity ReadEntity(XmlReader input)
+        private IPersistEntity ReadEntity(XmlReader input, Type suggestedType = null)
         {
-            var typeName = input.GetAttribute("type") ?? input.LocalName;
             var expType = GetExpresType(input);
+            if (expType == null && suggestedType != null && !suggestedType.IsAbstract)
+            {
+                expType = _metadata.ExpressType(suggestedType);
+            }
             if (expType == null)
+            {
+                var typeName = input.GetAttribute("type") ?? input.LocalName;
                 throw new XbimParserException(typeName + "is not an IPersistEntity type");
+            }
 
             bool isRef;
-            var id = GetId(input, out isRef);
+            var id = GetId(input, expType, out isRef);
             if(!id.HasValue)
                 throw new XbimParserException("Wrong entity XML format");
 
@@ -385,7 +388,7 @@ namespace Xbim.IO.Xml
             if (typeof(IPersistEntity).IsAssignableFrom(type) || 
                 (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1))
             {
-                var value = ReadEntity(input);
+                var value = ReadEntity(input, type);
                 var pVal = new PropertyValue();
 
                 if (property.IsInverse)
@@ -575,11 +578,10 @@ namespace Xbim.IO.Xml
         }
 
 
-        private int? GetId(XmlReader input, out bool isRefType)
+        private int? GetId(XmlReader input, ExpressType expressType, out bool isRefType)
         {
             isRefType = false;
             int? nextId = null;
-            ExpressType expressType;
             var strId = input.GetAttribute("id");
             if (string.IsNullOrEmpty(strId))
             {
@@ -598,9 +600,7 @@ namespace Xbim.IO.Xml
                 else
                     nextId = lookup;
             }
-            else if (
-                IsExpressEntity(input.LocalName, out expressType) && 
-                !typeof(IExpressValueType).IsAssignableFrom(expressType.Type)) //its a type with no identity, make one
+            else if (!typeof(IExpressValueType).IsAssignableFrom(expressType.Type)) //its a type with no identity, make one
             {
                 ++_lastId;
                 nextId = _lastId;
