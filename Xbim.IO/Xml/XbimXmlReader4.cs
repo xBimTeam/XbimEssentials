@@ -33,9 +33,18 @@ namespace Xbim.IO.Xml
         /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
         public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata)
         {
-            _getOrCreate = getOrCreate ?? throw new ArgumentNullException("getOrCreate");
-            _finish = finish ?? throw new ArgumentNullException("finish");
-            _metadata = metadata ?? throw new ArgumentNullException("metadata");
+            if (getOrCreate == null)
+                throw new ArgumentNullException("getOrCreate");
+
+            if (finish == null)
+                throw new ArgumentNullException("finish");
+
+            if (metadata == null)
+                throw new ArgumentNullException("metadata");
+
+            _getOrCreate = getOrCreate;
+            _finish = finish;
+            _metadata = metadata;
         }
 
         private XbimXmlReader4()
