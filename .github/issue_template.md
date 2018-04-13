@@ -4,7 +4,7 @@
 #### Actual behavior or exception details:
 
 
-#### xBIM Packages Versions:
+#### Versions of xBIM Packages:
 
 
 #### Minimal code (or steps) to reproduce the issue:
