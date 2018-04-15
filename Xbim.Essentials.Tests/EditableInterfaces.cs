@@ -12,6 +12,7 @@ using Xbim.Ifc2x3.UtilityResource;
 using Xbim.Ifc4.DateTimeResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
+using Xbim.IO.Memory;
 using IfcAirTerminalTypeEnum = Xbim.Ifc4.Interfaces.IfcAirTerminalTypeEnum;
 using IfcChangeActionEnum = Xbim.Ifc4.Interfaces.IfcChangeActionEnum;
 using IfcWasteTerminalTypeEnum = Xbim.Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalTypeEnum;
@@ -29,12 +30,12 @@ namespace Xbim.Essentials.Tests
         public void SingleFieldTest()
         {
             const string file = "4walls1floorSite.ifc";
-            using (var model = IfcStore.Open(file))
+            using (var model = MemoryModel.OpenRead(file))
             {
                 var extendedChanges = 0;
                 model.EntityModified += (entity, property) => { if (property < 0) extendedChanges++; };
 
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction("Test"))
                 {
                     var wall = model.Instances.FirstOrDefault<IIfcWall>();
                     Assert.IsNotNull(wall);
@@ -114,12 +115,12 @@ namespace Xbim.Essentials.Tests
         public void ItemSetTest()
         {
             const string file = "4walls1floorSite.ifc";
-            using (var model = IfcStore.Open(file))
+            using (var model = MemoryModel.OpenRead(file))
             {
                 var extendedChanges = 0;
                 model.EntityModified += (entity, property) => { if (property < 0) extendedChanges++; };
 
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction("Test"))
                 {
                     //set of defined types
                     var point = model.Instances.New<IfcCartesianPoint>() as IIfcCartesianPoint;

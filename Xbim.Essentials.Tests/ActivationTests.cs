@@ -1,24 +1,20 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
-using Xbim.Ifc2x3.IO;
+using Xbim.Essentials.Tests.Utilities;
 using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.SharedBldgElements;
-using Xbim.IO.Esent;
-using Xbim.Ifc;
 
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
     public class ActivationTests
     {
-        [DeploymentItem("TestSourceFiles")]
         [TestMethod]
+        [DeploymentItem("TestSourceFiles")]
         public void ObjectActivation()
         {
-            using (var model = IfcStore.Open("4walls1floorSite.ifc", null, 0))
-            {
-                using (model.BeginTransaction("Activation tests"))
+            using (new ModelFactory("4walls1floorSite.ifc")
+                .DoInTransaction(model =>
                 {
                     var wall = model.Instances.FirstOrDefault<IfcWall>();
                     Assert.IsFalse(((IPersistEntity)wall).Activated);
@@ -35,8 +31,7 @@ namespace Xbim.Essentials.Tests
 
                     wallType.HasPropertySets.Add(model.Instances.New<IfcPropertySet>(ps => ps.Name = "New property set"));
                     Assert.IsTrue(((IPersistEntity)wallType).Activated);
-                }
-            }
+                })) ;
         }
     }
 }
