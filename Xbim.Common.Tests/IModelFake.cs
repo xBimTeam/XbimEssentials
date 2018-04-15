@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
@@ -31,6 +32,10 @@ namespace Xbim.Common.Tests
         public IInverseCache InverseCache => throw new NotImplementedException();
 
         public XbimSchemaVersion SchemaVersion => throw new NotImplementedException();
+
+        public ILogger Logger { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public IEntityCache EntityCache => throw new NotImplementedException();
 #pragma warning disable CS0067
         public event NewEntityHandler EntityNew;
         public event ModifiedEntityHandler EntityModified;
@@ -42,6 +47,16 @@ namespace Xbim.Common.Tests
         }
 
         public IInverseCache BeginCaching()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEntityCache BeginEntityCaching()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IInverseCache BeginInverseCaching()
         {
             throw new NotImplementedException();
         }
@@ -70,5 +85,40 @@ namespace Xbim.Common.Tests
         {
             throw new NotImplementedException();
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~IModelFake() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

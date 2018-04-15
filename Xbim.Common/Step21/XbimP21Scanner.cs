@@ -47,7 +47,7 @@ namespace Xbim.IO.Step21
         protected int ListNestLevel = -1;
         protected Part21Entity CurrentInstance;
         public CreateEntityDelegate EntityCreate;
-        private Dictionary<long, IPersist> _entities;
+        private Dictionary<int, IPersist> _entities;
         protected PropertyValue PropertyValue;
         private List<DeferredReference> _deferredReferences;
         private double _streamSize = -1;
@@ -58,7 +58,7 @@ namespace Xbim.IO.Step21
         private readonly ParserErrorRegistry _errors = new ParserErrorRegistry();
 
         public HashSet<string> SkipTypes { get; } = new HashSet<string>();
-        private HashSet<long> SkipEntities { get; } = new HashSet<long>();
+       // private HashSet<int> SkipEntities { get; } = new HashSet<int>();
 
         public bool Cancel = false;
 
@@ -70,31 +70,45 @@ namespace Xbim.IO.Step21
         private Scanner _scanner;
         private bool _inHeader;
 
-        public XbimP21Scanner(Stream strm, long streamSize)
+        public XbimP21Scanner(Stream strm, long streamSize, IEnumerable<string> ignoreTypes = null)
         {
             _scanner = new Scanner(strm);
             //_scanner = new Scanner(new XbimScanBuffer(strm));
-
+            if (ignoreTypes != null) SkipTypes = new HashSet<string>(ignoreTypes);
             var entityApproxCount = 50000;
             if (streamSize > 0)
             {
                 _streamSize = streamSize;
                 entityApproxCount = Convert.ToInt32(_streamSize / 50); //average 50 bytes per entity.
             }
-
-            _entities = new Dictionary<long, IPersist>(entityApproxCount);
-            _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
+            //adjust for skipped entities
+            if(SkipTypes.Any())
+            {
+                //about a 560 entities
+                double adjustRatio = 1-((double)(SkipTypes.Count)) / 560;
+                entityApproxCount = (int)( entityApproxCount * adjustRatio);
+            }
+            _entities = new Dictionary<int, IPersist>(entityApproxCount);
+            _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
 
-        public XbimP21Scanner(string data)
+        public XbimP21Scanner(string data, IEnumerable<string> ignoreTypes = null)
         {
             _scanner = new Scanner();
             _scanner.SetSource(data, 0);
             _streamSize = data.Length;
-
+            if (ignoreTypes != null) SkipTypes = new HashSet<string>(ignoreTypes);
             var entityApproxCount = (int)_streamSize / 50;
-            _entities = new Dictionary<long, IPersist>(entityApproxCount);
-            _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred
+            //adjust for skipped entities
+            if (SkipTypes.Any())
+            {
+                //about a 560 entities
+                double adjustRatio = 1-((double)(SkipTypes.Count)) / 560;
+                entityApproxCount = (int)(entityApproxCount * adjustRatio);
+            }
+           
+            _entities = new Dictionary<int, IPersist>(entityApproxCount);
+            _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
 
         public bool Parse(bool onlyHeader = false)
@@ -131,7 +145,7 @@ namespace Xbim.IO.Step21
                                 if (skipping && SkipTypes.Contains(type))
                                 {
                                     var current = _processStack.Pop();
-                                    SkipEntities.Add(current.EntityLabel);
+                                    //SkipEntities.Add(current.EntityLabel);
                                     while (tok != endEntityToken)
                                         tok = _scanner.yylex();
                                     break;
@@ -257,9 +271,10 @@ namespace Xbim.IO.Step21
 
         protected void EndParse()
         {
-            foreach (var defRef in _deferredReferences.Where(dr => !SkipEntities.Contains(dr.ReferenceId)))
+            var skipping = SkipTypes.Any(); //if we are skipping then we will have some references unresolved
+            foreach (var defRef in _deferredReferences/*.Where(dr => !SkipEntities.Contains(dr.ReferenceId))*/)
             {
-                if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex))
+                if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex) && !skipping)
                     Logger?.LogWarning("Entity #{0,-5} is referenced but could not be instantiated",
                                                       defRef.ReferenceId);
             }
@@ -622,7 +637,7 @@ namespace Xbim.IO.Step21
             }
         }
 
-        public Dictionary<long, IPersist> Entities
+        public Dictionary<int, IPersist> Entities
         {
             get { return _entities; }
         }

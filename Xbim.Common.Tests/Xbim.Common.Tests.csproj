@@ -6,12 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
+    <PackageReference Include="Xbim.IO.MemoryModel" Version="5.0.0-Beta1-1295" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestFile.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

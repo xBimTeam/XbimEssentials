@@ -1,16 +1,23 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using Xbim.Common.Geometry;
+using Xbim.Common.Metadata;
+using Xbim.Common.Model;
 using Xbim.Common.Step21;
+using Xbim.Ifc4.Interfaces;
+using Xbim.IO.Memory;
+using Xunit;
 
 namespace Xbim.Common.Tests
 {
-    [TestClass]
+
     public class PackedNormalTests
     {
-        [TestMethod]
+        [Fact]
         public void PackedNormalRoundTripTest()
         {
             var tests = new[]
@@ -35,20 +42,75 @@ namespace Xbim.Common.Tests
                 var angle = Math.Atan2(x, y);
                 if (angle > 0.1)
                     Trace.WriteLine($"vector: {vec}, angle: { angle * 180.0 / Math.PI:F3}");
-                Assert.IsTrue(angle < 0.13);
+                Assert.True(angle < 0.13);
             }
 
 
         }
-    
-    [TestMethod]
-    public void StepFileHeaderVersionTest()
-    {
+
+        [Fact]
+        public void StepFileHeaderVersionTest()
+        {
             var modelFake = new IModelFake();
             var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, modelFake);
             var t = typeof(IModelFake);
-            Assert.IsTrue(header.FileName.OriginatingSystem == t.GetTypeInfo().Assembly.GetName().Name);
-            Assert.IsTrue(header.FileName.PreprocessorVersion == string.Format("Processor version {0}", t.GetTypeInfo().Assembly.GetName().Version));
+            Assert.True(header.FileName.OriginatingSystem == t.GetTypeInfo().Assembly.GetName().Name);
+            Assert.True(header.FileName.PreprocessorVersion == string.Format("Processor version {0}", t.GetTypeInfo().Assembly.GetName().Version));
         }
-}
+
+        [Fact]
+        public void can_skip_entities_while_parsing()
+        {
+            using (var strm = File.OpenRead(@"TestFile.ifc"))
+            {
+
+                var ifc2x3MetaData = ExpressMetaData.GetMetadata((new Xbim.Ifc2x3.EntityFactory()).GetType().GetTypeInfo().Module);
+                var ifc4MetaData = ExpressMetaData.GetMetadata((new Xbim.Ifc4.EntityFactory()).GetType().GetTypeInfo().Module);
+                var allTypes = new HashSet<string>(
+                    ifc2x3MetaData.Types().Where(et => typeof(IPersistEntity).IsAssignableFrom(et.Type) && !et.Type.IsAbstract ).Select(et => et.ExpressNameUpper)
+                    .Concat(ifc2x3MetaData.Types().Where(et => typeof(IPersistEntity).IsAssignableFrom(et.Type) && !et.Type.IsAbstract).Select(et => et.ExpressNameUpper)));
+                var requiredTypes = new HashSet<string>();
+                foreach (var metadata in new[] { ifc2x3MetaData })
+                {
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcProject))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcAsset))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcSystem)).Where(t => !typeof(IIfcStructuralAnalysisModel).IsAssignableFrom(t.Type))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcActor))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcElement)).Where(t => !typeof(IIfcFeatureElement).IsAssignableFrom(t.Type)
+                    && !typeof(IIfcVirtualElement).IsAssignableFrom(t.Type))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcSpatialElement))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcProxy))) requiredTypes.Add(t.ExpressNameUpper);
+
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcTypeProduct))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcPropertySetDefinitionSelect))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcRelDefinesByProperties))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcSimpleProperty))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcElementQuantity))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcPhysicalSimpleQuantity))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcRelDefinesByType))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcUnitAssignment))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcNamedUnit))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcMeasureWithUnit))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcDimensionalExponents))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcRelAssociatesClassification))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcClassificationReference))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcClassification))) requiredTypes.Add(t.ExpressNameUpper);
+                    // foreach (var t in metadata.ExpressTypesImplementing(typeof(Xbim.Ifc2x3.DateTimeResource.IfcCalendarDate))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcActorSelect))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcAddress))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcApplication))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcActorRole))) requiredTypes.Add(t.ExpressNameUpper);
+                    foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcDocumentSelect))) requiredTypes.Add(t.ExpressNameUpper);
+                }
+                var unwantedTypes = allTypes.Except(requiredTypes);
+                using (var mm = MemoryModel.OpenReadStep21(strm, null, null, unwantedTypes.ToList()))
+                {
+                   // Assert.Equal(8590, mm.Instances.Count());
+                }
+
+
+            }
+
+        }
+    }
 }
