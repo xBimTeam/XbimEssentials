@@ -9,6 +9,11 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using Xbim.Common;
+using Xbim.Ifc4;
+using Xbim.IO.Memory;
+using System.IO;
+using System.Xml;
+using Xbim.Essentials.Tests.Utilities;
 
 namespace Xbim.Essentials.Tests
 {
@@ -19,10 +24,10 @@ namespace Xbim.Essentials.Tests
         [DeploymentItem("TestSourceFiles\\xbim.png")]
         public void BinaryBlobTextureTest()
         {
-            var data = System.IO.File.ReadAllBytes("xbim.png");
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
+            var data = File.ReadAllBytes("xbim.png");
+            using (var model = new MemoryModel(new EntityFactory()))
             {
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction(""))
                 {
                     var btx = model.Instances.New<IfcBlobTexture>(b => {
                         b.RasterCode = data;
@@ -30,75 +35,40 @@ namespace Xbim.Essentials.Tests
                     });
                     txn.Commit();
                 }
-                model.SaveAs("XbimBlobTexture.ifc");
-                model.SaveAs("XbimBlobTexture.ifcxml");
+                using (var stepFile = File.Create("XbimBlobTexture.ifc"))
+                {
+                    model.SaveAsStep21(stepFile);
+                }
+                using (var xmlFile = File.Create("XbimBlobTexture.ifcxml"))
+                {
+                    model.SaveAsXml(xmlFile, new XmlWriterSettings { });
+                }
             }
 
-            //open as memory model
-            using (var model = IfcStore.Open("XbimBlobTexture.ifc", null, -1))
-            {
+            Action<IModel> test = model => {
                 var btx = model.Instances.FirstOrDefault<IfcBlobTexture>();
                 Assert.IsNotNull(btx);
 
                 var image = btx.RasterCode.Bytes;
                 Assert.IsTrue(image.SequenceEqual(data));
-            }
+            };
 
-            //open as memory model
-            using (var model = IfcStore.Open("XbimBlobTexture.ifcxml", null, -1))
+            using (var models = new ModelFactory("XbimBlobTexture.ifc"))
             {
-                var btx = model.Instances.FirstOrDefault<IfcBlobTexture>();
-                Assert.IsNotNull(btx);
-
-                var image = btx.RasterCode.Bytes;
-                Assert.IsTrue(image.SequenceEqual(data));
+                models.Do(test);
             }
 
-            //open using ESENT
-            using (var model = IfcStore.Open("XbimBlobTexture.ifc", null, 0))
+            using (var models = new ModelFactory("XbimBlobTexture.ifcxml"))
             {
-                var btx = model.Instances.FirstOrDefault<IfcBlobTexture>();
-                Assert.IsNotNull(btx);
-
-                var image = btx.RasterCode.Bytes;
-                Assert.IsTrue(image.SequenceEqual(data));
-
-                //save as Esent DB
-                model.SaveAs("XbimBlobTexture.xbim");
-                model.Close();
+                models.Do(test);
             }
-
-            //open EsentDB
-            using (var model = IfcStore.Open("XbimBlobTexture.xbim", null, 0))
-            {
-                var btx = model.Instances.FirstOrDefault<IfcBlobTexture>();
-                Assert.IsNotNull(btx);
-
-                var image = btx.RasterCode.Bytes;
-                Assert.IsTrue(image.SequenceEqual(data));
-
-                //save from esent to IFC
-                model.SaveAs("XbimBlobTexture2.ifc");
-                model.Close();
-            }
-
-            //open last model as memory model
-            using (var model = IfcStore.Open("XbimBlobTexture2.ifc", null, -1))
-            {
-                var btx = model.Instances.FirstOrDefault<IfcBlobTexture>();
-                Assert.IsNotNull(btx);
-
-                var image = btx.RasterCode.Bytes;
-                Assert.IsTrue(image.SequenceEqual(data));
-            }
-
         }
 
         [TestMethod]
         public void PixelTextureTest()
         {
-            PixelTextureTestCode(IfcSchemaVersion.Ifc2X3);
-            PixelTextureTestCode(IfcSchemaVersion.Ifc4);
+            PixelTextureTestCode(XbimSchemaVersion.Ifc2X3);
+            PixelTextureTestCode(XbimSchemaVersion.Ifc4);
         }
 
         private static void AssertByteArrays(List<byte[]> a, IItemSet<IfcBinary> b)
@@ -114,13 +84,13 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        private static void PixelTextureTestCode(IfcSchemaVersion version)
+        private static void PixelTextureTestCode(XbimSchemaVersion version)
         {
             var data = new List<byte[]>() { new byte[] { 0, 0, 255, 255 }, new byte[] { 0, 255, 255, 255 }, new byte[] { 255, 0, 255, 255 }, new byte[] { 255, 0, 0, 255 } };
-            using (var model = IfcStore.Create(version, XbimStoreType.InMemoryModel))
+            using (var model = new MemoryModel(new EntityFactory()))
             {
                 var create = new Create(model);
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction(""))
                 {
                     var pt = create.PixelTexture(t => {
                         t.Height = 2;
@@ -132,68 +102,35 @@ namespace Xbim.Essentials.Tests
                     });
                     txn.Commit();
                 }
-                model.SaveAs("XbimPixelTexture.ifc");
-                model.SaveAs("XbimPixelTexture.ifcxml");
+
+                using (var stepFile = File.Create("XbimPixelTexture.ifc"))
+                {
+                    model.SaveAsStep21(stepFile);
+                }
+                using (var xmlFile = File.Create("XbimPixelTexture.ifcxml"))
+                {
+                    model.SaveAsXml(xmlFile, new XmlWriterSettings { });
+                }
+                
             }
 
-            //open Step21 as memory model
-            using (var model = IfcStore.Open("XbimPixelTexture.ifc", null, -1))
-            {
+            Action<IModel> test = model => {
                 var txt = model.Instances.FirstOrDefault<IIfcPixelTexture>();
                 Assert.IsNotNull(txt);
 
                 var pixels = txt.Pixel;
                 AssertByteArrays(data, pixels);
-            }
+            };
 
-            //open XML as memory model
-            using (var model = IfcStore.Open("XbimPixelTexture.ifcxml", null, -1))
+            using (var models = new ModelFactory("XbimPixelTexture.ifc"))
             {
-                var txt = model.Instances.FirstOrDefault<IIfcPixelTexture>();
-                Assert.IsNotNull(txt);
-
-                var pixels = txt.Pixel;
-                AssertByteArrays(data, pixels);
+                models.Do(test);
             }
 
-            //open using ESENT
-            using (var model = IfcStore.Open("XbimPixelTexture.ifc", null, 0))
+            using (var models = new ModelFactory("XbimPixelTexture.ifcxml"))
             {
-                var txt = model.Instances.FirstOrDefault<IIfcPixelTexture>();
-                Assert.IsNotNull(txt);
-
-                var pixels = txt.Pixel;
-                AssertByteArrays(data, pixels);
-
-                //save as Esent DB
-                model.SaveAs("XbimPixelTexture.xbim");
-                model.Close();
+                models.Do(test);
             }
-
-            //open EsentDB
-            using (var model = IfcStore.Open("XbimPixelTexture.xbim", null, 0))
-            {
-                var txt = model.Instances.FirstOrDefault<IIfcPixelTexture>();
-                Assert.IsNotNull(txt);
-
-                var pixels = txt.Pixel;
-                AssertByteArrays(data, pixels);
-
-                //save from esent to IFC
-                model.SaveAs("XbimPixelTexture2.ifc");
-                model.Close();
-            }
-
-            //open last model as memory model
-            using (var model = IfcStore.Open("XbimPixelTexture2.ifc", null, -1))
-            {
-                var txt = model.Instances.FirstOrDefault<IIfcPixelTexture>();
-                Assert.IsNotNull(txt);
-
-                var pixels = txt.Pixel;
-                AssertByteArrays(data, pixels);
-            }
-
         }
     }
 }

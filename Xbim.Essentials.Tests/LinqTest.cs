@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
+using Xbim.IO.Memory;
 // using Xbim.Ifc2x3.Interfaces; // replacing ifc2x3 would make test pass.
 
 namespace Tests
@@ -16,7 +17,7 @@ namespace Tests
         [TestMethod]
         public void TestingLinqWhere2()
         {
-            using (var model1 = IfcStore.Open("email.ifc"))
+            using (var model1 = MemoryModel.OpenRead("email.ifc"))
             {
                 
                 var telecom = model1.Instances[28] as IIfcTelecomAddress;

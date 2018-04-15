@@ -4,6 +4,7 @@ using Xbim.Ifc;
 using Xbim.Common.Step21;
 using Xbim.Ifc2x3.ActorResource;
 using Xbim.Ifc4.Interfaces;
+using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
 {
@@ -13,9 +14,9 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NullableEnumMemberTest()
         {
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
             {
-                using (var txn = model.BeginTransaction())
+                using (var txn = model.BeginTransaction("Test"))
                 {
                     var a3 = model.Instances.New<IfcPostalAddress>();
                     var a4 = a3 as IIfcAddress;

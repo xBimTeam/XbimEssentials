@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Ifc2x3;
-using Xbim.Ifc2x3.Extensions;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO.Memory;
 
