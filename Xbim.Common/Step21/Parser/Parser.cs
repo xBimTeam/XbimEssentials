@@ -57,11 +57,11 @@ namespace Xbim.IO.Parser
 
         public Part21Entity(string label)
         {
-            EntityLabel = Convert.ToInt64(label.TrimStart('#'));
+            EntityLabel = Convert.ToInt32(label.TrimStart('#'));
         }
 
         public Part21Entity(string label, IPersist ent)
-            : this(Convert.ToInt64(label.TrimStart('#')), ent)
+            : this(Convert.ToInt32(label.TrimStart('#')), ent)
         {
         }
 
@@ -70,7 +70,7 @@ namespace Xbim.IO.Parser
         {
         }
 
-        public Part21Entity(long label, IPersist ent)
+        public Part21Entity(int label, IPersist ent)
         {
             EntityLabel = label;
             Entity = ent;
@@ -78,7 +78,7 @@ namespace Xbim.IO.Parser
 
         public IPersist Entity { get; set; }
 
-        public long EntityLabel;
+        public int EntityLabel;
 
 
         public int CurrentParamIndex = -1;
