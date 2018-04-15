@@ -33,11 +33,11 @@
 
   <ItemGroup>
 
-    <PackageReference Include="Xbim.Common" Version="5.0.0-Beta1-1165" />
+    <PackageReference Include="Xbim.Common" Version="5.0.0-Beta1-1315" />
 
-    <PackageReference Include="Xbim.Ifc2x3" Version="5.0.0-Beta1-1167" />
+    <PackageReference Include="Xbim.Ifc2x3" Version="5.0.0-Beta1-1317" />
 
-    <PackageReference Include="Xbim.Ifc4" Version="5.0.0-Beta1-1166" />
+    <PackageReference Include="Xbim.Ifc4" Version="5.0.0-Beta1-1316" />
 
   </ItemGroup>
 
