@@ -109,6 +109,17 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
+        [DeploymentItem("TestFiles\\EmptyMultibyteString.ifc")]
+        public void ToleratesEmptyMultibyteStringsTest()
+        {
+            // I have stumbled across a file containing empty multibyte string sequences '\X2\\X0\'.
+            using (IfcStore store = IfcStore.Open("EmptyMultibyteString.ifc")) {
+                IIfcProject project = store.Instances.OfType<IIfcProject>().SingleOrDefault();
+                Assert.AreEqual("Test Test Test", (string)project.Name);
+            }
+        }
+        
+        [TestMethod]
         [DeploymentItem("TestFiles")]
         public void IfcStoreOpenAndCloseMemoryModelTest()
         {
