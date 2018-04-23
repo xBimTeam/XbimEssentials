@@ -38,7 +38,7 @@ namespace Profiling.WritingXml
         {
             using (var xml = XmlWriter.Create(path, new XmlWriterSettings { Indent = false }))
             {
-                var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                 var project = model.Instances.OfType<IfcProject>();
                 var products = model.Instances.OfType<IfcObject>();
                 var relations = model.Instances.OfType<IfcRelationship>();

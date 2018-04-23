@@ -178,8 +178,6 @@ namespace Xbim.IO.Esent
                     }
                     transaction.Commit();
                 }
-
-
             }
             );
         }

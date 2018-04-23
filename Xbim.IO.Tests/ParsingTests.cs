@@ -158,25 +158,14 @@ namespace Xbim.MemoryModel.Tests
 
         [TestMethod]
         [DeploymentItem("TestFiles\\Issue107.zip")]
-        public void Issue107()
+        public void Issue107OnMemoryModel()
         {
-            // a merged PR on issue 107 makes the memory model more tolerant of duplicated items.
-            //
+            // a merged PR on issue 107 makes the memory model more tolerant of bad files.
+            // an equivalent test for esent is available
             using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
             {
                 var errCount = model.LoadZip("Issue107.zip");
                 Assert.AreEqual(140, errCount);
-            }
-
-            // the same does not apply to the database version though.
-            // an error is thrown in 
-            // Xbim.IO\Esent\EsentEntityCursor.cs
-            // at
-            // internal void AddEntity(int currentLabel, short typeId, IEnumerable<int> indexKeys, byte[] data, bool? indexed, EsentLazyDBTransaction? trans = null)
-            // because the label already exists and esent does not tolerate that nicely.
-            using (var model = new Xbim.IO.Esent.EsentModel(new Ifc2x3.EntityFactory()))
-            {
-                var errCount = model.CreateFrom("Issue107.zip"); 
             }
         }
 
@@ -650,5 +639,21 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        [DeploymentItem("TestFiles\\ifc2x3_final_wall.ifc")]
+        public void Ifc2x3FinalSchemaTest()
+        {
+            using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
+            {
+                var errCount = model.LoadStep21("ifc2x3_final_wall.ifc");
+                Assert.AreEqual(0, errCount);
+            }
+
+            using (var model = new Xbim.IO.Esent.EsentModel(new Ifc2x3.EntityFactory()))
+            {
+                var errCount = model.CreateFrom("ifc2x3_final_wall.ifc");
+                Assert.AreEqual(true, errCount);
+            }
+        }
     }
 }

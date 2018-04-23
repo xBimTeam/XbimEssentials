@@ -93,11 +93,13 @@
     <Compile Include="ReadingWronglyEncodedFile.cs" />
     <Compile Include="TableStorageTests.cs" />
     <Compile Include="ActivationTests.cs" />
+    <Compile Include="TessellatorTests.cs" />
     <Compile Include="TransactionLogTests.cs" />
     <Compile Include="NoHeaderSerialization.cs" />
     <Compile Include="IfcStoreStreamOpeningTests.cs" />
     <Compile Include="EmptyModelTests.cs" />
     <Compile Include="SchemaVersionTests.cs" />
+    <Compile Include="EsentParsingTests.cs" />
     <Compile Include="_StoreOpenForDebug.cs" />
     <Compile Include="WexBIMTests.cs" />
     <Compile Include="XmlTests4.cs" />
@@ -168,6 +170,9 @@
     <None Include="TestFiles\FormallyIllegalFile.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\ifc2x3_final_wall.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\Ifc4WithNestedLists.ifczip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -181,6 +186,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\IfcCartesianPointList3D.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\ImplicitPropertyTyping.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\InvalidType.ifc">
@@ -199,6 +207,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\OneWall.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Roof-01_BCAD.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\SampleHouse4.ifc">

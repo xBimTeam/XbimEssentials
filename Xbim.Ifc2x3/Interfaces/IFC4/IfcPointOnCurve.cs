@@ -45,6 +45,14 @@ namespace Xbim.Ifc2x3.GeometryResource
 				
 			}
 		}
+		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometricModelResource.IfcGeometricSetSelect.Dim 
+		{
+			get 
+			{
+				return new Ifc4.GeometryResource.IfcDimensionCount(Dim);
+			}
+		}
+
 	//## Custom code
 	//##
 	}

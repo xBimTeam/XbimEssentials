@@ -11,17 +11,14 @@ using Xbim.Ifc4;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
-using Xbim.Ifc4.MaterialResource;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.Ifc4.SharedBldgElements;
 using Xbim.Ifc4.StructuralLoadResource;
-using Xbim.Ifc4.UtilityResource;
 using Xbim.IO.JSON;
 using Xbim.IO.Memory;
 using Xbim.IO.Xml;
-using Xbim.IO.Xml.BsConf;
 
 namespace Xbim.MemoryModel.Tests
 {
@@ -29,7 +26,18 @@ namespace Xbim.MemoryModel.Tests
     [DeploymentItem("TestFiles")]
     public class XmlTests4
     {
-       
+        [TestMethod]
+        public void ReadIFC4Xml()
+        {
+            var path = @"ImplicitPropertyTyping.ifcxml";
+
+            ValidateIfc4(path);
+
+            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            {
+                model.LoadXml(path);
+            }
+        }
 
         [TestMethod]
         public void Ifc4HeaderSerialization()
@@ -50,7 +58,7 @@ namespace Xbim.MemoryModel.Tests
 
                 using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings{Indent = true}))
                 {
-                    var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                    var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                     writer.Write(model, xml);   
                     xml.Close();
                 }
@@ -73,7 +81,7 @@ namespace Xbim.MemoryModel.Tests
             using (var file = File.OpenRead(outPath))
             {
                 var header = XbimXmlReader4.ReadHeader(file);
-                Assert.AreEqual("IFC4, IFC4Add1", header.SchemaVersion);
+                Assert.AreEqual("IFC4", header.SchemaVersion);
             }
         }
 
@@ -464,7 +472,7 @@ namespace Xbim.MemoryModel.Tests
         {
             using (var xml = XmlWriter.Create(path, new XmlWriterSettings { Indent = true }))
             {
-                var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add1);
                 var project = model.Instances.OfType<IfcProject>();
                 var products = model.Instances.OfType<IfcObject>();
                 var relations = model.Instances.OfType<IfcRelationship>();
@@ -489,7 +497,7 @@ namespace Xbim.MemoryModel.Tests
         {
             using (var xml = new JSONWritter(File.CreateText(path)))
             {
-                var writer = new XbimXmlWriter4(configuration.IFC4Add1);
+                var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add1);
                 var project = model.Instances.OfType<IfcProject>();
                 var products = model.Instances.OfType<IfcObject>();
                 var relations = model.Instances.OfType<IfcRelationship>();

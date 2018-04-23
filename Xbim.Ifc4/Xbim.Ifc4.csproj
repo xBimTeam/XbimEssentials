@@ -699,8 +699,11 @@
     <Compile Include="GeometricModelResource\IfcGeometricSetSelect.cs" />
     <Compile Include="GeometricModelResource\IfcGeometricSetSelectPartial.cs" />
     <Compile Include="GeometricModelResource\IfcHalfSpaceSolid.cs" />
+    <Compile Include="GeometricModelResource\IfcIndexedPolygonalFace.cs" />
+    <Compile Include="GeometricModelResource\IfcIndexedPolygonalFaceWithVoids.cs" />
     <Compile Include="GeometricModelResource\IfcManifoldSolidBrep.cs" />
     <Compile Include="GeometricModelResource\IfcPolygonalBoundedHalfSpace.cs" />
+    <Compile Include="GeometricModelResource\IfcPolygonalFaceSet.cs" />
     <Compile Include="GeometricModelResource\IfcRectangularPyramid.cs" />
     <Compile Include="GeometricModelResource\IfcRevolvedAreaSolid.cs" />
     <Compile Include="GeometricModelResource\IfcRevolvedAreaSolidTapered.cs" />
@@ -754,6 +757,7 @@
     <Compile Include="GeometryResource\IfcEllipse.cs" />
     <Compile Include="GeometryResource\IfcGeometricRepresentationItem.cs" />
     <Compile Include="GeometryResource\IfcIndexedPolyCurve.cs" />
+    <Compile Include="GeometryResource\IfcIntersectionCurve.cs" />
     <Compile Include="GeometryResource\IfcLine.cs" />
     <Compile Include="GeometryResource\IfcLineIndex.cs" />
     <Compile Include="GeometryResource\IfcMappedItem.cs" />
@@ -773,11 +777,15 @@
     <Compile Include="GeometryResource\IfcReparametrisedCompositeCurveSegment.cs" />
     <Compile Include="GeometryResource\IfcRepresentationItem.cs" />
     <Compile Include="GeometryResource\IfcRepresentationMap.cs" />
+    <Compile Include="GeometryResource\IfcSeamCurve.cs" />
     <Compile Include="GeometryResource\IfcSegmentIndexSelect.cs" />
+    <Compile Include="GeometryResource\IfcSphericalSurface.cs" />
     <Compile Include="GeometryResource\IfcSurface.cs" />
+    <Compile Include="GeometryResource\IfcSurfaceCurve.cs" />
     <Compile Include="GeometryResource\IfcSurfaceOfLinearExtrusion.cs" />
     <Compile Include="GeometryResource\IfcSurfaceOfRevolution.cs" />
     <Compile Include="GeometryResource\IfcSweptSurface.cs" />
+    <Compile Include="GeometryResource\IfcToroidalSurface.cs" />
     <Compile Include="GeometryResource\IfcTrimmedCurve.cs" />
     <Compile Include="GeometryResource\IfcTrimmingSelect.cs" />
     <Compile Include="GeometryResource\IfcVector.cs" />
@@ -981,6 +989,7 @@
     <Compile Include="Interfaces\IfcPipeFittingTypeEnum.cs" />
     <Compile Include="Interfaces\IfcPipeSegmentTypeEnum.cs" />
     <Compile Include="Interfaces\IfcPlateTypeEnum.cs" />
+    <Compile Include="Interfaces\IfcPreferredSurfaceCurveRepresentation.cs" />
     <Compile Include="Interfaces\IfcProcedureTypeEnum.cs" />
     <Compile Include="Interfaces\IfcProfileTypeEnum.cs" />
     <Compile Include="Interfaces\IfcProjectedOrTrueLengthEnum.cs" />

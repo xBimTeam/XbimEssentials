@@ -18,12 +18,31 @@ namespace Xbim.IO.Xml
 
         private const string Xsi = "http://www.w3.org/2001/XMLSchema-instance";
         private const string Xlink = "http://www.w3.org/1999/xlink";
-        private readonly string _ns = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1"; //"http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4";
-        private readonly string _nsLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd";
-        private readonly string _expressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp";
-        private readonly string _configurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml";
+        /// <summary>
+        /// XML namespace
+        /// </summary>
+        private readonly string _ns;
+        /// <summary>
+        /// XSD location URI
+        /// </summary>
+        private readonly string _nsLocation;
+        /// <summary>
+        /// EXPRESS schema definition URI
+        /// </summary>
+        private readonly string _expressUri;
+        /// <summary>
+        /// EXPRESS to XSD convertion configuration file URI
+        /// </summary>
+        private readonly string _configurationUri;
+        /// <summary>
+        /// Namespace prefix
+        /// </summary>
         private readonly string _nsPrefix = "ifc";
+        /// <summary>
+        /// Name of the root element
+        /// </summary>
         private readonly string _rootElementName = "ifcXML";
+
         private HashSet<long> _written;
         private readonly configuration _conf;
         #endregion
@@ -51,20 +70,18 @@ namespace Xbim.IO.Xml
         /// </summary>
         /// <param name="configuration">XML to Express configuration</param>
         /// <param name="settings">Settings for writer like namespaces and root element name</param>
-        public XbimXmlWriter4(configuration configuration = null, XbimXmlSettings settings = null)
+        public XbimXmlWriter4(XbimXmlSettings settings)
         {
-            _conf = configuration ?? configuration.IFC4Add1;
+            _conf = settings.Configuration ?? configuration.IFC4Add2;
             TimeStamp = DateTime.Now.ToString("s");
             PreprocessorVersion = string.Format("Xbim File Processor version {0}", Assembly.GetAssembly(GetType()).GetName().Version);
             OriginatingSystem = string.Format("Xbim version {0}", Assembly.GetExecutingAssembly().GetName().Version);
-            if (settings == null)
-            return;
 
             _ns = settings.Namespace;
             _nsPrefix = settings.NamespacePrefix;
             _nsLocation = settings.NamespaceLocation;
             _expressUri = settings.ExpressUri;
-            _configurationUri = settings.Configuration;
+            _configurationUri = settings.ConfigurationUri;
             _rootElementName = settings.RootName;
         }
 

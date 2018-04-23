@@ -512,7 +512,7 @@ namespace Xbim.IO.Memory
                     for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
                     {
                         var id = Header.FileSchema.Schemas[i];
-                        var sid = _instances.Factory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.InvariantCultureIgnoreCase));
+                        var sid = _instances.Factory.SchemasIds.FirstOrDefault(s => id.ToLowerInvariant().StartsWith(s.ToLowerInvariant())); //E.g. 'IFC2X3' is contained in 'IFC2X3_FINAL'
                         if (sid == null)
                             throw new Exception("Mismatch between schema defined in the file and schemas available in the data model.");
 
@@ -596,15 +596,15 @@ namespace Xbim.IO.Memory
                         writer3.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     case "IFC4":
-                        var writer4 = new XbimXmlWriter4(configuration.IFC4Add1, XbimXmlSettings.IFC4Add1);
+                        var writer4 = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                         writer4.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     case "COBIE_EXPRESS":
-                        var writerCobie = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
+                        var writerCobie = new XbimXmlWriter4(XbimXmlSettings.COBieExpress);
                         writerCobie.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     default:
-                        var writer = new XbimXmlWriter4(configuration, xbimSettings);
+                        var writer = new XbimXmlWriter4(xbimSettings);
                         writer.Write(this, xmlWriter);
                         break;
                 }
@@ -674,7 +674,7 @@ namespace Xbim.IO.Memory
         {
             using (var writer = new StreamWriter(stream))
             {
-                SaveAsStep21(writer);       
+                SaveAsStep21(writer, progress);       
             }
         }
 
@@ -685,7 +685,7 @@ namespace Xbim.IO.Memory
         /// <param name="progress"></param>
         public virtual void SaveAsStep21(TextWriter writer, ReportProgressDelegate progress = null)
         {
-            Part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
+            Part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>(), progress);
         }
 
         public void Dispose()

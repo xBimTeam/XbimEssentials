@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Essentials</id>
-    <version>4.0.29-V011</version>
+    <version>4.0.30-V009</version>
     <title>xBIM Essentials</title>
     <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -18,7 +18,11 @@
       This release replaces Xbim Essentials 3 but minor code reafactoring will be required, XbimModel is deprecated in favour of IfcStore.
     </description>
     <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for the IFC2x3 and IFC4 data models</summary>
-    <releaseNotes>Support for IFC4</releaseNotes>
+    <releaseNotes>
+      Schema upgraded from IFC4Add1 to IFC4Add2. These should be backwards compatible. IFC4Add2 XML format is default for XML serialization.
+      Note that while IFC4 STEP21 physical representations are compatible between technical addendums, XML representations are different.
+      If other tools depend on specific version of XML structure, make sure you specify it explicitly.
+    </releaseNotes>
     <language>en-GB</language>
     <tags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</tags>
     <dependencies>

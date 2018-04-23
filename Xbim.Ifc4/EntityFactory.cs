@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using Xbim.Common.Step21;
 using Xbim.Ifc4.SharedMgmtElements;
 using Xbim.Ifc4.Kernel;
 using Xbim.Ifc4.ActorResource;
@@ -47,7 +48,6 @@ using Xbim.Ifc4.ControlExtension;
 using Xbim.Ifc4.QuantityResource;
 using Xbim.Ifc4.StructuralAnalysisDomain;
 using Xbim.Common;
-using Xbim.Common.Step21;
 
 namespace Xbim.Ifc4
 {
@@ -363,9 +363,12 @@ namespace Xbim.Ifc4
 				case "IFCIMAGETEXTURE": return new IfcImageTexture ( model, entityLabel, activated );
 				case "IFCINDEXEDCOLOURMAP": return new IfcIndexedColourMap ( model, entityLabel, activated );
 				case "IFCINDEXEDPOLYCURVE": return new IfcIndexedPolyCurve ( model, entityLabel, activated );
+				case "IFCINDEXEDPOLYGONALFACE": return new IfcIndexedPolygonalFace ( model, entityLabel, activated );
+				case "IFCINDEXEDPOLYGONALFACEWITHVOIDS": return new IfcIndexedPolygonalFaceWithVoids ( model, entityLabel, activated );
 				case "IFCINDEXEDTRIANGLETEXTUREMAP": return new IfcIndexedTriangleTextureMap ( model, entityLabel, activated );
 				case "IFCINTERCEPTOR": return new IfcInterceptor ( model, entityLabel, activated );
 				case "IFCINTERCEPTORTYPE": return new IfcInterceptorType ( model, entityLabel, activated );
+				case "IFCINTERSECTIONCURVE": return new IfcIntersectionCurve ( model, entityLabel, activated );
 				case "IFCINVENTORY": return new IfcInventory ( model, entityLabel, activated );
 				case "IFCIRREGULARTIMESERIES": return new IfcIrregularTimeSeries ( model, entityLabel, activated );
 				case "IFCIRREGULARTIMESERIESVALUE": return new IfcIrregularTimeSeriesValue ( model, entityLabel, activated );
@@ -462,6 +465,7 @@ namespace Xbim.Ifc4
 				case "IFCPOINTONSURFACE": return new IfcPointOnSurface ( model, entityLabel, activated );
 				case "IFCPOLYLOOP": return new IfcPolyLoop ( model, entityLabel, activated );
 				case "IFCPOLYGONALBOUNDEDHALFSPACE": return new IfcPolygonalBoundedHalfSpace ( model, entityLabel, activated );
+				case "IFCPOLYGONALFACESET": return new IfcPolygonalFaceSet ( model, entityLabel, activated );
 				case "IFCPOLYLINE": return new IfcPolyline ( model, entityLabel, activated );
 				case "IFCPOSTALADDRESS": return new IfcPostalAddress ( model, entityLabel, activated );
 				case "IFCPRESENTATIONLAYERASSIGNMENT": return new IfcPresentationLayerAssignment ( model, entityLabel, activated );
@@ -578,6 +582,7 @@ namespace Xbim.Ifc4
 				case "IFCSIUNIT": return new IfcSIUnit ( model, entityLabel, activated );
 				case "IFCSANITARYTERMINAL": return new IfcSanitaryTerminal ( model, entityLabel, activated );
 				case "IFCSANITARYTERMINALTYPE": return new IfcSanitaryTerminalType ( model, entityLabel, activated );
+				case "IFCSEAMCURVE": return new IfcSeamCurve ( model, entityLabel, activated );
 				case "IFCSECTIONPROPERTIES": return new IfcSectionProperties ( model, entityLabel, activated );
 				case "IFCSECTIONREINFORCEMENTPROPERTIES": return new IfcSectionReinforcementProperties ( model, entityLabel, activated );
 				case "IFCSECTIONEDSPINE": return new IfcSectionedSpine ( model, entityLabel, activated );
@@ -604,6 +609,7 @@ namespace Xbim.Ifc4
 				case "IFCSPATIALZONE": return new IfcSpatialZone ( model, entityLabel, activated );
 				case "IFCSPATIALZONETYPE": return new IfcSpatialZoneType ( model, entityLabel, activated );
 				case "IFCSPHERE": return new IfcSphere ( model, entityLabel, activated );
+				case "IFCSPHERICALSURFACE": return new IfcSphericalSurface ( model, entityLabel, activated );
 				case "IFCSTACKTERMINAL": return new IfcStackTerminal ( model, entityLabel, activated );
 				case "IFCSTACKTERMINALTYPE": return new IfcStackTerminalType ( model, entityLabel, activated );
 				case "IFCSTAIR": return new IfcStair ( model, entityLabel, activated );
@@ -642,6 +648,7 @@ namespace Xbim.Ifc4
 				case "IFCSUBCONTRACTRESOURCE": return new IfcSubContractResource ( model, entityLabel, activated );
 				case "IFCSUBCONTRACTRESOURCETYPE": return new IfcSubContractResourceType ( model, entityLabel, activated );
 				case "IFCSUBEDGE": return new IfcSubedge ( model, entityLabel, activated );
+				case "IFCSURFACECURVE": return new IfcSurfaceCurve ( model, entityLabel, activated );
 				case "IFCSURFACECURVESWEPTAREASOLID": return new IfcSurfaceCurveSweptAreaSolid ( model, entityLabel, activated );
 				case "IFCSURFACEFEATURE": return new IfcSurfaceFeature ( model, entityLabel, activated );
 				case "IFCSURFACEOFLINEAREXTRUSION": return new IfcSurfaceOfLinearExtrusion ( model, entityLabel, activated );
@@ -688,6 +695,7 @@ namespace Xbim.Ifc4
 				case "IFCTIMEPERIOD": return new IfcTimePeriod ( model, entityLabel, activated );
 				case "IFCTIMESERIESVALUE": return new IfcTimeSeriesValue ( model, entityLabel, activated );
 				case "IFCTOPOLOGYREPRESENTATION": return new IfcTopologyRepresentation ( model, entityLabel, activated );
+				case "IFCTOROIDALSURFACE": return new IfcToroidalSurface ( model, entityLabel, activated );
 				case "IFCTRANSFORMER": return new IfcTransformer ( model, entityLabel, activated );
 				case "IFCTRANSFORMERTYPE": return new IfcTransformerType ( model, entityLabel, activated );
 				case "IFCTRANSPORTELEMENT": return new IfcTransportElement ( model, entityLabel, activated );
@@ -1019,9 +1027,12 @@ namespace Xbim.Ifc4
 				case 727: return new IfcImageTexture ( model, entityLabel, activated );
 				case 1189: return new IfcIndexedColourMap ( model, entityLabel, activated );
 				case 1190: return new IfcIndexedPolyCurve ( model, entityLabel, activated );
+				case 1321: return new IfcIndexedPolygonalFace ( model, entityLabel, activated );
+				case 1322: return new IfcIndexedPolygonalFaceWithVoids ( model, entityLabel, activated );
 				case 1192: return new IfcIndexedTriangleTextureMap ( model, entityLabel, activated );
 				case 1193: return new IfcInterceptor ( model, entityLabel, activated );
 				case 1194: return new IfcInterceptorType ( model, entityLabel, activated );
+				case 1323: return new IfcIntersectionCurve ( model, entityLabel, activated );
 				case 768: return new IfcInventory ( model, entityLabel, activated );
 				case 570: return new IfcIrregularTimeSeries ( model, entityLabel, activated );
 				case 609: return new IfcIrregularTimeSeriesValue ( model, entityLabel, activated );
@@ -1118,6 +1129,7 @@ namespace Xbim.Ifc4
 				case 65: return new IfcPointOnSurface ( model, entityLabel, activated );
 				case 200: return new IfcPolyLoop ( model, entityLabel, activated );
 				case 623: return new IfcPolygonalBoundedHalfSpace ( model, entityLabel, activated );
+				case 1324: return new IfcPolygonalFaceSet ( model, entityLabel, activated );
 				case 500: return new IfcPolyline ( model, entityLabel, activated );
 				case 662: return new IfcPostalAddress ( model, entityLabel, activated );
 				case 258: return new IfcPresentationLayerAssignment ( model, entityLabel, activated );
@@ -1234,6 +1246,7 @@ namespace Xbim.Ifc4
 				case 164: return new IfcSIUnit ( model, entityLabel, activated );
 				case 1262: return new IfcSanitaryTerminal ( model, entityLabel, activated );
 				case 435: return new IfcSanitaryTerminalType ( model, entityLabel, activated );
+				case 1325: return new IfcSeamCurve ( model, entityLabel, activated );
 				case 184: return new IfcSectionProperties ( model, entityLabel, activated );
 				case 508: return new IfcSectionReinforcementProperties ( model, entityLabel, activated );
 				case 300: return new IfcSectionedSpine ( model, entityLabel, activated );
@@ -1260,6 +1273,7 @@ namespace Xbim.Ifc4
 				case 1275: return new IfcSpatialZone ( model, entityLabel, activated );
 				case 1276: return new IfcSpatialZoneType ( model, entityLabel, activated );
 				case 706: return new IfcSphere ( model, entityLabel, activated );
+				case 1326: return new IfcSphericalSurface ( model, entityLabel, activated );
 				case 1277: return new IfcStackTerminal ( model, entityLabel, activated );
 				case 476: return new IfcStackTerminalType ( model, entityLabel, activated );
 				case 346: return new IfcStair ( model, entityLabel, activated );
@@ -1298,6 +1312,7 @@ namespace Xbim.Ifc4
 				case 594: return new IfcSubContractResource ( model, entityLabel, activated );
 				case 1286: return new IfcSubContractResourceType ( model, entityLabel, activated );
 				case 487: return new IfcSubedge ( model, entityLabel, activated );
+				case 1327: return new IfcSurfaceCurve ( model, entityLabel, activated );
 				case 480: return new IfcSurfaceCurveSweptAreaSolid ( model, entityLabel, activated );
 				case 1287: return new IfcSurfaceFeature ( model, entityLabel, activated );
 				case 256: return new IfcSurfaceOfLinearExtrusion ( model, entityLabel, activated );
@@ -1344,6 +1359,7 @@ namespace Xbim.Ifc4
 				case 1302: return new IfcTimePeriod ( model, entityLabel, activated );
 				case 35: return new IfcTimeSeriesValue ( model, entityLabel, activated );
 				case 88: return new IfcTopologyRepresentation ( model, entityLabel, activated );
+				case 1328: return new IfcToroidalSurface ( model, entityLabel, activated );
 				case 1303: return new IfcTransformer ( model, entityLabel, activated );
 				case 549: return new IfcTransformerType ( model, entityLabel, activated );
 				case 416: return new IfcTransportElement ( model, entityLabel, activated );
@@ -1543,6 +1559,15 @@ namespace Xbim.Ifc4
 		private static readonly List<string> _schemasIds = new List<string> { "IFC4" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-        public IfcSchemaVersion SchemaVersion { get { return IfcSchemaVersion.Ifc4; } }
-    }
+		/// <summary>
+        /// Gets the Ifc Schema version of the model if this is IFC schema
+        /// </summary>
+		public IfcSchemaVersion SchemaVersion { 
+			get
+			{
+				return IfcSchemaVersion.Ifc4;
+			}
+		}
+
+	}
 }

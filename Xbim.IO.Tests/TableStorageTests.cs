@@ -21,6 +21,18 @@ namespace Xbim.IO.Tests
     public class TableStorageTests
     {
         //[TestMethod]
+        public void ContactsImport()
+        {
+            const string file = @"c:\Users\Martin\Source\Samples\cutdown.xlsx";
+            string report;
+            using (var model = CobieModel.ImportFromTable(file, out report))
+            {
+                var contacts = model.Instances.OfType<CobieContact>().ToList();
+                Assert.IsTrue(contacts.Count > 0);
+            }
+        }
+
+        //[TestMethod]
         public void SplitAndExport()
         {
             const string file = @"c:\Users\mxfm2\Desktop\Jeff\CFH-IBI-B01-ZZ-M3-BA-001_MainBuilding_v3_2016.cobie";

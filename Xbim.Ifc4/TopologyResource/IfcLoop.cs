@@ -67,7 +67,5 @@ namespace Xbim.Ifc4.TopologyResource
 		//## Custom code
 		//##
 		#endregion
-
-	    
 	}
 }
