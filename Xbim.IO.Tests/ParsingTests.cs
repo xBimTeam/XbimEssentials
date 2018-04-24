@@ -165,7 +165,7 @@ namespace Xbim.MemoryModel.Tests
             using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
             {
                 var errCount = model.LoadZip("Issue107.zip");
-                Assert.AreEqual(140, errCount);
+                Assert.IsTrue(errCount <= 120);
             }
         }
 

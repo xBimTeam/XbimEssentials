@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace Xbim.IO.Tests
 {
@@ -14,7 +16,18 @@ namespace Xbim.IO.Tests
             //
             using (var model = new Esent.EsentModel(new Ifc2x3.EntityFactory()))
             {
-                var errCount = model.CreateFrom("Issue107.zip");
+                var temp = Path.GetTempPath() + Guid.NewGuid() + ".zip";
+                File.Copy("Issue107.zip", temp);
+                try
+                {
+                    var errCount = model.CreateFrom(temp);
+                }
+                finally
+                {
+                    if (File.Exists(temp))
+                        File.Delete(temp);
+                }
+
             }
         }
     }
