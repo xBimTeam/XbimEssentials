@@ -733,7 +733,7 @@ namespace Xbim.Ifc4
 				case "IFCWORKTIME": return new IfcWorkTime ( model, entityLabel, activated );
 				case "IFCZSHAPEPROFILEDEF": return new IfcZShapeProfileDef ( model, entityLabel, activated );
 				case "IFCZONE": return new IfcZone ( model, entityLabel, activated );
-				default:
+                default:
 					return null;
 			}
 		}
@@ -1389,7 +1389,7 @@ namespace Xbim.Ifc4
 				case 1319: return new IfcWorkTime ( model, entityLabel, activated );
 				case 528: return new IfcZShapeProfileDef ( model, entityLabel, activated );
 				case 669: return new IfcZone ( model, entityLabel, activated );
-				default:
+                default:
 					return null;
 			}
 		}
