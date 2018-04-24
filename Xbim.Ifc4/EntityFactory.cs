@@ -86,7 +86,7 @@ namespace Xbim.Ifc4
 			if (model == null || typeName == null)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "IFCACTIONREQUEST": return new IfcActionRequest ( model, entityLabel, activated );
@@ -1416,7 +1416,7 @@ namespace Xbim.Ifc4
 		if (typeName == null)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "IFCSTRIPPEDOPTIONAL": return new IfcStrippedOptional ();

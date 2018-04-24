@@ -48,7 +48,7 @@ namespace Xbim.CobieExpress
 			if (model == null || typeName == null)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "COBIEPHASE": return new CobiePhase ( model, entityLabel, activated );
@@ -213,7 +213,7 @@ namespace Xbim.CobieExpress
 		if (typeName == null)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "STRINGVALUE": return new StringValue ();

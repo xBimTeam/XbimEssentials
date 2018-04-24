@@ -92,7 +92,7 @@ namespace Xbim.Ifc2x3
 			if (model == null || typeName == null)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "IFC2DCOMPOSITECURVE": return new Ifc2DCompositeCurve ( model, entityLabel, activated );
@@ -1228,7 +1228,7 @@ namespace Xbim.Ifc2x3
 		if (typeName == null)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "IFCABSORBEDDOSEMEASURE": return new IfcAbsorbedDoseMeasure ();
