@@ -18,7 +18,7 @@ namespace Xbim.Ifc4.DateTimeResource
         public static implicit operator IfcDuration(TimeSpan value)
         {
             //https://www.w3.org/TR/xmlschema-2/#duration
-            return new IfcDuration(string.Format("P{0}DT{1}H{2}M{3:F3}S", value.Days, value.Hours, value.Minutes, value.Seconds+value.Milliseconds/1000.0));
+            return new IfcDuration(string.Format(CultureInfo.InvariantCulture, "P{0}DT{1}H{2}M{3:F3}S", value.Days, value.Hours, value.Minutes, value.Seconds+value.Milliseconds/1000.0));
         }
 
         public static implicit operator TimeSpan(IfcDuration obj)
