@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Step21;
 using Xbim.Common.XbimExtensions;
@@ -17,6 +18,9 @@ namespace Xbim.IO.Tests
     [TestClass]
     public class GeometryStoreTests
     {
+        private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
+        private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
+
         [TestMethod]
         [DeploymentItem("TestFiles\\OneWall.xBIM")]
         [DeploymentItem("TestFiles\\ShortRebar.xBIM")]
@@ -202,7 +206,7 @@ namespace Xbim.IO.Tests
         [TestMethod]
         public void EsentGeometryStoreBatchTest()
         {
-            using (var model = new IO.Esent.EsentModel(new EntityFactory()))
+            using (var model = new IO.Esent.EsentModel(ef4))
             {
                 model.CreateFrom("SampleHouse4.ifc", null, null, true);
                 var store = model.GeometryStore;
@@ -326,7 +330,7 @@ namespace Xbim.IO.Tests
         [TestMethod]
         public void InMemoryGeometryStoreMultiThreadTest()
         {
-            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(ef4))
             {
                
                 var store = model.GeometryStore;
@@ -377,7 +381,7 @@ namespace Xbim.IO.Tests
         [TestMethod]
         public void IfcStoreGeometryGeometryClearTest()
         {
-            using (var model = new IO.Esent.EsentModel(new EntityFactory()))
+            using (var model = new IO.Esent.EsentModel(ef4))
             {
                 model.CreateFrom("SampleHouse4.ifc", null, null, true);
                 var store = model.GeometryStore;
@@ -453,7 +457,7 @@ namespace Xbim.IO.Tests
         [TestMethod]
         public void EsentGeometryStoreReadTest()
         {
-            using (var model =  IO.Esent.EsentModel.CreateTemporaryModel(new EntityFactory()))
+            using (var model =  IO.Esent.EsentModel.CreateTemporaryModel(ef4))
             {              
                 var store = model.GeometryStore;
                 using (var txn = store.BeginInit())

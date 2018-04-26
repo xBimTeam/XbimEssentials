@@ -6,16 +6,18 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
 using Xbim.IO.Memory;
 using System.Linq;
+using Xbim.Common;
 
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
     public class NullStyleTests
     {
+        private static readonly IEntityFactory ef = new EntityFactoryIfc2x3();
         [TestMethod]
         public void SerializationTest()
         {
-            var model = new MemoryModel(new EntityFactory());
+            var model = new MemoryModel(ef);
             using (var txn = model.BeginTransaction("Null style"))
             {
                 model.Instances.New<IfcPresentationLayerWithStyle>(ls => ls.LayerStyles.Add(new IfcNullStyle()));
@@ -26,7 +28,7 @@ namespace Xbim.Essentials.Tests
                 }
             }
 
-            model = new MemoryModel(new EntityFactory());
+            model = new MemoryModel(ef);
             model.LoadStep21("NullStyle.ifc");
             var style = model.Instances.FirstOrDefault<IfcPresentationLayerWithStyle>();
             var nStyle = style.LayerStyles.FirstOrDefault();

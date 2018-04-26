@@ -114,7 +114,7 @@
     <Compile Include="CustomCode\CobieAttribute.cs" />
     <Compile Include="CustomCode\DateTimeValue.cs" />
     <Compile Include="DateTimeValue.cs" />
-    <Compile Include="EntityFactory.cs" />
+    <Compile Include="EntityFactoryCobieExpress.cs" />
     <Compile Include="FloatValue.cs" />
     <Compile Include="IntegerValue.cs" />
     <Compile Include="ItemSet.cs" />

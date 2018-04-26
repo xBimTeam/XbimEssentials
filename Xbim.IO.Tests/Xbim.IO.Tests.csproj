@@ -90,6 +90,7 @@
     <Compile Include="GeometryStoreTests.cs" />
     <Compile Include="Ifc4GeometryTests.cs" />
     <Compile Include="ReadingFileWithComments.cs" />
+    <Compile Include="ReadingWronglyEncodedFile.cs" />
     <Compile Include="TableStorageTests.cs" />
     <Compile Include="ActivationTests.cs" />
     <Compile Include="TessellatorTests.cs" />
@@ -160,6 +161,9 @@
     <None Include="TestFiles\DoubleBackSlashName.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\EmptyMultibyteString.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\fileWithAbstractClass.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -215,6 +219,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\tessellation-with-individual-colors.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Wrongly1251Encoded.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

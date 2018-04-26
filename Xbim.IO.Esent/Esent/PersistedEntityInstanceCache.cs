@@ -153,15 +153,33 @@ namespace Xbim.IO.Esent
                     _geometryTables[i].Dispose();
                     _geometryTables[i] = null;
                 }
-                Api.JetDeleteTable(_session, _databaseId, EsentShapeGeometryCursor.GeometryTableName);
-                Api.JetDeleteTable(_session, _databaseId, EsentShapeInstanceCursor.InstanceTableName);
+
+                try
+                {
+                    Api.JetDeleteTable(_session, _databaseId, EsentShapeGeometryCursor.GeometryTableName);
+                }
+                catch (Exception)
+                {
+                    //
+                }
+
+                try
+                {
+                    Api.JetDeleteTable(_session, _databaseId, EsentShapeInstanceCursor.InstanceTableName);
+                }
+                catch (Exception)
+                {
+                    //
+                }
                 EnsureGeometryTables(_session, _databaseId);
             }
             catch (Exception e)
             {
                 throw new Exception("Could not clear existing geometry tables", e);
             }
+            
         }
+
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
         {
 
@@ -711,7 +729,7 @@ namespace Xbim.IO.Esent
         {
             using (var reader = new FileStream(toImportIfcFilename, FileMode.Open, FileAccess.Read))
             {
-                ImportStep(xbimDbName, reader, reader.Length, progressHandler, keepOpen, cacheEntities);
+                ImportStep(xbimDbName, reader, reader.Length, progressHandler, keepOpen, cacheEntities, codePageOverride);
             }
         }
 
@@ -1432,7 +1450,8 @@ namespace Xbim.IO.Esent
                 FreeTable(entityTable);
             }
             //we need to deal with types that are not indexed in the database in a single pass to save time
-            Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
+            // MC: Commented out this assertion because it just fires when inverse property is empty result.
+            // Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
             foreach (var item in InstancesOf<TOType>(unindexedTypes, activate, entityLabels))
                 yield return item;
 

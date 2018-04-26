@@ -19,6 +19,9 @@ namespace Xbim.MemoryModel.Tests
     [TestClass]
     public class InMemoryInsertionTests
     {
+        private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
+        private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
+
         [DeploymentItem("TestFiles")]
         [TestMethod]
         public void Ifc4InsertCopyTest()
@@ -26,7 +29,7 @@ namespace Xbim.MemoryModel.Tests
             using (var model = IfcStore.Open(@"Ifc4WithNestedLists.ifcZip"))
             {
                                
-                using (var iModel = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
+                using (var iModel = new IO.Memory.MemoryModel(ef4))
                 {
                     using (var txn = iModel.BeginTransaction("Insert copy"))
                     {
@@ -74,12 +77,12 @@ namespace Xbim.MemoryModel.Tests
                 return property.PropertyInfo.GetValue(parentObject, null);
             };
 
-            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(ef2x3))
             {
                 var errs = model.LoadStep21(original);
                 Assert.AreEqual(0, errs);
                 var wall = model.Instances.FirstOrDefault<IfcWall>();
-                using (var iModel = new IO.Memory.MemoryModel(new EntityFactory()))
+                using (var iModel = new IO.Memory.MemoryModel(ef2x3))
                 {
                     using (var txn = iModel.BeginTransaction("Insert copy"))
                     {
@@ -159,11 +162,11 @@ namespace Xbim.MemoryModel.Tests
         public void ExtractSemanticModel()
         {
             const string original = "SampleHouse4.ifc";
-            using (var model = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 model.LoadStep21(original);
                 var roots = model.Instances.OfType<Ifc4.Kernel.IfcRoot>();
-                using (var iModel = new IO.Memory.MemoryModel(new Ifc4.EntityFactory()))
+                using (var iModel = new IO.Memory.MemoryModel(ef4))
                 {
                     using (var txn = iModel.BeginTransaction("Insert copy"))
                     {

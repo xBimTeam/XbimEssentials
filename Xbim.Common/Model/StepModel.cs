@@ -470,6 +470,10 @@ namespace Xbim.Common.Model
             };
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             
+                    case "IFC4X1":
+                        var writer4x1 = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
+                        writer4x1.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
+                        break;
 
             try
             {
