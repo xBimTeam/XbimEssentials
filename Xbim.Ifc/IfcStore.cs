@@ -386,6 +386,8 @@ namespace Xbim.Ifc
             {
                 if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc4;
+                if (string.Compare(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase) == 0)
+                    return IfcSchemaVersion.Ifc4x1;
                 if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc2X3;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
