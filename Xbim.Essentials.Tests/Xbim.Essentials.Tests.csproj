@@ -61,6 +61,7 @@
     <Compile Include="GeometryCacheTests.cs" />
     <Compile Include="GeometryPersistencyTables.cs" />
     <Compile Include="GeometryTests.cs" />
+    <Compile Include="IfcAlignmentTests.cs" />
     <Compile Include="LinqTest.cs" />
     <Compile Include="PartialClassesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +133,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\4walls1floorSite.ifcxml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\horizontal-alignment.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\terrain-and-alignment.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\terrain-surface.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\vertical-alignment.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\email.ifc">
