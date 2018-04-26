@@ -13,15 +13,15 @@ namespace Xbim.Essentials.Tests
     public class EqualityTests
     {
 
+        private static readonly IEntityFactory f = new EntityFactoryIfc2x3();
 
         [TestMethod]
         public void EqualityTest()
         {
-            var model = new MemoryModel(new EntityFactory());
-            var model2 = new MemoryModel(new EntityFactory());
+            var model = new MemoryModel(f);
+            var model2 = new MemoryModel(f);
 
             //use entity factory to create objects outside of transaction or anything
-            var f = new EntityFactory();
 
             var wall1 = f.New<IfcWall>(model, 1, true);
             var wall2 = f.New<IfcWall>(model, 1, true);

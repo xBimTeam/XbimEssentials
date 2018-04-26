@@ -20,7 +20,7 @@ namespace Profiling.WritingXml
         {
             var w = new Stopwatch();
             const string path = "..\\..\\..\\Xbim.IO.Tests\\TestFiles\\SampleHouse4.ifc";
-            using (var model = new MemoryModel(new EntityFactory()))
+            using (var model = new MemoryModel(new EntityFactoryIfc4()))
             {
                 w.Start();
                 model.LoadStep21(path);

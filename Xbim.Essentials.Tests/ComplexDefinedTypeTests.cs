@@ -18,7 +18,7 @@ namespace Xbim.Essentials.Tests
             var lat = new List<long> {45, 12, 79};
             var lon = new List<long> {2, 23, 80};
 
-            var model = new MemoryModel(new EntityFactory());
+            var model = new MemoryModel(new EntityFactoryIfc2x3());
             using (var txn = model.BeginTransaction("Site creation"))
             {
                 var site = model.Instances.New<IfcSite>();
@@ -32,7 +32,7 @@ namespace Xbim.Essentials.Tests
             }
            
             
-            model = new MemoryModel(new EntityFactory());
+            model = new MemoryModel(new EntityFactoryIfc2x3());
             model.LoadStep21("site.ifc");
             var site2 = model.Instances.FirstOrDefault<IfcSite>();
             Assert.IsTrue(lat == site2.RefLatitude);

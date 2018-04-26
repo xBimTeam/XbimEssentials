@@ -21,7 +21,7 @@ namespace Xbim.MemoryModel.Tests
         //public void CobieXmlSerialization()
         //{
         //    const string xmlFile = "..\\..\\LakesideRestaurantCobie.xml";
-        //    var model = new IO.Memory.MemoryModel(new EntityFactory());
+        //    var model = new IO.Memory.MemoryModel(ef);
         //    model.LoadZip("LakesideRestaurant.cobieZip");
 
         //    var writer = new XbimXmlWriter4(configuration.COBieExpress, XbimXmlSettings.COBieExpress);
@@ -31,7 +31,7 @@ namespace Xbim.MemoryModel.Tests
         //        xmlWriter.Close();
         //    }
 
-        //    var xmlModel = new IO.Memory.MemoryModel(new EntityFactory());
+        //    var xmlModel = new IO.Memory.MemoryModel(ef);
         //    xmlModel.LoadXml(xmlFile);
 
         //    Assert.AreEqual(model.Instances.Count, xmlModel.Instances.Count);
@@ -49,6 +49,8 @@ namespace Xbim.MemoryModel.Tests
         //    }
         //}
 
+        private static readonly IEntityFactory ef = new EntityFactoryCobieExpress();
+
         [TestMethod]
         public void SerializeDeserialize()
         {
@@ -63,10 +65,10 @@ namespace Xbim.MemoryModel.Tests
                 model.SaveAsStep21Zip(fileStream);
             }
 
-            var stepModel = new IO.Memory.MemoryModel(new EntityFactory());
+            var stepModel = new IO.Memory.MemoryModel(ef);
             stepModel.LoadStep21("RandomModel.cobie");
 
-            var zipModel = new IO.Memory.MemoryModel(new EntityFactory());
+            var zipModel = new IO.Memory.MemoryModel(ef);
             zipModel.LoadZip(File.OpenRead("RandomModel.cobieZip"));
 
             Assert.AreEqual(model.Instances.Count, stepModel.Instances.Count);
@@ -119,7 +121,7 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void AttributeIndexGetSet()
         {
-            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(ef))
             {
                 using (var txn = model.BeginTransaction("Creation"))
                 {
@@ -168,7 +170,7 @@ namespace Xbim.MemoryModel.Tests
                     model.SaveAsStep21(fileStream);
                 }
             }
-            using (var db = new IO.Esent.EsentModel(new EntityFactory()))
+            using (var db = new IO.Esent.EsentModel(ef))
             {
                 db.CreateFrom(file, null, null, true);
 
@@ -258,7 +260,7 @@ namespace Xbim.MemoryModel.Tests
 
         private IO.Memory.MemoryModel CreateTestModel()
         {
-            var model = new IO.Memory.MemoryModel(new EntityFactory());
+            var model = new IO.Memory.MemoryModel(ef);
             using (var txn = model.BeginTransaction("Model creation"))
             {
                 var facility = model.Instances.New<CobieFacility>(f =>

@@ -125,30 +125,20 @@ namespace Xbim.Ifc
             if (EntityModified != null) EntityModified.Invoke(entity, property);
         }
 
-        private static EsentModel CreateEsentModel(IfcSchemaVersion schema)
+        private static EsentModel CreateEsentModel(IfcSchemaVersion schema, int codePageOverride)
         {
-            switch (schema)
+            var ef = GetFactory(schema);
+            var model = new EsentModel(ef)
             {
-                case IfcSchemaVersion.Ifc4:
-                    return new EsentModel(new Ifc4.EntityFactory());
-                case IfcSchemaVersion.Ifc2X3:
-                    return new EsentModel(new Ifc2x3.EntityFactory());
-                default:
-                    throw new NotSupportedException("IfcStore only supports IFC schemas");
-            }
+                CodePageOverride = codePageOverride
+            };
+            return model;
         }
 
         private static MemoryModel CreateMemoryModel(IfcSchemaVersion schema)
         {
-            switch (schema)
-            {
-                case IfcSchemaVersion.Ifc4:
-                    return new MemoryModel(new Ifc4.EntityFactory());
-                case IfcSchemaVersion.Ifc2X3:
-                    return new MemoryModel(new Ifc2x3.EntityFactory());
-                default:
-                    throw new NotSupportedException("IfcStore only supports IFC schemas");
-            }
+            var ef = GetFactory(schema);
+            return new MemoryModel(ef);
         }
 
         /// <summary>
@@ -164,8 +154,10 @@ namespace Xbim.Ifc
         /// <param name="editorDetails">Optional details. You should always pass these if you are going to change the data.</param>
         /// <param name="accessMode">Access mode to the stream. This is only important if you choose EsentModel. MemoryModel is completely in memory so this is not relevant</param>
         /// <param name="progDelegate">Progress reporting delegate</param>
-        /// <returns></returns>
-        public static IfcStore Open(Stream data, IfcStorageType dataType, IfcSchemaVersion schema, XbimModelType modelType, XbimEditorCredentials editorDetails = null, XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null)
+        /// <param name="codePageOverride">
+        /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
+        /// encoding will be used accoring to the Ifc specification. </param>/// <returns></returns>
+        public static IfcStore Open(Stream data, IfcStorageType dataType, IfcSchemaVersion schema, XbimModelType modelType, XbimEditorCredentials editorDetails = null, XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1)
         {
             //any Esent model needs to run from the file so we need to create a temporal one
             var xbimFilePath = Path.GetTempFileName();
@@ -198,14 +190,14 @@ namespace Xbim.Ifc
                         }
                     }
                     {
-                        var model = CreateEsentModel(schema);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         model.Open(xbimFilePath, accessMode, progDelegate);
                         return new IfcStore(model, schema, editorDetails, xbimFilePath);
                     }
                 case IfcStorageType.IfcXml:
                     if (modelType == XbimModelType.EsentModel)
                     {
-                        var model = CreateEsentModel(schema);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
                             return new IfcStore(model, schema, editorDetails, xbimFilePath);
                         else
@@ -222,7 +214,7 @@ namespace Xbim.Ifc
                 case IfcStorageType.Ifc:
                     if (modelType == XbimModelType.EsentModel)
                     {
-                        var model = CreateEsentModel(schema);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
                             return new IfcStore(model, schema, editorDetails, xbimFilePath);
                         else
@@ -240,7 +232,7 @@ namespace Xbim.Ifc
                 case IfcStorageType.Zip:
                     if (modelType == XbimModelType.EsentModel)
                     {
-                        var model = CreateEsentModel(schema);
+                        var model = CreateEsentModel(schema, codePageOverride);
                         if (model.CreateFrom(data, data.Length, dataType, xbimFilePath, progDelegate, true, true))
                             return new IfcStore(model, schema, editorDetails, xbimFilePath);
                         else
@@ -274,10 +266,13 @@ namespace Xbim.Ifc
         /// created for all IFC files that are opened. Xbim files are always opened as databases</param>
         /// <param name="progDelegate"></param>
         /// <param name="accessMode"></param>
-        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read)
+        /// <param name="codePageOverride">
+        /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
+        /// encoding will be used accoring to the Ifc specification. </param>
+        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read, int codePageOverride = -1)
         {
             path = Path.GetFullPath(path);
-            
+
             if (!Directory.Exists(Path.GetDirectoryName(path) ?? ""))
                 throw new DirectoryNotFoundException(Path.GetDirectoryName(path) + " directory was not found");
             if (!File.Exists(path))
@@ -296,13 +291,13 @@ namespace Xbim.Ifc
             {
                 if (ifcVersion == IfcSchemaVersion.Ifc4)
                 {
-                    var model = new EsentModel(new Ifc4.EntityFactory());
+                    var model = CreateEsentModel(IfcSchemaVersion.Ifc4, codePageOverride);
                     model.Open(path, accessMode, progDelegate);
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
                 else //it will be Ifc2x3
                 {
-                    var model = new EsentModel(new Ifc2x3.EntityFactory());
+                    var model = CreateEsentModel(IfcSchemaVersion.Ifc2X3, codePageOverride);
                     model.Open(path, accessMode, progDelegate);
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
@@ -314,24 +309,15 @@ namespace Xbim.Ifc
                 if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) //we need to make an Esent database, if ifcMaxLength<0 we use in memory
                 {
                     var tmpFileName = Path.GetTempFileName();
-                    if (ifcVersion == IfcSchemaVersion.Ifc4)
-                    {
-                        var model = new EsentModel(new Ifc4.EntityFactory());
-                        if (model.CreateFrom(path, tmpFileName, progDelegate, true))
-                            return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
-                        throw new FileLoadException(path + " file was not a valid IFC format");
-                    }
-                    else //it will be Ifc2x3
-                    {
-                        var model = new EsentModel(new Ifc2x3.EntityFactory());
-                        if (model.CreateFrom(path, tmpFileName, progDelegate, true))
-                            return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
-                        throw new FileLoadException(path + " file was not a valid IFC format");
-                    }
+                    var model = CreateEsentModel(ifcVersion, codePageOverride);
+                    if (model.CreateFrom(path, tmpFileName, progDelegate, true))
+                        return new IfcStore(model, ifcVersion, editorDetails, path, tmpFileName, true);
+                    throw new FileLoadException(path + " file was not a valid IFC format");
                 }
                 else //we can use a memory model
                 {
-                    var model = ifcVersion == IfcSchemaVersion.Ifc4 ? new MemoryModel(new Ifc4.EntityFactory()) : new MemoryModel(new Ifc2x3.EntityFactory());
+                    var ef = GetFactory(ifcVersion);
+                    var model = new MemoryModel(ef);
                     if (storageType.HasFlag(IfcStorageType.IfcZip) || storageType.HasFlag(IfcStorageType.Zip))
                     {
                         using (var zipFileStream = File.OpenRead(path))
@@ -368,6 +354,23 @@ namespace Xbim.Ifc
             }
         }
 
+        private static IEntityFactory GetFactory(IfcSchemaVersion type)
+        {
+            switch (type)
+            {
+                case IfcSchemaVersion.Ifc4:
+                    return new Ifc4.EntityFactoryIfc4();
+                case IfcSchemaVersion.Ifc4x1:
+                    return new Ifc4.EntityFactoryIfc4x1();
+                case IfcSchemaVersion.Ifc2X3:
+                    return new Ifc2x3.EntityFactoryIfc2x3();
+                case IfcSchemaVersion.Cobie2X4:
+                case IfcSchemaVersion.Unsupported:
+                default:
+                    throw new NotSupportedException("Schema '" + type + "' is not supported");
+            }
+        }
+
         public static IfcSchemaVersion GetIfcSchemaVersion(string path, out string schemaIdentifier)
         {
             var storageType = path.StorageType();
@@ -383,6 +386,8 @@ namespace Xbim.Ifc
             {
                 if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc4;
+                if (string.Compare(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase) == 0)
+                    return IfcSchemaVersion.Ifc4x1;
                 if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
                     return IfcSchemaVersion.Ifc2X3;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
@@ -560,74 +565,36 @@ namespace Xbim.Ifc
         /// <returns></returns>
         public static IfcStore Create(string filePath, XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion)
         {
-            if (ifcVersion == IfcSchemaVersion.Ifc4)
-            {
-                var temporaryModel = EsentModel.CreateModel(new Ifc4.EntityFactory(), filePath);
-                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName);
-            }
-            else //it will be Ifc2x3
-            {
-                var temporaryModel = EsentModel.CreateModel(new Ifc2x3.EntityFactory(), filePath);
-                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName);
-            }
+            var ef = GetFactory(ifcVersion);
+            var temporaryModel = EsentModel.CreateModel(ef, filePath);
+            return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName);
         }
 
         public static IfcStore Create(XbimEditorCredentials editorDetails, IfcSchemaVersion ifcVersion, XbimStoreType storageType)
         {
+            var ef = GetFactory(ifcVersion);
             if (storageType == XbimStoreType.EsentDatabase)
             {
-                if (ifcVersion == IfcSchemaVersion.Ifc4)
-                {
-                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4.EntityFactory());
-                    return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); //it will delete itself anyway
-                }
-                else //it will be Ifc2x3
-                {
-                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc2x3.EntityFactory());
-                    return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); //it will delete itself anyway
-                }
+                var temporaryModel = EsentModel.CreateTemporaryModel(ef);
+                return new IfcStore(temporaryModel, ifcVersion, editorDetails, temporaryModel.DatabaseName); //it will delete itself anyway
             }
 
-            //it will be memory model
-            if (ifcVersion == IfcSchemaVersion.Ifc4)
-            {
-                var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
-                return new IfcStore(memoryModel, ifcVersion, editorDetails);
-            }
-            else //it will be Ifc2x3
-            {
-                var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
-                return new IfcStore(memoryModel, ifcVersion, editorDetails);
-            }
+            var memoryModel = new MemoryModel(ef);
+            return new IfcStore(memoryModel, ifcVersion, editorDetails);
         }
 
         public static IfcStore Create(IfcSchemaVersion ifcVersion, XbimStoreType storageType)
         {
+            var ef = GetFactory(ifcVersion);
             if (storageType == XbimStoreType.EsentDatabase)
             {
-                if (ifcVersion == IfcSchemaVersion.Ifc4)
-                {
-                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc4.EntityFactory());
-                    return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
-                }
-                else //it will be Ifc2x3
-                {
-                    var temporaryModel = EsentModel.CreateTemporaryModel(new Ifc2x3.EntityFactory());
-                    return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
-                }
+                var temporaryModel = EsentModel.CreateTemporaryModel(ef);
+                return new IfcStore(temporaryModel, ifcVersion); //it will delete itself anyway
             }
 
-            //it will be memory model
-            if (ifcVersion == IfcSchemaVersion.Ifc4)
-            {
-                var memoryModel = new MemoryModel(new Ifc4.EntityFactory());
-                return new IfcStore(memoryModel, ifcVersion);
-            }
-            else //it will be Ifc2x3
-            {
-                var memoryModel = new MemoryModel(new Ifc2x3.EntityFactory());
-                return new IfcStore(memoryModel, ifcVersion);
-            }
+            var memoryModel = new MemoryModel(ef);
+            return new IfcStore(memoryModel, ifcVersion);
+
         }
         #region OwnerHistory Management
 
@@ -898,8 +865,8 @@ namespace Xbim.Ifc
         {
             if (actualFormat.HasFlag(IfcStorageType.Xbim)) //special case for xbim
             {
-
-                using (var esentDb = _schema == IfcSchemaVersion.Ifc4 ? new EsentModel(new Ifc4.EntityFactory()) : new EsentModel(new Ifc2x3.EntityFactory()))
+                var ef = GetFactory(_schema);
+                using (var esentDb = new EsentModel(ef))
                 {
                     esentDb.CreateFrom(_model, actualFileName, progDelegate);
                     esentDb.Close();

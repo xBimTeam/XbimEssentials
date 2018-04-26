@@ -107,7 +107,7 @@ namespace Xbim.IO.Tests
             //Debug.WriteLine(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds);
             Trace.WriteLine(string.Format(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds));
 
-            var loaded = new IO.Memory.MemoryModel(new Ifc4.EntityFactory());
+            var loaded = new IO.Memory.MemoryModel(new Ifc4.EntityFactoryIfc4());
             using (var txn = loaded.BeginTransaction("Import from XLSX"))
             {
                 storage = new TableStore.TableStore(loaded, mapping);
@@ -121,7 +121,7 @@ namespace Xbim.IO.Tests
         public void Ifc4PSetsTest()
         {
             const string file = "PSetsSample.xlsx";
-            var model = new IO.Memory.MemoryModel(new Ifc4.EntityFactory());
+            var model = new IO.Memory.MemoryModel(new Ifc4.EntityFactoryIfc4());
             using (var txn = model.BeginTransaction("Sample data"))
             {
                 model.EntityNew += entity =>
@@ -182,7 +182,7 @@ namespace Xbim.IO.Tests
             //Debug.WriteLine(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds);
             Trace.WriteLine(string.Format(@"{0}ms to store the data as a table.", w.ElapsedMilliseconds));
 
-            var loaded = new IO.Memory.MemoryModel(new Ifc4.EntityFactory());
+            var loaded = new IO.Memory.MemoryModel(new Ifc4.EntityFactoryIfc4());
             using (var txn = loaded.BeginTransaction("Import from XLSX"))
             {
                 storage = new TableStore.TableStore(loaded, mapping);

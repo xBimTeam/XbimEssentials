@@ -140,14 +140,14 @@ namespace Xbim.IO.Step21
                 EncodingName = "utf-32BE";
             var enc = Encoding.GetEncoding(EncodingName);
 
-            // multiple sequences of stringLenght characters could follow until the termination
-            do
+            // multiple (including none) sequences of stringLenght characters could follow until the termination
+            while (!At(LongHexEndToken))
             {
                 if (eof || !HasLength(stringLenght + LongHexEndToken.Length))  
                     throw new XbimP21EofException();
                 var byteval = GetHexLength(stringLenght);
                 builder.Append(enc.GetChars(byteval, 0, stringLenght / 2));
-            } while (!At(LongHexEndToken));
+            }
             MovePast(LongHexEndToken);
         }
 

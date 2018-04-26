@@ -21,6 +21,8 @@ namespace Xbim.CobieExpress.IO
         private EsentModel EsentModel { get { return _model as EsentModel; } }
         private MemoryModel MemoryModel { get { return _model as MemoryModel; } }
 
+        private static readonly IEntityFactory factory = new EntityFactoryCobieExpress();
+
         public CobieModel(IModel model)
         {
             _model = model;
@@ -34,7 +36,7 @@ namespace Xbim.CobieExpress.IO
         public CobieModel()
         {
             _esentDB = false;
-            _model = new MemoryModel(new EntityFactory());
+            _model = new MemoryModel(factory);
             InitEvents();
         }
 
@@ -42,9 +44,9 @@ namespace Xbim.CobieExpress.IO
         {
             _esentDB = esentDB;
             if(esentDB)
-                _model = EsentModel.CreateTemporaryModel(new EntityFactory());
+                _model = EsentModel.CreateTemporaryModel(factory);
             else
-                _model = new MemoryModel(new EntityFactory());
+                _model = new MemoryModel(factory);
             
             InitEvents();
         }
@@ -59,7 +61,7 @@ namespace Xbim.CobieExpress.IO
         /// <returns></returns>
         public static CobieModel OpenStep21(Stream input, long streamSize, int labelFrom)
         {
-            var model = new MemoryModel(new EntityFactory(), labelFrom);
+            var model = new MemoryModel(factory, labelFrom);
             model.LoadStep21(input, streamSize);
             return new CobieModel(model);
         }
@@ -69,12 +71,12 @@ namespace Xbim.CobieExpress.IO
             if (esentDB)
             {
                 var db = Path.ChangeExtension(input, ".xbim");
-                var esent = new EsentModel(new EntityFactory());
+                var esent = new EsentModel(factory);
                 esent.CreateFrom(input, db, null, true, true, IfcStorageType.Stp);
                 return new CobieModel(esent);
             }
 
-            var model = new MemoryModel(new EntityFactory());
+            var model = new MemoryModel(factory);
             model.LoadStep21(input);
             return new CobieModel(model);
         }
@@ -83,12 +85,12 @@ namespace Xbim.CobieExpress.IO
         {
             if (esentDB)
             {
-                var esent = new EsentModel(new EntityFactory());
+                var esent = new EsentModel(factory);
                 esent.CreateFrom(input, streamSize, IfcStorageType.Stp, "temp.xbim", null, true);
                 return new CobieModel(esent);
             }
 
-            var model = new MemoryModel(new EntityFactory());
+            var model = new MemoryModel(factory);
             model.LoadStep21(input, streamSize);
             return new CobieModel(model);
         }
@@ -110,7 +112,7 @@ namespace Xbim.CobieExpress.IO
 
         public static CobieModel OpenEsent(string esentDB)
         {
-            var model = new EsentModel(new EntityFactory());
+            var model = new EsentModel(factory);
             model.Open(esentDB, XbimDBAccess.ReadWrite);
             return new CobieModel(model);
         }
@@ -123,7 +125,7 @@ namespace Xbim.CobieExpress.IO
             }
             else
             {
-                using (var esent = new EsentModel(new EntityFactory()))
+                using (var esent = new EsentModel(factory))
                 {
                     esent.CreateFrom(_model, dbName);
                     esent.Close();
@@ -216,12 +218,12 @@ namespace Xbim.CobieExpress.IO
             if (esentDB)
             {
                 var db = Path.ChangeExtension(input, ".xcobie");
-                var esent = new EsentModel(new EntityFactory());
+                var esent = new EsentModel(factory);
                 esent.CreateFrom(input, db, null, true, true, IfcStorageType.StpZip);
                 return new CobieModel(esent);
             }
 
-            var model = new MemoryModel(new EntityFactory());
+            var model = new MemoryModel(factory);
             model.LoadZip(input);
             return new CobieModel(model);
         }

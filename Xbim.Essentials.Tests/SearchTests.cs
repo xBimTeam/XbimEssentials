@@ -14,6 +14,9 @@ namespace Xbim.Essentials.Tests
     [TestClass]
     public class SearchTests
     {
+        private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
+        private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
+
         [TestMethod]
         public void SearchTypeHandling()
         {
