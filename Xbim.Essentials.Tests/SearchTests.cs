@@ -41,16 +41,19 @@ namespace Xbim.Essentials.Tests
         //
         #endregion
 
+        private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
+        private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
+
         [TestMethod]
         public void SearchTypeHandling()
         {
-            using (var model = EsentModel.CreateTemporaryModel(new EntityFactory()))
+            using (var model = EsentModel.CreateTemporaryModel(ef2x3))
             {
                 InitModel(model);
                 AssertModel(model);
             }
 
-            using (var model = new MemoryModel(new EntityFactory()))
+            using (var model = new MemoryModel(ef2x3))
             {
                 InitModel(model);
                 AssertModel(model);

@@ -33,7 +33,7 @@ namespace Xbim.Ifc2x3.IO
         [Obsolete("XbimModel is obsolete. Use IfcStore instead. XbimModel can only handle IFC2x3 and is only based on Esent model.")]
         public XbimModel()
         {
-            var factory = new EntityFactory();
+            var factory = new EntityFactoryIfc2x3();
             Init(factory);
 
             AutoAddOwnerHistory = true;

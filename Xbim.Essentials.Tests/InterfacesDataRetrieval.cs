@@ -18,7 +18,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void EsentDataRetrieval()
         {
-            using (var model = new EsentModel(new EntityFactory()))
+            using (var model = new EsentModel(new EntityFactoryIfc2x3()))
             {
                 model.CreateFrom("4walls1floorSite.ifc", null, null, true);
 
@@ -63,7 +63,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void Ifc4InterfacesToIfc2X3()
         {
-            var model = new MemoryModel(new EntityFactory());
+            var model = new MemoryModel(new EntityFactoryIfc2x3());
             model.LoadStep21("4walls1floorSite.ifc",null);
 
             var walls = model.Instances.OfType<IIfcWall>().ToList();

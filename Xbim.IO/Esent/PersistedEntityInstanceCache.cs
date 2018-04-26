@@ -1463,7 +1463,8 @@ namespace Xbim.IO.Esent
                 FreeTable(entityTable);
             }
             //we need to deal with types that are not indexed in the database in a single pass to save time
-            Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
+            // MC: Commented out this assertion because it just fires when inverse property is empty result.
+            // Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
             foreach (var item in InstancesOf<TOType>(unindexedTypes, activate, entityLabels))
                 yield return item;
 

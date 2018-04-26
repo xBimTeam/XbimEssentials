@@ -31,7 +31,7 @@ namespace Xbim.Essentials.Tests
             }
 
             //as EsentModel
-            using (var model = new EsentModel(version == IfcSchemaVersion.Ifc4 ? (new Ifc4.EntityFactory() as IEntityFactory) : (new Ifc2x3.EntityFactory() as IEntityFactory)))
+            using (var model = new EsentModel(version == IfcSchemaVersion.Ifc4 ? (new Ifc4.EntityFactoryIfc4() as IEntityFactory) : (new Ifc2x3.EntityFactoryIfc2x3() as IEntityFactory)))
             {
                 model.CreateFrom(_file, null, null, true, true, IO.IfcStorageType.Ifc);
                 CacheCreation(model);

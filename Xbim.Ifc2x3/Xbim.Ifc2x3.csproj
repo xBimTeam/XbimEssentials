@@ -127,6 +127,7 @@
     <Compile Include="CostResource\IfcEnvironmentalImpactValue.cs" />
     <Compile Include="CostResource\IfcReferencesValueDocument.cs" />
     <Compile Include="DateTimeResource\IfcDateTimeSelectExtensions.cs" />
+    <Compile Include="EntityFactoryIfc2x3.cs" />
     <Compile Include="GeometricModelResource\IfcBooleanOperandPartial.cs" />
     <Compile Include="GeometricModelResource\IfcGeometricSetSelectPartial.cs" />
     <Compile Include="GeometryResource\IfcAxis2Placement2DPartial.cs" />
@@ -804,7 +805,6 @@
     <Compile Include="ElectricalDomain\IfcSwitchingDeviceTypeEnum.cs" />
     <Compile Include="ElectricalDomain\IfcTransformerType.cs" />
     <Compile Include="ElectricalDomain\IfcTransformerTypeEnum.cs" />
-    <Compile Include="EntityFactory.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassification.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassificationItem.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassificationItemRelationship.cs" />

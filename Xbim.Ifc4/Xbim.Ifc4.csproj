@@ -638,7 +638,8 @@
     <Compile Include="ElectricalDomain\IfcSwitchingDeviceType.cs" />
     <Compile Include="ElectricalDomain\IfcTransformer.cs" />
     <Compile Include="ElectricalDomain\IfcTransformerType.cs" />
-    <Compile Include="EntityFactory.cs" />
+    <Compile Include="EntityFactoryIfc4.cs" />
+    <Compile Include="EntityFactoryIfc4x1.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassification.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassificationReference.cs" />
     <Compile Include="ExternalReferenceResource\IfcClassificationReferenceSelect.cs" />
@@ -657,6 +658,14 @@
     <Compile Include="ExternalReferenceResource\IfcResourceLevelRelationship.cs" />
     <Compile Include="ExternalReferenceResource\IfcResourceObjectSelect.cs" />
     <Compile Include="ExternalReferenceResource\IfcURIReference.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DHorizontal.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DHorizontalSegment.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DSegment.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DVerSegCircularArc.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DVerSegLine.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DVerSegParabolicArc.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DVertical.cs" />
+    <Compile Include="GeometricConstraintResource\IfcAlignment2DVerticalSegment.cs" />
     <Compile Include="GeometricConstraintResource\IfcConnectionCurveGeometry.cs" />
     <Compile Include="GeometricConstraintResource\IfcConnectionGeometry.cs" />
     <Compile Include="GeometricConstraintResource\IfcConnectionPointEccentricity.cs" />
@@ -741,6 +750,8 @@
     <Compile Include="GeometryResource\IfcCartesianTransformationOperator3D.cs" />
     <Compile Include="GeometryResource\IfcCartesianTransformationOperator3DnonUniform.cs" />
     <Compile Include="GeometryResource\IfcCircle.cs" />
+    <Compile Include="GeometryResource\IfcCircularArcSegment2D.cs" />
+    <Compile Include="GeometryResource\IfcClothoidalArcSegment2D.cs" />
     <Compile Include="GeometryResource\IfcCompositeCurve.cs" />
     <Compile Include="GeometryResource\IfcCompositeCurveOnSurface.cs" />
     <Compile Include="GeometryResource\IfcCompositeCurveSegment.cs" />
@@ -749,6 +760,7 @@
     <Compile Include="GeometryResource\IfcCurveBoundedPlane.cs" />
     <Compile Include="GeometryResource\IfcCurveBoundedSurface.cs" />
     <Compile Include="GeometryResource\IfcCurveOnSurface.cs" />
+    <Compile Include="GeometryResource\IfcCurveSegment2D.cs" />
     <Compile Include="GeometryResource\IfcCylindricalSurface.cs" />
     <Compile Include="GeometryResource\IfcDimensionCount.cs" />
     <Compile Include="GeometryResource\IfcDirection.cs" />
@@ -760,6 +772,7 @@
     <Compile Include="GeometryResource\IfcIntersectionCurve.cs" />
     <Compile Include="GeometryResource\IfcLine.cs" />
     <Compile Include="GeometryResource\IfcLineIndex.cs" />
+    <Compile Include="GeometryResource\IfcLineSegment2D.cs" />
     <Compile Include="GeometryResource\IfcMappedItem.cs" />
     <Compile Include="GeometryResource\IfcOffsetCurve2D.cs" />
     <Compile Include="GeometryResource\IfcOffsetCurve3D.cs" />
@@ -866,6 +879,7 @@
     <Compile Include="Interfaces\IfcAirTerminalTypeEnum.cs" />
     <Compile Include="Interfaces\IfcAirToAirHeatRecoveryTypeEnum.cs" />
     <Compile Include="Interfaces\IfcAlarmTypeEnum.cs" />
+    <Compile Include="Interfaces\IfcAlignmentTypeEnum.cs" />
     <Compile Include="Interfaces\IfcAnalysisModelTypeEnum.cs" />
     <Compile Include="Interfaces\IfcAnalysisTheoryTypeEnum.cs" />
     <Compile Include="Interfaces\IfcArithmeticOperatorEnum.cs" />
@@ -1391,6 +1405,7 @@
     <Compile Include="ProcessExtension\IfcWorkControl.cs" />
     <Compile Include="ProcessExtension\IfcWorkPlan.cs" />
     <Compile Include="ProcessExtension\IfcWorkSchedule.cs" />
+    <Compile Include="ProductExtension\IfcAlignment.cs" />
     <Compile Include="ProductExtension\IfcAnnotation.cs" />
     <Compile Include="ProductExtension\IfcBuilding.cs" />
     <Compile Include="ProductExtension\IfcBuildingElement.cs" />
@@ -1421,6 +1436,7 @@
     <Compile Include="ProductExtension\IfcOpeningElement.cs" />
     <Compile Include="ProductExtension\IfcOpeningStandardCase.cs" />
     <Compile Include="ProductExtension\IfcPort.cs" />
+    <Compile Include="ProductExtension\IfcPositioningElement.cs" />
     <Compile Include="ProductExtension\IfcProjectionElement.cs" />
     <Compile Include="ProductExtension\IfcRelAssociatesMaterial.cs" />
     <Compile Include="ProductExtension\IfcRelConnectsElements.cs" />

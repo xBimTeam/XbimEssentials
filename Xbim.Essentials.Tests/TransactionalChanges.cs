@@ -81,12 +81,13 @@ namespace Xbim.Essentials.Tests
                 }
             }
         }
+        private static readonly IEntityFactory ef = new EntityFactoryIfc2x3();
 
         [TestMethod]
         public void EsentMultiTransactionTest()
         {
             const string file = "test.ifc";
-            using (var model = EsentModel.CreateTemporaryModel(new EntityFactory()))
+            using (var model = EsentModel.CreateTemporaryModel(ef))
             {
                 IfcCurtainWall wall;
                 using (var txn = model.BeginTransaction("New wall"))
@@ -102,7 +103,7 @@ namespace Xbim.Essentials.Tests
                 model.SaveAs(file);
             }
 
-            using (var model = EsentModel.CreateTemporaryModel(new EntityFactory()))
+            using (var model = EsentModel.CreateTemporaryModel(ef))
             {
                 model.CreateFrom(file, null, null, true, true);
                 var wall = model.Instances.FirstOrDefault<IfcCurtainWall>();
