@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.DateTimeResource
                 if (span.Seconds != 0 || span.Milliseconds != 0)
                 {
                     var value = Math.Abs(span.Seconds) + Math.Abs(span.Milliseconds) / 1000f;
-                    sb.Append(value.ToString("F3"));
+                    sb.Append(value.ToString("F3",CultureInfo.InvariantCulture));
                     sb.Append('S');
                 }
             }
