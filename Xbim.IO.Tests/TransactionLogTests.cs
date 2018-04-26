@@ -19,7 +19,7 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void LogTest()
         {
-            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(new EntityFactoryIfc2x3()))
             {
                 model.LoadStep21("4walls1floorSite.ifc");
                 using (var txn = model.BeginTransaction("Log test"))

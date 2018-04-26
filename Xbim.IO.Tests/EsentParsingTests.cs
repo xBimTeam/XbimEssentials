@@ -14,7 +14,7 @@ namespace Xbim.IO.Tests
             // a merged PR on issue 107 makes the memory model more tolerant of bad files.
             // the same does not apply to the database version though.
             //
-            using (var model = new Esent.EsentModel(new Ifc2x3.EntityFactory()))
+            using (var model = new Esent.EsentModel(new Ifc2x3.EntityFactoryIfc2x3()))
             {
                 var temp = Path.GetTempPath() + Guid.NewGuid() + ".zip";
                 File.Copy("Issue107.zip", temp);

@@ -41,7 +41,7 @@ namespace Xbim.MemoryModel.Tests
         public void EsentInOuterScope()
         {
             //creating esent model in outer scope for better control
-            using (var esent = IO.Esent.EsentModel.CreateModel(new EntityFactory(), "test2.xbim"))
+            using (var esent = IO.Esent.EsentModel.CreateModel(new EntityFactoryCobieExpress(), "test2.xbim"))
             {
                 using (var model = new CobieModel(esent))
                 {
