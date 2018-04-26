@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Essentials</id>
-    <version>4.0.30-V009</version>
+    <version>4.0.30-V0010</version>
     <title>xBIM Essentials</title>
     <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -19,9 +19,9 @@
     </description>
     <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for the IFC2x3 and IFC4 data models</summary>
     <releaseNotes>
-      Schema upgraded from IFC4Add1 to IFC4Add2. These should be backwards compatible. IFC4Add2 XML format is default for XML serialization.
-      Note that while IFC4 STEP21 physical representations are compatible between technical addendums, XML representations are different.
-      If other tools depend on specific version of XML structure, make sure you specify it explicitly.
+      Added support for IFC Alignment schema (IFC4x1). XML support is not yet implemented for this schema because documentation on buildingSMART
+      technical website (http://www.buildingsmart-tech.org/mvd/IFC4x1/Alignment/1.0.1/html/link/annex-a.htm) keeps changing namespaces and XSD
+      configuration file is not available (26/04/2018).
     </releaseNotes>
     <language>en-GB</language>
     <tags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</tags>
