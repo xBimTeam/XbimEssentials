@@ -35,14 +35,14 @@ namespace Xbim.IO.Memory
             {
                 using (var fileStream = File.OpenRead(fileName))
                 {
-                    return  GetStepFileXbimSchemaVersion(fileStream);
+                    return GetStepFileXbimSchemaVersion(fileStream);
                 }
             }
             else if (fileName.IsStepZipFile())
             {
                 try
                 {
-                    using (ZipArchive archive = ZipFile.OpenRead(fileName))
+                    using (var archive = new ZipArchive(File.OpenRead(fileName), ZipArchiveMode.Read))
                     {
                         var entry = archive.Entries.FirstOrDefault(z => z.Name.IsStepTextFile());
                         if (entry == null) throw new FileLoadException($"File does not contain a valid model: {fileName}");
@@ -94,10 +94,14 @@ namespace Xbim.IO.Memory
                     {
                         case XmlSchemaVersion.Ifc2x3:
                             return XbimSchemaVersion.Ifc2X3;
+
                         case XmlSchemaVersion.Ifc4Add1:
+                        case XmlSchemaVersion.Ifc4Add2:
                         case XmlSchemaVersion.Ifc4:
                             return XbimSchemaVersion.Ifc4;
+
                         case XmlSchemaVersion.Unknown:
+                        default:
                             return XbimSchemaVersion.Unsupported;
                     }
 
@@ -113,6 +117,8 @@ namespace Xbim.IO.Memory
             {
                 if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
                     return XbimSchemaVersion.Ifc4;
+                if (string.Equals(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase))
+                    return XbimSchemaVersion.Ifc4x1;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     return XbimSchemaVersion.Ifc2X3;
                 if (schema.StartsWith("Cobie2X4", StringComparison.OrdinalIgnoreCase)) //return this as Cobie
@@ -126,11 +132,11 @@ namespace Xbim.IO.Memory
             return GetStepFileXbimSchemaVersion(GetStepFileSchemaVersion(stream));
         }
 
-        public MemoryModel(IEntityFactory entityFactory, int labelFrom): base(entityFactory, labelFrom) {  }
+        public MemoryModel(IEntityFactory entityFactory, int labelFrom) : base(entityFactory, labelFrom) { }
 
         public MemoryModel(IEntityFactory entityFactory) : this(entityFactory, 0) { }
 
-        public MemoryModel(IEntityFactory entityFactory, ILogger logger = null, int labelFrom = 0) : base (entityFactory, logger, labelFrom) {  }
+        public MemoryModel(IEntityFactory entityFactory, ILogger logger = null, int labelFrom = 0) : base(entityFactory, logger, labelFrom) { }
 
         private MemoryModel(EntityFactoryResolverDelegate resolver, ILogger logger = null, int labelFrom = 0) : base(resolver, logger, labelFrom) { }
 
@@ -252,39 +258,36 @@ namespace Xbim.IO.Memory
                 }
             }
 
-
             var version = GetSchemaVersion(fileName); //an exception is thrown if this fails
+            var ef = GetFactory(version);
 
-            switch (version)
+            var model = new MemoryModel(ef, logger);
+
+            if (fileName.IsStepZipFile())
+                model.LoadZip(fileName, progressDel);
+            else if (fileName.IsStepXmlFile())
+                model.LoadXml(fileName, progressDel);
+            else
+                throw new FileLoadException($"Unsupported file type extension: {Path.GetExtension(fileName)}");
+
+            return model;
+
+        }
+
+        public static IEntityFactory GetFactory(XbimSchemaVersion schema)
+        {
+            switch (schema)
             {
-
                 case XbimSchemaVersion.Ifc4:
-                    var mm4 = new MemoryModel(new Ifc4.EntityFactory(), logger);
-
-                    if (fileName.IsStepZipFile())
-                        mm4.LoadZip(fileName, progressDel);
-                    else if (fileName.IsStepXmlFile())
-                        mm4.LoadXml(fileName, progressDel);
-                    else
-                        throw new FileLoadException($"Unsupported file type extension: {Path.GetExtension(fileName)}");
-
-                    return mm4;
-
+                    return new Ifc4.EntityFactoryIfc4();
+                case XbimSchemaVersion.Ifc4x1:
+                    return new Ifc4.EntityFactoryIfc4x1();
                 case XbimSchemaVersion.Ifc2X3:
-                    var mm2x3 = new MemoryModel(new Xbim.Ifc2x3.EntityFactory(), logger);
-                    if (fileName.IsStepZipFile())
-                        mm2x3.LoadZip(fileName, progressDel);
-                    else if (fileName.IsStepXmlFile())
-                        mm2x3.LoadXml(fileName, progressDel);
-                    else
-                        throw new FileLoadException($"Unsupported file type extension: {Path.GetExtension(fileName)}");
-
-                    return mm2x3;
-
+                    return new Ifc2x3.EntityFactoryIfc2x3();
                 case XbimSchemaVersion.Cobie2X4:
                 case XbimSchemaVersion.Unsupported:
                 default:
-                    throw new FileLoadException($"Unsupported file format: {fileName}");
+                    throw new NotSupportedException($"Schema '{schema}' is not supported");
             }
         }
 
@@ -314,19 +317,10 @@ namespace Xbim.IO.Memory
         /// <returns>New memory model</returns>
         public static MemoryModel OpenReadStep21(Stream stream, ILogger logger = null, ReportProgressDelegate progressDel = null, IEnumerable<string> ignoreTypes = null)
         {
-            var model = new MemoryModel((IEnumerable<string> schemas) => {
+            var model = new MemoryModel((IEnumerable<string> schemas) =>
+            {
                 var schema = GetStepFileXbimSchemaVersion(schemas);
-                switch (schema)
-                {
-                    case XbimSchemaVersion.Ifc4:
-                        return new Ifc4.EntityFactory();
-                    case XbimSchemaVersion.Ifc2X3:
-                        return new Ifc2x3.EntityFactory();
-                    case XbimSchemaVersion.Cobie2X4:
-                    case XbimSchemaVersion.Unsupported:
-                    default:
-                        return null;
-                }
+                return GetFactory(schema);
             }, logger);
             model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
             return model;

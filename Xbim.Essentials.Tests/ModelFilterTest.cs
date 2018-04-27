@@ -25,7 +25,7 @@ namespace Xbim.Essentials.Tests
             const string model1File = "4walls1floorSite.ifc";
             const string copyFile = "copy.ifc";
             const string model2File = "House.ifc";
-            var newModel = new MemoryModel(new Ifc2x3.EntityFactory());
+            var newModel = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
             using (var model1 = MemoryModel.OpenRead(model1File))
             {
                 PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
@@ -82,7 +82,7 @@ namespace Xbim.Essentials.Tests
                     var value = prop.PropertyInfo.GetValue(toCopy, null);
                     return value;
                 };
-                using (var target = new MemoryModel(new Ifc2x3.EntityFactory()))
+                using (var target = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3()))
                 {
                     using (var txn = target.BeginTransaction("Inserting copies"))
                     {

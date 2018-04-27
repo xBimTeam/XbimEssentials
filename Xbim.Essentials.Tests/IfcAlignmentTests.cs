@@ -24,7 +24,6 @@ namespace Xbim.Essentials.Tests
             "vertical-alignment.ifc"
         };
 
-
         [TestMethod]
         public void LoadIfcAlignment()
         {
@@ -39,7 +38,7 @@ namespace Xbim.Essentials.Tests
                     Assert.IsTrue(posEl.Any());
                 }
 
-                using (var store = Ifc.IfcStore.Open(file))
+                using (var store = MemoryModel.OpenRead(file))
                 {
                     var posEl = store.Instances.OfType<IfcPositioningElement>();
                     Assert.IsTrue(posEl.Any());

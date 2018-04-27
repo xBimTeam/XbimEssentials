@@ -14,7 +14,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NullableEnumMemberTest()
         {
-            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3()))
             {
                 using (var txn = model.BeginTransaction("Test"))
                 {
