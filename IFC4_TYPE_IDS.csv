@@ -338,6 +338,8 @@ IfcWorkCalendarTypeEnum,1064
 IfcWorkPlanTypeEnum,1065
 IfcWorkScheduleTypeEnum,1066
 IfcAlignmentTypeEnum,1329
+IfcReferentTypeEnum,1344
+IfcTransitionCurveType,1345
 IfcActorSelect,937
 IfcAppliedValueSelect,938
 IfcAxis2Placement,939
@@ -791,6 +793,7 @@ IfcObjectDefinition,22
 IfcObjectPlacement,440
 IfcObjective,518
 IfcOccupant,641
+IfcOffsetCurve,1346
 IfcOffsetCurve2D,687
 IfcOffsetCurve3D,67
 IfcOpenShell,488
@@ -1175,7 +1178,6 @@ IfcWorkTime,1319
 IfcZShapeProfileDef,528
 IfcZone,669
 IfcAlignment,1330
-IfcPositioningElement,1331
 IfcAlignment2DHorizontal,1332
 IfcAlignment2DHorizontalSegment,1333
 IfcAlignment2DSegment,1334
@@ -1184,7 +1186,18 @@ IfcAlignment2DVerSegLine,1336
 IfcAlignment2DVerSegParabolicArc,1337
 IfcAlignment2DVertical,1338
 IfcAlignment2DVerticalSegment,1339
+IfcAlignmentCurve,1347
 IfcCircularArcSegment2D,1340
-IfcClothoidalArcSegment2D,1341
 IfcCurveSegment2D,1342
+IfcDistanceExpression,1348
 IfcLineSegment2D,1343
+IfcLinearPlacement,1349
+IfcLinearPositioningElement,1350
+IfcOffsetCurveByDistances,1351
+IfcOrientationExpression,1352
+IfcPositioningElement,1331
+IfcReferent,1353
+IfcSectionedSolid,1354
+IfcSectionedSolidHorizontal,1355
+IfcTransitionCurveSegment2D,1356
+IfcTriangulatedIrregularNetwork,1357

@@ -7,12 +7,11 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ComponentModel;
-using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcAlignment2DSegment
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAlignment2DSegment : IPersistEntity
+	public partial interface @IIfcAlignment2DSegment : IIfcGeometricRepresentationItem
 	{
 		IfcBoolean? @TangentialContinuity { get;  set; }
 		IfcLabel? @StartTag { get;  set; }
@@ -39,7 +38,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcAlignment2DSegment", 1334)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAlignment2DSegment : PersistEntity, IIfcAlignment2DSegment, IEquatable<@IfcAlignment2DSegment>
+	public abstract partial class @IfcAlignment2DSegment : IfcGeometricRepresentationItem, IIfcAlignment2DSegment, IEquatable<@IfcAlignment2DSegment>
 	{
 		#region IIfcAlignment2DSegment explicit implementation
 		IfcBoolean? IIfcAlignment2DSegment.TangentialContinuity { 
@@ -72,7 +71,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcBoolean? @TangentialContinuity 
 		{ 
 			get 
@@ -86,7 +85,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _tangentialContinuity = v, _tangentialContinuity, value,  "TangentialContinuity", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
 		public IfcLabel? @StartTag 
 		{ 
 			get 
@@ -100,7 +99,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _startTag = v, _startTag, value,  "StartTag", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
 		public IfcLabel? @EndTag 
 		{ 
 			get 

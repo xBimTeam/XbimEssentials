@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.ExternalReferenceResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcShapeAspect
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcShapeAspect : IPersistEntity
+	public partial interface @IIfcShapeAspect : IPersistEntity, IfcResourceObjectSelect
 	{
 		IItemSet<IIfcShapeModel> @ShapeRepresentations { get; }
 		IfcLabel? @Name { get;  set; }

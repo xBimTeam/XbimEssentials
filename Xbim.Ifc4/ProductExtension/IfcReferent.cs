@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,43 +21,50 @@ using Xbim.Ifc4.ProductExtension;
 namespace Xbim.Ifc4.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for IfcAlignment
+    /// Readonly interface for IfcReferent
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAlignment : IIfcLinearPositioningElement
+	public partial interface @IIfcReferent : IIfcPositioningElement
 	{
-		IfcAlignmentTypeEnum? @PredefinedType { get;  set; }
+		IfcReferentTypeEnum? @PredefinedType { get;  set; }
+		IfcLengthMeasure? @RestartDistance { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.ProductExtension
 {
-	[ExpressType("IfcAlignment", 1330)]
+	[ExpressType("IfcReferent", 1353)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment : IfcLinearPositioningElement, IInstantiableEntity, IIfcAlignment, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment>
+	public  partial class @IfcReferent : IfcPositioningElement, IInstantiableEntity, IIfcReferent, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReferent>
 	{
-		#region IIfcAlignment explicit implementation
-		IfcAlignmentTypeEnum? IIfcAlignment.PredefinedType { 
+		#region IIfcReferent explicit implementation
+		IfcReferentTypeEnum? IIfcReferent.PredefinedType { 
  
 			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
+		}	
+		IfcLengthMeasure? IIfcReferent.RestartDistance { 
+ 
+			get { return @RestartDistance; } 
+			set { RestartDistance = value;}
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcReferent(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 		#region Explicit attribute fields
-		private IfcAlignmentTypeEnum? _predefinedType;
+		private IfcReferentTypeEnum? _predefinedType;
+		private IfcLengthMeasure? _restartDistance;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 22)]
-		public IfcAlignmentTypeEnum? @PredefinedType 
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 21)]
+		public IfcReferentTypeEnum? @PredefinedType 
 		{ 
 			get 
 			{
@@ -66,7 +74,21 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
+			} 
+		}	
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		public IfcLengthMeasure? @RestartDistance 
+		{ 
+			get 
+			{
+				if(_activated) return _restartDistance;
+				Activate();
+				return _restartDistance;
+			} 
+			set
+			{
+				SetValue( v =>  _restartDistance = v, _restartDistance, value,  "RestartDistance", 9);
 			} 
 		}	
 		#endregion
@@ -86,11 +108,13 @@ namespace Xbim.Ifc4.ProductExtension
 				case 4: 
 				case 5: 
 				case 6: 
-				case 7: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
+				case 7: 
+                    _predefinedType = (IfcReferentTypeEnum) System.Enum.Parse(typeof (IfcReferentTypeEnum), value.EnumVal, true);
+					return;
 				case 8: 
-                    _predefinedType = (IfcAlignmentTypeEnum) System.Enum.Parse(typeof (IfcAlignmentTypeEnum), value.EnumVal, true);
+					_restartDistance = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -99,7 +123,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment other)
+        public bool Equals(@IfcReferent other)
 	    {
 	        return this == other;
 	    }
@@ -116,8 +140,6 @@ namespace Xbim.Ifc4.ProductExtension
 					yield return @ObjectPlacement;
 				if (@Representation != null)
 					yield return @Representation;
-				if (@Axis != null)
-					yield return @Axis;
 			}
 		}
 		#endregion
