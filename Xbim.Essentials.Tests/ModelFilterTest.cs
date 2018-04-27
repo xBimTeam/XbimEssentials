@@ -1,7 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
@@ -28,12 +31,12 @@ namespace Xbim.Essentials.Tests
             var newModel = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
             using (var model1 = MemoryModel.OpenRead(model1File))
             {
-                PropertyTranformDelegate propTransform = delegate(ExpressMetaProperty prop, object toCopy)
+                PropertyTranformDelegate propTransform = delegate (ExpressMetaProperty prop, object toCopy)
                 {
                     var value = prop.PropertyInfo.GetValue(toCopy, null);
                     return value;
                 };
-               
+
                 using (var model2 = MemoryModel.OpenRead(model2File))
                 {
                     var rencontre = false;
@@ -106,7 +109,7 @@ namespace Xbim.Essentials.Tests
                 }
 
                 //the two files should be the same
-               FileCompare(sourceFile, copyFile);
+                FileCompare(sourceFile, copyFile);
             }
         }
 
@@ -116,9 +119,6 @@ namespace Xbim.Essentials.Tests
         // files are not the same.
         private void FileCompare(string file1, string file2)
         {
-            string file1Line;
-            string file2Line;
-            
             // Determine if the same file was referenced two times.
             if (file1 == file2)
             {
@@ -126,35 +126,82 @@ namespace Xbim.Essentials.Tests
                 return;
             }
 
+            var lines1 = GetLines(file1);
+            var lines2 = GetLines(file2);
 
+            var isNumExp = new Regex("[0-9\\-\\+]");
+            var numExp = new Regex("[0-9.eE\\+\\-]+");
 
-            //// Check the file sizes. If they are not the same, the files 
-            //// are not the same.
-            //var l1 = new FileInfo(file1).Length;
-            //var l2 = new FileInfo(file2).Length;
-            //if (l1 != l2)
-            //{
-            //    // Return false to indicate files are different
-            //    Assert.Fail("File Lengths are different, Source == {0}, Copy == {1}",l1,l2);
-            //}
-            // LoadStep21 the two files.
-            using (var fs1 = new StreamReader(file1))
+            foreach (var kvp in lines1)
             {
-                using (var fs2 = new StreamReader(file2))
-                {
-                    // Read and compare a line from each file until either a
-                    // non-matching set of bytes is found or until the end of
-                    // file1 is reached.
-                    do
+                var key = kvp.Key;
+                var line1 = kvp.Value;
+                Assert.IsTrue(lines2.TryGetValue(key, out string line2));
+
+                var parts1 = line1.Split(new[] { ',', '(', ')' }, StringSplitOptions.RemoveEmptyEntries);
+                var parts2 = line2.Split(new[] { ',', '(', ')' }, StringSplitOptions.RemoveEmptyEntries);
+
+                Assert.AreEqual(parts1.Length, parts2.Length);
+                var valuesSame = parts1.Zip(parts2, (a, b) => {
+                    if (isNumExp.IsMatch(a[0].ToString()) && isNumExp.IsMatch(b[0].ToString()))
                     {
-                        // Read one line from each file.
-                        file1Line = fs1.ReadLine();
-                        file2Line = fs2.ReadLine();
-                        Assert.IsTrue(file1Line == file2Line, string.Format("'{0}' != '{1}'", file1Line, file2Line));
+                        var sA = numExp.Match(a).Value;
+                        var sB = numExp.Match(b).Value;
+
+                        // compare numbers
+                        var nA = double.Parse(sA, CultureInfo.InvariantCulture);
+                        var nB = double.Parse(sB, CultureInfo.InvariantCulture);
+
+                        var delta = Math.Abs(nA - nB);
+                        return delta < 1e-6;
                     }
-                    while (file1Line != null);
-                    Assert.IsTrue(file2Line == null, "Copy file is longer than the source file");                   
+                    return a == b;
+                }).All(v => v);
+                Assert.IsTrue(valuesSame);
+            }
+        }
+
+        private Dictionary<string, string> GetLines(string file)
+        {
+            var labelExp = new Regex("#(?<id>[0-9]+)");
+            var result = new Dictionary<string, string>();
+            using (var r = new StreamReader(file))
+            {
+                while(true)
+                {
+                    var line = GetNextNormalizedDataLine(r);
+                    if (line == null)
+                        break;
+                    if (line[0] == '#')
+                    {
+                        var key = labelExp.Match(line).Groups["id"]?.Value;
+                        if (string.IsNullOrWhiteSpace(key))
+                            throw new System.Exception("Unexpected line");
+                        result.Add(key, line);
+                    }
+
                 }
+            }
+            return result;
+        }
+
+        private string GetNextNormalizedDataLine(StreamReader reader)
+        {
+            while (true)
+            {
+                var line = reader.ReadLine();
+                if (line == null)
+                    return null;
+
+                //skip blank lines
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                // skip comments
+                if (line.StartsWith("*") || line.StartsWith("/"))
+                    continue;
+
+                return line.Replace(" ", "");
             }
         }
 

@@ -31,16 +31,11 @@ namespace Xbim.Essentials.Tests
 
         private void InitModel(IModel model)
         {
-            using (var txn = model.BeginTransaction("txn"))
-            {
-                model.Instances.New<IfcWall>(w => w.Name = "Wall A");
-                model.Instances.New<IfcWall>(w => w.Name = "Wall B");
-                model.Instances.New<IfcWall>(w => w.Name = "Wall C");
-                model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall A");
-                model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall B");
-
-                txn.Commit();
-            }
+            model.Instances.New<IfcWall>(w => w.Name = "Wall A");
+            model.Instances.New<IfcWall>(w => w.Name = "Wall B");
+            model.Instances.New<IfcWall>(w => w.Name = "Wall C");
+            model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall A");
+            model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall B");
         }
 
         private void AssertModel(IModel model)
