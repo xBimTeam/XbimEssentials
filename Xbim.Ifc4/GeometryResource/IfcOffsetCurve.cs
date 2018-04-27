@@ -7,60 +7,75 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.Kernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
-using Xbim.Ifc4.ProductExtension;
+using Xbim.Ifc4.GeometryResource;
 //## Custom using statements
 //##
 
 namespace Xbim.Ifc4.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for IfcPositioningElement
+    /// Readonly interface for IfcOffsetCurve
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPositioningElement : IIfcProduct
+	public partial interface @IIfcOffsetCurve : IIfcCurve
 	{
-		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
+		IIfcCurve @BasisCurve { get;  set; }
 	
 	}
 }
 
-namespace Xbim.Ifc4.ProductExtension
+namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcPositioningElement", 1331)]
+	[ExpressType("IfcOffsetCurve", 1346)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPositioningElement : IfcProduct, IIfcPositioningElement, IEquatable<@IfcPositioningElement>
+	public abstract partial class @IfcOffsetCurve : IfcCurve, IIfcOffsetCurve, IEquatable<@IfcOffsetCurve>
 	{
-		#region IIfcPositioningElement explicit implementation
+		#region IIfcOffsetCurve explicit implementation
+		IIfcCurve IIfcOffsetCurve.BasisCurve { 
+ 
+ 
+			get { return @BasisCurve; } 
+			set { BasisCurve = value as IfcCurve;}
+		}	
 		 
-		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcPositioningElement.ContainedInStructure {  get { return @ContainedInStructure; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcPositioningElement(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcOffsetCurve(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
-
-
-
-		#region Inverse attributes
-		[InverseProperty("RelatedElements")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 20)]
-		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainedInStructure 
+		#region Explicit attribute fields
+		private IfcCurve _basisCurve;
+		#endregion
+	
+		#region Explicit attribute properties
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		public IfcCurve @BasisCurve 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcRelContainedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this), "RelatedElements", this);
+				if(_activated) return _basisCurve;
+				Activate();
+				return _basisCurve;
 			} 
-		}
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
+			} 
+		}	
 		#endregion
+
+
+
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
@@ -68,13 +83,7 @@ namespace Xbim.Ifc4.ProductExtension
 			switch (propIndex)
 			{
 				case 0: 
-				case 1: 
-				case 2: 
-				case 3: 
-				case 4: 
-				case 5: 
-				case 6: 
-					base.Parse(propIndex, value, nestedIndex); 
+					_basisCurve = (IfcCurve)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -83,7 +92,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcPositioningElement other)
+        public bool Equals(@IfcOffsetCurve other)
 	    {
 	        return this == other;
 	    }
