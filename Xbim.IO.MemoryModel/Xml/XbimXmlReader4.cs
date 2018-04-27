@@ -95,7 +95,7 @@ namespace Xbim.IO.Xml
                         continue;
 
                     if (rootElement)
-                    {
+                    {   
                         ReadSchemaInHeader(input, header);
                         rootElement = false;
                         continue;
@@ -628,32 +628,46 @@ namespace Xbim.IO.Xml
                 switch (input.LocalName.ToLowerInvariant())
                 {
                     case "name":
-                        header.FileName.Name = input.ReadElementContentAsString();
+                        header.FileName.Name = GetTextFromElement(input);
                         break;
                     case "time_stamp":
-                        header.FileName.TimeStamp = input.ReadElementContentAsString();
+                        header.FileName.TimeStamp = GetTextFromElement(input);
                         break;
                     case "author":
-                        header.FileName.AuthorName.Add(input.ReadElementContentAsString());
+                        header.FileName.AuthorName.Add(GetTextFromElement(input));
                         break;
                     case "organization":
-                        header.FileName.Organization.Add(input.ReadElementContentAsString());
+                        header.FileName.Organization.Add(GetTextFromElement(input));
                         break;
                     case "preprocessor_version":
-                        header.FileName.PreprocessorVersion = input.ReadElementContentAsString();
+                        header.FileName.PreprocessorVersion = GetTextFromElement(input);
                         break;
                     case "originating_system":
-                        header.FileName.OriginatingSystem = input.ReadElementContentAsString();
+                        header.FileName.OriginatingSystem = GetTextFromElement(input);
                         break;
                     case "authorization":
-                        header.FileName.AuthorizationName = input.ReadElementContentAsString();
+                        header.FileName.AuthorizationName = GetTextFromElement(input);
                         break;
                     case "documentation":
-                        header.FileDescription.Description.Add(input.ReadElementContentAsString());
+                        header.FileDescription.Description.Add(GetTextFromElement(input));
                         break;
                 }
             }
             return header;
+        }
+
+        private string GetTextFromElement(XmlReader input)
+        {
+            if (input.NodeType != XmlNodeType.Element || input.IsEmptyElement)
+                return null;
+
+            if (!input.Read())
+                return null;
+
+            if (input.NodeType != XmlNodeType.Text)
+                throw new FormatException("Unexpected node type");
+
+            return input.Value;
         }
 
         public static IStepFileHeader ReadHeader(Stream input)

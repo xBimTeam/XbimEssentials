@@ -109,7 +109,7 @@ namespace Xbim.Essentials.Tests
                 }
                 using (var xmlFile = File.Create("XbimPixelTexture.ifcxml"))
                 {
-                    model.SaveAsXml(xmlFile, new XmlWriterSettings { });
+                    model.SaveAsXml(xmlFile, new XmlWriterSettings { Indent = false });
                 }
                 
             }
