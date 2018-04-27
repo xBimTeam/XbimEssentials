@@ -12,6 +12,7 @@ using Xbim.Common.Step21;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.GeometricConstraintResource;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Common;
 
 namespace Xbim.Ifc4
@@ -73,9 +74,17 @@ namespace Xbim.Ifc4
 				case "IFCALIGNMENT2DVERSEGLINE": return new IfcAlignment2DVerSegLine ( model, entityLabel, activated );
 				case "IFCALIGNMENT2DVERSEGPARABOLICARC": return new IfcAlignment2DVerSegParabolicArc ( model, entityLabel, activated );
 				case "IFCALIGNMENT2DVERTICAL": return new IfcAlignment2DVertical ( model, entityLabel, activated );
+				case "IFCALIGNMENTCURVE": return new IfcAlignmentCurve ( model, entityLabel, activated );
 				case "IFCCIRCULARARCSEGMENT2D": return new IfcCircularArcSegment2D ( model, entityLabel, activated );
-				case "IFCCLOTHOIDALARCSEGMENT2D": return new IfcClothoidalArcSegment2D ( model, entityLabel, activated );
+				case "IFCDISTANCEEXPRESSION": return new IfcDistanceExpression ( model, entityLabel, activated );
 				case "IFCLINESEGMENT2D": return new IfcLineSegment2D ( model, entityLabel, activated );
+				case "IFCLINEARPLACEMENT": return new IfcLinearPlacement ( model, entityLabel, activated );
+				case "IFCOFFSETCURVEBYDISTANCES": return new IfcOffsetCurveByDistances ( model, entityLabel, activated );
+				case "IFCORIENTATIONEXPRESSION": return new IfcOrientationExpression ( model, entityLabel, activated );
+				case "IFCREFERENT": return new IfcReferent ( model, entityLabel, activated );
+				case "IFCSECTIONEDSOLIDHORIZONTAL": return new IfcSectionedSolidHorizontal ( model, entityLabel, activated );
+				case "IFCTRANSITIONCURVESEGMENT2D": return new IfcTransitionCurveSegment2D ( model, entityLabel, activated );
+				case "IFCTRIANGULATEDIRREGULARNETWORK": return new IfcTriangulatedIrregularNetwork ( model, entityLabel, activated );
 				default:
 					return null;
 			}
@@ -101,9 +110,17 @@ namespace Xbim.Ifc4
 				case 1336: return new IfcAlignment2DVerSegLine ( model, entityLabel, activated );
 				case 1337: return new IfcAlignment2DVerSegParabolicArc ( model, entityLabel, activated );
 				case 1338: return new IfcAlignment2DVertical ( model, entityLabel, activated );
+				case 1347: return new IfcAlignmentCurve ( model, entityLabel, activated );
 				case 1340: return new IfcCircularArcSegment2D ( model, entityLabel, activated );
-				case 1341: return new IfcClothoidalArcSegment2D ( model, entityLabel, activated );
+				case 1348: return new IfcDistanceExpression ( model, entityLabel, activated );
 				case 1343: return new IfcLineSegment2D ( model, entityLabel, activated );
+				case 1349: return new IfcLinearPlacement ( model, entityLabel, activated );
+				case 1351: return new IfcOffsetCurveByDistances ( model, entityLabel, activated );
+				case 1352: return new IfcOrientationExpression ( model, entityLabel, activated );
+				case 1353: return new IfcReferent ( model, entityLabel, activated );
+				case 1355: return new IfcSectionedSolidHorizontal ( model, entityLabel, activated );
+				case 1356: return new IfcTransitionCurveSegment2D ( model, entityLabel, activated );
+				case 1357: return new IfcTriangulatedIrregularNetwork ( model, entityLabel, activated );
 				default:
 					return null;
 			}

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Essentials</id>
-    <version>4.0.30-V0010</version>
+    <version>4.0.30-V011</version>
     <title>xBIM Essentials</title>
     <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -19,7 +19,7 @@
     </description>
     <summary>The .Net toolkit for developing BIM applications based on the IFC standards. Essential support for the IFC2x3 and IFC4 data models</summary>
     <releaseNotes>
-      Added support for IFC Alignment schema (IFC4x1). XML support is not yet implemented for this schema because documentation on buildingSMART
+      Added support for IFC Alignment schema (IFC4x1) and updated to IFC4x1 final release. XML support is not yet implemented for this schema because documentation on buildingSMART
       technical website (http://www.buildingsmart-tech.org/mvd/IFC4x1/Alignment/1.0.1/html/link/annex-a.htm) keeps changing namespaces and XSD
       configuration file is not available (26/04/2018).
     </releaseNotes>
