@@ -10,9 +10,11 @@ namespace Xbim.Essentials.Tests
     public class ActivationTests
     {
         [TestMethod]
+        [Ignore]
         [DeploymentItem("TestSourceFiles")]
         public void ObjectActivation()
         {
+            // This test would only make a sense with a not-in-memory model
             using (new ModelFactory("4walls1floorSite.ifc")
                 .DoInTransaction(model =>
                 {
@@ -31,7 +33,7 @@ namespace Xbim.Essentials.Tests
 
                     wallType.HasPropertySets.Add(model.Instances.New<IfcPropertySet>(ps => ps.Name = "New property set"));
                     Assert.IsTrue(((IPersistEntity)wallType).Activated);
-                })) ;
+                })) { }
         }
     }
 }

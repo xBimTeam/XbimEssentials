@@ -23,7 +23,7 @@ namespace Xbim.Essentials.Tests
 
             var testFile = "EscapeHeaderTests.ifc";
 
-            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3()))
             {
                 model.Header.FileName.Name = path;
                 model.Header.FileName.Organization.Add(umlaut);

@@ -103,14 +103,14 @@ namespace Xbim.IO.Xml
 
                     if (headerElement)
                     {
+                        headerElement = false;
                         //header is the first inner node if defined (it is optional)
                         var name = input.LocalName.ToLowerInvariant();
                         if ((name == "header" || name == "iso_10303_28_header") && !input.IsEmptyElement)
                         {
                             header = ReadHeader(input, header);
+                            continue;
                         }
-                        headerElement = false;
-                        continue;
                     }
 
                     //if this is IFC2x3 file and we only need the header we need to make sure we read schema information from "uos" element
@@ -628,28 +628,28 @@ namespace Xbim.IO.Xml
                 switch (input.LocalName.ToLowerInvariant())
                 {
                     case "name":
-                        header.FileName.Name = input.ReadInnerXml();
+                        header.FileName.Name = input.ReadElementContentAsString();
                         break;
                     case "time_stamp":
-                        header.FileName.TimeStamp = input.ReadInnerXml();
+                        header.FileName.TimeStamp = input.ReadElementContentAsString();
                         break;
                     case "author":
-                        header.FileName.AuthorName.Add(input.ReadInnerXml());
+                        header.FileName.AuthorName.Add(input.ReadElementContentAsString());
                         break;
                     case "organization":
-                        header.FileName.Organization.Add(input.ReadInnerXml());
+                        header.FileName.Organization.Add(input.ReadElementContentAsString());
                         break;
                     case "preprocessor_version":
-                        header.FileName.PreprocessorVersion = input.ReadInnerXml();
+                        header.FileName.PreprocessorVersion = input.ReadElementContentAsString();
                         break;
                     case "originating_system":
-                        header.FileName.OriginatingSystem = input.ReadInnerXml();
+                        header.FileName.OriginatingSystem = input.ReadElementContentAsString();
                         break;
                     case "authorization":
-                        header.FileName.AuthorizationName = input.ReadInnerXml();
+                        header.FileName.AuthorizationName = input.ReadElementContentAsString();
                         break;
                     case "documentation":
-                        header.FileDescription.Description.Add(input.ReadInnerXml());
+                        header.FileDescription.Description.Add(input.ReadElementContentAsString());
                         break;
                 }
             }
@@ -659,7 +659,7 @@ namespace Xbim.IO.Xml
         public static IStepFileHeader ReadHeader(Stream input)
         {
             var xReader = new XbimXmlReader4();
-            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactory());
+            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4());
             return xReader.Read(input, fakeModel); //using a dummy model to get the assembly correct
         }
 

@@ -82,9 +82,6 @@ namespace Xbim.Essentials.Tests
                     }
                 });
             }
-        private static readonly IEntityFactory ef = new EntityFactoryIfc2x3();
-
-            
         }
     }
 }
