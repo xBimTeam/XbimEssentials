@@ -15,7 +15,7 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void ActivationTest()
         {
-            var model = new IO.Esent.EsentModel(new EntityFactory());
+            var model = new IO.Esent.EsentModel(new EntityFactoryIfc2x3());
             model.CreateFrom("4walls1floorSite.ifc", null, null, true);
             TestActivation(model);
         }

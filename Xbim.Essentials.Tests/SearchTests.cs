@@ -14,6 +14,9 @@ namespace Xbim.Essentials.Tests
     [TestClass]
     public class SearchTests
     {
+        private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
+        private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
+
         [TestMethod]
         public void SearchTypeHandling()
         {
@@ -28,16 +31,11 @@ namespace Xbim.Essentials.Tests
 
         private void InitModel(IModel model)
         {
-            using (var txn = model.BeginTransaction("txn"))
-            {
-                model.Instances.New<IfcWall>(w => w.Name = "Wall A");
-                model.Instances.New<IfcWall>(w => w.Name = "Wall B");
-                model.Instances.New<IfcWall>(w => w.Name = "Wall C");
-                model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall A");
-                model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall B");
-
-                txn.Commit();
-            }
+            model.Instances.New<IfcWall>(w => w.Name = "Wall A");
+            model.Instances.New<IfcWall>(w => w.Name = "Wall B");
+            model.Instances.New<IfcWall>(w => w.Name = "Wall C");
+            model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall A");
+            model.Instances.New<IfcWallStandardCase>(w => w.Name = "Standard Wall B");
         }
 
         private void AssertModel(IModel model)

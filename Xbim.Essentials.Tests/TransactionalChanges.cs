@@ -82,8 +82,6 @@ namespace Xbim.Essentials.Tests
                     }
                 });
             }
-
-            
         }
     }
 }

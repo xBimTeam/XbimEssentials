@@ -25,7 +25,7 @@ namespace Xbim.Essentials.Tests
         public void BinaryBlobTextureTest()
         {
             var data = File.ReadAllBytes("xbim.png");
-            using (var model = new MemoryModel(new EntityFactory()))
+            using (var model = new MemoryModel(new EntityFactoryIfc4()))
             {
                 using (var txn = model.BeginTransaction(""))
                 {
@@ -87,7 +87,7 @@ namespace Xbim.Essentials.Tests
         private static void PixelTextureTestCode(XbimSchemaVersion version)
         {
             var data = new List<byte[]>() { new byte[] { 0, 0, 255, 255 }, new byte[] { 0, 255, 255, 255 }, new byte[] { 255, 0, 255, 255 }, new byte[] { 255, 0, 0, 255 } };
-            using (var model = new MemoryModel(new EntityFactory()))
+            using (var model = new MemoryModel(new EntityFactoryIfc4()))
             {
                 var create = new Create(model);
                 using (var txn = model.BeginTransaction(""))
@@ -109,7 +109,7 @@ namespace Xbim.Essentials.Tests
                 }
                 using (var xmlFile = File.Create("XbimPixelTexture.ifcxml"))
                 {
-                    model.SaveAsXml(xmlFile, new XmlWriterSettings { });
+                    model.SaveAsXml(xmlFile, new XmlWriterSettings { Indent = false });
                 }
                 
             }

@@ -13,13 +13,13 @@ using Xbim.Common;
 
 namespace Xbim.CobieExpress
 {
-	public sealed class EntityFactory : IEntityFactory
+	public sealed class EntityFactoryCobieExpress : IEntityFactory
 	{
-		private readonly System.Reflection.Assembly _assembly;
+		private static readonly System.Reflection.Assembly _assembly;
 		
-		public EntityFactory()
+		static EntityFactoryCobieExpress()
 		{
-			_assembly = GetType().Assembly;
+			_assembly = typeof(EntityFactoryCobieExpress).Assembly;
 		}
 
 		public T New<T>(IModel model, int entityLabel, bool activated) where T: IInstantiableEntity
@@ -30,7 +30,8 @@ namespace Xbim.CobieExpress
 		public T New<T>(IModel model, Action<T> init, int entityLabel, bool activated) where T: IInstantiableEntity
 		{
 			var o = New<T>(model, entityLabel, activated);
-			init(o);
+			if (init != null)
+				init(o);
 			return o;
 		}
 
@@ -45,10 +46,10 @@ namespace Xbim.CobieExpress
 
 		public IInstantiableEntity New(IModel model, string typeName, int entityLabel, bool activated)
 		{
-			if (model == null || typeName == null)
+			if (model == null || string.IsNullOrWhiteSpace(typeName) || entityLabel < 0)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "COBIEPHASE": return new CobiePhase ( model, entityLabel, activated );
@@ -154,6 +155,7 @@ namespace Xbim.CobieExpress
 			if (model == null)
 				throw new ArgumentNullException();
 
+
 			switch(typeId)
 			{
 				case 7: return new CobiePhase ( model, entityLabel, activated );
@@ -210,10 +212,10 @@ namespace Xbim.CobieExpress
 
 		public IExpressValueType New(string typeName)
 		{
-		if (typeName == null)
+			if (typeName == null)
 				throw new ArgumentNullException();
 
-			var name = typeName.ToUpper();
+			var name = typeName.ToUpperInvariant();
 			switch(name)
 			{
 				case "STRINGVALUE": return new StringValue ();

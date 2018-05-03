@@ -34,9 +34,18 @@ namespace Xbim.IO.Xml
         /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
         public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata)
         {
-            _getOrCreate = getOrCreate ?? throw new ArgumentNullException("getOrCreate");
-            _finish = finish ?? throw new ArgumentNullException("finish");
-            _metadata = metadata ?? throw new ArgumentNullException("metadata");
+            if (getOrCreate == null)
+                throw new ArgumentNullException("getOrCreate");
+
+            if (finish == null)
+                throw new ArgumentNullException("finish");
+
+            if (metadata == null)
+                throw new ArgumentNullException("metadata");
+
+            _getOrCreate = getOrCreate;
+            _finish = finish;
+            _metadata = metadata;
         }
 
         private XbimXmlReader4()
@@ -86,7 +95,7 @@ namespace Xbim.IO.Xml
                         continue;
 
                     if (rootElement)
-                    {
+                    {   
                         ReadSchemaInHeader(input, header);
                         rootElement = false;
                         continue;
@@ -94,14 +103,14 @@ namespace Xbim.IO.Xml
 
                     if (headerElement)
                     {
+                        headerElement = false;
                         //header is the first inner node if defined (it is optional)
                         var name = input.LocalName.ToLowerInvariant();
                         if ((name == "header" || name == "iso_10303_28_header") && !input.IsEmptyElement)
                         {
                             header = ReadHeader(input, header);
+                            continue;
                         }
-                        headerElement = false;
-                        continue;
                     }
 
                     //if this is IFC2x3 file and we only need the header we need to make sure we read schema information from "uos" element
@@ -619,38 +628,52 @@ namespace Xbim.IO.Xml
                 switch (input.LocalName.ToLowerInvariant())
                 {
                     case "name":
-                        header.FileName.Name = input.ReadInnerXml();
+                        header.FileName.Name = GetTextFromElement(input);
                         break;
                     case "time_stamp":
-                        header.FileName.TimeStamp = input.ReadInnerXml();
+                        header.FileName.TimeStamp = GetTextFromElement(input);
                         break;
                     case "author":
-                        header.FileName.AuthorName.Add(input.ReadInnerXml());
+                        header.FileName.AuthorName.Add(GetTextFromElement(input));
                         break;
                     case "organization":
-                        header.FileName.Organization.Add(input.ReadInnerXml());
+                        header.FileName.Organization.Add(GetTextFromElement(input));
                         break;
                     case "preprocessor_version":
-                        header.FileName.PreprocessorVersion = input.ReadInnerXml();
+                        header.FileName.PreprocessorVersion = GetTextFromElement(input);
                         break;
                     case "originating_system":
-                        header.FileName.OriginatingSystem = input.ReadInnerXml();
+                        header.FileName.OriginatingSystem = GetTextFromElement(input);
                         break;
                     case "authorization":
-                        header.FileName.AuthorizationName = input.ReadInnerXml();
+                        header.FileName.AuthorizationName = GetTextFromElement(input);
                         break;
                     case "documentation":
-                        header.FileDescription.Description.Add(input.ReadInnerXml());
+                        header.FileDescription.Description.Add(GetTextFromElement(input));
                         break;
                 }
             }
             return header;
         }
 
+        private string GetTextFromElement(XmlReader input)
+        {
+            if (input.NodeType != XmlNodeType.Element || input.IsEmptyElement)
+                return null;
+
+            if (!input.Read())
+                return null;
+
+            if (input.NodeType != XmlNodeType.Text)
+                throw new FormatException("Unexpected node type");
+
+            return input.Value;
+        }
+
         public static IStepFileHeader ReadHeader(Stream input)
         {
             var xReader = new XbimXmlReader4();
-            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactory());
+            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4());
             return xReader.Read(input, fakeModel); //using a dummy model to get the assembly correct
         }
 

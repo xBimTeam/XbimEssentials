@@ -439,6 +439,15 @@ namespace Xbim.Common.Model
                 throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
             }
 
+            // if the model is empty, having just a header, entity factory might still be empty
+            if (_entityFactory == null)
+            {
+                _entityFactory = _factoryResolver(Header.FileSchema.Schemas);
+                if (_entityFactory == null)
+                    throw new XbimParserException($"Entity factory resolver didn't resolve factory for schema '{string.Join(", ", Header.FileSchema.Schemas)}'");
+                InitFromEntityFactory(_entityFactory);
+            }
+
             //fix case if necessary
             for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
             {
@@ -469,8 +478,6 @@ namespace Xbim.Common.Model
                 Logger = Logger
             };
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
-            
-
             try
             {
                 return LoadStep21(parser);

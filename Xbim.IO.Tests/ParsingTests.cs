@@ -18,6 +18,9 @@ namespace Xbim.MemoryModel.Tests
     [TestClass]
     public class ParsingTests
     {
+        private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
+        private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
+
         [TestMethod]
         [DeploymentItem("TestFiles\\fileWithAbstractClass.ifc")]
         public void ToleratesFileWithAbstractClass()
@@ -109,6 +112,17 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
+        [DeploymentItem("TestFiles\\EmptyMultibyteString.ifc")]
+        public void ToleratesEmptyMultibyteStringsTest()
+        {
+            // I have stumbled across a file containing empty multibyte string sequences '\X2\\X0\'.
+            using (IfcStore store = IfcStore.Open("EmptyMultibyteString.ifc")) {
+                IIfcProject project = store.Instances.OfType<IIfcProject>().SingleOrDefault();
+                Assert.AreEqual("Test Test Test", (string)project.Name);
+            }
+        }
+        
+        [TestMethod]
         [DeploymentItem("TestFiles")]
         public void IfcStoreOpenAndCloseMemoryModelTest()
         {
@@ -151,10 +165,10 @@ namespace Xbim.MemoryModel.Tests
         {
             // a merged PR on issue 107 makes the memory model more tolerant of bad files.
             // an equivalent test for esent is available
-            using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
             {
                 var errCount = model.LoadZip("Issue107.zip");
-                Assert.AreEqual(140, errCount);
+                Assert.IsTrue(errCount <= 120);
             }
         }
 
@@ -191,13 +205,13 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles\\NewlinesInStrings.ifc")]
         public void CanParseNewlinesInStrings()
         {
-            using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var model = new Xbim.IO.Memory.MemoryModel( ef2x3))
             {
                 var errCount = model.LoadStep21("NewlinesInStrings.ifc");
                 Assert.AreEqual(0, errCount);
             }
 
-            using (var model = new Xbim.IO.Esent.EsentModel(new Ifc2x3.EntityFactory()))
+            using (var model = new Xbim.IO.Esent.EsentModel( ef2x3))
             {
                 var errCount = model.CreateFrom("NewlinesInStrings.ifc");
                 Assert.AreEqual(true, errCount);
@@ -632,13 +646,13 @@ namespace Xbim.MemoryModel.Tests
         [DeploymentItem("TestFiles\\ifc2x3_final_wall.ifc")]
         public void Ifc2x3FinalSchemaTest()
         {
-            using (var model = new Xbim.IO.Memory.MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var model = new Xbim.IO.Memory.MemoryModel( ef2x3))
             {
                 var errCount = model.LoadStep21("ifc2x3_final_wall.ifc");
                 Assert.AreEqual(0, errCount);
             }
 
-            using (var model = new Xbim.IO.Esent.EsentModel(new Ifc2x3.EntityFactory()))
+            using (var model = new Xbim.IO.Esent.EsentModel( ef2x3))
             {
                 var errCount = model.CreateFrom("ifc2x3_final_wall.ifc");
                 Assert.AreEqual(true, errCount);
