@@ -26,7 +26,7 @@ namespace Xbim.MemoryModel.Tests
                 } while (t != (int)Tokens.EOF);
             }
 
-            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(new EntityFactoryIfc4()))
             {
                 var errs = model.LoadStep21(file);
                 Assert.AreEqual(0, errs);

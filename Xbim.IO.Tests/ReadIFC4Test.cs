@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Common.XbimExtensions;
 using Xbim.Ifc2x3.MeasureResource;
 using Xbim.Ifc4;
@@ -16,10 +17,12 @@ namespace Xbim.MemoryModel.Tests
     [DeploymentItem("TestFiles")]
     public class ReadIfc4Test
     {
+        private static readonly IEntityFactory ef4 = new EntityFactoryIfc4();
+
         [TestMethod]
         public void LoadIfc4Test()
         {
-            using (var model = new IO.Memory.MemoryModel(new EntityFactory()))
+            using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 model.LoadStep21("SampleHouse4.ifc");
                 var project = model.Instances.FirstOrDefault<IfcProject>();
@@ -36,7 +39,7 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void ReadingOfNestedLists()
         {
-            var model = new IO.Memory.MemoryModel(new EntityFactory());
+            var model = new IO.Memory.MemoryModel(ef4);
             model.LoadStep21("IfcCartesianPointList3D.ifc");
             var pl = model.Instances.FirstOrDefault<IfcCartesianPointList3D>();
             Assert.IsNotNull(pl);
@@ -53,7 +56,7 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void CreationOfNestedListsFromAPI()
         {
-            var model = new IO.Memory.MemoryModel(new EntityFactory());
+            var model = new IO.Memory.MemoryModel(ef4);
             using (var txn = model.BeginTransaction("Test"))
             {
                 var pl = model.Instances.New<IfcCartesianPointList3D>();

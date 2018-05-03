@@ -74,8 +74,9 @@ namespace Xbim.IO.Xml
         {
             _conf = settings.Configuration ?? configuration.IFC4Add2;
             TimeStamp = DateTime.Now.ToString("s");
-            PreprocessorVersion = string.Format("Xbim File Processor version {0}", Assembly.GetEntryAssembly().GetName().Version);
-            OriginatingSystem = string.Format("Xbim version {0}", Assembly.GetEntryAssembly().GetName().Version);
+            var version = GetType().Assembly.GetName().Version;
+            PreprocessorVersion = $"Xbim File Processor version {version}";
+            OriginatingSystem = $"Xbim version {version}";
 
             _ns = settings.Namespace;
             _nsPrefix = settings.NamespacePrefix;

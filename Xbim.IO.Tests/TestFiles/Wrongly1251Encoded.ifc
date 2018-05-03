@@ -1,0 +1,66 @@
+ISO-10303-21;
+HEADER;FILE_DESCRIPTION(('ViewDefinition [CoordinationView_V2.0]',
+'Option [Drawing Scale: 50.000000]',
+'Option [Global Unique Identifiers (GUID): Keep existing]',
+'Option [Elements to export: Visible elements (on all stories)]',
+'Option [Partial Structure Display: Entire Model]',
+'Option [IFC Domain: All]','Option [Structural Function: All Elements]',
+'Option [Convert Grid elements: On]',
+'Option [Convert IFC Annotations and ArchiCAD 2D elements: Off]',
+'Option [Convert 2D symbols of Doors and Windows: Off]',
+'Option [Explode Composite and Complex Profile elements into parts: Off]'
+,
+'Option [Export geometries that Participates in Collision Detection only: On]'
+,'Option [Multi-skin complex geometries: Building element parts]',
+'Option [Elements in Solid Element Operations: Extruded/revolved]',
+'Option [Elements with junctions: Extruded/revolved without junctions]',
+'Option [Slabs with slanted edge(s): Extruded]',
+'Option [Use legacy geometric methods as in Coordination View 1.0: Off]'
+,'Option [IFC Site Geometry: As boundary representation (BRep)]',
+'Option [Properties To Export: All properties]',
+'Option [Space containment: Off]','Option [Bounding Box: Off]',
+'Option [Geometry to type objects: Off]',
+'Option [IFC base quantities (size, area and volume): Off]',
+'Option [All ArchiCAD BIM parameters: Off]',
+'Option [IFC Space boundaries: Off]',
+'Option [ArchiCAD Zone Categories as IFC Space classification data: Off]'
+),'2;1');
+FILE_SCHEMA(('IFC2X3'));
+ENDSEC;
+
+DATA;
+#4= IFCPOSTALADDRESS(.USERDEFINED.,$,$,$,$,$,$,$,$,$);
+#8= IFCPERSON($,$,$,$,$,$,$,(#4));
+#12= IFCPOSTALADDRESS(.USERDEFINED.,$,$,$,$,$,$,$,$,$);
+#14= IFCORGANIZATION($,'',$,$,(#12));
+#20= IFCPERSONANDORGANIZATION(#8,#14,$);
+#23= IFCORGANIZATION('GS','Graphisoft','Graphisoft',$,$);
+#24= IFCAPPLICATION(#23,'18.0.0','ArchiCAD-64','IFC2x3 add-on version: 4020 RUS FULL');
+#25= IFCOWNERHISTORY(#20,#24,$,.ADDED.,$,$,$,1430744901);
+#26= IFCSIUNIT(*,.LENGTHUNIT.,.MILLI.,.METRE.);
+#27= IFCSIUNIT(*,.AREAUNIT.,$,.SQUARE_METRE.);
+#28= IFCSIUNIT(*,.VOLUMEUNIT.,$,.CUBIC_METRE.);
+#29= IFCSIUNIT(*,.PLANEANGLEUNIT.,$,.RADIAN.);
+#30= IFCMEASUREWITHUNIT(IFCPLANEANGLEMEASURE(0.0174532925199),#29);
+#31= IFCDIMENSIONALEXPONENTS(0,0,0,0,0,0,0);
+#32= IFCCONVERSIONBASEDUNIT(#31,.PLANEANGLEUNIT.,'DEGREE',#30);
+#33= IFCSIUNIT(*,.SOLIDANGLEUNIT.,$,.STERADIAN.);
+#34= IFCMONETARYUNIT(.RUR.);
+#35= IFCSIUNIT(*,.TIMEUNIT.,$,.SECOND.);
+#36= IFCMEASUREWITHUNIT(IFCTIMEMEASURE(31556926.),#35);
+#37= IFCDIMENSIONALEXPONENTS(0,0,0,0,0,0,0);
+#38= IFCCONVERSIONBASEDUNIT(#37,.TIMEUNIT.,'Year',#36);
+#39= IFCSIUNIT(*,.MASSUNIT.,$,.GRAM.);
+#40= IFCSIUNIT(*,.THERMODYNAMICTEMPERATUREUNIT.,$,.DEGREE_CELSIUS.);
+#41= IFCSIUNIT(*,.LUMINOUSINTENSITYUNIT.,$,.LUMEN.);
+#42= IFCUNITASSIGNMENT((#26,#27,#28,#32,#33,#34,#38,#39,#40,#41));
+#44= IFCDIRECTION((1.,0.,0.));
+#46= IFCDIRECTION((0.,0.,1.));
+#48= IFCCARTESIANPOINT((0.,0.,0.));
+#50= IFCAXIS2PLACEMENT3D(#48,#46,#44);
+#51= IFCDIRECTION((0.719339800339,0.694658370459));
+#53= IFCGEOMETRICREPRESENTATIONCONTEXT($,'Model',3,1.00000000000E-5,#50,#51);
+#56= IFCPROJECT('344O7vICcwH8qAEnwJDjSU',#25,'\S\d\S\n\S\l',$,$,$,$,(#53),#42);
+ENDSEC;
+
+END-ISO-10303-21;

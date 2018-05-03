@@ -22,43 +22,35 @@ namespace Xbim.Essentials.Tests
 
         public void CreateDataWithoutInitializers(IModel model)
         {
-            using (var txn = model.BeginTransaction("Objects creation"))
-            {
-                var create = new Create(model);
-                var wall = create.Wall();
-                wall.PredefinedType = IfcWallTypeEnum.POLYGONAL;
-                wall.Name = "Name of the perfect wall";
-                
-                var wallType = create.WallType();
-                wallType.Name = "Super wall type";
+            var create = new Create(model);
+            var wall = create.Wall();
+            wall.PredefinedType = IfcWallTypeEnum.POLYGONAL;
+            wall.Name = "Name of the perfect wall";
 
-                var relDef = create.RelDefinesByType();
-                relDef.RelatedObjects.Add(wall);
-                relDef.RelatingType = wallType;
+            var wallType = create.WallType();
+            wallType.Name = "Super wall type";
 
-            txn.Commit();
-            }
+            var relDef = create.RelDefinesByType();
+            relDef.RelatedObjects.Add(wall);
+            relDef.RelatingType = wallType;
         }
 
         public void CreateDataWithInitializers(IModel model)
         {
-            using (var txn = model.BeginTransaction("Objects creation"))
+            var create = new Create(model);
+            var wall = create.Wall(w =>
             {
-                var create = new Create(model);
-                var wall = create.Wall(w =>
-                {
-                    w.PredefinedType = IfcWallTypeEnum.POLYGONAL;
-                    w.Name = "Name of the perfect wall";
-                });
+                w.PredefinedType = IfcWallTypeEnum.POLYGONAL;
+                w.Name = "Name of the perfect wall";
+            });
 
-
-                create.RelDefinesByProperties(r =>
+            create.RelDefinesByProperties(r =>
+            {
+                r.RelatedObjects.Add(wall);
+                r.RelatingPropertyDefinition = create.PropertySet(ps =>
                 {
-                    r.RelatedObjects.Add(wall);
-                    r.RelatingPropertyDefinition = create.PropertySet(ps =>
-                    {
-                        ps.HasProperties.AddRange(new[]
-                    {
+                    ps.HasProperties.AddRange(new[]
+                {
                             create.PropertySingleValue(p =>
                             {
                                 p.Name = "Single value";
@@ -74,18 +66,15 @@ namespace Xbim.Essentials.Tests
                                 p.Name = "Single boolean";
                                 p.NominalValue = new IfcBoolean(true);
                             }),
-                        });
                     });
                 });
+            });
 
-                create.RelDefinesByType(r =>
-                {
-                    r.RelatedObjects.Add(wall);
-                    r.RelatingType = create.WallType(t => t.Name = "Super wall type");
-                });
-
-                txn.Commit();
-            }
+            create.RelDefinesByType(r =>
+            {
+                r.RelatedObjects.Add(wall);
+                r.RelatingType = create.WallType(t => t.Name = "Super wall type");
+            });
         }
     }
 }

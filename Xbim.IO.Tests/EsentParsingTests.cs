@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace Xbim.IO.Tests
 {
@@ -12,9 +14,20 @@ namespace Xbim.IO.Tests
             // a merged PR on issue 107 makes the memory model more tolerant of bad files.
             // the same does not apply to the database version though.
             //
-            using (var model = new Esent.EsentModel(new Ifc2x3.EntityFactory()))
+            using (var model = new Esent.EsentModel(new Ifc2x3.EntityFactoryIfc2x3()))
             {
-                var errCount = model.CreateFrom("Issue107.zip");
+                var temp = Path.GetTempPath() + Guid.NewGuid() + ".zip";
+                File.Copy("Issue107.zip", temp);
+                try
+                {
+                    var errCount = model.CreateFrom(temp);
+                }
+                finally
+                {
+                    if (File.Exists(temp))
+                        File.Delete(temp);
+                }
+
             }
         }
     }

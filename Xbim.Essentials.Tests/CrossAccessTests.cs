@@ -21,7 +21,7 @@ namespace Xbim.Essentials.Tests
         public void CollectionRemoval()
         {
             // arrange
-            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3()))
             using (var txn = model.BeginTransaction(""))
             {
                 IfcWall wall1 = model.Instances.New<IfcWall>();

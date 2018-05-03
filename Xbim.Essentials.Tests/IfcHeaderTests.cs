@@ -23,7 +23,7 @@ namespace Xbim.Essentials.Tests
 
             var testFile = "EscapeHeaderTests.ifc";
 
-            using (var model = new MemoryModel(new Ifc2x3.EntityFactory()))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3()))
             {
                 model.Header.FileName.Name = path;
                 model.Header.FileName.Organization.Add(umlaut);
@@ -56,12 +56,11 @@ namespace Xbim.Essentials.Tests
                         RegexOptions.IgnoreCase);
                     Assert.IsTrue(matches.Count > 0, "No match found");
                     Assert.IsTrue(matches[0].Groups.Count == 2, "Should only be two matches");
-                    Version modelVersion;
-                    if (Version.TryParse(matches[0].Groups[1].Value, out modelVersion))
+                    if (Version.TryParse(matches[0].Groups[1].Value, out Version modelVersion))
                     {
                         var shouldHaveWorkAround = (modelVersion <= surfaceOfLinearExtrusionVersion);
-                        
-                        if(shouldHaveWorkAround)
+
+                        if (shouldHaveWorkAround)
                             Assert.IsTrue(store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"), "Work around should be implemented");
                         else
                             Assert.IsFalse(store.ModelFactors.ApplyWorkAround("#SurfaceOfLinearExtrusion"), "Work around should not be implemented");

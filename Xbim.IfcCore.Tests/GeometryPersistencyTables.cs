@@ -25,6 +25,20 @@ namespace Xbim.Essentials.Tests
 
                 m.Close();
             }
+
+            using (var store = IfcStore.Open(@"Persistency\Monolith_v10.xBIM"))
+            {
+                var geometryStore = store.GeometryStore;
+
+                if (geometryStore == null)
+                    throw new System.Exception("Invalid store");
+
+                using (var geometryTransaction = geometryStore.BeginInit())
+                {
+                    // nothing to do here.
+                }
+                store.Close();
+            }
         }
     }
 }

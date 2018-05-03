@@ -100,9 +100,7 @@ namespace Xbim.Essentials.Tests.Utilities
 
         public static void Create(string path, XbimSchemaVersion schema, Action<IModel> creation)
         {
-            var f = schema == XbimSchemaVersion.Ifc4 ?
-                new Ifc4.EntityFactory() as IEntityFactory :
-                new Ifc2x3.EntityFactory();
+            var f = MemoryModel.GetFactory(schema);
             using (var model = new MemoryModel(f))
             {
                 using (var txn = model.BeginTransaction("Creation"))
@@ -134,9 +132,7 @@ namespace Xbim.Essentials.Tests.Utilities
 
         public static IModel Create(XbimSchemaVersion schema, Action<IModel> creation)
         {
-            var f = schema == XbimSchemaVersion.Ifc4 ?
-                new Ifc4.EntityFactory() as IEntityFactory :
-                new Ifc2x3.EntityFactory();
+            var f = MemoryModel.GetFactory(schema);
             var model = new MemoryModel(f);
             using (var txn = model.BeginTransaction("Creation"))
             {
