@@ -24,7 +24,8 @@ namespace Xbim.Essentials.Tests
             "sectioned-solid.ifc",
             "terrain-and-alignment.ifc",
             "terrain-surface.ifc",
-            "vertical-alignment.ifc"
+            "vertical-alignment.ifc",
+            //"ramp.ifc"
         };
 
 
