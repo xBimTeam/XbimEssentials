@@ -18,7 +18,10 @@ namespace Xbim.Essentials.Tests
     {
         private static readonly IEntityFactory ef = new EntityFactoryIfc4x1();
         private static readonly string[] files = new[] {
+            "bloss-curve.ifc",
             "horizontal-alignment.ifc",
+            "linear-placement.ifc",
+            "sectioned-solid.ifc",
             "terrain-and-alignment.ifc",
             "terrain-surface.ifc",
             "vertical-alignment.ifc"
@@ -56,8 +59,7 @@ namespace Xbim.Essentials.Tests
                     var a = model.Instances.New<IfcAlignment>();
                     a.GlobalId = Guid.NewGuid();
                     a.Name = "Testing alignment";
-                    a.Horizontal = model.Instances.New<IfcAlignment2DHorizontal>();
-                    a.Vertical = model.Instances.New<IfcAlignment2DVertical>();
+                    a.Axis = model.Instances.New<IfcAlignmentCurve>();
                     txn.Commit();
                 }
                 using (var w = File.CreateText("xbim_alignment.ifc"))
@@ -74,8 +76,7 @@ namespace Xbim.Essentials.Tests
                 var a = model.Instances.FirstOrDefault<IfcAlignment>();
                 Assert.IsNotNull(a);
 
-                Assert.IsNotNull(a.Horizontal);
-                Assert.IsNotNull(a.Vertical);
+                Assert.IsNotNull(a.Axis);
             }
         }
     }

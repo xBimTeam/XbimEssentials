@@ -7,13 +7,11 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.GeometryResource;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Ifc4.ProductExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ComponentModel;
-using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -27,11 +25,11 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcAlignment2DHorizontal
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAlignment2DHorizontal : IPersistEntity
+	public partial interface @IIfcAlignment2DHorizontal : IIfcGeometricRepresentationItem
 	{
 		IfcLengthMeasure? @StartDistAlong { get;  set; }
 		IItemSet<IIfcAlignment2DHorizontalSegment> @Segments { get; }
-		IEnumerable<IIfcAlignment> @ToAlignment {  get; }
+		IEnumerable<IIfcAlignmentCurve> @ToAlignmentCurve {  get; }
 	
 	}
 }
@@ -40,7 +38,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcAlignment2DHorizontal", 1332)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DHorizontal : PersistEntity, IInstantiableEntity, IIfcAlignment2DHorizontal, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DHorizontal>
+	public  partial class @IfcAlignment2DHorizontal : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAlignment2DHorizontal, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DHorizontal>
 	{
 		#region IIfcAlignment2DHorizontal explicit implementation
 		IfcLengthMeasure? IIfcAlignment2DHorizontal.StartDistAlong { 
@@ -52,7 +50,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			get { return new Common.Collections.ProxyItemSet<IfcAlignment2DHorizontalSegment, IIfcAlignment2DHorizontalSegment>( @Segments); } 
 		}	
 		 
-		IEnumerable<IIfcAlignment> IIfcAlignment2DHorizontal.ToAlignment {  get { return @ToAlignment; } }
+		IEnumerable<IIfcAlignmentCurve> IIfcAlignment2DHorizontal.ToAlignmentCurve {  get { return @ToAlignmentCurve; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -67,7 +65,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
 		public IfcLengthMeasure? @StartDistAlong 
 		{ 
 			get 
@@ -82,7 +80,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
 		public IItemSet<IfcAlignment2DHorizontalSegment> @Segments 
 		{ 
 			get 
@@ -98,12 +96,12 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 		#region Inverse attributes
 		[InverseProperty("Horizontal")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
-		public IEnumerable<IfcAlignment> @ToAlignment 
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
+		public IEnumerable<IfcAlignmentCurve> @ToAlignmentCurve 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAlignment>(e => Equals(e.Horizontal), "Horizontal", this);
+				return Model.Instances.Where<IfcAlignmentCurve>(e => Equals(e.Horizontal), "Horizontal", this);
 			} 
 		}
 		#endregion

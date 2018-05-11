@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
 		public IfcPositiveLengthMeasure @Radius 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _radius = v, _radius, value,  "Radius", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
 		public IfcBoolean @IsConvex 
 		{ 
 			get 

@@ -8,8 +8,11 @@
 // ------------------------------------------------------------------------------
 namespace Xbim.Ifc4.Interfaces
 {
-	public enum IfcAlignmentTypeEnum : byte
+	public enum IfcReferentTypeEnum : byte
 	{
+		@KILOPOINT ,
+		@MILEPOINT ,
+		@STATION ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

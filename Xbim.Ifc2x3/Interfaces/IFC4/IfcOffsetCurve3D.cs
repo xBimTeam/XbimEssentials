@@ -18,20 +18,6 @@ namespace Xbim.Ifc2x3.GeometryResource
 	public partial class @IfcOffsetCurve3D : IIfcOffsetCurve3D
 	{
 
-		[CrossSchemaAttribute(typeof(IIfcOffsetCurve3D), 1)]
-		IIfcCurve IIfcOffsetCurve3D.BasisCurve 
-		{ 
-			get
-			{
-				return BasisCurve;
-			} 
-			set
-			{
-				BasisCurve = value as IfcCurve;
-				
-			}
-		}
-
 		[CrossSchemaAttribute(typeof(IIfcOffsetCurve3D), 2)]
 		Ifc4.MeasureResource.IfcLengthMeasure IIfcOffsetCurve3D.Distance 
 		{ 
@@ -72,6 +58,20 @@ namespace Xbim.Ifc2x3.GeometryResource
 			set
 			{
 				RefDirection = value as IfcDirection;
+				
+			}
+		}
+
+		[CrossSchemaAttribute(typeof(IIfcOffsetCurve3D), 1)]
+		IIfcCurve IIfcOffsetCurve.BasisCurve 
+		{ 
+			get
+			{
+				return BasisCurve;
+			} 
+			set
+			{
+				BasisCurve = value as IfcCurve;
 				
 			}
 		}
