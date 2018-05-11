@@ -452,10 +452,18 @@ namespace Xbim.Common.Model
             for (int i = 0; i < Header.FileSchema.Schemas.Count; i++)
             {
                 var id = Header.FileSchema.Schemas[i];
+                
+                           
                 var sid = _entityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase));
                 if (sid == null)
-                    throw new XbimParserException("Mismatch between schema defined in the file and schemas available in the data model.");
-
+                {
+                    //add in a bit of flexibility for old Ifc models with weird schema names
+                    var old2xSchemaNamesThatAreOK = new[] { "IFC2X2_FINAL", "IFC2X2" };
+                    if(old2xSchemaNamesThatAreOK.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase))==null)
+                        throw new XbimParserException("Mismatch between schema defined in the file and schemas available in the data model.");
+                    else
+                        sid = _entityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, "IFC2X3", StringComparison.OrdinalIgnoreCase));
+                }
                 //if the case is different set it to the one from entity factory
                 if (id != sid)
                     Header.FileSchema.Schemas[i] = sid;
