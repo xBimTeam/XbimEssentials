@@ -8,9 +8,13 @@
 // ------------------------------------------------------------------------------
 namespace Xbim.Ifc4.Interfaces
 {
-	public enum IfcAlignmentTypeEnum : byte
+	public enum IfcTransitionCurveType : byte
 	{
-		@USERDEFINED ,
-		@NOTDEFINED 
+		@BIQUADRATICPARABOLA ,
+		@BLOSSCURVE ,
+		@CLOTHOIDCURVE ,
+		@COSINECURVE ,
+		@CUBICPARABOLA ,
+		@SINECURVE 
 	}
 }

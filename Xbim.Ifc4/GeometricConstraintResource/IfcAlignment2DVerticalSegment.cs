@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
 		public IfcLengthMeasure @StartDistAlong 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _startDistAlong = v, _startDistAlong, value,  "StartDistAlong", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
 		public IfcPositiveLengthMeasure @HorizontalLength 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _horizontalLength = v, _horizontalLength, value,  "HorizontalLength", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
 		public IfcLengthMeasure @StartHeight 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _startHeight = v, _startHeight, value,  "StartHeight", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
 		public IfcRatioMeasure @StartGradient 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 		#region Inverse attributes
 		[InverseProperty("Segments")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 1, 10)]
 		public IEnumerable<IfcAlignment2DVertical> @ToVertical 
 		{ 
 			get 

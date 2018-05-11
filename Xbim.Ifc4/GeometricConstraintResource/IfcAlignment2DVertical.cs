@@ -7,12 +7,10 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4.ProductExtension;
+using Xbim.Ifc4.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ComponentModel;
-using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
@@ -26,10 +24,10 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcAlignment2DVertical
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAlignment2DVertical : IPersistEntity
+	public partial interface @IIfcAlignment2DVertical : IIfcGeometricRepresentationItem
 	{
 		IItemSet<IIfcAlignment2DVerticalSegment> @Segments { get; }
-		IEnumerable<IIfcAlignment> @ToAlignment {  get; }
+		IEnumerable<IIfcAlignmentCurve> @ToAlignmentCurve {  get; }
 	
 	}
 }
@@ -38,14 +36,14 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 {
 	[ExpressType("IfcAlignment2DVertical", 1338)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DVertical : PersistEntity, IInstantiableEntity, IIfcAlignment2DVertical, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DVertical>
+	public  partial class @IfcAlignment2DVertical : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAlignment2DVertical, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DVertical>
 	{
 		#region IIfcAlignment2DVertical explicit implementation
 		IItemSet<IIfcAlignment2DVerticalSegment> IIfcAlignment2DVertical.Segments { 
 			get { return new Common.Collections.ProxyItemSet<IfcAlignment2DVerticalSegment, IIfcAlignment2DVerticalSegment>( @Segments); } 
 		}	
 		 
-		IEnumerable<IIfcAlignment> IIfcAlignment2DVertical.ToAlignment {  get { return @ToAlignment; } }
+		IEnumerable<IIfcAlignmentCurve> IIfcAlignment2DVertical.ToAlignmentCurve {  get { return @ToAlignmentCurve; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -60,7 +58,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
 		public IItemSet<IfcAlignment2DVerticalSegment> @Segments 
 		{ 
 			get 
@@ -76,12 +74,12 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 		#region Inverse attributes
 		[InverseProperty("Vertical")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 1, 2)]
-		public IEnumerable<IfcAlignment> @ToAlignment 
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 1, 4)]
+		public IEnumerable<IfcAlignmentCurve> @ToAlignmentCurve 
 		{ 
 			get 
 			{
-				return Model.Instances.Where<IfcAlignment>(e => Equals(e.Vertical), "Vertical", this);
+				return Model.Instances.Where<IfcAlignmentCurve>(e => Equals(e.Vertical), "Vertical", this);
 			} 
 		}
 		#endregion

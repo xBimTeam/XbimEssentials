@@ -21,74 +21,69 @@ using Xbim.Ifc4.GeometryResource;
 namespace Xbim.Ifc4.Interfaces
 {
 	/// <summary>
-    /// Readonly interface for IfcOffsetCurve2D
+    /// Readonly interface for IfcOffsetCurveByDistances
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOffsetCurve2D : IIfcOffsetCurve
+	public partial interface @IIfcOffsetCurveByDistances : IIfcOffsetCurve
 	{
-		IfcLengthMeasure @Distance { get;  set; }
-		IfcLogical @SelfIntersect { get;  set; }
+		IItemSet<IIfcDistanceExpression> @OffsetValues { get; }
+		IfcLabel? @Tag { get;  set; }
 	
 	}
 }
 
 namespace Xbim.Ifc4.GeometryResource
 {
-	[ExpressType("IfcOffsetCurve2D", 687)]
+	[ExpressType("IfcOffsetCurveByDistances", 1351)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve2D : IfcOffsetCurve, IInstantiableEntity, IIfcOffsetCurve2D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve2D>
+	public  partial class @IfcOffsetCurveByDistances : IfcOffsetCurve, IInstantiableEntity, IIfcOffsetCurveByDistances, IContainsEntityReferences, IEquatable<@IfcOffsetCurveByDistances>
 	{
-		#region IIfcOffsetCurve2D explicit implementation
-		IfcLengthMeasure IIfcOffsetCurve2D.Distance { 
- 
-			get { return @Distance; } 
-			set { Distance = value;}
+		#region IIfcOffsetCurveByDistances explicit implementation
+		IItemSet<IIfcDistanceExpression> IIfcOffsetCurveByDistances.OffsetValues { 
+			get { return new Common.Collections.ProxyItemSet<IfcDistanceExpression, IIfcDistanceExpression>( @OffsetValues); } 
 		}	
-		IfcLogical IIfcOffsetCurve2D.SelfIntersect { 
+		IfcLabel? IIfcOffsetCurveByDistances.Tag { 
  
-			get { return @SelfIntersect; } 
-			set { SelfIntersect = value;}
+			get { return @Tag; } 
+			set { Tag = value;}
 		}	
 		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcOffsetCurve2D(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcOffsetCurveByDistances(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
+			_offsetValues = new ItemSet<IfcDistanceExpression>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private IfcLengthMeasure _distance;
-		private IfcLogical _selfIntersect;
+		private readonly ItemSet<IfcDistanceExpression> _offsetValues;
+		private IfcLabel? _tag;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
-		public IfcLengthMeasure @Distance 
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
+		public IItemSet<IfcDistanceExpression> @OffsetValues 
 		{ 
 			get 
 			{
-				if(_activated) return _distance;
+				if(_activated) return _offsetValues;
 				Activate();
-				return _distance;
-			} 
-			set
-			{
-				SetValue( v =>  _distance = v, _distance, value,  "Distance", 2);
+				return _offsetValues;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
-		public IfcLogical @SelfIntersect 
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		public IfcLabel? @Tag 
 		{ 
 			get 
 			{
-				if(_activated) return _selfIntersect;
+				if(_activated) return _tag;
 				Activate();
-				return _selfIntersect;
+				return _tag;
 			} 
 			set
 			{
-				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 3);
+				SetValue( v =>  _tag = v, _tag, value,  "Tag", 3);
 			} 
 		}	
 		#endregion
@@ -105,10 +100,10 @@ namespace Xbim.Ifc4.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					_distance = value.RealVal;
+					_offsetValues.InternalAdd((IfcDistanceExpression)value.EntityVal);
 					return;
 				case 2: 
-					_selfIntersect = value.BooleanVal;
+					_tag = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -117,7 +112,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcOffsetCurve2D other)
+        public bool Equals(@IfcOffsetCurveByDistances other)
 	    {
 	        return this == other;
 	    }
@@ -130,6 +125,8 @@ namespace Xbim.Ifc4.GeometryResource
 			{
 				if (@BasisCurve != null)
 					yield return @BasisCurve;
+				foreach(var entity in @OffsetValues)
+					yield return entity;
 			}
 		}
 		#endregion
