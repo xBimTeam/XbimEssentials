@@ -436,15 +436,11 @@ namespace Xbim.Ifc
         {
             var esentModel = _model as EsentModel;
             if (esentModel != null) //we need to do transaction handling on Esent model, make sure we can write to it
-            {
-                esentModel.Header.StampXbimApplication(_schema);
                 return esentModel.BeginTransaction(name);
-            }
 
             var memoryModel = _model as MemoryModel;
             if (memoryModel == null)
                 throw new XbimException("Native store does not support transactions");
-            memoryModel.Header.StampXbimApplication(_schema);
             return memoryModel.BeginTransaction(name);
         }
 
