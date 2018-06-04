@@ -20,8 +20,7 @@ namespace Xbim.MemoryModel.Tests
 				{
 					txn.Commit();
 				}
-
-				Assert.AreNotEqual(model.Header.FileDescription.Description.Count, 0);
+				
 				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
 			}
 
@@ -35,8 +34,7 @@ namespace Xbim.MemoryModel.Tests
 				{
 					txn.Commit();
 				}
-
-				Assert.AreNotEqual(model.Header.FileDescription.Description.Count, 0);
+				
 				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
 			}
 
@@ -50,8 +48,7 @@ namespace Xbim.MemoryModel.Tests
 				{
 					txn.Commit();
 				}
-
-				Assert.AreNotEqual(model.Header.FileDescription.Description.Count, 0);
+				
 				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
 			}
 		}
@@ -69,8 +66,7 @@ namespace Xbim.MemoryModel.Tests
 				{
 					txn.Commit();
 				}
-
-				Assert.AreNotEqual(model.Header.FileDescription.Description.Count, 0);
+				
 				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
 			}
 
@@ -84,8 +80,7 @@ namespace Xbim.MemoryModel.Tests
 				{
 					txn.Commit();
 				}
-
-				Assert.AreNotEqual(model.Header.FileDescription.Description.Count, 0);
+				
 				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
 			}
 
@@ -99,8 +94,7 @@ namespace Xbim.MemoryModel.Tests
 				{
 					txn.Commit();
 				}
-
-				Assert.AreNotEqual(model.Header.FileDescription.Description.Count, 0);
+				
 				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
 			}
 		}
