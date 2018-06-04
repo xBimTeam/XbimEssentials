@@ -644,7 +644,8 @@ namespace Xbim.Ifc
                         p.GivenName = _editorDetails.EditorsGivenName;
                         p.FamilyName = _editorDetails.EditorsFamilyName;
                     });
-                    var organization = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault() ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                    var organization = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
+						?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                     _defaultOwningUser = Instances.New<Ifc4.ActorResource.IfcPersonAndOrganization>(po =>
                     {
                         po.TheOrganization = organization;
@@ -658,7 +659,8 @@ namespace Xbim.Ifc
                         p.GivenName = _editorDetails.EditorsGivenName;
                         p.FamilyName = _editorDetails.EditorsFamilyName;
                     });
-                    var organization = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault() ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                    var organization = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
+						?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                     _defaultOwningUser = Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>(po =>
                     {
                         po.TheOrganization = organization;
@@ -688,7 +690,8 @@ namespace Xbim.Ifc
                          (_defaultOwningApplication =
                              Instances.New<Ifc4.UtilityResource.IfcApplication>(a =>
                              {
-                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault() ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
+                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
+								 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                                  a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                  a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
                                  a.Version = _editorDetails.ApplicationVersion;
@@ -698,7 +701,8 @@ namespace Xbim.Ifc
                         (_defaultOwningApplication =
                             Instances.New<Ifc2x3.UtilityResource.IfcApplication>(a =>
                             {
-                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault() ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
+                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
+								?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                                 a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                 a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
                                 a.Version = _editorDetails.ApplicationVersion;
