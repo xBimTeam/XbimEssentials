@@ -51,7 +51,7 @@ namespace Xbim.IO.Step21
         protected PropertyValue PropertyValue;
         private List<DeferredReference> _deferredReferences;
         private double _streamSize = -1;
-        public static int MaxErrorCount = 100;
+        public static int MaxErrorCount = 200;
         private bool _deferListItems;
         private readonly List<int> _nestedIndex = new List<int>();
 

@@ -98,6 +98,7 @@ namespace Xbim.Common.Model
 
         public StepModel(EntityFactoryResolverDelegate factoryResolver, ILogger logger = null, int labelFrom = 0)
         {
+            Logger = logger;
             _factoryResolver = factoryResolver;
             _instances = new EntityCollection(this, labelFrom);
             IsTransactional = true;

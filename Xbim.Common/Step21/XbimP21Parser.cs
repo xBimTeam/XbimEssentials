@@ -330,14 +330,14 @@ namespace Xbim.IO.Step21
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2} value = {4}",
+                    Logger?.LogWarning("Entity #{0,-5} {1}, error at parameter {2} value = {4}",
                                                mainEntity.EntityLabel, mainEntity.Entity.GetType().Name.ToUpper(),
                                                mainEntity.CurrentParamIndex + 1,
                                                value);
                 }
                 else
                 {
-                    Logger?.LogError("Unhandled Parser error, in Parser.cs EndNestedType");
+                    Logger?.LogWarning("Unhandled Parser error, in Parser.cs EndNestedType");
                 }
             }
             if (ListNestLevel == 0)
@@ -370,7 +370,7 @@ namespace Xbim.IO.Step21
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
                 {
-                    Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
+                    Logger?.LogWarning("Entity #{0,-5} {1}, error at parameter {2} value = {3}",
                        mainEntity.EntityLabel,
                        mainEntity.Entity.GetType().Name.ToUpper(),
                        mainEntity.CurrentParamIndex + 1,
@@ -378,7 +378,7 @@ namespace Xbim.IO.Step21
                 }
                 else
                 {
-                    Logger?.LogError("Unhandled Parser error, in Parser.cs SetEntityParameter");
+                    Logger?.LogWarning("Unhandled Parser error, in Parser.cs SetEntityParameter");
                 }
             }
             if (ListNestLevel == 0)
@@ -410,7 +410,7 @@ namespace Xbim.IO.Step21
                 if (ErrorCount > MaxErrorCount)
                     throw new XbimParserException("Too many errors in file, parser execution terminated");
                 ErrorCount++;
-                Logger?.LogError("Entity #{0,-5} {1}, error at parameter {2}",
+                Logger?.LogWarning("Entity #{0,-5} {1}, error at parameter {2}",
                                            refId, host.GetType().Name.ToUpper(), paramIndex + 1);
 
                 // this means the case is handled. It would be added to defered references and caused new errors
