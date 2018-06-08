@@ -7,6 +7,9 @@ namespace Xbim.IO.Tests
     [TestClass]
     public class EsentParsingTests
     {
+        // this test is known to fail at the moment.
+        // it's a desired tolerance feature, not yet accomplished
+        //
         [TestMethod]
         [DeploymentItem("TestFiles\\Issue107.zip")]
         public void Issue107OnEsentModel()

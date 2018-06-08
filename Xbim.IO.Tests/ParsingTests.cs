@@ -512,6 +512,7 @@ namespace Xbim.MemoryModel.Tests
             using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc")) //test memory model databases first
             {
                 var count = ifcStore.Instances.Count;
+                var origLabels = ifcStore.Instances.Select(x => x.EntityLabel).ToList();
                 Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working
                 using (var txn = ifcStore.BeginTransaction())
                 {
@@ -520,7 +521,24 @@ namespace Xbim.MemoryModel.Tests
                     door.GlobalId = doorId;
                     txn.Commit();
                 }
-                Assert.IsTrue(ifcStore.Instances.Count == count +7); //door plus all the owner history objects
+                var diffCount = ifcStore.Instances.Count - count;
+                var NewLabels = ifcStore.Instances.Select(x => x.EntityLabel).ToList();
+                var newLabelList = NewLabels.Except(origLabels);
+                foreach (var item in newLabelList)
+                {
+                    Debug.WriteLine(ifcStore.Instances[item].ToString());
+                }
+                
+                Assert.AreEqual(6, diffCount, "Unexpected number of elements created for new door."); //door plus all the owner history objects
+                
+                // it seems right that there should be a few more items:
+                //Xbim.Ifc2x3.SharedBldgElements.IfcDoor
+                //Xbim.Ifc2x3.UtilityResource.IfcOwnerHistory
+                //Xbim.Ifc2x3.ActorResource.IfcPerson
+                //Xbim.Ifc2x3.ActorResource.IfcOrganization
+                //Xbim.Ifc2x3.ActorResource.IfcPersonAndOrganization
+                //Xbim.Ifc2x3.UtilityResource.IfcApplication
+
                 ifcStore.SaveAs("4walls1floorSiteDoorMM.ifc");
                 ifcStore.Close();
             }
@@ -536,13 +554,13 @@ namespace Xbim.MemoryModel.Tests
                     door.GlobalId = doorId;
                     txn.Commit();
                 }
-                Assert.IsTrue(ifcStore.Instances.Count == count + 7); //door plus all the owner history objects
+                Assert.IsTrue(ifcStore.Instances.Count == count + 6); //door plus all the owner history objects
                 ifcStore.SaveAs("4walls1floorSiteDoorES.ifc");
                 ifcStore.Close();
             }
 
 
-            var diff =
+            var diff = 
                 File.ReadAllLines("4walls1floorSiteDoorES.ifc").Except(File.ReadAllLines("4walls1floorSiteDoorMM.ifc"));
             var enumerable = diff as string[] ?? diff.ToArray();
             Assert.IsTrue(!enumerable.Any() || (enumerable.Count() == 1 && enumerable.First().Contains("FILE_NAME"))); //might be a slight time difference in the timestamp of this line
