@@ -38,14 +38,6 @@ namespace Xbim.Common.Logging.Providers
 		public void Configure()
 		{
 			Initialise();
-            // Set up some default properties we can use to provide consistent log
-            // file naming conventions. 
-            // Skip if already set - GlobalContext is global and Properties may be set by another part of the application. Don't over-write
-            if (log4net.GlobalContext.Properties["LogName"] == null)
-            {
-                log4net.GlobalContext.Properties["LogName"] = Path.Combine(LogPath, LogFileName);
-                log4net.GlobalContext.Properties["ApplicationName"] = ApplicationName;
-            }
 
             if (!log4net.LogManager.GetRepository().Configured)
             {
@@ -102,28 +94,43 @@ namespace Xbim.Common.Logging.Providers
 
 		private void Initialise()
 		{
-			Assembly mainAssembly = GetAssembly();
+            // Set up some default properties we can use to provide consistent log
+            // file naming conventions. 
+            // Skip if already set - GlobalContext is global and Properties may be set by another part of the application. Don't over-write
+            Assembly mainAssembly = GetAssembly ();
 
-			String company = GetCompany(mainAssembly);
-			String product = GetProductName(mainAssembly);
-			String path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            ApplicationName = log4net.GlobalContext.Properties["ApplicationName"] as String;
+            if (ApplicationName == null)
+            {
+                ApplicationName = mainAssembly.GetName ().Name;
+                log4net.GlobalContext.Properties["ApplicationName"] = ApplicationName;
+            }
 
-			path = Path.Combine(path, company);
-			path = Path.Combine(path, product);
+            String logPathName = log4net.GlobalContext.Properties["LogName"] as String;
+            if (logPathName == null)
+            {
+                String company = GetCompany (mainAssembly);
+                String product = GetProductName (mainAssembly);
+                String path = Environment.GetFolderPath (Environment.SpecialFolder.CommonApplicationData);
 
-			if(!Directory.Exists(path))
-			{
-				try
-				{
-					Directory.CreateDirectory(path);
-				}
-				catch (SystemException) { }
-			}
+                path = Path.Combine (path, company);
+                path = Path.Combine (path, product);
 
-			LogPath = path;
+                if (!Directory.Exists(path))
+			    {
+				    try
+				    {
+					    Directory.CreateDirectory(path);
+				    }
+				    catch (SystemException) { }
+			    }
 
-			ApplicationName = mainAssembly.GetName().Name;
-			LogFileName = ApplicationName;
+                logPathName = Path.Combine (path, ApplicationName);
+                log4net.GlobalContext.Properties["LogName"] = logPathName;
+            }
+            
+            LogPath = Path.GetDirectoryName (logPathName);
+            LogFileName = Path.GetFileName (logPathName);
 		}
 
 		private Assembly GetAssembly()
