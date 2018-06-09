@@ -12,7 +12,7 @@ namespace Xbim.IO.Tests
         //
         [TestMethod]
         [DeploymentItem("TestFiles\\Issue107.zip")]
-        public void Issue107OnEsentModel()
+        public void ForConsideration_Issue107OnEsentModel()
         {
             // a merged PR on issue 107 makes the memory model more tolerant of bad files.
             // the same does not apply to the database version though.
@@ -30,7 +30,6 @@ namespace Xbim.IO.Tests
                     if (File.Exists(temp))
                         File.Delete(temp);
                 }
-
             }
         }
     }

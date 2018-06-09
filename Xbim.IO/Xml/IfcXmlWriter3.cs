@@ -119,32 +119,44 @@ namespace Xbim.IO.Xml
         private void WriteISOHeader(XmlWriter output)
         {
             output.WriteStartElement("ex", "iso_10303_28_header", null);
-            output.WriteElementString("ex", "name", null, _fileHeader.FileName.Name);
-            output.WriteElementString("ex", "time_stamp", null, _fileHeader.FileName.TimeStamp);
+            WriteInHeader(output,"ex", "name", null, _fileHeader.FileName.Name);
+            WriteInHeader(output,"ex", "time_stamp", null, _fileHeader.FileName.TimeStamp);
 
             if (_fileHeader.FileName.AuthorName.Count > 0)
                 foreach (var name in _fileHeader.FileName.AuthorName)
-                    output.WriteElementString("ex", "author", null, name);
+                    WriteInHeader(output,"ex", "author", null, name);
             else
-                output.WriteElementString("ex", "author", null, "");
+                WriteInHeader(output,"ex", "author", null, "");
 
             if (_fileHeader.FileName.Organization.Count > 0)
                 foreach (var name in _fileHeader.FileName.Organization)
-                    output.WriteElementString("ex", "organization", null, name);
+                    WriteInHeader(output,"ex", "organization", null, name);
             else
-                output.WriteElementString("ex", "organization", null, "");
+                WriteInHeader(output,"ex", "organization", null, "");
 
-            output.WriteElementString("ex", "preprocessor_version", null, _fileHeader.FileName.PreprocessorVersion);
-            output.WriteElementString("ex", "originating_system", null, _fileHeader.FileName.OriginatingSystem);
-            output.WriteElementString("ex", "authorization", null, _fileHeader.FileName.AuthorizationName);
+            WriteInHeader(output,"ex", "preprocessor_version", null, _fileHeader.FileName.PreprocessorVersion);
+            WriteInHeader(output,"ex", "originating_system", null, _fileHeader.FileName.OriginatingSystem);
+            WriteInHeader(output,"ex", "authorization", null, _fileHeader.FileName.AuthorizationName);
 
             if (_fileHeader.FileDescription.Description.Count > 0)
                 foreach (var name in _fileHeader.FileDescription.Description)
-                    output.WriteElementString("ex", "documentation", null, name);
+                    WriteInHeader(output,"ex", "documentation", null, name);
             else
-                output.WriteElementString("ex", "documentation", null, "");
+                WriteInHeader(output,"ex", "documentation", null, "");
 
             output.WriteEndElement(); //end iso_10303_28_header
+        }
+
+        private void WriteInHeader(XmlWriter output, string prefix, string localName, string ns, string value)
+        {
+            try
+            {
+                output.WriteElementString(prefix, localName, ns, value);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Failed to write the property called '{localName}' in the header section.", e);
+            }
         }
 
         private void Write(IPersistEntity entity, XmlWriter output, int pos = -1)

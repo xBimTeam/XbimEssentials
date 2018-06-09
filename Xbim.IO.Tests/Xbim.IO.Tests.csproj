@@ -94,6 +94,7 @@
     <Compile Include="TableStorageTests.cs" />
     <Compile Include="ActivationTests.cs" />
     <Compile Include="TessellatorTests.cs" />
+    <Compile Include="TolerantFormatConversionTests.cs" />
     <Compile Include="TransactionLogTests.cs" />
     <Compile Include="NoHeaderSerialization.cs" />
     <Compile Include="IfcStoreStreamOpeningTests.cs" />
@@ -156,6 +157,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\4walls1floorSite.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\BackSpaceInFileName.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\DoubleBackSlashName.ifc">
