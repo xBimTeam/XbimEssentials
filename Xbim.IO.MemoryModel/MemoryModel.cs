@@ -405,7 +405,7 @@ namespace Xbim.IO.Memory
             if (defaultPrecision > 1e-8) //sometimes found in old revit models where the precision should really be 1e-5
                 defaultPrecision = 1e-5;
             defaultPrecision = Math.Max(defaultPrecision, 1e-7); //if greater than 1e-7 make it 1e-7
-            defaultPrecision *= 1.1; //this fixes errors where things are nearly coincidental like faces
+           // defaultPrecision *= 1.1; //this fixes errors where things are nearly coincidental like faces
             //check if angle units are incorrectly defined, this happens in some old models
             if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
             {
