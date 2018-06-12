@@ -137,8 +137,7 @@ namespace Xbim.Ifc2x3.ActorResource
 						return;
 					case Ifc4.Interfaces.IfcRoleEnum.COMMISSIONINGENGINEER:
 						//## Handle setting of COMMISSIONINGENGINEER member from IfcRoleEnum in property Role
-                        Role = IfcRoleEnum.USERDEFINED;
-                        UserDefinedRole = "COMMISSIONINGENGINEER";
+                        Role = IfcRoleEnum.COMISSIONINGENGINEER;
 				        return;
 						//##
 										case Ifc4.Interfaces.IfcRoleEnum.ENGINEER:
