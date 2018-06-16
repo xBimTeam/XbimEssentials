@@ -184,7 +184,7 @@ namespace Xbim.Presentation
         /// </summary>
         /// <param name="item">the IPersistEntity to add or remove from the selection</param>
         /// <returns>true if added; false if removed</returns>
-        internal bool Toggle(IPersistEntity item)
+        public bool Toggle(IPersistEntity item)
         {
             if (_selection.Contains(item))
             {
