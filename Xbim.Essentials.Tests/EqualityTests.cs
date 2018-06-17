@@ -68,7 +68,9 @@ namespace Xbim.Essentials.Tests
         }
 
 
-
+        /// <summary>
+        /// This method tests the opening and retrival of an esent model from a dictionary
+        /// </summary>
         [TestMethod]
         [DeploymentItem(@"TestSourceFiles\P1.xbim")]
         public void StoreEqualityTest()
@@ -80,7 +82,29 @@ namespace Xbim.Essentials.Tests
             int restored;
             var restoredOk = d.TryGetValue(model, out restored);
 
-            Assert.IsTrue(restoredOk);
+            Assert.IsTrue(restoredOk, "The store could not be found in the dictionary");
+            Assert.AreEqual(1, restored);
+        }
+
+        /// <summary>
+        /// Similarly to StoreEqualityTest above 
+        /// this method tests the opening and retrival of an memory model from a dictionary
+        /// </summary>
+        [TestMethod]
+        [DeploymentItem(@"TestSourceFiles\email.ifc")]
+        public void IfcStoreEqualityTest()
+        {
+            Dictionary<IModel, int> d = new Dictionary<IModel, int>();
+            var model = IfcStore.Open(@"email.ifc");
+            d.Add(model, 1);
+
+            var hasInstances = model.Instances.Any();
+            Assert.IsTrue(hasInstances);
+
+            int restored;
+            var restoredOk = d.TryGetValue(model, out restored);
+
+            Assert.IsTrue(restoredOk, "The store could not be found in the dictionary");
             Assert.AreEqual(1, restored);
         }
     }
