@@ -7,6 +7,7 @@ using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.Extensions;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO.Memory;
+using Xbim.Ifc;
 
 namespace Xbim.Essentials.Tests
 {
@@ -64,6 +65,23 @@ namespace Xbim.Essentials.Tests
             //but it "contains" the object as far as the list is concerned
             Assert.IsTrue(distinctEntities.Contains(wall1));
             Assert.IsTrue(distinctEntities.Contains(wall2));
+        }
+
+
+
+        [TestMethod]
+        [DeploymentItem(@"TestSourceFiles\P1.xbim")]
+        public void StoreEqualityTest()
+        {
+            Dictionary<IModel, int> d = new Dictionary<IModel, int>();
+            var model = IfcStore.Open(@"P1.xbim");
+            d.Add(model, 1);
+
+            int restored;
+            var restoredOk = d.TryGetValue(model, out restored);
+
+            Assert.IsTrue(restoredOk);
+            Assert.AreEqual(1, restored);
         }
     }
 }
