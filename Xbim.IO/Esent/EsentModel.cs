@@ -105,10 +105,7 @@ namespace Xbim.IO.Esent
         {
             get { return InstanceCache.DatabaseName; }
         }
-
-
-
-
+        
         //sets or gets the Geometry Manager for this model
         public IGeometryManager GeometryManager { get; set; }
 
