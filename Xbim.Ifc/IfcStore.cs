@@ -1756,14 +1756,24 @@ namespace Xbim.Ifc
 
         #region Equality
 
+        /// <summary>
+        /// Returns true if it is another reference to this or if is is an embeded model
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(IModel other)
         {
             return ReferenceEquals(this, other) || ReferenceEquals(other, _model);
         }
 
+        /// <summary>
+        /// Returns true if it is another reference to this or if is is an embeded model
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
-            return _model.Equals(obj);
+            return _model.Equals(obj) || ReferenceEquals(this, obj);
         }
 
         public override int GetHashCode()
