@@ -289,18 +289,9 @@ namespace Xbim.Ifc
 
             if (storageType == IfcStorageType.Xbim) //open the XbimFile
             {
-                if (ifcVersion == IfcSchemaVersion.Ifc4)
-                {
-                    var model = CreateEsentModel(IfcSchemaVersion.Ifc4, codePageOverride);
-                    model.Open(path, accessMode, progDelegate);
-                    return new IfcStore(model, ifcVersion, editorDetails, path);
-                }
-                else //it will be Ifc2x3
-                {
-                    var model = CreateEsentModel(IfcSchemaVersion.Ifc2X3, codePageOverride);
-                    model.Open(path, accessMode, progDelegate);
-                    return new IfcStore(model, ifcVersion, editorDetails, path);
-                }
+                var model = CreateEsentModel(ifcVersion, codePageOverride);
+                model.Open(path, accessMode, progDelegate);
+                return new IfcStore(model, ifcVersion, editorDetails, path);
             }
             else //it will be an IFC file if we are at this point
             {
@@ -637,15 +628,15 @@ namespace Xbim.Ifc
                 if (_editorDetails == null)
                     return null;
 
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var person = Instances.New<Ifc4.ActorResource.IfcPerson>(p =>
                     {
                         p.GivenName = _editorDetails.EditorsGivenName;
                         p.FamilyName = _editorDetails.EditorsFamilyName;
                     });
-                    var organization = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
-						?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                    var organization = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                        ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                     _defaultOwningUser = Instances.New<Ifc4.ActorResource.IfcPersonAndOrganization>(po =>
                     {
                         po.TheOrganization = organization;
@@ -659,8 +650,8 @@ namespace Xbim.Ifc
                         p.GivenName = _editorDetails.EditorsGivenName;
                         p.FamilyName = _editorDetails.EditorsFamilyName;
                     });
-                    var organization = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
-						?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                    var organization = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                        ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                     _defaultOwningUser = Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>(po =>
                     {
                         po.TheOrganization = organization;
@@ -685,13 +676,13 @@ namespace Xbim.Ifc
                 if (_editorDetails == null)
                     return null;
 
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                     return _defaultOwningApplication ??
                          (_defaultOwningApplication =
                              Instances.New<Ifc4.UtilityResource.IfcApplication>(a =>
                              {
-                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
-								 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                                 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                                  a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                  a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
                                  a.Version = _editorDetails.ApplicationVersion;
@@ -701,8 +692,8 @@ namespace Xbim.Ifc
                         (_defaultOwningApplication =
                             Instances.New<Ifc2x3.UtilityResource.IfcApplication>(a =>
                             {
-                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName) 
-								?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                                ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                                 a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                 a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
                                 a.Version = _editorDetails.ApplicationVersion;
@@ -717,7 +708,7 @@ namespace Xbim.Ifc
             {
                 if (_ownerHistoryAddObject != null)
                     return _ownerHistoryAddObject;
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var histAdd = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
                     histAdd.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
@@ -748,7 +739,7 @@ namespace Xbim.Ifc
             {
                 if (_ownerHistoryModifyObject != null)
                     return _ownerHistoryModifyObject;
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var histmod = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
                     histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
@@ -903,7 +894,7 @@ namespace Xbim.Ifc
                     writer.Write(_model, xmlWriter, _model.Instances);
 
                 }
-                else if (_schema == IfcSchemaVersion.Ifc4)
+                else if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                     var project = _model.Instances.OfType<Ifc4.Kernel.IfcProject>();
@@ -1096,7 +1087,7 @@ namespace Xbim.Ifc
                 var toIgnore = new short[4];
                 toIgnore[0] = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
                 toIgnore[1] = _model.Metadata.ExpressTypeId("IFCPROJECTIONELEMENT");
-                if (IfcSchemaVersion == IfcSchemaVersion.Ifc4)
+                if (IfcSchemaVersion == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     toIgnore[2] = _model.Metadata.ExpressTypeId("IFCVOIDINGFEATURE");
                     toIgnore[3] = _model.Metadata.ExpressTypeId("IFCSURFACEFEATURE");
@@ -1311,7 +1302,7 @@ namespace Xbim.Ifc
             XbimReferencedModel retVal;
             using (var txn = BeginTransaction())
             {
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var role = Instances.New<Ifc4.ActorResource.IfcActorRole>();
                     role.RoleString = organisationRole;
