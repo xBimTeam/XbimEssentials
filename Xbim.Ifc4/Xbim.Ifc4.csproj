@@ -756,7 +756,6 @@
     <Compile Include="GeometryResource\IfcCartesianTransformationOperator3DnonUniform.cs" />
     <Compile Include="GeometryResource\IfcCircle.cs" />
     <Compile Include="GeometryResource\IfcCircularArcSegment2D.cs" />
-    <Compile Include="GeometryResource\IfcClothoidalArcSegment2D.cs" />
     <Compile Include="GeometryResource\IfcCompositeCurve.cs" />
     <Compile Include="GeometryResource\IfcCompositeCurveOnSurface.cs" />
     <Compile Include="GeometryResource\IfcCompositeCurveSegment.cs" />
