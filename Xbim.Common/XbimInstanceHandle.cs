@@ -30,7 +30,7 @@ namespace Xbim.Common
 
         public override bool Equals(object b)
         {
-            return Model == ((XbimInstanceHandle)b).Model && 
+            return Model.Equals(((XbimInstanceHandle)b).Model) && 
                    EntityLabel  == ((XbimInstanceHandle)b).EntityLabel && 
                    EntityTypeId == ((XbimInstanceHandle)b).EntityTypeId;
         }
@@ -59,7 +59,6 @@ namespace Xbim.Common
             }
         }
 
-        
         public XbimInstanceHandle(IModel model, int entityLabel, short type = 0)
         {
             Model = model;
@@ -97,10 +96,5 @@ namespace Xbim.Common
         {
             return Model.Metadata.ExpressType(EntityTypeId);
         }
-
-
-
-
-       
     }
 }

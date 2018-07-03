@@ -87,6 +87,30 @@ namespace Xbim.Essentials.Tests
         }
 
         /// <summary>
+        /// This method tests the opening and retrival of an XbimInstanceHandle from a dictionary
+        /// </summary>
+        [TestMethod]
+        [DeploymentItem(@"TestSourceFiles\P1.xbim")]
+        public void XbimInstanceHandleSupportsDictionary()
+        {
+            Dictionary<XbimInstanceHandle, int> d = new Dictionary<XbimInstanceHandle, int>();
+            using (var model = IfcStore.Open(@"P1.xbim"))
+            {
+                var ent = model.Instances.FirstOrDefault();
+
+                var handlefromPointers = new XbimInstanceHandle(model, ent.EntityLabel, ent.ExpressType.TypeId);
+                d.Add(handlefromPointers, 1);
+
+                int restored;
+                var handlefromEntity = new XbimInstanceHandle(ent);
+                var restoredOk = d.TryGetValue(handlefromEntity, out restored);
+
+                Assert.IsTrue(restoredOk, "The XbimInstanceHandle could not be found in the dictionary");
+                Assert.AreEqual(1, restored);
+            }
+        }
+
+        /// <summary>
         /// Similarly to StoreEqualityTest above 
         /// this method tests the opening and retrival of an memory model from a dictionary
         /// </summary>
