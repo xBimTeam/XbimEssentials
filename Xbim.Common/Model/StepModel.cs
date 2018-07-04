@@ -491,6 +491,10 @@ namespace Xbim.Common.Model
             {
                 return LoadStep21(parser);
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 if (progDelegate != null) parser.ProgressStatus -= progDelegate;
@@ -589,6 +593,10 @@ namespace Xbim.Common.Model
             {
                 result = ModelHelper.InsertCopy(this, toCopy, mappings, propTransform, includeInverses, keepLabels,
                     (type, i) => _instances.New(type, i));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {
