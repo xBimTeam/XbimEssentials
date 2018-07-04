@@ -61,6 +61,7 @@
     <Compile Include="GeometryCacheTests.cs" />
     <Compile Include="GeometryPersistencyTables.cs" />
     <Compile Include="GeometryTests.cs" />
+    <Compile Include="EntitySelectionTests.cs" />
     <Compile Include="IfcAlignmentTests.cs" />
     <Compile Include="LinqTest.cs" />
     <Compile Include="PartialClassesTests.cs" />
