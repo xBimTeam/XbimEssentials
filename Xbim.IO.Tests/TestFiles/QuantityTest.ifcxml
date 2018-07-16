@@ -5,8 +5,6 @@
     <author>mk</author>
   </header>
   <IfcProject id="p1" GlobalId="3W_wCy4R58hgkAO0WsiUkm" Name="P"/>
-  <!--Test for site -->
-  <IfcSite id="s1" GlobalId="1lOEDpLKz62xrR7$RUqRl$" Name="S"/>
   <IfcRelAggregates>
     <RelatingObject xsi:type="IfcProject" ref="p1" />
     <RelatedObjects>
@@ -21,7 +19,15 @@
     </Quantities>
   </IfcElementQuantity>
   <IfcRelDefinesByProperties id="x3">
-    <RelatedObjects xsi:type="IfcSite" ref="s1"/>
+    <!-- Site def. in RelatedObjects-->
+    <RelatedObjects xsi:type="IfcSite" id="s1"
+    GlobalId="1lOEDpLKz62xrR7$RUqRl$"
+    Name="Testsite">
+      <SiteAddress id="i26" xsi:type="IfcPostalAddress"
+        Purpose="site"
+        Town="Newcastle upon Tyne"
+        Region="Tyne and Wear" PostalCode="NE6 2SY" Country="United Kingdom" />
+    </RelatedObjects>
     <RelatingPropertyDefinition>
       <IfcElementQuantity xsi:nil="true" ref="x2"/>
     </RelatingPropertyDefinition>

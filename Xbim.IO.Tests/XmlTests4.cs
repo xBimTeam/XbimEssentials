@@ -45,7 +45,7 @@ namespace Xbim.MemoryModel.Tests
         {
             var path = @"QuantityTest.ifcxml";
             var store = Xbim.Ifc.IfcStore.Open(path);
-            var site = store.Instances.FirstOrDefault<IIfcSite>(r => r.Name == "S");
+            var site = store.Instances.FirstOrDefault<IIfcSite>(r => r.Name == "Testsite");
             var rel = site.IsDefinedBy
                     .Where(r => r.RelatingPropertyDefinition is IIfcElementQuantity)
                     .FirstOrDefault();
