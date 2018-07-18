@@ -130,20 +130,31 @@ namespace Xbim.Ifc4.MeasureResource
                 var result = new Common.Geometry.XbimDimensionalExponents(0, 0, 0, 0, 0, 0, 0);
                 foreach (var unitElement in elements)
                 {
+                    var unitDimensions = unitElement.Unit.Dimensions;
+                    if (unitDimensions == null && unitElement.Unit is IfcConversionBasedUnit)
+                    {
+                        var cbu = unitElement.Unit as IfcConversionBasedUnit;
+                        var nu = cbu.ConversionFactor.UnitComponent as IfcNamedUnit;
+                        if (nu != null)
+                            unitDimensions = nu.Dimensions;
+                    }
+                    if (unitDimensions == null)
+                        continue;
+
                     result.LengthExponent = result.LengthExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.LengthExponent);
+                          (unitElement.Exponent * unitDimensions.LengthExponent);
                     result.MassExponent = +result.MassExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.MassExponent);
+                          (unitElement.Exponent * unitDimensions.MassExponent);
                     result.TimeExponent = result.TimeExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.TimeExponent);
+                          (unitElement.Exponent * unitDimensions.TimeExponent);
                     result.ElectricCurrentExponent = result.ElectricCurrentExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.ElectricCurrentExponent);
+                          (unitElement.Exponent * unitDimensions.ElectricCurrentExponent);
                     result.ThermodynamicTemperatureExponent = result.ThermodynamicTemperatureExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.ThermodynamicTemperatureExponent);
+                          (unitElement.Exponent * unitDimensions.ThermodynamicTemperatureExponent);
                     result.AmountOfSubstanceExponent = result.AmountOfSubstanceExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.AmountOfSubstanceExponent);
+                          (unitElement.Exponent * unitDimensions.AmountOfSubstanceExponent);
                     result.LuminousIntensityExponent = result.LuminousIntensityExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.LuminousIntensityExponent);
+                          (unitElement.Exponent * unitDimensions.LuminousIntensityExponent);
                 }
                 return result;
                 #endregion Strict Implementation

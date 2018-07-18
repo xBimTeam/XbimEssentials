@@ -87,6 +87,7 @@
     <Compile Include="OwnerHistoryTests.cs" />
     <Compile Include="NullableInterfaceEnumMemberTest.cs" />
     <Compile Include="AngleTests.cs" />
+    <Compile Include="DerivedUnitTests.cs" />
     <Compile Include="ValidationTests.cs" />
     <Compile Include="BinaryDataTests.cs" />
     <Compile Include="XbimColourTests.cs" />
@@ -160,6 +161,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\email.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\IfcDerivedUnit.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\InvalidContentFC4.ifc">
