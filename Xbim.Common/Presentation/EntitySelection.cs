@@ -82,7 +82,6 @@ namespace Xbim.Presentation
                     check.Add(item);
                 }
             }
-            
             OnCollectionChanged(NotifyCollectionChangedAction.Add, check);
             return check;
         }
@@ -162,7 +161,7 @@ namespace Xbim.Presentation
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        private void OnCollectionChanged(NotifyCollectionChangedAction action, IList<IPersistEntity> entities)
+        private void OnCollectionChanged(NotifyCollectionChangedAction action, IList entities)
         {
             if (action != NotifyCollectionChangedAction.Add && action != NotifyCollectionChangedAction.Remove)
                 throw new ArgumentException("Only Add and Remove operations are supported");

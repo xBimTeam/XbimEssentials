@@ -317,7 +317,8 @@ namespace Xbim.Ifc
                             {
                                 foreach (ZipEntry zipEntry in zipFile)
                                 {
-                                    if (!zipEntry.IsFile) continue; // 
+                                    if (!zipEntry.IsFile || zipEntry.Name.StorageType() == IfcStorageType.Invalid)
+                                        continue; 
                                     var streamSize = zipEntry.Size;
                                     using (var reader = zipFile.GetInputStream(zipEntry))
                                     {

@@ -395,7 +395,9 @@ namespace Xbim.IO.Xml
             }
 
             if (typeof(IPersistEntity).IsAssignableFrom(type) || 
-                (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1))
+                (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1) ||
+                (typeof(IEnumerable).IsAssignableFrom(type) && input.GetAttribute("type",_xsi)!=null)
+                )
             {
                 var value = ReadEntity(input, type);
                 var pVal = new PropertyValue();

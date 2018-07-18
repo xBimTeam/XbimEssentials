@@ -40,7 +40,17 @@ namespace Xbim.MemoryModel.Tests
                 model.LoadXml(path);
             }
         }
-
+        [TestMethod]
+        public void CheckQuantity()
+        {
+            var path = @"QuantityTest.ifcxml";
+            var store = Xbim.Ifc.IfcStore.Open(path);
+            var site = store.Instances.FirstOrDefault<IIfcSite>(r => r.Name == "Testsite");
+            var rel = site.IsDefinedBy
+                    .Where(r => r.RelatingPropertyDefinition is IIfcElementQuantity)
+                    .FirstOrDefault();
+            Assert.IsNotNull(rel);
+        }
         [TestMethod]
         public void Ifc4HeaderSerialization()
         {

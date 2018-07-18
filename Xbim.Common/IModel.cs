@@ -138,8 +138,6 @@ namespace Xbim.Common
         /// </summary>
 	    IInverseCache InverseCache { get; }
         IfcSchemaVersion SchemaVersion { get; }
-
-
     }
 
 	public delegate void NewEntityHandler(IPersistEntity entity);
