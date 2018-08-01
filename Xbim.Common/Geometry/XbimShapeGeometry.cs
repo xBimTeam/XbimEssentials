@@ -242,16 +242,23 @@ namespace Xbim.Common.Geometry
         {
             get
             {
+                //Though you don't use it in "production" code, it should be preferable to use Base64 encoding to avoid invalid UTF-8 sequence. I used this property before to see IXbimShapeGeometryData.ShapeData property at my expense ;)
+                //see: https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
+                //or : https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
+                //return System.Convert.ToBase64String(_shapeData);
                 return Encoding.UTF8.GetString(_shapeData.ToArray());
             }
             set
             {
+                //Though you don't use it in "production" code, it should be preferable to use Base64 encoding to avoid invalid UTF-8 sequence. I used this property before to see IXbimShapeGeometryData.ShapeData property at my expense ;)
+                //see: https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
+                //or : https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
+                //_shapeData = System.Convert.FromBase64String(value);
                 _shapeData = Encoding.UTF8.GetBytes(value);
             }
-        }
-        /// <summary>
-        /// The geometry data defining the shape, this is a compressed representation of the data
-        /// </summary>
+        }        /// <summary>
+                 /// The geometry data defining the shape, this is a compressed representation of the data
+                 /// </summary>
         byte[] IXbimShapeGeometryData.ShapeDataCompressed
         {
             get
