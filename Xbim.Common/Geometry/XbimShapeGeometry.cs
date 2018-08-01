@@ -18,7 +18,7 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// The number of references to this shape geoemetry
         /// </summary>
-        readonly  int _referenceCount;
+        readonly int _referenceCount;
 
         public XbimShapeGeometryHandle(short contextHandle, int shapeLabel, int referenceCount)
         {
@@ -60,7 +60,7 @@ namespace Xbim.Common.Geometry
     /// </summary>
     public class XbimShapeGeometry : IXbimShapeGeometryData
     {
-        
+
         /// <summary>
         /// The unique label of this shape geometry
         /// </summary>
@@ -135,7 +135,7 @@ namespace Xbim.Common.Geometry
                 _geometryHash = value;
             }
         }
-        
+
         /// <summary>
         /// The cost in bytes of this shape
         /// </summary>
@@ -143,7 +143,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                if(_referenceCount==0)
+                if (_referenceCount == 0)
                     return _shapeData.Length;
                 return _referenceCount * _shapeData.Length;
             }
@@ -244,7 +244,7 @@ namespace Xbim.Common.Geometry
             {
                 //Though you don't use it in "production" code, it should be preferable to use Base64 encoding to avoid invalid UTF-8 sequence. I used this property before to see IXbimShapeGeometryData.ShapeData property at my expense ;)
                 //see: https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
-                //or : https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
+                //or : https://stackoverflow.com/questions/45410219/what-is-the-reason-that-encoding-utf8-getstring-and-encoding-utf8-getbytes-are-n
                 //return System.Convert.ToBase64String(_shapeData);
                 return Encoding.UTF8.GetString(_shapeData.ToArray());
             }
@@ -252,13 +252,14 @@ namespace Xbim.Common.Geometry
             {
                 //Though you don't use it in "production" code, it should be preferable to use Base64 encoding to avoid invalid UTF-8 sequence. I used this property before to see IXbimShapeGeometryData.ShapeData property at my expense ;)
                 //see: https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
-                //or : https://blogs.msdn.microsoft.com/shawnfa/2005/11/10/dont-roundtrip-ciphertext-via-a-string-encoding/
+                //or : https://stackoverflow.com/questions/45410219/what-is-the-reason-that-encoding-utf8-getstring-and-encoding-utf8-getbytes-are-n
                 //_shapeData = System.Convert.FromBase64String(value);
                 _shapeData = Encoding.UTF8.GetBytes(value);
             }
-        }        /// <summary>
-                 /// The geometry data defining the shape, this is a compressed representation of the data
-                 /// </summary>
+        }
+        /// <summary>
+        /// The geometry data defining the shape, this is a compressed representation of the data
+        /// </summary>
         byte[] IXbimShapeGeometryData.ShapeDataCompressed
         {
             get
@@ -320,8 +321,8 @@ namespace Xbim.Common.Geometry
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", _shapeLabel, _ifcShapeLabel, _geometryHash, _shapeLabel, _referenceCount, LOD, _format, _boundingBox.ToString(), _shapeData);
         }
 
-       
-     
+
+
 
     }
 }
