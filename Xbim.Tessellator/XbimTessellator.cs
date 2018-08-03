@@ -191,8 +191,11 @@ namespace Xbim.Tessellator
                 {
                     var triangulatedMesh = Triangulate(triangulation);
                     shapeGeometry.BoundingBox = triangulatedMesh.BoundingBox;
-                    binaryWriter.Write(triangulatedMesh.VertexCount); //number of vertices
-                    binaryWriter.Write(triangulatedMesh.TriangleCount); //number of triangles
+                    verticesCount = triangulatedMesh.VertexCount;
+                    triangleCount = triangulatedMesh.TriangleCount;
+
+                    binaryWriter.Write((UInt32)verticesCount); //number of vertices
+                    binaryWriter.Write(triangleCount); //number of triangles
 
                     foreach (var vert in triangulatedMesh.Vertices)                 
                     {                      
