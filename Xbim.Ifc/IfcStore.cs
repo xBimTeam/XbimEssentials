@@ -341,6 +341,12 @@ namespace Xbim.Ifc
                         model.LoadStep21(path, progDelegate);
                     else if (storageType.HasFlag(IfcStorageType.IfcXml))
                         model.LoadXml(path, progDelegate);
+
+                    // if we are looking at a memory model loaded from a file it might be safe to fix the file name in the 
+                    // header with the actual file loaded
+                    //
+                    FileInfo f = new FileInfo(path);
+                    model.Header.FileName.Name = f.FullName;
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
             }
@@ -1287,9 +1293,7 @@ namespace Xbim.Ifc
             }
         }
 
-
-
-        #region Reference Model functions
+        #region Referenced Models functions
 
         /// <summary>
         /// Adds a model as a reference or federated model, do not call inside a transaction
