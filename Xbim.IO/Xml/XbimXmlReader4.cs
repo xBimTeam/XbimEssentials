@@ -330,11 +330,10 @@ namespace Xbim.IO.Xml
                 }
 
                 throw new XbimParserException(
-                    String.Format("{0} is not assignable to {1}.{2}. The type expected: {3}",
+                    String.Format("{0} is not assignable to {1}.{2}.",
                         vType,
                         entity.ExpressType.ExpressName,
-                        prop.Name,
-                        prop.PropertyInfo.PropertyType.Name), e);
+                        prop.Name), e);
             }
         }
 
