@@ -289,6 +289,55 @@ namespace Xbim.IO.Xml
             throw new XbimParserException("Unexpected type: " + type.Name);
         }
 
+        private void Parse(IPersistEntity entity, int propIndex, IPropertyValue value, int[] nested)
+        {
+            try
+            {
+                entity.Parse(propIndex, value, nested);
+            }
+            catch (InvalidCastException e)
+            {
+                var prop = entity.ExpressType.Properties[propIndex];
+                var type = value.Type;
+                var vType = "";
+                switch (type)
+                {
+                    case StepParserType.Boolean:
+                        vType = "Boolean";
+                        break;
+                    case StepParserType.Enum:
+                        vType = "Enumeration value " + value.EnumVal;
+                        break;
+                    case StepParserType.Entity:
+                        vType = value.EntityVal.GetType().Name;
+                        break;
+                    case StepParserType.HexaDecimal:
+                        vType = "HexaDecimal";
+                        break;
+                    case StepParserType.Integer:
+                        vType = "Integer";
+                        break;
+                    case StepParserType.Real:
+                        vType = "Real";
+                        break;
+                    case StepParserType.String:
+                        vType = "String";
+                        break;
+                    case StepParserType.Undefined:
+                    default:
+                        vType = "Undefined";
+                        break;
+                }
+
+                throw new XbimParserException(
+                    String.Format("{0} is not assignable to {1}.{2}. The type expected: {3}",
+                        vType,
+                        entity.ExpressType.ExpressName,
+                        prop.Name,
+                        prop.PropertyInfo.PropertyType.Name), e);
+            }
+        }
+
         private void SetPropertyFromElement(ExpressMetaProperty property, IPersistEntity entity, XmlReader input, int[] pos, ExpressType valueType = null)
         {
             var name = input.LocalName;
@@ -366,7 +415,7 @@ namespace Xbim.IO.Xml
                                 var cValueVal = Activator.CreateInstance(expType.Type, cInnerList);
                                 var cpValue = new PropertyValue();
                                 cpValue.Init(cValueVal);
-                                entity.Parse(pIndex, cpValue, null);
+                                Parse(entity, pIndex, cpValue, null);
                             }
                         }
                         else
@@ -383,7 +432,7 @@ namespace Xbim.IO.Xml
                     {
                         IPropertyValue pValue;
                         InitPropertyValue(expType.UnderlyingType, sValue, out pValue);
-                        entity.Parse(pIndex, pValue, pos);
+                        Parse(entity, pIndex, pValue, pos);
                         return;
                     }
                     else
@@ -391,7 +440,7 @@ namespace Xbim.IO.Xml
                         var pValue = new PropertyValue();
                         var pValueVal = Activator.CreateInstance(expType.Type, sValue);
                         pValue.Init(pValueVal);
-                        entity.Parse(pIndex, pValue, pos);
+                        Parse(entity, pIndex, pValue, pos);
                         return;
                     }
                 }
@@ -411,12 +460,12 @@ namespace Xbim.IO.Xml
                         var remoteProperty = value.ExpressType.Properties.FirstOrDefault(p => p.Value.Name == remotePropName).Value;
                         if (remoteProperty == null)
                             throw new XbimParserException("Non existing counterpart to " + property.Name);
-                        value.Parse(remoteProperty.EntityAttribute.Order - 1, pVal, null);
+                        Parse(entity, remoteProperty.EntityAttribute.Order - 1, pVal, null);
                     }
                     else
                     {
                         pVal.Init(value);
-                        entity.Parse(pIndex, pVal, null);
+                        Parse(entity, pIndex, pVal, null);
                     }
                     return;
                 }
@@ -456,7 +505,7 @@ namespace Xbim.IO.Xml
                             var iVal = input.ReadElementContentAsString();
                             var pVal = new PropertyValue();
                             pVal.Init(iVal, Primitives[name]);
-                            entity.Parse(pIndex, pVal, pos);
+                            Parse(entity, pIndex, pVal, pos);
                             if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
                             continue;
                         }
@@ -473,15 +522,6 @@ namespace Xbim.IO.Xml
             catch (XbimParserException)
             {
                 throw;
-            }
-            catch (InvalidCastException ce)
-            {
-                throw new XbimParserException(
-                    String.Format("{0} is not assignable to {1}.{2}. The type expected: {3}",
-                        expType.ExpressName,
-                        entity.ExpressType.ExpressName,
-                        property.Name,
-                        property.PropertyInfo.PropertyType.Name), ce);
             }
             catch (Exception e)
             {
@@ -514,14 +554,14 @@ namespace Xbim.IO.Xml
                         {
                             IPropertyValue pv;
                             if (InitPropertyValue(underType, v, out pv))
-                                entity.Parse(pIndex, pv, pos);
+                                Parse(entity, pIndex, pv, pos);
                         }
                         return;
                     }
                     if (type.IsEnum)
                     {
                         propVal.Init(value, StepParserType.Enum);
-                        entity.Parse(pIndex, propVal, pos);
+                        Parse(entity, pIndex, propVal, pos);
                         return;
                     }
 
@@ -533,7 +573,7 @@ namespace Xbim.IO.Xml
                     }
                     IPropertyValue pVal;
                     if (InitPropertyValue(type, value, out pVal))
-                        entity.Parse(pIndex, pVal, pos);
+                        Parse(entity, pIndex, pVal, pos);
                     return;
                 }
 
@@ -576,22 +616,13 @@ namespace Xbim.IO.Xml
                         IPropertyValue pValue;
                         InitPropertyValue(valType, values[i], out pValue);
                         var idx = i / cardinality;
-                        entity.Parse(pIndex, pValue, new[] { idx });
+                        Parse(entity, pIndex, pValue, new[] { idx });
                     }
                 }
             }
             catch (XbimParserException)
             {
                 throw;
-            }
-            catch (InvalidCastException ce)
-            {
-                throw new XbimParserException(
-                    String.Format("{0} is not assignable to {1}.{2}. The type expected: {3}",
-                        type.Name,
-                        entity.ExpressType.ExpressName,
-                        property.Name,
-                        property.PropertyInfo.PropertyType.Name), ce);
             }
             catch (Exception e)
             {
