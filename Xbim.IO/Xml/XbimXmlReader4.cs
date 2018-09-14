@@ -329,11 +329,12 @@ namespace Xbim.IO.Xml
                         break;
                 }
 
+                var xmlRef = _idMap.FirstOrDefault(kv => kv.Value == entity.EntityLabel).Key;
                 throw new XbimParserException(
-                    String.Format("{0} is not assignable to {1}.{2}.",
+                    String.Format("{0} is not assignable to {1}.{2} (ref={3})",
                         vType,
                         entity.ExpressType.ExpressName,
-                        prop.Name), e);
+                        prop.Name, xmlRef), e);
             }
         }
 
@@ -459,7 +460,7 @@ namespace Xbim.IO.Xml
                         var remoteProperty = value.ExpressType.Properties.FirstOrDefault(p => p.Value.Name == remotePropName).Value;
                         if (remoteProperty == null)
                             throw new XbimParserException("Non existing counterpart to " + property.Name);
-                        Parse(entity, remoteProperty.EntityAttribute.Order - 1, pVal, null);
+                        Parse(value, remoteProperty.EntityAttribute.Order - 1, pVal, null);
                     }
                     else
                     {

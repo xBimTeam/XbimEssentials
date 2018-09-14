@@ -40,6 +40,17 @@ namespace Xbim.MemoryModel.Tests
                 model.LoadXml(path);
             }
         }
+
+        [TestMethod]
+        public void ComplexPropertyCheck()
+        {
+            var path = @"Dimensions.ifcxml";
+            using (var store = Xbim.Ifc.IfcStore.Open(path))
+            {
+
+            }
+        }
+
         [TestMethod]
         public void CheckQuantity()
         {
