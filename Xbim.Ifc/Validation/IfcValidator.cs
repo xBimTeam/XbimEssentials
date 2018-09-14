@@ -58,9 +58,9 @@ namespace Xbim.Ifc.Validation
         /// Validates all entities in the model, unless count limits are reached
         /// </summary>
         /// <returns>An enumerable of results</returns>
-        public IEnumerable<ValidationResult> Validate(IfcStore store)
+        public IEnumerable<ValidationResult> Validate(IModel model)
         {
-            return Validate(store.Instances);
+            return Validate(model.Instances);
         }
 
         /// <summary>
