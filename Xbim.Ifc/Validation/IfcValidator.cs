@@ -195,7 +195,7 @@ namespace Xbim.Ifc.Validation
                     yield return new ValidationResult()
                     {
                         Item = instance,
-                        IssueType = ValidationFlags.TypeWhereClauses,
+                        IssueType = ValidationFlags.Properties,
                         IssueSource = propName,
                         Message = string.Format("{0}.{1} is not optional.", instance.GetType().Name, propName)
                     };
@@ -228,7 +228,8 @@ namespace Xbim.Ifc.Validation
                 yield return new ValidationResult()
                     {
                         Item = instance,
-                        IssueSource = propName,
+                        IssueType = ValidationFlags.Properties,
+                    IssueSource = propName,
                         Message = string.Format("{0}.{1} is not optional.", instance.GetType().Name, propName)
                     };
             if (ifcAttr.State == EntityAttributeState.Optional && propVal == null)
@@ -271,6 +272,7 @@ namespace Xbim.Ifc.Validation
                     yield return new ValidationResult()
                     {
                         Item = instance,
+                        IssueType = ValidationFlags.Properties,
                         IssueSource = propName,
                         Message =
                             string.Format("{0}.{1} must have at least {2} item(s). It has {3}.", instance.GetType().Name,
@@ -283,6 +285,7 @@ namespace Xbim.Ifc.Validation
                     yield return new ValidationResult()
                     {
                         Item = instance,
+                        IssueType = ValidationFlags.Properties,
                         IssueSource = propName,
                         Message =
                             string.Format("{0}.{1} must have no more than {2} item(s). It has at least {3}.",
