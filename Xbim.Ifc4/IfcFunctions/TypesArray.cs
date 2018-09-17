@@ -75,7 +75,8 @@ namespace Xbim.Ifc4.IfcFunctions
         }
         public override bool Equals(object obj)
         {
-            if (!(obj is TypesArray ta))
+            var ta = obj as TypesArray;
+            if (ta == null)
                 return false;
             if (ta._instance != null && _instance != null)
                 return _instance.GetType().Equals(ta._instance.GetType());
@@ -87,10 +88,10 @@ namespace Xbim.Ifc4.IfcFunctions
         {
             if (ReferenceEquals(c1, c2))
                 return true;
-            if (c1 is null)
+            if (ReferenceEquals(c1, null))
                 return false;
-            if (c2 is null)
-                return false;
+            if (ReferenceEquals(c2, null))
+                    return false;
             return c1.Equals(c2);
         }
 
