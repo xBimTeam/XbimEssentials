@@ -36,7 +36,7 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = Functions.TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC4.IFCGEOMETRICREPRESENTATIONCONTEXT");
 						break;
 					case IfcShapeRepresentationClause.NoTopologicalItem:
-						retVal = Functions.SIZEOF(Items.Where(temp => (Functions.TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(Functions.SIZEOF(Functions.NewArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * Functions.TYPEOF(temp)) == 1)))) == 0;
+						retVal = Functions.SIZEOF(Items.Where(temp => (Functions.TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(Functions.SIZEOF(Functions.NewTypesArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * Functions.TYPEOF(temp)) == 1)))) == 0;
 						break;
 					case IfcShapeRepresentationClause.HasRepresentationType:
 						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationType);

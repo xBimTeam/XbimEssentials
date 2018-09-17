@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcBlobTextureClause.SupportedRasterFormat:
-						retVal = Functions.NewArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
+						retVal = Functions.NewTypesArray("BMP", "JPG", "GIF", "PNG").Contains(this.RasterFormat);
 						break;
 					case IfcBlobTextureClause.RasterCodeByteStream:
 						retVal = Functions.BLENGTH(RasterCode) % 8 == 0;

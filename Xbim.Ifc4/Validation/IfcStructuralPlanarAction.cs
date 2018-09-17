@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				switch (clause)
 				{
 					case IfcStructuralPlanarActionClause.SuitableLoadType:
-						retVal = Functions.SIZEOF(Functions.NewArray("IFC4.IFCSTRUCTURALLOADPLANARFORCE", "IFC4.IFCSTRUCTURALLOADTEMPERATURE") * Functions.TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+						retVal = Functions.SIZEOF(Functions.NewTypesArray("IFC4.IFCSTRUCTURALLOADPLANARFORCE", "IFC4.IFCSTRUCTURALLOADTEMPERATURE") * Functions.TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
 						break;
 					case IfcStructuralPlanarActionClause.ConstPredefinedType:
 						retVal = this/* as IfcStructuralSurfaceAction*/.PredefinedType == IfcStructuralSurfaceActivityTypeEnum.CONST;

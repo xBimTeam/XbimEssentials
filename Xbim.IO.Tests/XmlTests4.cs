@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
+using Xbim.Ifc.Validation;
 using Xbim.Ifc4;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
@@ -50,6 +51,8 @@ namespace Xbim.MemoryModel.Tests
 
             }
         }
+
+      
 
         [TestMethod]
         public void CheckQuantity()

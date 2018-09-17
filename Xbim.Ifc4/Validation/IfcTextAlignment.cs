@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcTextAlignmentClause.WR1:
-						retVal = Functions.NewArray("left", "right", "center", "justify").Contains(this);
+						retVal = Functions.NewTypesArray("left", "right", "center", "justify").Contains(this);
 						break;
 				}
 			} catch (Exception ex) {

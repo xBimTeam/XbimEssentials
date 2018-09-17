@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
@@ -36,6 +37,23 @@ namespace Xbim.Essentials.Tests
                 {
                     Debug.WriteLine(validationResult);
                 }
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestSourceFiles")]
+        public void TableValueCheck()
+        {
+            var path = @"properties.ifc";
+            using (var store = Xbim.Ifc.IfcStore.Open(path))
+            {
+                var v = new IfcValidator
+                {
+                    ValidateLevel = ValidationFlags.All,
+                    CreateEntityHierarchy = true
+                };
+                var errs = v.Validate(store);
+                Assert.IsTrue(!errs.Any());
             }
         }
 

@@ -50,7 +50,7 @@
     <Compile Include="IfcFunctions\Direction.cs" />
     <Compile Include="IfcFunctions\Functions.cs" />
     <Compile Include="IfcFunctions\IVectorOrDirection.cs" />
-    <Compile Include="IfcFunctions\ValuesArray.cs" />
+    <Compile Include="IfcFunctions\TypesArray.cs" />
     <Compile Include="IfcFunctions\Vector.cs" />
     <Compile Include="Validation\IfcActorRole.cs" />
     <Compile Include="Validation\IfcActuator.cs" />

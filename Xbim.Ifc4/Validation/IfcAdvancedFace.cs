@@ -31,13 +31,13 @@ namespace Xbim.Ifc4.TopologyResource
 				switch (clause)
 				{
 					case IfcAdvancedFaceClause.ApplicableSurface:
-						retVal = Functions.SIZEOF(Functions.NewArray("IFC4.IFCELEMENTARYSURFACE", "IFC4.IFCSWEPTSURFACE", "IFC4.IFCBSPLINESURFACE") * Functions.TYPEOF(this/* as IfcFaceSurface*/.FaceSurface)) == 1;
+						retVal = Functions.SIZEOF(Functions.NewTypesArray("IFC4.IFCELEMENTARYSURFACE", "IFC4.IFCSWEPTSURFACE", "IFC4.IFCBSPLINESURFACE") * Functions.TYPEOF(this/* as IfcFaceSurface*/.FaceSurface)) == 1;
 						break;
 					case IfcAdvancedFaceClause.RequiresEdgeCurve:
 						retVal = Functions.SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => Functions.TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(Functions.SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(Functions.TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement).Contains("IFC4.IFCEDGECURVE")))) == 0))) == 0;
 						break;
 					case IfcAdvancedFaceClause.ApplicableEdgeCurves:
-						retVal = Functions.SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => Functions.TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(Functions.SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(Functions.SIZEOF(Functions.NewArray("IFC4.IFCLINE", "IFC4.IFCCONIC", "IFC4.IFCPOLYLINE", "IFC4.IFCBSPLINECURVE") * Functions.TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement.AsIfcEdgeCurve().EdgeGeometry)) == 1))) == 0))) == 0;
+						retVal = Functions.SIZEOF(this/* as IfcFace*/.Bounds.Where(Bnds => Functions.TYPEOF(Bnds.Bound).Contains("IFC4.IFCEDGELOOP")).Where(ElpFbnds => !(Functions.SIZEOF(ElpFbnds.Bound.AsIfcEdgeLoop().EdgeList.Where(Oe => !(Functions.SIZEOF(Functions.NewTypesArray("IFC4.IFCLINE", "IFC4.IFCCONIC", "IFC4.IFCPOLYLINE", "IFC4.IFCBSPLINECURVE") * Functions.TYPEOF(Oe/* as IfcOrientedEdge*/.EdgeElement.AsIfcEdgeCurve().EdgeGeometry)) == 1))) == 0))) == 0;
 						break;
 				}
 			} catch (Exception ex) {

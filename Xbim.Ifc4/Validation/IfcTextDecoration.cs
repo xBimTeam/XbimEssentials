@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcTextDecorationClause.WR1:
-						retVal = Functions.NewArray("none", "underline", "overline", "line-through", "blink").Contains(this);
+						retVal = Functions.NewTypesArray("none", "underline", "overline", "line-through", "blink").Contains(this);
 						break;
 				}
 			} catch (Exception ex) {

@@ -29,7 +29,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				switch (clause)
 				{
 					case IfcStructuralPointActionClause.SuitableLoadType:
-						retVal = Functions.SIZEOF(Functions.NewArray("IFC4.IFCSTRUCTURALLOADSINGLEFORCE", "IFC4.IFCSTRUCTURALLOADSINGLEDISPLACEMENT") * Functions.TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
+						retVal = Functions.SIZEOF(Functions.NewTypesArray("IFC4.IFCSTRUCTURALLOADSINGLEFORCE", "IFC4.IFCSTRUCTURALLOADSINGLEDISPLACEMENT") * Functions.TYPEOF(this/* as IfcStructuralActivity*/.AppliedLoad)) == 1;
 						break;
 				}
 			} catch (Exception ex) {
