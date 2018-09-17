@@ -52,7 +52,15 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
-      
+        [TestMethod]
+        public void IkeaKitchenKabinetOpen()
+        {
+            var path = @"IkeaKitchenCabinets.ifcXML";
+            using (var store = Xbim.Ifc.IfcStore.Open(path))
+            {
+
+            }
+        }
 
         [TestMethod]
         public void CheckQuantity()

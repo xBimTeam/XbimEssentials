@@ -450,6 +450,11 @@ namespace Xbim.IO.Xml
                     (typeof(IEnumerable).IsAssignableFrom(type) && input.GetAttribute("type", _xsi) != null)
                     )
                 {
+                    if (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1)
+                    {
+                        type = type.GetGenericArguments()[0];
+                    }
+
                     var value = ReadEntity(input, type);
                     var pVal = new PropertyValue();
 
