@@ -24,6 +24,14 @@ namespace Xbim.IO.Xml
         private readonly string _xsi = "http://www.w3.org/2001/XMLSchema-instance";
 
         /// <summary>
+        /// This can be used for analytical and file debugging purposes where 
+        /// relation between XML entity in the file and loaded entity needs
+        /// to be kept.
+        /// </summary>
+        public Dictionary<string, int> IdMap { get { return _idMap; } }
+
+
+        /// <summary>
         /// Constructor of the reader for IFC2x3 XML. XSD is different for different versions of IFC and there is a major difference
         /// between IFC2x3 and IFC4 to there are two different classes to deal with this.
         /// </summary>x
@@ -450,6 +458,8 @@ namespace Xbim.IO.Xml
                     (typeof(IEnumerable).IsAssignableFrom(type) && input.GetAttribute("type", _xsi) != null)
                     )
                 {
+                    // invers property like IsTypedBy might not have anything to define the type
+                    // because only single type is applicable
                     if (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1)
                     {
                         type = type.GetGenericArguments()[0];
@@ -458,6 +468,7 @@ namespace Xbim.IO.Xml
                     var value = ReadEntity(input, type);
                     var pVal = new PropertyValue();
 
+                    // swap value and entity if this is inverse relation
                     if (property.IsInverse)
                     {
                         pVal.Init(entity);
@@ -526,13 +537,16 @@ namespace Xbim.IO.Xml
             }
             catch (XbimParserException)
             {
+                // rethrow
                 throw;
             }
             catch (Exception e)
             {
+                // wrap into parser exception
                 throw new XbimParserException(e.Message, e);
             }
 
+            // we should never get here
             throw new XbimParserException("Unexpected type: " + type.Name);
         }
 
@@ -627,10 +641,12 @@ namespace Xbim.IO.Xml
             }
             catch (XbimParserException)
             {
+                // rethrow
                 throw;
             }
             catch (Exception e)
             {
+                // wrap
                 throw new XbimParserException(e.Message, e);
             }
 
