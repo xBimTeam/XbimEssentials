@@ -70,9 +70,15 @@ namespace Xbim.Presentation
             }
         }
 
+        public IEnumerable<IPersistEntity> SetRange(IEnumerable<IPersistEntity> entities)
+        {
+            Clear();
+            return AddRange(entities);
+        }
+
         //add without logging
-        private IEnumerable<IPersistEntity> AddRange(IEnumerable<IPersistEntity> entities)
-        { 
+        public IEnumerable<IPersistEntity> AddRange(IEnumerable<IPersistEntity> entities)
+        {
             List<IPersistEntity> check = new List<IPersistEntity>();
             foreach (var item in entities) //check all for redundancy
             {
