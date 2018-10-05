@@ -25,8 +25,7 @@ namespace Xbim.Common.XbimExtensions
             var numFaces = br.ReadInt32();
             var faces = new List<XbimFaceTriangulation>(numFaces);
             for (var i = 0; i < numFaces; i++)
-            {
-                
+            {                
                 var numTrianglesInFace = br.ReadInt32();
                 if (numTrianglesInFace == 0) continue;
                 var isPlanar = numTrianglesInFace > 0;
