@@ -305,7 +305,7 @@ namespace Xbim.IO.Xml
             }
             catch (InvalidCastException e)
             {
-                var prop = entity.ExpressType.Properties[propIndex];
+                var prop = entity.ExpressType.Properties[propIndex + 1];
                 var type = value.Type;
                 var vType = "";
                 switch (type)
