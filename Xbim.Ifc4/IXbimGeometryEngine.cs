@@ -40,8 +40,8 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcBoundingBox ifcSolid);
         IXbimSolid CreateSolid(IIfcSurfaceCurveSweptAreaSolid ifcSolid);
 
-        IXbimSolid CreateSolid(IIfcBooleanClippingResult ifcSolid);
-        IXbimSolid CreateSolid(IIfcBooleanOperand ifcSolid);
+        IXbimSolidSet CreateSolidSet(IIfcBooleanClippingResult ifcSolid);
+        IXbimSolidSet CreateSolidSet(IIfcBooleanOperand ifcSolid);
         IXbimSolid CreateSolid(IIfcHalfSpaceSolid ifcSolid);
         IXbimSolid CreateSolid(IIfcPolygonalBoundedHalfSpace ifcSolid);
         IXbimSolid CreateSolid(IIfcBoxedHalfSpace ifcSolid);
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolidSet CreateSolidSet(IIfcClosedShell ifcSolid);
 
         IXbimSolid CreateSolid(IIfcCsgPrimitive3D ifcSolid);
-        IXbimSolid CreateSolid(IIfcCsgSolid ifcSolid);
+        IXbimSolidSet CreateSolidSet(IIfcCsgSolid ifcSolid);
         IXbimSolid CreateSolid(IIfcSphere ifcSolid);
         IXbimSolid CreateSolid(IIfcBlock ifcSolid);
         IXbimSolid CreateSolid(IIfcRightCircularCylinder ifcSolid);
