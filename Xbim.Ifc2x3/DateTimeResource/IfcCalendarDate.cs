@@ -148,11 +148,11 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
-		//##
 		public override string ToString ()
-		{
-			return string.Format ("{0}-{1}-{2}", YearComponent, MonthComponent, DayComponent);
-		}
+        {
+            return string.Format ("{0}-{1}-{2}", YearComponent, MonthComponent, DayComponent);
+        }
+		//##
 		#endregion
 	}
 }
