@@ -65,7 +65,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public CobieContact @CreatedBy 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _createdBy = v, _createdBy, value,  "CreatedBy", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public DateTimeValue @CreatedOn 
 		{ 
 			get 

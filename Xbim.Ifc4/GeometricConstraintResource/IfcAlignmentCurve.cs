@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcAlignment2DHorizontal @Horizontal 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcAlignment2DVertical @Vertical 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _vertical = v, _vertical, value,  "Vertical", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLabel? @Tag 
 		{ 
 			get 

@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.CostResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcAppliedValueSelect @AppliedValue 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _appliedValue = v, _appliedValue, value,  "AppliedValue", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcMeasureWithUnit @UnitBasis 
 		{ 
 			get 
@@ -166,7 +166,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _unitBasis = v, _unitBasis, value,  "UnitBasis", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcDateTimeSelect @ApplicableDate 
 		{ 
 			get 
@@ -182,7 +182,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _applicableDate = v, _applicableDate, value,  "ApplicableDate", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcDateTimeSelect @FixedUntilDate 
 		{ 
 			get 
@@ -204,7 +204,7 @@ namespace Xbim.Ifc2x3.CostResource
 
 		#region Inverse attributes
 		[InverseProperty("ReferencingValues")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 7)]
 		public IEnumerable<IfcReferencesValueDocument> @ValuesReferenced 
 		{ 
 			get 
@@ -213,7 +213,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 		}
 		[InverseProperty("ComponentOfTotal")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IEnumerable<IfcAppliedValueRelationship> @ValueOfComponents 
 		{ 
 			get 
@@ -222,7 +222,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 		}
 		[InverseProperty("Components")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 9)]
 		public IEnumerable<IfcAppliedValueRelationship> @IsComponentIn 
 		{ 
 			get 

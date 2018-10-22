@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 5)]
 		public IItemSet<IfcDefinitionSelect> @RelatedObjects 
 		{ 
 			get 

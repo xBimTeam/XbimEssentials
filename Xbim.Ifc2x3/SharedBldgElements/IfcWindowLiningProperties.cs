@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcPositiveLengthMeasure? @LiningDepth 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcPositiveLengthMeasure? @LiningThickness 
 		{ 
 			get 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcPositiveLengthMeasure? @TransomThickness 
 		{ 
 			get 
@@ -157,7 +157,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcPositiveLengthMeasure? @MullionThickness 
 		{ 
 			get 
@@ -171,7 +171,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _mullionThickness = v, _mullionThickness, value,  "MullionThickness", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcNormalisedRatioMeasure? @FirstTransomOffset 
 		{ 
 			get 
@@ -185,7 +185,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _firstTransomOffset = v, _firstTransomOffset, value,  "FirstTransomOffset", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcNormalisedRatioMeasure? @SecondTransomOffset 
 		{ 
 			get 
@@ -199,7 +199,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _secondTransomOffset = v, _secondTransomOffset, value,  "SecondTransomOffset", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public IfcNormalisedRatioMeasure? @FirstMullionOffset 
 		{ 
 			get 
@@ -213,7 +213,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _firstMullionOffset = v, _firstMullionOffset, value,  "FirstMullionOffset", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcNormalisedRatioMeasure? @SecondMullionOffset 
 		{ 
 			get 
@@ -227,7 +227,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _secondMullionOffset = v, _secondMullionOffset, value,  "SecondMullionOffset", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 16)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
 			get 

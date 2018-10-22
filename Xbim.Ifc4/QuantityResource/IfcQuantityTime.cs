@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.QuantityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcTimeMeasure @TimeValue 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.QuantityResource
 				SetValue( v =>  _timeValue = v, _timeValue, value,  "TimeValue", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcLabel? @Formula 
 		{ 
 			get 

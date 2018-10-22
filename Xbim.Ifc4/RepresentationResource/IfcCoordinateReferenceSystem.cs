@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcLabel @Name 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcIdentifier? @GeodeticDatum 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _geodeticDatum = v, _geodeticDatum, value,  "GeodeticDatum", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcIdentifier? @VerticalDatum 
 		{ 
 			get 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		#region Inverse attributes
 		[InverseProperty("SourceCRS")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 5)]
 		public IEnumerable<IfcCoordinateOperation> @HasCoordinateOperation 
 		{ 
 			get 

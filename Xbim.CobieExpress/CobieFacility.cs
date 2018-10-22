@@ -115,7 +115,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 15)]
 		public CobieLinearUnit @LinearUnits 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _linearUnits = v, _linearUnits, value,  "LinearUnits", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 16)]
 		public CobieAreaUnit @AreaUnits 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _areaUnits = v, _areaUnits, value,  "AreaUnits", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(15, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 17)]
 		public CobieVolumeUnit @VolumeUnits 
 		{ 
 			get 
@@ -163,7 +163,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _volumeUnits = v, _volumeUnits, value,  "VolumeUnits", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(16, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 18)]
 		public CobieCurrencyUnit @CurrencyUnit 
 		{ 
 			get 
@@ -179,7 +179,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _currencyUnit = v, _currencyUnit, value,  "CurrencyUnit", 16);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(17, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 19)]
 		public string @AreaMeasurement 
 		{ 
 			get 
@@ -194,7 +194,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(18, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public CobieProject @Project 
 		{ 
 			get 
@@ -211,7 +211,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(19, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 21)]
 		public CobieSite @Site 
 		{ 
 			get 
@@ -227,7 +227,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _site = v, _site, value,  "Site", 19);
 			} 
 		}	
-		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 22)]
 		public CobiePhase @Phase 
 		{ 
 			get 
@@ -249,7 +249,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Facility")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 23)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 23)]
 		public IEnumerable<CobieFloor> @Floors 
 		{ 
 			get 
@@ -258,7 +258,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("Facility")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 24)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { -1 }, new int [] { -1 }, 24)]
 		public IEnumerable<CobieSystem> @Systems 
 		{ 
 			get 

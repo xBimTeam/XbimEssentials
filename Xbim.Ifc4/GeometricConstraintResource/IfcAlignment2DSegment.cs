@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcBoolean? @TangentialContinuity 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _tangentialContinuity = v, _tangentialContinuity, value,  "TangentialContinuity", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLabel? @StartTag 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _startTag = v, _startTag, value,  "StartTag", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLabel? @EndTag 
 		{ 
 			get 

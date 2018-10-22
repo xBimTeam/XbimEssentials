@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcMomentOfInertiaMeasure? @TorsionalConstantX 
 		{ 
 			get 
@@ -175,7 +175,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _torsionalConstantX = v, _torsionalConstantX, value,  "TorsionalConstantX", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcMomentOfInertiaMeasure? @MomentOfInertiaYZ 
 		{ 
 			get 
@@ -189,7 +189,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _momentOfInertiaYZ = v, _momentOfInertiaYZ, value,  "MomentOfInertiaYZ", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcMomentOfInertiaMeasure? @MomentOfInertiaY 
 		{ 
 			get 
@@ -203,7 +203,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _momentOfInertiaY = v, _momentOfInertiaY, value,  "MomentOfInertiaY", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcMomentOfInertiaMeasure? @MomentOfInertiaZ 
 		{ 
 			get 
@@ -217,7 +217,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _momentOfInertiaZ = v, _momentOfInertiaZ, value,  "MomentOfInertiaZ", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcWarpingConstantMeasure? @WarpingConstant 
 		{ 
 			get 
@@ -231,7 +231,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _warpingConstant = v, _warpingConstant, value,  "WarpingConstant", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcLengthMeasure? @ShearCentreZ 
 		{ 
 			get 
@@ -245,7 +245,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _shearCentreZ = v, _shearCentreZ, value,  "ShearCentreZ", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public IfcLengthMeasure? @ShearCentreY 
 		{ 
 			get 
@@ -259,7 +259,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _shearCentreY = v, _shearCentreY, value,  "ShearCentreY", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcAreaMeasure? @ShearDeformationAreaZ 
 		{ 
 			get 
@@ -273,7 +273,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _shearDeformationAreaZ = v, _shearDeformationAreaZ, value,  "ShearDeformationAreaZ", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 16)]
 		public IfcAreaMeasure? @ShearDeformationAreaY 
 		{ 
 			get 
@@ -287,7 +287,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _shearDeformationAreaY = v, _shearDeformationAreaY, value,  "ShearDeformationAreaY", 16);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 17)]
 		public IfcSectionModulusMeasure? @MaximumSectionModulusY 
 		{ 
 			get 
@@ -301,7 +301,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _maximumSectionModulusY = v, _maximumSectionModulusY, value,  "MaximumSectionModulusY", 17);
 			} 
 		}	
-		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 18)]
 		public IfcSectionModulusMeasure? @MinimumSectionModulusY 
 		{ 
 			get 
@@ -315,7 +315,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _minimumSectionModulusY = v, _minimumSectionModulusY, value,  "MinimumSectionModulusY", 18);
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 19)]
 		public IfcSectionModulusMeasure? @MaximumSectionModulusZ 
 		{ 
 			get 
@@ -329,7 +329,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _maximumSectionModulusZ = v, _maximumSectionModulusZ, value,  "MaximumSectionModulusZ", 19);
 			} 
 		}	
-		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcSectionModulusMeasure? @MinimumSectionModulusZ 
 		{ 
 			get 
@@ -343,7 +343,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _minimumSectionModulusZ = v, _minimumSectionModulusZ, value,  "MinimumSectionModulusZ", 20);
 			} 
 		}	
-		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(21, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcSectionModulusMeasure? @TorsionalSectionModulus 
 		{ 
 			get 
@@ -357,7 +357,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _torsionalSectionModulus = v, _torsionalSectionModulus, value,  "TorsionalSectionModulus", 21);
 			} 
 		}	
-		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(22, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcLengthMeasure? @CentreOfGravityInX 
 		{ 
 			get 
@@ -371,7 +371,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _centreOfGravityInX = v, _centreOfGravityInX, value,  "CentreOfGravityInX", 22);
 			} 
 		}	
-		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(23, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 23)]
 		public IfcLengthMeasure? @CentreOfGravityInY 
 		{ 
 			get 

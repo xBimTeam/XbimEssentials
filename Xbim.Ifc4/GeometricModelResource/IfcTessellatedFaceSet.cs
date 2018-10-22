@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcCartesianPointList3D @Coordinates 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcDimensionCount @Dim 
 		{
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		#region Inverse attributes
 		[InverseProperty("MappedTo")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 4)]
 		public IEnumerable<IfcIndexedColourMap> @HasColours 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}
 		[InverseProperty("MappedTo")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 5)]
 		public IEnumerable<IfcIndexedTextureMap> @HasTextures 
 		{ 
 			get 

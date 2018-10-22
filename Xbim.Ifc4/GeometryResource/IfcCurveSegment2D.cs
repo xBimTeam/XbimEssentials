@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcCartesianPoint @StartPoint 
 		{ 
 			get 
@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _startPoint = v, _startPoint, value,  "StartPoint", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcPlaneAngleMeasure @StartDirection 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _startDirection = v, _startDirection, value,  "StartDirection", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcPositiveLengthMeasure @SegmentLength 
 		{ 
 			get 

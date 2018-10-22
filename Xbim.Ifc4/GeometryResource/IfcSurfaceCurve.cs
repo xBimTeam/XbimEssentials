@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcCurve @Curve3D 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _curve3D = v, _curve3D, value,  "Curve3D", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 2, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { 2 }, 4)]
 		public IItemSet<IfcPcurve> @AssociatedGeometry 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _associatedGeometry;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 5)]
 		public IfcPreferredSurfaceCurveRepresentation @MasterRepresentation 
 		{ 
 			get 
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Set, EntityAttributeType.Class, 1, 2, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 2 }, 0)]
 		public List<IfcSurface> @BasisSurface 
 		{
 			get 

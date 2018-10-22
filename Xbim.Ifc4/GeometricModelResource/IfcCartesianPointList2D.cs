@@ -61,7 +61,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 2, 2, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 2 }, new int [] { -1, 2 }, 3)]
 		public IItemSet<IItemSet<IfcLengthMeasure>> @CoordList 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _coordList;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IOptionalItemSet<IfcLabel> @TagList 
 		{ 
 			get 

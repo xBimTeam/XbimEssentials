@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcTessellatedFaceSet @MappedTo 
 		{ 
 			get 
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _mappedTo = v, _mappedTo, value,  "MappedTo", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcNormalisedRatioMeasure? @Opacity 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _opacity = v, _opacity, value,  "Opacity", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcColourRgbList @Colours 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _colours = v, _colours, value,  "Colours", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcPositiveInteger> @ColourIndex 
 		{ 
 			get 

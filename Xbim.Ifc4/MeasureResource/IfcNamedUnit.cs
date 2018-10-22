@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public virtual IfcDimensionalExponents @Dimensions 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _dimensions = v, _dimensions, value,  "Dimensions", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 2)]
 		public IfcUnitEnum @UnitType 
 		{ 
 			get 

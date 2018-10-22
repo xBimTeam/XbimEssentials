@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("RelatingControl")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 11)]
 		public IEnumerable<IfcRelAssignsToControl> @Controls 
 		{ 
 			get 

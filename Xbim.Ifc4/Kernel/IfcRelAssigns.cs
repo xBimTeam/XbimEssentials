@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 5)]
 		public IItemSet<IfcObjectDefinition> @RelatedObjects 
 		{ 
 			get 
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.Kernel
 				return _relatedObjects;
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 6)]
 		public IfcObjectTypeEnum? @RelatedObjectsType 
 		{ 
 			get 

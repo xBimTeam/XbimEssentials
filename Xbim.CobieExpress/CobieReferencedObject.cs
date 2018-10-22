@@ -88,7 +88,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public CobieCreatedInfo @Created 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _created = v, _created, value,  "Created", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public string @ExternalId 
 		{ 
 			get 
@@ -118,7 +118,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _externalId = v, _externalId, value,  "ExternalId", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public string @AltExternalId 
 		{ 
 			get 
@@ -132,7 +132,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _altExternalId = v, _altExternalId, value,  "AltExternalId", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public CobieExternalSystem @ExternalSystem 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _externalSystem = v, _externalSystem, value,  "ExternalSystem", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public CobieExternalObject @ExternalObject 
 		{ 
 			get 

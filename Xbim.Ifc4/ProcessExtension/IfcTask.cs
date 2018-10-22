@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcLabel? @Status 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _status = v, _status, value,  "Status", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 23)]
 		public IfcLabel? @WorkMethod 
 		{ 
 			get 
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _workMethod = v, _workMethod, value,  "WorkMethod", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 24)]
 		public IfcBoolean @IsMilestone 
 		{ 
 			get 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _isMilestone = v, _isMilestone, value,  "IsMilestone", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 25)]
 		public IfcInteger? @Priority 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _priority = v, _priority, value,  "Priority", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 26)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 26)]
 		public IfcTaskTime @TaskTime 
 		{ 
 			get 
@@ -166,7 +166,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _taskTime = v, _taskTime, value,  "TaskTime", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 27)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 27)]
 		public IfcTaskTypeEnum? @PredefinedType 
 		{ 
 			get 

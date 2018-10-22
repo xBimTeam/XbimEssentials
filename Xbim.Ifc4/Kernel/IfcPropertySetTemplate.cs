@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 7)]
 		public IfcPropertySetTemplateTypeEnum? @TemplateType 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcIdentifier? @ApplicableEntity 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 9)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 9)]
 		public IItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("RelatingTemplate")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 10)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 10)]
 		public IEnumerable<IfcRelDefinesByTemplate> @Defines 
 		{ 
 			get 

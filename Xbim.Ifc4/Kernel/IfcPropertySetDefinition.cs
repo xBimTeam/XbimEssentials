@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("HasPropertySets")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 7)]
 		public IEnumerable<IfcTypeObject> @DefinesType 
 		{ 
 			get 
@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}
 		[InverseProperty("RelatedPropertySets")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IEnumerable<IfcRelDefinesByTemplate> @IsDefinedBy 
 		{ 
 			get 
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}
 		[InverseProperty("RelatingPropertyDefinition")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 9)]
 		public IEnumerable<IfcRelDefinesByProperties> @DefinesOccurrence 
 		{ 
 			get 

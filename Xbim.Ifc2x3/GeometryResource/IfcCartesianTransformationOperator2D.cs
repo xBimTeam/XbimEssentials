@@ -48,7 +48,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, 2, 2, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { 2 }, 0)]
 		public List<Common.Geometry.XbimVector3D> @U 
 		{
 			get 

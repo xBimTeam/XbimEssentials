@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcReinforcingBarTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcPositiveLengthMeasure? @NominalDiameter 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcAreaMeasure? @CrossSectionArea 
 		{ 
 			get 
@@ -139,7 +139,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcPositiveLengthMeasure? @BarLength 
 		{ 
 			get 
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 23)]
 		public IfcReinforcingBarSurfaceEnum? @BarSurface 
 		{ 
 			get 
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 24)]
 		public IfcLabel? @BendingShapeCode 
 		{ 
 			get 
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _bendingShapeCode = v, _bendingShapeCode, value,  "BendingShapeCode", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 25)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 25)]
 		public IOptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
 		{ 
 			get 

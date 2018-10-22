@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 1)]
 		public IfcRecurrenceTypeEnum @RecurrenceType 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _recurrenceType = v, _recurrenceType, value,  "RecurrenceType", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 2)]
 		public IOptionalItemSet<IfcDayInMonthNumber> @DayComponent 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				return _dayComponent;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 3)]
 		public IOptionalItemSet<IfcDayInWeekNumber> @WeekdayComponent 
 		{ 
 			get 
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				return _weekdayComponent;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, 1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IOptionalItemSet<IfcMonthInYearNumber> @MonthComponent 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				return _monthComponent;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcInteger? @Position 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcInteger? @Interval 
 		{ 
 			get 
@@ -175,7 +175,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _interval = v, _interval, value,  "Interval", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcInteger? @Occurrences 
 		{ 
 			get 
@@ -189,7 +189,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _occurrences = v, _occurrences, value,  "Occurrences", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 8)]
 		public IOptionalItemSet<IfcTimePeriod> @TimePeriods 
 		{ 
 			get 

@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 3)]
 		public IItemSet<IfcAlignment2DVerticalSegment> @Segments 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 		#region Inverse attributes
 		[InverseProperty("Vertical")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 1 }, 4)]
 		public IEnumerable<IfcAlignmentCurve> @ToAlignmentCurve 
 		{ 
 			get 

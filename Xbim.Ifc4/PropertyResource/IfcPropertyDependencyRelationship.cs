@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.PropertyResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcProperty @DependingProperty 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcProperty @DependantProperty 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _dependantProperty = v, _dependantProperty, value,  "DependantProperty", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcText? @Expression 
 		{ 
 			get 

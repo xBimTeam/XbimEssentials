@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLengthMeasure @DistanceAlong 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _distanceAlong = v, _distanceAlong, value,  "DistanceAlong", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLengthMeasure? @OffsetLateral 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _offsetLateral = v, _offsetLateral, value,  "OffsetLateral", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLengthMeasure? @OffsetVertical 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _offsetVertical = v, _offsetVertical, value,  "OffsetVertical", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcLengthMeasure? @OffsetLongitudinal 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _offsetLongitudinal = v, _offsetLongitudinal, value,  "OffsetLongitudinal", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcBoolean? @AlongHorizontal 
 		{ 
 			get 

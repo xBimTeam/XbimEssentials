@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcIdentifier @AssetID 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _assetID = v, _assetID, value,  "AssetID", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 13)]
 		public IfcCostValue @OriginalValue 
 		{ 
 			get 
@@ -154,7 +154,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 14)]
 		public IfcCostValue @CurrentValue 
 		{ 
 			get 
@@ -170,7 +170,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 15)]
 		public IfcCostValue @TotalReplacementCost 
 		{ 
 			get 
@@ -186,7 +186,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 16)]
 		public IfcActorSelect @Owner 
 		{ 
 			get 
@@ -202,7 +202,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _owner = v, _owner, value,  "Owner", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 17)]
 		public IfcActorSelect @User 
 		{ 
 			get 
@@ -218,7 +218,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _user = v, _user, value,  "User", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 18)]
 		public IfcPerson @ResponsiblePerson 
 		{ 
 			get 
@@ -234,7 +234,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 19)]
 		public IfcCalendarDate @IncorporationDate 
 		{ 
 			get 
@@ -250,7 +250,7 @@ namespace Xbim.Ifc2x3.SharedFacilitiesElements
 				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcCostValue @DepreciatedValue 
 		{ 
 			get 

@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcCurve @Directrix 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcPositiveLengthMeasure @Radius 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _radius = v, _radius, value,  "Radius", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcPositiveLengthMeasure? @InnerRadius 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _innerRadius = v, _innerRadius, value,  "InnerRadius", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcParameterValue? @StartParam 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcParameterValue? @EndParam 
 		{ 
 			get 

@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcReinforcingMeshTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -139,7 +139,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcPositiveLengthMeasure? @MeshLength 
 		{ 
 			get 
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _meshLength = v, _meshLength, value,  "MeshLength", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcPositiveLengthMeasure? @MeshWidth 
 		{ 
 			get 
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _meshWidth = v, _meshWidth, value,  "MeshWidth", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcPositiveLengthMeasure? @LongitudinalBarNominalDiameter 
 		{ 
 			get 
@@ -181,7 +181,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _longitudinalBarNominalDiameter = v, _longitudinalBarNominalDiameter, value,  "LongitudinalBarNominalDiameter", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 23)]
 		public IfcPositiveLengthMeasure? @TransverseBarNominalDiameter 
 		{ 
 			get 
@@ -195,7 +195,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _transverseBarNominalDiameter = v, _transverseBarNominalDiameter, value,  "TransverseBarNominalDiameter", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 24)]
 		public IfcAreaMeasure? @LongitudinalBarCrossSectionArea 
 		{ 
 			get 
@@ -209,7 +209,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _longitudinalBarCrossSectionArea = v, _longitudinalBarCrossSectionArea, value,  "LongitudinalBarCrossSectionArea", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 25)]
 		public IfcAreaMeasure? @TransverseBarCrossSectionArea 
 		{ 
 			get 
@@ -223,7 +223,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _transverseBarCrossSectionArea = v, _transverseBarCrossSectionArea, value,  "TransverseBarCrossSectionArea", 16);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 26)]
 		public IfcPositiveLengthMeasure? @LongitudinalBarSpacing 
 		{ 
 			get 
@@ -237,7 +237,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _longitudinalBarSpacing = v, _longitudinalBarSpacing, value,  "LongitudinalBarSpacing", 17);
 			} 
 		}	
-		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 27)]
 		public IfcPositiveLengthMeasure? @TransverseBarSpacing 
 		{ 
 			get 
@@ -251,7 +251,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _transverseBarSpacing = v, _transverseBarSpacing, value,  "TransverseBarSpacing", 18);
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 28)]
 		public IfcLabel? @BendingShapeCode 
 		{ 
 			get 
@@ -265,7 +265,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 				SetValue( v =>  _bendingShapeCode = v, _bendingShapeCode, value,  "BendingShapeCode", 19);
 			} 
 		}	
-		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 29)]
+		[EntityAttribute(20, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 29)]
 		public IOptionalItemSet<IfcBendingParameterSelect> @BendingParameters 
 		{ 
 			get 

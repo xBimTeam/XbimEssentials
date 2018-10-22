@@ -106,7 +106,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 19)]
 		public string @SerialNumber 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _serialNumber = v, _serialNumber, value,  "SerialNumber", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public DateTimeValue? @InstallationDate 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _installationDate = v, _installationDate, value,  "InstallationDate", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public DateTimeValue? @WarrantyStartDate 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _warrantyStartDate = v, _warrantyStartDate, value,  "WarrantyStartDate", 16);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public string @TagNumber 
 		{ 
 			get 
@@ -162,7 +162,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _tagNumber = v, _tagNumber, value,  "TagNumber", 17);
 			} 
 		}	
-		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 23)]
 		public string @BarCode 
 		{ 
 			get 
@@ -176,7 +176,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _barCode = v, _barCode, value,  "BarCode", 18);
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 24)]
 		public string @AssetIdentifier 
 		{ 
 			get 
@@ -191,7 +191,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(20, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 25)]
+		[EntityAttribute(20, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 25)]
 		public CobieType @Type 
 		{ 
 			get 
@@ -208,7 +208,7 @@ namespace Xbim.CobieExpress
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(21, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 2, 26)]
+		[EntityAttribute(21, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { 2 }, 26)]
 		public IItemSet<CobieSpace> @Spaces 
 		{ 
 			get 
@@ -224,7 +224,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Components")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 27)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { -1 }, new int [] { -1 }, 27)]
 		public IEnumerable<CobieSystem> @InSystems 
 		{ 
 			get 

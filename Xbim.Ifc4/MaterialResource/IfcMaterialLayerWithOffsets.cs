@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 12)]
 		public IfcLayerSetDirectionEnum @OffsetDirection 
 		{ 
 			get 
@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _offsetDirection = v, _offsetDirection, value,  "OffsetDirection", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, 1, 2, 13)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Array, EntityAttributeType.None, new int [] { 1 }, new int [] { 2 }, 13)]
 		public IItemSet<IfcLengthMeasure> @OffsetValues 
 		{ 
 			get 

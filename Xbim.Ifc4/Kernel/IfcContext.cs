@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcLabel? @ObjectType 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _objectType = v, _objectType, value,  "ObjectType", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcLabel? @LongName 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _longName = v, _longName, value,  "LongName", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public IfcLabel? @Phase 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _phase = v, _phase, value,  "Phase", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 15)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 15)]
 		public IOptionalItemSet<IfcRepresentationContext> @RepresentationContexts 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.Kernel
 				return _representationContexts;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 16)]
 		public IfcUnitAssignment @UnitsInContext 
 		{ 
 			get 
@@ -163,7 +163,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("RelatedObjects")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 17)]
 		public IEnumerable<IfcRelDefinesByProperties> @IsDefinedBy 
 		{ 
 			get 
@@ -172,7 +172,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}
 		[InverseProperty("RelatingContext")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 18)]
 		public IEnumerable<IfcRelDeclares> @Declares 
 		{ 
 			get 

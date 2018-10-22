@@ -454,13 +454,15 @@ namespace Xbim.IO.Xml
                 }
 
                 if (typeof(IPersistEntity).IsAssignableFrom(type) ||
-                    (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1) ||
+                    (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality != null && property.EntityAttribute.MaxCardinality[0] == 1) ||
                     (typeof(IEnumerable).IsAssignableFrom(type) && input.GetAttribute("type", _xsi) != null)
                     )
                 {
                     // invers property like IsTypedBy might not have anything to define the type
                     // because only single type is applicable
-                    if (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1)
+                    if (typeof(IEnumerable).IsAssignableFrom(type) && 
+                        property.EntityAttribute.MaxCardinality != null && 
+                        property.EntityAttribute.MaxCardinality[0] == 1)
                     {
                         type = type.GetGenericArguments()[0];
                     }
@@ -616,8 +618,9 @@ namespace Xbim.IO.Xml
                 if (typeof(IEnumerable).IsAssignableFrom(genType))
                 {
                     //handle rectangular nested lists (like IfcPointList3D)
-                    var cardinality = property.EntityAttribute.MaxCardinality;
-                    if (cardinality != property.EntityAttribute.MinCardinality)
+                    var min = property.EntityAttribute.MaxCardinality != null ? property.EntityAttribute.MaxCardinality.LastOrDefault() : 0;
+                    var max = property.EntityAttribute.MinCardinality != null ? property.EntityAttribute.MinCardinality.LastOrDefault() : -1;
+                    if (min != max)
                         throw new XbimParserException(property.Name + " is not rectangular so it can't be serialized as a simple text string");
 
                     var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
@@ -634,7 +637,7 @@ namespace Xbim.IO.Xml
                     {
                         IPropertyValue pValue;
                         InitPropertyValue(valType, values[i], out pValue);
-                        var idx = i / cardinality;
+                        var idx = i / min;
                         Parse(entity, pIndex, pValue, new[] { idx });
                     }
                 }

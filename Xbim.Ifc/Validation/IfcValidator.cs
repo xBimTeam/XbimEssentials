@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Xbim.Common;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
@@ -238,60 +240,80 @@ namespace Xbim.Ifc.Validation
             if (ifcAttr.State == EntityAttributeState.Optional && propVal is IOptionalItemSet && !((IOptionalItemSet)propVal).Initialized)
                 //if it is non-initialized list and optional then it is ok
                 yield break;
-            if (ifcAttr.EntityType == EntityAttributeType.Set 
-                || ifcAttr.EntityType == EntityAttributeType.List 
-                || ifcAttr.EntityType == EntityAttributeType.ListUnique)
+            if (ifcAttr.IsEnumerable)
             {
-                if (ifcAttr.MinCardinality < 1 && ifcAttr.MaxCardinality < 0) //we don't care how many so don't check
+                if (
+               (ifcAttr.MinCardinality == null || ifcAttr.MinCardinality.Length == 0 || ifcAttr.MinCardinality.All(c => c < 0)) &&
+               (ifcAttr.MaxCardinality == null || ifcAttr.MaxCardinality.Length == 0 || ifcAttr.MaxCardinality.All(c => c < 1))) //we don't care how many so don't check
                     yield break;
-                var coll = propVal as ICollection;
+
+                var depth = ifcAttr.MinCardinality.Length;
+                if (depth != ifcAttr.MaxCardinality.Length)
+                    throw new System.Exception("Inconsistent metadata: minimal and maximal cardinality has to have the same length.");
+
+                var sb = new StringBuilder();
+                var items = (IEnumerable)propVal;
+                CheckCardinality(ifcAttr.MinCardinality, ifcAttr.MaxCardinality, items, 0, sb);
+                var msg = sb.ToString();
+                if (string.IsNullOrWhiteSpace(msg))
+                    yield break;
+
+                yield return new ValidationResult()
+                {
+                    Item = instance,
+                    IssueType = ValidationFlags.Properties,
+                    IssueSource = propName,
+                    Message = string.Format("{0}.{1}: {2}", instance.GetType().Name, prop.Name, msg)
+                };
+            }
+        }
+
+        private static void CheckCardinality(int[] minimums, int[] maximums, IEnumerable items, int depth, StringBuilder sb)
+        {
+            if (depth >= minimums.Length || items == null)
+                return;
+
+            var min = minimums[depth];
+            var max = maximums[depth];
+
+            if (min > 0 && max > 0)
+            {
                 var count = 0;
+                var coll = items as ICollection;
                 if (coll != null)
                     count = coll.Count;
                 else
                 {
-                    var en = (IEnumerable)propVal;
-                    if (en != null)
-                    { 
-                        // todo: ensure that this faster than count() given the conditionals in the loop
-                        // ReSharper disable once UnusedVariable // the loop is only executed to count the item if needed.
-                        foreach (var item in en)
-                        {
-                            count++;
-                            if (count >= ifcAttr.MinCardinality && ifcAttr.MaxCardinality == -1)
-                                //we have met the requirements
-                                break;
-                            if (ifcAttr.MaxCardinality > -1 && count > ifcAttr.MaxCardinality) //we are out of bounds
-                                break;
-                        }
+                    // ReSharper disable once UnusedVariable
+                    foreach (var item in items)
+                    {
+                        count++;
+                        if (count >= min && max == -1)
+                            //we have met the requirements
+                            break;
+                        if (max > -1 && count > max) //we are out of bounds
+                            break;
                     }
                 }
 
-                if (count < ifcAttr.MinCardinality)
+                if (count < min)
                 {
-                    yield return new ValidationResult()
-                    {
-                        Item = instance,
-                        IssueType = ValidationFlags.Properties,
-                        IssueSource = propName,
-                        Message =
-                            string.Format("{0}.{1} must have at least {2} item(s). It has {3}.", instance.GetType().Name,
-                                propName, ifcAttr.MinCardinality, count)
-                    };
+                    sb.AppendFormat("Must have at least {0} item(s). It has {1} or more.", min, count);
+                    sb.AppendLine();
                 }
+                if (count > max)
+                {
+                    sb.AppendFormat("Must have no more than {0} item(s). It has at least {1}.", max, count);
+                    sb.AppendLine();
+                }
+            }
 
-                if (ifcAttr.MaxCardinality > -1 && count > ifcAttr.MaxCardinality)
-                {
-                    yield return new ValidationResult()
-                    {
-                        Item = instance,
-                        IssueType = ValidationFlags.Properties,
-                        IssueSource = propName,
-                        Message =
-                            string.Format("{0}.{1} must have no more than {2} item(s). It has at least {3}.",
-                                instance.GetType().Name, propName, ifcAttr.MaxCardinality, count)
-                    };
-                }
+            if (depth + 1 == minimums.Length)
+                return;
+
+            foreach (var item in items)
+            {
+                CheckCardinality(minimums, maximums, item as IEnumerable, depth + 1, sb);
             }
         }
     }

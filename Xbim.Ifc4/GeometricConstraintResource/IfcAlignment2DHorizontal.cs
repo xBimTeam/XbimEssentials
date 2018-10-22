@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLengthMeasure? @StartDistAlong 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcAlignment2DHorizontalSegment> @Segments 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 
 		#region Inverse attributes
 		[InverseProperty("Horizontal")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 5)]
 		public IEnumerable<IfcAlignmentCurve> @ToAlignmentCurve 
 		{ 
 			get 

@@ -53,7 +53,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("HasPropertyTemplates")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 7)]
 		public IEnumerable<IfcComplexPropertyTemplate> @PartOfComplexTemplate 
 		{ 
 			get 
@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}
 		[InverseProperty("HasPropertyTemplates")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IEnumerable<IfcPropertySetTemplate> @PartOfPsetTemplate 
 		{ 
 			get 

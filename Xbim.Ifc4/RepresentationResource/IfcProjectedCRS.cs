@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcIdentifier? @MapProjection 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _mapProjection = v, _mapProjection, value,  "MapProjection", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcIdentifier? @MapZone 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _mapZone = v, _mapZone, value,  "MapZone", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
 		public IfcNamedUnit @MapUnit 
 		{ 
 			get 
