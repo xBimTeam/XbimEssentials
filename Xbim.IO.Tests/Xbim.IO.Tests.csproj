@@ -102,6 +102,7 @@
     <Compile Include="EmptyModelTests.cs" />
     <Compile Include="SchemaVersionTests.cs" />
     <Compile Include="EsentParsingTests.cs" />
+    <Compile Include="IfcLogicalTests.cs" />
     <Compile Include="_StoreOpenForDebug.cs" />
     <Compile Include="WexBIMTests.cs" />
     <Compile Include="XmlTests4.cs" />

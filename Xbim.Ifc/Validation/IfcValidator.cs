@@ -192,7 +192,8 @@ namespace Xbim.Ifc.Validation
             if (propVal is IExpressValueType)
             {
                 var val = ((IExpressValueType) propVal).Value;
-                if (ifcAttr.State == EntityAttributeState.Mandatory && val == null)
+                var underlyingType = ((IExpressValueType)propVal).UnderlyingSystemType;
+                if (ifcAttr.State == EntityAttributeState.Mandatory && val == null && underlyingType != typeof(bool?))
                 {
                     yield return new ValidationResult()
                     {
