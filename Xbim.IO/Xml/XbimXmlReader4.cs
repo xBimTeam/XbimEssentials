@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
@@ -215,7 +216,22 @@ namespace Xbim.IO.Xml
                 throw new XbimParserException("Wrong entity XML format");
 
             var entity = _getOrCreate(id.Value, expType.Type);
-            if (isRef) return entity;
+            if (isRef)
+            {
+                if (!input.IsEmptyElement)
+                {
+                    // TODO: consume anything until the end of the entity.
+                    // this is usualy empty element but some people put data in there as well to indicate some of the
+                    // content for humans reading the XML (as much as it is silly)
+                    var depth = input.Depth;
+                    while (input.Read())
+                    {
+                        if (input.NodeType == XmlNodeType.EndElement && input.Depth == depth)
+                            break;
+                    }
+                }
+                return entity;
+            }
 
             //read all attributes
             while (input.MoveToNextAttribute())
@@ -318,6 +334,14 @@ namespace Xbim.IO.Xml
                         break;
                     case StepParserType.Entity:
                         vType = value.EntityVal.GetType().Name;
+                        var vEntity = value.EntityVal as IPersistEntity;
+                        if (vEntity != null)
+                        {
+                            var info = GetErrIdentityInfo(vEntity);
+                            if (!string.IsNullOrWhiteSpace(info))
+                                vType = vType + " (" + info + ")";
+                        }
+
                         break;
                     case StepParserType.HexaDecimal:
                         vType = "HexaDecimal";
@@ -337,13 +361,39 @@ namespace Xbim.IO.Xml
                         break;
                 }
 
-                var xmlRef = _idMap.FirstOrDefault(kv => kv.Value == entity.EntityLabel).Key;
+
+                var identity = GetErrIdentityInfo(entity);
                 throw new XbimParserException(
-                    String.Format("{0} is not assignable to {1}.{2} (ref={3})",
+                    String.Format("{0} is not assignable to {1}.{2} ({3})",
                         vType,
                         entity.ExpressType.ExpressName,
-                        prop.Name, xmlRef), e);
+                        prop.Name, identity), e);
             }
+        }
+
+        private string GetErrIdentityInfo(IPersistEntity entity)
+        {
+            var xmlRef = _idMap.FirstOrDefault(kv => kv.Value == entity.EntityLabel).Key;
+            var et = entity.ExpressType;
+            var guidProp = et.Properties.FirstOrDefault(p => p.Value.Name == "GlobalId").Value;
+            var nameProp = et.Properties.FirstOrDefault(p => p.Value.Name == "Name").Value;
+
+            var identityBuilder = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(xmlRef))
+                identityBuilder.AppendFormat("id/ref={0} ", xmlRef);
+            if (guidProp != null)
+            {
+                var guidObj = guidProp.PropertyInfo.GetValue(entity);
+                if (guidObj != null)
+                    identityBuilder.AppendFormat("guid='{0}' ", guidObj.ToString());
+            }
+            if (nameProp != null)
+            {
+                var nameObj = nameProp.PropertyInfo.GetValue(entity);
+                if (nameObj != null)
+                    identityBuilder.AppendFormat("name='{0}' ", nameObj.ToString());
+            }
+            return identityBuilder.ToString().Trim();
         }
 
         private void SetPropertyFromElement(ExpressMetaProperty property, IPersistEntity entity, XmlReader input, int[] pos, ExpressType valueType = null)
@@ -460,8 +510,8 @@ namespace Xbim.IO.Xml
                 {
                     // invers property like IsTypedBy might not have anything to define the type
                     // because only single type is applicable
-                    if (typeof(IEnumerable).IsAssignableFrom(type) && 
-                        property.EntityAttribute.MaxCardinality != null && 
+                    if (typeof(IEnumerable).IsAssignableFrom(type) &&
+                        property.EntityAttribute.MaxCardinality != null &&
                         property.EntityAttribute.MaxCardinality[0] == 1)
                     {
                         type = type.GetGenericArguments()[0];

@@ -63,6 +63,16 @@ namespace Xbim.MemoryModel.Tests
         }
 
         [TestMethod]
+        public void RefWithContent()
+        {
+            var path = @"RefWithContent.ifcXML";
+            using (var store = Xbim.Ifc.IfcStore.Open(path))
+            {
+
+            }
+        }
+
+        [TestMethod]
         public void CheckQuantity()
         {
             var path = @"QuantityTest.ifcxml";
