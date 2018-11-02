@@ -7,6 +7,7 @@ using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Logging;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21.Parser;
@@ -23,6 +24,8 @@ namespace Xbim.IO.Xml
         private Dictionary<string, int> _idMap;
         private int _lastId;
         private readonly string _xsi = "http://www.w3.org/2001/XMLSchema-instance";
+        private readonly ILogger Logger = LoggerFactory.GetLogger();
+
 
         /// <summary>
         /// This can be used for analytical and file debugging purposes where 
@@ -220,14 +223,21 @@ namespace Xbim.IO.Xml
             {
                 if (!input.IsEmptyElement)
                 {
-                    // TODO: consume anything until the end of the entity.
+                    // Consume anything until the end of the entity.
                     // this is usualy empty element but some people put data in there as well to indicate some of the
                     // content for humans reading the XML (as much as it is silly)
                     var depth = input.Depth;
+                    var hasContent = false;
                     while (input.Read())
                     {
                         if (input.NodeType == XmlNodeType.EndElement && input.Depth == depth)
                             break;
+                        hasContent = true;
+                    }
+                    if (hasContent)
+                    {
+                        // Log a warning as it is a wrong practise to put content in ref elements
+                        Logger.WarnFormat("Reference to element {0}, ref='{1}' is not empty. This is a wrong practise.", entity.ExpressType.Name, id);
                     }
                 }
                 return entity;
@@ -363,11 +373,11 @@ namespace Xbim.IO.Xml
 
 
                 var identity = GetErrIdentityInfo(entity);
-                throw new XbimParserException(
-                    String.Format("{0} is not assignable to {1}.{2} ({3})",
+                var msg = String.Format("{0} is not assignable to {1}.{2} ({3})",
                         vType,
                         entity.ExpressType.ExpressName,
-                        prop.Name, identity), e);
+                        prop.Name, identity);
+                Logger.Error(msg, e);
             }
         }
 
@@ -384,13 +394,13 @@ namespace Xbim.IO.Xml
             if (guidProp != null)
             {
                 var guidObj = guidProp.PropertyInfo.GetValue(entity);
-                if (guidObj != null)
+                if (guidObj != null && !string.IsNullOrWhiteSpace(guidObj.ToString()))
                     identityBuilder.AppendFormat("guid='{0}' ", guidObj.ToString());
             }
             if (nameProp != null)
             {
                 var nameObj = nameProp.PropertyInfo.GetValue(entity);
-                if (nameObj != null)
+                if (nameObj != null && !string.IsNullOrWhiteSpace(nameObj.ToString())) 
                     identityBuilder.AppendFormat("name='{0}' ", nameObj.ToString());
             }
             return identityBuilder.ToString().Trim();
