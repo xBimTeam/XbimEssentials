@@ -13,12 +13,12 @@ namespace Xbim.Essentials.Tests
     public class EntitySelectionTests
     {
         [TestMethod]
-        [DeploymentItem(@"TestSourceFiles\P1.xbim")]
+        [DeploymentItem(@"TestSourceFiles")]
         public void CanAddEntity()
         {
             DirectoryInfo d = new DirectoryInfo(".");
             Debug.WriteLine(d.FullName);
-            using (var model = IfcStore.Open(@"TestSourceFiles\P1.xbim"))
+            using (var model = IfcStore.Open(@"P1.xbim"))
             {
                 EntitySelection sel = new EntitySelection();
                 sel.CollectionChanged += Sel_CollectionChanged;

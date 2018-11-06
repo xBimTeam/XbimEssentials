@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Common.Logging;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21.Parser;
@@ -24,7 +26,7 @@ namespace Xbim.IO.Xml
         private Dictionary<string, int> _idMap;
         private int _lastId;
         private readonly string _xsi = "http://www.w3.org/2001/XMLSchema-instance";
-        private readonly ILogger Logger = LoggerFactory.GetLogger();
+        private readonly ILogger Logger;
 
 
         /// <summary>
@@ -43,7 +45,7 @@ namespace Xbim.IO.Xml
         /// <param name="finish">Delegate which will be called once the entity is finished (no changes will be made to it)
         /// This is useful for a DB when this is the point when it can be serialized to DB</param>
         /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
-        public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata)
+        public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata, ILogger logger)
         {
             if (getOrCreate == null)
                 throw new ArgumentNullException("getOrCreate");
@@ -57,6 +59,7 @@ namespace Xbim.IO.Xml
             _getOrCreate = getOrCreate;
             _finish = finish;
             _metadata = metadata;
+            Logger = logger ?? NullLogger.Instance;
         }
 
         private XbimXmlReader4()
@@ -235,7 +238,7 @@ namespace Xbim.IO.Xml
                     if (hasContent)
                     {
                         // Log a warning as it is a wrong practise to put content in ref elements
-                        Logger.WarnFormat("Reference to element {0}, ref='{1}' is not empty. This is a wrong practise.", entity.ExpressType.Name, id);
+                        Logger.LogWarning("Reference to element {0}, ref='{1}' is not empty. This is a wrong practise.", entity.ExpressType.Name, id);
                     }
                 }
                 return entity;
@@ -375,7 +378,7 @@ namespace Xbim.IO.Xml
                         vType,
                         entity.ExpressType.ExpressName,
                         prop.Name, identity);
-                Logger.Error(msg, e);
+                Logger.LogError(new EventId(1000, "Failed Assignment"), e, msg);
             }
         }
 
@@ -460,11 +463,10 @@ namespace Xbim.IO.Xml
                     {
                         var cInnerValueType = typeof(List<>);
                         cInnerValueType = cInnerValueType.MakeGenericType(cType);
-                        var cInnerList = Activator.CreateInstance(cInnerValueType) as IList;
-                        if (cInnerList == null)
+                        if (!(Activator.CreateInstance(cInnerValueType) is IList cInnerList))
                             throw new XbimParserException("Initialization of " + cInnerValueType.Name + " failed.");
 
-                    if (typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(cType))
+                        if (typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(cType))
                         {
                             if (!input.IsEmptyElement)
                             {

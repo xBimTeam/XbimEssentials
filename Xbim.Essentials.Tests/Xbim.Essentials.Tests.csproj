@@ -175,6 +175,8 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="TestSourceFiles\4walls1floorSite.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="FederationTestFiles\RelativePathFederation.ifc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -186,8 +188,6 @@
     </None>
     <None Include="FederationTestFiles\P2_cm.ifc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\4walls1floorSite.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -225,6 +225,15 @@
     <None Include="TestSourceFiles\Alignment\vertical-alignment.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\BIM Logo-ExclaimationBody.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\BIM Logo-LetterB.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\BIM Logo-LetterM.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\email.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -238,6 +247,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\Axis2PlacementError.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\P1.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\P2.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\properties.ifc">
@@ -276,6 +291,14 @@
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.Local.csproj">
       <Project>{25d42373-89a5-437d-925c-21510ef0eb62}</Project>
       <Name>Xbim.Ifc4.Local</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Ifc\Xbim.Ifc.Local.csproj">
+      <Project>{A22B6FAB-FFC8-45E0-BEDE-D3A92289E866}</Project>
+      <Name>Xbim.Ifc.Local</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.IO.Esent\Xbim.IO.Esent.Local.csproj">
+      <Project>{1f7ab940-c6a8-4e5d-bb8d-0ddb099e094c}</Project>
+      <Name>Xbim.IO.Esent.Local</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.Local.csproj">
       <Project>{c4495723-d35a-4a82-a5d6-03db4a7bd49b}</Project>

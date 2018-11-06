@@ -162,7 +162,7 @@ namespace Xbim.IO.Memory
             }
             else
             {
-                var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata);
+                var xmlReader = new XbimXmlReader4(GetOrCreateXMLEntity, entity => { }, Metadata, Logger);
                 if (progDelegate != null) xmlReader.ProgressStatus += progDelegate;
                 Header = xmlReader.Read(stream, this);
                 if (progDelegate != null) xmlReader.ProgressStatus -= progDelegate;

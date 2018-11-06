@@ -3,9 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Memory;
-// using Xbim.Ifc2x3.Interfaces; // replacing ifc2x3 would make test pass.
 
-namespace Tests
+namespace Xbim.Essentials.Tests
 {
     /// <summary>
     /// The code in this class is inspired by a bug in Exchange, where it raised a doubt.

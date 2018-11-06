@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFrameworks>net47</TargetFrameworks>
 	<AssemblyName>Xbim.IO.Esent</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
