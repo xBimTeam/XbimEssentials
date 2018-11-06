@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcCurveFontOrScaledCurveFontSelect @CurveFont 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcSizeSelect @CurveWidth 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _curveWidth = v, _curveWidth, value,  "CurveWidth", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcColour @CurveColour 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _curveColour = v, _curveColour, value,  "CurveColour", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcBoolean? @ModelOrDraughting 
 		{ 
 			get 

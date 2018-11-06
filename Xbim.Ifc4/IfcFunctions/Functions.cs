@@ -26,9 +26,9 @@ namespace Xbim.Ifc4
     {
         #region "Implementation hacks"
 
-        internal static ValuesArray<T> NewArray<T>(params T[] args) where T : class 
+        internal static TypesArray NewTypesArray(params string[] args)
         {
-            return new ValuesArray<T>(args);
+            return new TypesArray(args);
         }
         
         internal static IfcEdgeLoop AsIfcEdgeLoop(this IfcLoop toCast)
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4
         }
         
         
-        internal static int SIZEOF<T>(ValuesArray<T> array) where T: class 
+        internal static int SIZEOF(TypesArray array)
         {
             return array.Count();
         }
@@ -166,9 +166,9 @@ namespace Xbim.Ifc4
             throw new NotImplementedException();
         }
 
-        internal static ValuesArray<string> TYPEOF(IPersist instance)
+        internal static TypesArray TYPEOF(IPersist instance)
         {
-            return new ValuesArray<string>(instance);
+            return new TypesArray(instance);
         }
 
         internal static int HIINDEX<T>(IEnumerable<T> source)

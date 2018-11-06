@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 				switch (clause)
 				{
 					case IfcBoxAlignmentClause.WR1:
-						retVal = Functions.NewArray("top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right").Contains(this);
+						retVal = Functions.NewTypesArray("top-left", "top-middle", "top-right", "middle-left", "center", "middle-right", "bottom-left", "bottom-middle", "bottom-right").Contains(this);
 						break;
 				}
 			} catch (Exception  ex) {

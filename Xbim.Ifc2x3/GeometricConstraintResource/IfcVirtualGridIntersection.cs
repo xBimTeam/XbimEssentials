@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 2, 2, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, new int [] { 2 }, new int [] { 2 }, 1)]
 		public IItemSet<IfcGridAxis> @IntersectingAxes 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				return _intersectingAxes;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { 3 }, 2)]
 		public IItemSet<IfcLengthMeasure> @OffsetDistances 
 		{ 
 			get 

@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcMaterialLayerSet @ForLayerSet 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _forLayerSet = v, _forLayerSet, value,  "ForLayerSet", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 3)]
 		public IfcLayerSetDirectionEnum @LayerSetDirection 
 		{ 
 			get 
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _layerSetDirection = v, _layerSetDirection, value,  "LayerSetDirection", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 4)]
 		public IfcDirectionSenseEnum @DirectionSense 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _directionSense = v, _directionSense, value,  "DirectionSense", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLengthMeasure @OffsetFromReferenceLine 
 		{ 
 			get 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _offsetFromReferenceLine = v, _offsetFromReferenceLine, value,  "OffsetFromReferenceLine", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPositiveLengthMeasure? @ReferenceExtent 
 		{ 
 			get 

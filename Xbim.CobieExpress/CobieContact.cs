@@ -147,7 +147,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public string @Email 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _email = v, _email, value,  "Email", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public CobieRole @Category 
 		{ 
 			get 
@@ -177,7 +177,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _category = v, _category, value,  "Category", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public string @Company 
 		{ 
 			get 
@@ -191,7 +191,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _company = v, _company, value,  "Company", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public string @Phone 
 		{ 
 			get 
@@ -205,7 +205,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _phone = v, _phone, value,  "Phone", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public string @Department 
 		{ 
 			get 
@@ -219,7 +219,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _department = v, _department, value,  "Department", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public string @OrganizationCode 
 		{ 
 			get 
@@ -233,7 +233,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _organizationCode = v, _organizationCode, value,  "OrganizationCode", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public string @GivenName 
 		{ 
 			get 
@@ -247,7 +247,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _givenName = v, _givenName, value,  "GivenName", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public string @FamilyName 
 		{ 
 			get 
@@ -261,7 +261,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _familyName = v, _familyName, value,  "FamilyName", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public string @Street 
 		{ 
 			get 
@@ -275,7 +275,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _street = v, _street, value,  "Street", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public string @PostalBox 
 		{ 
 			get 
@@ -289,7 +289,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 16)]
 		public string @Town 
 		{ 
 			get 
@@ -303,7 +303,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _town = v, _town, value,  "Town", 16);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 17)]
 		public string @StateRegion 
 		{ 
 			get 
@@ -317,7 +317,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _stateRegion = v, _stateRegion, value,  "StateRegion", 17);
 			} 
 		}	
-		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(18, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 18)]
 		public string @PostalCode 
 		{ 
 			get 
@@ -331,7 +331,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode", 18);
 			} 
 		}	
-		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(19, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 19)]
 		public string @Country 
 		{ 
 			get 

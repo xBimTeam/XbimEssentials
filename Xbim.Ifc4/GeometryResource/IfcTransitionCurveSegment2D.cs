@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPositiveLengthMeasure? @StartRadius 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _startRadius = v, _startRadius, value,  "StartRadius", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcPositiveLengthMeasure? @EndRadius 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _endRadius = v, _endRadius, value,  "EndRadius", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcBoolean @IsStartRadiusCCW 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _isStartRadiusCCW = v, _isStartRadiusCCW, value,  "IsStartRadiusCCW", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcBoolean @IsEndRadiusCCW 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _isEndRadiusCCW = v, _isEndRadiusCCW, value,  "IsEndRadiusCCW", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 10)]
 		public IfcTransitionCurveType @TransitionCurveType 
 		{ 
 			get 

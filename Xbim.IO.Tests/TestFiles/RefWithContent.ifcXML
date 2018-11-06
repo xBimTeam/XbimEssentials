@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifcXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ifc="http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2" xsi:schemaLocation="http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2 http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2.xsd" id="uos_1" express="http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2.exp" configuration="http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2_config.xml" xmlns="http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2">
+  <!-- header - Start  -->
+  <header>
+    <name>Sample PDT</name>
+    <time_stamp>2018-04-10T20:45:03+00:01</time_stamp>
+    <author>HC</author>
+    <organization>CEN TC 442-WG2</organization>
+    <preprocessor_version>manually edited</preprocessor_version>
+    <originating_system>manually edited</originating_system>
+    <authorization>CEN TC 442-WG2</authorization>
+    <documentation>http://www.buildingsmart-tech.org</documentation>
+  </header>
+
+  <IfcSIUnit UnitType="lengthunit"                    Prefix="milli"      Name="metre"           id="id00"/>
+  <IfcSIUnit UnitType="lengthunit"                                        Name="metre"           id="id01"/>
+
+  <IfcDerivedUnit id="idCM2" UnitType="userdefined" UserDefinedType="Spostamento">
+    <Elements>
+      <IfcDerivedUnitElement Exponent="1">
+        <Unit xsi:type="IfcSIUnit" ref="id00" xsi:nil="true"/>
+      </IfcDerivedUnitElement>
+      <IfcDerivedUnitElement Exponent="-1">
+        <Unit xsi:type="IfcSIUnit" ref="id01" xsi:nil="true"/>
+      </IfcDerivedUnitElement>
+    </Elements>
+  </IfcDerivedUnit>
+
+  <IfcSimplePropertyTemplate Name="Stabilità dimensionale_value" GlobalId="xxxxxxxxxxxxxxxxxxxx54">
+    <Enumerators Name="Value">
+      <EnumerationValues>
+        <IfcLengthMeasure-wrapper>0.500</IfcLengthMeasure-wrapper>
+      </EnumerationValues>
+      <Unit>
+        <IfcDerivedUnit ref="idCM2">
+          <Elements>
+            <IfcDerivedUnitElement>
+              <Unit xsi:type="IfcSIUnit"/>
+            </IfcDerivedUnitElement>
+          </Elements>
+        </IfcDerivedUnit>
+      </Unit>
+    </Enumerators>
+  </IfcSimplePropertyTemplate>
+  <IfcSimplePropertyTemplate Name="Forza di adesione" Description="per utilizzo in componenti soggetti a requisiti strutturali" id="idTP10" GlobalId="3vHjuooT0Hsm00051Mm008">
+    <Enumerators Name="Value">
+      <EnumerationValues>
+        <IfcPressureMeasure-wrapper>0.15</IfcPressureMeasure-wrapper>
+      </EnumerationValues>
+      <Unit>
+        <IfcSIUnit ref="id02"/>
+      </Unit>
+    </Enumerators>
+  </IfcSimplePropertyTemplate>
+</ifcXML>
+

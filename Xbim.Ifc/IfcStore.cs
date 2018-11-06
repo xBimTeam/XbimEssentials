@@ -289,18 +289,9 @@ namespace Xbim.Ifc
 
             if (storageType == IfcStorageType.Xbim) //open the XbimFile
             {
-                if (ifcVersion == IfcSchemaVersion.Ifc4)
-                {
-                    var model = CreateEsentModel(IfcSchemaVersion.Ifc4, codePageOverride);
-                    model.Open(path, accessMode, progDelegate);
-                    return new IfcStore(model, ifcVersion, editorDetails, path);
-                }
-                else //it will be Ifc2x3
-                {
-                    var model = CreateEsentModel(IfcSchemaVersion.Ifc2X3, codePageOverride);
-                    model.Open(path, accessMode, progDelegate);
-                    return new IfcStore(model, ifcVersion, editorDetails, path);
-                }
+                var model = CreateEsentModel(ifcVersion, codePageOverride);
+                model.Open(path, accessMode, progDelegate);
+                return new IfcStore(model, ifcVersion, editorDetails, path);
             }
             else //it will be an IFC file if we are at this point
             {
@@ -326,7 +317,8 @@ namespace Xbim.Ifc
                             {
                                 foreach (ZipEntry zipEntry in zipFile)
                                 {
-                                    if (!zipEntry.IsFile) continue; // 
+                                    if (!zipEntry.IsFile || zipEntry.Name.StorageType() == IfcStorageType.Invalid)
+                                        continue; 
                                     var streamSize = zipEntry.Size;
                                     using (var reader = zipFile.GetInputStream(zipEntry))
                                     {
@@ -349,6 +341,12 @@ namespace Xbim.Ifc
                         model.LoadStep21(path, progDelegate);
                     else if (storageType.HasFlag(IfcStorageType.IfcXml))
                         model.LoadXml(path, progDelegate);
+
+                    // if we are looking at a memory model loaded from a file it might be safe to fix the file name in the 
+                    // header with the actual file loaded
+                    //
+                    FileInfo f = new FileInfo(path);
+                    model.Header.FileName.Name = f.FullName;
                     return new IfcStore(model, ifcVersion, editorDetails, path);
                 }
             }
@@ -438,15 +436,11 @@ namespace Xbim.Ifc
         {
             var esentModel = _model as EsentModel;
             if (esentModel != null) //we need to do transaction handling on Esent model, make sure we can write to it
-            {
-                esentModel.Header.StampXbimApplication(_schema);
                 return esentModel.BeginTransaction(name);
-            }
 
             var memoryModel = _model as MemoryModel;
             if (memoryModel == null)
                 throw new XbimException("Native store does not support transactions");
-            memoryModel.Header.StampXbimApplication(_schema);
             return memoryModel.BeginTransaction(name);
         }
 
@@ -637,14 +631,15 @@ namespace Xbim.Ifc
                 if (_editorDetails == null)
                     return null;
 
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var person = Instances.New<Ifc4.ActorResource.IfcPerson>(p =>
                     {
                         p.GivenName = _editorDetails.EditorsGivenName;
                         p.FamilyName = _editorDetails.EditorsFamilyName;
                     });
-                    var organization = Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                    var organization = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                        ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                     _defaultOwningUser = Instances.New<Ifc4.ActorResource.IfcPersonAndOrganization>(po =>
                     {
                         po.TheOrganization = organization;
@@ -658,7 +653,8 @@ namespace Xbim.Ifc
                         p.GivenName = _editorDetails.EditorsGivenName;
                         p.FamilyName = _editorDetails.EditorsFamilyName;
                     });
-                    var organization = Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
+                    var organization = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                        ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                     _defaultOwningUser = Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>(po =>
                     {
                         po.TheOrganization = organization;
@@ -683,12 +679,13 @@ namespace Xbim.Ifc
                 if (_editorDetails == null)
                     return null;
 
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                     return _defaultOwningApplication ??
                          (_defaultOwningApplication =
                              Instances.New<Ifc4.UtilityResource.IfcApplication>(a =>
                              {
-                                 a.ApplicationDeveloper = Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
+                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                                 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                                  a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                  a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
                                  a.Version = _editorDetails.ApplicationVersion;
@@ -698,7 +695,8 @@ namespace Xbim.Ifc
                         (_defaultOwningApplication =
                             Instances.New<Ifc2x3.UtilityResource.IfcApplication>(a =>
                             {
-                                a.ApplicationDeveloper = Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.ApplicationDevelopersName);
+                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == _editorDetails.EditorsOrganisationName)
+                                ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = _editorDetails.EditorsOrganisationName);
                                 a.ApplicationFullName = _editorDetails.ApplicationFullName;
                                 a.ApplicationIdentifier = _editorDetails.ApplicationIdentifier;
                                 a.Version = _editorDetails.ApplicationVersion;
@@ -713,7 +711,7 @@ namespace Xbim.Ifc
             {
                 if (_ownerHistoryAddObject != null)
                     return _ownerHistoryAddObject;
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var histAdd = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
                     histAdd.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
@@ -744,7 +742,7 @@ namespace Xbim.Ifc
             {
                 if (_ownerHistoryModifyObject != null)
                     return _ownerHistoryModifyObject;
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var histmod = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
                     histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
@@ -899,7 +897,7 @@ namespace Xbim.Ifc
                     writer.Write(_model, xmlWriter, _model.Instances);
 
                 }
-                else if (_schema == IfcSchemaVersion.Ifc4)
+                else if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                     var project = _model.Instances.OfType<Ifc4.Kernel.IfcProject>();
@@ -967,11 +965,24 @@ namespace Xbim.Ifc
         }
 
         /// <summary>
+        /// If translation is defined, returns matrix translated by the vector
+        /// </summary>
+        /// <param name="matrix">Input matrix</param>
+        /// <param name="translation">Translation</param>
+        /// <returns>Translated matrix</returns>
+        private XbimMatrix3D Translate(XbimMatrix3D matrix, IVector3D translation)
+        {
+            if (translation == null) return matrix;
+            var translationMatrix = XbimMatrix3D.CreateTranslation(translation.X, translation.Y, translation.Z);
+            return XbimMatrix3D.Multiply(matrix, translationMatrix);
+        }
+
+        /// <summary>
         /// This function is used to generate the .wexbim model files.
         /// </summary>
         /// <param name="binaryStream">An open writable streamer.</param>
         /// <param name="products">Optional products to be written to the wexBIM file. If null, all products from the model will be saved</param>
-        public void SaveAsWexBim(BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null)
+        public void SaveAsWexBim(BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null, IVector3D translation = null)
         {
             products = products ?? Instances.OfType<IIfcProduct>();
             // ReSharper disable RedundantCast
@@ -1009,11 +1020,13 @@ namespace Xbim.Ifc
                 //write out conversion to meter factor
 
                 binaryStream.Write(Convert.ToInt16(regions.Count)); //write out the population data
+                var t = XbimMatrix3D.Identity;
+                t = Translate(t, translation);
                 foreach (var r in regions)
                 {
                     binaryStream.Write((Int32)(r.Population));
                     var bounds = r.ToXbimRect3D();
-                    var centre = r.Centre;
+                    var centre = t.Transform(r.Centre);
                     //write out the centre of the region
                     binaryStream.Write((Single)centre.X);
                     binaryStream.Write((Single)centre.Y);
@@ -1056,7 +1069,8 @@ namespace Xbim.Ifc
                     var bb = XbimRect3D.Empty;
                     foreach (var si in geomRead.ShapeInstancesOfEntity(product))
                     {
-                        var bbPart = XbimRect3D.TransformBy(si.BoundingBox, si.Transformation);
+                        var transformation = Translate(si.Transformation, translation);
+                        var bbPart = XbimRect3D.TransformBy(si.BoundingBox, transformation);
                         //make sure we put the box in the right place and then convert to axis aligned
                         if (bb.IsEmpty) bb = bbPart;
                         else
@@ -1076,7 +1090,7 @@ namespace Xbim.Ifc
                 var toIgnore = new short[4];
                 toIgnore[0] = _model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
                 toIgnore[1] = _model.Metadata.ExpressTypeId("IFCPROJECTIONELEMENT");
-                if (IfcSchemaVersion == IfcSchemaVersion.Ifc4)
+                if (IfcSchemaVersion == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     toIgnore[2] = _model.Metadata.ExpressTypeId("IFCVOIDINGFEATURE");
                     toIgnore[3] = _model.Metadata.ExpressTypeId("IFCSURFACEFEATURE");
@@ -1108,7 +1122,9 @@ namespace Xbim.Ifc
                             binaryStream.Write((Int32)xbimShapeInstance.StyleLabel > 0
                                 ? xbimShapeInstance.StyleLabel
                                 : xbimShapeInstance.IfcTypeId * -1);
-                            binaryStream.Write(xbimShapeInstance.Transformation);
+
+                            var transformation = Translate(XbimMatrix3D.FromArray(xbimShapeInstance.Transformation), translation);
+                            binaryStream.Write(transformation.ToArray());
                             numberOfTriangles +=
                                 XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData)geometry).ShapeData);
                             numberOfMatrices++;
@@ -1139,7 +1155,8 @@ namespace Xbim.Ifc
                         var ms = new MemoryStream(((IXbimShapeGeometryData)geometry).ShapeData);
                         var br = new BinaryReader(ms);
                         var tr = br.ReadShapeTriangulation();
-                        var trTransformed = tr.Transform(((XbimShapeInstance)xbimShapeInstance).Transformation);
+                        var transformation = Translate(xbimShapeInstance.Transformation, translation);
+                        var trTransformed = tr.Transform(transformation);
                         trTransformed.Write(binaryStream);
                         numberOfTriangles += XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData)geometry).ShapeData);
                         numberOfVertices += XbimShapeTriangulation.VerticesCount(((IXbimShapeGeometryData)geometry).ShapeData);
@@ -1272,9 +1289,7 @@ namespace Xbim.Ifc
             }
         }
 
-
-
-        #region Reference Model functions
+        #region Referenced Models functions
 
         /// <summary>
         /// Adds a model as a reference or federated model, do not call inside a transaction
@@ -1288,7 +1303,7 @@ namespace Xbim.Ifc
             XbimReferencedModel retVal;
             using (var txn = BeginTransaction())
             {
-                if (_schema == IfcSchemaVersion.Ifc4)
+                if (_schema == IfcSchemaVersion.Ifc4 || _schema == IfcSchemaVersion.Ifc4x1)
                 {
                     var role = Instances.New<Ifc4.ActorResource.IfcActorRole>();
                     role.RoleString = organisationRole;
@@ -1733,14 +1748,24 @@ namespace Xbim.Ifc
 
         #region Equality
 
+        /// <summary>
+        /// Returns true if it is another reference to this or if is is an embeded model
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(IModel other)
         {
             return ReferenceEquals(this, other) || ReferenceEquals(other, _model);
         }
 
+        /// <summary>
+        /// Returns true if it is another reference to this or if is is an embeded model
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
-            return _model.Equals(obj);
+            return _model.Equals(obj) || ReferenceEquals(this, obj);
         }
 
         public override int GetHashCode()

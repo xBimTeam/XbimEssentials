@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 9)]
 		public IfcSimplePropertyTemplateTypeEnum? @TemplateType 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _templateType = v, _templateType, value,  "TemplateType", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcLabel? @PrimaryMeasureType 
 		{ 
 			get 
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _primaryMeasureType = v, _primaryMeasureType, value,  "PrimaryMeasureType", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcLabel? @SecondaryMeasureType 
 		{ 
 			get 
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _secondaryMeasureType = v, _secondaryMeasureType, value,  "SecondaryMeasureType", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 12)]
 		public IfcPropertyEnumeration @Enumerators 
 		{ 
 			get 
@@ -167,7 +167,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _enumerators = v, _enumerators, value,  "Enumerators", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 13)]
 		public IfcUnit @PrimaryUnit 
 		{ 
 			get 
@@ -183,7 +183,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _primaryUnit = v, _primaryUnit, value,  "PrimaryUnit", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 14)]
 		public IfcUnit @SecondaryUnit 
 		{ 
 			get 
@@ -199,7 +199,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _secondaryUnit = v, _secondaryUnit, value,  "SecondaryUnit", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcLabel? @Expression 
 		{ 
 			get 
@@ -213,7 +213,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _expression = v, _expression, value,  "Expression", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 16)]
 		public IfcStateEnum? @AccessState 
 		{ 
 			get 

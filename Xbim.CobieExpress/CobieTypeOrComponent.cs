@@ -60,7 +60,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 15)]
 		public IOptionalItemSet<CobieTypeOrComponent> @AssemblyOf 
 		{ 
 			get 
@@ -76,7 +76,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("RealizingComponent")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { -1 }, new int [] { -1 }, 16)]
 		public IEnumerable<CobieConnection> @Connecting 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("ComponentA")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { -1 }, new int [] { -1 }, 17)]
 		public IEnumerable<CobieConnection> @ConnectedBefore 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.CobieExpress
 			} 
 		}
 		[InverseProperty("ComponentB")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { -1 }, new int [] { -1 }, 18)]
 		public IEnumerable<CobieConnection> @ConnectedAfter 
 		{ 
 			get 

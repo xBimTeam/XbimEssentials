@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcAreaMeasure @TotalCrossSectionArea 
 		{ 
 			get 
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _totalCrossSectionArea = v, _totalCrossSectionArea, value,  "TotalCrossSectionArea", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel @SteelGrade 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _steelGrade = v, _steelGrade, value,  "SteelGrade", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 4)]
 		public IfcReinforcingBarSurfaceEnum? @BarSurface 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _barSurface = v, _barSurface, value,  "BarSurface", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLengthMeasure? @EffectiveDepth 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _effectiveDepth = v, _effectiveDepth, value,  "EffectiveDepth", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPositiveLengthMeasure? @NominalBarDiameter 
 		{ 
 			get 
@@ -162,7 +162,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _nominalBarDiameter = v, _nominalBarDiameter, value,  "NominalBarDiameter", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcCountMeasure? @BarCount 
 		{ 
 			get 

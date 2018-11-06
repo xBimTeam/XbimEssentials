@@ -106,7 +106,7 @@ namespace Xbim.CobieExpress
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public string @Name 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _name = v, _name, value,  "Name", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 7)]
 		public CoordinateTypeEnum? @CoordinateType 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _coordinateType = v, _coordinateType, value,  "CoordinateType", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public double @X 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _x = v, _x, value,  "X", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public double @Y 
 		{ 
 			get 
@@ -162,7 +162,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _y = v, _y, value,  "Y", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public double @Z 
 		{ 
 			get 
@@ -176,7 +176,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _z = v, _z, value,  "Z", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public double? @RotationX 
 		{ 
 			get 
@@ -190,7 +190,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _rotationX = v, _rotationX, value,  "RotationX", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public double? @RotationY 
 		{ 
 			get 
@@ -204,7 +204,7 @@ namespace Xbim.CobieExpress
 				SetValue( v =>  _rotationY = v, _rotationY, value,  "RotationY", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public double? @RotationZ 
 		{ 
 			get 
@@ -224,7 +224,7 @@ namespace Xbim.CobieExpress
 
 		#region Inverse attributes
 		[InverseProperty("Representations")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 14)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { -1 }, new int [] { -1 }, 14)]
 		public IEnumerable<CobieAsset> @RelatedAssets 
 		{ 
 			get 

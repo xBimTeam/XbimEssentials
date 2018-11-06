@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 6)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 3 }, new int [] { -1, 3 }, 6)]
 		public IOptionalItemSet<IItemSet<IfcParameterValue>> @Normals 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _normals;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcBoolean? @Closed 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _closed = v, _closed, value,  "Closed", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 8)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 3 }, new int [] { -1, 3 }, 8)]
 		public IItemSet<IItemSet<IfcPositiveInteger>> @CoordIndex 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _coordIndex;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 9)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 9)]
 		public IOptionalItemSet<IfcPositiveInteger> @PnIndex 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcInteger @NumberOfTriangles 
 		{
 			get 

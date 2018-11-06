@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
+using Xbim.Ifc.Validation;
 using Xbim.Ifc4;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
@@ -41,6 +42,47 @@ namespace Xbim.MemoryModel.Tests
             }
         }
 
+        [TestMethod]
+        public void ComplexPropertyCheck()
+        {
+            var path = @"Dimensions.ifcxml";
+            using (var store = Xbim.Ifc.IfcStore.Open(path))
+            {
+
+            }
+        }
+
+        [TestMethod]
+        public void IkeaKitchenKabinetOpen()
+        {
+            var path = @"IkeaKitchenCabinets.ifcXML";
+            using (var store = Xbim.Ifc.IfcStore.Open(path))
+            {
+
+            }
+        }
+
+        [TestMethod]
+        public void RefWithContent()
+        {
+            var path = @"RefWithContent.ifcXML";
+            using (var store = Xbim.Ifc.IfcStore.Open(path))
+            {
+
+            }
+        }
+
+        [TestMethod]
+        public void CheckQuantity()
+        {
+            var path = @"QuantityTest.ifcxml";
+            var store = Xbim.Ifc.IfcStore.Open(path);
+            var site = store.Instances.FirstOrDefault<IIfcSite>(r => r.Name == "Testsite");
+            var rel = site.IsDefinedBy
+                    .Where(r => r.RelatingPropertyDefinition is IIfcElementQuantity)
+                    .FirstOrDefault();
+            Assert.IsNotNull(rel);
+        }
         [TestMethod]
         public void Ifc4HeaderSerialization()
         {

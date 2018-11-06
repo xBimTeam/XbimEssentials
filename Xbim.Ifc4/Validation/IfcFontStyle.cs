@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcFontStyleClause.WR1:
-						retVal = Functions.NewArray("normal", "italic", "oblique").Contains(this);
+						retVal = Functions.NewTypesArray("normal", "italic", "oblique").Contains(this);
 						break;
 				}
 			} catch (Exception  ex) {

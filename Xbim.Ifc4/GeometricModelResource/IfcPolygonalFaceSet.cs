@@ -68,7 +68,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcBoolean? @Closed 
 		{ 
 			get 
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 7)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 7)]
 		public IItemSet<IfcIndexedPolygonalFace> @Faces 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _faces;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 8)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 8)]
 		public IOptionalItemSet<IfcPositiveInteger> @PnIndex 
 		{ 
 			get 

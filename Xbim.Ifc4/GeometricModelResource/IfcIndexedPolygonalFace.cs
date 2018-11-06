@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 3, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 3 }, new int [] { -1 }, 3)]
 		public IItemSet<IfcPositiveInteger> @CoordIndex 
 		{ 
 			get 
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 		#region Inverse attributes
 		[InverseProperty("Faces")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IEnumerable<IfcPolygonalFaceSet> @ToFaceSet 
 		{ 
 			get 

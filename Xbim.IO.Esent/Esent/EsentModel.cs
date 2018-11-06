@@ -100,10 +100,7 @@ namespace Xbim.IO.Esent
         {
             get { return InstanceCache.DatabaseName; }
         }
-
-
-
-
+        
         //sets or gets the Geometry Manager for this model
         public IGeometryManager GeometryManager { get; set; }
 
@@ -703,39 +700,72 @@ namespace Xbim.IO.Esent
                 entAttr.EntityType != EntityAttributeType.ArrayUnique && entAttr.EntityType != EntityAttributeType.Bag)
                 return null;
 
-            if (entAttr.MinCardinality < 1 && entAttr.MaxCardinality < 0) //we don't care how many so don't check
+            if (
+                (entAttr.MinCardinality == null || entAttr.MinCardinality.Length == 0 || entAttr.MinCardinality.All(c => c < 0)) && 
+                (entAttr.MaxCardinality == null || entAttr.MaxCardinality.Length == 0 || entAttr.MaxCardinality.All(c => c < 1))) //we don't care how many so don't check
                 return null;
-            var coll = propVal as ICollection;
-            var count = 0;
-            if (coll != null)
-                count = coll.Count;
-            else
-            {
-                var en = (IEnumerable)propVal;
 
-                // ReSharper disable once UnusedVariable
-                foreach (var item in en)
+            var depth = entAttr.MinCardinality.Length;
+            if (depth != entAttr.MaxCardinality.Length)
+                throw new Exception("Inconsistent metadata: minimal and maximal cardinality has to have the same length.");
+
+            var sb = new StringBuilder();
+            var items = (IEnumerable)propVal;
+            CheckCardinality(entAttr.MinCardinality, entAttr.MaxCardinality, items, 0, sb);
+            var msg = sb.ToString();
+            if (string.IsNullOrWhiteSpace(msg))
+                return null;
+
+            return string.Format("{0}.{1}: {2}", instance.GetType().Name, prop.Name, msg);
+        }
+
+        private static void CheckCardinality(int[] minimums, int[] maximums, IEnumerable items, int depth, StringBuilder sb)
+        {
+            if (depth >= minimums.Length || items == null)
+                return;
+
+            var min = minimums[depth];
+            var max = maximums[depth];
+
+            if (min > 0 && max > 0)
+            {
+                var count = 0;
+                var coll = items as ICollection;
+                if (coll != null)
+                    count = coll.Count;
+                else
                 {
-                    count++;
-                    if (count >= entAttr.MinCardinality && entAttr.MaxCardinality == -1)
-                        //we have met the requirements
-                        break;
-                    if (entAttr.MaxCardinality > -1 && count > entAttr.MaxCardinality) //we are out of bounds
-                        break;
+                    // ReSharper disable once UnusedVariable
+                    foreach (var item in items)
+                    {
+                        count++;
+                        if (count >= min && max == -1)
+                            //we have met the requirements
+                            break;
+                        if (max > -1 && count > max) //we are out of bounds
+                            break;
+                    }
+                }
+
+                if (count < min)
+                {
+                    sb.AppendFormat("Must have at least {0} item(s). It has {1} or more.", min, count);
+                    sb.AppendLine();
+                }
+                if (count > max)
+                {
+                    sb.AppendFormat("Must have no more than {0} item(s). It has at least {1}.",max , count);
+                    sb.AppendLine();
                 }
             }
 
-            if (count < entAttr.MinCardinality)
+            if (depth + 1 == minimums.Length)
+                return;
+
+            foreach (var item in items)
             {
-                return string.Format("{0}.{1} must have at least {2} item(s). It has {3}", instance.GetType().Name,
-                    propName, entAttr.MinCardinality, count);
+                CheckCardinality(minimums, maximums, item as IEnumerable, depth + 1, sb);
             }
-            if (entAttr.MaxCardinality > -1 && count > entAttr.MaxCardinality)
-            {
-                return string.Format("{0}.{1} must have no more than {2} item(s). It has at least {3}",
-                    instance.GetType().Name, propName, entAttr.MaxCardinality, count);
-            }
-            return null;
         }
 
         #endregion

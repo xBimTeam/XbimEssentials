@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcFontVariantClause.WR1:
-						retVal = Functions.NewArray("normal", "small-caps").Contains(this);
+						retVal = Functions.NewTypesArray("normal", "small-caps").Contains(this);
 						break;
 				}
 			} catch (Exception  ex) {

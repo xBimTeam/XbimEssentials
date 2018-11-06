@@ -292,7 +292,7 @@ namespace Xbim.IO.Xml
             {
                 //special case for IfcRelDefinesByProperties
                 //if (propName == "RelatedObjects" && entity.ExpressType.Name == "IfcRelDefinesByProperties")
-                if (attr.MaxCardinality == 1) //list which shouldn't have more than 1 element in is serialized as a single element
+                if (attr.MaxCardinality != null && attr.MaxCardinality.Length == 1 && attr.MaxCardinality[0] == 1) //list which shouldn't have more than 1 element in is serialized as a single element
                 {
                     propVal = ((IEnumerable)propVal).Cast<object>().FirstOrDefault();
                     var relEntity = propVal as IPersistEntity;

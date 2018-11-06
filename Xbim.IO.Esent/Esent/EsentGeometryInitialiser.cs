@@ -16,8 +16,8 @@ namespace Xbim.IO.Esent
         private EsentLazyDBTransaction _shapeInstanceTransaction;
         private int _geometryCount;
         private int _instanceCount;
-        private static IntPtr _geometryContextId;
-        private static IntPtr _instanceContextId;
+        private IntPtr _geometryContextId;
+        private IntPtr _instanceContextId;
 private  bool _disposed;
         public EsentGeometryInitialiser(EsentGeometryStore esentGeometryStore, EsentShapeGeometryCursor shapeGeometryCursor, EsentShapeInstanceCursor shapeInstanceCursor)
         {

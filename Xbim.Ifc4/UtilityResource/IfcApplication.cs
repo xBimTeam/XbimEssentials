@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.UtilityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcOrganization @ApplicationDeveloper 
 		{ 
 			get 
@@ -97,7 +97,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _applicationDeveloper = v, _applicationDeveloper, value,  "ApplicationDeveloper", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel @Version 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _version = v, _version, value,  "Version", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel @ApplicationFullName 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _applicationFullName = v, _applicationFullName, value,  "ApplicationFullName", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcIdentifier @ApplicationIdentifier 
 		{ 
 			get 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				switch (clause)
 				{
 					case IfcTextTransformationClause.WR1:
-						retVal = Functions.NewArray("capitalize", "uppercase", "lowercase", "none").Contains(this);
+						retVal = Functions.NewTypesArray("capitalize", "uppercase", "lowercase", "none").Contains(this);
 						break;
 				}
 			} catch (Exception  ex) {

@@ -139,7 +139,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="FederationPathTests.cs" />
     <Compile Include="GeometryTests.cs" />
+    <Compile Include="EntitySelectionTests.cs" />
     <Compile Include="IfcAlignmentTests.cs" />
     <Compile Include="Init.cs" />
     <Compile Include="LinqTest.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="UnitNameTest.cs" />
     <Compile Include="NullableInterfaceEnumMemberTest.cs" />
     <Compile Include="AngleTests.cs" />
+    <Compile Include="DerivedUnitTests.cs" />
     <Compile Include="BinaryDataTests.cs" />
     <Compile Include="Utilities\ModelFactory.cs" />
   </ItemGroup>
@@ -172,6 +175,18 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="TestSourceFiles\4walls1floorSite.ifc">
+    <None Include="FederationTestFiles\RelativePathFederation.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FederationTestFiles\FullPathFederation.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FederationTestFiles\P1_cm.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FederationTestFiles\P2_cm.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\4walls1floorSite.ifcxml">
@@ -184,6 +199,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\Alignment\linear-placement.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\bloss-curve.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\sectioned-solid.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\linear-placement.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\Alignment\ramp.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\Alignment\sectioned-solid.ifc">
@@ -201,6 +228,9 @@
     <None Include="TestSourceFiles\email.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\IfcDerivedUnit.ifcxml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\InvalidContentFC4.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -208,6 +238,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\Axis2PlacementError.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\properties.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\SampleHouse4.ifc">

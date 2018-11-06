@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcDirection @LateralAxisDirection 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _lateralAxisDirection = v, _lateralAxisDirection, value,  "LateralAxisDirection", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcDirection @VerticalAxisDirection 
 		{ 
 			get 

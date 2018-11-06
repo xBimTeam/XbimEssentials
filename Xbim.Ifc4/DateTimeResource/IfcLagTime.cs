@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcTimeOrRatioSelect @LagValue 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _lagValue = v, _lagValue, value,  "LagValue", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 5)]
 		public IfcTaskDurationEnum @DurationType 
 		{ 
 			get 

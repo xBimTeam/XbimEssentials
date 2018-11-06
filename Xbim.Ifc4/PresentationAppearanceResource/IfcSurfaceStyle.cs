@@ -61,7 +61,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 2)]
 		public IfcSurfaceSide @Side 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _side = v, _side, value,  "Side", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 5, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 5 }, 3)]
 		public IItemSet<IfcSurfaceStyleElementSelect> @Styles 
 		{ 
 			get 

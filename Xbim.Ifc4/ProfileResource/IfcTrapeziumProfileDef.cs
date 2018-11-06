@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPositiveLengthMeasure @BottomXDim 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _bottomXDim = v, _bottomXDim, value,  "BottomXDim", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcPositiveLengthMeasure @TopXDim 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _topXDim = v, _topXDim, value,  "TopXDim", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcPositiveLengthMeasure @YDim 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _yDim = v, _yDim, value,  "YDim", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcLengthMeasure @TopXOffset 
 		{ 
 			get 

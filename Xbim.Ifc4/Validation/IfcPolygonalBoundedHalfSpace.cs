@@ -34,7 +34,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = PolygonalBoundary.Dim == 2;
 						break;
 					case IfcPolygonalBoundedHalfSpaceClause.BoundaryType:
-						retVal = Functions.SIZEOF(Functions.TYPEOF(PolygonalBoundary) * Functions.NewArray("IFC4.IFCPOLYLINE", "IFC4.IFCCOMPOSITECURVE")) == 1;
+						retVal = Functions.SIZEOF(Functions.TYPEOF(PolygonalBoundary) * Functions.NewTypesArray("IFC4.IFCPOLYLINE", "IFC4.IFCCOMPOSITECURVE")) == 1;
 						break;
 				}
 			} catch (Exception  ex) {

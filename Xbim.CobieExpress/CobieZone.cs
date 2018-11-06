@@ -55,7 +55,7 @@ namespace Xbim.CobieExpress
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 15)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 15)]
 		public IOptionalItemSet<CobieSpace> @Spaces 
 		{ 
 			get 

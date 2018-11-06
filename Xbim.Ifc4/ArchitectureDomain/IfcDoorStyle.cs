@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 18)]
 		public IfcDoorStyleOperationEnum @OperationType 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcDoorStyleConstructionEnum @ConstructionType 
 		{ 
 			get 
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _constructionType = v, _constructionType, value,  "ConstructionType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcBoolean @ParameterTakesPrecedence 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcBoolean @Sizeable 
 		{ 
 			get 

@@ -30,7 +30,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				switch (clause)
 				{
 					case IfcPresentationLayerWithStyleClause.ApplicableOnlyToItems:
-						retVal = Functions.SIZEOF(AssignedItems.Where(temp => (Functions.SIZEOF(Functions.TYPEOF(temp) * Functions.NewArray("IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == Functions.SIZEOF(AssignedItems);
+						retVal = Functions.SIZEOF(AssignedItems.Where(temp => (Functions.SIZEOF(Functions.TYPEOF(temp) * Functions.NewTypesArray("IFC4.IFCGEOMETRICREPRESENTATIONITEM", "IFC4.IFCMAPPEDITEM")) == 1))) == Functions.SIZEOF(AssignedItems);
 						break;
 				}
 			} catch (Exception  ex) {

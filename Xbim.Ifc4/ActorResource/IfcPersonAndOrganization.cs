@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.ActorResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcPerson @ThePerson 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcOrganization @TheOrganization 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _theOrganization = v, _theOrganization, value,  "TheOrganization", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 3)]
 		public IOptionalItemSet<IfcActorRole> @Roles 
 		{ 
 			get 

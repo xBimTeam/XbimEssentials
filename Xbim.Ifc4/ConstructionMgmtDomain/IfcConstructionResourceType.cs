@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 19)]
 		public IOptionalItemSet<IfcAppliedValue> @BaseCosts 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 				return _baseCosts;
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcPhysicalQuantity @BaseQuantity 
 		{ 
 			get 

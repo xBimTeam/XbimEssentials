@@ -1,0 +1,31 @@
+<ifcXML xmlns:ifc="http://www.buildingsmart-tech.org/ifcXML/IFC4/final" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ifcXML4" xsi:schemaLocation="http://www.buildingsmart-tech.org/ifcXML/IFC4/final http://www.buildingsmart-tech.org/ifcXML/IFC4/final/ifcXML4.xsd" xmlns="http://www.buildingsmart-tech.org/ifcXML/IFC4/final">
+  <header>
+    <name>UnitTest</name>
+    <author>mk</author>
+  </header>
+  <IfcProject id="p1" GlobalId="3W_wCy4R58hgkAO0WsiUkm" Name="P">
+    <UnitsInContext>
+      <Units>
+        <IfcDerivedUnit id="i109" UnitType="userdefined">
+          <Elements>
+            <!--<IfcDerivedUnitElement id="i110" Exponent="1">
+              <Unit xsi:type="IfcSIUnit" UnitType="electriccurrentunit" />
+            </IfcDerivedUnitElement>-->
+            <IfcDerivedUnitElement id="i111" Exponent="-1">
+              <Unit xsi:type="IfcConversionBasedUnit" UnitType="timeunit" Name="Hour">
+                  <ConversionFactor>
+                  <ValueComponent>
+                    <IfcTimeMeasure-wrapper>3600</IfcTimeMeasure-wrapper>
+                  </ValueComponent>
+                  <UnitComponent>
+                    <IfcSIUnit UnitType="timeunit" Name="second"/>
+                  </UnitComponent>
+                </ConversionFactor>
+              </Unit>
+            </IfcDerivedUnitElement>
+          </Elements>
+        </IfcDerivedUnit>
+      </Units>
+    </UnitsInContext>
+  </IfcProject>
+  </ifcXML>

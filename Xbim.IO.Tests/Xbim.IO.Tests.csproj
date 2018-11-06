@@ -74,6 +74,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EditModelTests.cs" />
     <Compile Include="EsentHeaderPersistenceTests.cs" />
     <Compile Include="NetworkConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,12 +95,14 @@
     <Compile Include="TableStorageTests.cs" />
     <Compile Include="ActivationTests.cs" />
     <Compile Include="TessellatorTests.cs" />
+    <Compile Include="TolerantFormatConversionTests.cs" />
     <Compile Include="TransactionLogTests.cs" />
     <Compile Include="NoHeaderSerialization.cs" />
     <Compile Include="IfcStoreStreamOpeningTests.cs" />
     <Compile Include="EmptyModelTests.cs" />
     <Compile Include="SchemaVersionTests.cs" />
     <Compile Include="EsentParsingTests.cs" />
+    <Compile Include="IfcLogicalTests.cs" />
     <Compile Include="_StoreOpenForDebug.cs" />
     <Compile Include="WexBIMTests.cs" />
     <Compile Include="XmlTests4.cs" />
@@ -158,10 +161,16 @@
     <None Include="TestFiles\4walls1floorSite.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\BackSpaceInFileName.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\DoubleBackSlashName.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\EmptyMultibyteString.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Dimensions.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\fileWithAbstractClass.ifc">
@@ -171,6 +180,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\ifc2x3_final_wall.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\IFC4TessellationComplex.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\Ifc4WithNestedLists.ifczip">
@@ -186,6 +198,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\IfcCartesianPointList3D.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\IkeaKitchenCabinets.ifcXML">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\ImplicitPropertyTyping.ifcxml">
@@ -207,6 +222,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\OneWall.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\QuantityTest.ifcxml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestFiles\RefWithContent.ifcXML">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\Roof-01_BCAD.ifc">

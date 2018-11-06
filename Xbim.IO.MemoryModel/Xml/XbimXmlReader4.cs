@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Logging;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21.Parser;
@@ -23,6 +24,16 @@ namespace Xbim.IO.Xml
         private Dictionary<string, int> _idMap;
         private int _lastId;
         private readonly string _xsi = "http://www.w3.org/2001/XMLSchema-instance";
+        private readonly ILogger Logger = LoggerFactory.GetLogger();
+
+
+        /// <summary>
+        /// This can be used for analytical and file debugging purposes where 
+        /// relation between XML entity in the file and loaded entity needs
+        /// to be kept.
+        /// </summary>
+        public Dictionary<string, int> IdMap { get { return _idMap; } }
+
 
         /// <summary>
         /// Constructor of the reader for IFC2x3 XML. XSD is different for different versions of IFC and there is a major difference
@@ -50,7 +61,7 @@ namespace Xbim.IO.Xml
 
         private XbimXmlReader4()
         {
-            
+
         }
 
         static XbimXmlReader4()
@@ -78,8 +89,8 @@ namespace Xbim.IO.Xml
 
         public StepFileHeader Read(Stream xmlStream, IModel model, bool onlyHeader = false)
         {
-          //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure Latin character sets are read
-                   
+            //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure Latin character sets are read
+
             using (var input = XmlReader.Create(xmlStream))
             {
                 _streamSize = xmlStream.Length;
@@ -134,7 +145,7 @@ namespace Xbim.IO.Xml
                         }
                     }
                 }
-                if(ProgressStatus!=null) ProgressStatus(100, "Parsing");
+                if (ProgressStatus != null) ProgressStatus(100, "Parsing");
                 return header;
             }
 
@@ -169,7 +180,7 @@ namespace Xbim.IO.Xml
                     }
                 }
                 input.MoveToElement();
-            }            
+            }
         }
 
         private ExpressType GetExpresType(XmlReader input)
@@ -185,7 +196,7 @@ namespace Xbim.IO.Xml
 
             typeName = typeName.Replace("-WRAPPER", "");
             _metadata.TryGetExpressType(typeName, out expType);
-            return expType;    
+            return expType;
         }
 
         private IPersistEntity ReadEntity(XmlReader input, Type suggestedType = null)
@@ -206,13 +217,35 @@ namespace Xbim.IO.Xml
                 throw new XbimParserException("Wrong entity XML format");
 
             var entity = _getOrCreate(id.Value, expType.Type);
-            if (isRef) return entity;
+            if (isRef)
+            {
+                if (!input.IsEmptyElement)
+                {
+                    // Consume anything until the end of the entity.
+                    // this is usualy empty element but some people put data in there as well to indicate some of the
+                    // content for humans reading the XML (as much as it is silly)
+                    var depth = input.Depth;
+                    var hasContent = false;
+                    while (input.Read())
+                    {
+                        if (input.NodeType == XmlNodeType.EndElement && input.Depth == depth)
+                            break;
+                        hasContent = true;
+                    }
+                    if (hasContent)
+                    {
+                        // Log a warning as it is a wrong practise to put content in ref elements
+                        Logger.WarnFormat("Reference to element {0}, ref='{1}' is not empty. This is a wrong practise.", entity.ExpressType.Name, id);
+                    }
+                }
+                return entity;
+            }
 
             //read all attributes
             while (input.MoveToNextAttribute())
             {
                 var pInfo = GetMetaProperty(expType, input.LocalName);
-                if(pInfo == null) continue;
+                if (pInfo == null) continue;
                 SetPropertyFromString(pInfo, entity, input.Value, null);
             }
             input.MoveToElement();
@@ -243,13 +276,13 @@ namespace Xbim.IO.Xml
         private bool InitPropertyValue(Type type, string value, out IPropertyValue propertyValue)
         {
             var propVal = new PropertyValue();
-            if (type == typeof (bool))
+            if (type == typeof(bool))
             {
                 propVal.Init(string.CompareOrdinal(value, "true") == 0 ? ".T." : ".F.", StepParserType.Boolean);
                 propertyValue = propVal;
                 return true;
             }
-            if (type == typeof (bool?))
+            if (type == typeof(bool?))
             {
                 if (string.CompareOrdinal(value, "unknown") == 0)
                 {
@@ -260,13 +293,13 @@ namespace Xbim.IO.Xml
                 propertyValue = propVal;
                 return true;
             }
-            if (typeof (string) == type)
+            if (typeof(string) == type)
             {
-                propVal.Init("'"  + value + "'", StepParserType.String);
+                propVal.Init("'" + value + "'", StepParserType.String);
                 propertyValue = propVal;
                 return true;
             }
-            if (typeof (int) == type || typeof (long) == type)
+            if (typeof(int) == type || typeof(long) == type)
             {
                 propVal.Init(value, StepParserType.Integer);
                 propertyValue = propVal;
@@ -288,185 +321,295 @@ namespace Xbim.IO.Xml
             throw new XbimParserException("Unexpected type: " + type.Name);
         }
 
+        private void Parse(IPersistEntity entity, int propIndex, IPropertyValue value, int[] nested)
+        {
+            try
+            {
+                entity.Parse(propIndex, value, nested);
+            }
+            catch (InvalidCastException e)
+            {
+                var prop = entity.ExpressType.Properties[propIndex + 1];
+                var type = value.Type;
+                var vType = "";
+                switch (type)
+                {
+                    case StepParserType.Boolean:
+                        vType = "Boolean";
+                        break;
+                    case StepParserType.Enum:
+                        vType = "Enumeration value " + value.EnumVal;
+                        break;
+                    case StepParserType.Entity:
+                        vType = value.EntityVal.GetType().Name;
+                        var vEntity = value.EntityVal as IPersistEntity;
+                        if (vEntity != null)
+                        {
+                            var info = GetErrIdentityInfo(vEntity);
+                            if (!string.IsNullOrWhiteSpace(info))
+                                vType = vType + " (" + info + ")";
+                        }
+
+                        break;
+                    case StepParserType.HexaDecimal:
+                        vType = "HexaDecimal";
+                        break;
+                    case StepParserType.Integer:
+                        vType = "Integer";
+                        break;
+                    case StepParserType.Real:
+                        vType = "Real";
+                        break;
+                    case StepParserType.String:
+                        vType = "String";
+                        break;
+                    case StepParserType.Undefined:
+                    default:
+                        vType = "Undefined";
+                        break;
+                }
+
+
+                var identity = GetErrIdentityInfo(entity);
+                var msg = String.Format("{0} is not assignable to {1}.{2} ({3})",
+                        vType,
+                        entity.ExpressType.ExpressName,
+                        prop.Name, identity);
+                Logger.Error(msg, e);
+            }
+        }
+
+        private string GetErrIdentityInfo(IPersistEntity entity)
+        {
+            var xmlRef = _idMap.FirstOrDefault(kv => kv.Value == entity.EntityLabel).Key;
+            var et = entity.ExpressType;
+            var guidProp = et.Properties.FirstOrDefault(p => p.Value.Name == "GlobalId").Value;
+            var nameProp = et.Properties.FirstOrDefault(p => p.Value.Name == "Name").Value;
+
+            var identityBuilder = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(xmlRef))
+                identityBuilder.AppendFormat("id/ref={0} ", xmlRef);
+            if (guidProp != null)
+            {
+                var guidObj = guidProp.PropertyInfo.GetValue(entity);
+                if (guidObj != null && !string.IsNullOrWhiteSpace(guidObj.ToString()))
+                    identityBuilder.AppendFormat("guid='{0}' ", guidObj.ToString());
+            }
+            if (nameProp != null)
+            {
+                var nameObj = nameProp.PropertyInfo.GetValue(entity);
+                if (nameObj != null && !string.IsNullOrWhiteSpace(nameObj.ToString())) 
+                    identityBuilder.AppendFormat("name='{0}' ", nameObj.ToString());
+            }
+            return identityBuilder.ToString().Trim();
+        }
+
         private void SetPropertyFromElement(ExpressMetaProperty property, IPersistEntity entity, XmlReader input, int[] pos, ExpressType valueType = null)
         {
             var name = input.LocalName;
             var type = valueType != null ? valueType.Type : GetNonNullableType(property.PropertyInfo.PropertyType);
             var pIndex = property.EntityAttribute.Order - 1;
             var expType = valueType ?? GetExpresType(input);
-            //select type
-            if (typeof (IExpressSelectType).GetTypeInfo().IsAssignableFrom(type) && type.GetTypeInfo().IsInterface)
+            try
             {
-                //move to inner element which represents the data
-                var sDepth = input.Depth;
-                while (input.Read())
+                //select type
+            if (typeof (IExpressSelectType).GetTypeInfo().IsAssignableFrom(type) && type.GetTypeInfo().IsInterface)
                 {
-                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == sDepth) return;
-                    if(input.NodeType != XmlNodeType.Element) continue;
-                    expType = GetExpresType(input);
-                    if(expType == null)
-                        throw new XbimParserException("Unexpected select data type " + name);
+                    //move to inner element which represents the data
+                    var sDepth = input.Depth;
+                    while (input.Read())
+                    {
+                        if (input.NodeType == XmlNodeType.EndElement && input.Depth == sDepth) return;
+                        if (input.NodeType != XmlNodeType.Element) continue;
+                        expType = GetExpresType(input);
+                        if (expType == null)
+                            throw new XbimParserException("Unexpected select data type " + name);
 
                     if (typeof(IExpressValueType).GetTypeInfo().IsAssignableFrom(expType.Type))
-                    {
-                        SetPropertyFromElement(property, entity, input, pos, expType);
-                        return;
-                    }
+                        {
+                            SetPropertyFromElement(property, entity, input, pos, expType);
+                            return;
+                        }
 
                     if (typeof (IPersistEntity).GetTypeInfo().IsAssignableFrom(expType.Type))
-                    {
-                        SetPropertyFromElement(property, entity, input, pos, expType);
-                        return;
+                        {
+                            SetPropertyFromElement(property, entity, input, pos, expType);
+                            return;
+                        }
+
+                        //this should either be a defined type or entity
+                        throw new XbimParserException("Unexpected select data type " + expType.Name);
                     }
-
-                    //this should either be a defined type or entity
-                    throw new XbimParserException("Unexpected select data type " + expType.Name);
-                }
-                return;
-            }
-
-            //defined type
-            if (typeof(IExpressValueType).GetTypeInfo().IsAssignableFrom(type))
-            {
-                var cType = expType.UnderlyingComplexType;
-
-                //if it is just a value we can use 'SetPropertyFromAttribute'
-                if (type == property.PropertyInfo.PropertyType && !(cType != null && typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(cType)))
-                {
-                    var strValue = input.ReadElementContentAsString();
-                    SetPropertyFromString(property, entity, strValue, pos);
                     return;
                 }
 
-                if (cType != null)
+                //defined type
+            if (typeof(IExpressValueType).GetTypeInfo().IsAssignableFrom(type))
                 {
-                    var cInnerValueType = typeof(List<>);
-                    cInnerValueType = cInnerValueType.MakeGenericType(cType);
-                    var cInnerList = Activator.CreateInstance(cInnerValueType) as IList;
-                    if (cInnerList == null)
-                        throw new XbimParserException("Initialization of " + cInnerValueType.Name + " failed.");
+                    var cType = expType.UnderlyingComplexType;
+
+                    //if it is just a value we can use 'SetPropertyFromAttribute'
+                if (type == property.PropertyInfo.PropertyType && !(cType != null && typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(cType)))
+                    {
+                        var strValue = input.ReadElementContentAsString();
+                        SetPropertyFromString(property, entity, strValue, pos);
+                        return;
+                    }
+
+                    if (cType != null)
+                    {
+                        var cInnerValueType = typeof(List<>);
+                        cInnerValueType = cInnerValueType.MakeGenericType(cType);
+                        var cInnerList = Activator.CreateInstance(cInnerValueType) as IList;
+                        if (cInnerList == null)
+                            throw new XbimParserException("Initialization of " + cInnerValueType.Name + " failed.");
 
                     if (typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(cType))
-                    {
-                        if (!input.IsEmptyElement)
                         {
-                            var cDepth = input.Depth;
-                            while (input.Read())
+                            if (!input.IsEmptyElement)
                             {
-                                if (input.NodeType == XmlNodeType.EndElement && input.Depth == cDepth) break;
-                                if (input.NodeType != XmlNodeType.Element) continue;
-                                var innerEntity = ReadEntity(input);
-                                cInnerList.Add(innerEntity);
-                                if (input.NodeType == XmlNodeType.EndElement && input.Depth == cDepth) break;
-                            }
+                                var cDepth = input.Depth;
+                                while (input.Read())
+                                {
+                                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == cDepth) break;
+                                    if (input.NodeType != XmlNodeType.Element) continue;
+                                    var innerEntity = ReadEntity(input);
+                                    cInnerList.Add(innerEntity);
+                                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == cDepth) break;
+                                }
 
-                            var cValueVal = Activator.CreateInstance(expType.Type, cInnerList);
-                            var cpValue = new PropertyValue();
-                            cpValue.Init(cValueVal);
-                            entity.Parse(pIndex, cpValue, null);
+                                var cValueVal = Activator.CreateInstance(expType.Type, cInnerList);
+                                var cpValue = new PropertyValue();
+                                cpValue.Init(cValueVal);
+                                Parse(entity, pIndex, cpValue, null);
+                            }
                         }
+                        else
+                        {
+                            var cValuesString = input.ReadElementContentAsString();
+                            SetPropertyFromString(property, entity, cValuesString, pos);
+                        }
+                        return;
+                    }
+
+                    //normal defined type has string based constructor which will set the right value
+                    var sValue = input.ReadElementContentAsString();
+                    if (property.EnumerableType == expType.Type)
+                    {
+                        InitPropertyValue(expType.UnderlyingType, sValue, out IPropertyValue pValue);
+                        Parse(entity, pIndex, pValue, pos);
+                        return;
                     }
                     else
                     {
-                        var cValuesString = input.ReadElementContentAsString();
-                        SetPropertyFromString(property, entity, cValuesString, pos);
+                        var pValue = new PropertyValue();
+                        var pValueVal = Activator.CreateInstance(expType.Type, sValue);
+                        pValue.Init(pValueVal);
+                        Parse(entity, pIndex, pValue, pos);
+                        return;
                     }
-                    return;
                 }
-
-                //normal defined type has string based constructor which will set the right value
-                var sValue = input.ReadElementContentAsString();
-                if (property.EnumerableType == expType.Type)
-                {
-                    InitPropertyValue(expType.UnderlyingType, sValue, out IPropertyValue pValue);
-                    entity.Parse(pIndex, pValue, pos);
-                    return;
-                }
-                else
-                {
-                    var pValue = new PropertyValue();
-                    var pValueVal = Activator.CreateInstance(expType.Type, sValue);
-                    pValue.Init(pValueVal);
-                    entity.Parse(pIndex, pValue, pos);
-                    return;
-                }
-            }
 
             if (typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(type) || 
-                (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality == 1))
-            {
-                var value = ReadEntity(input, type);
-                var pVal = new PropertyValue();
-
-                if (property.IsInverse)
+                    (typeof(IEnumerable).IsAssignableFrom(type) && property.EntityAttribute.MaxCardinality != null && property.EntityAttribute.MaxCardinality[0] == 1) ||
+                    (typeof(IEnumerable).IsAssignableFrom(type) && input.GetAttribute("type", _xsi) != null)
+                    )
                 {
-                    pVal.Init(entity);
-                    var remotePropName = property.InverseAttributeProperty.RemoteProperty;
-                    var remoteProperty = value.ExpressType.Properties.FirstOrDefault(p => p.Value.Name == remotePropName).Value;
-                    if(remoteProperty == null)
-                        throw new XbimParserException("Non existing counterpart to " + property.Name);
-                    value.Parse(remoteProperty.EntityAttribute.Order - 1, pVal, null);
-                }
-                else
-                {
-                    pVal.Init(value);
-                    entity.Parse(pIndex, pVal, null);    
-                }
-                return;
-            }
+                    // invers property like IsTypedBy might not have anything to define the type
+                    // because only single type is applicable
+                    if (typeof(IEnumerable).IsAssignableFrom(type) &&
+                        property.EntityAttribute.MaxCardinality != null &&
+                        property.EntityAttribute.MaxCardinality[0] == 1)
+                    {
+                        type = type.GetGenericArguments()[0];
+                    }
 
-            //enumeration or inverse enumeration
-            if (typeof (IEnumerable).GetTypeInfo().IsAssignableFrom(type))
-            {
-                //do nothing with empty list. If it is mandatory it is initialized anyway
-                if (input.IsEmptyElement)
+                    var value = ReadEntity(input, type);
+                    var pVal = new PropertyValue();
+
+                    // swap value and entity if this is inverse relation
+                    if (property.IsInverse)
+                    {
+                        pVal.Init(entity);
+                        var remotePropName = property.InverseAttributeProperty.RemoteProperty;
+                        var remoteProperty = value.ExpressType.Properties.FirstOrDefault(p => p.Value.Name == remotePropName).Value;
+                        if (remoteProperty == null)
+                            throw new XbimParserException("Non existing counterpart to " + property.Name);
+                        Parse(value, remoteProperty.EntityAttribute.Order - 1, pVal, null);
+                    }
+                    else
+                    {
+                        pVal.Init(value);
+                        Parse(entity, pIndex, pVal, null);
+                    }
                     return;
-
-                var enumDepth = input.Depth;
-                while (input.Read())
-                {
-                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
-                    if (input.NodeType != XmlNodeType.Element) continue;
-                    
-                    //position is optional
-                    var posAttr = input.GetAttribute("pos");
-                    pos = null;
-                    if (!string.IsNullOrWhiteSpace(posAttr))
-                    {
-                        var idx = posAttr.Split(_separator, StringSplitOptions.RemoveEmptyEntries)
-                            .Select(i => Convert.ToInt32(i)).ToList();
-                        //remove the last one as it is not used in Parse function
-                        if(idx.Count > 0)
-                            idx.RemoveAt(idx.Count-1);
-                        //only set if it has any values in
-                        if(idx.Count > 0)
-                            pos = idx.ToArray();
-                    }
-
-                    //it might be a primitive
-                    name = input.LocalName;
-                    if (Primitives.ContainsKey(input.LocalName))
-                    {
-                        var iVal = input.ReadElementContentAsString();
-                        var pVal = new PropertyValue();
-                        pVal.Init(iVal, Primitives[name]);
-                        entity.Parse(pIndex, pVal, pos);
-                        if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
-                        continue;
-                    }
-
-                    var eType = GetExpresType(input);
-                    if(eType == null)
-                        throw new XbimParserException("Unexpected type " + name);
-                    SetPropertyFromElement(property, entity, input, pos, eType);
-                    if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
                 }
-                return;
+
+                //enumeration or inverse enumeration
+            if (typeof (IEnumerable).GetTypeInfo().IsAssignableFrom(type))
+                {
+                    //do nothing with empty list. If it is mandatory it is initialized anyway
+                    if (input.IsEmptyElement)
+                        return;
+
+                    var enumDepth = input.Depth;
+                    while (input.Read())
+                    {
+                        if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
+                        if (input.NodeType != XmlNodeType.Element) continue;
+
+                        //position is optional
+                        var posAttr = input.GetAttribute("pos");
+                        pos = null;
+                        if (!string.IsNullOrWhiteSpace(posAttr))
+                        {
+                            var idx = posAttr.Split(_separator, StringSplitOptions.RemoveEmptyEntries)
+                                .Select(i => Convert.ToInt32(i)).ToList();
+                            //remove the last one as it is not used in Parse function
+                            if (idx.Count > 0)
+                                idx.RemoveAt(idx.Count - 1);
+                            //only set if it has any values in
+                            if (idx.Count > 0)
+                                pos = idx.ToArray();
+                        }
+
+                        //it might be a primitive
+                        name = input.LocalName;
+                        if (Primitives.ContainsKey(input.LocalName))
+                        {
+                            var iVal = input.ReadElementContentAsString();
+                            var pVal = new PropertyValue();
+                            pVal.Init(iVal, Primitives[name]);
+                            Parse(entity, pIndex, pVal, pos);
+                            if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
+                            continue;
+                        }
+
+                        var eType = GetExpresType(input);
+                        if (eType == null)
+                            throw new XbimParserException("Unexpected type " + name);
+                        SetPropertyFromElement(property, entity, input, pos, eType);
+                        if (input.NodeType == XmlNodeType.EndElement && input.Depth == enumDepth) break;
+                    }
+                    return;
+                }
             }
+            catch (XbimParserException)
+            {
+                // rethrow
+                throw;
+            }
+            catch (Exception e)
+            {
+                // wrap into parser exception
+                throw new XbimParserException(e.Message, e);
+            }
+
+            // we should never get here
             throw new XbimParserException("Unexpected type: " + type.Name);
         }
 
-        private readonly char[] _separator = {' '};
+        private readonly char[] _separator = { ' ' };
         private long _streamSize;
         private int _percentageParsed;
 
@@ -476,80 +619,94 @@ namespace Xbim.IO.Xml
             var type = valueType ?? property.PropertyInfo.PropertyType;
             type = GetNonNullableType(type);
             var propVal = new PropertyValue();
-            
-            if (type.GetTypeInfo().IsValueType || type == typeof(string))
+            try
             {
+                if (type.GetTypeInfo().IsValueType || type == typeof(string))
+                {
                 if (typeof(IExpressComplexType).GetTypeInfo().IsAssignableFrom(type))
-                {
-                    var meta = _metadata.ExpressType(type);
-                    var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
-                    var underType = meta.UnderlyingComplexType;
-                    foreach (var v in values)
                     {
+                        var meta = _metadata.ExpressType(type);
+                        var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
+                        var underType = meta.UnderlyingComplexType;
+                        foreach (var v in values)
+                        {
                         if (InitPropertyValue(underType, v, out IPropertyValue pv))
-                            entity.Parse(pIndex, pv, pos);
+                                Parse(entity, pIndex, pv, pos);
+                        }
+                        return;
                     }
-                    return;
-                }
                 if (type.GetTypeInfo().IsEnum)
-                {
-                    propVal.Init(value, StepParserType.Enum);
-                    entity.Parse(pIndex, propVal, pos);
+                    {
+                        propVal.Init(value, StepParserType.Enum);
+                        Parse(entity, pIndex, propVal, pos);
+                        return;
+                    }
+
+                    //handle other value types
+                if (typeof(IExpressValueType).GetTypeInfo().IsAssignableFrom(type))
+                    {
+                        var meta = _metadata.ExpressType(type);
+                        type = meta.UnderlyingType;
+                    }
+                if (InitPropertyValue(type, value, out IPropertyValue pVal))
+                        Parse(entity, pIndex, pVal, pos);
                     return;
                 }
 
-                //handle other value types
-                if (typeof(IExpressValueType).GetTypeInfo().IsAssignableFrom(type))
-                {
-                    var meta = _metadata.ExpressType(type);
-                    type = meta.UnderlyingType;
-                }
-                if (InitPropertyValue(type, value, out IPropertyValue pVal))
-                    entity.Parse(pIndex, pVal, pos);
-                return;
-            }
-
-            //lists of value types will be serialized as lists. If this is not an IEnumerable this is not the case
+                //lists of value types will be serialized as lists. If this is not an IEnumerable this is not the case
             if (!typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(type) || !type.GetTypeInfo().IsGenericType)
-                throw new XbimParserException("Unexpected enumerable type " + type.Name);
+                    throw new XbimParserException("Unexpected enumerable type " + type.Name);
 
             var genType = type.GetTypeInfo().GetGenericArguments()[0];
             if (genType.GetTypeInfo().IsValueType || genType == typeof(string))
-            {
-                //handle enumerable of value type and string
-                var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var v in values)
                 {
-                    SetPropertyFromString(property, entity, v, pos, genType);
+                    //handle enumerable of value type and string
+                    var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var v in values)
+                    {
+                        SetPropertyFromString(property, entity, v, pos, genType);
+                    }
+                    return;
                 }
-                return;
-            }
 
-            //rectangular nested lists can also be serialized as attribute if defined in configuration
+                //rectangular nested lists can also be serialized as attribute if defined in configuration
             if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(genType))
-            {
-                //handle rectangular nested lists (like IfcPointList3D)
-                var cardinality = property.EntityAttribute.MaxCardinality;
-                if(cardinality != property.EntityAttribute.MinCardinality)
-                    throw new XbimParserException(property.Name + " is not rectangular so it can't be serialized as a simple text string");
+                {
+                    //handle rectangular nested lists (like IfcPointList3D)
+                    var min = property.EntityAttribute.MaxCardinality != null ? property.EntityAttribute.MaxCardinality.LastOrDefault() : 0;
+                    var max = property.EntityAttribute.MinCardinality != null ? property.EntityAttribute.MinCardinality.LastOrDefault() : -1;
+                    if (min != max)
+                        throw new XbimParserException(property.Name + " is not rectangular so it can't be serialized as a simple text string");
 
-                var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
-                var valType = GetNonGenericType(genType);
+                    var values = value.Split(_separator, StringSplitOptions.RemoveEmptyEntries);
+                    var valType = GetNonGenericType(genType);
                 if (typeof (IExpressValueType).GetTypeInfo().IsAssignableFrom(valType))
-                {
-                    var expValType = _metadata.ExpressType(valType);
-                    if(expValType == null)
-                        throw new XbimParserException("Unexpected data type " + valType.Name);
-                    valType = expValType.UnderlyingType;
-                }
+                    {
+                        var expValType = _metadata.ExpressType(valType);
+                        if (expValType == null)
+                            throw new XbimParserException("Unexpected data type " + valType.Name);
+                        valType = expValType.UnderlyingType;
+                    }
 
-                for (var i = 0; i < values.Length; i++)
-                {
+                    for (var i = 0; i < values.Length; i++)
+                    {
                     InitPropertyValue(valType, values[i], out IPropertyValue pValue);
-                    var idx = i / cardinality;
-                    entity.Parse(pIndex, pValue, new [] {idx});
+                        var idx = i / min;
+                        Parse(entity, pIndex, pValue, new[] { idx });
+                    }
                 }
             }
+            catch (XbimParserException)
+            {
+                // rethrow
+                throw;
+            }
+            catch (Exception e)
+            {
+                // wrap
+                throw new XbimParserException(e.Message, e);
+            }
+
         }
 
         private static Type GetNonGenericType(Type type)
@@ -558,7 +715,7 @@ namespace Xbim.IO.Xml
             while (type.GetTypeInfo().IsGenericType && typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(type))
             {
                 var genArgs = type.GetTypeInfo().GetGenericArguments();
-                if(!genArgs.Any()) break;
+                if (!genArgs.Any()) break;
                 type = genArgs[0];
             }
             return type;
@@ -684,7 +841,7 @@ namespace Xbim.IO.Xml
             while (input.Read())
             {
                 //don't dig deeper than 100 elements
-                if(dist > 100) return XmlSchemaVersion.Unknown;
+                if (dist > 100) return XmlSchemaVersion.Unknown;
 
                 //skip any whitespaces or anything
                 if (input.NodeType != XmlNodeType.Element) continue;
@@ -693,7 +850,7 @@ namespace Xbim.IO.Xml
                 //read namespace info
                 while (input.MoveToNextAttribute())
                 {
-                    if (string.Equals(input.Value, "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL", StringComparison.OrdinalIgnoreCase) || 
+                    if (string.Equals(input.Value, "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL", StringComparison.OrdinalIgnoreCase) ||
                         string.Equals(input.Value, "http://www.iai-international.org/ifcXML2/RC2/IFC2X3", StringComparison.OrdinalIgnoreCase))
                         return XmlSchemaVersion.Ifc2x3;
 
