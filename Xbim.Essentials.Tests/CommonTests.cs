@@ -1,23 +1,24 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Xbim.Common;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Model;
 using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Memory;
-using Xunit;
 
-namespace Xbim.Common.Tests
+namespace Xbim.Essentials.Tests
 {
-
-    public class PackedNormalTests
+    [TestClass]
+    public class CommonTests
     {
-        [Fact]
+        [TestMethod]
         public void PackedNormalRoundTripTest()
         {
             var tests = new[]
@@ -42,23 +43,22 @@ namespace Xbim.Common.Tests
                 var angle = Math.Atan2(x, y);
                 if (angle > 0.1)
                     Trace.WriteLine($"vector: {vec}, angle: { angle * 180.0 / Math.PI:F3}");
-                Assert.True(angle < 0.13);
+                Assert.IsTrue(angle < 0.13);
             }
 
 
         }
 
-        [Fact]
+        [TestMethod]
         public void StepFileHeaderVersionTest()
         {
-            var modelFake = new IModelFake();
-            var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, modelFake);
-            var t = typeof(IModelFake);
-            Assert.True(header.FileName.OriginatingSystem == t.GetTypeInfo().Assembly.GetName().Name);
-            Assert.True(header.FileName.PreprocessorVersion == string.Format("Processor version {0}", t.GetTypeInfo().Assembly.GetName().Version));
+            var model = new StepModel(new Ifc4.EntityFactoryIfc4());
+            var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, model);
+            Assert.IsTrue(header.FileName.OriginatingSystem == model.GetType().GetTypeInfo().Assembly.GetName().Name);
+            Assert.IsTrue(header.FileName.PreprocessorVersion == string.Format("Processor version {0}", model.GetType().GetTypeInfo().Assembly.GetName().Version));
         }
 
-        [Fact]
+        [TestMethod]
         public void can_skip_entities_while_parsing()
         {
             using (var strm = File.OpenRead(@"TestFile.ifc"))

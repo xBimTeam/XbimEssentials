@@ -178,6 +178,7 @@
     <Compile Include="SchemaVersionTests.cs" />
     <Compile Include="SearchTests.cs" />
     <Compile Include="TessellatorTests.cs" />
+    <Compile Include="CommonTests.cs" />
     <Compile Include="TolerantFormatConversionTests.cs" />
     <Compile Include="TransactionalChanges.cs" />
     <Compile Include="InverseCacheTests.cs" />
