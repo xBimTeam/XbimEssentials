@@ -59,9 +59,10 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        public void can_skip_entities_while_parsing()
+        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
+        public void Can_skip_entities_while_parsing()
         {
-            using (var strm = File.OpenRead(@"TestFile.ifc"))
+            using (var strm = File.OpenRead(@"4walls1floorSite.ifc"))
             {
 
                 var ifc2x3MetaData = ExpressMetaData.GetMetadata((new Xbim.Ifc2x3.EntityFactoryIfc2x3()).GetType().GetTypeInfo().Module);
@@ -103,14 +104,15 @@ namespace Xbim.Essentials.Tests
                     foreach (var t in metadata.ExpressTypesImplementing(typeof(IIfcDocumentSelect))) requiredTypes.Add(t.ExpressNameUpper);
                 }
                 var unwantedTypes = allTypes.Except(requiredTypes);
+                var unwanted = new HashSet<string>(unwantedTypes);
                 using (var mm = MemoryModel.OpenReadStep21(strm, null, null, unwantedTypes.ToList()))
                 {
-                   // Assert.Equal(8590, mm.Instances.Count());
+                    foreach(var instance in mm.Instances)
+                    {
+                        Assert.IsFalse(unwanted.Contains(instance.ExpressType.ExpressNameUpper));
+                    }
                 }
-
-
             }
-
         }
     }
 }
