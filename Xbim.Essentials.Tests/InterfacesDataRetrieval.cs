@@ -1,8 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
+using Xbim.Ifc;
 using Xbim.Ifc2x3;
 using Xbim.Ifc4.Interfaces;
+using Xbim.IO.Esent;
 using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
@@ -13,12 +16,34 @@ namespace Xbim.Essentials.Tests
     {
 
         [TestMethod]
+        public void EsentDataRetrieval()
+        {
+            using (var model = new EsentModel(new EntityFactoryIfc2x3()))
+            {
+                model.CreateFrom("4walls1floorSite.ifc", null, null, true);
+
+                var walls = model.Instances.Where<IIfcWall>(w => w.Name != null);
+                Assert.AreEqual(4, walls.Count());
+
+                //this is correct now (fixed to search for interface implementations)
+                var entities = model.Instances.Where<IPersistEntity>(i => true).ToList();
+                
+                //this doesn't bring in non-indexed classes
+                var entities2 = model.Instances.OfType<IPersistEntity>().ToList();
+                
+                var totalCount = model.Instances.Count;
+                Assert.AreEqual(totalCount, entities.Count);
+                Assert.AreEqual(totalCount, entities2.Count);
+            }
+        }
+
+        [TestMethod]
         [DeploymentItem("TestSourceFiles\\4walls1floorSite.ifc")]
         [DeploymentItem("TestSourceFiles\\AlmostEmptyIFC4.ifc")]
         public void ShouldBeAbleToReadUnitDimensions()
         {
             // this can throw an exception if the model is not inside a transaction
-            using (var model = MemoryModel.OpenRead(@"AlmostEmptyIFC4.ifc"))
+            using (var model = IfcStore.Open(@"AlmostEmptyIFC4.ifc"))
             {
                 var instance = model.Instances[53] as Ifc4.MeasureResource.IfcSIUnit;
                 var dimensions = instance.Dimensions;

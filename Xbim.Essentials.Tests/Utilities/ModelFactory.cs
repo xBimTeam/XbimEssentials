@@ -5,31 +5,72 @@ using System.IO;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Step21;
+using Xbim.IO.Esent;
 using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests.Utilities
 {
-    public delegate IModel ModelProvider(string path);
+    public delegate IModel FileProvider(string path);
+    public delegate IModel ModelProvider(IEntityFactory factory);
 
     public class ModelFactory : IDisposable, IEnumerable<IModel>
     {
-        public static List<ModelProvider> Providers = new List<ModelProvider>();
+        private static List<FileProvider> FileProviders = new List<FileProvider>();
+        private static List<ModelProvider> ModelProviders = new List<ModelProvider>();
 
         private List<IModel> _models = new List<IModel>();
 
         static ModelFactory()
         {
-            Providers.Add((path) =>
+            FileProviders.Add((path) =>
             {
                 return MemoryModel.OpenRead(path);
+            });
+            FileProviders.Add((path) =>
+            {
+                // return Esent DB
+                return Ifc.IfcStore2.Open(path, null, 0);
+            });
+
+            ModelProviders.Add((factory) =>
+            {
+                return new MemoryModel(factory);
+            });
+            ModelProviders.Add((factory) =>
+            {
+                return EsentModel.CreateTemporaryModel(factory);
             });
         }
 
         public ModelFactory(string file)
         {
-            _models = Providers.Select(p => p(file)).ToList();
+            _models = FileProviders.Select(p => p(file)).ToList();
         }
 
+        public ModelFactory(XbimSchemaVersion schema)
+        {
+            IEntityFactory factory = null;
+            switch (schema)
+            {
+                case XbimSchemaVersion.Ifc4:
+                    factory = new Xbim.Ifc4.EntityFactoryIfc4();
+                    break;
+                case XbimSchemaVersion.Ifc4x1:
+                    factory = new Xbim.Ifc4.EntityFactoryIfc4x1();
+                    break;
+                case XbimSchemaVersion.Ifc2X3:
+                    factory = new Xbim.Ifc2x3.EntityFactoryIfc2x3();
+                    break;
+                case XbimSchemaVersion.Cobie2X4:
+                case XbimSchemaVersion.Unsupported:
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            if (factory != null)
+            {
+                _models = ModelProviders.Select(p => p(factory)).ToList();
+            }
+        }
 
 
         /// <summary>

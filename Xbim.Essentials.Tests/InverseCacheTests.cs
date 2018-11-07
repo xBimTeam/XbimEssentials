@@ -57,8 +57,6 @@ namespace Xbim.Essentials.Tests
                 w.Stop();
                 cachingTime = w.ElapsedMilliseconds;
             }
-
-            Assert.IsTrue(noCachingTime > cachingTime);
         }
 
 

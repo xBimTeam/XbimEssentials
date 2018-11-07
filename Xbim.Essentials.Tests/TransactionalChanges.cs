@@ -18,9 +18,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void TransactionLog()
         {
-            // empty initial model
-            ModelFactory.Create("TransactionLog.ifc", XbimSchemaVersion.Ifc2X3, model => { });
-            using (var models = new ModelFactory("TransactionLog.ifc"))
+            using (var models = new ModelFactory(XbimSchemaVersion.Ifc2X3))
             {
                 models.Do(model =>
                 {

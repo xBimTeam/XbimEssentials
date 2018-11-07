@@ -53,7 +53,7 @@ namespace Xbim.Ifc
                 }
             };
             model.EntityModified += (entity, property) => {
-                if (entity is IIfcRoot root)
+                if (entity is IIfcRoot root && root.OwnerHistory != modified)
                 {
                     if (modified == null)
                         modified = OwnerHistoryAddObject(model, editorDetails);
@@ -239,6 +239,7 @@ namespace Xbim.Ifc
                 if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) //we need to make an Esent database, if ifcMaxLength<0 we use in memory
                 {
                     var tmpFileName = Path.GetTempFileName();
+                    tmpFileName = Path.ChangeExtension(tmpFileName, ".xbim");
                     var model = CreateEsentModel(ifcVersion, codePageOverride);
                     if (model.CreateFrom(path, tmpFileName, progDelegate, true))
                         return SetUp(model, editorDetails, path, tmpFileName);

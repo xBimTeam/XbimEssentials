@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.Local.csproj" />
+    <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.Local.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

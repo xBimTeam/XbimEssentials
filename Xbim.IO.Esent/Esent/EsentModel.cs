@@ -432,7 +432,7 @@ namespace Xbim.IO.Esent
             switch (toImportStorageType)
             {
                 case StorageType.IfcXml:
-                    //InstanceCache.ImportIfcXml(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities);
+                    InstanceCache.ImportIfcXml(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities);
                     break;
                 case StorageType.Ifc:
                 case StorageType.Stp:
