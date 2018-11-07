@@ -833,7 +833,7 @@ namespace Xbim.IO.Xml
         {
             var xReader = new XbimXmlReader4();
             var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4());
-            return xReader.Read(input, fakeModel); //using a dummy model to get the assembly correct
+            return xReader.Read(input, fakeModel, true); //using a dummy model to get the assembly correct
         }
 
         public static XmlSchemaVersion ReadSchemaVersion(XmlReader input)

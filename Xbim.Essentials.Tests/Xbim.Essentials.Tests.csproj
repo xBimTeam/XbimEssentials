@@ -139,12 +139,25 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="EditModelTests.cs" />
+    <Compile Include="EsentHeaderPersistenceTests.cs" />
+    <Compile Include="EsentParsingTests.cs" />
     <Compile Include="FederationPathTests.cs" />
+    <Compile Include="GeometryStoreTests.cs" />
     <Compile Include="GeometryTests.cs" />
     <Compile Include="EntitySelectionTests.cs" />
+    <Compile Include="Ifc4GeometryTests.cs" />
     <Compile Include="IfcAlignmentTests.cs" />
+    <Compile Include="IfcLogicalTests.cs" />
+    <Compile Include="IfcStoreStreamOpeningTests.cs" />
     <Compile Include="Init.cs" />
+    <Compile Include="InMemoryInsertionTests.cs" />
     <Compile Include="LinqTest.cs" />
+    <Compile Include="ModelReadingTests.cs" />
+    <Compile Include="NetworkConnection.cs" />
+    <Compile Include="NoHeaderSerialization.cs" />
+    <Compile Include="ParsingTests.cs" />
+    <Compile Include="PartialFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PackedNormalTests.cs" />
     <Compile Include="IfcHeaderTests.cs" />
@@ -158,22 +171,145 @@
     <Compile Include="NullStyleTests.cs" />
     <Compile Include="ListOfListTest.cs" />
     <Compile Include="Ifc4DateTimeTests.cs" />
+    <Compile Include="ReadIFC4InterfacesTest.cs" />
+    <Compile Include="ReadIFC4Test.cs" />
+    <Compile Include="ReadingFileWithComments.cs" />
+    <Compile Include="ReadingWronglyEncodedFile.cs" />
+    <Compile Include="SchemaVersionTests.cs" />
     <Compile Include="SearchTests.cs" />
+    <Compile Include="TessellatorTests.cs" />
+    <Compile Include="TolerantFormatConversionTests.cs" />
     <Compile Include="TransactionalChanges.cs" />
     <Compile Include="InverseCacheTests.cs" />
     <Compile Include="CrossAccessTests.cs" />
     <Compile Include="EditableInterfaces.cs" />
     <Compile Include="Pure4Tests.cs" />
+    <Compile Include="TransactionLogTests.cs" />
     <Compile Include="UnitNameTest.cs" />
     <Compile Include="NullableInterfaceEnumMemberTest.cs" />
     <Compile Include="AngleTests.cs" />
     <Compile Include="DerivedUnitTests.cs" />
     <Compile Include="BinaryDataTests.cs" />
     <Compile Include="Utilities\ModelFactory.cs" />
+    <Compile Include="WexBIMTests.cs" />
+    <Compile Include="XmlTests2x3.cs" />
+    <Compile Include="XmlTests4.cs" />
+    <Compile Include="_StoreOpenForDebug.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="TestFiles\2016-02-29-Dormitory-COBie.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\4walls1floorSite.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\4walls1floorSite.ifcxml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\4walls1floorSite.ifczip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\4walls1floorSite.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\BackSpaceInFileName.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Badly formed Ifc file.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\BasinTessellation.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\column-straight-rectangle-tessellation.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Dimensions.ifcxml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\DoubleBackSlashName.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\EmptyMultibyteString.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\fileWithAbstractClass.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\FormallyIllegalFile.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\ifc2x3_final_wall.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\IFC4TessellationComplex.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Ifc4WithNestedLists.ifczip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\IfcCartesianPointList3D.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\IkeaKitchenCabinets.ifcXML">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\ImplicitPropertyTyping.ifcxml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\InvalidType.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Issue107.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\LakesideRestaurant.cobieZip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\mapped-shape-with-transformation.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\NewlinesInStrings.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\OneWall.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\QuantityTest.ifcxml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\RefWithContent.ifcXML">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Roof-01_BCAD.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\SampleHouse4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\ShortRebar.xBIM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\SmallModelIfc2x3.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\SmallModelIfc2x3.ifczip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\SmallModelIfc4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\SmallModelIfc4.ifczip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\tessellation-with-individual-colors.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\Wrongly1251Encoded.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\4walls1floorSite.ifc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -275,9 +411,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestFiles\IFC4SampleMapping.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="TestSourceFiles\xbim.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Xbim.IO.Tests.csproj" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.Local.csproj">
@@ -303,6 +443,10 @@
     <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.Local.csproj">
       <Project>{c4495723-d35a-4a82-a5d6-03db4a7bd49b}</Project>
       <Name>Xbim.IO.MemoryModel.Local</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Tessellator\Xbim.Tessellator.Local.csproj">
+      <Project>{01BA76B8-C202-4127-8D01-372D2A330E09}</Project>
+      <Name>Xbim.Tessellator.Local</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

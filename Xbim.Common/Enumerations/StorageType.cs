@@ -60,7 +60,7 @@ namespace Xbim.IO
 
         public static bool IsStepZipFile(this String path)
         {
-            const string stepTextFileTypes = ".ifczip;.stpzip;";
+            const string stepTextFileTypes = ".ifczip;.stpzip;.zip;";
             var ext = Path.GetExtension(path);
             if (string.IsNullOrEmpty(ext)) return false;
             return stepTextFileTypes.Contains($"{ext.ToLowerInvariant()};");

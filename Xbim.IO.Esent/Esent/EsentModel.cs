@@ -441,7 +441,7 @@ namespace Xbim.IO.Esent
                 case StorageType.IfcZip:
                 case StorageType.StpZip:
                 case StorageType.Zip:
-                    InstanceCache.ImportStepZip(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
+                    InstanceCache.ImportZip(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
                 case StorageType.Xbim:
                     throw new NotImplementedException("Use save as");
@@ -458,13 +458,13 @@ namespace Xbim.IO.Esent
             if (streamType.HasFlag(StorageType.IfcZip) ||
                 streamType.HasFlag(StorageType.StpZip) ||
                 streamType.HasFlag(StorageType.Zip))
-                Cache.ImportStepZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
+                Cache.ImportZip(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
             else if (streamType.HasFlag(StorageType.Ifc) ||
                 streamType.HasFlag(StorageType.Stp))
                 Cache.ImportStep(xbimDbName, inputStream, streamSize, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
             else if (streamType.HasFlag(StorageType.IfcXml))
             {
-                //Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);
+                Cache.ImportIfcXml(xbimDbName, inputStream, progDelegate, keepOpen, cacheEntities);
             }
             return true;
         }

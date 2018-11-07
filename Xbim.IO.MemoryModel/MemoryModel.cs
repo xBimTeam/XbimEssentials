@@ -44,7 +44,7 @@ namespace Xbim.IO.Memory
                 {
                     using (var archive = new ZipArchive(File.OpenRead(fileName), ZipArchiveMode.Read))
                     {
-                        var entry = archive.Entries.FirstOrDefault(z => z.Name.IsStepTextFile());
+                        var entry = archive.Entries.FirstOrDefault(z => z.Name.IsStepTextFile() || z.Name.IsStepXmlFile());
                         if (entry == null) throw new FileLoadException($"File does not contain a valid model: {fileName}");
                         using (var reader = entry.Open())
                         {
@@ -74,9 +74,9 @@ namespace Xbim.IO.Memory
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    throw new FileLoadException($"File is an invalid zip format: {fileName}");
+                    throw new FileLoadException($"File is an invalid zip format: {fileName}", e);
                 }
             }
 
@@ -157,7 +157,7 @@ namespace Xbim.IO.Memory
             {
                 var reader3 = new XbimXmlReader3(GetOrCreateXMLEntity, entity => { }, Metadata);
                 if (progDelegate != null) reader3.ProgressStatus += progDelegate;
-                Header = reader3.Read(stream, this);
+                Header = reader3.Read(stream, this, streamSize);
                 if (progDelegate != null) reader3.ProgressStatus -= progDelegate;
             }
             else
@@ -221,7 +221,7 @@ namespace Xbim.IO.Memory
         {
             using (var zipStream = new ZipArchive(stream))
             {
-                var zipContent = zipStream.Entries.FirstOrDefault(z => z.Name.IsStepTextFile()); //ignores xbim and zip files
+                var zipContent = zipStream.Entries.FirstOrDefault(z => z.Name.IsStepTextFile() || z.Name.IsStepXmlFile()); //ignores xbim and zip files
                 if (zipContent.Name.IsStepTextFile())
                 {
                     using (var reader = zipContent.Open())
@@ -328,16 +328,16 @@ namespace Xbim.IO.Memory
 
         public virtual void SaveAsXml(Stream stream, XmlWriterSettings xmlSettings, XbimXmlSettings xbimSettings = null, configuration configuration = null, ReportProgressDelegate progress = null)
         {
+            var schema = Header.FileSchema.Schemas.FirstOrDefault();
             using (var xmlWriter = XmlWriter.Create(stream, xmlSettings))
             {
-                var schema = EntityFactory.SchemasIds.FirstOrDefault();
-                switch (schema)
+                switch (SchemaVersion)
                 {
-                    case "IFC2X3":
+                    case XbimSchemaVersion.Ifc2X3:
                         var writer3 = new IfcXmlWriter3();
                         writer3.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
-                    case "IFC4":
+                    case XbimSchemaVersion.Ifc4:
                         var writer4 = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
                         writer4.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
@@ -424,13 +424,8 @@ namespace Xbim.IO.Memory
 
         private IEnumerable<IPersistEntity> GetXmlOrderedEntities(string schema)
         {
-            if (schema != null && schema.ToUpper().Contains("COBIE"))
-            {
-                return Instances.OfType("Facility", true)
-                    .Concat(Instances);
-            }
-
-            if (schema == null || !schema.StartsWith("IFC"))
+            schema = schema.ToUpperInvariant();
+            if (schema == null || !schema.StartsWith("IFC2X"))
                 return Instances;
 
             var project = Instances.OfType("IfcProject", true);

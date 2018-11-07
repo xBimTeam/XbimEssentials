@@ -19,6 +19,7 @@ using Xbim.IO.Step21.Parser;
 using Microsoft.Extensions.Logging;
 using System.IO.Compression;
 using Xbim.IO.Xml;
+using Xbim.Common.Step21;
 
 namespace Xbim.IO.Esent
 {
@@ -178,7 +179,7 @@ namespace Xbim.IO.Esent
             {
                 throw new Exception("Could not clear existing geometry tables", e);
             }
-            
+
         }
 
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
@@ -656,66 +657,6 @@ namespace Xbim.IO.Esent
             }
         }
 
-        ///// <summary>
-        /////   Imports an Xml file memory model into the model server, only call when the database instances table is empty
-        ///// </summary>
-        //public void ImportIfcXml(string xbimDbName, string xmlFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
-        //{
-        //    using (var stream = File.OpenRead(xmlFilename))
-        //    {
-        //        ImportIfcXml(xbimDbName, stream, progressHandler, keepOpen, cacheEntities);
-        //    }
-        //}
-
-        //internal void ImportIfcXml(string xbimDbName, Stream inputStream, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false)
-        //{
-        //    CreateDatabase(xbimDbName);
-        //    Open(xbimDbName, XbimDBAccess.Exclusive);
-        //    if (cacheEntities) CacheStart();
-        //    try
-        //    {
-        //        using (var transaction = _model.BeginTransaction())
-        //        {
-
-        //            var schema = Model.Factory.SchemasIds.First();
-        //            if (schema == "IFC2X3")
-        //            {
-        //                var reader3 = new IfcXmlReader(GetOrCreateEntity, e =>
-        //                { //add entity to modified list
-        //                    ModifiedEntities.TryAdd(e.EntityLabel, e);
-        //                    //pulse will flush the model if necessary (based on the number of entities being processed)
-        //                    transaction.Pulse();
-        //                }, Model.Metadata);
-        //                if (progressHandler != null) reader3.ProgressStatus += progressHandler;
-        //                _model.Header = reader3.Read(inputStream);
-        //                if (progressHandler != null) reader3.ProgressStatus -= progressHandler;
-        //            }
-        //            else
-        //            {
-        //                var xmlReader = new XbimXmlReader4(GetOrCreateEntity, e =>
-        //                { //add entity to modified list
-        //                    ModifiedEntities.TryAdd(e.EntityLabel, e);
-        //                    //pulse will flush the model if necessary (based on the number of entities being processed)
-        //                    transaction.Pulse();
-        //                }, Model.Metadata);
-        //                if (progressHandler != null) xmlReader.ProgressStatus += progressHandler;
-        //                _model.Header = xmlReader.Read(inputStream);
-        //                if (progressHandler != null) xmlReader.ProgressStatus -= progressHandler;
-        //            }
-        //            var cursor = _model.GetTransactingCursor();
-        //            cursor.WriteHeader(_model.Header);
-        //            transaction.Commit();
-        //        }
-        //        if (!keepOpen) Close();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Close();
-        //        File.Delete(xbimDbName);
-        //        throw new Exception("Error importing IfcXml file.", e);
-        //    }
-        //}
-
         /// <summary>
         /// Imports the contents of the ifc file into the named database, the resulting database is closed after success, use LoadStep21 to access
         /// </summary>
@@ -770,11 +711,11 @@ namespace Xbim.IO.Esent
             }
         }
 
-        public void ImportStepZip(string xbimDbName, string toImportFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
+        public void ImportZip(string xbimDbName, string toImportFilename, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
             using (var fileStream = File.OpenRead(toImportFilename))
             {
-                ImportStepZip(xbimDbName, fileStream, progressHandler, keepOpen, cacheEntities, codePageOverride);
+                ImportZip(xbimDbName, fileStream, progressHandler, keepOpen, cacheEntities, codePageOverride);
                 fileStream.Close();
             }
         }
@@ -788,7 +729,7 @@ namespace Xbim.IO.Esent
         /// <param name="keepOpen"></param>
         /// <param name="cacheEntities"></param>
         /// <param name="codePageOverride"></param>
-        internal void ImportStepZip(string xbimDbName, Stream fileStream, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
+        internal void ImportZip(string xbimDbName, Stream fileStream, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
             CreateDatabase(xbimDbName);
             Open(xbimDbName, XbimDBAccess.Exclusive);
@@ -857,7 +798,7 @@ namespace Xbim.IO.Esent
                                             transaction.Pulse();
                                         }, Model.Metadata);
                                         if (progressHandler != null) reader3.ProgressStatus += progressHandler;
-                                        _model.Header = reader3.Read(xmlInStream, _model);
+                                        _model.Header = reader3.Read(xmlInStream, _model, entry.Length);
                                         if (progressHandler != null) reader3.ProgressStatus -= progressHandler;
                                     }
                                     else
@@ -928,7 +869,7 @@ namespace Xbim.IO.Esent
                             transaction.Pulse();
                         }, Model.Metadata);
                         if (progressHandler != null) reader3.ProgressStatus += progressHandler;
-                        _model.Header = reader3.Read(inputStream, _model);
+                        _model.Header = reader3.Read(inputStream, _model, inputStream.Length);
                         if (progressHandler != null) reader3.ProgressStatus -= progressHandler;
                     }
                     else
@@ -1611,7 +1552,7 @@ namespace Xbim.IO.Esent
             switch (storageType)
             {
                 case StorageType.IfcXml:
-                    // SaveAsIfcXml(storageFileName);
+                    SaveAsIfcXml(storageFileName);
                     break;
                 case StorageType.Ifc:
                 case StorageType.Stp:
@@ -1700,30 +1641,39 @@ namespace Xbim.IO.Esent
             }
         }
 
-        //private void SaveAsIfcXml(string storageFileName)
-        //{
-        //    if (string.IsNullOrWhiteSpace(Path.GetExtension(storageFileName))) //make sure we have an extension
-        //        storageFileName = Path.ChangeExtension(storageFileName, "IfcXml");
-        //    FileStream xmlOutStream = null;
-        //    try
-        //    {
-        //        xmlOutStream = new FileStream(storageFileName, FileMode.Create, FileAccess.ReadWrite);
-        //        var settings = new XmlWriterSettings { Indent = true };
-        //        using (var xmlWriter = XmlWriter.Create(xmlOutStream, settings))
-        //        {
-        //            var writer = new IfcXmlWriter3();
-        //            writer.Write(_model, xmlWriter, InstanceHandles.Select(i => _model.GetInstanceVolatile(i.EntityLabel)));
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new XbimException("Failed to write IfcXml file " + storageFileName, e);
-        //    }
-        //    finally
-        //    {
-        //        if (xmlOutStream != null) xmlOutStream.Close();
-        //    }
-        //}
+        private void SaveAsIfcXml(string storageFileName)
+        {
+            if (string.IsNullOrWhiteSpace(Path.GetExtension(storageFileName))) //make sure we have an extension
+                storageFileName = Path.ChangeExtension(storageFileName, "IfcXml");
+            try
+            {
+                using (var stream = new FileStream(storageFileName, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    var settings = new XmlWriterSettings { Indent = true };
+                    var schema = _model.Header.FileSchema.Schemas.FirstOrDefault();
+                    using (var xmlWriter = XmlWriter.Create(stream, settings))
+                    {
+                        switch (_model.SchemaVersion)
+                        {
+                            case XbimSchemaVersion.Ifc2X3:
+                                var writer3 = new IfcXmlWriter3();
+                                writer3.Write(_model, xmlWriter, InstanceHandles.Select(i => _model.GetInstanceVolatile(i.EntityLabel)));
+                                break;
+                            case XbimSchemaVersion.Ifc4:
+                            default:
+                                var writer4 = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
+                                writer4.Write(_model, xmlWriter, InstanceHandles.Select(i => _model.GetInstanceVolatile(i.EntityLabel)));
+                                break;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new XbimException("Failed to write IfcXml file " + storageFileName, e);
+            }
+        }
 
 
 

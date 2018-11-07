@@ -909,7 +909,7 @@ namespace Xbim.Ifc
                 storageType.HasFlag(StorageType.IfcXml) ? "ifcXml" : "ifc"
                 );
 
-            using (var zipStream = new ZipArchive(stream, ZipArchiveMode.Update))
+            using (var zipStream = new ZipArchive(stream, ZipArchiveMode.Create))
             {
                 var newEntry = zipStream.CreateEntry(fileBody);
                 using (var writer = newEntry.Open())

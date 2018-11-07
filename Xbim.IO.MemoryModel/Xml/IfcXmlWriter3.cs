@@ -46,12 +46,12 @@ namespace Xbim.IO.Xml
 
         public IfcXmlWriter3()
         {
+            var xBimVersion = GetType().Assembly.GetName().Version;
             var now = DateTime.Now;
             TimeStamp = string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", now.Year, now.Month, now.Day,
                                       now.Hour, now.Minute, now.Second);
-            PreprocessorVersion = string.Format("Xbim.Ifc File Processor version {0}",
-                                                Assembly.GetEntryAssembly().GetName().Version);
-            OriginatingSystem = string.Format("Xbim version {0}", Assembly.GetEntryAssembly().GetName().Version);
+            PreprocessorVersion = $"Xbim.Ifc File Processor version {xBimVersion}";
+            OriginatingSystem = $"Xbim version {xBimVersion}";
         }
 
         private ExpressMetaData _metadata;

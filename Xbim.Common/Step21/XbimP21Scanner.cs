@@ -513,6 +513,11 @@ namespace Xbim.IO.Step21
             for (int i = value.Length - 1; i > 0; i--)
             {
                 var component = value[i] - '0';
+
+                // check if it is actually an integral number
+                if (component < 0 || component > 9)
+                    continue;
+
                 label += component * magnitudes[order++];
             }
             return label;

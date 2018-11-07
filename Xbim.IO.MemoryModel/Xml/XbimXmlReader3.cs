@@ -779,12 +779,12 @@ namespace Xbim.IO.Xml
         }
 
 
-        public StepFileHeader Read(Stream xmlStream, IModel model)
+        public StepFileHeader Read(Stream xmlStream, IModel model, long streamSize)
         {
             //   using (var xmlInStream = new StreamReader(inputStream, Encoding.GetEncoding("ISO-8859-9"))) //this is a work around to ensure latin character sets are read
             using (var input = XmlReader.Create(xmlStream))
             {
-                _streamSize = xmlStream.Length;
+                _streamSize = streamSize;
 
                 // Read until end of file
                 _idMap = new Dictionary<string, int>();

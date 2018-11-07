@@ -455,7 +455,7 @@ namespace Xbim.Common.Model
                 var id = Header.FileSchema.Schemas[i];
                 
                            
-                var sid = _entityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase));
+                var sid = _entityFactory.SchemasIds.FirstOrDefault(s => id.StartsWith(s, StringComparison.OrdinalIgnoreCase));
                 if (sid == null)
                 {
                     //add in a bit of flexibility for old Ifc models with weird schema names
