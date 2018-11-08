@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26711.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc2x3", "Xbim.Ifc2x3\Xbim.Ifc2x3.csproj", "{5255476B-7D66-4D0E-B5FD-38A0FCFEDF88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc2x3", "Xbim.Ifc2x3.csproj", "{5255476B-7D66-4D0E-B5FD-38A0FCFEDF88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C00B99DD-0382-4F8D-BBA9-F48F50B386AF}"
 	ProjectSection(SolutionItems) = preProject
