@@ -8,12 +8,13 @@ namespace Xbim.Ifc2x3.MeasureResource
         public static string AsPart21(double real)
         {
             double dArg = (double)real;
-            string result = dArg.ToString("R", CultureInfo.CreateSpecificCulture("en-US"));
+            var ci = new CultureInfo("en-US");
+            string result = dArg.ToString("R", ci);
 
             // if compiler flag, only then do the following 3 lines
-            string rDoubleStr = dArg.ToString("R", CultureInfo.CreateSpecificCulture("en-US"));
-            double fixedDbl = double.Parse(rDoubleStr, CultureInfo.CreateSpecificCulture("en-US"));
-            result = fixedDbl.ToString("R", CultureInfo.CreateSpecificCulture("en-US"));
+            string rDoubleStr = dArg.ToString("R", ci);
+            double fixedDbl = double.Parse(rDoubleStr, ci);
+            result = fixedDbl.ToString("R", ci);
 
             if (!result.Contains("."))
             {
@@ -28,7 +29,7 @@ namespace Xbim.Ifc2x3.MeasureResource
 
         public static double ToDouble(string val)
         {
-            return Convert.ToDouble(val, CultureInfo.CreateSpecificCulture("en-US"));
+            return Convert.ToDouble(val, new CultureInfo("en-US"));
         }
     }
 }

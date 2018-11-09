@@ -19,25 +19,28 @@ namespace Xbim.Common.Geometry
         #region Serialisation
         new public byte[] ToArray()
         {
-            MemoryStream ms = new MemoryStream();
-            BinaryWriter bw = new BinaryWriter(ms);
-            bw.Write(Version); //write out a negative version number to indicate we are using new version which includes the coord data
-            bw.Write(Count); 
-            
-            foreach (var region in this)
+            using (var ms = new MemoryStream())
             {
-                bw.Write(region.Name);
-                bw.Write(region.Population);
-                bw.Write((float)region.Centre.X);
-                bw.Write((float)region.Centre.Y);
-                bw.Write((float)region.Centre.Z);
-                bw.Write((float)region.Size.X);
-                bw.Write((float)region.Size.Y);
-                bw.Write((float)region.Size.Z);
-                bw.Write(region.WorldCoordinateSystem.ToArray(true)); //output in double
+                using (var bw = new BinaryWriter(ms))
+                {
+                    bw.Write(Version); //write out a negative version number to indicate we are using new version which includes the coord data
+
+                    bw.Write(Count);
+                    foreach (var region in this)
+                    {
+                        bw.Write(region.Name);
+                        bw.Write(region.Population);
+                        bw.Write((float)region.Centre.X);
+                        bw.Write((float)region.Centre.Y);
+                        bw.Write((float)region.Centre.Z);
+                        bw.Write((float)region.Size.X);
+                        bw.Write((float)region.Size.Y);
+                        bw.Write((float)region.Size.Z);
+                        bw.Write(region.WorldCoordinateSystem.ToArray(true)); //output in double
+                    }
+                    return ms.ToArray();
+                }
             }
-            bw.Close();
-            return ms.ToArray();
         }
 
         public static XbimRegionCollection FromArray(byte[] bytes)

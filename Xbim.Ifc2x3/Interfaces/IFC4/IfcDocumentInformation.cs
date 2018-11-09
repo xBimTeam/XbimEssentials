@@ -91,8 +91,11 @@ namespace Xbim.Ifc2x3.ExternalReferenceResource
 			    }
 			    else
 			    {
-			        if (reference == null)
-			            reference = Model.Instances.New<IfcDocumentReference>();
+                    if (reference == null)
+                    {
+                        reference = Model.Instances.New<IfcDocumentReference>();
+                        DocumentReferences.Add(reference);
+                    }
 			        reference.Location = value.Value.ToString();
 			    }
 				//##

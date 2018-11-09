@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace Xbim.Common.Geometry
 {
@@ -15,13 +16,13 @@ namespace Xbim.Common.Geometry
         double Volume { get; }
         double SurfaceArea { get; }
         bool IsPolyhedron { get; }
-        IXbimSolidSet Cut(IXbimSolidSet toCut, double tolerance);
-        IXbimSolidSet Cut(IXbimSolid toCut, double tolerance);
-        IXbimSolidSet Union(IXbimSolidSet toUnion, double tolerance);
-        IXbimSolidSet Union(IXbimSolid toUnion, double tolerance);
-        IXbimSolidSet Intersection(IXbimSolidSet toIntersect, double tolerance);
-        IXbimSolidSet Intersection(IXbimSolid toIntersect, double tolerance);
-        IXbimFaceSet Section(IXbimFace toSection, double tolerance);
+        IXbimSolidSet Cut(IXbimSolidSet toCut, double tolerance, ILogger logger=null);
+        IXbimSolidSet Cut(IXbimSolid toCut, double tolerance, ILogger logger = null);
+        IXbimSolidSet Union(IXbimSolidSet toUnion, double tolerance, ILogger logger = null);
+        IXbimSolidSet Union(IXbimSolid toUnion, double tolerance, ILogger logger = null);
+        IXbimSolidSet Intersection(IXbimSolidSet toIntersect, double tolerance, ILogger logger = null);
+        IXbimSolidSet Intersection(IXbimSolid toIntersect, double tolerance, ILogger logger = null);
+        IXbimFaceSet Section(IXbimFace toSection, double tolerance, ILogger logger = null);
         void SaveAsBrep(string fileName);
         /// <summary>
         /// Converts the object to a string in BRep format

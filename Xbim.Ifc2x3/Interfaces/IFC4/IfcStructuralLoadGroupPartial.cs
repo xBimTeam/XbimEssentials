@@ -22,7 +22,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
                     return;
                 }
                 var str = value.Value.ToString();
-                if (string.Equals(str, "LOAD_COMBINATION_GROUP", StringComparison.InvariantCultureIgnoreCase))
+                if (string.Equals(str, "LOAD_COMBINATION_GROUP", StringComparison.OrdinalIgnoreCase))
                 {
                     PredefinedType = IfcLoadGroupTypeEnum.LOAD_COMBINATION_GROUP;
                     ObjectType = str;

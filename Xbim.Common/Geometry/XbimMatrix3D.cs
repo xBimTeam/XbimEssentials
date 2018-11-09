@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.Serialization;
 using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Geometry
@@ -243,7 +242,7 @@ namespace Xbim.Common.Geometry
             };
         }
 
-        [IgnoreDataMember]
+        
         public bool IsAffine
         {
             get
@@ -259,7 +258,7 @@ namespace Xbim.Common.Geometry
                 return _identity;
             }
         }
-        [IgnoreDataMember]
+        
         public bool IsIdentity 
         {
             get
@@ -448,7 +447,7 @@ namespace Xbim.Common.Geometry
         #endregion
 
         #region Accessors
-        [IgnoreDataMember]
+        
         public XbimVector3D Up
         {
             get
@@ -457,7 +456,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Down
         {
             get
@@ -466,7 +465,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Right
         {
             get
@@ -475,7 +474,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Left
         {
             get
@@ -484,7 +483,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Forward
         {
             get
@@ -493,7 +492,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Backward
         {
             get
@@ -502,7 +501,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Translation
         {
             get

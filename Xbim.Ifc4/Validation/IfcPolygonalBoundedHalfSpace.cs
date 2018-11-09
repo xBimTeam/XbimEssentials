@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -36,9 +37,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Functions.SIZEOF(Functions.TYPEOF(PolygonalBoundary) * Functions.NewTypesArray("IFC4.IFCPOLYLINE", "IFC4.IFCCOMPOSITECURVE")) == 1;
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPolygonalBoundedHalfSpace.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

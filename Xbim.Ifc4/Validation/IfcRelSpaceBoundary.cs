@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace Xbim.Ifc4.ProductExtension
 						retVal = ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL) && (!(Functions.TYPEOF(RelatedBuildingElement).Contains("IFC4.IFCVIRTUALELEMENT")))) || ((PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.VIRTUAL) && ((Functions.TYPEOF(RelatedBuildingElement).Contains("IFC4.IFCVIRTUALELEMENT")) || (Functions.TYPEOF(RelatedBuildingElement).Contains("IFC4.IFCOPENINGELEMENT")))) || (PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.NOTDEFINED);
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelSpaceBoundary");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelSpaceBoundary.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcRelSpaceBoundary>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelSpaceBoundary.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

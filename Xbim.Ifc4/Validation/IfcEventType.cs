@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -36,9 +37,9 @@ namespace Xbim.Ifc4.ProcessExtension
 						retVal = (EventTriggerType != IfcEventTriggerTypeEnum.USERDEFINED) || ((EventTriggerType == IfcEventTriggerTypeEnum.USERDEFINED) && Functions.EXISTS(UserDefinedEventTriggerType));
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.ProcessExtension.IfcEventType");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcEventType.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ProcessExtension.IfcEventType>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcEventType.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

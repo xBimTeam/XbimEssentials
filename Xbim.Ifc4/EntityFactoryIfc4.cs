@@ -48,6 +48,7 @@ using Xbim.Ifc4.ControlExtension;
 using Xbim.Ifc4.QuantityResource;
 using Xbim.Ifc4.StructuralAnalysisDomain;
 using Xbim.Common;
+using System.Reflection;
 
 namespace Xbim.Ifc4
 {
@@ -76,7 +77,7 @@ namespace Xbim.Ifc4
 		public IInstantiableEntity New(IModel model, Type t, int entityLabel, bool activated)
 		{
 			//check that the type is from this assembly
-			if(t.Assembly != _assembly)
+			if(t.GetTypeInfo().Assembly != _assembly)
 				throw new Exception("This factory only creates types from its assembly");
 
 			return New(model, t.Name, entityLabel, activated);
@@ -1561,15 +1562,7 @@ namespace Xbim.Ifc4
 		private static readonly List<string> _schemasIds = new List<string> { "IFC4" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-		/// <summary>
-        /// Gets the Ifc Schema version of the model if this is IFC schema
-        /// </summary>
-		public IfcSchemaVersion SchemaVersion { 
-			get
-			{
-				return IfcSchemaVersion.Ifc4;
-			}
-		}
+        public XbimSchemaVersion SchemaVersion { get { return XbimSchemaVersion.Ifc4; } }
 
 	}
 }

@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -40,9 +41,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = (Functions.EXISTS(StartParam) && Functions.EXISTS(EndParam)) || (Functions.SIZEOF(Functions.NewTypesArray("IFC4.IFCCONIC", "IFC4.IFCBOUNDEDCURVE") * Functions.TYPEOF(Directrix)) == 1);
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolid");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcSweptDiskSolid>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcSweptDiskSolid.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

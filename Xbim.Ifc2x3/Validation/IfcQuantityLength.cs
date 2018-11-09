@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -41,8 +42,8 @@ namespace Xbim.Ifc2x3.QuantityResource
 						break;
 				}
 			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc2x3.QuantityResource.IfcQuantityLength");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcQuantityLength.{0}' for #{1}.", clause,EntityLabel), ex);
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc2x3.QuantityResource.IfcQuantityLength>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcQuantityLength.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

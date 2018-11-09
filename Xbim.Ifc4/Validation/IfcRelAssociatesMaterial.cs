@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -36,9 +37,9 @@ namespace Xbim.Ifc4.ProductExtension
 						retVal = Functions.SIZEOF(this/* as IfcRelAssociates*/.RelatedObjects.Where(temp => (Functions.SIZEOF(Functions.TYPEOF(temp) * Functions.NewTypesArray("IFC4.IFCELEMENT", "IFC4.IFCELEMENTTYPE", "IFC4.IFCWINDOWSTYLE", "IFC4.IFCDOORSTYLE", "IFC4.IFCSTRUCTURALMEMBER", "IFC4.IFCPORT")) == 0))) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.ProductExtension.IfcRelAssociatesMaterial");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.ProductExtension.IfcRelAssociatesMaterial>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcRelAssociatesMaterial.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

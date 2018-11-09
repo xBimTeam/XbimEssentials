@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace Xbim.Ifc4.GeometricModelResource
 						retVal = Functions.SIZEOF(this/* as IfcManifoldSolidBrep*/.Outer.CfsFaces.Where(Afs => (!(Functions.TYPEOF(Afs).Contains("IFC4.IFCADVANCEDFACE"))))) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrep");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrep.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.GeometricModelResource.IfcAdvancedBrep>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcAdvancedBrep.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

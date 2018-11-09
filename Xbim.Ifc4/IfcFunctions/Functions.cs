@@ -40,7 +40,7 @@ namespace Xbim.Ifc4
         {
             var val = (bool?)toCast.Value;
             if (!val.HasValue)
-                throw new InvalidEnumArgumentException("IfcLogical value not defined attempting bool conversion.");
+                throw new Exception("IfcLogical value not defined attempting bool conversion.");
             return val.Value;
         }
         internal static Direction IfcDirection(double x, double y, double z)
@@ -60,7 +60,7 @@ namespace Xbim.Ifc4
         {
             var val = (bool?)toCast.Value;
             if (!val.HasValue)
-                throw new InvalidEnumArgumentException("IfcLogical value not defined attempting bool conversion.");
+                throw new Exception("IfcLogical value not defined attempting bool conversion.");
             return val.Value;
         }
 

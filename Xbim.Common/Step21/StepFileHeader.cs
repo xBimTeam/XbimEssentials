@@ -24,7 +24,7 @@ using System.Reflection;
 
 namespace Xbim.Common.Step21
 {
-    [Serializable]
+   
     public class StepFileDescription : IStepFileDescription
     {
         private void MakeValid()
@@ -169,7 +169,7 @@ namespace Xbim.Common.Step21
         }
     }
 
-    [Serializable]
+   
     public class StepFileName : IStepFileName
     {
         public StepFileName(DateTime time)
@@ -422,7 +422,7 @@ namespace Xbim.Common.Step21
         }
     }
 
-    [Serializable]
+  
     public class StepFileSchema : IStepFileSchema
     {
         private readonly ObservableCollection<string> _schemas = new ObservableCollection<string>();
@@ -439,7 +439,7 @@ namespace Xbim.Common.Step21
             Init();
         }
 
-        public StepFileSchema(IfcSchemaVersion schemaVersion)
+        public StepFileSchema(XbimSchemaVersion schemaVersion)
         {
             _schemas.Add(schemaVersion.ToString().ToUpper());
             Init();
@@ -524,7 +524,7 @@ namespace Xbim.Common.Step21
         }
     }
 
-    [Serializable]
+   
     public class StepFileHeader : IStepFileHeader
     {
         public enum HeaderCreationMode
@@ -533,19 +533,19 @@ namespace Xbim.Common.Step21
             InitWithXbimDefaults
         }
 
-        public StepFileHeader(HeaderCreationMode mode)
+        public StepFileHeader(HeaderCreationMode mode, IModel model)
         {
+            var assembly = model.GetType().GetTypeInfo().Assembly; //get the assembly that has created th emodel
             if (mode == HeaderCreationMode.InitWithXbimDefaults)
             {
                 FileDescription = new StepFileDescription("2;1");
                 FileName = new StepFileName(DateTime.Now)
-                    {
-                        PreprocessorVersion =
-                            string.Format("Xbim File Processor version {0}",
-                                          Assembly.GetExecutingAssembly().GetName().Version),
-                        OriginatingSystem =
-                            string.Format("Xbim version {0}",
-                                          Assembly.GetExecutingAssembly().GetName().Version),
+                {
+                    PreprocessorVersion =
+                            string.Format("Processor version {0}",
+                                          assembly.GetName().Version),
+                    OriginatingSystem = assembly.GetName().Name
+                                         
                     };
                 FileSchema = new StepFileSchema();
             }
@@ -681,18 +681,34 @@ namespace Xbim.Common.Step21
             }
         }
 
-
-        public void StampXbimApplication(IfcSchemaVersion schemaVersion)
+        public XbimSchemaVersion XbimSchemaVersion
         {
+            get
+            {                
+                foreach (var schema in FileSchema.Schemas)
+                {
+                    if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
+                        return XbimSchemaVersion.Ifc4;                    
+                    if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
+                        return XbimSchemaVersion.Ifc2X3;
+                    if (schema.StartsWith("Cobie2X4", StringComparison.OrdinalIgnoreCase)) //return this as Cobie
+                        return XbimSchemaVersion.Cobie2X4;
+                }
+                return XbimSchemaVersion.Unsupported;
+            }
+        }
+
+        public void StampXbimApplication(XbimSchemaVersion schemaVersion, IModel model)
+        {
+            var assembly = model.GetType().GetTypeInfo().Assembly; //get the assembly that has created th emodel
             FileDescription = new StepFileDescription("2;1");
             FileName = new StepFileName(DateTime.Now)
             {
                 PreprocessorVersion =
-                    string.Format("Xbim File Processor version {0}",
-                                  Assembly.GetExecutingAssembly().GetName().Version),
-                OriginatingSystem =
-                    string.Format("Xbim version {0}",
-                                  Assembly.GetExecutingAssembly().GetName().Version),
+                           string.Format("Processor version {0}",
+                                         assembly.GetName().Version),
+                OriginatingSystem = assembly.GetName().Name
+
             };
             FileSchema = new StepFileSchema(schemaVersion);
         }

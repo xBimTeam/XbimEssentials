@@ -4,7 +4,7 @@ using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4
 {
-    [Serializable]
+  
     public class SurfaceStyling
     {
         public static SurfaceStyling Empty { get; private set; } 

@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 						retVal = Functions.NewTypesArray("normal", "small-caps").Contains(this);
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.PresentationAppearanceResource.IfcFontVariant");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcFontVariant.{0}'.", clause), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.PresentationAppearanceResource.IfcFontVariant>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcFontVariant.{0}'.", clause), ex);
 			}
 			return retVal;
 		}
