@@ -39,12 +39,12 @@ steps:
 
 - task: NuGetToolInstaller@0
 
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   inputs:
-    command: restore
-    projects: '**/*.csproj'
+    command: 'restore'
     feedsToUse: config
-    nugetConfigPath: nuget.config    # Relative to root of the repository
+    nugetConfigPath: nuget.config
+    restoreSolution: 'Xbim.Common/Xbim.Common.sln'
     
 - task: VSBuild@1
   inputs:
