@@ -38,8 +38,7 @@ steps:
     echo '##vso[task.setvariable variable=feed]MyGetDev'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
 - script: |
-    echo '##vso[task.setvariable variable=feed]MyGetMaster'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    echo '##vso[task.setvariable variable=feed]'
 
 - script: |
     echo Version: $(version)
@@ -65,10 +64,11 @@ steps:
     packagesToPack: 'Xbim.Common/Xbim.Common.csproj'
     
 - task: NuGetCommand@2
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: push
     nuGetFeedType: external
-    publishFeedCredentials: '$(feed)'
+    publishFeedCredentials: 'MyGetMaster'
     versioningScheme: byEnvVar
     versionEnvVar: version
 
