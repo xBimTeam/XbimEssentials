@@ -1,0 +1,49 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@0
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+# MSBuild
+# Build with MSBuild
+- task: MSBuild@1
+  inputs:
+    project: 'Xbim.Common/Xbim.Common.csproj'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    restoreNugetPackages: true
+    #solution: '**/*.sln' 
+    #msbuildLocationMethod: 'version' # Optional. Options: version, location
+    #msbuildVersion: 'latest' # Optional. Options: latest, 15.0, 14.0, 12.0, 4.0
+    #msbuildArchitecture: 'x86' # Optional. Options: x86, x64
+    #msbuildLocation: # Optional
+    #msbuildArguments: # Optional
+    #clean: false # Optional
+    #maximumCpuCount: false # Optional
+    #logProjectEvents: false # Optional
+    #createLogFile: false # Optional
+    
+#- task: VSBuild@1
+#  inputs:
+#    solution: '$(solution)'
+#    platform: '$(buildPlatform)'
+#    configuration: '$(buildConfiguration)'
+#
+#- task: VSTest@2
+#  inputs:
+#    platform: '$(buildPlatform)'
+#    configuration: '$(buildConfiguration)'
