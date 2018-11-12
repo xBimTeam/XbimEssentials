@@ -42,7 +42,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: restore
-    projects: '**/*.csproj'
+    projects: 'Xbim.Common/Xbim.Common.csproj'
     feedsToUse: config
     nugetConfigPath: nuget.config    
     
