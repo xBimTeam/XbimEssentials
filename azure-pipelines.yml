@@ -37,7 +37,7 @@ steps:
     Set-Variable -Name feed -Value 'MyGetDev'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
 - powershell: |
-    Set-Variable -Name prerelease -Value 'MyGetMaster'
+    Set-Variable -Name feed -Value 'MyGetMaster'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 - script: echo 'Version:' $(version)
