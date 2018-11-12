@@ -41,8 +41,10 @@ steps:
     Set-Variable -Name feed -Value 'MyGetMaster'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
-- script: echo Version: $(version)
-- script: echo Feed: $(feed)
+- script: |
+    echo Version: $(version)
+- script: |
+    echo Feed: $(feed)
 
 - task: NuGetToolInstaller@0
 
