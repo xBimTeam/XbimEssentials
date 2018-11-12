@@ -50,16 +50,6 @@ steps:
     versioningScheme: byEnvVar
     versionEnvVar: version
 
-- task: NuGetCommand@2
-  name: 'MyGetPublishing_Develop'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
-  inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: 'MyGetDev'
-    versioningScheme: byEnvVar
-    versionEnvVar: version
-
 
 
 # .NET Core
