@@ -41,6 +41,7 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 - script: echo 'Version:' $(version)
+- script: echo 'Feed:' $(feed)
 
 - task: NuGetToolInstaller@0
 
@@ -60,13 +61,13 @@ steps:
     command: pack
     packagesToPack: 'Xbim.Common/Xbim.Common.csproj'
     
-- task: NuGetCommand@2
-  inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: $(feed)
-    versioningScheme: byEnvVar
-    versionEnvVar: version
+#- task: NuGetCommand@2
+#  inputs:
+#    command: push
+#    nuGetFeedType: external
+#    publishFeedCredentials: $(feed)
+#    versioningScheme: byEnvVar
+#    versionEnvVar: version
 
 # MSBuild
 # Build with MSBuild
