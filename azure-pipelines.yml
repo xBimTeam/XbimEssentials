@@ -47,7 +47,7 @@ steps:
 #    nugetConfigPath: nuget.config    
 
 - task: DotNetCoreCLI@2
-  name: 'Build XbimCommon'
+  name: 'XbimCommon_Build'
   inputs:
     command: build
     configuration: '$(buildConfiguration)'
@@ -56,7 +56,7 @@ steps:
     nugetConfigPath: nuget.config    
    
 - task: DotNetCoreCLI@2
-  name: 'Pack XbimCommon'
+  name: 'XbimCommon_Pack'
   inputs:
     command: pack
     configuration: '$(buildConfiguration)'
@@ -67,7 +67,7 @@ steps:
     versionEnvVar: version
 
 - task: CopyFiles@2
-  name: 'Copy .nupkg files to artifacts staging directory'
+  name: 'XbimCommon_StagingArtefacts'
   inputs:
     sourceFolder: 'Xbim.Common'
     contents: '**\bin\$(BuildConfiguration)\*.nupkg' 
@@ -75,7 +75,7 @@ steps:
     cleanTargetFolder: true
 
 - task: NuGetCommand@2
-  name: 'Publish to MyGet'
+  name: 'XbimCommon_MyGetPublishing'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: push
