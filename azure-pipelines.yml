@@ -27,18 +27,18 @@ variables:
 
 steps:
 # Windows script setting up  $(version) of the nuget package if this is development branch build
-- powershell: |
-    Set-Variable -Name version -Value '$(major).$(minor).$(patch)-prerelease'
+- script: |
+    echo '##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-prerelease'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
-- powershell: |
-    Set-Variable -Name version -Value '$(major).$(minor).$(patch)'
+- script: |
+    echo '##vso[task.setvariable variable=version]$(major).$(minor).$(patch)'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   
-- powershell: |
-    Set-Variable -Name feed -Value 'MyGetDev'
+- script: |
+    echo '##vso[task.setvariable variable=feed]MyGetDev'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
 - powershell: |
-    Set-Variable -Name feed -Value 'MyGetMaster'
+    echo '##vso[task.setvariable variable=feed]MyGetMaster'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 - script: |
