@@ -46,25 +46,17 @@ steps:
 #    feedsToUse: config
 #    nugetConfigPath: nuget.config    
 
-- task: DotNetCoreCLI@2
-  name: 'XbimCommon_Build'
-  inputs:
-    command: build
-    configuration: '$(buildConfiguration)'
-    projects: 'Xbim.Common/Xbim.Common.csproj'
-    feedsToUse: config
-    nugetConfigPath: nuget.config    
+#- task: DotNetCoreCLI@2
+#  name: 'XbimCommon_Build'
+#  inputs:
+#    command: build
+#    configuration: '$(buildConfiguration)'
+#    projects: 'Xbim.Common/Xbim.Common.csproj'
+#    feedsToUse: config
+#    nugetConfigPath: nuget.config    
    
-- task: DotNetCoreCLI@2
+- script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release /p:PackageVersion=$(version)
   name: 'XbimCommon_Pack'
-  inputs:
-    command: pack
-    configuration: '$(buildConfiguration)'
-    projects: 'Xbim.Common/Xbim.Common.csproj'
-    feedsToUse: config
-    nugetConfigPath: nuget.config    
-    versioningScheme: byEnvVar
-    versionEnvVar: version
 
 - task: CopyFiles@2
   name: 'XbimCommon_StagingArtefacts'
