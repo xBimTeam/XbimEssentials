@@ -46,7 +46,7 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
-    publishFeedCredentials: 'MyGet$(Build.SourceBranchName)'
+    publishFeedCredentials: 'MyGetMaster'
     versioningScheme: byEnvVar
     versionEnvVar: version
 
