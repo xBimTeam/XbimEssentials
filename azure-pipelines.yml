@@ -68,7 +68,7 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
-    publishFeedCredentials: $(feed)
+    publishFeedCredentials: '$(feed)'
     versioningScheme: byEnvVar
     versionEnvVar: version
 
