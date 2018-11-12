@@ -23,7 +23,7 @@ variables:
   minor: 0
   # creates a counter called versioncounter and seeds it at 100 and then assigns the value to a variable named patch.
   patch: $[counter('versioncounter', 100)]
-  feed: XXX
+  feed: 'XXX'
 
 steps:
 # Windows script setting up  $(version) of the nuget package if this is development branch build
