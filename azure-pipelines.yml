@@ -33,35 +33,33 @@ steps:
 - script: |
     echo '##vso[task.setvariable variable=version]$(major).$(minor).$(patch)'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-  
-- script: |
-    echo '##vso[task.setvariable variable=feed]MyGetDev'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
-- script: |
-    echo '##vso[task.setvariable variable=feed]'
-
 - script: |
     echo Version: $(version)
-- script: |
-    echo Feed: $(feed)
+
 
 - task: NuGetToolInstaller@0
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
-    command: 'restore'
-    restoreSolution: 'Xbim.Common/Xbim.Common.sln'
+    command: restore
+    projects: '**/*.csproj'
+    feedsToUse: config
+    nugetConfigPath: nuget.config    # Relative to root of the repository
     
 - task: VSBuild@1
   inputs:
     solution: 'Xbim.Common/Xbim.Common.sln'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
     
 - task: NuGetCommand@2
   inputs:
     command: pack
     packagesToPack: 'Xbim.Common/Xbim.Common.csproj'
+    versioningScheme: byEnvVar
+    versionEnvVar: version
     
 - task: NuGetCommand@2
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
