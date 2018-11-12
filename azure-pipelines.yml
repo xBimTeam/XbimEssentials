@@ -36,7 +36,7 @@ steps:
   name: 'Common_Pack'
 
 # xBIM Ifc4
-- script: dotnet add Xbim.Ifc4/Xbim.Ifc4.csproj package Xbim.Common -v $(version)
+- script: dotnet add Xbim.Ifc4\Xbim.Ifc4.csproj package Xbim.Common -s Xbim.Common\bin\Release -v $(version)
 
 - script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release /p:PackageVersion=$(version)
   name: 'Ifc4_Pack'
