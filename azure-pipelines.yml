@@ -3,6 +3,10 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
+trigger:
+- master
+- develop
+
 pool:
   vmImage: 'VS2017-Win2016'
 
@@ -15,19 +19,54 @@ variables:
   s_ifc: 'Xbim.Ifc/Xbim.Ifc.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  major: 5
+  minor: 0
+  # creates a counter called versioncounter and seeds it at 100 and then assigns the value to a variable named patch.
+  patch: $[counter('versioncounter', 100)]
 
 steps:
+# Windows script setting up  $(version) of the nuget package if this is development branch build
+- powershell: |
+    Set-Variable -Name version -Value '$(major).$(minor).$(patch)-prerelease'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+- powershell: |
+    Set-Variable -Name prerelease -Value '$(major).$(minor).$(patch)'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  
+- powershell: |
+    Set-Variable -Name feed -Value 'MyGetDev'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+- powershell: |
+    Set-Variable -Name prerelease -Value 'MyGetMaster'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+
+- script: echo 'Version:' $(version)
+
 - task: NuGetToolInstaller@0
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '$(s_common)'
+    command: 'restore'
+    restoreSolution: 'Xbim.Common/Xbim.Common.sln'
     
 - task: VSBuild@1
   inputs:
-    solution: '$(s_common)'
+    solution: 'Xbim.Common/Xbim.Common.sln'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: 'Xbim.Common/Xbim.Common.csproj'
+    
+- task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: '$(feed)'
+    versioningScheme: byEnvVar
+    versionEnvVar: version
 
 # MSBuild
 # Build with MSBuild
