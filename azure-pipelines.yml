@@ -35,14 +35,6 @@ steps:
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release /p:PackageVersion=$(version)
   name: 'Common_Pack'
 
-- task: CopyFiles@2
-  name: 'Common_StagingArtefacts'
-  inputs:
-    sourceFolder: 'Xbim.Common'
-    contents: '**\bin\$(BuildConfiguration)\*.nupkg' 
-    targetFolder: '$(build.artifactstagingdirectory)'
-    cleanTargetFolder: true
-
 # xBIM Ifc4
 - script: dotnet add Xbim.Ifc4/Xbim.Ifc4.csproj package Xbim.Common -s Xbim.Common\bin\Release -v $(version)
 
@@ -56,6 +48,14 @@ steps:
     contents: '**\bin\$(BuildConfiguration)\*.nupkg' 
     targetFolder: '$(build.artifactstagingdirectory)'
 
+- task: CopyFiles@2
+  name: 'Common_StagingArtefacts'
+  inputs:
+    sourceFolder: 'Xbim.Common'
+    contents: '**\bin\$(BuildConfiguration)\*.nupkg' 
+    targetFolder: '$(build.artifactstagingdirectory)'
+    cleanTargetFolder: true
+    
 # Publish
 - task: NuGetCommand@2
   name: 'MyGetPublishing_Master'
