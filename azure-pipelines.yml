@@ -30,7 +30,7 @@ steps:
     Set-Variable -Name version -Value '$(major).$(minor).$(patch)-prerelease'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
 - powershell: |
-    Set-Variable -Name prerelease -Value '$(major).$(minor).$(patch)'
+    Set-Variable -Name version -Value '$(major).$(minor).$(patch)'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   
 - powershell: |
@@ -64,7 +64,7 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
-    publishFeedCredentials: '$(feed)'
+    publishFeedCredentials: $(feed)
     versioningScheme: byEnvVar
     versionEnvVar: version
 
