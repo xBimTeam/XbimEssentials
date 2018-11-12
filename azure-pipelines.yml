@@ -28,10 +28,10 @@ variables:
 steps:
 # Windows script setting up  $(version) of the nuget package if this is development branch build
 - script: |
-    echo '##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-prerelease'
+    echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-prerelease
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
 - script: |
-    echo '##vso[task.setvariable variable=version]$(major).$(minor).$(patch)'
+    echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 - script: |
     echo Version: $(version)
@@ -39,12 +39,12 @@ steps:
 
 - task: NuGetToolInstaller@0
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
-    command: 'restore'
+    command: restore
+    projects: '**/*.csproj'
     feedsToUse: config
-    nugetConfigPath: nuget.config
-    restoreSolution: 'Xbim.Common/Xbim.Common.sln'
+    nugetConfigPath: nuget.config    
     
 - task: VSBuild@1
   inputs:
