@@ -7,7 +7,12 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 variables:
-  solution: '**/*.sln'
+  s_common: 'Xbim.Common/Xbim.Common.sln'
+  s_ifc4: 'Xbim.Ifc4/Xbim.Ifc4.sln'
+  s_ifc2x3: 'Xbim.Ifc2x3/Xbim.Ifc2x3.sln'
+  s_memory: 'Xbim.IO.MemoryModel/Xbim.IO.MemoryModel.sln'
+  s_esent: 'Xbim.IO.Esent/Xbim.IO.Esent.sln'
+  s_ifc: 'Xbim.Ifc/Xbim.Ifc.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -16,16 +21,22 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '$(solution)'
+    restoreSolution: '$(s_common)'
+    
+- task: VSBuild@1
+  inputs:
+    solution: '$(s_common)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
 # MSBuild
 # Build with MSBuild
-- task: MSBuild@1
-  inputs:
-    project: 'Xbim.Common/Xbim.Common.csproj'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    restoreNugetPackages: true
+#- task: MSBuild@1
+#  inputs:
+#    project: 'Xbim.Common/Xbim.Common.csproj'
+#    platform: '$(buildPlatform)'
+#    configuration: '$(buildConfiguration)'
+    #restoreNugetPackages: true # Deprecated
     #solution: '**/*.sln' 
     #msbuildLocationMethod: 'version' # Optional. Options: version, location
     #msbuildVersion: 'latest' # Optional. Options: latest, 15.0, 14.0, 12.0, 4.0
