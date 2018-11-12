@@ -16,7 +16,6 @@ variables:
   minor: 0
   # creates a counter called versioncounter and seeds it at 100 and then assigns the value to a variable named patch.
   patch: $[counter('versioncounter', 100)]
-  feed: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')?'MyGetMaster':'MyGetDev']
   
 
 steps:
@@ -47,7 +46,7 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
-    publishFeedCredentials: 'MyGetMaster'
+    publishFeedCredentials: 'MyGet$(Build.SourceBranchName)'
     versioningScheme: byEnvVar
     versionEnvVar: version
 
