@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    class Init
+    public class Init
     {
         [AssemblyInitialize]
         public static void InitializeReferencedAssemblies(TestContext context)
