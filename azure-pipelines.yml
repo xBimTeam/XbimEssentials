@@ -30,7 +30,8 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 - task: NuGetToolInstaller@0  
-   
+
+# xBIM Common
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release /p:PackageVersion=$(version)
   name: 'Common_Pack'
 
@@ -42,18 +43,20 @@ steps:
     targetFolder: '$(build.artifactstagingdirectory)'
     cleanTargetFolder: true
 
+# xBIM Ifc4
 - script: dotnet add Xbim.Ifc4/Xbim.Ifc4.csproj package Xbim.Common -s '$(build.artifactstagingdirectory)' -v $(version)
 
 - script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release /p:PackageVersion=$(version)
   name: 'Ifc4_Pack'
   
 - task: CopyFiles@2
-  name: 'Common_StagingArtefacts'
+  name: 'Ifc4_StagingArtefacts'
   inputs:
     sourceFolder: 'Xbim.Ifc4'
     contents: '**\bin\$(BuildConfiguration)\*.nupkg' 
     targetFolder: '$(build.artifactstagingdirectory)'
 
+# Publish
 - task: NuGetCommand@2
   name: 'MyGetPublishing_Master'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
@@ -64,7 +67,15 @@ steps:
     versioningScheme: byEnvVar
     versionEnvVar: version
 
-
+- task: NuGetCommand@2
+  name: 'MyGetPublishing_Develop'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'MyGetDev'
+    versioningScheme: byEnvVar
+    versionEnvVar: version
 
 # .NET Core
 # Build, test, package, or publish a dotnet application, or run a custom dotnet command. For package commands, supports NuGet.org and authenticated feeds like Package Management and MyGet.
