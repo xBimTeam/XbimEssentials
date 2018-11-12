@@ -32,27 +32,21 @@ steps:
 - task: NuGetToolInstaller@0  
 
 # xBIM Common
-- script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release /p:PackageVersion=$(version)
+- script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'Common_Pack'
 
 # xBIM Ifc4
-- script: dotnet add Xbim.Ifc4\Xbim.Ifc4.csproj package Xbim.Common -s Xbim.Common\bin\Release -v $(version)
+- script: dotnet add Xbim.Ifc4\Xbim.Ifc4.csproj package Xbim.Common -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Ifc4_Update'
 
-- script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release /p:PackageVersion=$(version)
+- script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'Ifc4_Pack'
-  
-- task: CopyFiles@2
-  name: 'Ifc4_StagingArtefacts'
-  inputs:
-    sourceFolder: 'Xbim.Ifc4'
-    contents: '**\bin\$(BuildConfiguration)\*.nupkg' 
-    targetFolder: '$(build.artifactstagingdirectory)'
 
 - task: CopyFiles@2
-  name: 'Common_StagingArtefacts'
+  name: 'StagingArtefacts'
   inputs:
-    sourceFolder: 'Xbim.Common'
-    contents: '**\bin\$(BuildConfiguration)\*.nupkg' 
+    sourceFolder: '$(Build.BinariesDirectory)'
+    contents: '**\*.nupkg' 
     targetFolder: '$(build.artifactstagingdirectory)'
     cleanTargetFolder: true
     
