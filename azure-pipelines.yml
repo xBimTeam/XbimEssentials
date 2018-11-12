@@ -23,6 +23,7 @@ variables:
   minor: 0
   # creates a counter called versioncounter and seeds it at 100 and then assigns the value to a variable named patch.
   patch: $[counter('versioncounter', 100)]
+  feed: XXX
 
 steps:
 # Windows script setting up  $(version) of the nuget package if this is development branch build
@@ -40,8 +41,8 @@ steps:
     Set-Variable -Name feed -Value 'MyGetMaster'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
-- script: echo 'Version:' $(version)
-- script: echo 'Feed:' $(feed)
+- script: echo Version: $(version)
+- script: echo Feed: $(feed)
 
 - task: NuGetToolInstaller@0
 
