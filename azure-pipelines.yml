@@ -11,49 +11,24 @@ pool:
   vmImage: 'VS2017-Win2016'
 
 variables:
-  s_common: 'Xbim.Common/Xbim.Common.sln'
-  s_ifc4: 'Xbim.Ifc4/Xbim.Ifc4.sln'
-  s_ifc2x3: 'Xbim.Ifc2x3/Xbim.Ifc2x3.sln'
-  s_memory: 'Xbim.IO.MemoryModel/Xbim.IO.MemoryModel.sln'
-  s_esent: 'Xbim.IO.Esent/Xbim.IO.Esent.sln'
-  s_ifc: 'Xbim.Ifc/Xbim.Ifc.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   major: 5
   minor: 0
   # creates a counter called versioncounter and seeds it at 100 and then assigns the value to a variable named patch.
   patch: $[counter('versioncounter', 100)]
-  feed: 'XXX'
+  feed: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')?'MyGetMaster':'MyGetDev']
+  
 
 steps:
 # Windows script setting up  $(version) of the nuget package if this is development branch build
-- script: |
-    echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-prerelease
+- script: echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-prerelease
+  name: 'SettingPrereleaseNugetPackageVersion'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
-- script: |
-    echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)
+- script: echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)
+  name: 'SettingNugetPackageVersion'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-- script: |
-    echo Version: $(version)
 
-
-- task: NuGetToolInstaller@0
-
-#- task: DotNetCoreCLI@2
-#  inputs:
-#    command: restore
-#    projects: 'Xbim.Common/Xbim.Common.csproj'
-#    feedsToUse: config
-#    nugetConfigPath: nuget.config    
-
-#- task: DotNetCoreCLI@2
-#  name: 'XbimCommon_Build'
-#  inputs:
-#    command: build
-#    configuration: '$(buildConfiguration)'
-#    projects: 'Xbim.Common/Xbim.Common.csproj'
-#    feedsToUse: config
-#    nugetConfigPath: nuget.config    
+- task: NuGetToolInstaller@0  
    
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release /p:PackageVersion=$(version)
   name: 'XbimCommon_Pack'
@@ -67,7 +42,7 @@ steps:
     cleanTargetFolder: true
 
 - task: NuGetCommand@2
-  name: 'XbimCommon_MyGetPublishing'
+  name: 'MyGetPublishing_Master'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: push
@@ -76,35 +51,17 @@ steps:
     versioningScheme: byEnvVar
     versionEnvVar: version
 
-# MSBuild
-# Build with MSBuild
-#- task: MSBuild@1
-#  inputs:
-#    project: 'Xbim.Common/Xbim.Common.csproj'
-#    platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
-    #restoreNugetPackages: true # Deprecated
-    #solution: '**/*.sln' 
-    #msbuildLocationMethod: 'version' # Optional. Options: version, location
-    #msbuildVersion: 'latest' # Optional. Options: latest, 15.0, 14.0, 12.0, 4.0
-    #msbuildArchitecture: 'x86' # Optional. Options: x86, x64
-    #msbuildLocation: # Optional
-    #msbuildArguments: # Optional
-    #clean: false # Optional
-    #maximumCpuCount: false # Optional
-    #logProjectEvents: false # Optional
-    #createLogFile: false # Optional
-    
-#- task: VSBuild@1
-#  inputs:
-#    solution: '$(solution)'
-#    platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
-#
-#- task: VSTest@2
-#  inputs:
-#    platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
+- task: NuGetCommand@2
+  name: 'MyGetPublishing_Develop'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'MyGetDev'
+    versioningScheme: byEnvVar
+    versionEnvVar: version
+
+
 
 # .NET Core
 # Build, test, package, or publish a dotnet application, or run a custom dotnet command. For package commands, supports NuGet.org and authenticated feeds like Package Management and MyGet.
