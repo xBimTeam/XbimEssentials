@@ -89,6 +89,7 @@ steps:
     targetFolder: '$(build.artifactstagingdirectory)'
     cleanTargetFolder: true
     
+# Publish to master or develop MyGet feed based on the source branch
 - task: NuGetCommand@2
   name: 'MyGetPublishing_Master'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
