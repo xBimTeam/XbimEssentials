@@ -71,7 +71,7 @@ steps:
   name: 'IfcStore_Update_EsentModel'
 
 - script: dotnet pack Xbim.Ifc\Xbim.Ifc.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
-  name: 'EsentModel_Pack'
+  name: 'IfcStore_Pack'
 
 #  Tessellator
 - script: dotnet add Xbim.Tessellator\Xbim.Tessellator.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(version)
