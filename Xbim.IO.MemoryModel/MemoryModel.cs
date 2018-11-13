@@ -323,6 +323,7 @@ namespace Xbim.IO.Memory
                 return GetFactory(schema);
             }, logger);
             model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
+            model.CalculateModelFactors();
             return model;
         }
 
