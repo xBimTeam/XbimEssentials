@@ -1197,7 +1197,9 @@ namespace Xbim.Ifc
                 defaultPrecision = gc.Precision.Value;
                 break;
             }
-
+            //sort out precision, esp for some legacy models
+            if (defaultPrecision < 1e-7) //sometimes found in old revit models where the precision should really be 1e-5
+                defaultPrecision = 1e-5;
             //check if angle units are incorrectly defined, this happens in some old models
             if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
             {
