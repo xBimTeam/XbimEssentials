@@ -323,7 +323,7 @@ namespace Xbim.IO.Memory
                 return GetFactory(schema);
             }, logger);
             model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
-            model.CalculateModelFactors();
+    
             return model;
         }
 
@@ -403,9 +403,8 @@ namespace Xbim.IO.Memory
                 break;
             }
             //sort out precision, esp for some legacy models
-            if (defaultPrecision > 1e-8) //sometimes found in old revit models where the precision should really be 1e-5
+            if (defaultPrecision < 1e-7) //sometimes found in old revit models where the precision should really be 1e-5
                 defaultPrecision = 1e-5;
-            defaultPrecision = Math.Max(defaultPrecision, 1e-7); //if greater than 1e-7 make it 1e-7
            // defaultPrecision *= 1.1; //this fixes errors where things are nearly coincidental like faces
             //check if angle units are incorrectly defined, this happens in some old models
             if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)

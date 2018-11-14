@@ -9,6 +9,17 @@ namespace Xbim.IfcCore.UnitTests
     [TestClass]
     public class ModelReadingTests
     {
+
+        [TestMethod]
+        [DeploymentItem("TestFiles/Axis2PlacementError.ifc")]
+        public void OpenReadModelFactorPrecisionTest()
+        {
+            using (var mm = MemoryModel.OpenRead("Axis2PlacementError.ifc"))
+            {
+                Assert.IsTrue(mm.ModelFactors.Precision == 0.01);
+            }
+        }
+
         [TestMethod]
         [DeploymentItem("TestFiles/SmallModelIfc2x3.ifc")]
         public void OpenReadIfc2x3StepFormatTest()
