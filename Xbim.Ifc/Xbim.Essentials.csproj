@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net47</TargetFramework>
-	<Id>Xbim.Essentials</Id>
+    <RootNamespace>Xbim.Ifc</RootNamespace>
+    <AssemblyName>Xbim.Ifc</AssemblyName>
 	<Version>5.0.0.0</Version>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <FileVersion>5.0.0.0</FileVersion>
