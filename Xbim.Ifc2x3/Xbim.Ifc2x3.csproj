@@ -2,13 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
     <Title>Xbim Ifc2x3</Title>
     <Version>5.0.0.0</Version>
     <Copyright>Copyright Xbim Ltd.</Copyright>
     <Description>.net library that provides supports the Ifc2x3 schema.</Description>
-    <Authors>Steve Lockley, Martin Cenry</Authors>
+    <Authors>Steve Lockley, Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/xBimTeam/</PackageProjectUrl>
