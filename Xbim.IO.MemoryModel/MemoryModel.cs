@@ -322,8 +322,7 @@ namespace Xbim.IO.Memory
                 var schema = GetStepFileXbimSchemaVersion(schemas);
                 return GetFactory(schema);
             }, logger);
-            model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
-    
+            model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);    
             return model;
         }
 
