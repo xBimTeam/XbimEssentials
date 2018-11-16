@@ -80,6 +80,13 @@ steps:
 - script: dotnet pack Xbim.Tessellator\Xbim.Tessellator.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'Tessellator_Pack'
   
+# Essentials meta package
+- powershell: |
+    ((Get-Content -path Xbim.Essentials\Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(version)') | Set-Content -Path Xbim.Essentials\Xbim.Essentials.nuspec
+  name: Essentials_metapackage_Update
+- script: nuget pack Xbim.Essentials\Xbim.Essentials.nuspec -o $(Build.BinariesDirectory)
+  name: Essentials_metapackage_Pack
+  
 # Copy artifacts and Publish
 - task: CopyFiles@2
   name: 'StagingArtefacts'
