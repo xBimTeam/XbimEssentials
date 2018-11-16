@@ -84,10 +84,15 @@ namespace Xbim.IO.Step21
             //adjust for skipped entities
             if(SkipTypes.Any())
             {
-                //about a 560 entities
-                double adjustRatio = 1-((double)(SkipTypes.Count)) / 560;
+                //about a 600 entities
+                double adjustRatio = 1.0 - (SkipTypes.Count / 600d);
+                if (adjustRatio < 0) adjustRatio = 0;
                 entityApproxCount = (int)( entityApproxCount * adjustRatio);
             }
+
+            // make it 4 at least
+            if (entityApproxCount < 1) entityApproxCount = 4;
+
             _entities = new Dictionary<int, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
