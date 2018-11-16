@@ -84,7 +84,7 @@ steps:
 - powershell: |
     ((Get-Content -path Xbim.Essentials\Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(version)') | Set-Content -Path Xbim.Essentials\Xbim.Essentials.nuspec
   name: Essentials_metapackage_Update
-- script: nuget pack Xbim.Essentials\Xbim.Essentials.nuspec -o $(Build.BinariesDirectory) --no-build
+- script: nuget pack Xbim.Essentials\Xbim.Essentials.nuspec -o $(Build.BinariesDirectory)
   name: Essentials_metapackage_Pack
   
 # Copy artifacts and Publish
