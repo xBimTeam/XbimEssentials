@@ -63,15 +63,15 @@ steps:
 - script: dotnet pack Xbim.IO.Esent\Xbim.IO.Esent.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'EsentModel_Pack'
 
-# Essentials
-- script: dotnet add Xbim.Ifc\Xbim.Essentials.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
-  name: 'Essentials_Update_MemoryModel'
+# Ifc
+- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Ifc_Update_MemoryModel'
   
-- script: dotnet add Xbim.Ifc\Xbim.Essentials.csproj package Xbim.IO.Esent -s $(Build.BinariesDirectory) -v $(version)
-  name: 'Essentials_Update_EsentModel'
+- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.Esent -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Ifc_Update_EsentModel'
 
-- script: dotnet pack Xbim.Ifc\Xbim.Essentials.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
-  name: 'Essentials_Pack'
+- script: dotnet pack Xbim.Ifc\Xbim.Ifc.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'Ifc_Pack'
 
 #  Tessellator
 - script: dotnet add Xbim.Tessellator\Xbim.Tessellator.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(version)
