@@ -41,7 +41,7 @@ namespace Xbim.IO.Step21
         protected PropertyValue PropertyValue;
         private readonly List<DeferredReference> _deferredReferences;
         private readonly double _streamSize = -1;
-        public static int MaxErrorCount = 200;
+        public static int MaxErrorCount = int.MaxValue;
         private int _percentageParsed;
         private bool _deferListItems;
         public bool Cancel = false;
@@ -328,10 +328,10 @@ namespace Xbim.IO.Step21
                 if (CurrentInstance.Entity != null)
                     CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
-            catch (Exception )
+            catch (Exception e)
             {
                 if (ErrorCount > MaxErrorCount)
-                    throw new XbimParserException("Too many errors in file, parser execution terminated");
+                    throw new XbimParserException("Too many errors in file, parser execution terminated", e);
                 ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
@@ -374,10 +374,10 @@ namespace Xbim.IO.Step21
                 if (CurrentInstance.Entity != null)
                     CurrentInstance.ParameterSetter(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
             }
-            catch (Exception )
+            catch (Exception ex)
             {
                 if (ErrorCount > MaxErrorCount)
-                    throw new XbimParserException("Too many errors in file, parser execution terminated");
+                    throw new XbimParserException("Too many errors in file, parser execution terminated", ex);
                 ErrorCount++;
                 var mainEntity = _processStack.Last();
                 if (mainEntity != null)
@@ -438,10 +438,10 @@ namespace Xbim.IO.Step21
                     return true;
                 }
             }
-            catch (Exception )
+            catch (Exception ex)
             {
                 if (ErrorCount > MaxErrorCount)
-                    throw new XbimParserException("Too many errors in file, parser execution terminated");
+                    throw new XbimParserException("Too many errors in file, parser execution terminated", ex);
                 ErrorCount++;
                 var expressType = Metadata.ExpressType(host);
                 var propertyName = paramIndex+1 > expressType.Properties.Count ? "[UnknownProperty]" :
