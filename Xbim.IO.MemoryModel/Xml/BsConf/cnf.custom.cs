@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
 using Xbim.Common.Metadata;
 using Xbim.IO.MemoryModel;
 
@@ -15,7 +17,7 @@ namespace Xbim.IO.Xml.BsConf
             get
             {
                 var data = Resources.IFC4_ADD2_config;
-                return Deserialize(data);
+                return DeserialiseHandlingBOM(data);
             }
         }
 
@@ -24,7 +26,7 @@ namespace Xbim.IO.Xml.BsConf
             get
             {
                 var data = Resources.IFC4_ADD1_config;
-                return Deserialize(data);    
+                return DeserialiseHandlingBOM(data);    
             }
         }
 
@@ -33,7 +35,7 @@ namespace Xbim.IO.Xml.BsConf
             get
             {
                 var data = Resources.IFC4_config;
-                return Deserialize(data);
+                return DeserialiseHandlingBOM(data);
             }
         }
 
@@ -102,6 +104,20 @@ namespace Xbim.IO.Xml.BsConf
             Items.Add(entity);
             return entity;
         }
+
+        // Fiddle to remove the Byte Order Mark from serialised Xml. 
+        // prevents "System.Xml.XmlException: Data at the root level is invalid" in DevOps unit tests
+        private static configuration DeserialiseHandlingBOM(string data)
+        {
+            var bytes = System.Text.Encoding.UTF8.GetBytes(data);
+
+            using (MemoryStream memoryStream = new MemoryStream(bytes))
+            using (XmlReader reader = XmlReader.Create(memoryStream))
+            {
+                return ((configuration)(Serializer.Deserialize(reader)));
+            }
+        }
+
     }
 
     public partial class entity
