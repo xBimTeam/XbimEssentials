@@ -193,7 +193,7 @@ The Windows [Xbim Xplorer](http://docs.xbim.net/downloads/xbimxplorer.html) appl
 application that shows off most of the functionality in the XBIM toolkit. The app supports visualising and inspecting multiple 
 model files, as well as supporting plugins to export COBie, import/export BCF and more.
 
-![Xbim WebUI WebGL App](docs/img/XbimWebUIShot.png "Xbim WebUI WebGL app")
+![Xbim WebUI WebGL App](docs/img/XbimWebUI-Shot.png "Xbim WebUI WebGL app")
 The browser-based [Xbim WeXplorer](http://docs.xbim.net/XbimWebUI/) is a simple demonstrator of visualising models in a browser
 and an ability open sementic model data from a JSON structure.
 
