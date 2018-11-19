@@ -86,7 +86,7 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"' --filter TestCategory!=IfcXml
 
 # Essentials meta package
 - powershell: |
