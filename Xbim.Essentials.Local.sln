@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Common.Local", "Xbim.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26AEC029-026B-4C71-8150-FA422F1832E6}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		aimkey.snk = aimkey.snk
+		azure-pipelines.yml = azure-pipelines.yml
+		CONTRIBUTING.md = CONTRIBUTING.md
+		LICENCE.md = LICENCE.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc4.Local", "Xbim.Ifc4\Xbim.Ifc4.Local.csproj", "{25D42373-89A5-437D-925C-21510EF0EB62}"
