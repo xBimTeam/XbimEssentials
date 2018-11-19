@@ -80,6 +80,14 @@ steps:
 - script: dotnet pack Xbim.Tessellator\Xbim.Tessellator.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'Tessellator_Pack'
   
+# Unit tests
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test $(buildConfiguration)'
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+
 # Essentials meta package
 - powershell: |
     ((Get-Content -path Xbim.Essentials\Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(version)') | Set-Content -Path Xbim.Essentials\Xbim.Essentials.nuspec
@@ -89,7 +97,7 @@ steps:
   
 # Copy artifacts and Publish
 - task: CopyFiles@2
-  name: 'StagingArtefacts'
+  name: 'StagingArtifacts'
   inputs:
     sourceFolder: '$(Build.BinariesDirectory)'
     contents: '**\*.nupkg' 
@@ -116,4 +124,7 @@ steps:
     publishFeedCredentials: 'MyGetDev'
     versioningScheme: byEnvVar
     versionEnvVar: version
+
+- task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
     
