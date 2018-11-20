@@ -1,5 +1,8 @@
 ﻿namespace Xbim.Common.Step21
 {
+    /// <summary>
+    /// Indicates the version of IFC schema the model contains
+    /// </summary>
     public enum XbimSchemaVersion
     {
         Unsupported,

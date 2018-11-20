@@ -22,6 +22,8 @@
         /// The name of the organisation that created and owns this model
         /// </summary>
         string OwningOrganisation { get; set; }
+
+        void Close();
         
     }
 }

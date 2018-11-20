@@ -1,11 +1,12 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc;
-using Xbim.Common.Step21;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 using Xbim.Common;
+using Xbim.Common.Step21;
+using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.Ifc2x3.UtilityResource;
-using System.IO;
+using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
 {

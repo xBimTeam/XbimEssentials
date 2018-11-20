@@ -1,9 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xbim.Ifc;
 
 namespace Xbim.Essentials.Tests
 {
@@ -14,6 +10,16 @@ namespace Xbim.Essentials.Tests
         public static void InitializeReferencedAssemblies(TestContext context)
         {
             var dummy = Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance;
+
+            DefaultModelProviderFactory.Configure(() => new HeuristicModelProvider());
+        }
+
+
+        [TestMethod]
+        public void IsSetup()
+        {
+            var provider = IfcStore.ModelProviderFactory.CreateProvider();
+            Assert.IsInstanceOfType(provider, typeof(HeuristicModelProvider));
         }
     }
 }
