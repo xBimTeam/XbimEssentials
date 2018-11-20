@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Geometry;
 using Xbim.Common.XbimExtensions;
 using Xbim.Ifc;
+using Xbim.Ifc.Extensions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Tessellator;
 
@@ -69,7 +70,7 @@ namespace Xbim.Essentials.Tests
                     using (var br = new BinaryReader(fs))
                     {
                         var magicNumber = br.ReadInt32();
-                        Assert.IsTrue(magicNumber== IfcStore.WexBimId);
+                        Assert.IsTrue(magicNumber == IfcStoreGeometryExtensions.WexBimId);
                         var version = br.ReadByte();
                         var shapeCount = br.ReadInt32();
                         var vertexCount = br.ReadInt32();
