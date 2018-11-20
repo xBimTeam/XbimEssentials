@@ -98,8 +98,8 @@ steps:
 - script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
   name: 'Ifc_Update_MemoryModel'
   
-- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.Esent -s $(Build.BinariesDirectory) -v $(version)
-  name: 'Ifc_Update_EsentModel'
+#- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.Esent -s $(Build.BinariesDirectory) -v $(version)
+#  name: 'Ifc_Update_EsentModel'
 
 - script: dotnet pack Xbim.Ifc\Xbim.Ifc.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'Ifc_Pack'
