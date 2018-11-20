@@ -12,7 +12,7 @@ namespace Xbim.Ifc
     /// <summary>
     /// A model that is referenced by another XbimModel
     /// </summary>
-    public class XbimReferencedModel : IReferencedModel
+    public class XbimReferencedModel : IReferencedModel, IDisposable
     {
         public IIfcDocumentInformation DocumentInformation;
 
@@ -209,12 +209,6 @@ namespace Xbim.Ifc
             }
         }
 
-        internal void Dispose()
-        {
-            _model.Dispose();
-        }
-
-
         public string OwningOrganisation
         {
             get
@@ -260,7 +254,41 @@ namespace Xbim.Ifc
             }
         }
 
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
 
-       
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    if (Model != null)
+                    {
+                        Model.Dispose();
+                    }
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+        }
+
+        public void Close()
+        {
+            _model.Close(); // Close the Store, which will close the underlying model
+        }
+        #endregion
+
+
+
     }
 }

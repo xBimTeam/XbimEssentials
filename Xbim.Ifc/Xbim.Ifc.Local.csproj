@@ -5,10 +5,12 @@
     <AssemblyName>Xbim.Ifc</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="IfcStore2.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.Local.csproj" />
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.Local.csproj" />
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.Local.csproj" />
-    <ProjectReference Include="..\Xbim.IO.Esent\Xbim.IO.Esent.Local.csproj" />
     <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.Local.csproj" />
   </ItemGroup>
   <ItemGroup>

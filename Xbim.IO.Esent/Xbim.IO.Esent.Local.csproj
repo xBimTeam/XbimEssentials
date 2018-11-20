@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net47</TargetFrameworks>
 	<AssemblyName>Xbim.IO.Esent</AssemblyName>
+	<RootNamespace>Xbim.IO.Esent</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ManagedEsent" Version="1.9.4" />

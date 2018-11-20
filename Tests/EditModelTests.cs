@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc;
 using Xbim.Common.Step21;
+using Xbim.Ifc;
+using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
 {

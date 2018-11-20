@@ -1,5 +1,8 @@
-﻿namespace Xbim.IO.Esent
+﻿namespace Xbim.IO
 {
+    /// <summary>
+    /// Indicates how a persisted model should be accessed
+    /// </summary>
     public enum XbimDBAccess
     {
         /// <summary>
@@ -7,7 +10,7 @@
         /// </summary>
         Read,
         /// <summary>
-        /// Opens the database for readonly 
+        /// Opens the database for read and write 
         /// </summary>
         ReadWrite,
         /// <summary>

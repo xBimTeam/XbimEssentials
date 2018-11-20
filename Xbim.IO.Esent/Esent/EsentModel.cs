@@ -1,16 +1,11 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
-using System.Text;
-using Microsoft.Extensions.Logging;
 using Xbim.Common;
-using Xbim.Common.Enumerations;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
@@ -406,17 +401,23 @@ namespace Xbim.IO.Esent
         }
 
         /// <summary>
-        /// Creates a new Model and populates with instances from the specified file, Ifc, IfcXML, IfcZip and Xbim are all supported.
+        /// Creates a new Model and populates with instances from the specified file, Ifc, IfcXML, and IfcZip are all supported.
         /// </summary>
+        /// <remarks>To create a new model from an existing XBIM file, use 
+        /// <see cref="SaveAs(string, StorageType?, ReportProgressDelegate, IDictionary{int, int})"/>, 
+        /// or <see cref="CreateFrom(IModel, string, ReportProgressDelegate)"/></remarks>
         /// <param name="importFrom">Name of the file containing the instances to import</param>
         /// /// <param name="xbimDbName">Name of the xbim file that will be created. 
         /// If null the contents are loaded into memory and are not persistent
         /// </param>
         /// <param name="progDelegate"></param>
-        /// <param name="keepOpen"></param>
+        /// <param name="keepOpen">Flag indicating whether to keep the model open after creation, otherwise closes after import</param>
         /// <param name="cacheEntities"></param>
+        /// <param name="storageType">The expected Ifc Format of the file. Inferred from extension when null</param>
+        /// <param name="deleteOnClose">Indicates whether the xbim database file should be deleted on close of model</param>
         /// <returns></returns>
-        public virtual bool CreateFrom(string importFrom, string xbimDbName = null, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false, StorageType? storageType = null)
+        public virtual bool CreateFrom(string importFrom, string xbimDbName = null, ReportProgressDelegate progDelegate = null, 
+            bool keepOpen = false, bool cacheEntities = false, StorageType? storageType = null, bool deleteOnClose = false)
         {
             Close();
             _importFilePath = Path.GetFullPath(importFrom);
@@ -444,11 +445,12 @@ namespace Xbim.IO.Esent
                     InstanceCache.ImportZip(xbimDbName, importFrom, progDelegate, keepOpen, cacheEntities, _codePageOverrideForStepFiles);
                     break;
                 case StorageType.Xbim:
-                    throw new NotImplementedException("Use save as");
+                    throw new NotImplementedException("Use SaveAs() or CreateFrom(IModel)");
 
                 default:
                     return false;
             }
+            _deleteOnClose = deleteOnClose;
             return true;
         }
 
@@ -668,7 +670,7 @@ namespace Xbim.IO.Esent
         }
 
         /// <summary>
-        /// Opens an Xbim model only, to open Ifc, IfcZip and IfcXML files use the CreatFrom method
+        /// Opens an Xbim model only, to open Ifc, IfcZip and IfcXML files use the CreateFrom method
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="accessMode"></param>

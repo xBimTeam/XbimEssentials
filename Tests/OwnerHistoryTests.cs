@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Ifc;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Step21;
+using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
+using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
 {
