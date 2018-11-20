@@ -30,7 +30,7 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 - script: | 
     echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-ignore
-  name: 'SettingNugetPackageVersion'
+  name: 'SettingOtherBranchNugetPackageVersion'
   condition: and(ne(variables['Build.SourceBranch'], 'refs/heads/master'),ne(variables['Build.SourceBranch'], 'refs/heads/develop'))
 
 # Windows script setting up $(fileversion) used to stamp AssemblyFileVersions. 
