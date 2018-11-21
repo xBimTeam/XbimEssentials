@@ -54,7 +54,6 @@ using Xbim.Ifc2x3.QuantityResource;
 using Xbim.Ifc2x3.ProcessExtension;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 using Xbim.Common;
-using System.Reflection;
 
 namespace Xbim.Ifc2x3
 {
@@ -83,7 +82,7 @@ namespace Xbim.Ifc2x3
 		public IInstantiableEntity New(IModel model, Type t, int entityLabel, bool activated)
 		{
 			//check that the type is from this assembly
-			if(t.GetTypeInfo().Assembly != _assembly)
+			if(t.Assembly != _assembly)
 				throw new Exception("This factory only creates types from its assembly");
 
 			return New(model, t.Name, entityLabel, activated);
@@ -1360,6 +1359,15 @@ namespace Xbim.Ifc2x3
 		private static readonly List<string> _schemasIds = new List<string> { "IFC2X3" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
-        public XbimSchemaVersion SchemaVersion { get { return XbimSchemaVersion.Ifc2X3; } }
+		/// <summary>
+        /// Gets the Ifc Schema version of the model if this is IFC schema
+        /// </summary>
+		public XbimSchemaVersion SchemaVersion { 
+			get
+			{
+				return XbimSchemaVersion.Ifc2X3;
+			}
+		}
+
 	}
 }

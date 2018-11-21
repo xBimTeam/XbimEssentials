@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using System;
-using System.Reflection;
 using Xbim.Common;
 
 namespace Xbim.Ifc2x3
@@ -34,7 +33,7 @@ namespace Xbim.Ifc2x3
             if (index > Count)
                 throw new Exception("It is not possible to get object which is more that just the next after the last one.");
             
-            if (!typeof (IItemSet).GetTypeInfo().IsAssignableFrom(typeof (T)))
+            if (!typeof (IItemSet).IsAssignableFrom(typeof (T)))
                 return default(T);
 
             var result = CreateNestedSet();
