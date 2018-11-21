@@ -37,7 +37,6 @@ namespace Xbim.Ifc2x3.DateTimeResource
         }
 
 	    private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
-	        
 
 		public IfcSecondInMinute(string val)
         {

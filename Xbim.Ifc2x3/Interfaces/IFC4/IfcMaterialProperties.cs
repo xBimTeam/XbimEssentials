@@ -11,7 +11,6 @@ using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
-using System.Reflection;
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc2x3.MaterialPropertyResource
@@ -74,21 +73,21 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			{
 				//## Handle return of Properties for which no match was found
                 // Properties which are represented as objects in IFC2x3 has to be represented as transient property objects
-			    var properties = GetType().GetTypeInfo().GetProperties().Where(p => typeof (MeasureResource.IfcValue).GetTypeInfo().IsAssignableFrom(p.PropertyType));
+			    var properties = GetType().GetProperties().Where(p => typeof (MeasureResource.IfcValue).IsAssignableFrom(p.PropertyType));
 			    foreach (var property in properties)
 			    {
 			        var name = property.Name;
 			        var value = property.GetValue(this, null);
 			        if (value == null) continue;
 
-			        var sourceType = property.PropertyType.GetTypeInfo().IsGenericType
-			            ? property.PropertyType.GetTypeInfo().GetGenericArguments()[0]
+			        var sourceType = property.PropertyType.IsGenericType
+			            ? property.PropertyType.GetGenericArguments()[0]
 			            : property.PropertyType;
 
 			        var targetType =
-			            typeof (Ifc4.MeasureResource.IfcValue).GetTypeInfo().Assembly.GetTypes()
+			            typeof (Ifc4.MeasureResource.IfcValue).Assembly.GetTypes()
 			                .FirstOrDefault(
-			                    t => t.GetTypeInfo().IsValueType &&
+			                    t => t.IsValueType &&
 			                        string.Compare(t.Name, sourceType.Name,
 			                            System.StringComparison.OrdinalIgnoreCase) == 0);
 			        if (targetType == null) continue;
