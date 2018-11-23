@@ -653,6 +653,134 @@ namespace Xbim.Common.Geometry
             return result;
         }
 
+        static double clamp(double x, double minval, double maxval)
+        {
+            return Math.Min(Math.Max(x, minval), maxval);
+        }
+
+        // Two CreateRotation functions below are adapted from the implementation of getRotation in
+        // the VisualizationLibrary SDK (sources at http://visualizationlibrary.org/ )
+        // 
+        public static XbimMatrix3D CreateRotation(XbimPoint3D from, XbimPoint3D to)
+        {
+            var a = new XbimVector3D(from.X, from.Y, from.Z);
+            var b = new XbimVector3D(to.X, to.Y, to.Z);
+            a = a.Normalized();
+            b = b.Normalized();
+
+            double cosa = a.DotProduct(b);
+            cosa = clamp(cosa, -1, +1);
+            
+            var axis = XbimVector3D.CrossProduct(a, b).Normalized();
+            double alpha = Math.Acos(cosa);
+            return CreateRotation(alpha, axis);
+        }
+
+        private static XbimMatrix3D CreateRotation(double angle, XbimVector3D axis)
+        {
+            XbimMatrix3D ret = XbimMatrix3D.Identity;
+
+            if (angle == 0 || (axis.X == 0 && axis.Y == 0 && axis.Z == 0))
+                return ret;
+            double xx, yy, zz, xy, yz, zx, xs, ys, zs, one_c, s, c;
+
+            s = Math.Sin(angle);
+            c = Math.Cos(angle);
+
+            double x = axis.X;
+            double y = axis.Y;
+            double z = axis.Z;
+
+            // simple cases
+            if (x == 0)
+            {
+                if (y == 0)
+                {
+                    if (z != 0)
+                    {
+                        // rotate only around z-axis
+                        ret.M11 = c;
+                        ret.M22 = c;
+                        if (z < 0)
+                        {
+                            ret.M21 = -s;
+                            ret.M12 = s;
+                        }
+                        else
+                        {
+                            ret.M21 = s;
+                            ret.M12 = -s;
+                        }
+                        return ret;
+                    }
+                }
+                else if (z == 0)
+                {
+                    // rotate only around y-axis
+                    ret.M11 = c;
+                    ret.M33 = c;
+                    if (y < 0)
+                    {
+                        ret.M31 = s;
+                        ret.M13 = -s;
+                    }
+                    else
+                    {
+                        ret.M31 = -s;
+                        ret.M13 = s;
+                    }
+                    return ret;
+                }
+            }
+            else if (y == 0)
+            {
+                if (z == 0)
+                {
+                    // rotate only around x-axis
+                    ret.M22 = c;
+                    ret.M33 = c;
+                    if (x < 0)
+                    {
+                        ret.M32 = -s;
+                        ret.M23 = s;
+                    }
+                    else
+                    {
+                        ret.M32 = s;
+                        ret.M23 = -s;
+                    }
+                    return ret;
+                }
+            }
+
+            // Beginning of general axisa to matrix conversion
+            var dot = x * x + y * y + z * z;
+
+            if (dot > 1.0001 || dot < 0.99999)
+            {
+                var mag = Math.Sqrt(dot);
+                x /= mag;
+                y /= mag;
+                z /= mag;
+            }
+
+            xx = x * x;
+            yy = y * y;
+            zz = z * z;
+            xy = x * y;
+            yz = y * z;
+            zx = z * x;
+            xs = x * s;
+            ys = y * s;
+            zs = z * s;
+            one_c = 1 - c;
+
+            ret.M11 = ((one_c * xx) + c); ret.M21 = ((one_c * xy) + zs); ret.M31 = ((one_c * zx) - ys);
+            ret.M12 = ((one_c * xy) - zs); ret.M22 = ((one_c * yy) + c); ret.M32 = ((one_c * yz) + xs);
+            ret.M13 = ((one_c * zx) + ys); ret.M23 = ((one_c * yz) - xs); ret.M33 = ((one_c * zz) + c);
+            return ret;
+        }
+
 
         /// <summary>
         /// Creates a 3D translation matrix.
