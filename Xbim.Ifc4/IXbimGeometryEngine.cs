@@ -40,8 +40,8 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcBoundingBox ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcSurfaceCurveSweptAreaSolid ifcSolid, ILogger logger = null);
 
-        IXbimSolid CreateSolid(IIfcBooleanClippingResult ifcSolid, ILogger logger = null);
-        IXbimSolid CreateSolid(IIfcBooleanOperand ifcSolid, ILogger logger = null);
+        IXbimSolid CreateSolidSet(IIfcBooleanClippingResult ifcSolid, ILogger logger = null);
+        IXbimSolid CreateSolidSet(IIfcBooleanOperand ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcHalfSpaceSolid ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcPolygonalBoundedHalfSpace ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcBoxedHalfSpace ifcSolid, ILogger logger = null);
@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolidSet CreateSolidSet(IIfcClosedShell ifcSolid, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcSweptAreaSolid ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcCsgPrimitive3D ifcSolid, ILogger logger = null);
-        IXbimSolid CreateSolid(IIfcCsgSolid ifcSolid, ILogger logger = null);
+        IXbimSolid CreateSolidSet(IIfcCsgSolid ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcSphere ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcBlock ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcRightCircularCylinder ifcSolid, ILogger logger = null);
