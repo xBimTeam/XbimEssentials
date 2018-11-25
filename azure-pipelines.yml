@@ -44,6 +44,17 @@ steps:
   name: 'SettingFileVersion'
   condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
 
+# Windows script setting up $(fileversion) used to stamp AssemblyFileVersions. 
+# By convention we use 'Major.Minor.BuildNo.0' on Master and 'Major.Minor.0.BuildNo' on other branches
+- script: | 
+    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).$(patch).0
+  name: 'SettingFileVersion'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+- script: | 
+    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).0.$(patch)
+  name: 'SettingFileVersion'
+  condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+
 - task: NuGetToolInstaller@0  
 
 # Version .NET Core project files
