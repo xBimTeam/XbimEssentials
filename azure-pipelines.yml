@@ -19,7 +19,7 @@ variables:
   
 
 steps:
-# Windows script setting up  $(version) of the nuget package if this is development branch build
+# Windows script setting up $(version) of the nuget package if this is development branch build
 - script: |
     echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-prerelease
   name: 'SettingPrereleaseNugetPackageVersion'
@@ -33,7 +33,31 @@ steps:
   name: 'SettingOtherBranchNugetPackageVersion'
   condition: and(ne(variables['Build.SourceBranch'], 'refs/heads/master'),ne(variables['Build.SourceBranch'], 'refs/heads/develop'))
 
+# Windows script setting up $(fileversion) used to stamp AssemblyFileVersions. 
+# By convention we use 'Major.Minor.BuildNo.0' on Master and 'Major.Minor.0.BuildNo' on other branches
+- script: | 
+    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).$(patch).0
+  name: 'SettingFileVersion'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+- script: | 
+    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).0.$(patch)
+  name: 'SettingFileVersion'
+  condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+
 - task: NuGetToolInstaller@0  
+
+# Version .NET Core project files
+# Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
+# Based on https://github.com/rfennell/AzurePipelines/wiki/Version-Assemblies-and-Packages-Tasks-YAML#versiondotnetcoreassembliestask
+- task: VersionDotNetCoreAssemblies
+  inputs: 
+     # Required arguments
+     Path: $(Build.SourcesDirectory)
+     VersionNumber: $(fileversion)
+     VersionRegex: \d+\.\d+\.\d+\.\d+
+     FilenamePattern: .csproj
+     Field: AssemblyFileVersion
+     OutputVersion: OutputedVersion
 
 # xBIM Common
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
