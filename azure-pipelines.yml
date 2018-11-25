@@ -60,7 +60,7 @@ steps:
 # Version .NET Core project files
 # Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
 # Based on https://github.com/rfennell/AzurePipelines/wiki/Version-Assemblies-and-Packages-Tasks-YAML#versiondotnetcoreassembliestask
-- task: VersionDotNetCoreAssemblies
+- task: VersionDotNetCoreAssemblies@8
   inputs: 
      # Required arguments
      Path: $(Build.SourcesDirectory)
