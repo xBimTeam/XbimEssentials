@@ -55,7 +55,7 @@ namespace Xbim.IO.Step21
         public XbimP21Parser(Stream strm, long streamSize , ILogger logger)
             : base(strm)
         {
-            Logger = logger;
+            Logger = logger ?? XbimLogging.CreateLogger<XbimP21Parser>();
             var entityApproxCount = 5000;
             if (streamSize > 0)
             {
@@ -70,7 +70,7 @@ namespace Xbim.IO.Step21
 
         protected XbimP21Parser(ILogger logger)
         {
-            Logger = logger;
+            Logger = logger ?? XbimLogging.CreateLogger<XbimP21Parser>();
             const int entityApproxCount = 5000;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred

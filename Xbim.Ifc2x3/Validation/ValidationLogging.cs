@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using Xbim.Common;
 
 namespace Xbim.Ifc2x3.Validation
 {
@@ -7,7 +8,7 @@ namespace Xbim.Ifc2x3.Validation
     {
         internal static ILogger CreateLogger<T>()
         {
-            return null;
+            return XbimLogging.CreateLogger<T>();
         }
     }
 }

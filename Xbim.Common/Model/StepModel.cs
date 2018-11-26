@@ -75,6 +75,7 @@ namespace Xbim.Common.Model
 
         public StepModel(IEntityFactory entityFactory, int labelFrom)
         {
+            Logger = Logger ?? XbimLogging.CreateLogger<StepModel>();
             InitFromEntityFactory(entityFactory);
 
             _instances = new EntityCollection(this, labelFrom);
@@ -93,12 +94,12 @@ namespace Xbim.Common.Model
 
         public StepModel(IEntityFactory entityFactory, ILogger logger = null, int labelFrom = 0) : this(entityFactory, labelFrom)
         {
-            Logger = logger;
+            Logger = logger ?? XbimLogging.CreateLogger<StepModel>();
         }
 
         public StepModel(EntityFactoryResolverDelegate factoryResolver, ILogger logger = null, int labelFrom = 0)
         {
-            Logger = logger;
+            Logger = logger ?? XbimLogging.CreateLogger<StepModel>();
             _factoryResolver = factoryResolver;
             _instances = new EntityCollection(this, labelFrom);
             IsTransactional = true;
@@ -342,19 +343,13 @@ namespace Xbim.Common.Model
 
         public int LoadStep21Part(Stream data)
         {
-            var parser = new XbimP21Scanner(data, -1)
-            {
-                Logger = Logger
-            };
+            var parser = new XbimP21Scanner(data, -1);
             return LoadStep21(parser);
         }
 
         public int LoadStep21Part(string data)
         {
-            var parser = new XbimP21Scanner(data)
-            {
-                Logger = Logger
-            };
+            var parser = new XbimP21Scanner(data);
             return LoadStep21(parser);
         }
 
@@ -482,10 +477,7 @@ namespace Xbim.Common.Model
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null, IEnumerable<string> ignoreTypes = null)
         {
-            var parser = new XbimP21Scanner(stream, streamSize, ignoreTypes)
-            {
-                Logger = Logger
-            };
+            var parser = new XbimP21Scanner(stream, streamSize, ignoreTypes);
             if (progDelegate != null) parser.ProgressStatus += progDelegate;
             try
             {

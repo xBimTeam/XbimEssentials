@@ -200,10 +200,10 @@ namespace Xbim.IO.Esent
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="database"></param>
-        public EsentEntityCursor(EsentModel model, string database, OpenDatabaseGrbit mode, ILogger logger = null)
+        public EsentEntityCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
             : base(model, database, mode)
         {
-            _logger = logger;
+            _logger = XbimLogging.CreateLogger<EsentEntityCursor>(); ;
             Api.JetOpenTable(Sesid, DbId, ifcEntityTableName, null, 0,
                 mode == OpenDatabaseGrbit.ReadOnly ? OpenTableGrbit.ReadOnly :
                 mode == OpenDatabaseGrbit.Exclusive ? OpenTableGrbit.DenyWrite : OpenTableGrbit.None, out Table);
