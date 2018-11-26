@@ -19,8 +19,11 @@
 
   <ItemGroup>
     <Compile Remove="Debug\**" />
+    <Compile Remove="TestResults\**" />
     <EmbeddedResource Remove="Debug\**" />
+    <EmbeddedResource Remove="TestResults\**" />
     <None Remove="Debug\**" />
+    <None Remove="TestResults\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 
 namespace Xbim.Common
@@ -64,6 +65,13 @@ namespace Xbim.Common
             }
         }
 
+        public FileInfo FileInfo
+        {
+            get => _assembly.IsDynamic ?
+                new FileInfo("") :
+                new FileInfo(new Uri(_assembly.CodeBase).LocalPath);
+        }
+
         /// <summary>
         /// Returns the date and time of compilation, extracted from the fileversioninfo according to compilation policy.
         /// It returns DateTime.MinValue when the file properties can not be loaded. In this scenarios OverrideLocation needs to be set.
@@ -81,6 +89,9 @@ namespace Xbim.Common
                     return DateTime.MinValue;
                 try
                 {
+                    // This is a legacy build convention, where we encode the build time into the FileVersion. E.g. 4.1.1802.12124 
+                    // Build is YYMM, while patch is DD + 30-second intervals into the day.
+                    // In order to get coherent build numbers across projects we've stopped doing this
                     var dateYear = 2000 + Convert.ToInt32(versArray[2].Substring(0, 2));
                     var dateMonth = Convert.ToInt32(versArray[2].Substring(2, 2));
                     var dateday = Convert.ToInt32(versArray[3].Substring(0, 2));
@@ -92,7 +103,7 @@ namespace Xbim.Common
                 }
                 catch (Exception)
                 {
-                    return ret;
+                    return FileInfo.CreationTimeUtc;    // Should be accurate if the build outputs are cleaned
                 }
             }
         }
