@@ -75,6 +75,7 @@ namespace Xbim.IO.Esent
 
         public EsentModel(IEntityFactory factory)
         {
+            Logger = XbimLogging.CreateLogger<EsentModel>();
             Init(factory);
         }
 
@@ -84,6 +85,7 @@ namespace Xbim.IO.Esent
         /// </summary>
         internal EsentModel()
         {
+            Logger = XbimLogging.CreateLogger<EsentModel>();
         }
 
         protected void Init(IEntityFactory factory)

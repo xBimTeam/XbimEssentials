@@ -41,7 +41,7 @@ namespace Xbim.IO.Step21
     public class XbimP21Scanner
     {
         private ILogger _logger;
-        public ILogger Logger { get { return _logger; } set { _logger = value; } }
+        public ILogger Logger { get { return _logger; } private set { _logger = value; } }
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         protected int ListNestLevel = -1;
@@ -72,6 +72,7 @@ namespace Xbim.IO.Step21
 
         public XbimP21Scanner(Stream strm, long streamSize, IEnumerable<string> ignoreTypes = null)
         {
+            Logger = XbimLogging.CreateLogger<XbimP21Scanner>();
             _scanner = new Scanner(strm);
             //_scanner = new Scanner(new XbimScanBuffer(strm));
             if (ignoreTypes != null) SkipTypes = new HashSet<string>(ignoreTypes);
@@ -99,6 +100,7 @@ namespace Xbim.IO.Step21
 
         public XbimP21Scanner(string data, IEnumerable<string> ignoreTypes = null)
         {
+            Logger = XbimLogging.CreateLogger<XbimP21Scanner>();
             _scanner = new Scanner();
             _scanner.SetSource(data, 0);
             _streamSize = data.Length;

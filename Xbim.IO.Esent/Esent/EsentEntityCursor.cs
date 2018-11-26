@@ -203,6 +203,7 @@ namespace Xbim.IO.Esent
         public EsentEntityCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
             : base(model, database, mode)
         {
+            _logger = XbimLogging.CreateLogger<EsentEntityCursor>(); ;
             Api.JetOpenTable(Sesid, DbId, ifcEntityTableName, null, 0,
                 mode == OpenDatabaseGrbit.ReadOnly ? OpenTableGrbit.ReadOnly :
                 mode == OpenDatabaseGrbit.Exclusive ? OpenTableGrbit.DenyWrite : OpenTableGrbit.None, out Table);
