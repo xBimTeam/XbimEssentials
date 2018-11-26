@@ -60,15 +60,15 @@ steps:
 # Version .NET Core project files
 # Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
 # Based on https://github.com/rfennell/AzurePipelines/wiki/Version-Assemblies-and-Packages-Tasks-YAML#versiondotnetcoreassembliestask
-#- task: VersionDotNetCoreAssemblies@8
-#  inputs: 
-#     # Required arguments
-#     Path: $(Build.SourcesDirectory)
-#     VersionNumber: $(fileversion)
-#     VersionRegex: \d+\.\d+\.\d+\.\d+
-#     FilenamePattern: .csproj
-#     Field: AssemblyFileVersion
-#     OutputVersion: OutputedVersion
+- task: VersionDotNetCoreAssemblies@8
+  inputs: 
+     # Required arguments
+     Path: $(Build.SourcesDirectory)
+     VersionNumber: $(fileversion)
+     VersionRegex: \d+\.\d+\.\d+\.\d+
+     FilenamePattern: .csproj
+     Field: AssemblyFileVersion
+     OutputVersion: OutputedVersion
 
 # xBIM Common
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
