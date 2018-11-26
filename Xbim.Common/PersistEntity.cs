@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
+using Xbim.IO.Step21;
 
 namespace Xbim.Common
 {
@@ -78,16 +80,16 @@ namespace Xbim.Common
             var txn = Model.CurrentTransaction;
             if (txn == null) throw new Exception("Operation out of transaction.");
 
-            Action doAction = () =>
+            void doAction()
             {
                 setter(newValue);
                 NotifyPropertyChanged(notifyPropertyName);
-            };
-            Action undoAction = () =>
+            }
+            void undoAction()
             {
                 setter(oldValue);
                 NotifyPropertyChanged(notifyPropertyName);
-            };
+            }
 
             txn.DoReversibleAction(doAction, undoAction, this, ChangeType.Modified, propertyOrder);
         }
@@ -100,8 +102,7 @@ namespace Xbim.Common
             if (ReferenceEquals(obj, this))
                 return true;
 
-            var entity = obj as IPersistEntity;
-            if (entity == null) return false;
+            if (!(obj is IPersistEntity entity)) return false;
 
             return EntityLabel.Equals(entity.EntityLabel) && Model.Equals(entity.Model);
         }
@@ -136,5 +137,12 @@ namespace Xbim.Common
             return !(left == right);
         }
         #endregion
+
+        public override string ToString()
+        {
+            var sw = new StringWriter();
+            Part21Writer.WriteEntity(this, sw, Model.Metadata);
+            return sw.ToString();
+        }
     }
 }
