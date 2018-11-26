@@ -52,7 +52,7 @@ steps:
     VersionNumber: $(fileversion)
     VersionRegex: \d+\.\d+\.\d+\.\d+
     FilenamePattern: .csproj
-    Field: AssemblyFileVersion
+    Field: FileVersion
     OutputVersion: OutputedVersion
 
 # xBIM Common
