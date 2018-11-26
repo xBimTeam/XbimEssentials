@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Xbim.Common.Geometry;
 using Xbim.Common.Logging;
 
@@ -138,5 +139,7 @@ namespace Xbim.Ifc4.Interfaces
 
         IXbimGeometryObject FromBrep(string brepStr);
         string ToBrep(IXbimGeometryObject geometryObject);
+
+        IList<XbimPoint3D> GetDiscretisedDirectrix(IIfcSweptDiskSolid saSolid, int numberOfPoints);
     }
 }

@@ -258,7 +258,5 @@ namespace Xbim.Common.Geometry
 
             return string.Format("{0},{1},TypeId: {2},{3},{4},{5},{6},{7}",  _instanceLabel,_styleLabel, _expressTypeId, _shapeLabel,_ifcProductLabel,  _representationContext, _representationType, _transformation.ToString());
         }
-
-       
     }
 }

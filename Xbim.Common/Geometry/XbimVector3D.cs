@@ -38,6 +38,11 @@ namespace Xbim.Common.Geometry
             return Math.Asin(sinus);
         }
 
+        public static explicit operator XbimVector3D(XbimPoint3D v)
+        {
+            return new XbimVector3D(v.X, v.Y, v.Z);
+        }
+
         /// <summary>
         /// Returns true if the angle is less than tolerance
         /// </summary>

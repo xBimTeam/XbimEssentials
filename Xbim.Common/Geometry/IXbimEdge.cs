@@ -4,7 +4,6 @@ namespace Xbim.Common.Geometry
 {
     public interface IXbimEdge : IXbimGeometryObject, IEquatable<IXbimEdge>
     {
-       
         /// <summary>
         /// Start point (vertex) of the edge
         /// </summary>
@@ -25,5 +24,9 @@ namespace Xbim.Common.Geometry
         /// Converts the object to a string in BRep format
         /// </summary>
         String ToBRep { get; }
+        /// <summary>
+        /// true if the edge is initialised from a line
+        /// </summary>
+        bool IsLinear { get; }
     }
 }

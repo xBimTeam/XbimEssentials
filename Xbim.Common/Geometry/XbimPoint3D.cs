@@ -47,6 +47,11 @@ namespace Xbim.Common.Geometry
             return false;
         }
 
+        public static explicit operator XbimPoint3D(XbimVector3D v)
+        {
+            return new XbimPoint3D(v.X, v.Y, v.Z);
+        }
+
         public override int GetHashCode()
         {
             return X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();

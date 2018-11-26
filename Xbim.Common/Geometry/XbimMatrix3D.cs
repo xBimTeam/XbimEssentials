@@ -661,10 +661,10 @@ namespace Xbim.Common.Geometry
         // Two CreateRotation functions below are adapted from the implementation of getRotation in
         // the VisualizationLibrary SDK (sources at http://visualizationlibrary.org/ )
         // 
-        public static XbimMatrix3D CreateRotation(XbimPoint3D from, XbimPoint3D to)
+        public static XbimMatrix3D CreateRotation(XbimPoint3D fromDirection, XbimPoint3D toDirection)
         {
-            var a = new XbimVector3D(from.X, from.Y, from.Z);
-            var b = new XbimVector3D(to.X, to.Y, to.Z);
+            var a = new XbimVector3D(toDirection.X, toDirection.Y, toDirection.Z);
+            var b = new XbimVector3D(fromDirection.X, fromDirection.Y, fromDirection.Z);
             a = a.Normalized();
             b = b.Normalized();
 

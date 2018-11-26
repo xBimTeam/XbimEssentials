@@ -10,6 +10,51 @@ namespace Xbim.Essentials.Tests
     public class GeometryTests
     {
         [TestMethod]
+        public void RotationMatrixFromVectorsTests()
+        {
+            // y to x
+            XbimPoint3D from = new XbimPoint3D(0, 1, 0);
+            XbimPoint3D to = new XbimPoint3D(1, 0, 0);
+            TestRotationCreation(from, to);
+
+            TestRotationCreation(from, from);
+            TestRotationCreation(to, to);
+
+
+            to = new XbimPoint3D(0.4, 0.4, 0);
+            TestRotationCreation(from, to);
+
+            to = new XbimPoint3D(-0.4, 0.4, 0);
+            TestRotationCreation(from, to);
+        }
+
+        private void TestRotationCreation(XbimPoint3D from, XbimPoint3D to)
+        {
+            var m = XbimMatrix3D.CreateRotation(from, to);
+            var toForTest = m.Transform(from);
+            var toNormalised = ((XbimVector3D)to).Normalized();
+            
+            Assert.IsTrue(IsTolerableDifference((XbimPoint3D)toNormalised, toForTest));
+        }
+
+        private bool IsTolerableDifference(XbimPoint3D expectedValue, XbimPoint3D resultingValue)
+        {
+            return
+                IsTolerableDifference(expectedValue.X, resultingValue.X)
+                &&
+                IsTolerableDifference(expectedValue.Y, resultingValue.Y)
+                &&
+                IsTolerableDifference(expectedValue.Z, resultingValue.Z)
+                ;
+        }
+
+        private bool IsTolerableDifference(double expectedValue, double resultingValue)
+        {
+            var diff = resultingValue - expectedValue;
+            return (diff < 1E-15);
+        }
+
+        [TestMethod]
         public void QuaternionTests()
         {
             var q = new XbimQuaternion();

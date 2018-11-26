@@ -56,11 +56,11 @@ namespace Xbim.Common.Geometry
         }
     }
     /// <summary>
+    /// This class serves for storage and persistence purposes; it implements IXbimShapeGeometryData
     /// A basic shape geoemetry, note this is independent of placement and not specific to any product
     /// </summary>
     public class XbimShapeGeometry : IXbimShapeGeometryData
     {
-        
         /// <summary>
         /// The unique label of this shape geometry
         /// </summary>
@@ -90,9 +90,7 @@ namespace Xbim.Common.Geometry
         /// The geometry data defining the shape
         /// </summary>
         byte[] _shapeData;
-
-
-
+        
         /// <summary>
         /// The unique label of this shape geometry
         /// </summary>
@@ -320,9 +318,5 @@ namespace Xbim.Common.Geometry
 
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", _shapeLabel, _ifcShapeLabel, _geometryHash, _shapeLabel, _referenceCount, LOD, _format, _boundingBox.ToString(), _shapeData);
         }
-
-       
-     
-
     }
 }

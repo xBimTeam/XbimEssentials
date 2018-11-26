@@ -68,7 +68,6 @@ namespace Xbim.Tessellator
             _lookupList = new Dictionary<long, XbimTriangleEdge[]>(edgeCount);
             _faces = new Dictionary<int, List<XbimTriangleEdge[]>>(faceCount);
             _vertices = new XbimContourVertexCollection(precision);
-           
         }
 
         public uint TriangleCount
@@ -215,10 +214,54 @@ namespace Xbim.Tessellator
             return null;
         }
 
-        public void BalanceNormals()
+        //public void SmoothNormals()
+        //{
+            
+        //    foreach(var triangle in Triangles)
+        //    {
+        //        // ...
+        //        // p1, p2 and p3 are the points in the face (f)
+        //        var p1 = triangle.
+
+        //        // calculate facet normal of the triangle using cross product;
+        //        // both components are "normalized" against a common point chosen as the base
+        //        float3 n = (p2 - p1).Cross(p3 - p1);    // p1 is the 'base' here
+
+        //        // get the angle between the two other points for each point;
+        //        // the starting point will be the 'base' and the two adjacent points will be normalized against it
+        //        a1 = (p2 - p1).Angle(p3 - p1);    // p1 is the 'base' here
+        //        a2 = (p3 - p2).Angle(p1 - p2);    // p2 is the 'base' here
+        //        a3 = (p1 - p3).Angle(p2 - p3);    // p3 is the 'base' here
+
+        //        // normalize the initial facet normals if you want to ignore surface area
+        //        if (!area_weighting)
+        //        {
+        //            normalize(n);
+        //        }
+
+        //        // store the weighted normal in an structured array
+        //        v1.wnormals.push_back(n * a1);
+        //        v2.wnormals.push_back(n * a2);
+        //        v3.wnormals.push_back(n * a3);
+        //    }
+        //    for (int v = 0; v < vertcount; v++)
+        //    {
+        //        float3 N;
+
+        //        // run through the normals in each vertex's array and interpolate them
+        //        // vertex(v) here fetches the data of the vertex at index 'v'
+        //        for (int n = 0; n < vertex(v).wnormals.size(); v++)
+        //        {
+        //            N += vertex(v).wnormals.at(n);
+        //        }
+
+        //        // normalize the final normal
+        //        normalize(N);
+        //    }
+        //}
+
+        public void BalanceNormals(double minAngle = Math.PI / 5)
         {
-            const double minAngle = Math.PI / 5;
-           
             //set up the base normals
             foreach (var faceGroup in Faces)
             {
@@ -384,7 +427,6 @@ namespace Xbim.Tessellator
         /// <param name="faceId"></param>
         public void AddTriangle(int p1, int p2, int p3, int faceId)
         {
-           
             var e1 = new XbimTriangleEdge(p1);
             var e2 = new XbimTriangleEdge(p2);
             var e3 = new XbimTriangleEdge(p3);
@@ -392,7 +434,6 @@ namespace Xbim.Tessellator
             e2.NextEdge = e3;
             e3.NextEdge = e1;
      
-
             var edgeList = new[] { e1, e2, e3 };
             bool faulty = !AddEdge(e1);
             if (!faulty && !AddEdge(e2))
@@ -415,7 +456,6 @@ namespace Xbim.Tessellator
                 _faces.Add(faceId, triangleList);
             }
             triangleList.Add(edgeList);
-            
         }
 
         /// <summary>
