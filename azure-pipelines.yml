@@ -103,6 +103,7 @@ steps:
 - script: dotnet add Xbim.IO.Esent\Xbim.IO.Esent.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
   env:
     DOTNET_CLI_HOME: '$(Build.BinariesDirectory)'
+    HOME: '$(Build.BinariesDirectory)'
   name: 'EsentModel_Update'
 
 - script: dotnet pack Xbim.IO.Esent\Xbim.IO.Esent.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
