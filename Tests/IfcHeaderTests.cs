@@ -41,7 +41,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [DeploymentItem("TestSourceFiles")]
-        [Ignore]
         [TestMethod]
         public void ReadPreProcessorTest()
         {

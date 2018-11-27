@@ -85,7 +85,7 @@ namespace Xbim.Ifc
             _model.EntityModified += IfcRootModified;
 
             LoadReferenceModels();
-            CalculateModelFactors();
+            MemoryModel.CalculateModelFactors(_model);
         }
 
         protected IfcStore(IModel iModel, XbimSchemaVersion schema)
@@ -1137,118 +1137,6 @@ namespace Xbim.Ifc
 
         public const int WexBimId = 94132117;
 
-        /// <summary>
-        /// Calculates and sets the model factors, call every time a unit of measurement is changed
-        /// </summary>
-        public void CalculateModelFactors()
-        {
-            double angleToRadiansConversionFactor = 1; //assume radians
-            double lengthToMetresConversionFactor = 1; //assume metres
-            var instOfType = Instances.OfType<IIfcUnitAssignment>();
-            var ua = instOfType.FirstOrDefault();
-            if (ua != null)
-            {
-                foreach (var unit in ua.Units)
-                {
-                    var value = 1.0;
-                    var cbUnit = unit as IIfcConversionBasedUnit;
-                    var siUnit = unit as IIfcSIUnit;
-                    if (cbUnit != null)
-                    {
-                        var mu = cbUnit.ConversionFactor;
-                        var component = mu.UnitComponent as IIfcSIUnit;
-                        if (component != null)
-                            siUnit = component;
-                        var et = ((IExpressValueType)mu.ValueComponent);
-
-                        if (et.UnderlyingSystemType == typeof(double))
-                            value *= (double)et.Value;
-                        else if (et.UnderlyingSystemType == typeof(int))
-                            value *= (int)et.Value;
-                        else if (et.UnderlyingSystemType == typeof(long))
-                            value *= (long)et.Value;
-                    }
-                    if (siUnit == null) continue;
-                    value *= siUnit.Power;
-                    switch (siUnit.UnitType)
-                    {
-                        case IfcUnitEnum.LENGTHUNIT:
-                            lengthToMetresConversionFactor = value;
-                            break;
-                        case IfcUnitEnum.PLANEANGLEUNIT:
-                            angleToRadiansConversionFactor = value;
-                            //need to guarantee precision to avoid errors in boolean operations
-                            if (Math.Abs(angleToRadiansConversionFactor - (Math.PI / 180)) < 1e-9)
-                                angleToRadiansConversionFactor = Math.PI / 180;
-                            break;
-                    }
-                }
-            }
-
-            var gcs =
-                Instances.OfType<IIfcGeometricRepresentationContext>();
-            var defaultPrecision = 1e-5;
-            //get the Model precision if it is correctly defined
-            foreach (var gc in gcs.Where(g => !(g is IIfcGeometricRepresentationSubContext)))
-            {
-                if (!gc.ContextType.HasValue || string.Compare(gc.ContextType.Value, "model", true) != 0) continue;
-                if (!gc.Precision.HasValue) continue;
-                if (gc.Precision == 0) continue;
-                defaultPrecision = gc.Precision.Value;
-                break;
-            }
-            //sort out precision, esp for some legacy models
-            if (defaultPrecision < 1e-7) //sometimes found in old revit models where the precision should really be 1e-5
-                defaultPrecision = 1e-5;
-            //check if angle units are incorrectly defined, this happens in some old models
-            if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
-            {
-                var trimmed = Instances.Where<IIfcTrimmedCurve>(trimmedCurve => trimmedCurve.BasisCurve is IIfcConic);
-                foreach (var trimmedCurve in trimmed)
-                {
-                    if (trimmedCurve.MasterRepresentation != IfcTrimmingPreference.PARAMETER)
-                        continue;
-                    if (
-                        !trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
-                            .OfType<IfcParameterValue>()
-                            .Select(trim => (double)trim.Value)
-                            .Any(val => val > Math.PI * 2)) continue;
-                    angleToRadiansConversionFactor = Math.PI / 180;
-                    break;
-                }
-            }
-
-            ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor,
-                defaultPrecision);
-
-            SetWorkArounds();
-        }
-
-        /// <summary>
-        /// Code to determine model specific workarounds (BIM tool IFC exporter quirks)
-        /// </summary>
-        private void SetWorkArounds()
-        {
-            //try Revit first
-            string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
-            if (Header.FileName == null || string.IsNullOrWhiteSpace(Header.FileName.OriginatingSystem))
-                return; //nothing to do
-            var matches = Regex.Matches(Header.FileName.OriginatingSystem, revitPattern, RegexOptions.IgnoreCase);
-            if (matches.Count > 0) //looks like Revit
-            {
-                if (matches[0].Groups.Count == 2) //we have the build versions
-                {
-                    if (Version.TryParse(matches[0].Groups[1].Value, out Version modelVersion))
-                    {
-                        //SurfaceOfLinearExtrusion bug found in version 17.2.0 and earlier
-                        var surfaceOfLinearExtrusionVersion = new Version(17, 2, 0, 0);
-                        if (modelVersion <= surfaceOfLinearExtrusionVersion)
-                            ((XbimModelFactors)ModelFactors).AddWorkAround("#SurfaceOfLinearExtrusion");
-                    }
-
-                }
-            }
-        }
 
         #region Referenced Models functions
 
