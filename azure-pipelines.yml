@@ -54,9 +54,6 @@ steps:
     FilenamePattern: .csproj
     Field: FileVersion
     OutputVersion: OutputedVersion
-
-# Add local package source
-- script: nuget sources add -Name local -Source $(Build.BinariesDirectory)
     
 # xBIM Common
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
@@ -89,6 +86,8 @@ steps:
 # Esent Model
 - script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.MemoryModel\Xbim.MemoryModel.csproj
 - script: dotnet add Xbim.IO.Esent\Xbim.IO.Esent.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
+  env:
+    DOTNET_CLI_HOME: '$(Build.BinariesDirectory)'
   name: 'EsentModel_Update'
 
 - script: dotnet pack Xbim.IO.Esent\Xbim.IO.Esent.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
