@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Common.Local", "Xbim.Common\Xbim.Common.Local.csproj", "{55863561-1D9C-441B-BDAB-DF4ADA37D0D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Common", "Xbim.Common\Xbim.Common.csproj", "{55863561-1D9C-441B-BDAB-DF4ADA37D0D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26AEC029-026B-4C71-8150-FA422F1832E6}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,19 +16,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Xbim.Essentials\Xbim.Essentials.tmpl = Xbim.Essentials\Xbim.Essentials.tmpl
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc4.Local", "Xbim.Ifc4\Xbim.Ifc4.Local.csproj", "{25D42373-89A5-437D-925C-21510EF0EB62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc4", "Xbim.Ifc4\Xbim.Ifc4.csproj", "{25D42373-89A5-437D-925C-21510EF0EB62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc2x3.Local", "Xbim.Ifc2x3\Xbim.Ifc2x3.Local.csproj", "{05F75CEF-0DF5-4036-9D49-BDC6AE4695E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc2x3", "Xbim.Ifc2x3\Xbim.Ifc2x3.csproj", "{05F75CEF-0DF5-4036-9D49-BDC6AE4695E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.IO.MemoryModel.Local", "Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.Local.csproj", "{C4495723-D35A-4A82-A5D6-03DB4A7BD49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.IO.MemoryModel", "Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj", "{C4495723-D35A-4A82-A5D6-03DB4A7BD49B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Tessellator.Local", "Xbim.Tessellator\Xbim.Tessellator.Local.csproj", "{01BA76B8-C202-4127-8D01-372D2A330E09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Tessellator", "Xbim.Tessellator\Xbim.Tessellator.csproj", "{01BA76B8-C202-4127-8D01-372D2A330E09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{35A99F6F-BC0B-463E-A746-8D2B594E4B6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.IO.Esent.Local", "Xbim.IO.Esent\Xbim.IO.Esent.Local.csproj", "{1F7AB940-C6A8-4E5D-BB8D-0DDB099E094C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.IO.Esent", "Xbim.IO.Esent\Xbim.IO.Esent.csproj", "{1F7AB940-C6A8-4E5D-BB8D-0DDB099E094C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc.Local", "Xbim.Ifc\Xbim.Ifc.Local.csproj", "{A22B6FAB-FFC8-45E0-BEDE-D3A92289E866}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc", "Xbim.Ifc\Xbim.Ifc.csproj", "{A22B6FAB-FFC8-45E0-BEDE-D3A92289E866}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Essentials.Tests", "Tests\Xbim.Essentials.Tests.csproj", "{1257E711-50B6-4278-8563-0AB27A88580C}"
 EndProject
