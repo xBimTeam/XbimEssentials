@@ -4,12 +4,7 @@
     <AssemblyName>Xbim.IO.MemoryModel</AssemblyName>
     <RootNamespace>Xbim.IO.MemoryModel</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Xml\BsConf\IFC4x1_RC3.xml" />
-    <None Remove="Xml\BsConf\IFC4_ADD1_config.xml" />
-    <None Remove="Xml\BsConf\IFC4_ADD2_config.xml" />
-    <None Remove="Xml\BsConf\IFC4_config.xml" />
-  </ItemGroup>
+  
   <ItemGroup>
     <EmbeddedResource Include="Xml\BsConf\*.xml" />
   </ItemGroup>
