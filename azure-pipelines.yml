@@ -55,6 +55,9 @@ steps:
     Field: FileVersion
     OutputVersion: OutputedVersion
 
+# Add local package source
+- script: nuget sources add -Name local -Source $(Build.BinariesDirectory)
+    
 # xBIM Common
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'Common_Pack'

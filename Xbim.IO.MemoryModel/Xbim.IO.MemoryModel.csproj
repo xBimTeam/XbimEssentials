@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
-    <Authors>Martin Cerny</Authors>
+    <Authors>Steve Lockley, Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
     <Description>An in memory version of an Ifc or STEP Model</Description>
     <Copyright>Xbim Ltd</Copyright>
@@ -9,7 +9,7 @@
     <PackageProjectUrl>&gt;https://github.com/xBimTeam</PackageProjectUrl>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
     <PackageTags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</PackageTags>
-    <PackageReleaseNotes>Port to Net Standard 1.6</PackageReleaseNotes>
+    <PackageReleaseNotes>Port to Net Standard 2.0</PackageReleaseNotes>
     <Version>5.0.0-Beta</Version>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <FileVersion>5.0.0.0</FileVersion>
