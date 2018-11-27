@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.MeasureResource
         }
 
 	    private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
-	    
 
 		public IfcElectricConductanceMeasure(string val)
         {

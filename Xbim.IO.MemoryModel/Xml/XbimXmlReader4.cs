@@ -59,12 +59,12 @@ namespace Xbim.IO.Xml
             _getOrCreate = getOrCreate;
             _finish = finish;
             _metadata = metadata;
-            Logger = logger ?? NullLogger.Instance;
+            Logger = logger ?? XbimLogging.CreateLogger<XbimXmlReader4>(); ;
         }
 
         private XbimXmlReader4()
         {
-
+            Logger = XbimLogging.CreateLogger<XbimXmlReader4>(); ;
         }
 
         static XbimXmlReader4()

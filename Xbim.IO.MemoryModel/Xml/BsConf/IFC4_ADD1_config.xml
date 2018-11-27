@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <cnf:configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="IFC4" xsi:schemaLocation="urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language http://www.buildingsmart-tech.org/ifcXML/IFC4/P28/cnf.xsd" xmlns:cnf="urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language">
   <cnf:option 
     inheritance="true" 

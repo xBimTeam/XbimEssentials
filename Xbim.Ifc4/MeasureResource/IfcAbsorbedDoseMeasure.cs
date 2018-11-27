@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System.Globalization;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 
@@ -37,9 +36,9 @@ namespace Xbim.Ifc4.MeasureResource
             _value = val;
         }
 
-        private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
+	    private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
 
-        public IfcAbsorbedDoseMeasure(string val)
+		public IfcAbsorbedDoseMeasure(string val)
         {
 			_value = System.Convert.ToDouble(val, Culture);
         }

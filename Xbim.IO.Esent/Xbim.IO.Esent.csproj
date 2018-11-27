@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net47</TargetFrameworks>
-	<Authors>Martin Cerny</Authors>
+	<Authors>Steve Lockley, Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
     <Description>An in memory version of an Ifc or STEP Model</Description>
     <Copyright>Xbim Ltd</Copyright>
@@ -11,8 +11,6 @@
     <PackageTags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <Version>5.0.0-Beta</Version>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <FileVersion>5.0.0.0</FileVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -20,9 +18,12 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+    <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="ManagedEsent" Version="1.9.4" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
-    <PackageReference Include="Xbim.IO.MemoryModel" Version="5.0.0-Beta1-1739" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

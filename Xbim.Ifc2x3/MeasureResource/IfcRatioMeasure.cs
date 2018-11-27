@@ -39,7 +39,6 @@ namespace Xbim.Ifc2x3.MeasureResource
         }
 
 	    private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
-	        
 
 		public IfcRatioMeasure(string val)
         {

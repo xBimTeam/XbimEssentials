@@ -199,12 +199,9 @@ namespace Xbim.Common.Model
 
         public T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity
         {
-            T entity;
-            if (initPropertiesFunc != null)
-                entity = Factory.New(_model, initPropertiesFunc, Interlocked.Increment(ref CurrentLabel), true);
-            else
-                entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel), true);
+            var entity = Factory.New<T>(_model, Interlocked.Increment(ref CurrentLabel), true);
             AddReversible(entity);
+            initPropertiesFunc?.Invoke(entity);
             return entity;
         }
 

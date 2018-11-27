@@ -27,7 +27,12 @@ namespace Xbim.IO.Parser
 {
     public sealed partial class Scanner : ScanBase
     {
-        public ILogger Logger { get; set; }
+        public Scanner(ILogger logger)
+        {
+            Logger = logger ?? XbimLogging.CreateLogger<Scanner>();
+        }
+
+        public ILogger Logger { get; private set; }
 
 
         public override void yyerror(string format, params object[] args)

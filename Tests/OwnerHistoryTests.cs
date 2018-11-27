@@ -12,7 +12,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void EmptyEditorCredentials()
         {
-            using (var model = IfcStore.Create(IfcSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
+            using (var model = IfcStore.Create(XbimSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
             {
                 using (var txn = model.BeginTransaction())
                 {

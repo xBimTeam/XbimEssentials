@@ -21,19 +21,22 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CreateFederationFromStore()
         {
+
+            //Xbim.IO.
+
             var credentials = new XbimEditorCredentials
             {
                 ApplicationIdentifier = "TestApp",
                 ApplicationDevelopersName = "TestApp",
                 EditorsOrganisationName = "Test"
             };
-            TestFederation<Ifc4.Kernel.IfcProject>(IfcSchemaVersion.Ifc4, credentials, true);
-            TestFederation<Ifc2x3.Kernel.IfcProject>(IfcSchemaVersion.Ifc2X3, credentials, true);
-            TestFederation<Ifc4.Kernel.IfcProject>(IfcSchemaVersion.Ifc4, credentials, false);
-            TestFederation<Ifc2x3.Kernel.IfcProject>(IfcSchemaVersion.Ifc2X3, credentials, false);
+            TestFederation<Ifc4.Kernel.IfcProject>(XbimSchemaVersion.Ifc4, credentials, true);
+            TestFederation<Ifc2x3.Kernel.IfcProject>(XbimSchemaVersion.Ifc2X3, credentials, true);
+            TestFederation<Ifc4.Kernel.IfcProject>(XbimSchemaVersion.Ifc4, credentials, false);
+            TestFederation<Ifc2x3.Kernel.IfcProject>(XbimSchemaVersion.Ifc2X3, credentials, false);
         }
 
-        private static void TestFederation<T>(IfcSchemaVersion schema, XbimEditorCredentials credentials, bool useXbimFormat) where  T : IInstantiableEntity, IIfcProject
+        private static void TestFederation<T>(XbimSchemaVersion schema, XbimEditorCredentials credentials, bool useXbimFormat) where  T : IInstantiableEntity, IIfcProject
         {
             var d = new DirectoryInfo(".");
             Debug.WriteLine("Working directory is {0}", d.FullName);
@@ -60,7 +63,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        private static string CreateFederation(IfcSchemaVersion schema, XbimEditorCredentials credentials, List<string> modelsNames)
+        private static string CreateFederation(XbimSchemaVersion schema, XbimEditorCredentials credentials, List<string> modelsNames)
         {
             var fedName = string.Format(@"federation{0}.xbim", schema);
             using (var ifcStore = IfcStore.Create(fedName, credentials, schema))
@@ -74,7 +77,7 @@ namespace Xbim.Essentials.Tests
             return fedName;
         }
 
-        private static List<string> CreateModels<T>(IfcSchemaVersion schema, XbimEditorCredentials credentials, bool useXbimFormat)
+        private static List<string> CreateModels<T>(XbimSchemaVersion schema, XbimEditorCredentials credentials, bool useXbimFormat)
             where T : IInstantiableEntity, IIfcProject
         {
             var modelsNames = new List<string>();
@@ -95,7 +98,7 @@ namespace Xbim.Essentials.Tests
                         project.Initialize(ProjectUnits.SIUnitsUK);
                         txn.Commit();
                     }
-                    model.SaveAs(ifcFileName, IfcStorageType.Ifc);
+                    model.SaveAs(ifcFileName, StorageType.Ifc);
                     model.Close();
                 }
                 if (useXbimFormat)

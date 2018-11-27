@@ -352,42 +352,44 @@ namespace Xbim.Essentials.Tests
                 store.Close();
             }
         }
-         [TestMethod]
-         [DeploymentItem("TestFiles")]
-         public void IfcStoreSaveAndOpenIfcXml4Test()
-         {
-             int percent = 0;
-             ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
-             {
-                 percent = percentProgress;
 
-             };
-             long count;
-             //create a zip file using esent
-             using (var store = IfcStore.Open("SampleHouse4.ifc",null,-1, progDelegate))
-             {
-                 count = store.Instances.Count;
-                 store.SaveAs("SampleHouse4",  StorageType.IfcXml);
-                 store.Close();
-             }
-             using (var store = IfcStore.Open("SampleHouse4.ifcxml", null, -1, progDelegate))
-             {
-                 Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
-                 store.Close();
-             }
-             using (var store = IfcStore.Open("SampleHouse4.ifc",null,-1,progDelegate)) //now with memory model
-             {
-                 count = store.Instances.Count;
-                 store.SaveAs("SampleHouse4",  StorageType.IfcXml);
-                 store.Close();
-             }
-             using (var store = IfcStore.Open("SampleHouse4.ifcxml"))
-             {
-                 Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
-                 store.Close();
-             }
-             Assert.IsTrue(percent == 100);
-         }
+        [TestCategory("IfcXml")]
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void IfcStoreSaveAndOpenIfcXml4Test()
+        {
+            int percent = 0;
+            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            {
+                percent = percentProgress;
+
+            };
+            long count;
+            //create a zip file using esent
+            using (var store = IfcStore.Open("SampleHouse4.ifc",null,-1, progDelegate))
+            {
+                count = store.Instances.Count;
+                store.SaveAs("SampleHouse4",  StorageType.IfcXml);
+                store.Close();
+            }
+            using (var store = IfcStore.Open("SampleHouse4.ifcxml", null, -1, progDelegate))
+            {
+                Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
+                store.Close();
+            }
+            using (var store = IfcStore.Open("SampleHouse4.ifc",null,-1,progDelegate)) //now with memory model
+            {
+                count = store.Instances.Count;
+                store.SaveAs("SampleHouse4",  StorageType.IfcXml);
+                store.Close();
+            }
+            using (var store = IfcStore.Open("SampleHouse4.ifcxml"))
+            {
+                Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
+                store.Close();
+            }
+            Assert.IsTrue(percent == 100);
+        }
 
         [TestMethod]
         [DeploymentItem("TestFiles")]

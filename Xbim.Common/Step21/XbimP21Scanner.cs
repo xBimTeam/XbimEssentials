@@ -41,7 +41,7 @@ namespace Xbim.IO.Step21
     public class XbimP21Scanner
     {
         private ILogger _logger;
-        public ILogger Logger { get { return _logger; } set { _logger = value; } }
+        public ILogger Logger { get { return _logger; } private set { _logger = value; } }
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         protected int ListNestLevel = -1;
@@ -72,6 +72,7 @@ namespace Xbim.IO.Step21
 
         public XbimP21Scanner(Stream strm, long streamSize, IEnumerable<string> ignoreTypes = null)
         {
+            Logger = XbimLogging.CreateLogger<XbimP21Scanner>();
             _scanner = new Scanner(strm);
             //_scanner = new Scanner(new XbimScanBuffer(strm));
             if (ignoreTypes != null) SkipTypes = new HashSet<string>(ignoreTypes);
@@ -84,16 +85,22 @@ namespace Xbim.IO.Step21
             //adjust for skipped entities
             if(SkipTypes.Any())
             {
-                //about a 560 entities
-                double adjustRatio = 1-((double)(SkipTypes.Count)) / 560;
+                //about a 600 entities
+                double adjustRatio = 1.0 - (SkipTypes.Count / 600d);
+                if (adjustRatio < 0) adjustRatio = 0;
                 entityApproxCount = (int)( entityApproxCount * adjustRatio);
             }
+
+            // make it 4 at least
+            if (entityApproxCount < 1) entityApproxCount = 4;
+
             _entities = new Dictionary<int, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
 
         public XbimP21Scanner(string data, IEnumerable<string> ignoreTypes = null)
         {
+            Logger = XbimLogging.CreateLogger<XbimP21Scanner>();
             _scanner = new Scanner();
             _scanner.SetSource(data, 0);
             _streamSize = data.Length;

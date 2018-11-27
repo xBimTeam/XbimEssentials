@@ -2,13 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
-    <Title>Xbim Ifc4</Title>
+    <Title>Xbim IFC4</Title>
     <Version>5.0.0-Unreleased</Version>
     <Copyright>Copyright Xbim Ltd.</Copyright>
     <Description>.net library that provides support for the  Ifc4 schema.</Description>
-    <Authors>Steve Lockley, Martin Cenry</Authors>
+    <Authors>Steve Lockley, Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/xBimTeam/</PackageProjectUrl>
@@ -21,7 +19,7 @@
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Common" Version="5.0.0-Beta1-1682" />
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
   </ItemGroup>
  
 </Project>

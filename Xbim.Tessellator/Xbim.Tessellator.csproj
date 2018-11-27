@@ -2,24 +2,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>aimkey.snk</AssemblyOriginatorKeyFile>
     <Title>Xbim Tessellator</Title>   
     <Version>5.0.0-Beta</Version>
     <Copyright>Copyright Xbim Ltd.</Copyright>
     <Description>.net library that provides support for tessellating mesh geometries.</Description>
-    <Authors>Steve Lockley, Martin Cenry</Authors>
+    <Authors>Steve Lockley, Martin Cerny</Authors>
     <Company>Xbim Ltd.</Company>
     <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/xBimTeam/</PackageProjectUrl>
     <RepositoryUrl></RepositoryUrl>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
-    <PackageReleaseNotes>migrated to .netstandard 1.6 and framework 4.6.2</PackageReleaseNotes>
+    <PackageReleaseNotes>migrated to .netstandard 2.0 and framework 4.7</PackageReleaseNotes>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <FileVersion>5.0.0.0</FileVersion>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xbim.Ifc2x3" Version="5.0.0-Beta1-1685" />
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
   </ItemGroup>
 </Project>

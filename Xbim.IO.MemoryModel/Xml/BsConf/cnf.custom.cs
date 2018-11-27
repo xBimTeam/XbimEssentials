@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
 using Xbim.Common.Metadata;
-using Xbim.IO.MemoryModel;
 
 // ReSharper disable InconsistentNaming
 
@@ -10,11 +11,23 @@ namespace Xbim.IO.Xml.BsConf
 {
     public partial class configuration
     {
+        private static string GetData(string name)
+        {
+            var assembly = typeof(configuration).Assembly;
+            var resourceName = $"Xbim.IO.MemoryModel.Xml.BsConf.{name}.xml";
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
         public static configuration IFC4Add2
         {
             get
             {
-                var data = Resources.IFC4_ADD2_config;
+                var data = GetData("IFC4_ADD2_config");
                 return Deserialize(data);
             }
         }
@@ -23,8 +36,8 @@ namespace Xbim.IO.Xml.BsConf
         {
             get
             {
-                var data = Resources.IFC4_ADD1_config;
-                return Deserialize(data);    
+                var data = GetData("IFC4_ADD1_config");
+                return Deserialize(data);
             }
         }
 
@@ -32,7 +45,7 @@ namespace Xbim.IO.Xml.BsConf
         {
             get
             {
-                var data = Resources.IFC4_config;
+                var data = GetData("IFC4_config");
                 return Deserialize(data);
             }
         }
@@ -102,6 +115,8 @@ namespace Xbim.IO.Xml.BsConf
             Items.Add(entity);
             return entity;
         }
+
+
     }
 
     public partial class entity

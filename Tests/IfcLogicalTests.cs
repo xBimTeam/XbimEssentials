@@ -22,6 +22,7 @@ namespace Xbim.IO.Tests
         private const string logicalTrue = "Logical .T.";
         private const string logicalFalse = "Logical .F.";
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void RoundTrip()
         {

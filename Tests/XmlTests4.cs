@@ -7,8 +7,11 @@ using System.Xml;
 using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
+using Xbim.Common.Step21;
+using Xbim.Ifc;
 using Xbim.Ifc.Validation;
 using Xbim.Ifc4;
+using Xbim.Ifc4.ActorResource;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
@@ -81,6 +84,7 @@ namespace Xbim.Essentials.Tests
                     .FirstOrDefault();
             Assert.IsNotNull(rel);
         }
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void Ifc4HeaderSerialization()
         {
@@ -127,6 +131,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void ListSerializationTests()
         {
@@ -185,6 +190,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void SampleHouseXmlSerialization()
         {
@@ -247,6 +253,7 @@ namespace Xbim.Essentials.Tests
             
         }
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void AttributesSerialization()
         {
@@ -295,6 +302,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void SelectTypeSerialization()
         {
@@ -348,6 +356,7 @@ namespace Xbim.Essentials.Tests
 
         }
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void PropertySetDefinitionSetSerialization()
         {
@@ -411,6 +420,8 @@ namespace Xbim.Essentials.Tests
                 }
             }
         }
+
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void RectangularListSerialization()
         {
@@ -458,6 +469,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void NonRectangularListSerialization()
         {

@@ -20,6 +20,7 @@ namespace Xbim.Essentials.Tests
     [TestClass]
     public class BinaryDataTests
     {
+        [TestCategory("IfcXml")]
         [TestMethod]
         [DeploymentItem("TestSourceFiles\\xbim.png")]
         public void BinaryBlobTextureTest()
@@ -64,6 +65,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void PixelTextureTest()
         {
