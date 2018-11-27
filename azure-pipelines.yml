@@ -60,6 +60,7 @@ steps:
   name: 'Common_Pack'
 
 # xBIM Ifc4
+- script: dotnet remove Xbim.Ifc4\Xbim.Ifc4.csproj reference ..\Xbim.Common\Xbim.Common.csproj
 - script: dotnet add Xbim.Ifc4\Xbim.Ifc4.csproj package Xbim.Common -s $(Build.BinariesDirectory) -v $(version)
   name: 'Ifc4_Update'
 
@@ -67,6 +68,7 @@ steps:
   name: 'Ifc4_Pack'
 
 # Ifc2x3
+- script: dotnet remove Xbim.Ifc2x3\Xbim.Ifc2x3.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
 - script: dotnet add Xbim.Ifc2x3\Xbim.Ifc2x3.csproj package Xbim.Ifc4 -s $(Build.BinariesDirectory) -v $(version)
   name: 'Ifc2x3_Update'
 
@@ -74,6 +76,7 @@ steps:
   name: 'Ifc2x3_Pack'
 
 # Memory Model
+- script: dotnet remove Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
 - script: dotnet add Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(version)
   name: 'MemoryModel_Update'
 
@@ -81,6 +84,7 @@ steps:
   name: 'MemoryModel_Pack'
 
 # Esent Model
+- script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj ..\Xbim.MemoryModel\Xbim.MemoryModel.csproj
 - script: dotnet add Xbim.IO.Esent\Xbim.IO.Esent.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
   name: 'EsentModel_Update'
 
@@ -88,6 +92,7 @@ steps:
   name: 'EsentModel_Pack'
 
 # Ifc
+- script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj ..\Xbim.MemoryModel\Xbim.MemoryModel.csproj ..\Xbim.IO.Esent\Xbim.IO.Esent.csproj
 - script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
   name: 'Ifc_Update_MemoryModel'
   
@@ -98,6 +103,7 @@ steps:
   name: 'Ifc_Pack'
 
 #  Tessellator
+- script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
 - script: dotnet add Xbim.Tessellator\Xbim.Tessellator.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(version)
   name: 'Tessellator_Update'
 
