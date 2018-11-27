@@ -4,26 +4,20 @@
     <AssemblyName>Xbim.IO.MemoryModel</AssemblyName>
     <RootNamespace>Xbim.IO.MemoryModel</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Xml\BsConf\IFC4x1_RC3.xml" />
+    <None Remove="Xml\BsConf\IFC4_ADD1_config.xml" />
+    <None Remove="Xml\BsConf\IFC4_ADD2_config.xml" />
+    <None Remove="Xml\BsConf\IFC4_config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Xml\BsConf\*.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.Local.csproj" />
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.Local.csproj" />
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.Local.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
