@@ -441,7 +441,12 @@ namespace Xbim.IO.Esent
         /// </summary>
         public void Close()
         {
-            var refCount = OpenInstances.Count(c => c.JetInstance == JetInstance);
+            // contributed by @Sense545
+            int refCount;
+            lock (OpenInstances)
+            {
+                refCount = OpenInstances.Count(c => c.JetInstance == JetInstance);
+            }
             var disposeTable = (refCount != 0); //only dispose if we have not terminated the instance
             CleanTableArrays(disposeTable);
             EndCaching();
