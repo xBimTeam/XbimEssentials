@@ -84,7 +84,7 @@ steps:
   name: 'MemoryModel_Pack'
 
 # Esent Model
-- script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj ..\Xbim.MemoryModel\Xbim.MemoryModel.csproj
+- script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.MemoryModel\Xbim.MemoryModel.csproj
 - script: dotnet add Xbim.IO.Esent\Xbim.IO.Esent.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
   name: 'EsentModel_Update'
 
