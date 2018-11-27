@@ -140,9 +140,17 @@ namespace Xbim.Common
 
         public override string ToString()
         {
-            var sw = new StringWriter();
-            Part21Writer.WriteEntity(this, sw, Model.Metadata);
-            return sw.ToString();
+            ExpressMetaData md = null;
+            if (Model != null)
+                md = Model.Metadata;
+            else
+                md = ExpressMetaData.GetMetadata(GetType().Module);
+
+            using (var sw = new StringWriter())
+            {
+                Part21Writer.WriteEntity(this, sw, md);
+                return sw.ToString();
+            }
         }
     }
 }
