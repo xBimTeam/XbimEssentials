@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Model;
@@ -173,7 +174,7 @@ namespace Xbim.IO.Memory
             if (!Header.FileSchema.Schemas.Any())
                 Header.FileSchema.Schemas.Add(schema);
 
-            CalculateModelFactors();
+            CalculateModelFactors(this);
             //purge
             _read.Clear();
         }
@@ -187,7 +188,7 @@ namespace Xbim.IO.Memory
         protected override int LoadStep21(XbimP21Scanner parser)
         {
             var result = base.LoadStep21(parser);
-            CalculateModelFactors();
+            CalculateModelFactors(this);
             return result;
         }
 
@@ -350,11 +351,11 @@ namespace Xbim.IO.Memory
             }
         }
 
-        private void CalculateModelFactors()
+        public static void CalculateModelFactors(IModel model)
         {
             double angleToRadiansConversionFactor = 1; //assume radians
             double lengthToMetresConversionFactor = 1; //assume metres
-            var instOfType = Instances.OfType<IIfcUnitAssignment>();
+            var instOfType = model.Instances.OfType<IIfcUnitAssignment>();
             var ua = instOfType.FirstOrDefault();
             if (ua != null)
             {
@@ -393,7 +394,7 @@ namespace Xbim.IO.Memory
                 }
             }
 
-            var gcs = Instances.OfType<IIfcGeometricRepresentationContext>();
+            var gcs = model.Instances.OfType<IIfcGeometricRepresentationContext>();
             var defaultPrecision = 1e-5;
             //get the Model precision if it is correctly defined
             foreach (var gc in gcs.Where(g => !(g is IIfcGeometricRepresentationSubContext)).Where(gc => gc.ContextType.HasValue && string.Compare(gc.ContextType.Value, "model", true) == 0).Where(gc => gc.Precision.HasValue))
@@ -408,7 +409,7 @@ namespace Xbim.IO.Memory
             //check if angle units are incorrectly defined, this happens in some old models
             if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
             {
-                var trimmed = Instances.Where<IIfcTrimmedCurve>(trimmedCurve => trimmedCurve.BasisCurve is IIfcConic);
+                var trimmed = model.Instances.Where<IIfcTrimmedCurve>(trimmedCurve => trimmedCurve.BasisCurve is IIfcConic);
                 if (trimmed.Where(trimmedCurve => trimmedCurve.MasterRepresentation == IfcTrimmingPreference.PARAMETER)
                     .Any(trimmedCurve => trimmedCurve.Trim1.Concat(trimmedCurve.Trim2)
                     .OfType<IfcParameterValue>()
@@ -418,7 +419,9 @@ namespace Xbim.IO.Memory
                     angleToRadiansConversionFactor = Math.PI / 180;
                 }
             }
-            ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor, defaultPrecision);
+            model.ModelFactors.Initialise(angleToRadiansConversionFactor, lengthToMetresConversionFactor, defaultPrecision);
+            if (model.ModelFactors is XbimModelFactors mf)
+                SetWorkArounds(model.Header, mf);
         }
 
         private IEnumerable<IPersistEntity> GetXmlOrderedEntities(string schema)
@@ -472,6 +475,32 @@ namespace Xbim.IO.Memory
                     SaveAsStep21(writer, progress);
                 }
 
+            }
+        }
+
+        /// <summary>
+        /// Code to determine model specific workarounds (BIM tool IFC exporter quirks)
+        /// </summary>
+        static public void SetWorkArounds(IStepFileHeader header, XbimModelFactors modelFactors)
+        {
+            //try Revit first
+            string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
+            if (header.FileName == null || string.IsNullOrWhiteSpace(header.FileName.OriginatingSystem))
+                return; //nothing to do
+            var matches = Regex.Matches(header.FileName.OriginatingSystem, revitPattern, RegexOptions.IgnoreCase);
+            if (matches.Count > 0) //looks like Revit
+            {
+                if (matches[0].Groups.Count == 2) //we have the build versions
+                {
+                    if (Version.TryParse(matches[0].Groups[1].Value, out Version modelVersion))
+                    {
+                        //SurfaceOfLinearExtrusion bug found in version 17.2.0 and earlier
+                        var surfaceOfLinearExtrusionVersion = new Version(17, 2, 0, 0);
+                        if (modelVersion <= surfaceOfLinearExtrusionVersion)
+                            modelFactors.AddWorkAround("#SurfaceOfLinearExtrusion");
+                    }
+
+                }
             }
         }
     }
