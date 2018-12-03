@@ -327,8 +327,11 @@ namespace Xbim.IO.Memory
             return model;
         }
 
-        public virtual void SaveAsXml(Stream stream, XmlWriterSettings xmlSettings, XbimXmlSettings xbimSettings = null, configuration configuration = null, ReportProgressDelegate progress = null)
+        public virtual void SaveAsXml(Stream stream, XmlWriterSettings xmlSettings, XbimXmlSettings xbimSettings = null, 
+            configuration configuration = null, ReportProgressDelegate progress = null)
         {
+            
+
             var schema = Header.FileSchema.Schemas.FirstOrDefault();
             using (var xmlWriter = XmlWriter.Create(stream, xmlSettings))
             {
@@ -343,6 +346,11 @@ namespace Xbim.IO.Memory
                         writer4.Write(this, xmlWriter, GetXmlOrderedEntities(schema));
                         break;
                     default:
+                        if (xbimSettings == null)
+                        {
+                            Logger.LogWarning("No xbimsettings set. Defaulting to Ifc4 Add2");
+                            xbimSettings = XbimXmlSettings.IFC4Add2;
+                        }
                         var writer = new XbimXmlWriter4(xbimSettings);
                         writer.Write(this, xmlWriter);
                         break;
