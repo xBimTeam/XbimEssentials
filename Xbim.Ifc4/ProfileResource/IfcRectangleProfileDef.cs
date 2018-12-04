@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPositiveLengthMeasure @XDim 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _xDim = v, _xDim, value,  "XDim", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcPositiveLengthMeasure @YDim 
 		{ 
 			get 

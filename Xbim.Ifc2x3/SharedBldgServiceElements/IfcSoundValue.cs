@@ -74,7 +74,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
 		public IfcTimeSeries @SoundLevelTimeSeries 
 		{ 
 			get 
@@ -90,7 +90,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _soundLevelTimeSeries = v, _soundLevelTimeSeries, value,  "SoundLevelTimeSeries", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcFrequencyMeasure @Frequency 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _frequency = v, _frequency, value,  "Frequency", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 10)]
 		public IfcDerivedMeasureValue @SoundLevelSingleValue 
 		{ 
 			get 

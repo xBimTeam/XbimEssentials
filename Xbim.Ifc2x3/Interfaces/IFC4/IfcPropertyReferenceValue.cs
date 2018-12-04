@@ -139,6 +139,30 @@ namespace Xbim.Ifc2x3.PropertyResource
 						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
 					return;
 				}
+				var ifcmaterial = value as MaterialResource.IfcMaterial;
+				if (ifcmaterial != null) 
+				{
+					PropertyReference = ifcmaterial;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifcmateriallayer = value as MaterialResource.IfcMaterialLayer;
+				if (ifcmateriallayer != null) 
+				{
+					PropertyReference = ifcmateriallayer;
+					if (_propertyReference4 != null)
+						SetValue(v => _propertyReference4 = v, _propertyReference4, null, "PropertyReference", -4);
+					return;
+				}
+				var ifcmateriallayerset = value as MaterialResource.IfcMaterialLayerSet;
+				if (ifcmateriallayerset != null) 
+				{
+					//## Handle setting of entity IfcMaterialLayerSet which is not a part of the target select interface IIfcObjectReferenceSelect in property PropertyReference
+					//TODO: Handle setting of entity IfcMaterialLayerSet which is not a part of the target select interface IIfcObjectReferenceSelect in property PropertyReference
+					throw new System.NotImplementedException();
+					//##
+				}
 				var ifcorganization = value as ActorResource.IfcOrganization;
 				if (ifcorganization != null) 
 				{

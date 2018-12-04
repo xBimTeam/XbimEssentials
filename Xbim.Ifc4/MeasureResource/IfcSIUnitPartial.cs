@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.MeasureResource
             public bool BooleanVal { get; private set; }
             public string EnumVal { get; private set; }
             public object EntityVal { get; private set; }
-            public long HexadecimalVal { get; private set; }
+            public byte[] HexadecimalVal { get; private set; }
             public long IntegerVal { get; private set; }
             public double NumberVal { get; private set; }
             public double RealVal { get; private set; }
@@ -180,16 +180,55 @@ namespace Xbim.Ifc4.MeasureResource
                     var ifcSiPrefix = (IfcSIPrefix) Prefix;
                     switch (ifcSiPrefix)
                     {
-                        case IfcSIPrefix.CENTI:
-                            prefix = "c";
-                            break;
+						case IfcSIPrefix.EXA:
+							prefix = "E";
+							break;
+						case IfcSIPrefix.PETA:
+							prefix = "P";
+							break;
+						case IfcSIPrefix.TERA:
+							prefix = "T";
+							break;
+						case IfcSIPrefix.GIGA:
+							prefix = "G";
+							break;
+						case IfcSIPrefix.MEGA:
+							prefix = "M";
+							break;
+						case IfcSIPrefix.KILO:
+							prefix = "k";
+							break;
+						case IfcSIPrefix.HECTO:
+							prefix = "h";
+							break;
+						case IfcSIPrefix.DECA:
+							prefix = "da";
+							break;
+						case IfcSIPrefix.DECI:
+							prefix = "d";
+							break;
+						case IfcSIPrefix.CENTI:
+							prefix = "c";
+							break;
                         case IfcSIPrefix.MILLI:
                             prefix = "m";
                             break;
-                        case IfcSIPrefix.KILO:
-                            prefix = "k";
-                            break;
-                        default: //TODO: the other values of IfcSIPrefix
+						case IfcSIPrefix.MICRO:
+							prefix = "µ";
+							break;
+						case IfcSIPrefix.NANO:
+							prefix = "n";
+							break;
+						case IfcSIPrefix.PICO:
+							prefix = "p";
+							break;
+						case IfcSIPrefix.FEMTO:
+							prefix = "f";
+							break;
+						case IfcSIPrefix.ATTO:
+							prefix = "a";
+							break;
+						default: //TODO: the other values of IfcSIPrefix
                             prefix = ifcSiPrefix.ToString();
                             break;
                     }
@@ -197,19 +236,97 @@ namespace Xbim.Ifc4.MeasureResource
 
                 switch (ifcSiUnitName)
                 {
-                    case IfcSIUnitName.METRE:
+					case IfcSIUnitName.AMPERE:
+						value = prefix + "A";
+						break;
+					case IfcSIUnitName.BECQUEREL:
+						value = prefix + "Bq";
+						break;
+					case IfcSIUnitName.CANDELA:
+						value = prefix + "cd";
+						break;
+					case IfcSIUnitName.COULOMB:
+						value = prefix + "C";
+						break;
+					case IfcSIUnitName.CUBIC_METRE:
+						value = prefix + "m" + '\u00B3'; //((char)0x00B3)
+						break;
+					case IfcSIUnitName.DEGREE_CELSIUS:
+						value = prefix + '\u00B0' + "C"; //((char)0x00B0)
+						break;
+					case IfcSIUnitName.FARAD:
+						value = prefix + "F";
+						break;
+					case IfcSIUnitName.GRAM:
+						value = prefix + "g";
+						break;
+					case IfcSIUnitName.GRAY:
+						value = prefix + "Gy";
+						break;
+					case IfcSIUnitName.HENRY:
+						value = prefix + "H";
+						break;
+					case IfcSIUnitName.HERTZ:
+						value = prefix + "Hz";
+						break;
+					case IfcSIUnitName.JOULE:
+						value = prefix + "J";
+						break;
+					case IfcSIUnitName.KELVIN:
+						value = prefix + "K";
+						break;
+					case IfcSIUnitName.LUMEN:
+						value = prefix + "lm";
+						break;
+					case IfcSIUnitName.LUX:
+						value = prefix + "lx";
+						break;
+					case IfcSIUnitName.METRE:
                         value = prefix + "m";
                         break;
-                    case IfcSIUnitName.SQUARE_METRE:
+					case IfcSIUnitName.MOLE:
+						value = prefix + "mol";
+						break;
+					case IfcSIUnitName.NEWTON:
+						value = prefix + "N";
+						break;
+					case IfcSIUnitName.OHM:
+						value = prefix + '\u03A9'; //((char)0x03A9)
+						break;
+					case IfcSIUnitName.PASCAL:
+						value = prefix + "Pa";
+						break;
+					case IfcSIUnitName.RADIAN:
+						value = prefix + "rad";
+						break;
+					case IfcSIUnitName.SECOND:
+						value = prefix + "s";
+						break;
+					case IfcSIUnitName.SIEMENS:
+						value = prefix + "S";
+						break;
+					case IfcSIUnitName.SIEVERT:
+						value = prefix + "Sv";
+						break;
+					case IfcSIUnitName.SQUARE_METRE:
                         value = prefix + "m" + '\u00B2'; //((char)0x00B2)might need to look at this for other cultures
                         break;
-                    case IfcSIUnitName.CUBIC_METRE:
-                        value = prefix + "m" + '\u00B3'; //((char)0x00B3)
-                        break;
-                    case IfcSIUnitName.GRAM:
-                        value = prefix + "g";
-                        break;
-                    default: //TODO: the other values of IfcSIUnitName
+					case IfcSIUnitName.STERADIAN:
+						value = prefix + "sr";
+						break;
+					case IfcSIUnitName.TESLA:
+						value = prefix + "T";
+						break;
+					case IfcSIUnitName.VOLT:
+						value = prefix + "V";
+						break;
+					case IfcSIUnitName.WATT:
+						value = prefix + "W";
+						break;
+					case IfcSIUnitName.WEBER:
+						value = prefix + "Wb";
+						break;
+					default: //TODO: the other values of IfcSIUnitName
                         value = ToString();
                         break;
                 }

@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 2, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 5)]
 		public IItemSet<IfcProfileDef> @Profiles 
 		{ 
 			get 
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.ProfileResource
 				return _profiles;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcLabel? @Label 
 		{ 
 			get 

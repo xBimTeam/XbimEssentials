@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcConnectionGeometry @ConnectionGeometry 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcElement @RelatingElement 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcElement @RelatedElement 
 		{ 
 			get 

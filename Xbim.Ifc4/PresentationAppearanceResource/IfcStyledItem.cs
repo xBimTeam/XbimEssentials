@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcRepresentationItem @Item 
 		{ 
 			get 
@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _item = v, _item, value,  "Item", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcStyleAssignmentSelect> @Styles 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				return _styles;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLabel? @Name 
 		{ 
 			get 

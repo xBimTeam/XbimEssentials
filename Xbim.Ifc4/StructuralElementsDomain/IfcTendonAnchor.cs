@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 34)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
 		public IfcTendonAnchorTypeEnum? @PredefinedType 
 		{ 
 			get 

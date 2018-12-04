@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 17)]
 		public IfcIdentifier? @Identification 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("RelatingControl")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 18)]
 		public IEnumerable<IfcRelAssignsToControl> @Controls 
 		{ 
 			get 

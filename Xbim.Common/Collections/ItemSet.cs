@@ -26,7 +26,7 @@ namespace Xbim.Common.Collections
             Internal = new List<T>(capacity > 0 ? capacity : 0);
             Property = property;
             OwningEntity = entity;
-            IsEntitySet = typeof(IPersistEntity).IsAssignableFrom(typeof(T));
+            IsEntitySet = typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(typeof(T));
         }
 
 
@@ -46,7 +46,7 @@ namespace Xbim.Common.Collections
             if (index > Count)
                 throw new Exception("It is not possible to get object which is more that just the next after the last one.");
 
-            if (!typeof(IItemSet).IsAssignableFrom(typeof(T)))
+            if (!typeof(IItemSet).GetTypeInfo().IsAssignableFrom(typeof(T)))
                 return default(T);
 
             var result = CreateNestedSet();
@@ -56,13 +56,13 @@ namespace Xbim.Common.Collections
 
         protected T CreateNestedSet()
         {
-            if (!typeof(IItemSet).IsAssignableFrom(typeof(T)))
+            if (!typeof(IItemSet).GetTypeInfo().IsAssignableFrom(typeof(T)))
                 throw new NotSupportedException();
 
             //get non-abstract type of IItemSet
             var type = GetType().GetGenericTypeDefinition();
             //get generic argument of nested item set
-            var inner = typeof(T).GetGenericArguments()[0];
+            var inner = typeof(T).GetTypeInfo().GetGenericArguments()[0];
             //create generic type which can be created and added to this set
             var toCreate = type.MakeGenericType(inner);
 
@@ -111,34 +111,19 @@ namespace Xbim.Common.Collections
             Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
         }
 
-        public T First
-        {
-            get { return Internal.First(); }
-        }
-
-        public T FirstOrDefault()
-        {
-            return Internal.FirstOrDefault();
-        }
-
         public T FirstOrDefault(Func<T, bool> predicate)
         {
-            return Internal.FirstOrDefault(predicate);
+            return Enumerable.FirstOrDefault(this, predicate);
         }
 
-        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate) where TF: T
         {
-            return OfType<TF>().FirstOrDefault(predicate);
+            return Enumerable.OfType<TF>(this).FirstOrDefault(predicate);
         }
 
-        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW: T
         {
-            return OfType<TW>().Where(predicate);
-        }
-
-        public IEnumerable<TO> OfType<TO>()
-        {
-            return Internal.Count == 0 ? Enumerable.Empty<TO>() : Internal.OfType<TO>();
+            return Enumerable.OfType<TW>(this).Where(predicate);
         }
         #endregion
 
@@ -272,10 +257,10 @@ namespace Xbim.Common.Collections
             if (!OwningEntity.Activated)
                 Model.Activate(OwningEntity);
 
-
+            var result = false;
             Action doAction = () =>
             {
-                Internal.Remove(item);
+                result = Internal.Remove(item);
                 NotifyCollectionChanged(NotifyCollectionChangedAction.Remove, item);
                 NotifyCountChanged();
             };
@@ -294,7 +279,7 @@ namespace Xbim.Common.Collections
 
             Model.CurrentTransaction.DoReversibleAction(doAction, undoAction, OwningEntity, ChangeType.Modified, Property);
 
-            return true;
+            return result;
         }
 
         #endregion

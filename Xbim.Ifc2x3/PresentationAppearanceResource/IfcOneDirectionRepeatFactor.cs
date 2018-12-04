@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcVector @RepeatFactor 
 		{ 
 			get 

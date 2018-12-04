@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ifcXML xmlns:ifc="http://www.buildingsmart-tech.org/ifcXML/IFC4/final" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="ifcXML4" xsi:schemaLocation="http://www.buildingsmart-tech.org/ifcXML/IFC4/final http://www.buildingsmart-tech.org/ifcXML/IFC4/final/ifcXML4.xsd" xmlns="http://www.buildingsmart-tech.org/ifcXML/IFC4/final">
+  <header>
+    <name>QuantityTest</name>
+    <author>mk</author>
+  </header>
+  <IfcProject id="p1" GlobalId="3W_wCy4R58hgkAO0WsiUkm" Name="P"/>
+  <IfcRelAggregates>
+    <RelatingObject xsi:type="IfcProject" ref="p1" />
+    <RelatedObjects>
+      <IfcSite xsi:nil="true" ref="s1" />
+    </RelatedObjects>
+  </IfcRelAggregates>
+  <!-- Test for Quantities-->
+  <IfcQuantityArea id="x1" Name="TestArea" AreaValue="2" />
+  <IfcElementQuantity id ="x2" Name ="TestQuantities">
+    <Quantities>
+      <IfcQuantityArea ref="x1"/>
+    </Quantities>
+  </IfcElementQuantity>
+  <IfcRelDefinesByProperties id="x3">
+    <!-- Site def. in RelatedObjects-->
+    <RelatedObjects xsi:type="IfcSite" id="s1"
+    GlobalId="1lOEDpLKz62xrR7$RUqRl$"
+    Name="Testsite">
+      <SiteAddress id="i26" xsi:type="IfcPostalAddress"
+        Purpose="site"
+        Town="Newcastle upon Tyne"
+        Region="Tyne and Wear" PostalCode="NE6 2SY" Country="United Kingdom" />
+    </RelatedObjects>
+    <RelatingPropertyDefinition>
+      <IfcElementQuantity xsi:nil="true" ref="x2"/>
+    </RelatingPropertyDefinition>
+  </IfcRelDefinesByProperties>
+</ifcXML>

@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcAssemblyPlaceEnum @AssemblyPlace 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 20)]
 		public IfcFurnitureTypeEnum? @PredefinedType 
 		{ 
 			get 

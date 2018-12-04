@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcMaterialProfileSet @ForProfileEndSet 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _forProfileEndSet = v, _forProfileEndSet, value,  "ForProfileEndSet", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcCardinalPointReference? @CardinalEndPoint 
 		{ 
 			get 

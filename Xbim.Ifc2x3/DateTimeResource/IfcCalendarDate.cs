@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcDayInMonthNumber @DayComponent 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _dayComponent = v, _dayComponent, value,  "DayComponent", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcMonthInYearNumber @MonthComponent 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _monthComponent = v, _monthComponent, value,  "MonthComponent", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcYearNumber @YearComponent 
 		{ 
 			get 
@@ -148,6 +148,10 @@ namespace Xbim.Ifc2x3.DateTimeResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+		public override string ToString ()
+        {
+            return string.Format ("{0}-{1}-{2}", YearComponent, MonthComponent, DayComponent);
+        }
 		//##
 		#endregion
 	}

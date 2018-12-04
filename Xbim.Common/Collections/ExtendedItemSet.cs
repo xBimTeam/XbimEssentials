@@ -184,7 +184,9 @@ namespace Xbim.Common.Collections
             if (item == null)
                 return false;
 
-            return _extendedSet.Remove(item) || _innerSet.Remove(_transformIn(item));
+            return 
+                _extendedSet.Remove(item) || 
+                _innerSet.Remove(_transformIn(item));
         }
 
         public void CopyTo(Array array, int index)
@@ -331,43 +333,19 @@ namespace Xbim.Common.Collections
             }
         }
 
-        public TOuter First
-        {
-            get { return _innerSet.Any() ? _transformOut(_innerSet.First) : _extendedSet.First; }
-        }
-
-        public TOuter FirstOrDefault()
-        {
-            var inner = _innerSet.FirstOrDefault();
-            if (inner != null)
-                return _transformOut(inner);
-            return _extendedSet.FirstOrDefault();
-        }
-
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)
         {
-            var inner = Transformed.FirstOrDefault(predicate);
-            if (inner != null)
-                return inner;
-            return _extendedSet.FirstOrDefault(predicate);
+            return Enumerable.FirstOrDefault(this, predicate);
         }
 
-        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate) where TF : TOuter
         {
-            var inner = Transformed.OfType<TF>().FirstOrDefault(predicate);
-            if (inner != null)
-                return inner;
-            return _extendedSet.FirstOrDefault(predicate);
+            return this.OfType<TF>().FirstOrDefault(predicate);
         }
 
-        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW : TOuter
         {
-            return Transformed.OfType<TW>().Where(predicate).Concat(_extendedSet.Where(predicate));
-        }
-
-        public IEnumerable<TO> OfType<TO>()
-        {
-            return _extendedSet.OfType<TO>().Concat(Transformed.OfType<TO>());
+            return this.OfType<TW>().Where(predicate);
         }
     }
 }

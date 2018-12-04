@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcBoolean @IsAttenuating 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _isAttenuating = v, _isAttenuating, value,  "IsAttenuating", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 9)]
 		public IfcSoundScaleEnum? @SoundScale 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _soundScale = v, _soundScale, value,  "SoundScale", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, 8, 10)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { 8 }, 10)]
 		public IItemSet<IfcSoundValue> @SoundValues 
 		{ 
 			get 

@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcCountMeasure? @DailyInteraction 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _dailyInteraction = v, _dailyInteraction, value,  "DailyInteraction", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcNormalisedRatioMeasure? @ImportanceRating 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _importanceRating = v, _importanceRating, value,  "ImportanceRating", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcSpatialStructureElement @LocationOfInteraction 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
 		public IfcSpaceProgram @RelatedSpaceProgram 
 		{ 
 			get 
@@ -151,7 +151,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 9)]
 		public IfcSpaceProgram @RelatingSpaceProgram 
 		{ 
 			get 

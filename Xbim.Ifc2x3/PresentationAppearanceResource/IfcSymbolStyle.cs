@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcSymbolStyleSelect @StyleOfSymbol 
 		{ 
 			get 

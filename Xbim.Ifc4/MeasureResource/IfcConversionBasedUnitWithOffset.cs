@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcReal @ConversionOffset 
 		{ 
 			get 

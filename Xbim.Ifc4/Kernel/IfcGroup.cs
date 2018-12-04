@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("RelatingGroup")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 17)]
 		public IEnumerable<IfcRelAssignsToGroup> @IsGroupedBy 
 		{ 
 			get 

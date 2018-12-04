@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcShapeAspect @VaryingAppliedLoadLocation 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				SetValue( v =>  _varyingAppliedLoadLocation = v, _varyingAppliedLoadLocation, value,  "VaryingAppliedLoadLocation", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 21)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 21)]
 		public IItemSet<IfcStructuralLoad> @SubsequentAppliedLoads 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, 3, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 3 }, new int [] { -1 }, 0)]
 		public List<IfcStructuralLoad> @VaryingAppliedLoads 
 		{
 			get 

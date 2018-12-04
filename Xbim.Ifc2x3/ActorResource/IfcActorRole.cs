@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 1)]
 		public IfcRoleEnum @Role 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				SetValue( v =>  _role = v, _role, value,  "Role", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel? @UserDefinedRole 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				SetValue( v =>  _userDefinedRole = v, _userDefinedRole, value,  "UserDefinedRole", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcText? @Description 
 		{ 
 			get 

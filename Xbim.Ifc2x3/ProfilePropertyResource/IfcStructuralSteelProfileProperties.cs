@@ -77,7 +77,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(24, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(24, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 24)]
 		public IfcAreaMeasure? @ShearAreaZ 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _shearAreaZ = v, _shearAreaZ, value,  "ShearAreaZ", 24);
 			} 
 		}	
-		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
+		[EntityAttribute(25, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 25)]
 		public IfcAreaMeasure? @ShearAreaY 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _shearAreaY = v, _shearAreaY, value,  "ShearAreaY", 25);
 			} 
 		}	
-		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 26)]
+		[EntityAttribute(26, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 26)]
 		public IfcPositiveRatioMeasure? @PlasticShapeFactorY 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _plasticShapeFactorY = v, _plasticShapeFactorY, value,  "PlasticShapeFactorY", 26);
 			} 
 		}	
-		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
+		[EntityAttribute(27, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 27)]
 		public IfcPositiveRatioMeasure? @PlasticShapeFactorZ 
 		{ 
 			get 

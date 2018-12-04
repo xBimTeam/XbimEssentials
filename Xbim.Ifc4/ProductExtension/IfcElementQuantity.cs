@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcLabel? @MethodOfMeasurement 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.ProductExtension
 				SetValue( v =>  _methodOfMeasurement = v, _methodOfMeasurement, value,  "MethodOfMeasurement", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 11)]
 		public IItemSet<IfcPhysicalQuantity> @Quantities 
 		{ 
 			get 

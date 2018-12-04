@@ -85,9 +85,7 @@ namespace Xbim.Tessellator
             }
             return Mesh(shells, entityLabel, precision);
         }
-
-
-
+       
         public XbimShapeGeometry Mesh(IIfcConnectedFaceSet connectedFaceSet)
         {
             var faces = new List<IList<IIfcFace>>();
@@ -143,18 +141,14 @@ namespace Xbim.Tessellator
                 //Write out the header
                 binaryWriter.Write((byte)1); //stream format version			
                 // ReSharper disable once RedundantCast
-                
-
 
                 //now write out the faces
                 if (triangulation.Normals.Any() ) //we have normals so obey them
                 {
-                    var normalIndex = triangulation.NormalIndex.Any() ? 
-                        triangulation.NormalIndex.ToList() : 
-                        triangulation.CoordIndex.ToList();
-                    binaryWriter.Write(facesCount); 
-                    binaryWriter.Write((UInt32)verticesCount); //number of vertices
+                    var normalIndex = triangulation.CoordIndex.ToList();
+                    binaryWriter.Write(verticesCount); //number of vertices
                     binaryWriter.Write(triangleCount); //number of triangles
+
                     XbimRect3D bb = XbimRect3D.Empty;
                     foreach (var coordList in triangulation.Coordinates.CoordList)
                     {
@@ -165,6 +159,9 @@ namespace Xbim.Tessellator
                         var rect = new XbimRect3D(pt.A, pt.B, pt.C, 0, 0, 0);
                         bb.Union(rect);
                     }
+
+                    binaryWriter.Write(facesCount);
+
                     shapeGeometry.BoundingBox = bb;
                     Int32 numTrianglesInFace = triangulation.CoordIndex.Count();              
                     binaryWriter.Write(-numTrianglesInFace); //not a planar face so make negative 
@@ -182,11 +179,11 @@ namespace Xbim.Tessellator
                     {
                         var triangleTpl = triangle.AsTriplet();
                         var normalsIndexTpl = normalIndex[triangleIndex].AsTriplet();
-                        WriteIndex(binaryWriter, (uint)triangleTpl.A - 1, verticesCount);
+                        WriteIndex(binaryWriter, (uint)triangleTpl.A - 1, (uint)verticesCount);
                         packedNormals[(int)normalsIndexTpl.A - 1].Write(binaryWriter);
-                        WriteIndex(binaryWriter, (uint)triangleTpl.B - 1, verticesCount);
+                        WriteIndex(binaryWriter, (uint)triangleTpl.B - 1, (uint)verticesCount);
                         packedNormals[(int)normalsIndexTpl.B - 1].Write(binaryWriter);
-                        WriteIndex(binaryWriter, (uint)triangleTpl.C - 1, verticesCount);
+                        WriteIndex(binaryWriter, (uint)triangleTpl.C - 1, (uint)verticesCount);
                         packedNormals[(int)normalsIndexTpl.C - 1].Write(binaryWriter);
                         triangleIndex++;
                     }
@@ -195,17 +192,20 @@ namespace Xbim.Tessellator
                 {
                     var triangulatedMesh = Triangulate(triangulation);
                     shapeGeometry.BoundingBox = triangulatedMesh.BoundingBox;
-                    binaryWriter.Write(triangulatedMesh.VertexCount); //number of vertices
-                    binaryWriter.Write(triangulatedMesh.TriangleCount); //number of triangles
+                    verticesCount = triangulatedMesh.VertexCount;
+                    triangleCount = triangulatedMesh.TriangleCount;
+
+                    binaryWriter.Write(verticesCount); //number of vertices
+                    binaryWriter.Write(triangleCount); //number of triangles
 
                     foreach (var vert in triangulatedMesh.Vertices)                 
                     {                      
-                        binaryWriter.Write(vert.X);
-                        binaryWriter.Write(vert.Y);
-                        binaryWriter.Write(vert.Z);   
+                        binaryWriter.Write((float)vert.X);
+                        binaryWriter.Write((float)vert.Y);
+                        binaryWriter.Write((float)vert.Z);   
                     }
                     facesCount = (uint) triangulatedMesh.Faces.Count;
-                    binaryWriter.Write(facesCount);
+                    binaryWriter.Write((UInt32)facesCount);
                     foreach (var faceGroup in triangulatedMesh.Faces)
                     {
                         var numTrianglesInFace = faceGroup.Value.Count;
@@ -334,23 +334,26 @@ namespace Xbim.Tessellator
             using (var binaryWriter = new BinaryWriter(ms))
             {
                 var faceLists = facesList.ToList();
-                var triangulations = new List<XbimTriangulatedMesh>(faceLists.Count);
+                var triangulatedMeshes = new List<XbimTriangulatedMesh>(faceLists.Count);
                 foreach (var faceList in faceLists)
-                    triangulations.Add(TriangulateFaces(faceList, entityLabel, precision)); 
-                
+                {
+                    triangulatedMeshes.Add(TriangulateFaces(faceList, entityLabel, precision));
+                }
 
                 // Write out header
                 uint verticesCount = 0;
                 uint triangleCount = 0;
                 uint facesCount = 0;
                 var boundingBox = XbimRect3D.Empty;
-                foreach (var triangulatedMesh in triangulations)
+                foreach (var triangulatedMesh in triangulatedMeshes)
                 {
                     verticesCount += triangulatedMesh.VertexCount;
                     triangleCount += triangulatedMesh.TriangleCount;
                     facesCount += (uint)triangulatedMesh.Faces.Count;
-                    if (boundingBox.IsEmpty) boundingBox = triangulatedMesh.BoundingBox;
-                    else boundingBox.Union(triangulatedMesh.BoundingBox);
+                    if (boundingBox.IsEmpty)
+                        boundingBox = triangulatedMesh.BoundingBox;
+                    else
+                        boundingBox.Union(triangulatedMesh.BoundingBox);
                 }
                 
                 binaryWriter.Write((byte)1); //stream format version			
@@ -358,11 +361,11 @@ namespace Xbim.Tessellator
                 binaryWriter.Write((UInt32)verticesCount); //number of vertices
                 binaryWriter.Write(triangleCount); //number of triangles
                
-                foreach (var v in triangulations.SelectMany(t=>t.Vertices))
+                foreach (var v in triangulatedMeshes.SelectMany(t=>t.Vertices))
                 {    
-                    binaryWriter.Write(v.X);
-                    binaryWriter.Write(v.Y);
-                    binaryWriter.Write(v.Z);
+                    binaryWriter.Write((float)v.X);
+                    binaryWriter.Write((float)v.Y);
+                    binaryWriter.Write((float)v.Z);
                 }
                 shapeGeometry.BoundingBox = boundingBox;
                 //now write out the faces
@@ -370,7 +373,7 @@ namespace Xbim.Tessellator
                 binaryWriter.Write(facesCount);
                 uint verticesOffset = 0;
                 int invalidNormal = ushort.MaxValue;
-                foreach (var triangulatedMesh in triangulations)
+                foreach (var triangulatedMesh in triangulatedMeshes)
                 {
                     foreach (var faceGroup in triangulatedMesh.Faces)
                     {

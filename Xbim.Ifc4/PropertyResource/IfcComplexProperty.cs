@@ -62,7 +62,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcIdentifier @UsageName 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.PropertyResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 11)]
 		public IItemSet<IfcProperty> @HasProperties 
 		{ 
 			get 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
@@ -22,7 +23,6 @@ namespace Xbim.Ifc
         {
             get
             {
-
                 if (DocumentInformation.Model.CurrentTransaction != null)
                     return new PlaceboTransaction(); //don't start one we are already    
                 return DocumentInformation.Model.BeginTransaction("Update ReferenceModel");
@@ -32,19 +32,71 @@ namespace Xbim.Ifc
         public XbimReferencedModel(IIfcDocumentInformation documentInformation)
         {
             DocumentInformation = documentInformation;
-            if (!File.Exists(documentInformation.Name))
+
+            // for legacy purposes we should be able to load files from the name inside the document information
+            // but the correct approach seems to be to have that data using the HasDocumentReferences property:
+            // in the specs we read that 
+            // "The actual content of the document is not defined in IFC ; instead, it can be found following the reference given to IfcDocumentReference."
+            //
+            var searchPaths = new List<string>();
+            if (documentInformation.Model is IfcStore)
             {
-                throw new XbimException("Reference model not found:" + documentInformation.Name);
+                var referencingStore = documentInformation.Model as IfcStore;
+                var fi = new FileInfo(referencingStore.FileName);
+                searchPaths.Add(fi.DirectoryName);
+            }
+            var headerFileName = documentInformation.Model?.Header?.FileName?.Name;
+            if (Path.IsPathRooted(headerFileName))
+            {
+                searchPaths.Add(Path.GetDirectoryName(headerFileName));
+            }
+
+            // we will use the first valid document reference in a list that is evaluate as absolute or relative.
+            //
+            var candidates = DocumentInformation.HasDocumentReferences.Select(x => x.Location).ToList();
+            candidates.Add(documentInformation.Name.ToString()); // this is for legacy in xbim federations
+
+            string resourceReference = string.Empty;
+            // evaluating absolute path
+            foreach (var candidate in candidates)
+            {
+                var thisCandidate = candidate;
+                // check if can be found as is
+                if (File.Exists(thisCandidate))
+                {
+                    resourceReference = thisCandidate;
+                    break;
+                }
+                // check if it can be relative
+                if (!Path.IsPathRooted(candidate))
+                {
+                    foreach (var path in searchPaths)
+                    {
+                        thisCandidate = Path.Combine(
+                            path, candidate
+                            );
+                        if (File.Exists(thisCandidate))
+                        {
+                            resourceReference = thisCandidate;
+                            goto StopSearch;
+                        }
+                    }
+                }
+            }
+
+            StopSearch:
+            if (string.IsNullOrEmpty(resourceReference)) 
+            {
+                throw new XbimException($"Reference model not found for IfcDocumentInformation #{documentInformation.EntityLabel}.");
             }
             try
             {
-                _model = IfcStore.Open(documentInformation.Name);
+                _model = IfcStore.Open(resourceReference);
             }
-            catch (Exception)
+            catch (Exception ex)
             {                
-                 throw new XbimException("Unable to open reference model: " + documentInformation.Name);
+                 throw new XbimException("Error opening referenced model: " + resourceReference, ex);
             }
-                        
         }
 
         /// <summary>

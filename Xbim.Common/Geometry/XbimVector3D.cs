@@ -30,10 +30,10 @@ namespace Xbim.Common.Geometry
 
         public double Angle(XbimVector3D other)
         {
-            var cosinus = DotProduct(other);
+            var cosinus = DotProduct(other)/(Length*other.Length);
             if (cosinus > -0.70710678118655 && cosinus < 0.70710678118655)
                 return Math.Acos(cosinus);
-            var sinus = CrossProduct(other).Length;
+            var sinus = CrossProduct(other).Length / (Length * other.Length);
             if (cosinus < 0.0) return Math.PI - Math.Asin(sinus);
             return Math.Asin(sinus);
         }
@@ -239,7 +239,7 @@ namespace Xbim.Common.Geometry
         }
 
         /// <summary>
-        /// Makes the vector point in the opposite direction
+        /// Returns a new vector pointing in the opposite direction
         /// </summary>
         public XbimVector3D Negated()
         {

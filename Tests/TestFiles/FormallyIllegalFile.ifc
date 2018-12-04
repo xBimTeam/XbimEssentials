@@ -1,0 +1,27 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition [CoordinationView_V2.0, QuantityTakeOffAddOnView]'),'2;1');
+FILE_NAME('Project Number','2015-09-30T13:29:00',(''),(''),'The EXPRESS Data Manager Version 5.02.0100.07 : 28 Aug 2013','20140903_1530(x64) - Exporter 15.5.0.0 - Alternate UI 15.5.0.0','');
+FILE_SCHEMA(('IFC4'));
+ENDSEC;
+
+DATA;
+/*
+entity 1 has a text with an illegal diameter character
+*/
+#1=IFCPROPERTYSINGLEVALUE('Comments','Comments relating to 1016',IFCDESCRIPTIVEMEASURE('Upper Precast Unit 1016 from {L38}, COMMENT: White staining to channel edge, 15mm Ø hole depth not known'),$);
+/*
+entity 2 has numerical values with results of bugs in the producing software.
+
+1.#INF for positive infinity
+-1.#INF for negative infinity
+-1.#IND for NaN (indeterminate)
+
+*/
+#2 = IFCCARTESIANPOINT((-1.#INF,-1.#IND,1.#INF));
+#3 = IFCCARTESIANPOINT((1.6E10,3.,1.));
+
+
+ENDSEC;
+
+END-ISO-10303-21;

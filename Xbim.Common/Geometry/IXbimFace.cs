@@ -18,5 +18,7 @@ namespace Xbim.Common.Geometry
         /// Converts the object to a string in BRep format
         /// </summary>
         String ToBRep { get; }
+
+        XbimPoint3D Location { get; }
     }
 }

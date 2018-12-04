@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcSystemFurnitureElementTypeEnum? @PredefinedType 
 		{ 
 			get 

@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 10)]
 		public IItemSet<IfcIrregularTimeSeriesValue> @Values 
 		{ 
 			get 

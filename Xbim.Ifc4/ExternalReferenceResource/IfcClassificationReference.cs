@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcClassificationReferenceSelect @ReferencedSource 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _referencedSource = v, _referencedSource, value,  "ReferencedSource", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcIdentifier? @Sort 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 
 		#region Inverse attributes
 		[InverseProperty("RelatingClassification")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IEnumerable<IfcRelAssociatesClassification> @ClassificationRefForObjects 
 		{ 
 			get 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			} 
 		}
 		[InverseProperty("ReferencedSource")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 9)]
 		public IEnumerable<IfcClassificationReference> @HasReferences 
 		{ 
 			get 

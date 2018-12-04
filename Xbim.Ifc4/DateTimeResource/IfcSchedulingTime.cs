@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 2)]
 		public IfcDataOriginEnum? @DataOrigin 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.DateTimeResource
 				SetValue( v =>  _dataOrigin = v, _dataOrigin, value,  "DataOrigin", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel? @UserDefinedDataOrigin 
 		{ 
 			get 

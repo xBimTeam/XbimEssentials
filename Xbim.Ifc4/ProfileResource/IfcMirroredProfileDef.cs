@@ -47,7 +47,7 @@ namespace Xbim.Ifc4.ProfileResource
 
 
 		#region Overriding attributes
-		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(4, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, null, null, 0)]
 		public override IfcCartesianTransformationOperator2D @Operator 
 		{
 			get 

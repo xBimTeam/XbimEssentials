@@ -91,7 +91,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcPressureMeasure? @CompressiveStrength 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _compressiveStrength = v, _compressiveStrength, value,  "CompressiveStrength", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcPositiveLengthMeasure? @MaxAggregateSize 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _maxAggregateSize = v, _maxAggregateSize, value,  "MaxAggregateSize", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcText? @AdmixturesDescription 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _admixturesDescription = v, _admixturesDescription, value,  "AdmixturesDescription", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcText? @Workability 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _workability = v, _workability, value,  "Workability", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcNormalisedRatioMeasure? @ProtectivePoreRatio 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _protectivePoreRatio = v, _protectivePoreRatio, value,  "ProtectivePoreRatio", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcText? @WaterImpermeability 
 		{ 
 			get 

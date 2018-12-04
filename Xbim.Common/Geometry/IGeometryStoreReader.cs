@@ -58,7 +58,6 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Returns a unique set of all the style IDs of the all the shape instances in the store       
         /// </summary>
-        /// <param name="?"></param>
         /// <returns></returns>        
         ISet<int> StyleIds { get; }
         /// <summary>

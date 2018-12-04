@@ -57,7 +57,7 @@ namespace Xbim.Ifc2x3.SharedComponentElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 28)]
 		public IfcPositiveLengthMeasure? @FeatureLength 
 		{ 
 			get 

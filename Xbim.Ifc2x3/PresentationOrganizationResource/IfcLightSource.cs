@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcColourRgb @LightColour 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				SetValue( v =>  _lightColour = v, _lightColour, value,  "LightColour", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcNormalisedRatioMeasure? @AmbientIntensity 
 		{ 
 			get 
@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 				SetValue( v =>  _ambientIntensity = v, _ambientIntensity, value,  "AmbientIntensity", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcNormalisedRatioMeasure? @Intensity 
 		{ 
 			get 

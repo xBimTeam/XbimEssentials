@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 
 namespace Xbim.Common.Collections
 {
@@ -107,7 +108,7 @@ namespace Xbim.Common.Collections
             if (item == null)
                 return false;
 
-            if (item.GetType().IsClass)
+            if (item.GetType().GetTypeInfo().IsClass)
             {
                 return item.Equals(Inner) || _extended.Contains(item);
             }
@@ -204,36 +205,19 @@ namespace Xbim.Common.Collections
             throw new NotImplementedException();
         }
 
-        public TOuter First
-        {
-            get { return InnerOut; }
-        }
-
-        public TOuter FirstOrDefault()
-        {
-            return InnerOut;
-        }
-
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)
         {
-            throw new NotImplementedException();
+            return Enumerable.FirstOrDefault(this, predicate);
         }
 
-        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate) where TF : TOuter
         {
-            throw new NotImplementedException();
+            return Enumerable.OfType<TF>(this).FirstOrDefault(predicate);
         }
 
-        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW : TOuter
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TO> OfType<TO>()
-        {
-            throw new NotImplementedException();
+            return Enumerable.OfType<TW>(this).Where(predicate);
         }
     }
-
-
 }

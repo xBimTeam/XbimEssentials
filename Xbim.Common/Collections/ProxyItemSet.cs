@@ -203,34 +203,19 @@ namespace Xbim.Common.Collections
             _inner.AddRange(values.Cast<TInner>());
         }
 
-        public TOuter First
-        {
-            get { return _inner.First; }
-        }
-
-        public TOuter FirstOrDefault()
-        {
-            return _inner.FirstOrDefault();
-        }
-
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)
         {
-            return _inner.FirstOrDefault(predicate);
+            return Enumerable.FirstOrDefault(this, predicate);
         }
 
-        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate) where TF : TOuter
         {
-            return _inner.FirstOrDefault(predicate);
+            return this.OfType<TF>().FirstOrDefault(predicate);
         }
 
-        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW : TOuter
         {
-            return _inner.Where(predicate);
-        }
-
-        public IEnumerable<TO> OfType<TO>()
-        {
-            return _inner.OfType<TO>();
+            return this.OfType<TW>().Where(predicate);
         }
 
         // ReSharper disable once UnusedParameter.Local

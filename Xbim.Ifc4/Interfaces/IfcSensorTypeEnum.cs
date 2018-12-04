@@ -10,6 +10,7 @@ namespace Xbim.Ifc4.Interfaces
 {
 	public enum IfcSensorTypeEnum : byte
 	{
+		@COSENSOR ,
 		@CO2SENSOR ,
 		@CONDUCTANCESENSOR ,
 		@CONTACTSENSOR ,

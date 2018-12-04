@@ -13,11 +13,11 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc4.MeasureResource
 {
 	[ExpressType("IfcBinary", 986)]
-	[DefinedType(typeof(long))]
+	[DefinedType(typeof(byte[]))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcBinary : IExpressValueType, IExpressBinaryType, System.IEquatable<long>
+	public partial struct IfcBinary : IfcSimpleValue, IExpressValueType, IExpressBinaryType, System.IEquatable<byte[]>
 	{ 
-		private long _value;
+		private byte[] _value;
         
 		public object Value
         {
@@ -25,28 +25,37 @@ namespace Xbim.Ifc4.MeasureResource
         }
 
  
-		long IExpressBinaryType.Value { get { return _value; } }
+		byte[] IExpressBinaryType.Value { get { return _value; } }
 
 		public override string ToString()
         {
-			return _value.ToString();
+			if (_value == null)
+				return "";
+            var hex = new System.Text.StringBuilder(_value.Length * 2);
+            foreach (byte b in _value)
+                hex.AppendFormat("{0:X2}", b);
+            return hex.ToString();
         }
-        public IfcBinary(long val)
+        public IfcBinary(byte[] val)
         {
             _value = val;
         }
 
 		public IfcBinary(string val)
         {
-			_value = System.Convert.ToInt64(val);
+			var hex = val.Trim('"').Substring(1); //trim eventual leading and ending apostrophe and leading offset number
+			int numChars = hex.Length;
+            _value = new byte[numChars / 2];
+            for (int i = 0; i < numChars; i += 2)
+                _value[i / 2] = System.Convert.ToByte(hex.Substring(i, 2), 16);
         }
 
-        public static implicit operator IfcBinary(long value)
+        public static implicit operator IfcBinary(byte[] value)
         {
             return new IfcBinary(value);
         }
 
-        public static implicit operator long(IfcBinary obj)
+        public static implicit operator byte[](IfcBinary obj)
         {
             return obj._value;
 
@@ -67,7 +76,7 @@ namespace Xbim.Ifc4.MeasureResource
             return ((IfcBinary) obj)._value == _value;
         }
 
-		public bool Equals(long other)
+		public bool Equals(byte[] other)
 	    {
 	        return this == other;
 	    }
@@ -101,7 +110,7 @@ namespace Xbim.Ifc4.MeasureResource
         System.Type IExpressValueType.UnderlyingSystemType { 
 			get 
 			{
-				return typeof(long);
+				return typeof(byte[]);
 			}
 		}
 		#endregion

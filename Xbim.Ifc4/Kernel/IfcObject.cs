@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcLabel? @ObjectType 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("RelatedObjects")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 13)]
 		public IEnumerable<IfcRelDefinesByObject> @IsDeclaredBy 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}
 		[InverseProperty("RelatingObject")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 14)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 14)]
 		public IEnumerable<IfcRelDefinesByObject> @Declares 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}
 		[InverseProperty("RelatedObjects")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 15)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 15)]
 		public IEnumerable<IfcRelDefinesByType> @IsTypedBy 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}
 		[InverseProperty("RelatedObjects")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 16)]
 		public IEnumerable<IfcRelDefinesByProperties> @IsDefinedBy 
 		{ 
 			get 

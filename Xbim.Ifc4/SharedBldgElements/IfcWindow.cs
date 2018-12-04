@@ -85,7 +85,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 33)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 33)]
 		public IfcPositiveLengthMeasure? @OverallHeight 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 34)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 34)]
 		public IfcPositiveLengthMeasure? @OverallWidth 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcWindowTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 36)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
 		public IfcWindowTypePartitioningEnum? @PartitioningType 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 37)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 37)]
 		public IfcLabel? @UserDefinedPartitioningType 
 		{ 
 			get 

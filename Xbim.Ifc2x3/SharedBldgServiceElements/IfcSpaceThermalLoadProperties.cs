@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcPositiveRatioMeasure? @ApplicableValueRatio 
 		{ 
 			get 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _applicableValueRatio = v, _applicableValueRatio, value,  "ApplicableValueRatio", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 9)]
 		public IfcThermalLoadSourceEnum @ThermalLoadSource 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _thermalLoadSource = v, _thermalLoadSource, value,  "ThermalLoadSource", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 10)]
 		public IfcPropertySourceEnum @PropertySource 
 		{ 
 			get 
@@ -164,7 +164,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _propertySource = v, _propertySource, value,  "PropertySource", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcText? @SourceDescription 
 		{ 
 			get 
@@ -178,7 +178,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _sourceDescription = v, _sourceDescription, value,  "SourceDescription", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcPowerMeasure @MaximumValue 
 		{ 
 			get 
@@ -192,7 +192,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _maximumValue = v, _maximumValue, value,  "MaximumValue", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcPowerMeasure? @MinimumValue 
 		{ 
 			get 
@@ -206,7 +206,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _minimumValue = v, _minimumValue, value,  "MinimumValue", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 14)]
 		public IfcTimeSeries @ThermalLoadTimeSeriesValues 
 		{ 
 			get 
@@ -222,7 +222,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _thermalLoadTimeSeriesValues = v, _thermalLoadTimeSeriesValues, value,  "ThermalLoadTimeSeriesValues", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcLabel? @UserDefinedThermalLoadSource 
 		{ 
 			get 
@@ -236,7 +236,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _userDefinedThermalLoadSource = v, _userDefinedThermalLoadSource, value,  "UserDefinedThermalLoadSource", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 16)]
 		public IfcLabel? @UserDefinedPropertySource 
 		{ 
 			get 
@@ -250,7 +250,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _userDefinedPropertySource = v, _userDefinedPropertySource, value,  "UserDefinedPropertySource", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(14, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 17)]
 		public IfcThermalLoadTypeEnum @ThermalLoadType 
 		{ 
 			get 

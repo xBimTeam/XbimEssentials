@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcLabel? @ApplicableOccurrence 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc2x3.Kernel
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 10)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 10)]
 		public IOptionalItemSet<IfcPropertySetDefinition> @HasPropertySets 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc2x3.Kernel
 
 		#region Inverse attributes
 		[InverseProperty("RelatingType")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 11)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 11)]
 		public IEnumerable<IfcRelDefinesByType> @ObjectTypeOf 
 		{ 
 			get 

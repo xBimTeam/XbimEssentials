@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 22)]
 		public IfcEventTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 23)]
 		public IfcEventTriggerTypeEnum? @EventTriggerType 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _eventTriggerType = v, _eventTriggerType, value,  "EventTriggerType", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 24)]
 		public IfcLabel? @UserDefinedEventTriggerType 
 		{ 
 			get 
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				SetValue( v =>  _userDefinedEventTriggerType = v, _userDefinedEventTriggerType, value,  "UserDefinedEventTriggerType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 25)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 25)]
 		public IfcEventTime @EventOccurenceTime 
 		{ 
 			get 

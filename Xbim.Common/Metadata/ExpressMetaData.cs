@@ -23,7 +23,7 @@ namespace Xbim.Common.Metadata
     /// <summary>
     ///   A collection of IPersistEntity instances, optimised for EXPRESS models
     /// </summary>
-    [Serializable]
+    
     public class ExpressMetaData
     {
         /// <summary>
@@ -67,12 +67,14 @@ namespace Xbim.Common.Metadata
         /// <returns>Meta data structure for the schema defined within the module</returns>
         public static ExpressMetaData GetMetadata(Module module)
         {
+
+            ExpressMetaData result;
+            if (Cache.TryGetValue(module, out result))
+                return result;
             lock (_lock)
             {
-                ExpressMetaData result;
                 if (Cache.TryGetValue(module, out result))
                     return result;
-
                 result = new ExpressMetaData(module);
                 Cache.Add(module, result);
                 return result;
@@ -84,9 +86,14 @@ namespace Xbim.Common.Metadata
             Module = module;
             var typesToProcess =
                 module.GetTypes().Where(
-                    t =>
-                    typeof(IPersist).IsAssignableFrom(t) && t != typeof(IPersist) && !t.IsEnum && !t.IsInterface &&//!t.IsAbstract &&
-                    t.IsPublic && !typeof(IExpressHeaderType).IsAssignableFrom(t)).ToList();
+                    t =>  {
+                        var ti = t.GetTypeInfo();
+                        return typeof(IPersist).GetTypeInfo().IsAssignableFrom(t) 
+                        && t != typeof(IPersist) 
+                        && !ti.IsEnum && !ti.IsInterface 
+                        && ti.IsPublic 
+                        && !typeof(IExpressHeaderType).GetTypeInfo().IsAssignableFrom(t);
+                    }).ToList();
 
             _typeIdToExpressTypeLookup = new Dictionary<short, ExpressType>(typesToProcess.Count);
             _typeNameToExpressTypeLookup = new Dictionary<string, ExpressType>(typesToProcess.Count);
@@ -108,7 +115,7 @@ namespace Xbim.Common.Metadata
                     if (!_typeNameToExpressTypeLookup.ContainsKey(typeLookup))
                         _typeNameToExpressTypeLookup.Add(typeLookup, expressTypeToProcess);
 
-                    if (typeof(IPersistEntity).IsAssignableFrom(typeToProcess))
+                    if (typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(typeToProcess))
                     {
                         _persistNameToExpressTypeLookup.Add(expressTypeToProcess.ExpressNameUpper, expressTypeToProcess);
                         _typeIdToExpressTypeLookup.Add(expressTypeToProcess.TypeId, expressTypeToProcess);
@@ -121,7 +128,7 @@ namespace Xbim.Common.Metadata
                     }
 
                     // populate the dictionary lookup by interface
-                    foreach (var interfaceFound in typeToProcess.GetInterfaces())
+                    foreach (var interfaceFound in typeToProcess.GetTypeInfo().GetInterfaces())
                     {
                         if (interfaceFound.Namespace != null && !interfaceFound.Namespace.StartsWith("Xbim"))
                             continue;
@@ -142,7 +149,7 @@ namespace Xbim.Common.Metadata
 
         internal void AddParent(ExpressType child)
         {
-            var baseParent = child.Type.BaseType;
+            var baseParent = child.Type.GetTypeInfo().BaseType;
             if (baseParent == null || typeof(object) == baseParent || typeof(ValueType) == baseParent || typeof(PersistEntity) == baseParent)
                 return;
             ExpressType expressParent;
@@ -215,11 +222,11 @@ namespace Xbim.Common.Metadata
 
         public IEnumerable<short> NonAbstractSubTypes(Type type)
         {
-            if (type.IsInterface)
+            if (type.GetTypeInfo().IsInterface)
             {
                 List<ExpressType> result;
                 return _interfaceToExpressTypesLookup.TryGetValue(type, out result)
-                    ? result.Where(t => !t.Type.IsAbstract).Select(t => t.TypeId)
+                    ? result.Where(t => !t.Type.GetTypeInfo().IsAbstract).Select(t => t.TypeId)
                     : Enumerable.Empty<short>();
             }
 

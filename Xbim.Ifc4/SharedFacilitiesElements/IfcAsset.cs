@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 18)]
 		public IfcIdentifier? @Identification 
 		{ 
 			get 
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _identification = v, _identification, value,  "Identification", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 19)]
 		public IfcCostValue @OriginalValue 
 		{ 
 			get 
@@ -153,7 +153,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _originalValue = v, _originalValue, value,  "OriginalValue", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcCostValue @CurrentValue 
 		{ 
 			get 
@@ -169,7 +169,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 21)]
 		public IfcCostValue @TotalReplacementCost 
 		{ 
 			get 
@@ -185,7 +185,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _totalReplacementCost = v, _totalReplacementCost, value,  "TotalReplacementCost", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 22)]
 		public IfcActorSelect @Owner 
 		{ 
 			get 
@@ -201,7 +201,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _owner = v, _owner, value,  "Owner", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 23)]
 		public IfcActorSelect @User 
 		{ 
 			get 
@@ -217,7 +217,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _user = v, _user, value,  "User", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 24)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 24)]
 		public IfcPerson @ResponsiblePerson 
 		{ 
 			get 
@@ -233,7 +233,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _responsiblePerson = v, _responsiblePerson, value,  "ResponsiblePerson", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 25)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 25)]
 		public IfcDate? @IncorporationDate 
 		{ 
 			get 
@@ -247,7 +247,7 @@ namespace Xbim.Ifc4.SharedFacilitiesElements
 				SetValue( v =>  _incorporationDate = v, _incorporationDate, value,  "IncorporationDate", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 26)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 26)]
 		public IfcCostValue @DepreciatedValue 
 		{ 
 			get 

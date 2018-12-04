@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 10)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 10)]
 		public IItemSet<IfcInteger> @UMultiplicities 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _uMultiplicities;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 11)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 11)]
 		public IItemSet<IfcInteger> @VMultiplicities 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _vMultiplicities;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 12)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 12)]
 		public IItemSet<IfcParameterValue> @UKnots 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _uKnots;
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 13)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 13)]
 		public IItemSet<IfcParameterValue> @VKnots 
 		{ 
 			get 
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _vKnots;
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 14)]
 		public IfcKnotType @KnotSpec 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcInteger @KnotVUpper 
 		{
 			get 
@@ -151,7 +151,7 @@ namespace Xbim.Ifc4.GeometryResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcInteger @KnotUUpper 
 		{
 			get 

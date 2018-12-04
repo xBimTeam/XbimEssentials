@@ -136,7 +136,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcPositiveLengthMeasure? @LiningDepth 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningDepth = v, _liningDepth, value,  "LiningDepth", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcNonNegativeLengthMeasure? @LiningThickness 
 		{ 
 			get 
@@ -164,7 +164,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningThickness = v, _liningThickness, value,  "LiningThickness", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcNonNegativeLengthMeasure? @TransomThickness 
 		{ 
 			get 
@@ -178,7 +178,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _transomThickness = v, _transomThickness, value,  "TransomThickness", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcNonNegativeLengthMeasure? @MullionThickness 
 		{ 
 			get 
@@ -192,7 +192,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _mullionThickness = v, _mullionThickness, value,  "MullionThickness", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public IfcNormalisedRatioMeasure? @FirstTransomOffset 
 		{ 
 			get 
@@ -206,7 +206,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _firstTransomOffset = v, _firstTransomOffset, value,  "FirstTransomOffset", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcNormalisedRatioMeasure? @SecondTransomOffset 
 		{ 
 			get 
@@ -220,7 +220,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _secondTransomOffset = v, _secondTransomOffset, value,  "SecondTransomOffset", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 16)]
 		public IfcNormalisedRatioMeasure? @FirstMullionOffset 
 		{ 
 			get 
@@ -234,7 +234,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _firstMullionOffset = v, _firstMullionOffset, value,  "FirstMullionOffset", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 17)]
 		public IfcNormalisedRatioMeasure? @SecondMullionOffset 
 		{ 
 			get 
@@ -248,7 +248,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _secondMullionOffset = v, _secondMullionOffset, value,  "SecondMullionOffset", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 18)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
 			get 
@@ -264,7 +264,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _shapeAspectStyle = v, _shapeAspectStyle, value,  "ShapeAspectStyle", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 19)]
 		public IfcLengthMeasure? @LiningOffset 
 		{ 
 			get 
@@ -278,7 +278,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningOffset = v, _liningOffset, value,  "LiningOffset", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcLengthMeasure? @LiningToPanelOffsetX 
 		{ 
 			get 
@@ -292,7 +292,7 @@ namespace Xbim.Ifc4.ArchitectureDomain
 				SetValue( v =>  _liningToPanelOffsetX = v, _liningToPanelOffsetX, value,  "LiningToPanelOffsetX", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcLengthMeasure? @LiningToPanelOffsetY 
 		{ 
 			get 

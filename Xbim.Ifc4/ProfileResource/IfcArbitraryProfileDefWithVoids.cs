@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 6)]
 		public IItemSet<IfcCurve> @InnerCurves 
 		{ 
 			get 

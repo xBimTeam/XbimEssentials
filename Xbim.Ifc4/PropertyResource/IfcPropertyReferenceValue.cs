@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcText? @UsageName 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 11)]
 		public IfcObjectReferenceSelect @PropertyReference 
 		{ 
 			get 

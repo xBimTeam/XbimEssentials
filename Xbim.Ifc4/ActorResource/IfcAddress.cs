@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.ActorResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 1)]
 		public IfcAddressTypeEnum? @Purpose 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel? @UserDefinedPurpose 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.ActorResource
 
 		#region Inverse attributes
 		[InverseProperty("Addresses")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 4)]
 		public IEnumerable<IfcPerson> @OfPerson 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.ActorResource
 			} 
 		}
 		[InverseProperty("Addresses")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 5)]
 		public IEnumerable<IfcOrganization> @OfOrganization 
 		{ 
 			get 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Xbim.Common.Step21;
 
 namespace Xbim.Common
 {
@@ -18,5 +19,9 @@ namespace Xbim.Common
 		IExpressValueType New(string typeName);
 
 		IEnumerable<string> SchemasIds { get; }
-	}
+        /// <summary>
+        /// Gets the Ifc Schema version of the model if this is IFC schema
+        /// </summary>
+        XbimSchemaVersion SchemaVersion { get; }
+    }
 }

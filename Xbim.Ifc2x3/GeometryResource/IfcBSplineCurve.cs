@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public long @Degree 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				SetValue( v =>  _degree = v, _degree, value,  "Degree", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 2, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcCartesianPoint> @ControlPointsList 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				return _controlPointsList;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 5)]
 		public IfcBSplineCurveForm @CurveForm 
 		{ 
 			get 
@@ -122,7 +122,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public bool? @ClosedCurve 
 		{ 
 			get 
@@ -136,7 +136,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public bool? @SelfIntersect 
 		{ 
 			get 
@@ -154,7 +154,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Class, 0, 255, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Array, EntityAttributeType.Class, new int [] { 0 }, new int [] { 255 }, 0)]
 		public List<Common.Geometry.XbimPoint3D> @ControlPoints 
 		{
 			get 
@@ -165,7 +165,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public long @UpperIndexOnControlPoints 
 		{
 			get 

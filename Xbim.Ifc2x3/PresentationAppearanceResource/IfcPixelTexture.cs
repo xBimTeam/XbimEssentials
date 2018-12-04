@@ -29,7 +29,7 @@ namespace Xbim.Ifc2x3.Interfaces
 		IfcInteger @Width { get;  set; }
 		IfcInteger @Height { get;  set; }
 		IfcInteger @ColourComponents { get;  set; }
-		IItemSet<long> @Pixel { get; }
+		IItemSet<byte[]> @Pixel { get; }
 	
 	}
 }
@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 			get { return @ColourComponents; } 
 			set { ColourComponents = value;}
 		}	
-		IItemSet<long> IIfcPixelTexture.Pixel { 
+		IItemSet<byte[]> IIfcPixelTexture.Pixel { 
 			get { return @Pixel; } 
 		}	
 		 
@@ -65,18 +65,18 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPixelTexture(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_pixel = new ItemSet<long>( this, 0,  8);
+			_pixel = new ItemSet<byte[]>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
 		private IfcInteger _width;
 		private IfcInteger _height;
 		private IfcInteger _colourComponents;
-		private readonly ItemSet<long> _pixel;
+		private readonly ItemSet<byte[]> _pixel;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcInteger @Width 
 		{ 
 			get 
@@ -90,7 +90,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _width = v, _width, value,  "Width", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcInteger @Height 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _height = v, _height, value,  "Height", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcInteger @ColourComponents 
 		{ 
 			get 
@@ -118,8 +118,8 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _colourComponents = v, _colourComponents, value,  "ColourComponents", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 8)]
-		public IItemSet<long> @Pixel 
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 8)]
+		public IItemSet<byte[]> @Pixel 
 		{ 
 			get 
 			{

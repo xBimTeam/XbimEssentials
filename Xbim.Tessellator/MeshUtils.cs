@@ -40,9 +40,9 @@ namespace Xbim.Tessellator
 {
     public struct Vec3EqualityComparer : IEqualityComparer<Vec3>
     {
-        private readonly float _precision2;
-        private readonly float _gridDim;
-        public Vec3EqualityComparer(float precision)
+        private readonly double _precision2;
+        private readonly double _gridDim;
+        public Vec3EqualityComparer(double precision)
         {
             _precision2 = precision * precision;
             _gridDim = precision*10;//coursen  up
@@ -90,7 +90,7 @@ namespace Xbim.Tessellator
     {
         public readonly static Vec3 Zero = new Vec3();
 
-        public float X, Y, Z;
+        public double X, Y, Z;
 
 
         public static bool Colinear( Vec3 a,  Vec3 b,  Vec3 c)
@@ -106,12 +106,7 @@ namespace Xbim.Tessellator
             // ReSharper restore CompareOfFloatsByEqualityOperator
         }
 
-        public Vec3(float x, float y, float z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
+       
 
         public Vec3(double x, double y, double z)
         {
@@ -120,7 +115,7 @@ namespace Xbim.Tessellator
             Z = (float)z;
         }
 
-        public float this[int index]
+        public double this[int index]
         {
             get
             {
@@ -158,7 +153,7 @@ namespace Xbim.Tessellator
         }
         public static double Angle(ref Vec3 v1, ref Vec3 v2)
         {
-            float cosinus;
+            double cosinus;
             Dot(ref v1, ref v2, out cosinus);
             if (cosinus > -0.70710678118655 && cosinus < 0.70710678118655)
                 return Math.Acos(cosinus);
@@ -183,14 +178,14 @@ namespace Xbim.Tessellator
             }
         }
 
-        public float Length2
+        public double Length2
         {
             get
             {
                 return X * X + Y * Y + Z * Z;
             }
         }
-        public static void Dot(ref Vec3 u, ref Vec3 v, out float dot)
+        public static void Dot(ref Vec3 u, ref Vec3 v, out double dot)
         {
             dot = u.X * v.X + u.Y * v.Y + u.Z * v.Z;
         }
@@ -204,7 +199,7 @@ namespace Xbim.Tessellator
 
         public static bool Normalize(ref Vec3 v)
         {
-            float len = v.X * v.X + v.Y * v.Y + v.Z * v.Z;
+            double len = v.X * v.X + v.Y * v.Y + v.Z * v.Z;
             if(len <= 0.0f) return false;
             len = 1.0f / (float)Math.Sqrt(len);
             v.X *= len;
@@ -231,7 +226,7 @@ namespace Xbim.Tessellator
             internal Vertex _prev, _next;
             internal Edge _anEdge;
             internal Vec3 _coords;
-            internal float _s, _t;
+            internal double _s, _t;
             internal PqHandle _pqHandle;
             internal int _n;
             internal int _data;

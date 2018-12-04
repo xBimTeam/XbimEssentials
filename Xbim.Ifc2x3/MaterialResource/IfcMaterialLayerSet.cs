@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 1)]
 		public IItemSet<IfcMaterialLayer> @MaterialLayers 
 		{ 
 			get 
@@ -76,7 +76,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 				return _materialLayers;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel? @LayerSetName 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.Ifc2x3.MaterialResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcLengthMeasure @TotalThickness 
 		{
 			get 

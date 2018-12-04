@@ -48,20 +48,6 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 
-		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
-		public virtual IfcDimensionCount @Dim 
-		{
-			get 
-			{
-				//## Getter for Dim
-                //this gets override in all non-abstract implementations
-			    return 0;
-			    //##
-			}
-		}
-
-		#endregion
 
 
 		#region IPersist implementation
@@ -81,8 +67,11 @@ namespace Xbim.Ifc4.GeometryResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
-
-		//##
+        /// <summary>
+        /// This is always overriden in specific non-abstract classes
+        /// </summary>
+        IfcDimensionCount IfcGeometricSetSelect.Dim { get { return 0; } }
+        //##
 		#endregion
 	}
 }

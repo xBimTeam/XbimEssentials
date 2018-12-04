@@ -26,8 +26,10 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcTriangulatedFaceSet : IIfcTessellatedFaceSet
 	{
+		IItemSet<IItemSet<IfcParameterValue>> @Normals { get; }
+		IfcBoolean? @Closed { get;  set; }
 		IItemSet<IItemSet<IfcPositiveInteger>> @CoordIndex { get; }
-		IItemSet<IItemSet<IfcPositiveInteger>> @NormalIndex { get; }
+		IItemSet<IfcPositiveInteger> @PnIndex { get; }
 		IfcInteger @NumberOfTriangles  { get ; }
 	
 	}
@@ -40,11 +42,19 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IIfcTriangulatedFaceSet, IContainsEntityReferences, IEquatable<@IfcTriangulatedFaceSet>
 	{
 		#region IIfcTriangulatedFaceSet explicit implementation
+		IItemSet<IItemSet<IfcParameterValue>> IIfcTriangulatedFaceSet.Normals { 
+			get { return @Normals; } 
+		}	
+		IfcBoolean? IIfcTriangulatedFaceSet.Closed { 
+ 
+			get { return @Closed; } 
+			set { Closed = value;}
+		}	
 		IItemSet<IItemSet<IfcPositiveInteger>> IIfcTriangulatedFaceSet.CoordIndex { 
 			get { return @CoordIndex; } 
 		}	
-		IItemSet<IItemSet<IfcPositiveInteger>> IIfcTriangulatedFaceSet.NormalIndex { 
-			get { return @NormalIndex; } 
+		IItemSet<IfcPositiveInteger> IIfcTriangulatedFaceSet.PnIndex { 
+			get { return @PnIndex; } 
 		}	
 		 
 		#endregion
@@ -52,17 +62,44 @@ namespace Xbim.Ifc4.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTriangulatedFaceSet(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
+			_normals = new OptionalItemSet<IItemSet<IfcParameterValue>>( this, 0,  2);
 			_coordIndex = new ItemSet<IItemSet<IfcPositiveInteger>>( this, 0,  4);
-			_normalIndex = new OptionalItemSet<IItemSet<IfcPositiveInteger>>( this, 0,  5);
+			_pnIndex = new OptionalItemSet<IfcPositiveInteger>( this, 0,  5);
 		}
 
 		#region Explicit attribute fields
+		private readonly OptionalItemSet<IItemSet<IfcParameterValue>> _normals;
+		private IfcBoolean? _closed;
 		private readonly ItemSet<IItemSet<IfcPositiveInteger>> _coordIndex;
-		private readonly OptionalItemSet<IItemSet<IfcPositiveInteger>> _normalIndex;
+		private readonly OptionalItemSet<IfcPositiveInteger> _pnIndex;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 8)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 3 }, new int [] { -1, 3 }, 6)]
+		public IOptionalItemSet<IItemSet<IfcParameterValue>> @Normals 
+		{ 
+			get 
+			{
+				if(_activated) return _normals;
+				Activate();
+				return _normals;
+			} 
+		}	
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
+		public IfcBoolean? @Closed 
+		{ 
+			get 
+			{
+				if(_activated) return _closed;
+				Activate();
+				return _closed;
+			} 
+			set
+			{
+				SetValue( v =>  _closed = v, _closed, value,  "Closed", 3);
+			} 
+		}	
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 3 }, new int [] { -1, 3 }, 8)]
 		public IItemSet<IItemSet<IfcPositiveInteger>> @CoordIndex 
 		{ 
 			get 
@@ -72,21 +109,21 @@ namespace Xbim.Ifc4.GeometricModelResource
 				return _coordIndex;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 9)]
-		public IOptionalItemSet<IItemSet<IfcPositiveInteger>> @NormalIndex 
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 9)]
+		public IOptionalItemSet<IfcPositiveInteger> @PnIndex 
 		{ 
 			get 
 			{
-				if(_activated) return _normalIndex;
+				if(_activated) return _pnIndex;
 				Activate();
-				return _normalIndex;
+				return _pnIndex;
 			} 
 		}	
 		#endregion
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcInteger @NumberOfTriangles 
 		{
 			get 
@@ -106,9 +143,15 @@ namespace Xbim.Ifc4.GeometricModelResource
 			switch (propIndex)
 			{
 				case 0: 
-				case 1: 
-				case 2: 
 					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 1: 
+					((ItemSet<IfcParameterValue>)_normals
+						.InternalGetAt(nestedIndex[0]) )
+						.InternalAdd((IfcParameterValue)(value.RealVal));
+					return;
+				case 2: 
+					_closed = value.BooleanVal;
 					return;
 				case 3: 
 					((ItemSet<IfcPositiveInteger>)_coordIndex
@@ -116,9 +159,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
 					return;
 				case 4: 
-					((ItemSet<IfcPositiveInteger>)_normalIndex
-						.InternalGetAt(nestedIndex[0]) )
-						.InternalAdd((IfcPositiveInteger)(value.IntegerVal));
+					_pnIndex.InternalAdd(value.IntegerVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

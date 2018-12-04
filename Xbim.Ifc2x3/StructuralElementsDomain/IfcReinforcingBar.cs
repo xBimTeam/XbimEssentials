@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 28)]
 		public IfcPositiveLengthMeasure @NominalDiameter 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 29)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 29)]
 		public IfcAreaMeasure @CrossSectionArea 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 30)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 30)]
 		public IfcPositiveLengthMeasure? @BarLength 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				SetValue( v =>  _barLength = v, _barLength, value,  "BarLength", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 31)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 31)]
 		public IfcReinforcingBarRoleEnum @BarRole 
 		{ 
 			get 
@@ -141,7 +141,7 @@ namespace Xbim.Ifc2x3.StructuralElementsDomain
 				SetValue( v =>  _barRole = v, _barRole, value,  "BarRole", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 32)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 32)]
 		public IfcReinforcingBarSurfaceEnum? @BarSurface 
 		{ 
 			get 

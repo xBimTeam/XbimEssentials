@@ -65,7 +65,7 @@ namespace Xbim.Ifc4.PropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 10)]
 		public IfcValue @NominalValue 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.PropertyResource
 				SetValue( v =>  _nominalValue = v, _nominalValue, value,  "NominalValue", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 11)]
 		public IfcUnit @Unit 
 		{ 
 			get 

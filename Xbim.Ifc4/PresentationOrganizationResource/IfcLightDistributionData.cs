@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcPlaneAngleMeasure @MainPlaneAngle 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _mainPlaneAngle = v, _mainPlaneAngle, value,  "MainPlaneAngle", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 2)]
 		public IItemSet<IfcPlaneAngleMeasure> @SecondaryPlaneAngle 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				return _secondaryPlaneAngle;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 3)]
 		public IItemSet<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity 
 		{ 
 			get 

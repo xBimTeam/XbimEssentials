@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcSurface @BasisSurface 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _basisSurface = v, _basisSurface, value,  "BasisSurface", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcBoundaryCurve> @Boundaries 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.GeometryResource
 				return _boundaries;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcBoolean @ImplicitOuter 
 		{ 
 			get 

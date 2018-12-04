@@ -13,9 +13,7 @@ namespace Xbim.Common.Geometry
             _normals = new List<XbimPackedNormal>(numNormals);
             _indices = new List<int>(numTriangles * 3);
         }
-
-       
-
+        
         internal void AddNormal(XbimPackedNormal xbimPackedNormal)
         {
            _normals.Add(xbimPackedNormal);
@@ -66,26 +64,30 @@ namespace Xbim.Common.Geometry
 
         public void WriteIndicesAndNormals(BinaryWriter bw, int vertexCount)
         {
-            
             if (vertexCount <= 0xFF)
-                for (int i = 0; i < _indices.Count; i++)
+            {
+                for (var i = 0; i < _indices.Count; i++)
                 {
-                    bw.Write((byte)_indices[i]);
+                    bw.Write((byte) _indices[i]);
                     _normals[i].Write(bw);
                 }
-
+            }
             else if (vertexCount <= 0xFFFF)
-                for (int i = 0; i < _indices.Count; i++)
+            {
+                for (var i = 0; i < _indices.Count; i++)
                 {
                     bw.Write((UInt16)_indices[i]);
                     _normals[i].Write(bw);
                 }
+            }
             else
-                for (int i = 0; i < _indices.Count; i++)
+            {
+                for (var i = 0; i < _indices.Count; i++)
                 {
                     bw.Write(_indices[i]);
                     _normals[i].Write(bw);
                 }
+            }
         }
 
         public XbimFaceTriangulation Transform(XbimQuaternion q)

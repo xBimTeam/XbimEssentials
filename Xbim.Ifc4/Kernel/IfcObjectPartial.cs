@@ -7,6 +7,8 @@ using Xbim.Common;
 using Xbim.Ifc4.ProductExtension;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.QuantityResource;
+using System.Reflection;
+
 namespace Xbim.Ifc4.Kernel
 {
     public partial class IfcObject
@@ -108,10 +110,10 @@ namespace Xbim.Ifc4.Kernel
         /// <returns>Property single value with default value of the specified type</returns>
         public IIfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, Type type)
         {
-            if (typeof(IfcValue).IsAssignableFrom(type))
+            if (typeof(IfcValue).GetTypeInfo().IsAssignableFrom(type))
             {
                 IfcValue value;
-                if (typeof(IfcPositiveLengthMeasure).IsAssignableFrom(type))
+                if (typeof(IfcPositiveLengthMeasure).GetTypeInfo().IsAssignableFrom(type))
                     value = Activator.CreateInstance(type, 1.0) as IfcValue;
                 else
                     value = Activator.CreateInstance(type) as IfcValue;

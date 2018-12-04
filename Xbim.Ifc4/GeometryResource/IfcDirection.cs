@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { 3 }, 3)]
 		public IItemSet<IfcReal> @DirectionRatios 
 		{ 
 			get 
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcDimensionCount @Dim 
 		{
 			get 
@@ -121,7 +121,11 @@ namespace Xbim.Ifc4.GeometryResource
             var result = new IfcDirection(null, -1, true);
             result._directionRatios.InternalAdd(vector.X);
             result._directionRatios.InternalAdd(vector.Y);
-            result._directionRatios.InternalAdd(vector.Z);
+
+            //only add Z if it is an actual number
+            if (!double.IsNaN(vector.Z))
+                result._directionRatios.InternalAdd(vector.Z);
+
             return result;
         }
 		//##

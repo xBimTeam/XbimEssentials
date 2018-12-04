@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public virtual IfcDimensionCount @CoordinateSpaceDimension 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _coordinateSpaceDimension = v, _coordinateSpaceDimension, value,  "CoordinateSpaceDimension", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public virtual IfcReal? @Precision 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _precision = v, _precision, value,  "Precision", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public virtual IfcAxis2Placement @WorldCoordinateSystem 
 		{ 
 			get 
@@ -128,7 +128,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _worldCoordinateSystem = v, _worldCoordinateSystem, value,  "WorldCoordinateSystem", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public virtual IfcDirection @TrueNorth 
 		{ 
 			get 
@@ -150,7 +150,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		#region Inverse attributes
 		[InverseProperty("ParentContext")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IEnumerable<IfcGeometricRepresentationSubContext> @HasSubContexts 
 		{ 
 			get 
@@ -159,7 +159,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 		}
 		[InverseProperty("SourceCRS")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 9)]
 		public IEnumerable<IfcCoordinateOperation> @HasCoordinateOperation 
 		{ 
 			get 

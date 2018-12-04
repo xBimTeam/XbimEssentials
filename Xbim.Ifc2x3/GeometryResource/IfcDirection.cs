@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, 3, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { 3 }, 3)]
 		public IItemSet<double> @DirectionRatios 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcDimensionCount @Dim 
 		{
 			get 

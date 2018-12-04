@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcSurfaceOrFaceSurface @SurfaceOnRelatingElement 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.GeometricConstraintResource
 				SetValue( v =>  _surfaceOnRelatingElement = v, _surfaceOnRelatingElement, value,  "SurfaceOnRelatingElement", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcSurfaceOrFaceSurface @SurfaceOnRelatedElement 
 		{ 
 			get 

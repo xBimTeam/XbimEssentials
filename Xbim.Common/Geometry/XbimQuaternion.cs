@@ -149,11 +149,11 @@ namespace Xbim.Common.Geometry
         }
 
         /// <summary>
-        /// Transforms a 3D vector by the given <see cref="SharpDX.Quaternion"/> rotation.
+        /// Transforms a 3D vector by the given rotation.
         /// </summary>
         /// <param name="vector">The vector to rotate.</param>
-        /// <param name="rotation">The <see cref="SharpDX.Quaternion"/> rotation to apply.</param>
-        /// <param name="result">When the method completes, contains the transformed <see cref="SharpDX.Vector4"/>.</param>
+        /// <param name="rotation">The  rotation to apply.</param>
+        /// <param name="result">When the method completes, contains the transformed .</param>
         public static void Transform(ref XbimVector3D vector, ref XbimQuaternion rotation, out XbimVector3D result)
         {
             double x = rotation.X + rotation.X;

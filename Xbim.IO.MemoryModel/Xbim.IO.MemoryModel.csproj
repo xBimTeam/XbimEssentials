@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
+    <Authors>Steve Lockley, Martin Cerny</Authors>
+    <Company>Xbim Ltd.</Company>
+    <Description>An in memory version of an Ifc or STEP Model</Description>
+    <Copyright>Xbim Ltd</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
+    <PackageProjectUrl>&gt;https://github.com/xBimTeam</PackageProjectUrl>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
+    <PackageTags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</PackageTags>
+    <PackageReleaseNotes>Port to Net Standard 2.0</PackageReleaseNotes>
+    <Version>5.0.0-Beta</Version>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
+    <FileVersion>5.0.0.0</FileVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
+  </ItemGroup>
+    <ItemGroup>
+    <EmbeddedResource Include="Xml\BsConf\*.xml" />
+  </ItemGroup>
+</Project>

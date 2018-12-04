@@ -72,7 +72,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 2)]
 		public IfcSectionTypeEnum @SectionType 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _sectionType = v, _sectionType, value,  "SectionType", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcProfileDef @StartProfile 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _startProfile = v, _startProfile, value,  "StartProfile", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcProfileDef @EndProfile 
 		{ 
 			get 

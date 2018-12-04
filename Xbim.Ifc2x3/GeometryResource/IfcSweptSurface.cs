@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcProfileDef @SweptCurve 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				SetValue( v =>  _sweptCurve = v, _sweptCurve, value,  "SweptCurve", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcAxis2Placement3D @Position 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public override IfcDimensionCount @Dim 
 		{
 			get 

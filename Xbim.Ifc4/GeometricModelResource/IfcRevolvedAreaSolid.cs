@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcAxis1Placement @Axis 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 				SetValue( v =>  _axis = v, _axis, value,  "Axis", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPlaneAngleMeasure @Angle 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, null, null, 0)]
 		public Common.Geometry.XbimLine @AxisLine 
 		{
 			get 

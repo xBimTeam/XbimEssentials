@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public string @Name 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 2)]
 		public IItemSet<IfcTableRow> @Rows 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public long @NumberOfCellsInRow 
 		{
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public long @NumberOfHeadings 
 		{
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.UtilityResource
 			}
 		}
 
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public long @NumberOfDataRows 
 		{
 			get 

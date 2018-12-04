@@ -3,7 +3,9 @@ using System.IO;
 
 namespace Xbim.Common.Geometry
 {
-    
+    /// <summary>
+    /// Encodes a normal in just two bytes.
+    /// </summary>
     public struct XbimPackedNormal
     {
         private ushort _packedData;
@@ -27,13 +29,10 @@ namespace Xbim.Common.Geometry
         {
            _packedData = br.ReadUInt16();
         }
-
-  
-
+        
         public XbimPackedNormal(byte u, byte v)
         {
             _packedData = (ushort)(u << 8 | v);
-           
         }
 
         /// <summary>
@@ -53,9 +52,9 @@ namespace Xbim.Common.Geometry
                return;
             }
             //the most basic case when normal points in -Y direction (second singular point)
-            if (Math.Abs(y - 1) < tolerance)
+            if (Math.Abs(y + 1) < tolerance)
             {
-                _packedData = 0 << 8 | (byte)PackSize / 2;
+                _packedData = (byte)PackSize << 8 | (byte)PackSize;
                 return;
             }
             
@@ -110,7 +109,6 @@ namespace Xbim.Common.Geometry
             get
             { 
                 return (byte)(_packedData >> 8);
-                
             }
         }
         public byte V
@@ -133,7 +131,7 @@ namespace Xbim.Common.Geometry
                 var z = Math.Cos(lon) * Math.Sin(lat);
 
                 var v3D = new XbimVector3D(x, y, z);
-                v3D.Normalized();
+                v3D = v3D.Normalized();
                 return v3D;
             }
         }
@@ -145,6 +143,5 @@ namespace Xbim.Common.Geometry
             XbimQuaternion.Transform(ref v1, ref q, out v2);
             return new XbimPackedNormal(v2);
         }
-    
     }
 }

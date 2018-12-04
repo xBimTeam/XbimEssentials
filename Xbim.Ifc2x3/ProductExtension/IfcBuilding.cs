@@ -72,7 +72,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 19)]
 		public IfcLengthMeasure? @ElevationOfRefHeight 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				SetValue( v =>  _elevationOfRefHeight = v, _elevationOfRefHeight, value,  "ElevationOfRefHeight", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcLengthMeasure? @ElevationOfTerrain 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				SetValue( v =>  _elevationOfTerrain = v, _elevationOfTerrain, value,  "ElevationOfTerrain", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 21)]
 		public IfcPostalAddress @BuildingAddress 
 		{ 
 			get 

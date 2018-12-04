@@ -56,7 +56,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcPositiveLengthMeasure @Thickness 
 		{ 
 			get 

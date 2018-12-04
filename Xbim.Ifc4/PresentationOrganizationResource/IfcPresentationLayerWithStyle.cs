@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLogical @LayerOn 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _layerOn = v, _layerOn, value,  "LayerOn", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcLogical @LayerFrozen 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _layerFrozen = v, _layerFrozen, value,  "LayerFrozen", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcLogical @LayerBlocked 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _layerBlocked = v, _layerBlocked, value,  "LayerBlocked", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IItemSet<IfcPresentationStyle> @LayerStyles 
 		{ 
 			get 

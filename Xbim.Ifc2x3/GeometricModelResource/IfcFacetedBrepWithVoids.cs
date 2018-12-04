@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcClosedShell> @Voids 
 		{ 
 			get 

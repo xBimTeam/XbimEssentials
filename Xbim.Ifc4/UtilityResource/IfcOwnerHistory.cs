@@ -112,7 +112,7 @@ namespace Xbim.Ifc4.UtilityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcPersonAndOrganization @OwningUser 
 		{ 
 			get 
@@ -128,7 +128,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _owningUser = v, _owningUser, value,  "OwningUser", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcApplication @OwningApplication 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _owningApplication = v, _owningApplication, value,  "OwningApplication", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 3)]
 		public IfcStateEnum? @State 
 		{ 
 			get 
@@ -158,7 +158,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _state = v, _state, value,  "State", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 4)]
 		public IfcChangeActionEnum? @ChangeAction 
 		{ 
 			get 
@@ -172,7 +172,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _changeAction = v, _changeAction, value,  "ChangeAction", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcTimeStamp? @LastModifiedDate 
 		{ 
 			get 
@@ -186,7 +186,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _lastModifiedDate = v, _lastModifiedDate, value,  "LastModifiedDate", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcPersonAndOrganization @LastModifyingUser 
 		{ 
 			get 
@@ -202,7 +202,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _lastModifyingUser = v, _lastModifyingUser, value,  "LastModifyingUser", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcApplication @LastModifyingApplication 
 		{ 
 			get 
@@ -218,7 +218,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _lastModifyingApplication = v, _lastModifyingApplication, value,  "LastModifyingApplication", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcTimeStamp @CreationDate 
 		{ 
 			get 

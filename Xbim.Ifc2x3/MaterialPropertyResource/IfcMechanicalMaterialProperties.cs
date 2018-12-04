@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcDynamicViscosityMeasure? @DynamicViscosity 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _dynamicViscosity = v, _dynamicViscosity, value,  "DynamicViscosity", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcModulusOfElasticityMeasure? @YoungModulus 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _youngModulus = v, _youngModulus, value,  "YoungModulus", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcModulusOfElasticityMeasure? @ShearModulus 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _shearModulus = v, _shearModulus, value,  "ShearModulus", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcPositiveRatioMeasure? @PoissonRatio 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 				SetValue( v =>  _poissonRatio = v, _poissonRatio, value,  "PoissonRatio", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcThermalExpansionCoefficientMeasure? @ThermalExpansionCoefficient 
 		{ 
 			get 

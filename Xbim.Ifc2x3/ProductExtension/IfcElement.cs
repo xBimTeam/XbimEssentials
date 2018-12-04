@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public IfcIdentifier? @Tag 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatingElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 15)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 15)]
 		public IEnumerable<IfcRelConnectsStructuralElement> @HasStructuralMember 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedBuildingElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 16)]
 		public IEnumerable<IfcRelFillsElement> @FillsVoids 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatingElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 17)]
 		public IEnumerable<IfcRelConnectsElements> @ConnectedTo 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatingBuildingElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 18)]
 		public IEnumerable<IfcRelCoversBldgElements> @HasCoverings 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatingElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 19)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 19)]
 		public IEnumerable<IfcRelProjectsElement> @HasProjections 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedElements")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 20)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 20)]
 		public IEnumerable<IfcRelReferencedInSpatialStructure> @ReferencedInStructures 
 		{ 
 			get 
@@ -156,7 +156,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 21)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 21)]
 		public IEnumerable<IfcRelConnectsPortToElement> @HasPorts 
 		{ 
 			get 
@@ -165,7 +165,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatingBuildingElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 22)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 22)]
 		public IEnumerable<IfcRelVoidsElement> @HasOpenings 
 		{ 
 			get 
@@ -174,7 +174,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RealizingElements")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 23)]
 		public IEnumerable<IfcRelConnectsWithRealizingElements> @IsConnectionRealization 
 		{ 
 			get 
@@ -183,7 +183,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedBuildingElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 24)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 24)]
 		public IEnumerable<IfcRelSpaceBoundary> @ProvidesBoundaries 
 		{ 
 			get 
@@ -192,7 +192,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 25)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 25)]
 		public IEnumerable<IfcRelConnectsElements> @ConnectedFrom 
 		{ 
 			get 
@@ -201,7 +201,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedElements")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 26)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 26)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainedInStructure 
 		{ 
 			get 

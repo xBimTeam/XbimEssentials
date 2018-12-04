@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 3)]
 		public IItemSet<IfcFaceBound> @Bounds 
 		{ 
 			get 
@@ -73,7 +73,7 @@ namespace Xbim.Ifc4.TopologyResource
 
 		#region Inverse attributes
 		[InverseProperty("MappedTo")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 4)]
 		public IEnumerable<IfcTextureMap> @HasTextureMaps 
 		{ 
 			get 

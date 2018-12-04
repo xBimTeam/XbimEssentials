@@ -52,7 +52,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
 		#region Inverse attributes
 		[InverseProperty("AnnotatedCurve")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 2, 6)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 2 }, 6)]
 		public IEnumerable<IfcTerminatorSymbol> @AnnotatedBySymbols 
 		{ 
 			get 

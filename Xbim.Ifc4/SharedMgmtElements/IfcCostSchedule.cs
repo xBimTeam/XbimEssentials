@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcCostScheduleTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcLabel? @Status 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				SetValue( v =>  _status = v, _status, value,  "Status", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcDateTime? @SubmittedOn 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcDateTime? @UpdateDate 
 		{ 
 			get 

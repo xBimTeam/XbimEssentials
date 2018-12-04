@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 7)]
 		public IItemSet<IfcProperty> @OverridingProperties 
 		{ 
 			get 

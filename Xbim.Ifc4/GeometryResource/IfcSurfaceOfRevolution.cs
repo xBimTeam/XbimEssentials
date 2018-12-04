@@ -57,7 +57,7 @@ namespace Xbim.Ifc4.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcAxis1Placement @AxisPosition 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, null, null, 0)]
 		public Common.Geometry.XbimLine @AxisLine 
 		{
 			get 

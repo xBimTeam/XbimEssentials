@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.ConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 10)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 10)]
 		public IOptionalItemSet<IfcConstraint> @BenchmarkValues 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				return _benchmarkValues;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 11)]
 		public IfcLogicalOperatorEnum? @LogicalAggregator 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _logicalAggregator = v, _logicalAggregator, value,  "LogicalAggregator", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 12)]
 		public IfcObjectiveEnum @ObjectiveQualifier 
 		{ 
 			get 
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4.ConstraintResource
 				SetValue( v =>  _objectiveQualifier = v, _objectiveQualifier, value,  "ObjectiveQualifier", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcLabel? @UserDefinedQualifier 
 		{ 
 			get 

@@ -1,0 +1,162 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+trigger:
+- master
+- develop
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  buildConfiguration: 'Release'
+  major: 5
+  minor: 0
+  # creates a counter called versioncounter and seeds it at 100 and then assigns the value to a variable named patch.
+  patch: $[counter('versioncounter', 100)]
+  
+
+steps:
+# Windows script setting up $(version) of the nuget package if this is development branch build
+- script: |
+    echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-prerelease
+  name: 'SettingPrereleaseNugetPackageVersion'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+- script: | 
+    echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)
+  name: 'SettingNugetPackageVersion'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+
+# Windows script setting up $(fileversion) used to stamp AssemblyFileVersions. 
+# By convention we use 'Major.Minor.BuildNo.0' on Master and 'Major.Minor.0.BuildNo' on other branches
+- script: | 
+    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).$(patch).0
+  name: 'SettingFileVersionMaster'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+- script: | 
+    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).0.$(patch)
+  name: 'SettingFileVersionNonMaster'
+  condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+
+- task: NuGetToolInstaller@0  
+
+# Version .NET Core project files
+# Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
+# Based on https://github.com/rfennell/AzurePipelines/wiki/Version-Assemblies-and-Packages-Tasks-YAML#versiondotnetcoreassembliestask
+- task: VersionDotNetCoreAssemblies@2
+  inputs: 
+    # Required arguments
+    Path: $(Build.SourcesDirectory)
+    VersionNumber: $(fileversion)
+    VersionRegex: \d+\.\d+\.\d+\.\d+
+    FilenamePattern: .csproj
+    Field: FileVersion
+    OutputVersion: OutputedVersion
+    
+- script: nuget sources add -Name local -Source $(Build.BinariesDirectory)
+    
+# xBIM Common
+- script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'Common_Pack'
+
+# xBIM Ifc4
+- script: dotnet remove Xbim.Ifc4\Xbim.Ifc4.csproj reference ..\Xbim.Common\Xbim.Common.csproj
+- script: dotnet add Xbim.Ifc4\Xbim.Ifc4.csproj package Xbim.Common -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Ifc4_Update'
+
+- script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'Ifc4_Pack'
+
+# Ifc2x3
+- script: dotnet remove Xbim.Ifc2x3\Xbim.Ifc2x3.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+- script: dotnet add Xbim.Ifc2x3\Xbim.Ifc2x3.csproj package Xbim.Ifc4 -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Ifc2x3_Update'
+
+- script: dotnet pack Xbim.Ifc2x3/Xbim.Ifc2x3.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'Ifc2x3_Pack'
+
+# Memory Model
+- script: dotnet remove Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+- script: dotnet add Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(version)
+  name: 'MemoryModel_Update'
+
+- script: dotnet pack Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'MemoryModel_Pack'
+
+# Esent Model
+- script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj
+- script: dotnet add Xbim.IO.Esent\Xbim.IO.Esent.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
+  name: 'EsentModel_Update'
+
+- script: dotnet pack Xbim.IO.Esent\Xbim.IO.Esent.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'EsentModel_Pack'
+
+# Ifc
+- script: dotnet remove Xbim.Ifc\Xbim.Ifc.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj ..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj ..\Xbim.IO.Esent\Xbim.IO.Esent.csproj
+- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Ifc_Update_MemoryModel'
+  
+- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.Esent -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Ifc_Update_EsentModel'
+
+- script: dotnet pack Xbim.Ifc\Xbim.Ifc.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'Ifc_Pack'
+
+#  Tessellator
+- script: dotnet remove Xbim.Tessellator\Xbim.Tessellator.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+- script: dotnet add Xbim.Tessellator\Xbim.Tessellator.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(version)
+  name: 'Tessellator_Update'
+
+- script: dotnet pack Xbim.Tessellator\Xbim.Tessellator.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
+  name: 'Tessellator_Pack'
+  
+# Unit tests
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test $(buildConfiguration)'
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --filter TestCategory!=IfcXml'
+
+# Essentials meta package
+- powershell: |
+    ((Get-Content -path Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(version)') | Set-Content -Path Xbim.Essentials.nuspec
+  name: Essentials_metapackage_Update
+- script: nuget pack Xbim.Essentials.nuspec -o $(Build.BinariesDirectory)
+  name: Essentials_metapackage_Pack
+  
+# Copy artifacts and Publish
+- task: CopyFiles@2
+  name: 'StagingArtifacts'
+  inputs:
+    sourceFolder: '$(Build.BinariesDirectory)'
+    contents: '**\*.nupkg' 
+    targetFolder: '$(build.artifactstagingdirectory)'
+    cleanTargetFolder: true
+    
+# Publish to master or develop MyGet feed based on the source branch
+- task: NuGetCommand@2
+  name: 'MyGetPublishing_Master'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'MyGetMaster'
+    versioningScheme: byEnvVar
+    versionEnvVar: version
+
+- task: NuGetCommand@2
+  name: 'MyGetPublishing_Develop'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'MyGetDev'
+    versioningScheme: byEnvVar
+    versionEnvVar: version
+
+- task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
+    

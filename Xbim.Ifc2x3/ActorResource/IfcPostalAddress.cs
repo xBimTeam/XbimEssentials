@@ -97,7 +97,7 @@ namespace Xbim.Ifc2x3.ActorResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcLabel? @InternalLocation 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				SetValue( v =>  _internalLocation = v, _internalLocation, value,  "InternalLocation", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 7)]
 		public IOptionalItemSet<IfcLabel> @AddressLines 
 		{ 
 			get 
@@ -121,7 +121,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				return _addressLines;
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcLabel? @PostalBox 
 		{ 
 			get 
@@ -135,7 +135,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				SetValue( v =>  _postalBox = v, _postalBox, value,  "PostalBox", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcLabel? @Town 
 		{ 
 			get 
@@ -149,7 +149,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				SetValue( v =>  _town = v, _town, value,  "Town", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcLabel? @Region 
 		{ 
 			get 
@@ -163,7 +163,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				SetValue( v =>  _region = v, _region, value,  "Region", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcLabel? @PostalCode 
 		{ 
 			get 
@@ -177,7 +177,7 @@ namespace Xbim.Ifc2x3.ActorResource
 				SetValue( v =>  _postalCode = v, _postalCode, value,  "PostalCode", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcLabel? @Country 
 		{ 
 			get 

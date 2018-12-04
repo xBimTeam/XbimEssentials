@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifcXML xmlns:xlink="http://www.w3.org/1999/xlink" 
+		xmlns="http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2 http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2.xsd">
+	<header>
+		<name>IFC Parametric Product Type Example</name>
+		<author>Tim Chipman</author>
+		<organization>Constructivity</organization>
+		<preprocessor_version/>
+		<originating_system/>
+		<authorization/>
+		<documentation>https://github.com/buildingSMART/ProductData/tree/master/IFC4%20Library</documentation>
+	</header>
+	<!--Define Property Templates, e.g. from a dictionary server-->
+	<IfcProjectLibrary id="templateLib" Name="Template library for a IFC parametric product type library" Description="">
+		<Declares>
+			<IfcRelDeclares>
+				<RelatedDefinitions>
+					<IfcTypeProduct id="Tid_ProductType1" Name="cabinet" Description="Description of a cabinet"/>
+					<IfcPropertySetTemplate Name="geometic data" id="id_pset1_template">
+						<HasPropertyTemplates>
+							<IfcComplexPropertyTemplate GlobalId="1DbshTzGD71ejuZQqQcxab" Name="dimension" id="Tid_cp0">
+								<HasPropertyTemplates>
+									<IfcSimplePropertyTemplate id="id_propt_a_" GlobalId="1DbshTzGD71eOuZQqQcxan" Name="article" Description="SKU" TemplateType="p_singlevalue" PrimaryMeasureType="IfcLabel"/>
+									<IfcSimplePropertyTemplate id="id_propt_c_" GlobalId="1DbshTzGD71eOuZQqQcxan" Name="color" Description="" TemplateType="p_singlevalue" PrimaryMeasureType="IfcLabel"/>
+									<IfcSimplePropertyTemplate id="id_propt_s_" GlobalId="1DbshTzGD71eOuZQqQcxan" Name="size" Description="" TemplateType="p_singlevalue" PrimaryMeasureType="IfcLabel"/>
+									<IfcSimplePropertyTemplate id="id_propt_p_" GlobalId="1DbshTzGD71eOuZQqQcxan" Name="prize" Description="" TemplateType="p_singlevalue" PrimaryMeasureType="IfcLabel"/>
+									<IfcSimplePropertyTemplate id="id_propt_l" GlobalId="1DbshTzGD71ejuZQqQcxan" Name="length" Description="" TemplateType="p_singlevalue" PrimaryMeasureType="IfcReal"/>
+									<IfcSimplePropertyTemplate id="id_propt_w" GlobalId="1DbshTzGD71ejuZQqQcxao" Name="width" Description="" TemplateType="p_singlevalue" PrimaryMeasureType="IfcReal"/>
+									<IfcSimplePropertyTemplate id="id_propt_h" GlobalId="1DbshTzGD71ejuZQqQcxap" Name="height" Description="" TemplateType="p_singlevalue" PrimaryMeasureType="IfcReal"/>
+								</HasPropertyTemplates>
+							</IfcComplexPropertyTemplate>
+						</HasPropertyTemplates>
+					</IfcPropertySetTemplate>
+				</RelatedDefinitions>
+			</IfcRelDeclares>
+		</Declares>
+	</IfcProjectLibrary>
+	<!--List with products-->
+	<IfcProjectLibrary id="typeLib" GlobalId="1DbztTzGD71ejuZQqQcxab" Name="IFC parametric product type library" LongName="" Description="" Phase="">
+		<Declares>
+			<IfcRelDeclares>
+				<RelatedDefinitions>
+					<IfcSystemFurnitureElementType id="i01" GlobalId="1DbztTzGD71ejuZQqQcxah" Name="AKURUM" Description="Base cabinet frame">
+						<RepresentationMaps>
+							<IfcRepresentationMap>
+								<MappingOrigin>
+									<IfcAxis2Placement2D>
+										<Location/>
+									</IfcAxis2Placement2D>
+								</MappingOrigin>
+								<MappedRepresentation xsi:type="IfcShapeRepresentation" RepresentationIdentifier="Body" RepresentationType="CSG">
+									<ContextOfItems xsi:type="IfcGeometricRepresentationContext"/>
+									<Items>
+										<IfcBlock XLength="0.75" YLength="24.125" ZLength="30.375">
+											<!-- Left plate -->
+											<Position xsi:type="IfcAxis2Placement3D">
+												<Location xsi:type="IfcCartesianPoint" Coordinates="0 0 0"/>
+											</Position>
+										</IfcBlock>
+										<IfcBlock XLength="0.75" YLength="24.125" ZLength="30.375">
+											<!-- Right plate -->
+											<Position xsi:type="IfcAxis2Placement3D">
+												<Location xsi:type="IfcCartesianPoint" Coordinates="11.25 0 0"/>
+											</Position>
+										</IfcBlock>
+										<IfcBlock XLength="22.5" YLength="24.125" ZLength="0.75">
+											<!-- Bottom plate -->
+											<Position xsi:type="IfcAxis2Placement3D">
+												<Location xsi:type="IfcCartesianPoint" Coordinates="0.75 0 0"/>
+											</Position>
+										</IfcBlock>
+										<IfcBlock XLength="22.5" YLength="3" ZLength="0.75">
+											<!-- Top front beam -->
+											<Position xsi:type="IfcAxis2Placement3D">
+												<Location xsi:type="IfcCartesianPoint" Coordinates="0.75 0 29.625"/>
+											</Position>
+										</IfcBlock>
+										<IfcBlock XLength="22.5" YLength="3" ZLength="0.75">
+											<!-- Top back beam -->
+											<Position xsi:type="IfcAxis2Placement3D">
+												<Location xsi:type="IfcCartesianPoint" Coordinates="0.75 0 29.625"/>
+											</Position>
+										</IfcBlock>
+										<IfcBlock XLength="24" YLength="0.125" ZLength="30.375">
+											<!-- Back covering -->
+											<Position xsi:type="IfcAxis2Placement3D">
+												<Location xsi:type="IfcCartesianPoint" Coordinates="0 0 0"/>
+											</Position>
+										</IfcBlock>
+									</Items>
+								</MappedRepresentation>
+							</IfcRepresentationMap>
+							<IfcRepresentationMap>
+								<MappingOrigin>
+									<IfcAxis2Placement2D>
+										<Location/>
+									</IfcAxis2Placement2D>
+								</MappingOrigin>
+								<MappedRepresentation xsi:type="IfcShapeRepresentation" RepresentationIdentifier="Body" RepresentationType="CSG">
+									<ContextOfItems xsi:type="IfcGeometricRepresentationContext"/>
+									<Items>
+										<IfcBoundingBox XDim="24" YDim="24" ZDim="30.375">
+											<Corner Coordinates="0 0 0"/>
+										</IfcBoundingBox>
+									</Items>
+								</MappedRepresentation>
+							</IfcRepresentationMap>
+						</RepresentationMaps>
+					</IfcSystemFurnitureElementType>
+				</RelatedDefinitions>
+			</IfcRelDeclares>
+		</Declares>
+	</IfcProjectLibrary>
+	<IfcRelAssociatesConstraint>
+		<RelatedObjects>
+			<IfcSystemFurnitureElementType ref="i01"/>
+		</RelatedObjects>
+		<RelatingConstraint xsi:type="IfcObjective" Name="Parameters" ObjectiveQualifier="parameter" LogicalAggregator="logicaland">
+			<BenchmarkValues>
+				<IfcMetric Name="Size">
+					<DataValue>
+						<IfcTable>
+							<Rows>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>12</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>11.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>12</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>11.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>15</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>14.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>18</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>17.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>21</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>20.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>24</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>23.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>30</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>29.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>36</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>35.875</IfcPositiveLengthMeasure-wrapper>
+									</RowCells>
+								</IfcTableRow>
+							</Rows>
+							<Columns>
+								<IfcTableColumn Name="Size" Identifier="FrameSize"/>
+								<IfcTableColumn Name="Length">
+									<Unit>
+										<IfcSIUnit Name="metre" Prefix="milli" UnitType="lengthunit"/>
+									</Unit>
+									<ReferencePath TypeIdentifier="IfcSystemFurnitureElementType" AttributeIdentifier="RepresentationMaps" InstanceName="AKURUM" ListPositions="">
+										<InnerReference TypeIdentifier="IfcRepresentationMap" AttributeIdentifier="MappedRepresentation" InstanceName="" ListPositions="">
+											<InnerReference TypeIdentifier="IfcShapeRepresentation" AttributeIdentifier="Items" InstanceName="" ListPositions="1">
+												<InnerReference TypeIdentifier="IfcBlock" AttributeIdentifier="XLength" InstanceName="" ListPositions="">
+													<InnerReference TypeIdentifier="IfcPositiveLengthMeasure" AttributeIdentifier="" InstanceName="" ListPositions=""/>
+												</InnerReference>
+											</InnerReference>
+										</InnerReference>
+									</ReferencePath>
+								</IfcTableColumn>
+							</Columns>
+						</IfcTable>
+					</DataValue>
+				</IfcMetric>
+				<IfcMetric Name="Color">
+					<DataValue>
+						<IfcTable>
+							<Rows>
+								<IfcTableRow>
+									<RowCells>
+										<IfcIdentifier-wrapper>white</IfcIdentifier-wrapper>
+										<IfcText-wrapper>http://www.ikea.com/us/en/images/products/perfekt-cover-panel-for-basecabinet__0084008_PE210282_S4.JPG</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcIdentifier-wrapper>birch effect</IfcIdentifier-wrapper>
+										<IfcText-wrapper>http://www.ikea.com/us/en/images/products/perfekt-orsa-cover-panel-forbase-cabinet__0183273_PE334435_S4.JPG</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+							</Rows>
+							<Columns>
+								<IfcTableColumn Name="Color" Identifier="FrameColor"/>
+								<IfcTableColumn Name="Texture">
+									<ReferencePath TypeIdentifier="IfcRepresentationMap" AttributeIdentifier="MappedRepresentation" InstanceName="Body" ListPositions="">
+										<InnerReference TypeIdentifier="StyledByItem" AttributeIdentifier="Styles" InstanceName="" ListPositions="">
+											<InnerReference TypeIdentifier="IfcSurfaceStyle" AttributeIdentifier="Styles" InstanceName="" ListPositions="">
+												<InnerReference TypeIdentifier="IfcSurfaceStyleWithTextures" AttributeIdentifier="XLength" InstanceName="" ListPositions=""/>
+											</InnerReference>
+										</InnerReference>
+									</ReferencePath>
+								</IfcTableColumn>
+							</Columns>
+						</IfcTable>
+					</DataValue>
+				</IfcMetric>
+				<IfcMetric Name="Article" Description="table with values for all configuration samples. The property 'article' keeps the individual 'Stock Keeping Unit' (SKU). For each product and each product variant is given a unique number with which it can be assigned." ValueSource="Ikea catalogue">
+					<DataValue>
+						<IfcTable>
+							<Rows>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>543.817.10</IfcLabel-wrapper>
+										<IfcLabel-wrapper>white</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>12</IfcPositiveLengthMeasure-wrapper>
+										<IfcMonetaryMeasure-wrapper>28</IfcMonetaryMeasure-wrapper>
+										<IfcText-wrapper>http://www.ikea.com/us/en/images/products/akurum-base-cabinet-frame__35804_PE126721_S4.jpg</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>343.818.10</IfcLabel-wrapper>
+										<IfcLabel-wrapper>white</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>15</IfcPositiveLengthMeasure-wrapper>
+										<IfcMonetaryMeasure-wrapper>30</IfcMonetaryMeasure-wrapper>
+										<IfcText-wrapper>https://www.ikea.com/us/en/images/products/akurum-base-cabinet-frame__35807_PE126724_S4.jpg</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>132.819.10</IfcLabel-wrapper>
+										<IfcLabel-wrapper>white</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>18</IfcPositiveLengthMeasure-wrapper>
+										<IfcMonetaryMeasure-wrapper>31</IfcMonetaryMeasure-wrapper>
+										<IfcText-wrapper>https://www.ikea.com/us/en/images/products/akurum-base-cabinet-frame__35867_PE126797_S4.jpg</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>943.820.10</IfcLabel-wrapper>
+										<IfcLabel-wrapper>white</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>21</IfcPositiveLengthMeasure-wrapper>
+										<IfcMonetaryMeasure-wrapper>33</IfcMonetaryMeasure-wrapper>
+										<IfcText-wrapper>https://www.ikea.com/us/en/images/products/akurum-base-cabinet-frame__35805_PE126722_S4.jpg</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>743.821.10</IfcLabel-wrapper>
+										<IfcLabel-wrapper>white</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>24</IfcPositiveLengthMeasure-wrapper>
+										<IfcMonetaryMeasure-wrapper>36</IfcMonetaryMeasure-wrapper>
+										<IfcText-wrapper>http://www.ikea.com/us/en/images/products/akurum-base-cabinet-frame__35804_PE126721_S4.jpg</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+								<IfcTableRow>
+									<RowCells>
+										<IfcLabel-wrapper>700.493.43</IfcLabel-wrapper>
+										<IfcLabel-wrapper>birch effect</IfcLabel-wrapper>
+										<IfcPositiveLengthMeasure-wrapper>12</IfcPositiveLengthMeasure-wrapper>
+										<IfcMonetaryMeasure-wrapper>28</IfcMonetaryMeasure-wrapper>
+										<IfcText-wrapper>https://www.ikea.com/us/en/images/products/akurum-base-cabinet-frame__35800_PE126717_S4.jpg</IfcText-wrapper>
+									</RowCells>
+								</IfcTableRow>
+							</Rows>
+							<Columns>
+								<IfcTableColumn Name="Article"/>
+								<IfcTableColumn Name="Color" Identifier="FrameColor"/>
+								<IfcTableColumn Name="Size" Identifier="FrameSize"/>
+								<IfcTableColumn Name="Price">
+									<ReferencePath TypeIdentifier="Types[*]" AttributeIdentifier="RelatedObjects[*]">
+										<InnerReference TypeIdentifier="IfcProduct.HasAssignments" AttributeIdentifier="HasAssignments">
+											<InnerReference TypeIdentifier="IfcRelAssignsToControl" AttributeIdentifier="RelatingControl">
+												<InnerReference TypeIdentifier="IfcCostItem" AttributeIdentifier="CostValues['MSRP']" InstanceName="AppliedValue">
+													<InnerReference AttributeIdentifier="IfcMonetaryMeasure"/>
+												</InnerReference>
+											</InnerReference>
+										</InnerReference>
+									</ReferencePath>
+								</IfcTableColumn>
+								<IfcTableColumn Name="Image">
+									<ReferencePath TypeIdentifier="Types[*]" AttributeIdentifier="RelatedObjects[*]" InstanceName="HasAssociations['Icon']">
+										<InnerReference TypeIdentifier="IfcRelAssociatesDocument" AttributeIdentifier="RelatingDocument">
+											<InnerReference TypeIdentifier="IfcDocumentInformation" AttributeIdentifier="Location">
+												<InnerReference AttributeIdentifier="IfcUriReference"/>
+											</InnerReference>
+										</InnerReference>
+									</ReferencePath>
+								</IfcTableColumn>
+							</Columns>
+						</IfcTable>
+					</DataValue>
+					<ReferencePath AttributeIdentifier="Tag"/>
+				</IfcMetric>
+				<IfcMetric Name="Parametric calculation of geometry Right plate" Description="PositionX=Size-0.75">
+					<DataValue>
+						<IfcAppliedValue ArithmeticOperator="subtract">
+							<Components>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcReference TypeIdentifier="RepresentationMaps" AttributeIdentifier="MappedRepresentation['BoundingBox']">
+											<InnerReference AttributeIdentifier=".Items[1]">
+												<InnerReference AttributeIdentifier=".XDim"/>
+											</InnerReference>
+										</IfcReference>
+									</AppliedValue>
+								</IfcAppliedValue>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcLengthMeasure-wrapper>.75</IfcLengthMeasure-wrapper>
+									</AppliedValue>
+								</IfcAppliedValue>
+							</Components>
+						</IfcAppliedValue>
+					</DataValue>
+					<ReferencePath TypeIdentifier="RepresentationMap" AttributeIdentifier="MappedRepresentation['Body']" InstanceName="Items[2]">
+						<InnerReference TypeIdentifier="Position" AttributeIdentifier="Location">
+							<InnerReference AttributeIdentifier="Points[1]"/>
+						</InnerReference>
+					</ReferencePath>
+				</IfcMetric>
+				<IfcMetric Name="Parametric calculation of geometry Bottom plate" Description="LengthX=Size-0.75">
+					<DataValue>
+						<IfcAppliedValue ArithmeticOperator="subtract">
+							<Components>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcReference TypeIdentifier="RepresentationMaps.MappedRepresentation['BoundingBox'].Items[1].XDim"/>
+									</AppliedValue>
+								</IfcAppliedValue>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcLengthMeasure-wrapper>1.5</IfcLengthMeasure-wrapper>
+									</AppliedValue>
+								</IfcAppliedValue>
+							</Components>
+						</IfcAppliedValue>
+					</DataValue>
+					<ReferencePath TypeIdentifier="RepresentationMap" AttributeIdentifier="MappedRepresentation['Body']">
+						<InnerReference AttributeIdentifier="Items[3]">
+							<InnerReference AttributeIdentifier="XLength"/>
+						</InnerReference>										
+					</ReferencePath>	
+				</IfcMetric>
+				<IfcMetric Name="Parametric calculation of geometry Top front beam" Description="LengthX=Size-0.75">
+					<DataValue>
+						<IfcAppliedValue ArithmeticOperator="subtract">
+							<Components>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcReference TypeIdentifier="RepresentationMaps" AttributeIdentifier="MappedRepresentation['BoundingBox']">
+											<InnerReference AttributeIdentifier="Items[1]">
+												<InnerReference AttributeIdentifier="XDim"/>	
+											</InnerReference>									
+										</IfcReference>
+									</AppliedValue>
+								</IfcAppliedValue>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcLengthMeasure-wrapper>1.5</IfcLengthMeasure-wrapper>
+									</AppliedValue>
+								</IfcAppliedValue>
+							</Components>
+						</IfcAppliedValue>
+					</DataValue>
+					<ReferencePath TypeIdentifier="RepresentationMap" AttributeIdentifier="MappedRepresentation['Body']">
+						<InnerReference AttributeIdentifier="Items[4]">
+							<InnerReference AttributeIdentifier="XLength"/>
+						</InnerReference>										
+					</ReferencePath>					
+				</IfcMetric>
+				<IfcMetric Name="Parametric calculation of geometry Top back beam" Description="LengthX=Size-0.75">
+					<DataValue>
+						<IfcAppliedValue ArithmeticOperator="subtract">
+							<Components>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcReference TypeIdentifier="RepresentationMaps" AttributeIdentifier="MappedRepresentation['BoundingBox']">
+											<InnerReference AttributeIdentifier="Items[1]">
+												<InnerReference AttributeIdentifier="XDim"/>
+											</InnerReference>
+										</IfcReference>
+									</AppliedValue>
+								</IfcAppliedValue>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcLengthMeasure-wrapper>1.5</IfcLengthMeasure-wrapper>
+									</AppliedValue>
+								</IfcAppliedValue>
+							</Components>
+						</IfcAppliedValue>
+					</DataValue>
+					<ReferencePath TypeIdentifier="RepresentationMap" AttributeIdentifier="MappedRepresentation['Body']">
+						<InnerReference AttributeIdentifier="Items[5]">
+							<InnerReference AttributeIdentifier="XLength"/>
+						</InnerReference>										
+					</ReferencePath>
+				</IfcMetric>
+				<IfcMetric Name="Parametric calculation of geometry Back covering" Description="LengthX=Size">
+					<DataValue>
+						<IfcAppliedValue ArithmeticOperator="subtract">
+							<Components>
+								<IfcAppliedValue>
+									<AppliedValue>
+										<IfcReference TypeIdentifier="RepresentationMaps" AttributeIdentifier="MappedRepresentation['BoundingBox']">
+											<InnerReference AttributeIdentifier="Items[1]">
+												<InnerReference AttributeIdentifier="XDim"/>
+											</InnerReference>										
+										</IfcReference>
+									</AppliedValue>
+								</IfcAppliedValue>
+							</Components>
+						</IfcAppliedValue>
+					</DataValue>
+					<ReferencePath TypeIdentifier="RepresentationMap" AttributeIdentifier="MappedRepresentation['Body']">
+						<InnerReference AttributeIdentifier="Items[6]">
+							<InnerReference AttributeIdentifier="XLength"/>
+						</InnerReference>										
+					</ReferencePath>
+				</IfcMetric>
+			</BenchmarkValues>
+		</RelatingConstraint>
+	</IfcRelAssociatesConstraint>
+	<IfcProject id="p1" Name="MyProject" LongName=" "/>
+	<IfcRelAssociatesConstraint>
+		<RelatedObjects>
+			<IfcSystemFurnitureElementType id="i91" Name="BaseCabinetFrame"/>
+		</RelatedObjects>
+		<RelatingConstraint xsi:type="IfcObjective" Name="Parameters" ObjectiveQualifier="parameter">
+			<BenchmarkValues>
+				<IfcMetric Name="Article">
+					<DataValue>
+						<IfcIdentifier-wrapper>743.821.10</IfcIdentifier-wrapper>
+					</DataValue>
+				</IfcMetric>
+				<IfcMetric Name="Size">
+					<DataValue>
+						<IfcPositiveLengthMeasure-wrapper>24</IfcPositiveLengthMeasure-wrapper>
+					</DataValue>
+				</IfcMetric>
+				<IfcMetric Name="Color">
+					<DataValue>
+						<IfcLabel-wrapper>white</IfcLabel-wrapper>
+					</DataValue>
+				</IfcMetric>
+			</BenchmarkValues>
+		</RelatingConstraint>
+	</IfcRelAssociatesConstraint>
+	<IfcElementAssemblyType id="i345" GlobalId="1DbshTzGD71ejfZQqQcxab" Name="IKEA Cabinet" Description="This is an occurring real life cabinet, build as preassembled product, containing the frame, the door, and other parts" PredefinedType="userdefined">
+		<IsDecomposedBy>
+			<IfcRelAggregates>
+				<RelatedObjects>
+					<IfcSystemFurnitureElement id="i346" GlobalId="1DbshTzGD71ejfZQqQcxaz" Tag="14567890" Name="Frame" Description="This is an occurring real life frame"  PredefinedType="userdefined">
+						<IsTypedBy>
+							<RelatingType ref="i91"/>
+						</IsTypedBy>
+					</IfcSystemFurnitureElement>
+				</RelatedObjects>
+			</IfcRelAggregates>
+		</IsDecomposedBy>
+	</IfcElementAssemblyType>
+</ifcXML>

@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, 3, 3, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 3 }, new int [] { -1, 3 }, 4)]
 		public IOptionalItemSet<IItemSet<IfcPositiveInteger>> @TexCoordIndex 
 		{ 
 			get 

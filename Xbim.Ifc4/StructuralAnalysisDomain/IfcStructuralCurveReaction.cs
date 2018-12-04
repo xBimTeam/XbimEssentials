@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 23)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 23)]
 		public IfcStructuralCurveActivityTypeEnum @PredefinedType 
 		{ 
 			get 

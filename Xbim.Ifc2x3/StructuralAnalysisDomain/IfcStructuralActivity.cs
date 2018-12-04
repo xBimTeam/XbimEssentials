@@ -68,7 +68,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 14)]
 		public IfcStructuralLoad @AppliedLoad 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				SetValue( v =>  _appliedLoad = v, _appliedLoad, value,  "AppliedLoad", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 15)]
 		public IfcGlobalOrLocalEnum @GlobalOrLocal 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 		#region Inverse attributes
 		[InverseProperty("RelatedStructuralActivity")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 16)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, null, null, 16)]
 		public IfcRelConnectsStructuralActivity @AssignedToStructuralItem 
 		{ 
 			get 

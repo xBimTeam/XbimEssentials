@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcCartesianPoint @Position 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _position = v, _position, value,  "Position", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcPositiveLengthMeasure @Radius 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _radius = v, _radius, value,  "Radius", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcReal @ConstantAttenuation 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _constantAttenuation = v, _constantAttenuation, value,  "ConstantAttenuation", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcReal @DistanceAttenuation 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _distanceAttenuation = v, _distanceAttenuation, value,  "DistanceAttenuation", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcReal @QuadricAttenuation 
 		{ 
 			get 

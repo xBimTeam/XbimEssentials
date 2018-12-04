@@ -8,9 +8,11 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Collections
 {
+    // todo: predicates valid on inner class should be checked in this class
+    //
     public class ProxyValueSet<TInner, TOuter> : IItemSet<TOuter>, IList 
-        where TInner : struct
-        where TOuter : struct
+        //where TInner : struct
+        //where TOuter : struct
     {
         private readonly IItemSet<TInner> _inner;
         private readonly Func<TInner, TOuter> _toOut;
@@ -207,37 +209,22 @@ namespace Xbim.Common.Collections
 
         public void AddRange(IEnumerable<TOuter> values)
         {
-            _inner.AddRange(values.Cast<TInner>());
-        }
-
-        public TOuter First
-        {
-            get { return _toOut(_inner.First); }
-        }
-
-        public TOuter FirstOrDefault()
-        {
-            return _inner.Count == 0 ? new TOuter() : _toOut(_inner.FirstOrDefault());
+            _inner.AddRange(values.Select(v => _toIn(v)));
         }
 
         public TOuter FirstOrDefault(Func<TOuter, bool> predicate)
         {
-            return _inner.FirstOrDefault(predicate);
+            return Enumerable.FirstOrDefault(this, predicate);
         }
 
-        public TF FirstOrDefault<TF>(Func<TF, bool> predicate)
+        public TF FirstOrDefault<TF>(Func<TF, bool> predicate) where TF : TOuter
         {
-            return _inner.FirstOrDefault(predicate);
+            return this.OfType<TF>().FirstOrDefault(predicate);
         }
 
-        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate)
+        public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW : TOuter
         {
-            return _inner.Where(predicate);
-        }
-
-        public IEnumerable<TO> OfType<TO>()
-        {
-            return _inner.OfType<TO>();
+            return this.OfType<TW>().Where(predicate);
         }
 
         private class ProxyEnumerator : IEnumerator<TOuter>

@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 27)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 27)]
 		public IfcPositiveLengthMeasure? @OverallHeight 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.SharedBldgElements
 				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 28)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 28)]
 		public IfcPositiveLengthMeasure? @OverallWidth 
 		{ 
 			get 
