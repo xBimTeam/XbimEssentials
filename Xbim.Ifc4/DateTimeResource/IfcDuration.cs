@@ -7,8 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using System;
-using System.Globalization;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4.MeasureResource;
