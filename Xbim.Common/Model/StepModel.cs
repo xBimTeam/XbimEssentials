@@ -64,9 +64,7 @@ namespace Xbim.Common.Model
         }
 
         private readonly EntityCollection _instances;
-
-        private IEntityFactory _entityFactory;
-        public IEntityFactory EntityFactory { get { return _entityFactory; } }
+        public IEntityFactory EntityFactory { get; private set; }
         private readonly EntityFactoryResolverDelegate _factoryResolver;
 
 
@@ -84,7 +82,7 @@ namespace Xbim.Common.Model
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
 
             Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, this);
-            foreach (var schemasId in _entityFactory.SchemasIds)
+            foreach (var schemasId in EntityFactory.SchemasIds)
                 Header.FileSchema.Schemas.Add(schemasId);
         }
 
@@ -109,7 +107,7 @@ namespace Xbim.Common.Model
 
         private void InitFromEntityFactory(IEntityFactory entityFactory)
         {
-            _entityFactory = entityFactory ?? throw new ArgumentNullException("entityFactory");
+            EntityFactory = entityFactory ?? throw new ArgumentNullException("entityFactory");
         }
 
         /// <summary>
@@ -127,55 +125,6 @@ namespace Xbim.Common.Model
             return true;
         }
 
-        /// <summary>
-        /// This function will try and release a persistent entity from the model, if the entity is referenced by another entity 
-        /// it will stay in the model but can only be accessed via other entities,however if the model is saved and then reloaded 
-        /// the entity will be restored to persisted status
-        /// if the the entity is not referenced it will be garbage collected and removed and lost
-        /// All entities that are directly referenced by this entity will also be made candidates to be dropped and dropped
-        /// inverse references are not pursued
-        /// Once dropped an entity cannot be accessed via the instances collection.
-        /// Returns a collection of entities that have been dropped
-        /// </summary>
-        /// <param name="entity">the root entity to drop</param>
-        public IEnumerable<IPersistEntity> TryDrop(IPersistEntity entity)
-        {
-            var dropped = new HashSet<IPersistEntity>();
-            TryDrop(entity, dropped);
-            return dropped;
-        }
-
-
-        private void TryDrop(IPersistEntity entity, HashSet<IPersistEntity> dropped)
-        {
-
-            if (!dropped.Add(entity)) return; //if the entity is in the map do not delete it again
-            if (!_instances.Contains(entity)) return; //already gone
-            _instances.RemoveReversible(entity);
-            var expressType = Metadata.ExpressType(entity);
-            foreach (var ifcProperty in expressType.Properties.Values)
-            //only delete persistent attributes, ignore inverses
-            {
-                if (ifcProperty.EntityAttribute.State != EntityAttributeState.DerivedOverride)
-                {
-                    var propVal = ifcProperty.PropertyInfo.GetValue(entity, null);
-                    var iPersist = propVal as IPersistEntity;
-                    if (iPersist != null)
-                        TryDrop(iPersist, dropped);
-                    else if (propVal is IExpressEnumerable)
-                    {
-                        var propType = ifcProperty.PropertyInfo.PropertyType;
-                        //only process lists that are real lists, see Cartesian point
-                        var genType = propType.GetItemTypeFromGenericType();
-                        if (genType != null && typeof(IPersistEntity).GetTypeInfo().IsAssignableFrom(genType))
-                        {
-                            foreach (var item in ((IExpressEnumerable)propVal).OfType<IPersistEntity>())
-                                TryDrop(item, dropped);
-                        }
-                    }
-                }
-            }
-        }
         /// <summary>
         /// This will delete the entity from model dictionary and also from any references in the model.
         /// Be careful as this might take a while to check for all occurrences of the object. Also make sure 
@@ -245,7 +194,7 @@ namespace Xbim.Common.Model
             get
             {
                 return _metadata ?? 
-                    (_metadata = ExpressMetaData.GetMetadata(_entityFactory.GetType().GetTypeInfo().Module));
+                    (_metadata = ExpressMetaData.GetMetadata(EntityFactory.GetType().GetTypeInfo().Module));
             }
         }
 
@@ -259,22 +208,67 @@ namespace Xbim.Common.Model
             }
         }
 
+        private List<NewEntityHandler> _newEntityHandlers = new List<NewEntityHandler>();
+        private List<ModifiedEntityHandler> _modifiedEntityHandlers = new List<ModifiedEntityHandler>();
+        private List<DeletedEntityHandler> _deletedEntityHandlers = new List<DeletedEntityHandler>();
+
+        private event NewEntityHandler _entityNew;
+        private event ModifiedEntityHandler _entityModified;
+        private event DeletedEntityHandler _entityDeleted;
+
         /// <summary>
         /// This event is fired every time new entity is created.
         /// </summary>
-        public event NewEntityHandler EntityNew;
+        public event NewEntityHandler EntityNew
+        {
+            add
+            {
+                _entityNew += value;
+                _newEntityHandlers.Add(value);
+            }
+            remove
+            {
+                _entityNew -= value;
+                _newEntityHandlers.RemoveAll(v => v.Equals(value));
+            }
+        }
 
         /// <summary>
         /// This event is fired every time any entity is modified. If your model is not
         /// transactional it might not be called at all as the central point for all
         /// modifications is a transaction.
         /// </summary>
-        public event ModifiedEntityHandler EntityModified;
+        public event ModifiedEntityHandler EntityModified
+        {
+            add
+            {
+                _entityModified += value;
+                _modifiedEntityHandlers.Add(value);
+            }
+            remove
+            {
+                _entityModified -= value;
+                _modifiedEntityHandlers.RemoveAll(v => v.Equals(value));
+            }
+        }
 
         /// <summary>
         /// This event is fired every time when entity gets deleted from model.
         /// </summary>
-        public event DeletedEntityHandler EntityDeleted;
+        public event DeletedEntityHandler EntityDeleted
+        {
+            add
+            {
+                _entityDeleted += value;
+                _deletedEntityHandlers.Add(value);
+            }
+            remove
+            {
+                _entityDeleted -= value;
+                _deletedEntityHandlers.RemoveAll(v => v.Equals(value));
+            }
+        }
+
 
         public IInverseCache BeginInverseCaching()
         {
@@ -325,16 +319,13 @@ namespace Xbim.Common.Model
             switch (changeType)
             {
                 case ChangeType.New:
-                    if (EntityNew != null)
-                        EntityNew(entity);
+                        _entityNew?.Invoke(entity);
                     break;
                 case ChangeType.Deleted:
-                    if (EntityDeleted != null)
-                        EntityDeleted(entity);
+                        _entityDeleted?.Invoke(entity);
                     break;
                 case ChangeType.Modified:
-                    if (EntityModified != null)
-                        EntityModified(entity, propertyOrder);
+                        _entityModified?.Invoke(entity, propertyOrder);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("changeType", changeType, null);
@@ -359,7 +350,7 @@ namespace Xbim.Common.Model
             if (Header == null)
                 Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, this);
 
-            if (_entityFactory == null && _factoryResolver == null)
+            if (EntityFactory == null && _factoryResolver == null)
             {
                     throw new XbimParserException("EntityFactory is not defined and no resolver is specified to create one. Data can't be created.");
             }
@@ -384,18 +375,18 @@ namespace Xbim.Common.Model
                     }
                 }
 
-                if (_entityFactory == null)
+                if (EntityFactory == null)
                 {
-                    _entityFactory = _factoryResolver(Header.FileSchema.Schemas);
-                    if (_entityFactory == null)
+                    EntityFactory = _factoryResolver(Header.FileSchema.Schemas);
+                    if (EntityFactory == null)
                         throw new XbimParserException($"Entity factory resolver didn't resolve factory for schema '{string.Join(", ", Header.FileSchema.Schemas)}'");
-                    InitFromEntityFactory(_entityFactory);
+                    InitFromEntityFactory(EntityFactory);
                 }
 
                 if (label == null)
-                    return _entityFactory.New(name);
+                    return EntityFactory.New(name);
 
-                var ent = _entityFactory.New(this, name, (int)label, true);
+                var ent = EntityFactory.New(this, name, (int)label, true);
 
                 // if entity is null do not add so that the file load operation can survive an illegal entity
                 // e.g. an abstract class instantiation.
@@ -423,7 +414,7 @@ namespace Xbim.Common.Model
                 //fix header with the schema if it was not a part of the data
                 if (Header.FileSchema.Schemas.Count == 0)
                 {
-                    foreach (var s in _entityFactory.SchemasIds)
+                    foreach (var s in EntityFactory.SchemasIds)
                     {
                         Header.FileSchema.Schemas.Add(s);
                     }
@@ -436,12 +427,12 @@ namespace Xbim.Common.Model
             }
 
             // if the model is empty, having just a header, entity factory might still be empty
-            if (_entityFactory == null)
+            if (EntityFactory == null)
             {
-                _entityFactory = _factoryResolver(Header.FileSchema.Schemas);
-                if (_entityFactory == null)
+                EntityFactory = _factoryResolver(Header.FileSchema.Schemas);
+                if (EntityFactory == null)
                     throw new XbimParserException($"Entity factory resolver didn't resolve factory for schema '{string.Join(", ", Header.FileSchema.Schemas)}'");
-                InitFromEntityFactory(_entityFactory);
+                InitFromEntityFactory(EntityFactory);
             }
 
             //fix case if necessary
@@ -450,7 +441,7 @@ namespace Xbim.Common.Model
                 var id = Header.FileSchema.Schemas[i];
                 
                            
-                var sid = _entityFactory.SchemasIds.FirstOrDefault(s => id.StartsWith(s, StringComparison.OrdinalIgnoreCase));
+                var sid = EntityFactory.SchemasIds.FirstOrDefault(s => id.StartsWith(s, StringComparison.OrdinalIgnoreCase));
                 if (sid == null)
                 {
                     //add in a bit of flexibility for old Ifc models with weird schema names
@@ -458,7 +449,7 @@ namespace Xbim.Common.Model
                     if(old2xSchemaNamesThatAreOK.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase))==null)
                         throw new XbimParserException("Mismatch between schema defined in the file and schemas available in the data model.");
                     else
-                        sid = _entityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, "IFC2X3", StringComparison.OrdinalIgnoreCase));
+                        sid = EntityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, "IFC2X3", StringComparison.OrdinalIgnoreCase));
                 }
                 //if the case is different set it to the one from entity factory
                 if (id != sid)
@@ -536,6 +527,16 @@ namespace Xbim.Common.Model
         {
             _instances.Dispose();
             _transactionReference = null;
+            _cacheReference = null;
+            _entityCacheReference = null;
+
+            // detach all listeners
+            _newEntityHandlers.ForEach(h => EntityNew -= h);
+            _modifiedEntityHandlers.ForEach(h => EntityModified -= h);
+            _deletedEntityHandlers.ForEach(h => EntityDeleted -= h);
+            _newEntityHandlers.Clear();
+            _modifiedEntityHandlers.Clear();
+            _deletedEntityHandlers.Clear();
         }
 
         /// <summary>
@@ -621,7 +622,7 @@ namespace Xbim.Common.Model
 
         public XbimSchemaVersion SchemaVersion
         {
-            get { return _entityFactory.SchemaVersion; }
+            get { return EntityFactory.SchemaVersion; }
         }
 
         private WeakReference<MemoryEntityCache> _entityCacheReference;
