@@ -824,7 +824,8 @@ namespace Xbim.Ifc
         /// <param name="actualFormat">this will be correctly set</param>
         /// <param name="progDelegate"></param>
         private void SaveAs(string actualFileName, StorageType actualFormat, ReportProgressDelegate progDelegate)
-        {
+          {
+            FileName = actualFileName;
             if (actualFormat.HasFlag(StorageType.Xbim)) //special case for xbim
             {
                 var ef = GetFactory(SchemaVersion);
