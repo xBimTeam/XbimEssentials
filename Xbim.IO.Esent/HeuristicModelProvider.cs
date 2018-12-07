@@ -11,6 +11,9 @@ using Xbim.IO.Memory;
 namespace Xbim.Ifc
 {
 
+    // IMPORTANT: if we ever rename this provider we need to update the DefaultModelProviderFactory, since
+    // this is the default provider when the assembly is loaded, and it's discovered by Name through reflection
+
     /// <summary>
     /// The <see cref="HeuristicModelProvider"/> encapsulates the underlying <see cref="IModel"/> implementations we use 
     /// to provide different persistance performance characteristics, depending on the use-case and the consumer's inputs.
