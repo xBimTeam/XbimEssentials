@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using Xbim.Ifc;
 using Xbim.IO;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Xbim.Essentials.Tests
 {
@@ -19,9 +21,21 @@ namespace Xbim.Essentials.Tests
         // To really test this in an assembly that references Esent (like this test suite),
         // we need to create a fresh appdomain
 
-
         // Just to force Esent into memory/AppDomain so we get consistent tests regardless of what test ran prior
-        static readonly Type dummyReferenceToLoadEsentAsembly = typeof(Xbim.IO.Esent.EsentModel);
+
+        [MethodImpl(MethodImplOptions.NoOptimization)]
+        static DefaultModelProviderFactoryTests()
+        {
+            Type dummyReferenceToLoadEsentAsembly = typeof(Xbim.IO.Esent.EsentModel);
+        }
+
+
+        private readonly ITestOutputHelper testOutputHelper;
+
+        public DefaultModelProviderFactoryTests(ITestOutputHelper  testOutputHelper)
+        {
+            this.testOutputHelper = testOutputHelper;
+        }
 
         [Fact]
         public void ShouldProvideHeuristicModelProvider_When_XBIM_Esent_Loaded()
@@ -37,8 +51,13 @@ namespace Xbim.Essentials.Tests
         public void Should_Load_IO_Esent_In_Default_Domain()
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(asm => asm.GetName().Name == "Xbim.IO.Esent");
+                .Where(asm => asm.GetName().Name.Equals("Xbim.IO.Esent", StringComparison.InvariantCultureIgnoreCase));
+            var asms = AppDomain.CurrentDomain.GetAssemblies().Select(asm => asm.GetName().Name);
 
+            foreach (var m in asms)
+            {
+                testOutputHelper.WriteLine(m);
+            }
             Assert.Single(assemblies);
         }
 
