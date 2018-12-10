@@ -12,6 +12,10 @@ the buildingSmart [IFC formats](https://en.wikipedia.org/wiki/Industry_Foundatio
 
 As of version 5.0 XbimEssentials includes elementary support for .NET Core 2.0 in addition .NET Framework.
 
+## Updating from prior versions
+
+Please see our [ChangeLog](CHANGELOG.md) for details on what's new and what you need to upgrade.
+
 ## Background / Motivation ##
 
 **IFC** is an [ISO Standard](https://www.iso.org/standard/51622.html) and platform-neutral open file format for 

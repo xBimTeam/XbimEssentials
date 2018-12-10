@@ -1,17 +1,16 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
+using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21;
-using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Essentials.Tests
 {
@@ -449,23 +448,28 @@ namespace Xbim.Essentials.Tests
                 store.Close();
             }
 
-            var schemaVersion = IfcStore.GetXbimSchemaVersion("Esent2X3.ifc");
+            var modelStore = new HeuristicModelProvider();
+            var schemaVersion = modelStore.GetXbimSchemaVersion("Esent2X3.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc2X3);
-            schemaVersion = IfcStore.GetXbimSchemaVersion("Esent4.ifc");
+            schemaVersion = modelStore.GetXbimSchemaVersion("Esent4.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4);
-            schemaVersion = IfcStore.GetXbimSchemaVersion("Memory2X3.ifc");
+            schemaVersion = modelStore.GetXbimSchemaVersion("Memory2X3.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc2X3);
-            schemaVersion = IfcStore.GetXbimSchemaVersion("Memory4.ifc");
+            schemaVersion = modelStore.GetXbimSchemaVersion("Memory4.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4);
         }
+
+        
 
         [TestMethod]
         [DeploymentItem("TestFiles")]
         public void ReadIfcHeaderTest()
         {
-            var schemaVersion = IfcStore.GetXbimSchemaVersion("SampleHouse4.ifc");
+            var modelStore = new HeuristicModelProvider();
+
+            var schemaVersion = modelStore.GetXbimSchemaVersion("SampleHouse4.ifc");
             Assert.IsTrue(schemaVersion==XbimSchemaVersion.Ifc4);
-            schemaVersion = IfcStore.GetXbimSchemaVersion("4walls1floorSite.ifc");
+            schemaVersion = modelStore.GetXbimSchemaVersion("4walls1floorSite.ifc");
             Assert.IsTrue(schemaVersion==XbimSchemaVersion.Ifc2X3);
 
             //first run with a memory model opeing Ifc4 file
@@ -604,6 +608,60 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(count == originalCount, "Should have more than zero instances"); //read mode is working                              
                 ifcStore.Close();
             }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void FileBasedStore_Should_TidyUp_OnClose()
+        {
+            string xbimFile;
+            // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
+            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            {
+                xbimFile = ifcStore.Location;
+                Assert.IsTrue(File.Exists(xbimFile));
+                ifcStore.Close();
+            }
+
+            Assert.IsFalse(File.Exists(xbimFile));
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void FileBasedStore_Should_Retain_Saved_XBIM_Files()
+        {
+            string transientXbimFile;
+            string savedXBimFile = Path.ChangeExtension(Guid.NewGuid().ToString(), ".xbim");
+
+            // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
+            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            {
+                transientXbimFile = ifcStore.Location;
+                
+                ifcStore.SaveAs(savedXBimFile);
+                ifcStore.Close();
+            }
+            Assert.IsTrue(File.Exists(savedXBimFile));
+            Assert.IsFalse(File.Exists(transientXbimFile));
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
+        public void FileBasedStore_Should_Not_retain_Saving_as_Same_file()
+        {
+            // Tests a special case - saving a transient xbim over itself
+            // TODO: In theory could make this disable the transient behaviour
+            string transientXbimFile;
+            
+            // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
+            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            {
+                transientXbimFile = ifcStore.Location;
+
+                ifcStore.SaveAs(transientXbimFile);
+                ifcStore.Close();
+            }
+            Assert.IsFalse(File.Exists(transientXbimFile));
         }
 
         [TestMethod] [DeploymentItem("TestFiles")] 

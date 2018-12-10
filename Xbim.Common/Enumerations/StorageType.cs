@@ -4,6 +4,9 @@ using System.IO;
 namespace Xbim.IO
 {
    
+    /// <summary>
+    /// The data format a model file is stored in
+    /// </summary>
     [Flags]
     public enum StorageType
     {

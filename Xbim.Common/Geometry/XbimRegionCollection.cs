@@ -79,11 +79,13 @@ namespace Xbim.Common.Geometry
                 if (!oldVersion)
                 {
                     region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+#pragma warning disable CS0618 // Type or member is obsolete
                     region.version = version;
                 }
                 else
                 {
                     region.version = 0;
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 coll.Add(region);
             }
@@ -126,10 +128,12 @@ namespace Xbim.Common.Geometry
                 if (!oldVersion)
                 {
                     region.WorldCoordinateSystem = XbimMatrix3D.FromArray(br.ReadBytes(CoordSize));
+#pragma warning disable CS0618 // Type or member is obsolete
                     region.version = version;
                 }
                 else {
                     region.version = 0;
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 region.Size = new XbimVector3D(x, y, z);
                 Add(region);

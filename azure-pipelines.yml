@@ -28,6 +28,10 @@ steps:
     echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)
   name: 'SettingNugetPackageVersion'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+- script: | 
+    echo ##vso[task.setvariable variable=version]$(major).$(minor).$(patch)-ignore
+  name: 'SettingOtherBranchNugetPackageVersion'
+  condition: and(ne(variables['Build.SourceBranch'], 'refs/heads/master'),ne(variables['Build.SourceBranch'], 'refs/heads/develop'))
 
 # Windows script setting up $(fileversion) used to stamp AssemblyFileVersions. 
 # By convention we use 'Major.Minor.BuildNo.0' on Master and 'Major.Minor.0.BuildNo' on other branches
@@ -98,8 +102,8 @@ steps:
 - script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(version)
   name: 'Ifc_Update_MemoryModel'
   
-- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.Esent -s $(Build.BinariesDirectory) -v $(version)
-  name: 'Ifc_Update_EsentModel'
+#- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.Esent -s $(Build.BinariesDirectory) -v $(version)
+#  name: 'Ifc_Update_EsentModel'
 
 - script: dotnet pack Xbim.Ifc\Xbim.Ifc.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(version)
   name: 'Ifc_Pack'
