@@ -16,7 +16,7 @@ namespace Xbim.Ifc
     /// A default factory that provides an <see cref="IModelProvider"/>
     /// </summary>
     /// <remarks>By default, unless Xbim.Esent.IO is referenced the factory will create a <see cref="MemoryModelProvider"/>
-    /// If Esent is loaded, the Heuristic provider is loaded, which provided.
+    /// If Esent is loaded, the Heuristic provider is loaded, which provides better scalability.
     /// </remarks>
     public class DefaultModelProviderFactory : IModelProviderFactory
     {
@@ -59,12 +59,15 @@ namespace Xbim.Ifc
                 }
                 else
                 {
-                    logger.LogInformation("Defaulting to MemoryModelProvider. Working with large models could be sub-optimal");
+                    logger.LogWarning(
+                        @"Defaulting to MemoryModelProvider. Working with large models could be sub-optimal. 
+To fix this warning, consider calling 'IfcStore.ModelProviderFactory.UseHeuristicModelProvider();' at application startup'");
                 }
             }
             catch(Exception ex)
             {
-                logger.LogError(ex, "Failed to resolve Esent.IO's ModelProvider. Defaulting to MemoryModelProvider");
+                logger.LogError(ex, @"Failed to resolve Esent.IO's ModelProvider. Defaulting to MemoryModelProvider. 
+Consider calling 'IfcStore.ModelProviderFactory.UseHeuristicModelProvider();' at application startup'");
             }
             return new MemoryModelProvider();
         }

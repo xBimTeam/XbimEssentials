@@ -1,6 +1,7 @@
-﻿using Xbim.IO.Memory;
+﻿using Xbim.IO;
+using Xbim.IO.Memory;
 
-namespace Xbim.IO.MemoryModel
+namespace Xbim.Ifc
 {
     public static class ModelProviderExtensions
     {
@@ -14,7 +15,7 @@ namespace Xbim.IO.MemoryModel
         /// </remarks>
         /// <param name="providerFactory">The <see cref="IModelProviderFactory"/> to configure</param>
         /// <returns>The <see cref="IModelProviderFactory"/></returns>
-        public static IModelProviderFactory UseHeuristicModelProvider(this IModelProviderFactory providerFactory)
+        public static IModelProviderFactory UseMemoryModelProvider(this IModelProviderFactory providerFactory)
         {
             providerFactory.Use(() => new MemoryModelProvider());
             return providerFactory;
