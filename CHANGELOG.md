@@ -16,6 +16,7 @@ All notable changes to this project should be documented in this file
   - If you don't configure the `IfcStore` to do this, you will likely result in use of the very basic `MemoryModel` implementation which does not support *.xbim* files
   - ASP.NET [Core] consumers should not need to do this, but no harm in configuring explicitly.
 - IfcStore methods factored out to Extension methods: *InsertCopy*, *SaveAsIfc/IfcXml/IfcZip*, *SaveAsWexbim*
+- Assemblies code signed again.
 
 ### Added
 - Support for IFC4x1 and IFC4 Addendum 2 #177
