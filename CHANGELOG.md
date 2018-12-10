@@ -9,6 +9,7 @@ All notable changes to this project should be documented in this file
 - All project major projects now use the new 'SDK' style *csproj* format #216
 - All tests consolidated into *Xbim.Essentials.Tests*
 - `XbimDBAccess` has moved from `Xbim.IO.Esent` namespace to `Xbim.IO` (in *Xbim.Common*)
+- `XbimStoreType` has moved from `Xbim.IO.Esent` namespace to `Xbim.IO` (in *Xbim.Common*)
 - `IfcSchemaVersion` has been renamed `XbimSchemaVersion`
 - `IfcStorageType` has been renamed `StorageType`
 - *Xbim.Ifc* no longer references *Xbim.IO.Esent* in order to support netstandard and decouple the store from specific IModel implementations. See #227
@@ -45,6 +46,7 @@ PRs for a new repo are welcome!
 
 ### Fixed
 
+- #206 Clean Esent JFM flushmap files when deleting XBIM databases
 - #223 SaveAs doesn't set "FileName" in IfcStore
 - #215 Indexing and Parsing performance + stability improvements
 - Schema recognition without Exception throwing
