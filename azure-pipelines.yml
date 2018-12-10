@@ -46,7 +46,8 @@ steps:
   displayName: 'Setting Prerelease FileVersion'
   condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
 
-- task: NuGetToolInstaller@0  
+- task: NuGetToolInstaller@0
+  displayName: 'Install Nuget'
 
 # Version .NET Core project files
 # Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
@@ -61,6 +62,14 @@ steps:
     FilenamePattern: .csproj
     Field: FileVersion
     OutputVersion: OutputedVersion
+
+# Unit tests
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test $(buildConfiguration)'
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --filter TestCategory!=IfcXml'
 
 # So we can pick up packages we build
 - script: nuget sources add -Name local -Source $(Build.BinariesDirectory)
@@ -130,14 +139,6 @@ steps:
 - script: dotnet pack Xbim.Tessellator\Xbim.Tessellator.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
   displayName: 'Xbim.Tessellator - packing'
   
-# Unit tests
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test $(buildConfiguration)'
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --filter TestCategory!=IfcXml'
-
 # Essentials meta package
 - powershell: |
     ((Get-Content -path Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(packageversion)') | Set-Content -Path Xbim.Essentials.nuspec
