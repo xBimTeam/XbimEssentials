@@ -68,7 +68,7 @@ steps:
 
 # xBIM Common
 - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
- displayName: 'Xbim.Common - packing'
+  displayName: 'Xbim.Common - packing'
 
 # xBIM Ifc4
 - script: dotnet remove Xbim.Ifc4\Xbim.Ifc4.csproj reference ..\Xbim.Common\Xbim.Common.csproj
