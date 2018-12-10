@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
-using Xbim.Ifc.Extensions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.IO;
@@ -25,8 +23,27 @@ namespace Xbim.Ifc
     /// as well as accessing internal XBIM formats (such as *.xbim) files. 
     /// </summary>
     /// <remarks>
+    /// <para>
     /// Note: the Store capabilities may be affected by the ModelProvider implementation - some stores may not
-    /// implement all capabilities. e.g. An In-Memory store may not permit saving.
+    /// implement all capabilities. e.g. An In-Memory store will not permit saving to XBIM format.
+    /// </para>
+    /// <para>
+    /// IMPORTANT: By default, the v5 <see cref="IfcStore"/> will attempt to discover the 
+    /// HeuristicModelProvider (in the Esent assembly), by probing the app's loaded assemblies. 
+    /// This provider gives the same functionality as prior IfcStore versions. 
+    /// However, this will only be discovered if Xbim.IO.Esent dll has been 
+    /// referenced and loaded. ASP.NET apps do this automatically, but console and windows apps may not load the
+    /// DLL into the AppDomain unless a type is referenced.
+    /// If the store cannot be discover the Heuristic provider it will fall back to a <see cref="MemoryModelProvider"/>
+    /// which is is less efficient with larger models. 
+    /// </para>
+    /// <para>
+    /// To guarantee the correct provider regardless, configure <see cref="IfcStore.ModelProviderFactory"/> with the 
+    /// following code in your application initialisation:
+    /// <code>
+    /// IfcStore.ModelProviderFactory.UseHeuristicModelProvider();
+    /// </code>
+    /// </para>
     /// </remarks>
     public class IfcStore : IModel, IDisposable, IFederatedModel, IEquatable<IModel>
     {
@@ -92,6 +109,19 @@ namespace Xbim.Ifc
             private set;
         }
 
+        /// <summary>
+        /// Factory to create ModelProvider instances. 
+        /// </summary>
+        /// <remarks>Consumers can use this instance of <see cref="IModelProviderFactory"/> to control the 
+        /// implementations of IModel it uses.
+        /// In particular you can tell the factory to always use MemoryModel, or Esent model, or a blend (Heuristic)
+        /// </remarks>
+        /// <example>
+        /// To override the Store's backing model with an implementation you would use:
+        /// <code>
+        /// IfcStore.ModelProvider.Use(() => new MyCustomModelProvider());
+        /// </code>
+        /// </example>
         public static IModelProviderFactory ModelProviderFactory
         {
             get;

@@ -11,7 +11,7 @@ namespace Xbim.Essentials.Tests
         {
             var dummy = Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance;
 
-            DefaultModelProviderFactory.Configure(() => new HeuristicModelProvider());
+            IfcStore.ModelProviderFactory.Use(() => new HeuristicModelProvider());
         }
 
 

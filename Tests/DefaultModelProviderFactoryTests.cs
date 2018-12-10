@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Policy;
 using Xbim.Ifc;
 using Xbim.IO;
+using Xbim.IO.Esent;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -44,6 +45,32 @@ namespace Xbim.Essentials.Tests
 
             var provider = modelProvider.CreateProvider();
 
+            Assert.IsType<HeuristicModelProvider>(provider);
+        }
+
+        [Fact]
+        public void Can_Override_Default_with_the_Essent_Provider()
+        {
+            // Arrange
+            var modelProvider = new DefaultModelProviderFactory();
+            // Act
+            modelProvider.UseEsentModelProvider();
+            var provider = modelProvider.CreateProvider();
+
+            // Assert
+            Assert.IsType<EsentModelProvider>(provider);
+        }
+
+        [Fact]
+        public void Can_Override_Default_with_the_Heuristic_Provider()
+        {
+            // Arrange
+            var modelProvider = new DefaultModelProviderFactory();
+            // Act
+            modelProvider.UseHeuristicModelProvider();
+            var provider = modelProvider.CreateProvider();
+
+            // Assert
             Assert.IsType<HeuristicModelProvider>(provider);
         }
 
@@ -106,6 +133,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        
 
 
 

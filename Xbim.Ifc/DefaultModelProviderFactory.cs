@@ -22,7 +22,7 @@ namespace Xbim.Ifc
     {
         private const string EsentAssemblyName = "Xbim.IO.Esent";
         private const string EsentProviderName = "Heuristic";
-        static Func<IModelProvider> _modelProvider = null;
+        private Func<IModelProvider> _modelProvider = null;
 
         private readonly ILogger logger = XbimLogging.CreateLogger<DefaultModelProviderFactory>();
 
@@ -36,6 +36,7 @@ namespace Xbim.Ifc
                 GetDefaultProvider();
         }
 
+        // We infer the best provider based on what we can find in process. 
         private IModelProvider GetDefaultProvider()
         {
             try
@@ -69,21 +70,17 @@ namespace Xbim.Ifc
         }
 
         /// <summary>
-        /// Hook to allow 3rd parties to configure another <see cref="IModelProvider"/> implementation
-        /// to be provided in place of the default
+        /// Hook to allow 3rd parties to explicitly configure another <see cref="IModelProvider"/> implementation
+        /// to be provided in place of the default provider
         /// </summary>
-        /// <param name="providerFn"></param>
-        public static void Configure(Func<IModelProvider> providerFn)
+        /// <param name="providerFn">Delegate to provide a new IModelProvider instance</param>
+        public void Use(Func<IModelProvider> providerFn)
         {
-            if (providerFn == null)
-            {
-                throw new ArgumentNullException(nameof(providerFn));
-            }
-            _modelProvider = providerFn;
+            _modelProvider = providerFn ?? throw new ArgumentNullException(nameof(providerFn));
         }
     }
 
-    public static class TypeLoaderExtensions
+    internal static class TypeLoaderExtensions
     {
         public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly)
         {

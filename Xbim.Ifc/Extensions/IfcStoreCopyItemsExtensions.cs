@@ -4,7 +4,7 @@ using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Ifc4.Interfaces;
 
-namespace Xbim.Ifc.Extensions
+namespace Xbim.Ifc
 {
     public static class IfcStoreCopyItemsExtensions
     {

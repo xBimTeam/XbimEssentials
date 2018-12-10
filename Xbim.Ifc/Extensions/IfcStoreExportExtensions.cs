@@ -9,7 +9,7 @@ using Xbim.IO;
 using Xbim.IO.Step21;
 using Xbim.IO.Xml;
 
-namespace Xbim.Ifc.Extensions
+namespace Xbim.Ifc
 {
     public static class IfcStoreExportExtensions
     {

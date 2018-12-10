@@ -9,7 +9,7 @@ using Xbim.Common.Step21;
 using Xbim.Common.XbimExtensions;
 using Xbim.Ifc4.Interfaces;
 
-namespace Xbim.Ifc.Extensions
+namespace Xbim.Ifc
 {
     public static class IfcStoreGeometryExtensions
     {

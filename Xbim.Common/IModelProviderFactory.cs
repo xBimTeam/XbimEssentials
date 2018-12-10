@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Xbim.IO
 {
     /// <summary>
@@ -7,5 +9,6 @@ namespace Xbim.IO
     public interface IModelProviderFactory
     {
         IModelProvider CreateProvider();
+        void Use(Func<IModelProvider> providerFn);
     }
 }
