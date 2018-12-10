@@ -1,0 +1,6 @@
+<Project>
+	<!-- turns off some XmlDocs warning globally, except for Xbim.IO.Esent - only supported by netstandard builds it seems -->
+	<PropertyGroup>
+		<NoWarn>CS1591;CS1573;CS1572</NoWarn>
+	</PropertyGroup>
+</Project>

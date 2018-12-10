@@ -12,6 +12,7 @@ using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.IO;
+using Xbim.IO.Memory;
 using Xbim.IO.Step21;
 
 namespace Xbim.Ifc
@@ -84,7 +85,7 @@ namespace Xbim.Ifc
         /// <summary>
         /// Constructor used to create a new model for edit
         /// </summary>
-        /// <param name="filepath"></param>
+        /// <param name="storageType"></param>
         /// <param name="ifcVersion"></param>
         /// <param name="editorDetails"></param>
         protected IfcStore(XbimStoreType storageType, XbimSchemaVersion ifcVersion, XbimEditorCredentials editorDetails) : this()

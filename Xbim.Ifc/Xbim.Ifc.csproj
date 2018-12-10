@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
+    <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
     <RootNamespace>Xbim.Ifc</RootNamespace>
     <AssemblyName>Xbim.Ifc</AssemblyName>
-	<Version>5.0.0.0</Version>
+    <Version>5.0.0.0</Version>
     <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <FileVersion>5.0.0.0</FileVersion>
     <Title>Xbim Essentials</Title>   
@@ -20,6 +20,8 @@
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>   
     <SignAssembly>true</SignAssembly>   
     <AssemblyOriginatorKeyFile>..\XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <DocumentationFile>bin\$(Configuration)\Xbim.Ifc.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
