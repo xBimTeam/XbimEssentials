@@ -628,6 +628,27 @@ namespace Xbim.Essentials.Tests
 
         [TestMethod]
         [DeploymentItem("TestFiles")]
+        public void Issue206_FileBasedStore_Should_TidyUp_JFM_on_Close()
+        {
+            string xbimFile;
+            string flushmapFile;
+            // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
+            using (var ifcStore = IfcStore.Open("Issue206.zip", ifcDatabaseSizeThreshHold: 0))
+            {
+                xbimFile = ifcStore.Location;
+                flushmapFile = Path.ChangeExtension(xbimFile, ".jfm");
+                Assert.IsTrue(File.Exists(xbimFile), "XBIM file expected to be found");
+                Assert.IsTrue(File.Exists(flushmapFile), "JFM file expected to be found");
+                ifcStore.Close();
+            }
+
+            Assert.IsFalse(File.Exists(xbimFile), "XBIM file expected to be deleted");
+            Assert.IsFalse(File.Exists(flushmapFile), "JFM file expected to be deleted");
+        }
+
+
+        [TestMethod]
+        [DeploymentItem("TestFiles")]
         public void FileBasedStore_Should_Retain_Saved_XBIM_Files()
         {
             string transientXbimFile;

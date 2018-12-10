@@ -153,6 +153,9 @@
     <None Update="TestFiles\Issue107.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="TestFiles\Issue206.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\LakesideRestaurant.cobieZip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

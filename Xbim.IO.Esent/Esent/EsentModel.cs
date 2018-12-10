@@ -623,7 +623,17 @@ namespace Xbim.IO.Esent
             try //try and tidy up if required
             {
                 if (_deleteOnClose && File.Exists(dbName))
+                {
                     File.Delete(dbName);
+                    // Since Windows 10 Anniverary Edition JET FlushMap files are created for each XBIM
+                    // https://docs.microsoft.com/en-us/windows/desktop/extensiblestorageengine/gg294069(v%3Dexchg.10)#flush-map-files
+                    var flushMapFile = Path.ChangeExtension(dbName, ".jfm");
+                    if(File.Exists(flushMapFile))
+                    {
+                        File.Delete(flushMapFile);
+                    }
+
+                }
             }
             catch (Exception)
             {
