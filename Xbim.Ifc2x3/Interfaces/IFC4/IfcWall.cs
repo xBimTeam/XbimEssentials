@@ -38,7 +38,6 @@ namespace Xbim.Ifc2x3.SharedBldgElements
         /// <summary>
         /// Gets the area of the wall in elevation
         /// </summary>
-        /// <param name="wall"></param>
         /// <returns></returns>
         public Ifc4.MeasureResource.IfcAreaMeasure? GetWallSideArea
         {

@@ -32,6 +32,7 @@ namespace Xbim.IO.Step21
         /// <param name="output">Output writer</param>
         /// <param name="metadata">Metadata to be used for serialization</param>
         /// <param name="map">Optional map can be used to map occurrences in the file</param>
+        /// <param name="progress">A progress delegate</param>
         public static void Write(IModel model, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null, ReportProgressDelegate progress = null)
         {
             var header = model.Header ?? new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults,model);

@@ -474,6 +474,7 @@ namespace Xbim.Common.Model
         /// <param name="stream">Path to the file</param>
         /// <param name="streamSize"></param>
         /// <param name="progDelegate"></param>
+        /// <param name="ignoreTypes">Types to ignore</param>
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(Stream stream, long streamSize, ReportProgressDelegate progDelegate = null, IEnumerable<string> ignoreTypes = null)
         {

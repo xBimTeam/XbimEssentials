@@ -19,6 +19,7 @@ namespace Xbim.Ifc
         /// excludes other objects from being copied over so that it doesn't bring the entire model in a chain dependencies. This means
         /// that some objects are modified (like spatial relations) and won't get updated which would lead to an inconsistent copy.
         /// </summary>
+        /// <param name="model">The target model</param>
         /// <param name="products">Products from other model to be inserted into this model</param>
         /// <param name="includeGeometry">If TRUE, geometry of the products will be copied over.</param>
         /// <param name="keepLabels">If TRUE, entity labels from original model will be used. Always set this to FALSE

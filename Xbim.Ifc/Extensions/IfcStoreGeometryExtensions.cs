@@ -18,8 +18,10 @@ namespace Xbim.Ifc
         /// <summary>
         /// This function is used to generate the .wexbim model files.
         /// </summary>
+        /// <param name="model">The model to export</param>
         /// <param name="binaryStream">An open writable streamer.</param>
         /// <param name="products">Optional products to be written to the wexBIM file. If null, all products from the model will be saved</param>
+        /// <param name="translation">Optional 3D vector to apply</param>
         public static void SaveAsWexBim(this IModel model, BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null, 
             IVector3D translation = null)
         {

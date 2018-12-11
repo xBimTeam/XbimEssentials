@@ -315,8 +315,10 @@ namespace Xbim.IO.Memory
         /// <param name="stream">Input stream for step21 text file</param>
         /// <param name="logger">Logger</param>
         /// <param name="progressDel">Progress delegate</param>
+        /// <param name="ignoreTypes">A list of ifc types to skip</param>
         /// <returns>New memory model</returns>
-        public static MemoryModel OpenReadStep21(Stream stream, ILogger logger = null, ReportProgressDelegate progressDel = null, IEnumerable<string> ignoreTypes = null)
+        public static MemoryModel OpenReadStep21(Stream stream, ILogger logger = null, ReportProgressDelegate progressDel = null, 
+            IEnumerable<string> ignoreTypes = null)
         {
             var model = new MemoryModel((IEnumerable<string> schemas) =>
             {

@@ -28,6 +28,9 @@ namespace Xbim.Ifc
             var decomposingIds = new HashSet<int>(decomposing.Select(d => d.EntityLabel));
         }
 
+
+        //TODO: Consider deprecating / refactoring in favour of IfcStore.InsertCopy?
+
         /// <summary>
         /// This is a higher level function which uses InsertCopy function alongside with the knowledge of IFC schema to copy over
         /// products with their types and other related information (classification, aggregation, documents, properties) and optionally
@@ -38,13 +41,14 @@ namespace Xbim.Ifc
         /// excludes other objects from being coppied over so that it doesn't bring the entire model in a chain dependencies. This means
         /// that some objects are modified (like spatial relations) and won't get updated which would lead to an inconsistent copy.
         /// </summary>
+        /// <param name="target">The target model</param>
         /// <param name="products">Products from other model to be inserted into this model</param>
         /// <param name="includeGeometry">If TRUE, geometry of the products will be copied over.</param>
         /// <param name="keepLabels">If TRUE, entity labels from original model will be used. Always set this to FALSE
         /// if you are going to insert products from multiple source models or if you are going to insert products to a non-empty model</param>
-        /// <param name="mappings">Mappings to avoid multiple insertion of objects. Keep a single instance for insertion between two models.
-        /// If you also use InsertCopy() function for some other insertions, use the same instance of mappings.</param>
-        public void InsertCopy(IModel target, IEnumerable<IIfcProduct> products, bool includeGeometry, bool keepLabels, IProgress<double> progress = null)
+        /// <param name="progress">A progress delegate</param>
+        public void InsertCopy(IModel target, IEnumerable<IIfcProduct> products, bool includeGeometry, bool keepLabels, 
+            IProgress<double> progress = null)
         {
             var primaryElements = new List<IIfcProduct>();
 

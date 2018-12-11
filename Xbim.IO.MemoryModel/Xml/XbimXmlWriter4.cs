@@ -68,7 +68,6 @@ namespace Xbim.IO.Xml
         /// Default settings and configuration are for IFC4 Add1. If you pass configuration and settings
         /// make sure both are for the same schema definition.
         /// </summary>
-        /// <param name="configuration">XML to Express configuration</param>
         /// <param name="settings">Settings for writer like namespaces and root element name</param>
         public XbimXmlWriter4(XbimXmlSettings settings)
         {

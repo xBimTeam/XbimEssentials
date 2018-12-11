@@ -45,6 +45,7 @@ namespace Xbim.IO.Xml
         /// <param name="finish">Delegate which will be called once the entity is finished (no changes will be made to it)
         /// This is useful for a DB when this is the point when it can be serialized to DB</param>
         /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
+        /// <param name="logger">A Logger</param>
         public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata, ILogger logger)
         {
             if (getOrCreate == null)
