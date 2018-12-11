@@ -1,27 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
+    <Title>Xbim IFC</Title>
+    <Description>Provides supports semantic loading and saving IFC models and related formats. Commonly used types include
+  
+    IfcStore
+    IfcValidator
+    DefaultModelProviderFactory
+    XbimReferencedModel
+  </Description>
     <RootNamespace>Xbim.Ifc</RootNamespace>
-    <AssemblyName>Xbim.Ifc</AssemblyName>
-    <Version>5.0.0.0</Version>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion>
-    <FileVersion>5.0.0.0</FileVersion>
-    <Title>Xbim Essentials</Title>   
-    <Copyright>Xbim Ltd.</Copyright>
-    <Description>.net library that provides support IFC models</Description>
-    <Authors>Steve Lockley, Martin Cerny</Authors>
-    <Company>Xbim Ltd.</Company>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/xBimTeam/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/xBimTeam/XbimEssentials/tree/develop</RepositoryUrl>
-    <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</PackageTags>
-    <PackageReleaseNotes>migrated Xbim.Common to .netstandard 2.0 and Framework 4.7</PackageReleaseNotes>    
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>   
-    <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>   
-    <SignAssembly>true</SignAssembly>   
-    <AssemblyOriginatorKeyFile>..\XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <DocumentationFile>bin\$(Configuration)\Xbim.Ifc.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
