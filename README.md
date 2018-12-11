@@ -14,7 +14,12 @@ As of version 5.0 XbimEssentials includes elementary support for .NET Core 2.0 i
 
 ## Updating from prior versions
 
-Please see our [ChangeLog](CHANGELOG.md) for details on what's new and what you need to upgrade.
+Please see our [ChangeLog](CHANGELOG.md) for details on what's new and what you need to upgrade. 
+In particular, please **note the following section copied here:**
+
+> **BREAKING CHANGE**: Windows forms and Console apps using *IfcStore* must now call `IfcStore.ModelProviderFactory.UseHeuristicModelProvider();` at application startup
+>
+> [failure to do so] will likely result in use of the very basic `MemoryModel` implementation which does not support *.xbim* files
 
 ## Background / Motivation ##
 
