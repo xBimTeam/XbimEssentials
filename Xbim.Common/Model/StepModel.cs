@@ -523,6 +523,11 @@ namespace Xbim.Common.Model
             Part21Writer.Write(this, writer, Metadata, new Dictionary<int, int>());
         }
 
+        /// <summary>
+        /// Extension point for inheriting classes
+        /// </summary>
+        protected virtual void Disposing() { }
+
         public virtual void Dispose()
         {
             _instances.Dispose();
@@ -537,6 +542,8 @@ namespace Xbim.Common.Model
             _newEntityHandlers.Clear();
             _modifiedEntityHandlers.Clear();
             _deletedEntityHandlers.Clear();
+
+            Disposing();
         }
 
         /// <summary>
