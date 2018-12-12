@@ -14,7 +14,7 @@ namespace Xbim.Common.ExpressValidation
 {
     /// <summary>
     /// This class provides basic POCO access to validation errors.
-    /// Validation reporting should build upon this. For an example see <see cref="ValidationReporter"/>
+    /// Validation reporting should build upon this.
     /// </summary>
     public class Validator
     {
