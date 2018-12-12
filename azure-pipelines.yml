@@ -4,8 +4,15 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
 trigger:
-- master
-- develop
+  branches:
+    include:
+    - master
+    - develop
+  paths:
+    exclude:
+    - README.md
+    - CHANGELOG.md
+    - CONTRIBUTING.md
 
 pool:
   vmImage: 'VS2017-Win2016'
