@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Common.Enumerations;
+using Xbim.Common.ExpressValidation;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc.Validation;
@@ -109,7 +110,7 @@ namespace Xbim.IO.Tests
                     txn.Commit();
 
                     // test validation
-                    var v = new IfcValidator
+                    var v = new Validator
                     {
                         ValidateLevel = ValidationFlags.Properties,
                         CreateEntityHierarchy = true
