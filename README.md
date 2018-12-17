@@ -198,7 +198,7 @@ using (var model = IfcStore.Open(fileName))
 	}
 		
 	// Save IFC to the internal XBIM format, which includes geometry
-	model.SaveAs(xbimDbFilename, IfcStorageType.Xbim);
+	model.SaveAs(xbimDbFilename, StorageType.Xbim);
 }
 ```
 
