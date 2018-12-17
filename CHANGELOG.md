@@ -2,6 +2,13 @@
 
 All notable changes to this project should be documented in this file
 
+## [v5.0.213] 2018-12-17 Nuget Release
+
+The first official suite of Xbim v5 packages!
+
+### Changed
+- `IfcValidator` moved from `Xbim.Ifc` to `Xbim.Common` and renamed `Validator`
+
 ## [v5.0.204] 2018-12-11
 
 ### Changed
