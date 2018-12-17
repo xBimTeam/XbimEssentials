@@ -1,18 +1,18 @@
 
 Branch | Build Status  | MyGet | NuGet
 ------ | ------- | --- | --- |
-Master | [![Build Status](https://dev.azure.com/xBIMTeam/xBIMToolkit/_apis/build/status/xBimTeam.XbimEssentials?branchName=master)](https://dev.azure.com/xBIMTeam/xBIMToolkit/_build/latest?definitionId=1&branchName=master) | ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Essentials.svg) | ![](https://img.shields.io/nuget/v/Xbim.Essentials.svg)
+Master | [![Build Status](https://dev.azure.com/xBIMTeam/xBIMToolkit/_apis/build/status/xBimTeam.XbimEssentials?branchName=master)](https://dev.azure.com/xBIMTeam/xBIMToolkit/_build/latest?definitionId=1&branchName=master) | [![master](https://img.shields.io/myget/xbim-master/v/Xbim.Essentials.svg)](https://www.myget.org/feed/xbim-master/package/nuget/Xbim.Essentials) | [![](https://img.shields.io/nuget/v/Xbim.Essentials.svg)](https://www.nuget.org/packages/Xbim.Essentials/)
 Develop | [![Build Status](https://dev.azure.com/xBIMTeam/xBIMToolkit/_apis/build/status/xBimTeam.XbimEssentials?branchName=develop)](https://dev.azure.com/xBIMTeam/xBIMToolkit/_build/latest?definitionId=1&branchName=develop) | ![](https://img.shields.io/myget/xbim-develop/vpre/Xbim.Essentials.svg) | -
 
 
 
 |Toolkit Component| Latest Myget | Latest Nuget |
 | ----| ---- | ----|
-|Essentials| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Essentials.svg) | ![](https://img.shields.io/nuget/v/Xbim.Essentials.svg)
-|Geometry| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Geometry.svg) | ![](https://img.shields.io/nuget/v/Xbim.Geometry.svg)
-|CobieExpress| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.IO.CobieExpress.svg) | ![](https://img.shields.io/nuget/v/Xbim.IO.CobieExpress.svg)
-|Windows UI| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.WindowsUI.svg) | ![](https://img.shields.io/nuget/v/Xbim.WindowsUI.svg)
-|Exchange| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Exchange.svg) | ![](https://img.shields.io/nuget/v/Xbim.Exchange.svg)
+|Essentials| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Essentials.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.Essentials.svg)](https://www.nuget.org/packages/Xbim.Essentials/)
+|Geometry| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Geometry.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.Geometry.svg)](https://www.nuget.org/packages/Xbim.Geometry/)
+|CobieExpress| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.IO.CobieExpress.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.IO.CobieExpress.svg)](https://www.nuget.org/packages/Xbim.CobieExpress/)
+|Windows UI| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.WindowsUI.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.WindowsUI.svg)](https://www.nuget.org/packages/Xbim.WindowsUI/)
+|Exchange| ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Exchange.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.Exchange.svg)](https://www.nuget.org/packages/Xbim.Exchange/)
 
 # XbimEssentials
 **XbimEssentials** is the foundational components of [Xbim](https://xbimteam.github.io/), the e**X**tensible 
