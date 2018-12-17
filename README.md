@@ -179,6 +179,9 @@ using [Xbim.WebUI](http://docs.xbim.net/XbimWebUI/)
 const string fileName = @"SampleHouse4.ifc";
 var wexBimFilename = Path.ChangeExtension(fileName, "wexBIM");
 var xbimDbFilename = Path.ChangeExtension(fileName, "xBIM");
+
+// Make sure we are using an IModel implementation that supports saving of '.xbim' files
+IfcStore.ModelProviderFactory.UseHeuristicModelProvider();
 	
 using (var model = IfcStore.Open(fileName))
 {
