@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Common;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
 using Xbim.Ifc;
 using Xbim.Ifc.Validation;
 using Xbim.Ifc2x3.HVACDomain;
-using Xbim.Ifc2x3.Kernel;
 
 namespace Xbim.Essentials.Tests
 {

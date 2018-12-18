@@ -345,6 +345,45 @@ namespace Xbim.Common.Model
         }
 
 
+        public static IStepFileHeader LoadStep21Header(Stream stream)
+        {
+            var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, null);
+            var scanner = new XbimP21Scanner(stream, 1000);
+            
+            scanner.EntityCreate += (string name, long? label, bool inHeader) =>
+            {
+                if (inHeader)
+                {
+                    switch (name)
+                    {
+                        case "FILE_DESCRIPTION":
+                            return header.FileDescription;
+                        case "FILE_NAME":
+                            return header.FileName;
+                        case "FILE_SCHEMA":
+                            if (header.FileSchema != null)
+                                //set to new schema if it was set before from EntityFactory data
+                                header.FileSchema = new StepFileSchema();
+                            return header.FileSchema;
+                        default:
+                            return null;
+                    }
+                }
+                else
+                    return null;
+            };
+            try
+            {
+                scanner.Parse(true);
+            }
+            catch (Exception e)
+            {
+                var position = scanner.CurrentPosition;
+                throw new XbimParserException(string.Format("Parser failed on line {0}, column {1}", position.EndLine, position.EndColumn), e);
+            }
+            return header;
+        }
+
         protected virtual int LoadStep21(XbimP21Scanner parser)
         {
             if (Header == null)

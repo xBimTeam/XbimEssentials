@@ -535,18 +535,15 @@ namespace Xbim.Common.Step21
 
         public StepFileHeader(HeaderCreationMode mode, IModel model)
         {
-            var assembly = model.GetType().GetTypeInfo().Assembly; //get the assembly that has created th emodel
             if (mode == HeaderCreationMode.InitWithXbimDefaults)
             {
+                var assembly = model.GetType().GetTypeInfo().Assembly; //get the assembly that has created the model
                 FileDescription = new StepFileDescription("2;1");
                 FileName = new StepFileName(DateTime.Now)
                 {
-                    PreprocessorVersion =
-                            string.Format("Processor version {0}",
-                                          assembly.GetName().Version),
+                    PreprocessorVersion =$"Processor version {assembly.GetName().Version}",
                     OriginatingSystem = assembly.GetName().Name
-                                         
-                    };
+                };
                 FileSchema = new StepFileSchema();
             }
             else
