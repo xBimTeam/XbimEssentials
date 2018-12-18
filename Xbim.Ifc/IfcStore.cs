@@ -848,6 +848,12 @@ namespace Xbim.Ifc
                     var fullTargetPath = Path.GetFullPath(fileName);
                     if (string.Compare(fullSourcePath, fullTargetPath, StringComparison.OrdinalIgnoreCase) == 0)
                         return; //do nothing it is already saved
+                    // attempt direct copy?
+                    //
+                    esentModel.Close();
+                    File.Copy(fullSourcePath, fullTargetPath);
+                    esentModel.Open(fullTargetPath);
+                    return;
                 }
             }
             SaveAs(actualFileName, actualFormat, progDelegate);

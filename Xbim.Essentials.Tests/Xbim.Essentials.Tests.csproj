@@ -80,6 +80,7 @@
     <Compile Include="ListOfListTest.cs" />
     <Compile Include="Ifc4DateTimeTests.cs" />
     <Compile Include="SearchTests.cs" />
+    <Compile Include="TessellatorTests.cs" />
     <Compile Include="TransactionalChanges.cs" />
     <Compile Include="InverseCacheTests.cs" />
     <Compile Include="CrossAccessTests.cs" />
@@ -122,6 +123,10 @@
     <ProjectReference Include="..\Xbim.IO\Xbim.IO.csproj">
       <Project>{85856df2-c8ab-4120-8a8d-ae05d2696b51}</Project>
       <Name>Xbim.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xbim.Tessellator\Xbim.Tessellator.csproj">
+      <Project>{5ee39029-873a-45a0-9259-2198bf8729f4}</Project>
+      <Name>Xbim.Tessellator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +180,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\email.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestSourceFiles\HighDisplacement.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestSourceFiles\IfcDerivedUnit.ifcxml">

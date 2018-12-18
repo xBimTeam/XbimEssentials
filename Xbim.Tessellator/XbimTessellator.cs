@@ -14,6 +14,9 @@ namespace Xbim.Tessellator
     {
         private readonly IModel _model;
         private readonly XbimGeometryType _geometryType;
+
+        public bool MoveMinToOrigin { get; set; }
+
         public XbimTessellator(IModel model, XbimGeometryType geometryType)
         {
             _model = model;
@@ -326,7 +329,7 @@ namespace Xbim.Tessellator
             {
                 triangulatedMeshes.Add(TriangulateFaces(faceList, entityLabel, precision));
             }
-            return MeshPolyhedronBinary(triangulatedMeshes);
+            return MeshPolyhedronBinary(triangulatedMeshes, MoveMinToOrigin);
         }
 
         static public XbimShapeGeometry MeshPolyhedronBinary(XbimTriangulatedMesh triangulatedMesh)
@@ -334,8 +337,10 @@ namespace Xbim.Tessellator
             return MeshPolyhedronBinary(new List<XbimTriangulatedMesh>() { triangulatedMesh });
         }
 
-        static public XbimShapeGeometry MeshPolyhedronBinary(List<XbimTriangulatedMesh> triangulatedMeshes)
+        static public XbimShapeGeometry MeshPolyhedronBinary(List<XbimTriangulatedMesh> triangulatedMeshes, bool moveMinShapeToOrigin = false)
         {
+            XbimPoint3D displacement = new XbimPoint3D(0, 0, 0);
+
             XbimShapeGeometry shapeGeometry = new XbimShapeGeometry();
             shapeGeometry.Format = XbimGeometryType.PolyhedronBinary;
 
@@ -362,12 +367,30 @@ namespace Xbim.Tessellator
                 // ReSharper disable once RedundantCast
                 binaryWriter.Write((UInt32)verticesCount); //number of vertices
                 binaryWriter.Write(triangleCount); //number of triangles
+
+                if (moveMinShapeToOrigin)
+                {
+                    // compute min coords
+                    //
+                    double minX = double.PositiveInfinity;
+                    double minY = double.PositiveInfinity;
+                    double minZ = double.PositiveInfinity;
+                    foreach (var v in triangulatedMeshes.SelectMany(t => t.Vertices))
+
+                    {
+                        minX = Math.Min(minX, v.X);
+                        minY = Math.Min(minY, v.Y);
+                        minZ = Math.Min(minZ, v.Z);
+                    }
+                    displacement = new XbimPoint3D(minX, minY, minZ);
+                }
+                shapeGeometry.TempOriginDisplacement = displacement;
                
                 foreach (var v in triangulatedMeshes.SelectMany(t=>t.Vertices))
                 {    
-                    binaryWriter.Write((float)v.X);
-                    binaryWriter.Write((float)v.Y);
-                    binaryWriter.Write((float)v.Z);
+                    binaryWriter.Write((float)(v.X - displacement.X));
+                    binaryWriter.Write((float)(v.Y - displacement.Y));
+                    binaryWriter.Write((float)(v.Z - displacement.Z));
                 }
                 shapeGeometry.BoundingBox = boundingBox;
                 //now write out the faces
@@ -391,7 +414,7 @@ namespace Xbim.Tessellator
                         foreach (var triangle in faceGroup.Value)
                         {
                             if (planar && first)
-                            { 
+                            {
                                 triangle[0].PackedNormal.Write(binaryWriter);
                                 first = false;
                             }

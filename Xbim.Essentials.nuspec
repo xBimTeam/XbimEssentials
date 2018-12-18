@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Essentials</id>
-    <version>4.0.30-V043</version>
+    <version>4.0.30-V046</version>
     <title>xBIM Essentials</title>
     <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>

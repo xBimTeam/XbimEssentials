@@ -133,6 +133,8 @@ namespace Xbim.Common.Geometry
                 _geometryHash = value;
             }
         }
+
+
         
         /// <summary>
         /// The cost in bytes of this shape
@@ -205,6 +207,14 @@ namespace Xbim.Common.Geometry
                 _format = (XbimGeometryType)value;
             }
         }
+
+        /// <summary>
+        /// Instances of this shape will have to be compensated for this displacement before writing to db.
+        /// This is a temporary hack to allow for models that are otherwise compromised by reduction to float.
+        /// Do not use outside of the DB writing function of XbimGeometry.
+        /// </summary>
+        public XbimPoint3D TempOriginDisplacement { get; set; } = new XbimPoint3D(0, 0, 0);
+
         /// <summary>
         /// The bounding box of this instance, requires tranformation to place in world coordinates
         /// </summary>

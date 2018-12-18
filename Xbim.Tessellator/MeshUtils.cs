@@ -40,9 +40,9 @@ namespace Xbim.Tessellator
 {
     public struct Vec3EqualityComparer : IEqualityComparer<Vec3>
     {
-        private readonly float _precision2;
-        private readonly float _gridDim;
-        public Vec3EqualityComparer(float precision)
+        private readonly double _precision2;
+        private readonly double _gridDim;
+        public Vec3EqualityComparer(double precision)
         {
             _precision2 = precision * precision;
             _gridDim = precision*10;//coursen  up
@@ -99,11 +99,9 @@ namespace Xbim.Tessellator
             Vec3 bc;
             Sub(ref a, ref b, out ab);
             Sub(ref b, ref c, out bc);
-            // ReSharper disable CompareOfFloatsByEqualityOperator
             return ab.X * bc.Y == bc.X * ab.Y &&
                    ab.Y * bc.Z == bc.Y * ab.Z &&
                    ab.Z * bc.X == bc.Z * ab.X;
-            // ReSharper restore CompareOfFloatsByEqualityOperator
         }
 
         public Vec3(float x, float y, float z)
@@ -115,9 +113,9 @@ namespace Xbim.Tessellator
 
         public Vec3(double x, double y, double z)
         {
-            X = (float)x;
-            Y = (float)y;
-            Z = (float)z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         public double this[int index]
@@ -175,11 +173,11 @@ namespace Xbim.Tessellator
             v.Z = -v.Z;
         }
 
-        public float Length
+        public double Length
         {
             get
             {
-                return (float) Math.Sqrt(X * X + Y * Y + Z * Z);
+                return Math.Sqrt(X * X + Y * Y + Z * Z);
             }
         }
 
@@ -205,8 +203,8 @@ namespace Xbim.Tessellator
         public static bool Normalize(ref Vec3 v)
         {
             double len = v.X * v.X + v.Y * v.Y + v.Z * v.Z;
-            if(len <= 0.0f) return false;
-            len = 1.0f / (float)Math.Sqrt(len);
+            if(len <= 0.0) return false;
+            len = 1.0f / Math.Sqrt(len);
             v.X *= len;
             v.Y *= len;
             v.Z *= len;

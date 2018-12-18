@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -28,6 +29,18 @@ namespace Xbim.IO.Tests
         {
             ParseGeometry("ShortRebar.xBIM");
             // ParseGeometry("OneWall.xBIM");
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles\\OneWall.xBIM")]
+        public void SaveTest()
+        {
+            IfcStore s = IfcStore.Open("OneWall.xBIM");
+            s.SaveAs("Out.xbim");
+            s.Close();
+            FileInfo f = new FileInfo("Out.xbim");
+            Debug.WriteLine(f.FullName);
+            Assert.IsTrue(f.Exists);
         }
 
         private static void ParseGeometry(string name)
