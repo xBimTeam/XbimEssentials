@@ -363,6 +363,7 @@ namespace Xbim.IO.Memory
 
         public static void CalculateModelFactors(IModel model)
         {
+            bool planeAngleSpecified = false;
             double angleToRadiansConversionFactor = 1; //assume radians
             double lengthToMetresConversionFactor = 1; //assume metres
             var instOfType = model.Instances.OfType<IIfcUnitAssignment>();
@@ -395,6 +396,7 @@ namespace Xbim.IO.Memory
                             lengthToMetresConversionFactor = value;
                             break;
                         case IfcUnitEnum.PLANEANGLEUNIT:
+                            planeAngleSpecified = true;
                             angleToRadiansConversionFactor = value;
                             //need to guarantee precision to avoid errors in Boolean operations
                             if (Math.Abs(angleToRadiansConversionFactor - (Math.PI / 180)) < 1e-9)
@@ -417,7 +419,7 @@ namespace Xbim.IO.Memory
                 defaultPrecision = 1e-5;
            // defaultPrecision *= 1.1; //this fixes errors where things are nearly coincidental like faces
             //check if angle units are incorrectly defined, this happens in some old models
-            if (Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
+            if (!planeAngleSpecified && Math.Abs(angleToRadiansConversionFactor - 1) < 1e-10)
             {
                 var trimmed = model.Instances.Where<IIfcTrimmedCurve>(trimmedCurve => trimmedCurve.BasisCurve is IIfcConic);
                 if (trimmed.Where(trimmedCurve => trimmedCurve.MasterRepresentation == IfcTrimmingPreference.PARAMETER)

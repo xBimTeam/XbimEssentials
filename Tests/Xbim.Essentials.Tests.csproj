@@ -171,6 +171,9 @@
     <None Update="TestFiles\QuantityTest.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="TestFiles\RadianValuesOverPI.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\RefWithContent.ifcXML">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

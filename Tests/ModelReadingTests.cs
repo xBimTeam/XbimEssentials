@@ -11,6 +11,15 @@ namespace Xbim.IfcCore.UnitTests
     {
 
         [TestMethod]
+        [DeploymentItem("TestFiles/RadianValuesOverPI.ifc")]
+        public void RadianValuesOverPITest()
+        {
+            using (var mm = MemoryModel.OpenRead("RadianValuesOverPI.ifc"))
+            {
+                Assert.IsTrue(mm.ModelFactors.AngleToRadiansConversionFactor == 1);
+            }
+        }
+        [TestMethod]
         [DeploymentItem("TestFiles/Axis2PlacementError.ifc")]
         public void OpenReadModelFactorPrecisionTest()
         {
