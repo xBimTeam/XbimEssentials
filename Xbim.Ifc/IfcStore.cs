@@ -135,7 +135,7 @@ namespace Xbim.Ifc
             Model.EntityNew += Model_EntityNew;
             Model.EntityDeleted += Model_EntityDeleted;
             Model.EntityModified += Model_EntityModified;
-            FileName = null;
+            FileName = Model.Header.FileName.Name;
             SetupEditing(editorDetails);
 
             LoadReferenceModels();
