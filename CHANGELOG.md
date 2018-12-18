@@ -13,6 +13,8 @@ The first official suite of Xbim v5 packages!
 
 ### Changed
 - The base .NET Framework target has been raised from `net45` to `net47`. This is to enable .NET Standard [#213](https://github.com/xBimTeam/XbimEssentials/issues/213)
+- XBIMEssentials is now a 'meta package' which brings in the individual packages. **Important**: To avoid a [failed upgrade (#233)](https://github.com/xBimTeam/XbimEssentials/issues/233) 
+make sure you update your `net4x` projects to at least `net47` **before** you upgrade the Essentials package. 
 - All project major projects now use the new 'SDK' style *csproj* format [#216](https://github.com/xBimTeam/XbimEssentials/issues/216)
 - All tests consolidated into *Xbim.Essentials.Tests*
 - `XbimDBAccess` has moved from `Xbim.IO.Esent` namespace to `Xbim.IO` (in *Xbim.Common*)
