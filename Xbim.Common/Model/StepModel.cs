@@ -574,7 +574,7 @@ namespace Xbim.Common.Model
             _cacheReference = null;
             _entityCacheReference = null;
 
-            // detach all listeners - cloning the list first to avoid issues removing during enumeration
+            // detach all listeners
             _newEntityHandlers.ToList().ForEach(h => EntityNew -= h);
             _modifiedEntityHandlers.ToList().ForEach(h => EntityModified -= h);
             _deletedEntityHandlers.ToList().ForEach(h => EntityDeleted -= h);
