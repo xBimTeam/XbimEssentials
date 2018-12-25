@@ -851,7 +851,7 @@ namespace Xbim.Ifc
                     // attempt direct copy?
                     //
                     esentModel.Close();
-                    File.Copy(fullSourcePath, fullTargetPath);
+                    File.Copy(fullSourcePath, fullTargetPath,true);
                     esentModel.Open(fullTargetPath);
                     return;
                 }
