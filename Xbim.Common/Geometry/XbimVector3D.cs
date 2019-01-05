@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace Xbim.Common.Geometry
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct XbimVector3D : IVector3D
     {
         public static readonly XbimVector3D Zero;

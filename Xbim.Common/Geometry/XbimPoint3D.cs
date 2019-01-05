@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace Xbim.Common.Geometry
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct XbimPoint3D 
     {
         const double Tolerance = 1e-9;
