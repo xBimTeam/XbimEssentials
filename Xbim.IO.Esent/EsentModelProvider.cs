@@ -172,7 +172,7 @@ namespace Xbim.IO.Esent
                 var tmpFileName = DatabaseFileName ?? Path.GetTempFileName();
                 var model = CreateEsentModel(schemaVersion, codePageOverride);
                 // We delete the XBIM on close as the consumer is not controlling the generation of the XBIM file
-                if (model.CreateFrom(path, tmpFileName, progDelegate, keepOpen: true, deleteOnClose: true))
+                if (model.CreateFrom(path, tmpFileName, progDelegate, keepOpen: true, deleteOnClose: DatabaseFileName == null))
                     return model;
 
                 throw new FileLoadException(path + " file was not a valid IFC format");
