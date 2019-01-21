@@ -35,7 +35,7 @@ This should enable the use of XBIM in .NET Core apps and other targets, as well 
 - Support for *Microsoft.Extensions.Logging* and 3rd party logging providers. (See *log4net* note below) [#214](https://github.com/xBimTeam/XbimEssentials/issues/214)
   - `Xbim.Common.XbimLogging` added as a host for *ILoggerFactory*
   - [Usage Example 1](https://github.com/xBimTeam/XbimExchange/blob/60f4d0489042fe46f7cccef515d633b861223bb2/Xbim.Exchange/Program.cs#L252): Using the standard [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/)
-  - [Usage Example 2]((https://github.com/xBimTeam/XbimWindowsUI/blob/5557cf841670aee7d4f8d902ca25e0a43004b491/XbimXplorer/XplorerMainWindow.xaml.cs#L116)): Using [Serilog](https://serilog.net/) with XBim
+  - [Usage Example 2](https://github.com/xBimTeam/XbimWindowsUI/blob/5557cf841670aee7d4f8d902ca25e0a43004b491/XbimXplorer/XplorerMainWindow.xaml.cs#L116): Using [Serilog](https://serilog.net/) with XBim
 - Support for Visual Studio 2017
 - Support for partial files - selective scanning of part of the model
 - Inverse relation caching and entity caching
