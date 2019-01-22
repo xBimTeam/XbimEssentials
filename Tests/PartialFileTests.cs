@@ -5,9 +5,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Common.Step21;
+using Xbim.Ifc;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.ProductExtension;
+using Xbim.Ifc4.SharedBldgElements;
 using Xbim.IO;
 using Xbim.IO.Memory;
 
@@ -95,6 +99,50 @@ namespace Xbim.IfcCore.UnitTests
                     }
 
                 }
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestFiles\\SampleHouse4.ifc")]
+        public void CreatingPartialFileWithStore()
+        {
+            
+            using (var source = IfcStore.Open("SampleHouse4.ifc"))
+            {
+                    
+                var products = source.Instances.OfType<IfcBuildingElement>();
+
+                using (var target = IfcStore.Create(source.SchemaVersion, XbimStoreType.InMemoryModel))
+                using(var txn = target.BeginTransaction("Insert Copy"))
+                {
+                    var map = new XbimInstanceHandleMap(source, target);
+                    target.InsertCopy(products, true, false, map);
+
+                    txn.Commit();
+
+                    var expected = products.Count();
+                    var actual = target.Instances.OfType<IfcBuildingElement>().Count();
+
+                    Assert.AreEqual(expected, actual);
+
+                    var owners = target.Instances.OfType<IIfcOwnerHistory>();
+
+                    Assert.IsTrue(owners.Count() > 0);
+
+                }
+
+            }
+            
+        }
+
+        [TestMethod]
+        public void NewStoreModelIsEmptyByDefault()
+        {
+            using (var model = IfcStore.Create(XbimSchemaVersion.Ifc4x1, XbimStoreType.InMemoryModel))
+            {
+                var instances = model.Instances;
+
+                Assert.AreEqual(0, instances.Count());
             }
         }
     }
