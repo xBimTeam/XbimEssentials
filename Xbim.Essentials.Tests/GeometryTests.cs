@@ -10,6 +10,29 @@ namespace Xbim.Essentials.Tests
     public class GeometryTests
     {
         [TestMethod]
+        public void TransformationOfRegion()
+        {
+            XbimRect3D r = new XbimRect3D(
+                100, 100, 0,
+                200, 200, 0
+                );
+            XbimMatrix3D m = XbimMatrix3D.CreateRotation( // 90 ccw
+                new XbimPoint3D(1, 0, 0),
+                new XbimPoint3D(0, 1, 0)
+                );
+            var rotated = r.Transform(m);
+
+            Assert.AreEqual(-300, rotated.Min.X);
+            Assert.AreEqual(100, rotated.Min.Y);
+            Assert.AreEqual(0, rotated.Min.Z);
+
+            Assert.AreEqual(-100, rotated.Max.X);
+            Assert.AreEqual(300, rotated.Max.Y);
+            Assert.AreEqual(0, rotated.Max.Z);
+
+        }
+
+        [TestMethod]
         public void RotationMatrixFromVectorsTests()
         {
             // y to x

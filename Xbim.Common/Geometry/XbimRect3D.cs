@@ -494,16 +494,32 @@ namespace Xbim.Common.Geometry
         }
 
         /// <summary>
-        /// Warning: This function assumes no rotation is used for the tranform.
+        /// This function returns the smallest possible boundingbox after rotation, aligned to the same reference system of the first.
+        /// This means that its size might increase, and the operation is not reversible.
+        /// This function does not alter the original bounding box.
         /// </summary>
-        /// <param name="composed">The NON-ROTATING transform to apply</param>
+        /// <param name="applicableTransform">The transform to apply</param>
         /// <returns>the transformed bounding box.</returns>
-        public XbimRect3D Transform(XbimMatrix3D composed)
+        public XbimRect3D Transform(XbimMatrix3D applicableTransform)
         {
-            var min = this.Min * composed;
-            var max = this.Max * composed;
-
-            return new XbimRect3D(min, max);
+            XbimPoint3D[] pts = new XbimPoint3D[]
+            {
+                this.Min,
+                this.Max
+            };
+            var ret = XbimRect3D.Empty;
+            for (int xi = 0; xi < 2; xi++)
+            {
+                for (int yi = 0; yi < 2; yi++)
+                {
+                    for (int zi = 0; zi < 2; zi++)
+                    {
+                        var transformed = new XbimPoint3D(pts[xi].X, pts[yi].Y, pts[zi].Z) * applicableTransform;
+                        ret.Union(transformed);
+                    }
+                }
+            }
+            return ret;
         }
 
         /// <summary>
