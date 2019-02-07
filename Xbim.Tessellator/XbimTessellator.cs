@@ -376,7 +376,6 @@ namespace Xbim.Tessellator
                     double minY = double.PositiveInfinity;
                     double minZ = double.PositiveInfinity;
                     foreach (var v in triangulatedMeshes.SelectMany(t => t.Vertices))
-
                     {
                         minX = Math.Min(minX, v.X);
                         minY = Math.Min(minY, v.Y);
@@ -392,7 +391,13 @@ namespace Xbim.Tessellator
                     binaryWriter.Write((float)(v.Y - displacement.Y));
                     binaryWriter.Write((float)(v.Z - displacement.Z));
                 }
-                shapeGeometry.BoundingBox = boundingBox;
+                shapeGeometry.BoundingBox = new XbimRect3D(
+                    boundingBox.Location.X - displacement.X,
+                    boundingBox.Location.Y - displacement.Y,
+                    boundingBox.Location.Z - displacement.Z,
+                    boundingBox.SizeX,
+                    boundingBox.SizeY,
+                    boundingBox.SizeZ);
                 //now write out the faces
 
                 binaryWriter.Write(facesCount);

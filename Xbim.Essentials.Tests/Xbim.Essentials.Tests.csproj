@@ -197,6 +197,9 @@
     <None Include="TestSourceFiles\Axis2PlacementError.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\PositionWithMappedItems.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\properties.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
