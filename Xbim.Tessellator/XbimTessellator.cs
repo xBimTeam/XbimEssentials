@@ -7,6 +7,7 @@ using Xbim.Common.Geometry;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Common.XbimExtensions;
 using Xbim.Ifc4.MeasureResource;
+using log4net;
 
 namespace Xbim.Tessellator
 {
@@ -14,6 +15,9 @@ namespace Xbim.Tessellator
     {
         private readonly IModel _model;
         private readonly XbimGeometryType _geometryType;
+
+        protected static readonly ILog Log = LogManager.GetLogger(" Xbim.Tessellator.XbimTessellator");
+
 
         public bool MoveMinToOrigin { get; set; }
 
@@ -40,7 +44,9 @@ namespace Xbim.Tessellator
                 shape is IIfcShellBasedSurfaceModel ||
                 shape is IIfcConnectedFaceSet ||
                 shape is IIfcTriangulatedFaceSet ||
-                shape is IIfcFacetedBrep;
+                shape is IIfcFacetedBrep||
+                shape is IIfcPolygonalFaceSet 
+                ;
         }
 
         public XbimShapeGeometry Mesh(IIfcRepresentationItem shape)
@@ -55,9 +61,59 @@ namespace Xbim.Tessellator
             if (fbr != null) return Mesh(fbr);
             var tfs = shape as IIfcTriangulatedFaceSet;
             if (tfs != null) return Mesh(tfs);
+            var pfs = shape as IIfcPolygonalFaceSet;
+            if (pfs != null) return Mesh(pfs);
+
             throw new ArgumentException("Unsupported representation type for tessellation, " + shape.GetType().Name);
         }
 
+        public XbimShapeGeometry Mesh(IIfcPolygonalFaceSet polygonalFaceSet)
+        {
+            var faceLists = polygonalFaceSet.Faces.ToList();
+            var triangulatedMeshes = new List<XbimTriangulatedMesh>(faceLists.Count);
+
+            List<List<List<Vec3>>> facesCountoursPoints = GetContourPoints(polygonalFaceSet);
+            XbimTriangulatedMesh triangulatedMesh = Tessellated(
+                polygonalFaceSet.EntityLabel,
+                Convert.ToSingle(polygonalFaceSet.Model.ModelFactors.Precision),
+                facesCountoursPoints
+                );
+            return MeshPolyhedronBinary(triangulatedMeshes, MoveMinToOrigin);
+        }
+
+        private List<List<List<Vec3>>> GetContourPoints(IIfcPolygonalFaceSet obj)
+        {
+            List<List<List<Vec3>>> ret = new List<List<List<Vec3>>>();
+            if (obj.PnIndex != null)
+            {
+                // todo: implement PnIndex behaviour
+                Log.Error("IIfcPolygonalFaceSet tessellation with PnIndex not supported. Contact the team, this is not hard to implement.");
+                return ret;
+            }
+
+            foreach (var face in obj.Faces)
+            {
+                // each face of is made of IIfcPolygonalFaceSet is a single contour, 
+                // but the general function allows multiple (for voids)
+                // so we have to bulid a list
+                //
+                var faceContours = new List<List<Vec3>>();
+                var singleContour = new List<Vec3>();
+                foreach (var index in face.CoordIndex)
+                {
+                    if (index > int.MaxValue)
+                    {
+                        continue;
+                    }
+                    int asInt = (int)index;
+                    var pt = obj.Coordinates.CoordList[asInt - 1];
+                    Vec3 vec3pt = new Vec3(pt[0], pt[1], pt[2]);
+                    singleContour.Add(vec3pt);
+                }
+                faceContours.Add(singleContour);
+            }
+            return ret;
+        }
 
         public XbimShapeGeometry Mesh(IIfcFaceBasedSurfaceModel faceBasedModel)
         {
@@ -443,71 +499,45 @@ namespace Xbim.Tessellator
 
         private XbimTriangulatedMesh TriangulateFaces(IList<IIfcFace> ifcFaces, int entityLabel, float precision)
         {
-            var faceId = 0;
-            
-            var faceCount = ifcFaces.Count;
+            List<List<List<Vec3>>> facesCountoursPoints = GetContourPoints(ifcFaces);
+            XbimTriangulatedMesh triangulatedMesh = Tessellated(entityLabel, precision, facesCountoursPoints);
+            return triangulatedMesh;
+        }
+
+        private static XbimTriangulatedMesh Tessellated(int entityLabel, float precision, List<List<List<Vec3>>> facesCountoursPoints)
+        {
+            var faceCount = facesCountoursPoints.Count;
             var triangulatedMesh = new XbimTriangulatedMesh(faceCount, precision);
-            foreach (var ifcFace in ifcFaces)
+            List<List<ContourVertex[]>> CountoursOfFaces = new List<List<ContourVertex[]>>();
+            foreach (var faceCountoursPoints in facesCountoursPoints)
             {
-                //improves performance and reduces memory load
-                var tess = new Tess();
-
-                var contours = new List<ContourVertex[]>(/*Count?*/);
-                foreach (var bound in ifcFace.Bounds) //build all the loops
+                var thisFaceContours = new List<ContourVertex[]>(/*Count?*/);
+                foreach (var contourPoints in faceCountoursPoints)
                 {
-                    var polyLoop = bound.Bound as IIfcPolyLoop;
-                   
-                    if (polyLoop == null ) continue; //skip empty faces
-                    var polygon = polyLoop.Polygon.ToList();
-                   
-                    if (polygon.Count < 3) continue; //skip non-polygonal faces
-                    var is3D = (polygon[0].Dim == 3);
-
-                    var contour = new ContourVertex[polygon.Count];
-                    if (bound.Orientation)
+                    var contourVertexArray = new ContourVertex[contourPoints.Count];
+                    int i = 0;
+                    foreach (var point in contourPoints)
                     {
-                        for (var j = 0; j < polygon.Count; j++)
-                        {
-                            var v = new Vec3(polygon[j].X, polygon[j].Y, is3D ? polygon[j].Z : 0);
-                            triangulatedMesh.AddVertex(v, ref contour[j]);
-                        }
+                        triangulatedMesh.AddVertex(point, ref contourVertexArray[i++]);
                     }
-                    else
-                    {
-                        var i = 0;
-                        for (var j = polygon.Count - 1; j >= 0; j--)
-                        {
-                            var v = new Vec3(polygon[j].X, polygon[j].Y, is3D ? polygon[j].Z : 0);
-                            triangulatedMesh.AddVertex(v, ref contour[i]);
-                            i++;
-                        }
-                    }
-                    contours.Add(contour);
                 }
+                CountoursOfFaces.Add(thisFaceContours);
+            }
 
-                if (contours.Any())
+            var faceId = 0;
+            foreach (var thisFaceContours in CountoursOfFaces)
+            {
+                if (thisFaceContours.Any())
                 {
-                    if (contours.Count == 1 && contours[0].Length == 3) //its a triangle just grab it
+                    if (thisFaceContours.Count == 1 && thisFaceContours[0].Length == 3) //its a triangle just grab it
                     {
-                        triangulatedMesh.AddTriangle(contours[0][0].Data, contours[0][1].Data, contours[0][2].Data, faceId);
+                        triangulatedMesh.AddTriangle(thisFaceContours[0][0].Data, thisFaceContours[0][1].Data, thisFaceContours[0][2].Data, faceId);
                         faceId++;
                     }
-                    //else 
-                    //if (contours.Count == 1 && contours[0].Length == 4) //its a quad just grab it
-                    //{
-                    //    foreach (var v in contours[0])
-                    //    {
-                    //        Console.WriteLine("{0:F4} ,{1:F4}, {2:F4}", v.Position.X, v.Position.Y, v.Position.Z);
-                            
-                    //    }
-                    //    Console.WriteLine("");
-                    //    triangulatedMesh.AddTriangle(contours[0][0].Data, contours[0][1].Data, contours[0][3].Data, faceId);
-                    //    triangulatedMesh.AddTriangle(contours[0][3].Data, contours[0][1].Data, contours[0][2].Data, faceId);
-                    //    faceId++;
-                    //}
                     else    //it is multi-sided and may have holes
                     {
-                        tess.AddContours(contours);
+                        var tess = new Tess();
+                        tess.AddContours(thisFaceContours);
 
                         tess.Tessellate(WindingRule.EvenOdd, ElementType.Polygons, 3);
                         var faceIndices = new List<int>(tess.ElementCount * 3);
@@ -516,14 +546,14 @@ namespace Xbim.Tessellator
                         for (var j = 0; j < tess.ElementCount * 3; j++)
                         {
                             var idx = contourVerts[elements[j]].Data;
-                            if (idx < 0) //WE HAVE INSERTED A POINT
+                            if (idx < 0) //the tessellation added a position to the shape
                             {
                                 //add it to the mesh
                                 triangulatedMesh.AddVertex(contourVerts[elements[j]].Position, ref contourVerts[elements[j]]);
                             }
                             faceIndices.Add(contourVerts[elements[j]].Data);
                         }
-                        
+
                         if (faceIndices.Count > 0)
                         {
                             for (var j = 0; j < tess.ElementCount; j++)
@@ -543,6 +573,47 @@ namespace Xbim.Tessellator
             return triangulatedMesh;
         }
 
+        private static List<List<List<Vec3>>> GetContourPoints(IList<IIfcFace> ifcFaces)
+        {
+            List<List<List<Vec3>>> facesCountoursPoints = new List<List<List<Vec3>>>();
+            foreach (var ifcFace in ifcFaces)
+            {
+                var thisFaceContours = new List<List<Vec3>>(/*Count?*/);
+                foreach (var bound in ifcFace.Bounds) //build all the loops
+                {
+                    var polyLoop = bound.Bound as IIfcPolyLoop;
+
+                    if (polyLoop == null)
+                        continue; //skip empty faces
+                    var polygon = polyLoop.Polygon.ToList();
+
+                    if (polygon.Count < 3)
+                        continue; //skip non-polygonal faces
+                    var is3D = (polygon[0].Dim == 3);
+
+                    var contourVertexlist = new List<Vec3>(polygon.Count);
+                    if (bound.Orientation)
+                    {
+                        for (var j = 0; j < polygon.Count; j++)
+                        {
+                            var v = new Vec3(polygon[j].X, polygon[j].Y, is3D ? polygon[j].Z : 0);
+                        }
+                    }
+                    else
+                    {
+                        var i = 0;
+                        for (var j = polygon.Count - 1; j >= 0; j--)
+                        {
+                            var v = new Vec3(polygon[j].X, polygon[j].Y, is3D ? polygon[j].Z : 0);
+                            i++;
+                        }
+                    }
+                    thisFaceContours.Add(contourVertexlist);
+                }
+            }
+
+            return facesCountoursPoints;
+        }
 
         private XbimTriangulatedMesh Triangulate(IIfcTriangulatedFaceSet triangulation)
         {

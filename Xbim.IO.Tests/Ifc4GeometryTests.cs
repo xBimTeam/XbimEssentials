@@ -7,6 +7,7 @@ using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 using System.IO;
 using Xbim.Common.XbimExtensions;
+using System;
 
 namespace  Xbim.MemoryModel.Tests
 {
@@ -26,8 +27,8 @@ namespace  Xbim.MemoryModel.Tests
                 Assert.IsNotNull(basinTess);
                 Assert.IsTrue(tessellator.CanMesh(basinTess));
                 var geom = tessellator.Mesh(basinTess);
-                Assert.IsTrue((int)(geom.BoundingBox.Volume) == 23913892);
-                
+                int calculatedVolume = Convert.ToInt32(geom.BoundingBox.Volume);
+                Assert.AreEqual(23913892, calculatedVolume);
             }
         }
 

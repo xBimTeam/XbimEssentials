@@ -541,6 +541,12 @@ namespace Xbim.Tessellator
                 return _vertices[v].Data;
         }
 
+        /// <summary>
+        /// Attempt to optimise the vertices in the triangulation.
+        /// If the vertex is already present, it will be reuesed.
+        /// </summary>
+        /// <param name="v">The vertex to search</param>
+        /// <param name="contourVertex">The reference vertex to populate</param>
         public void AddVertex(Vec3 v, ref ContourVertex contourVertex)
         {
             if (_vertices.Contains(v)) 
