@@ -33,7 +33,6 @@ namespace Xbim.IO.Tests
             var s = p.GetXbimSchemaVersion(ifc);
             using (p.Open(ifc, s)) { }
 
-            IfcStore.ModelProviderFactory.UseEsentModelProvider();
             using (var model = IfcStore.Open(db))
             {
                 Assert.IsTrue(model.GeometryStore.IsEmpty);
