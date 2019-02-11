@@ -111,7 +111,7 @@ namespace Xbim.IO.Xml.BsConf
             if (entity != null)
                 return entity;
 
-            entity = new entity {@select = new List<string> {name}};
+            entity = new entity { _select = name };
             Items.Add(entity);
             return entity;
         }

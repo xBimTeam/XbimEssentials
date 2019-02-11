@@ -15,7 +15,7 @@ namespace Xbim.IO.Xml.BsConf
     using System.IO;
     using System.Text;
     using System.Collections.Generic;
-
+    using System.Linq;
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]
     [System.SerializableAttribute()]
@@ -514,7 +514,7 @@ namespace Xbim.IO.Xml.BsConf
 
         private List<object> itemsField;
 
-        private List<string> selectField;
+        private string selectField;
 
         private List<string> syntheticField;
 
@@ -572,8 +572,8 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "normalizedString")]
-        public List<string> select
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "normalizedString", AttributeName ="select")]
+        public string _select
         {
             get
             {
@@ -584,6 +584,9 @@ namespace Xbim.IO.Xml.BsConf
                 this.selectField = value;
             }
         }
+
+        [XmlIgnore]
+        public List<string> select => string.IsNullOrWhiteSpace(_select) ? new List<string>(0) : _select.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "Name")]
         public List<string> synthetic
@@ -4515,7 +4518,7 @@ namespace Xbim.IO.Xml.BsConf
 
         private aggregate itemField;
 
-        private List<string> selectField;
+        private string selectField;
 
         private string nameField;
 
@@ -4555,8 +4558,8 @@ namespace Xbim.IO.Xml.BsConf
             }
         }
 
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "normalizedString")]
-        public List<string> select
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "normalizedString", AttributeName ="select")]
+        public string _select
         {
             get
             {
@@ -4567,6 +4570,9 @@ namespace Xbim.IO.Xml.BsConf
                 this.selectField = value;
             }
         }
+
+        [XmlIgnore]
+        public List<string> select => string.IsNullOrWhiteSpace(_select) ? new List<string>(0) : _select.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NMTOKEN")]
         public string name
