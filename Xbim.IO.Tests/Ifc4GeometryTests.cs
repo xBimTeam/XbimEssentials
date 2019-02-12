@@ -8,6 +8,7 @@ using Xbim.Ifc4.Interfaces;
 using System.IO;
 using Xbim.Common.XbimExtensions;
 using System;
+using System.Collections.Generic;
 
 namespace  Xbim.MemoryModel.Tests
 {
@@ -90,6 +91,67 @@ namespace  Xbim.MemoryModel.Tests
                 }
             }
         }
+
+        [DeploymentItem("TestFiles")]
+        [TestMethod]
+        public void OneTesselatedSquareGeometryIsOk()
+        {
+            using (var store = IfcStore.Open("OneTesselatedSquare.ifc"))
+            {
+                var triangulatedFaceSet = store.Instances.OfType<IIfcConnectedFaceSet>().FirstOrDefault();
+
+                var tessellator = new XbimTessellator(store, XbimGeometryType.PolyhedronBinary);
+                Assert.IsNotNull(triangulatedFaceSet);
+                Assert.IsTrue(tessellator.CanMesh(triangulatedFaceSet));
+                var geom = tessellator.Mesh(triangulatedFaceSet);
+                using (var ms = new MemoryStream(((IXbimShapeGeometryData)geom).ShapeData))
+                {
+                    using (var br = new BinaryReader(ms))
+                    {
+                        XbimShapeTriangulation myShapeTriangulation = br.ReadShapeTriangulation();
+                        Assert.AreEqual(2, myShapeTriangulation.Faces.Sum(t => t.TriangleCount));
+                    }
+                }
+            }
+        }
+
+        [DeploymentItem("TestFiles")]
+        [TestMethod]
+        public void IfcPolygonalFaceSetGeometryIsOk()
+        {
+            using (var store = IfcStore.Open("IfcPolygonalFaceSet.ifc"))
+            {
+                var geometries = store.Instances.OfType<IIfcPolygonalFaceSet>();
+                Dictionary<int, int> expectedvalues = new Dictionary<int, int>();
+                expectedvalues.Add(144, 4);
+                expectedvalues.Add(148, 2);
+                var tested = 0;
+                foreach (var IfcPolygonalFaceSet in geometries)
+                {
+                    if (!expectedvalues.Keys.Contains(IfcPolygonalFaceSet.EntityLabel))
+                        continue;
+                    var returned = GetTriangululatedCount(store, IfcPolygonalFaceSet); 
+                    Assert.AreEqual(expectedvalues[IfcPolygonalFaceSet.EntityLabel], returned);
+                    tested++;
+                }
+                Assert.AreEqual(2, tested);
+            }
+        }
+
+        private static int GetTriangululatedCount(IfcStore store, IIfcPolygonalFaceSet IfcPolygonalFaceSet)
+        {
+            var tessellator = new XbimTessellator(store, XbimGeometryType.PolyhedronBinary);
+            Assert.IsNotNull(IfcPolygonalFaceSet);
+            Assert.IsTrue(tessellator.CanMesh(IfcPolygonalFaceSet));
+            var geom = tessellator.Mesh(IfcPolygonalFaceSet);
+            using (var ms = new MemoryStream(((IXbimShapeGeometryData)geom).ShapeData))
+            using (var br = new BinaryReader(ms))
+            {
+                XbimShapeTriangulation myShapeTriangulation = br.ReadShapeTriangulation();
+                return myShapeTriangulation.Faces.Sum(t => t.TriangleCount);
+            }
+        }
+
         [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcTriangulatedFaceSetComplexBinaryTest()

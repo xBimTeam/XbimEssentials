@@ -378,7 +378,7 @@ namespace Xbim.Common.Geometry
             
         }
 
-        public void Union(XbimRect3D bb)
+        public XbimRect3D Union(XbimRect3D bb)
         {
             if (IsEmpty)
             {
@@ -401,6 +401,7 @@ namespace Xbim.Common.Geometry
                 Y = numY;
                 Z = numZ;
             }
+            return new XbimRect3D(X, Y, Z, _sizeX, _sizeY, _sizeZ);
         }
 
         public void Union(XbimPoint3D highpt)

@@ -70,26 +70,31 @@ namespace Xbim.Tessellator
         public XbimShapeGeometry Mesh(IIfcPolygonalFaceSet polygonalFaceSet)
         {
             var faceLists = polygonalFaceSet.Faces.ToList();
-            var triangulatedMeshes = new List<XbimTriangulatedMesh>(faceLists.Count);
+            var triangulatedMeshes = new List<XbimTriangulatedMesh>(1);
 
             List<List<List<Vec3>>> facesCountoursPoints = GetContourPoints(polygonalFaceSet);
-            XbimTriangulatedMesh triangulatedMesh = Tessellated(
+            XbimTriangulatedMesh tessellation = Tessellated(
                 polygonalFaceSet.EntityLabel,
                 Convert.ToSingle(polygonalFaceSet.Model.ModelFactors.Precision),
                 facesCountoursPoints
                 );
+
+            triangulatedMeshes.Add(tessellation);
+
             return MeshPolyhedronBinary(triangulatedMeshes, MoveMinToOrigin);
         }
 
         private List<List<List<Vec3>>> GetContourPoints(IIfcPolygonalFaceSet obj)
         {
             List<List<List<Vec3>>> ret = new List<List<List<Vec3>>>();
-            if (obj.PnIndex != null)
+            if (obj.PnIndex != null && obj.PnIndex.Any())
             {
                 // todo: implement PnIndex behaviour
                 Log.Error("IIfcPolygonalFaceSet tessellation with PnIndex not supported. Contact the team, this is not hard to implement.");
                 return ret;
             }
+            var pointsArray = obj.Coordinates.CoordList.ToArray();
+            var pointsCount = pointsArray.Count();
 
             foreach (var face in obj.Faces)
             {
@@ -99,18 +104,45 @@ namespace Xbim.Tessellator
                 //
                 var faceContours = new List<List<Vec3>>();
                 var singleContour = new List<Vec3>();
-                foreach (var index in face.CoordIndex)
+                foreach (var oneBasedIndex in face.CoordIndex)
                 {
-                    if (index > int.MaxValue)
+                    // index is 1 based, so the check is for equality, but it then gets reduced by one.
+                    if (oneBasedIndex > pointsCount || oneBasedIndex < 1)
                     {
+                        Log.Error($"Invalid point in 1-based index ({oneBasedIndex}) for #{obj.EntityLabel}, face #{face.EntityLabel}.");
                         continue;
                     }
-                    int asInt = (int)index;
-                    var pt = obj.Coordinates.CoordList[asInt - 1];
-                    Vec3 vec3pt = new Vec3(pt[0], pt[1], pt[2]);
-                    singleContour.Add(vec3pt);
+                    int asZeroBasedInt = (int)oneBasedIndex - 1;
+                    var pt = pointsArray[asZeroBasedInt];
+                    var pointAsArray = pt.ToArray();
+                    if (pointAsArray.Length < 3)
+                    {
+                        Log.Error($"Point identified in 1-based index ({oneBasedIndex}) for #{obj.EntityLabel}, face #{face.EntityLabel} does only has {pointAsArray.Length} coordinates.");
+                        continue;
+                    }
+                    int coordIndex = 0;
+                    try
+                    {
+                       
+                        var coordX = Convert.ToDouble(pointAsArray[coordIndex]);
+                        var coordY = Convert.ToDouble(pointAsArray[++coordIndex]);
+                        var coordZ = Convert.ToDouble(pointAsArray[++coordIndex]);
+                        Vec3 vec3pt = new Vec3(
+                            coordX,
+                            coordY,
+                            coordZ
+                            );
+                        singleContour.Add(vec3pt);
+                    }
+                    catch (Exception ex)
+                    {
+                        string[] coordNames = new string[] { "X", "Y", "Z" };
+                        Log.Error($"Failed identification for coordinate {coordNames[coordIndex]} of 1-based index ({oneBasedIndex}) for #{obj.EntityLabel}, face #{face.EntityLabel}.", ex);
+                        throw;
+                    }                    
                 }
                 faceContours.Add(singleContour);
+                ret.Add(faceContours);
             }
             return ret;
         }
@@ -504,22 +536,23 @@ namespace Xbim.Tessellator
             return triangulatedMesh;
         }
 
-        private static XbimTriangulatedMesh Tessellated(int entityLabel, float precision, List<List<List<Vec3>>> facesCountoursPoints)
+        private static XbimTriangulatedMesh Tessellated(int entityLabel, float precision, List<List<List<Vec3>>> faces)
         {
-            var faceCount = facesCountoursPoints.Count;
+            var faceCount = faces.Count;
             var triangulatedMesh = new XbimTriangulatedMesh(faceCount, precision);
             List<List<ContourVertex[]>> CountoursOfFaces = new List<List<ContourVertex[]>>();
-            foreach (var faceCountoursPoints in facesCountoursPoints)
+            foreach (var contoursOfOneface in faces)
             {
                 var thisFaceContours = new List<ContourVertex[]>(/*Count?*/);
-                foreach (var contourPoints in faceCountoursPoints)
+                foreach (var contour in contoursOfOneface)
                 {
-                    var contourVertexArray = new ContourVertex[contourPoints.Count];
+                    var oneContour = new ContourVertex[contour.Count];
                     int i = 0;
-                    foreach (var point in contourPoints)
+                    foreach (var point in contour)
                     {
-                        triangulatedMesh.AddVertex(point, ref contourVertexArray[i++]);
+                        triangulatedMesh.AddVertex(point, ref oneContour[i++]);
                     }
+                    thisFaceContours.Add(oneContour);
                 }
                 CountoursOfFaces.Add(thisFaceContours);
             }
@@ -597,6 +630,7 @@ namespace Xbim.Tessellator
                         for (var j = 0; j < polygon.Count; j++)
                         {
                             var v = new Vec3(polygon[j].X, polygon[j].Y, is3D ? polygon[j].Z : 0);
+                            contourVertexlist.Add(v);
                         }
                     }
                     else
@@ -605,11 +639,13 @@ namespace Xbim.Tessellator
                         for (var j = polygon.Count - 1; j >= 0; j--)
                         {
                             var v = new Vec3(polygon[j].X, polygon[j].Y, is3D ? polygon[j].Z : 0);
+                            contourVertexlist.Add(v);
                             i++;
                         }
                     }
                     thisFaceContours.Add(contourVertexlist);
                 }
+                facesCountoursPoints.Add(thisFaceContours);
             }
 
             return facesCountoursPoints;

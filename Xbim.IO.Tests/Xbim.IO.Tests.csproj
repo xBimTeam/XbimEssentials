@@ -200,6 +200,9 @@
     <None Include="TestFiles\IfcCartesianPointList3D.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\IFCPOLYGONALFACESET.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestFiles\IkeaKitchenCabinets.ifcXML">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -220,6 +223,9 @@
     </None>
     <None Include="TestFiles\NewlinesInStrings.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestFiles\OneTesselatedSquare.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestFiles\OneWall.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
