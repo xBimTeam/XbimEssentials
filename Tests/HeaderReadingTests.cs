@@ -28,5 +28,24 @@ namespace Xbim.Essentials.Tests
                 Assert.AreEqual("ViewDefinition [CoordinationView]", mvd);
             }
         }
+
+        [TestMethod]
+        public void ReadNotIfcFileHeader()
+        {
+            const string noIfc = "noifc.ifc";
+            using (var file = File.CreateText(noIfc))
+            {
+                file.WriteLine("Not an IFC file");
+                file.Close();
+            }
+            using (var file = File.OpenRead(noIfc))
+            {
+                var header = StepModel.LoadStep21Header(file);
+                // should return empty default header
+                Assert.IsNotNull(header);
+                Assert.IsTrue(header.FileSchema.Schemas.Count == 0);
+                Assert.IsTrue(header.ModelViewDefinition == "");
+            }
+        }
     }
 }

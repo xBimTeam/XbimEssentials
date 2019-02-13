@@ -153,7 +153,7 @@ namespace Xbim.IO.Step21
                                 {
                                     var current = _processStack.Pop();
                                     //SkipEntities.Add(current.EntityLabel);
-                                    while (tok != endEntityToken)
+                                    while (tok != endEntityToken && tok != eofToken)
                                         tok = _scanner.yylex();
                                     break;
                                 }
@@ -161,7 +161,7 @@ namespace Xbim.IO.Step21
                                 if (!SetType(type))
                                 {
                                     // move to the end of entity if we couldn't create it
-                                    while (tok != endEntityToken)
+                                    while (tok != endEntityToken && tok != eofToken)
                                         tok = _scanner.yylex();
                                 }
                                 break;
