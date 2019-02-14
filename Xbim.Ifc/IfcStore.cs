@@ -209,7 +209,7 @@ namespace Xbim.Ifc
         /// <param name="progDelegate">Progress reporting delegate</param>
         /// <param name="codePageOverride">
         /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
-        /// encoding will be used accoring to the Ifc specification. </param>
+        /// encoding will be used according to the Ifc specification. </param>
         /// <returns></returns>
         public static IfcStore Open(Stream stream, StorageType dataType, XbimSchemaVersion schema, XbimModelType modelType, XbimEditorCredentials editorDetails = null, 
             XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1)
@@ -234,7 +234,7 @@ namespace Xbim.Ifc
         /// <param name="accessMode"></param>
         /// <param name="codePageOverride">
         /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
-        /// encoding will be used accoring to the Ifc specification. </param>
+        /// encoding will be used according to the Ifc specification. </param>
         public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, 
             ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read, int codePageOverride = -1)
         {
