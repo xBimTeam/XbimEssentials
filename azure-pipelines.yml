@@ -8,6 +8,7 @@ trigger:
     include:
     - master
     - develop
+    - ifcRail
   paths:
     exclude:
     - README.md
@@ -20,7 +21,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   major: 5
-  minor: 0
+  minor: 9999
   # creates a counter called versioncounter and seeds it at 100 and then assigns the value to a variable named buildNo.
   buildNo: $[counter('versioncounter', 100)]
   
@@ -181,6 +182,16 @@ steps:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'MyGetDev'
+    versioningScheme: byEnvVar
+    versionEnvVar: packageversion
+
+- task: NuGetCommand@2
+  displayName: 'Publish to MyGet IfcRail'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/ifcRail')
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'MyGetIfcRail'
     versioningScheme: byEnvVar
     versionEnvVar: packageversion
 
