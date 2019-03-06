@@ -9,7 +9,6 @@
 
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 using Xbim.Common;
-using Xbim.Ifc2x3.Interfaces;
 //## Custom using statements
 //##
 
