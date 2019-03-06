@@ -20,45 +20,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDocumentElectronicFormat
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDocumentElectronicFormat : IPersistEntity
-	{
-		IfcLabel? @FileExtension { get;  set; }
-		IfcLabel? @MimeContentType { get;  set; }
-		IfcLabel? @MimeSubtype { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentElectronicFormat", 599)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentElectronicFormat : PersistEntity, IInstantiableEntity, IIfcDocumentElectronicFormat, IEquatable<@IfcDocumentElectronicFormat>
+	public  partial class @IfcDocumentElectronicFormat : PersistEntity, IInstantiableEntity, IEquatable<@IfcDocumentElectronicFormat>
 	{
-		#region IIfcDocumentElectronicFormat explicit implementation
-		IfcLabel? IIfcDocumentElectronicFormat.FileExtension { 
- 
-			get { return @FileExtension; } 
-			set { FileExtension = value;}
-		}	
-		IfcLabel? IIfcDocumentElectronicFormat.MimeContentType { 
- 
-			get { return @MimeContentType; } 
-			set { MimeContentType = value;}
-		}	
-		IfcLabel? IIfcDocumentElectronicFormat.MimeSubtype { 
- 
-			get { return @MimeSubtype; } 
-			set { MimeSubtype = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentElectronicFormat(IModel model, int label, bool activated) : base(model, label, activated)  

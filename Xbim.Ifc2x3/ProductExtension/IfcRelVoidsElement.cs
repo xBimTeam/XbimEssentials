@@ -18,41 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelVoidsElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelVoidsElement : IIfcRelConnects
-	{
-		IIfcElement @RelatingBuildingElement { get;  set; }
-		IIfcFeatureElementSubtraction @RelatedOpeningElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelVoidsElement", 496)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelVoidsElement : IfcRelConnects, IInstantiableEntity, IIfcRelVoidsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelVoidsElement>
+	public  partial class @IfcRelVoidsElement : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelVoidsElement>
 	{
-		#region IIfcRelVoidsElement explicit implementation
-		IIfcElement IIfcRelVoidsElement.RelatingBuildingElement { 
- 
- 
-			get { return @RelatingBuildingElement; } 
-			set { RelatingBuildingElement = value as IfcElement;}
-		}	
-		IIfcFeatureElementSubtraction IIfcRelVoidsElement.RelatedOpeningElement { 
- 
- 
-			get { return @RelatedOpeningElement; } 
-			set { RelatedOpeningElement = value as IfcFeatureElementSubtraction;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelVoidsElement(IModel model, int label, bool activated) : base(model, label, activated)  

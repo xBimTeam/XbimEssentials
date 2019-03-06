@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.PlumbingFireProtectionDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFireSuppressionTerminalType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFireSuppressionTerminalType : IIfcFlowTerminalType
-	{
-		IfcFireSuppressionTerminalTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcFireSuppressionTerminalType", 477)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFireSuppressionTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcFireSuppressionTerminalType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFireSuppressionTerminalType>
+	public  partial class @IfcFireSuppressionTerminalType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFireSuppressionTerminalType>
 	{
-		#region IIfcFireSuppressionTerminalType explicit implementation
-		IfcFireSuppressionTerminalTypeEnum IIfcFireSuppressionTerminalType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFireSuppressionTerminalType(IModel model, int label, bool activated) : base(model, label, activated)  

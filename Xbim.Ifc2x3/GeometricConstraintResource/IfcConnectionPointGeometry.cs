@@ -17,41 +17,13 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConnectionPointGeometry
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConnectionPointGeometry : IIfcConnectionGeometry
-	{
-		IIfcPointOrVertexPoint @PointOnRelatingElement { get;  set; }
-		IIfcPointOrVertexPoint @PointOnRelatedElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPointGeometry", 71)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPointGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionPointGeometry>
+	public  partial class @IfcConnectionPointGeometry : IfcConnectionGeometry, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectionPointGeometry>
 	{
-		#region IIfcConnectionPointGeometry explicit implementation
-		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatingElement { 
- 
- 
-			get { return @PointOnRelatingElement; } 
-			set { PointOnRelatingElement = value as IfcPointOrVertexPoint;}
-		}	
-		IIfcPointOrVertexPoint IIfcConnectionPointGeometry.PointOnRelatedElement { 
- 
- 
-			get { return @PointOnRelatedElement; } 
-			set { PointOnRelatedElement = value as IfcPointOrVertexPoint;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPointGeometry(IModel model, int label, bool activated) : base(model, label, activated)  

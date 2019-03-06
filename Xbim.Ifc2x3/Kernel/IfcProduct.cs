@@ -20,43 +20,13 @@ using Xbim.Ifc2x3.Kernel;
 using Xbim.Ifc2x3.ProductExtension;
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProduct
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProduct : IIfcObject
-	{
-		IIfcObjectPlacement @ObjectPlacement { get;  set; }
-		IIfcProductRepresentation @Representation { get;  set; }
-		IEnumerable<IIfcRelAssignsToProduct> @ReferencedBy {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcProduct", 20)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProduct : IfcObject, IIfcProduct, IEquatable<@IfcProduct>
+	public abstract partial class @IfcProduct : IfcObject, IEquatable<@IfcProduct>
 	{
-		#region IIfcProduct explicit implementation
-		IIfcObjectPlacement IIfcProduct.ObjectPlacement { 
- 
- 
-			get { return @ObjectPlacement; } 
-			set { ObjectPlacement = value as IfcObjectPlacement;}
-		}	
-		IIfcProductRepresentation IIfcProduct.Representation { 
- 
- 
-			get { return @Representation; } 
-			set { Representation = value as IfcProductRepresentation;}
-		}	
-		 
-		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy {  get { return @ReferencedBy; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProduct(IModel model, int label, bool activated) : base(model, label, activated)  

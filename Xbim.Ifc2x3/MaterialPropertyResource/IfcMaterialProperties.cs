@@ -20,34 +20,13 @@ using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterialProperties : IPersistEntity
-	{
-		IIfcMaterial @Material { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMaterialProperties", 437)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcMaterialProperties : PersistEntity, IIfcMaterialProperties, IEquatable<@IfcMaterialProperties>
+	public abstract partial class @IfcMaterialProperties : PersistEntity, IEquatable<@IfcMaterialProperties>
 	{
-		#region IIfcMaterialProperties explicit implementation
-		IIfcMaterial IIfcMaterialProperties.Material { 
- 
- 
-			get { return @Material; } 
-			set { Material = value as IfcMaterial;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

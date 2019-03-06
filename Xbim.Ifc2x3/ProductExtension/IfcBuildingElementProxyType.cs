@@ -17,33 +17,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBuildingElementProxyType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBuildingElementProxyType : IIfcBuildingElementType
-	{
-		IfcBuildingElementProxyTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcBuildingElementProxyType", 107)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementProxyType : IfcBuildingElementType, IInstantiableEntity, IIfcBuildingElementProxyType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementProxyType>
+	public  partial class @IfcBuildingElementProxyType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementProxyType>
 	{
-		#region IIfcBuildingElementProxyType explicit implementation
-		IfcBuildingElementProxyTypeEnum IIfcBuildingElementProxyType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuildingElementProxyType(IModel model, int label, bool activated) : base(model, label, activated)  

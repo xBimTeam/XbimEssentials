@@ -18,39 +18,13 @@ using Xbim.Ifc2x3.SharedComponentElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcChamferEdgeFeature
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcChamferEdgeFeature : IIfcEdgeFeature
-	{
-		IfcPositiveLengthMeasure? @Width { get;  set; }
-		IfcPositiveLengthMeasure? @Height { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcChamferEdgeFeature", 765)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcChamferEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcChamferEdgeFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChamferEdgeFeature>
+	public  partial class @IfcChamferEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChamferEdgeFeature>
 	{
-		#region IIfcChamferEdgeFeature explicit implementation
-		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Width { 
- 
-			get { return @Width; } 
-			set { Width = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcChamferEdgeFeature.Height { 
- 
-			get { return @Height; } 
-			set { Height = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcChamferEdgeFeature(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,27 +18,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAnnotationCurveOccurrence
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAnnotationCurveOccurrence : IIfcAnnotationOccurrence, IfcDraughtingCalloutElement
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationCurveOccurrence", 57)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationCurveOccurrence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationCurveOccurrence>
+	public  partial class @IfcAnnotationCurveOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IfcDraughtingCalloutElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationCurveOccurrence>
 	{
-		#region IIfcAnnotationCurveOccurrence explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationCurveOccurrence(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -20,44 +20,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyEnumeration
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyEnumeration : IPersistEntity
-	{
-		IfcLabel @Name { get;  set; }
-		IItemSet<IIfcValue> @EnumerationValues { get; }
-		IIfcUnit @Unit { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyEnumeration", 597)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeration : PersistEntity, IInstantiableEntity, IIfcPropertyEnumeration, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeration>
+	public  partial class @IfcPropertyEnumeration : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeration>
 	{
-		#region IIfcPropertyEnumeration explicit implementation
-		IfcLabel IIfcPropertyEnumeration.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IItemSet<IIfcValue> IIfcPropertyEnumeration.EnumerationValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @EnumerationValues); } 
-		}	
-		IIfcUnit IIfcPropertyEnumeration.Unit { 
- 
- 
-			get { return @Unit; } 
-			set { Unit = value as IfcUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeration(IModel model, int label, bool activated) : base(model, label, activated)  

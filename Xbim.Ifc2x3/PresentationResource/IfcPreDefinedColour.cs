@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.PresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPreDefinedColour
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPreDefinedColour : IIfcPreDefinedItem, IfcColour
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcPreDefinedColour", 608)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IIfcPreDefinedColour, IEquatable<@IfcPreDefinedColour>
+	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IfcColour, IEquatable<@IfcPreDefinedColour>
 	{
-		#region IIfcPreDefinedColour explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedColour(IModel model, int label, bool activated) : base(model, label, activated)  

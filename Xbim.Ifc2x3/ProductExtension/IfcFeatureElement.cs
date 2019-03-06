@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFeatureElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFeatureElement : IIfcElement
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcFeatureElement", 386)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElement : IfcElement, IIfcFeatureElement, IEquatable<@IfcFeatureElement>
+	public abstract partial class @IfcFeatureElement : IfcElement, IEquatable<@IfcFeatureElement>
 	{
-		#region IIfcFeatureElement explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFeatureElement(IModel model, int label, bool activated) : base(model, label, activated)  

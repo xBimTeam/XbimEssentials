@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightSourceAmbient
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightSourceAmbient : IIfcLightSource
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceAmbient", 756)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IContainsEntityReferences, IEquatable<@IfcLightSourceAmbient>
+	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLightSourceAmbient>
 	{
-		#region IIfcLightSourceAmbient explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceAmbient(IModel model, int label, bool activated) : base(model, label, activated)  

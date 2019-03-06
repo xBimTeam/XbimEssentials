@@ -19,58 +19,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSite
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSite : IIfcSpatialStructureElement
-	{
-		IfcCompoundPlaneAngleMeasure? @RefLatitude { get;  set; }
-		IfcCompoundPlaneAngleMeasure? @RefLongitude { get;  set; }
-		IfcLengthMeasure? @RefElevation { get;  set; }
-		IfcLabel? @LandTitleNumber { get;  set; }
-		IIfcPostalAddress @SiteAddress { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSite", 349)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IIfcSite, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSite>
+	public  partial class @IfcSite : IfcSpatialStructureElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSite>
 	{
-		#region IIfcSite explicit implementation
-		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLatitude { 
- 
-			get { return @RefLatitude; } 
-			set { RefLatitude = value;}
-		}	
-		IfcCompoundPlaneAngleMeasure? IIfcSite.RefLongitude { 
- 
-			get { return @RefLongitude; } 
-			set { RefLongitude = value;}
-		}	
-		IfcLengthMeasure? IIfcSite.RefElevation { 
- 
-			get { return @RefElevation; } 
-			set { RefElevation = value;}
-		}	
-		IfcLabel? IIfcSite.LandTitleNumber { 
- 
-			get { return @LandTitleNumber; } 
-			set { LandTitleNumber = value;}
-		}	
-		IIfcPostalAddress IIfcSite.SiteAddress { 
- 
- 
-			get { return @SiteAddress; } 
-			set { SiteAddress = value as IfcPostalAddress;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSite(IModel model, int label, bool activated) : base(model, label, activated)  

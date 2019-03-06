@@ -21,59 +21,13 @@ using Xbim.Ifc2x3.ActorResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOrganization
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOrganization : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect
-	{
-		IfcIdentifier? @Id { get;  set; }
-		IfcLabel @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IItemSet<IIfcActorRole> @Roles { get; }
-		IItemSet<IIfcAddress> @Addresses { get; }
-		IEnumerable<IIfcOrganizationRelationship> @IsRelatedBy {  get; }
-		IEnumerable<IIfcOrganizationRelationship> @Relates {  get; }
-		IEnumerable<IIfcPersonAndOrganization> @Engages {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcOrganization", 276)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganization : PersistEntity, IInstantiableEntity, IIfcOrganization, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganization>
+	public  partial class @IfcOrganization : PersistEntity, IInstantiableEntity, IfcActorSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganization>
 	{
-		#region IIfcOrganization explicit implementation
-		IfcIdentifier? IIfcOrganization.Id { 
- 
-			get { return @Id; } 
-			set { Id = value;}
-		}	
-		IfcLabel IIfcOrganization.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcOrganization.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IItemSet<IIfcActorRole> IIfcOrganization.Roles { 
-			get { return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>( @Roles); } 
-		}	
-		IItemSet<IIfcAddress> IIfcOrganization.Addresses { 
-			get { return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>( @Addresses); } 
-		}	
-		 
-		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy {  get { return @IsRelatedBy; } }
-		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.Relates {  get { return @Relates; } }
-		IEnumerable<IIfcPersonAndOrganization> IIfcOrganization.Engages {  get { return @Engages; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrganization(IModel model, int label, bool activated) : base(model, label, activated)  

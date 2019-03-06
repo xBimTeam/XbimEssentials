@@ -20,37 +20,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCurveStyleFont
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCurveStyleFont : IPersistEntity, IfcCurveStyleFontSelect
-	{
-		IfcLabel? @Name { get;  set; }
-		IItemSet<IIfcCurveStyleFontPattern> @PatternList { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyleFont", 223)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFont : PersistEntity, IInstantiableEntity, IIfcCurveStyleFont, IContainsEntityReferences, IEquatable<@IfcCurveStyleFont>
+	public  partial class @IfcCurveStyleFont : PersistEntity, IInstantiableEntity, IfcCurveStyleFontSelect, IContainsEntityReferences, IEquatable<@IfcCurveStyleFont>
 	{
-		#region IIfcCurveStyleFont explicit implementation
-		IfcLabel? IIfcCurveStyleFont.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IItemSet<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { 
-			get { return new Common.Collections.ProxyItemSet<IfcCurveStyleFontPattern, IIfcCurveStyleFontPattern>( @PatternList); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFont(IModel model, int label, bool activated) : base(model, label, activated)  

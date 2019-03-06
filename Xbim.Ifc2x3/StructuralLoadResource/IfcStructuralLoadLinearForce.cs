@@ -18,63 +18,13 @@ using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadLinearForce
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadLinearForce : IIfcStructuralLoadStatic
-	{
-		IfcLinearForceMeasure? @LinearForceX { get;  set; }
-		IfcLinearForceMeasure? @LinearForceY { get;  set; }
-		IfcLinearForceMeasure? @LinearForceZ { get;  set; }
-		IfcLinearMomentMeasure? @LinearMomentX { get;  set; }
-		IfcLinearMomentMeasure? @LinearMomentY { get;  set; }
-		IfcLinearMomentMeasure? @LinearMomentZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadLinearForce", 419)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadLinearForce, IEquatable<@IfcStructuralLoadLinearForce>
+	public  partial class @IfcStructuralLoadLinearForce : IfcStructuralLoadStatic, IInstantiableEntity, IEquatable<@IfcStructuralLoadLinearForce>
 	{
-		#region IIfcStructuralLoadLinearForce explicit implementation
-		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceX { 
- 
-			get { return @LinearForceX; } 
-			set { LinearForceX = value;}
-		}	
-		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceY { 
- 
-			get { return @LinearForceY; } 
-			set { LinearForceY = value;}
-		}	
-		IfcLinearForceMeasure? IIfcStructuralLoadLinearForce.LinearForceZ { 
- 
-			get { return @LinearForceZ; } 
-			set { LinearForceZ = value;}
-		}	
-		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentX { 
- 
-			get { return @LinearMomentX; } 
-			set { LinearMomentX = value;}
-		}	
-		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentY { 
- 
-			get { return @LinearMomentY; } 
-			set { LinearMomentY = value;}
-		}	
-		IfcLinearMomentMeasure? IIfcStructuralLoadLinearForce.LinearMomentZ { 
- 
-			get { return @LinearMomentZ; } 
-			set { LinearMomentZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadLinearForce(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -20,39 +20,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCurveStyleFontPattern
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCurveStyleFontPattern : IPersistEntity
-	{
-		IfcLengthMeasure @VisibleSegmentLength { get;  set; }
-		IfcPositiveLengthMeasure @InvisibleSegmentLength { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyleFontPattern", 637)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontPattern : PersistEntity, IInstantiableEntity, IIfcCurveStyleFontPattern, IEquatable<@IfcCurveStyleFontPattern>
+	public  partial class @IfcCurveStyleFontPattern : PersistEntity, IInstantiableEntity, IEquatable<@IfcCurveStyleFontPattern>
 	{
-		#region IIfcCurveStyleFontPattern explicit implementation
-		IfcLengthMeasure IIfcCurveStyleFontPattern.VisibleSegmentLength { 
- 
-			get { return @VisibleSegmentLength; } 
-			set { VisibleSegmentLength = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCurveStyleFontPattern.InvisibleSegmentLength { 
- 
-			get { return @InvisibleSegmentLength; } 
-			set { InvisibleSegmentLength = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFontPattern(IModel model, int label, bool activated) : base(model, label, activated)  

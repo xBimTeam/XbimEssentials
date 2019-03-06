@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRailing
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRailing : IIfcBuildingElement
-	{
-		IfcRailingTypeEnum? @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRailing", 350)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRailing : IfcBuildingElement, IInstantiableEntity, IIfcRailing, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRailing>
+	public  partial class @IfcRailing : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRailing>
 	{
-		#region IIfcRailing explicit implementation
-		IfcRailingTypeEnum? IIfcRailing.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRailing(IModel model, int label, bool activated) : base(model, label, activated)  

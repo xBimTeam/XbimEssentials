@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVibrationIsolatorType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVibrationIsolatorType : IIfcDiscreteAccessoryType
-	{
-		IfcVibrationIsolatorTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcVibrationIsolatorType", 137)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVibrationIsolatorType : IfcDiscreteAccessoryType, IInstantiableEntity, IIfcVibrationIsolatorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVibrationIsolatorType>
+	public  partial class @IfcVibrationIsolatorType : IfcDiscreteAccessoryType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVibrationIsolatorType>
 	{
-		#region IIfcVibrationIsolatorType explicit implementation
-		IfcVibrationIsolatorTypeEnum IIfcVibrationIsolatorType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVibrationIsolatorType(IModel model, int label, bool activated) : base(model, label, activated)  

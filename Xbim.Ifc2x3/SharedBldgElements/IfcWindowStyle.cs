@@ -18,51 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWindowStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWindowStyle : IIfcTypeProduct
-	{
-		IfcWindowStyleConstructionEnum @ConstructionType { get;  set; }
-		IfcWindowStyleOperationEnum @OperationType { get;  set; }
-		bool @ParameterTakesPrecedence { get;  set; }
-		bool @Sizeable { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWindowStyle", 345)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IIfcWindowStyle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindowStyle>
+	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindowStyle>
 	{
-		#region IIfcWindowStyle explicit implementation
-		IfcWindowStyleConstructionEnum IIfcWindowStyle.ConstructionType { 
- 
-			get { return @ConstructionType; } 
-			set { ConstructionType = value;}
-		}	
-		IfcWindowStyleOperationEnum IIfcWindowStyle.OperationType { 
- 
-			get { return @OperationType; } 
-			set { OperationType = value;}
-		}	
-		bool IIfcWindowStyle.ParameterTakesPrecedence { 
- 
-			get { return @ParameterTakesPrecedence; } 
-			set { ParameterTakesPrecedence = value;}
-		}	
-		bool IIfcWindowStyle.Sizeable { 
- 
-			get { return @Sizeable; } 
-			set { Sizeable = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowStyle(IModel model, int label, bool activated) : base(model, label, activated)  

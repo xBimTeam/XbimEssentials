@@ -19,40 +19,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAnnotationFillAreaOccurrence
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAnnotationFillAreaOccurrence : IIfcAnnotationOccurrence
-	{
-		IIfcPoint @FillStyleTarget { get;  set; }
-		IfcGlobalOrLocalEnum? @GlobalOrLocal { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationFillAreaOccurrence", 544)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationFillAreaOccurrence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationFillAreaOccurrence>
+	public  partial class @IfcAnnotationFillAreaOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationFillAreaOccurrence>
 	{
-		#region IIfcAnnotationFillAreaOccurrence explicit implementation
-		IIfcPoint IIfcAnnotationFillAreaOccurrence.FillStyleTarget { 
- 
- 
-			get { return @FillStyleTarget; } 
-			set { FillStyleTarget = value as IfcPoint;}
-		}	
-		IfcGlobalOrLocalEnum? IIfcAnnotationFillAreaOccurrence.GlobalOrLocal { 
- 
-			get { return @GlobalOrLocal; } 
-			set { GlobalOrLocal = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationFillAreaOccurrence(IModel model, int label, bool activated) : base(model, label, activated)  

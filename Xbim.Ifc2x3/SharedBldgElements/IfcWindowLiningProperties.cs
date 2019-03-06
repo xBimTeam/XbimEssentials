@@ -20,82 +20,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWindowLiningProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWindowLiningProperties : IIfcPropertySetDefinition
-	{
-		IfcPositiveLengthMeasure? @LiningDepth { get;  set; }
-		IfcPositiveLengthMeasure? @LiningThickness { get;  set; }
-		IfcPositiveLengthMeasure? @TransomThickness { get;  set; }
-		IfcPositiveLengthMeasure? @MullionThickness { get;  set; }
-		IfcNormalisedRatioMeasure? @FirstTransomOffset { get;  set; }
-		IfcNormalisedRatioMeasure? @SecondTransomOffset { get;  set; }
-		IfcNormalisedRatioMeasure? @FirstMullionOffset { get;  set; }
-		IfcNormalisedRatioMeasure? @SecondMullionOffset { get;  set; }
-		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWindowLiningProperties", 252)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowLiningProperties, IContainsEntityReferences, IEquatable<@IfcWindowLiningProperties>
+	public  partial class @IfcWindowLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcWindowLiningProperties>
 	{
-		#region IIfcWindowLiningProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningDepth { 
- 
-			get { return @LiningDepth; } 
-			set { LiningDepth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.LiningThickness { 
- 
-			get { return @LiningThickness; } 
-			set { LiningThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.TransomThickness { 
- 
-			get { return @TransomThickness; } 
-			set { TransomThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcWindowLiningProperties.MullionThickness { 
- 
-			get { return @MullionThickness; } 
-			set { MullionThickness = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstTransomOffset { 
- 
-			get { return @FirstTransomOffset; } 
-			set { FirstTransomOffset = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondTransomOffset { 
- 
-			get { return @SecondTransomOffset; } 
-			set { SecondTransomOffset = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.FirstMullionOffset { 
- 
-			get { return @FirstMullionOffset; } 
-			set { FirstMullionOffset = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcWindowLiningProperties.SecondMullionOffset { 
- 
-			get { return @SecondMullionOffset; } 
-			set { SecondMullionOffset = value;}
-		}	
-		IIfcShapeAspect IIfcWindowLiningProperties.ShapeAspectStyle { 
- 
- 
-			get { return @ShapeAspectStyle; } 
-			set { ShapeAspectStyle = value as IfcShapeAspect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowLiningProperties(IModel model, int label, bool activated) : base(model, label, activated)  

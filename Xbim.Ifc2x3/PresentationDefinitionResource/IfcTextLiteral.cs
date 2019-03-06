@@ -19,46 +19,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextLiteral
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextLiteral : IIfcGeometricRepresentationItem
-	{
-		IfcPresentableText @Literal { get;  set; }
-		IIfcAxis2Placement @Placement { get;  set; }
-		IfcTextPath @Path { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextLiteral", 29)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcTextLiteral, IContainsEntityReferences, IEquatable<@IfcTextLiteral>
+	public  partial class @IfcTextLiteral : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTextLiteral>
 	{
-		#region IIfcTextLiteral explicit implementation
-		IfcPresentableText IIfcTextLiteral.Literal { 
- 
-			get { return @Literal; } 
-			set { Literal = value;}
-		}	
-		IIfcAxis2Placement IIfcTextLiteral.Placement { 
- 
- 
-			get { return @Placement; } 
-			set { Placement = value as IfcAxis2Placement;}
-		}	
-		IfcTextPath IIfcTextLiteral.Path { 
- 
-			get { return @Path; } 
-			set { Path = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextLiteral(IModel model, int label, bool activated) : base(model, label, activated)  

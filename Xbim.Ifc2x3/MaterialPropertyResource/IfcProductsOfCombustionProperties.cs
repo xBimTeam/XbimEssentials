@@ -18,51 +18,13 @@ using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProductsOfCombustionProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProductsOfCombustionProperties : IIfcMaterialProperties
-	{
-		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get;  set; }
-		IfcPositiveRatioMeasure? @N20Content { get;  set; }
-		IfcPositiveRatioMeasure? @COContent { get;  set; }
-		IfcPositiveRatioMeasure? @CO2Content { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcProductsOfCombustionProperties", 719)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IIfcProductsOfCombustionProperties, IContainsEntityReferences, IEquatable<@IfcProductsOfCombustionProperties>
+	public  partial class @IfcProductsOfCombustionProperties : IfcMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProductsOfCombustionProperties>
 	{
-		#region IIfcProductsOfCombustionProperties explicit implementation
-		IfcSpecificHeatCapacityMeasure? IIfcProductsOfCombustionProperties.SpecificHeatCapacity { 
- 
-			get { return @SpecificHeatCapacity; } 
-			set { SpecificHeatCapacity = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.N20Content { 
- 
-			get { return @N20Content; } 
-			set { N20Content = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.COContent { 
- 
-			get { return @COContent; } 
-			set { COContent = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcProductsOfCombustionProperties.CO2Content { 
- 
-			get { return @CO2Content; } 
-			set { CO2Content = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProductsOfCombustionProperties(IModel model, int label, bool activated) : base(model, label, activated)  

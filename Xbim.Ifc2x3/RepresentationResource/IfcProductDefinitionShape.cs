@@ -18,31 +18,13 @@ using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProductDefinitionShape
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProductDefinitionShape : IIfcProductRepresentation
-	{
-		IEnumerable<IIfcProduct> @ShapeOfProduct {  get; }
-		IEnumerable<IIfcShapeAspect> @HasShapeAspects {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcProductDefinitionShape", 90)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductDefinitionShape>
+	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductDefinitionShape>
 	{
-		#region IIfcProductDefinitionShape explicit implementation
-		 
-		IEnumerable<IIfcProduct> IIfcProductDefinitionShape.ShapeOfProduct {  get { return @ShapeOfProduct; } }
-		IEnumerable<IIfcShapeAspect> IIfcProductDefinitionShape.HasShapeAspects {  get { return @HasShapeAspects; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProductDefinitionShape(IModel model, int label, bool activated) : base(model, label, activated)  

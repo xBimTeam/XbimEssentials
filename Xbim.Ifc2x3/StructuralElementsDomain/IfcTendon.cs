@@ -18,75 +18,13 @@ using Xbim.Ifc2x3.StructuralElementsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTendon
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTendon : IIfcReinforcingElement
-	{
-		IfcTendonTypeEnum @PredefinedType { get;  set; }
-		IfcPositiveLengthMeasure @NominalDiameter { get;  set; }
-		IfcAreaMeasure @CrossSectionArea { get;  set; }
-		IfcForceMeasure? @TensionForce { get;  set; }
-		IfcPressureMeasure? @PreStress { get;  set; }
-		IfcNormalisedRatioMeasure? @FrictionCoefficient { get;  set; }
-		IfcPositiveLengthMeasure? @AnchorageSlip { get;  set; }
-		IfcPositiveLengthMeasure? @MinCurvatureRadius { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcTendon", 261)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IIfcTendon, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendon>
+	public  partial class @IfcTendon : IfcReinforcingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendon>
 	{
-		#region IIfcTendon explicit implementation
-		IfcTendonTypeEnum IIfcTendon.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcTendon.NominalDiameter { 
- 
-			get { return @NominalDiameter; } 
-			set { NominalDiameter = value;}
-		}	
-		IfcAreaMeasure IIfcTendon.CrossSectionArea { 
- 
-			get { return @CrossSectionArea; } 
-			set { CrossSectionArea = value;}
-		}	
-		IfcForceMeasure? IIfcTendon.TensionForce { 
- 
-			get { return @TensionForce; } 
-			set { TensionForce = value;}
-		}	
-		IfcPressureMeasure? IIfcTendon.PreStress { 
- 
-			get { return @PreStress; } 
-			set { PreStress = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcTendon.FrictionCoefficient { 
- 
-			get { return @FrictionCoefficient; } 
-			set { FrictionCoefficient = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcTendon.AnchorageSlip { 
- 
-			get { return @AnchorageSlip; } 
-			set { AnchorageSlip = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcTendon.MinCurvatureRadius { 
- 
-			get { return @MinCurvatureRadius; } 
-			set { MinCurvatureRadius = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTendon(IModel model, int label, bool activated) : base(model, label, activated)  

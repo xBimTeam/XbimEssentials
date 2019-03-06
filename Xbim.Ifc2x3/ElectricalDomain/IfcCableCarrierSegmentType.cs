@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCableCarrierSegmentType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCableCarrierSegmentType : IIfcFlowSegmentType
-	{
-		IfcCableCarrierSegmentTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcCableCarrierSegmentType", 301)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCableCarrierSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcCableCarrierSegmentType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCableCarrierSegmentType>
+	public  partial class @IfcCableCarrierSegmentType : IfcFlowSegmentType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCableCarrierSegmentType>
 	{
-		#region IIfcCableCarrierSegmentType explicit implementation
-		IfcCableCarrierSegmentTypeEnum IIfcCableCarrierSegmentType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCableCarrierSegmentType(IModel model, int label, bool activated) : base(model, label, activated)  

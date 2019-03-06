@@ -17,35 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCartesianTransformationOperator3D
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCartesianTransformationOperator3D : IIfcCartesianTransformationOperator
-	{
-		IIfcDirection @Axis3 { get;  set; }
-		List<Common.Geometry.XbimVector3D> @U  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator3D", 337)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator3D, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3D>
+	public  partial class @IfcCartesianTransformationOperator3D : IfcCartesianTransformationOperator, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3D>
 	{
-		#region IIfcCartesianTransformationOperator3D explicit implementation
-		IIfcDirection IIfcCartesianTransformationOperator3D.Axis3 { 
- 
- 
-			get { return @Axis3; } 
-			set { Axis3 = value as IfcDirection;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator3D(IModel model, int label, bool activated) : base(model, label, activated)  

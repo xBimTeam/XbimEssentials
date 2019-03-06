@@ -19,45 +19,13 @@ using Xbim.Ifc2x3.SharedMgmtElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProjectOrder
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProjectOrder : IIfcControl
-	{
-		IfcIdentifier @ID { get;  set; }
-		IfcProjectOrderTypeEnum @PredefinedType { get;  set; }
-		IfcLabel? @Status { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcProjectOrder", 696)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IIfcProjectOrder, IContainsEntityReferences, IEquatable<@IfcProjectOrder>
+	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProjectOrder>
 	{
-		#region IIfcProjectOrder explicit implementation
-		IfcIdentifier IIfcProjectOrder.ID { 
- 
-			get { return @ID; } 
-			set { ID = value;}
-		}	
-		IfcProjectOrderTypeEnum IIfcProjectOrder.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		IfcLabel? IIfcProjectOrder.Status { 
- 
-			get { return @Status; } 
-			set { Status = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectOrder(IModel model, int label, bool activated) : base(model, label, activated)  

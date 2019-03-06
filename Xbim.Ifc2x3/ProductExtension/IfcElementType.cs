@@ -19,33 +19,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElementType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElementType : IIfcTypeProduct
-	{
-		IfcLabel? @ElementType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcElementType", 48)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementType : IfcTypeProduct, IIfcElementType, IEquatable<@IfcElementType>
+	public abstract partial class @IfcElementType : IfcTypeProduct, IEquatable<@IfcElementType>
 	{
-		#region IIfcElementType explicit implementation
-		IfcLabel? IIfcElementType.ElementType { 
- 
-			get { return @ElementType; } 
-			set { ElementType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementType(IModel model, int label, bool activated) : base(model, label, activated)  

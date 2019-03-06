@@ -17,31 +17,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextureMap
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextureMap : IIfcTextureCoordinate
-	{
-		IItemSet<IIfcVertexBasedTextureMap> @TextureMaps { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureMap", 734)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureMap, IContainsEntityReferences, IEquatable<@IfcTextureMap>
+	public  partial class @IfcTextureMap : IfcTextureCoordinate, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTextureMap>
 	{
-		#region IIfcTextureMap explicit implementation
-		IItemSet<IIfcVertexBasedTextureMap> IIfcTextureMap.TextureMaps { 
-			get { return new Common.Collections.ProxyItemSet<IfcVertexBasedTextureMap, IIfcVertexBasedTextureMap>( @TextureMaps); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureMap(IModel model, int label, bool activated) : base(model, label, activated)  

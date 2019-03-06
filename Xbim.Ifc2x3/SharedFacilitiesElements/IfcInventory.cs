@@ -21,65 +21,13 @@ using Xbim.Ifc2x3.SharedFacilitiesElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcInventory
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcInventory : IIfcGroup
-	{
-		IfcInventoryTypeEnum @InventoryType { get;  set; }
-		IIfcActorSelect @Jurisdiction { get;  set; }
-		IItemSet<IIfcPerson> @ResponsiblePersons { get; }
-		IIfcCalendarDate @LastUpdateDate { get;  set; }
-		IIfcCostValue @CurrentValue { get;  set; }
-		IIfcCostValue @OriginalValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcInventory", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IIfcInventory, IContainsEntityReferences, IEquatable<@IfcInventory>
+	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcInventory>
 	{
-		#region IIfcInventory explicit implementation
-		IfcInventoryTypeEnum IIfcInventory.InventoryType { 
- 
-			get { return @InventoryType; } 
-			set { InventoryType = value;}
-		}	
-		IIfcActorSelect IIfcInventory.Jurisdiction { 
- 
- 
-			get { return @Jurisdiction; } 
-			set { Jurisdiction = value as IfcActorSelect;}
-		}	
-		IItemSet<IIfcPerson> IIfcInventory.ResponsiblePersons { 
-			get { return new Common.Collections.ProxyItemSet<IfcPerson, IIfcPerson>( @ResponsiblePersons); } 
-		}	
-		IIfcCalendarDate IIfcInventory.LastUpdateDate { 
- 
- 
-			get { return @LastUpdateDate; } 
-			set { LastUpdateDate = value as IfcCalendarDate;}
-		}	
-		IIfcCostValue IIfcInventory.CurrentValue { 
- 
- 
-			get { return @CurrentValue; } 
-			set { CurrentValue = value as IfcCostValue;}
-		}	
-		IIfcCostValue IIfcInventory.OriginalValue { 
- 
- 
-			get { return @OriginalValue; } 
-			set { OriginalValue = value as IfcCostValue;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcInventory(IModel model, int label, bool activated) : base(model, label, activated)  

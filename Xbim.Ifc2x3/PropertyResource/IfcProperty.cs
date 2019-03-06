@@ -20,45 +20,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProperty
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProperty : IPersistEntity
-	{
-		IfcIdentifier @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyForDependance {  get; }
-		IEnumerable<IIfcPropertyDependencyRelationship> @PropertyDependsOn {  get; }
-		IEnumerable<IIfcComplexProperty> @PartOfComplex {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcProperty", 5)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProperty : PersistEntity, IIfcProperty, IEquatable<@IfcProperty>
+	public abstract partial class @IfcProperty : PersistEntity, IEquatable<@IfcProperty>
 	{
-		#region IIfcProperty explicit implementation
-		IfcIdentifier IIfcProperty.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcProperty.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		 
-		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyForDependance {  get { return @PropertyForDependance; } }
-		IEnumerable<IIfcPropertyDependencyRelationship> IIfcProperty.PropertyDependsOn {  get { return @PropertyDependsOn; } }
-		IEnumerable<IIfcComplexProperty> IIfcProperty.PartOfComplex {  get { return @PartOfComplex; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProperty(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTubeBundleType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTubeBundleType : IIfcEnergyConversionDeviceType
-	{
-		IfcTubeBundleTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcTubeBundleType", 138)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTubeBundleType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcTubeBundleType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTubeBundleType>
+	public  partial class @IfcTubeBundleType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTubeBundleType>
 	{
-		#region IIfcTubeBundleType explicit implementation
-		IfcTubeBundleTypeEnum IIfcTubeBundleType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTubeBundleType(IModel model, int label, bool activated) : base(model, label, activated)  

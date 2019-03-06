@@ -20,44 +20,13 @@ using Xbim.Ifc2x3.ControlExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTimeSeriesSchedule
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTimeSeriesSchedule : IIfcControl
-	{
-		IItemSet<IIfcDateTimeSelect> @ApplicableDates { get; }
-		IfcTimeSeriesScheduleTypeEnum @TimeSeriesScheduleType { get;  set; }
-		IIfcTimeSeries @TimeSeries { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcTimeSeriesSchedule", 712)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IIfcTimeSeriesSchedule, IContainsEntityReferences, IEquatable<@IfcTimeSeriesSchedule>
+	public  partial class @IfcTimeSeriesSchedule : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTimeSeriesSchedule>
 	{
-		#region IIfcTimeSeriesSchedule explicit implementation
-		IItemSet<IIfcDateTimeSelect> IIfcTimeSeriesSchedule.ApplicableDates { 
-			get { return new Common.Collections.ProxyItemSet<IfcDateTimeSelect, IIfcDateTimeSelect>( @ApplicableDates); } 
-		}	
-		IfcTimeSeriesScheduleTypeEnum IIfcTimeSeriesSchedule.TimeSeriesScheduleType { 
- 
-			get { return @TimeSeriesScheduleType; } 
-			set { TimeSeriesScheduleType = value;}
-		}	
-		IIfcTimeSeries IIfcTimeSeriesSchedule.TimeSeries { 
- 
- 
-			get { return @TimeSeries; } 
-			set { TimeSeries = value as IfcTimeSeries;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTimeSeriesSchedule(IModel model, int label, bool activated) : base(model, label, activated)  

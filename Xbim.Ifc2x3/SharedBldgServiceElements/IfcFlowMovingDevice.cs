@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFlowMovingDevice
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFlowMovingDevice : IIfcDistributionFlowElement
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowMovingDevice", 502)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowMovingDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowMovingDevice, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowMovingDevice>
+	public  partial class @IfcFlowMovingDevice : IfcDistributionFlowElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowMovingDevice>
 	{
-		#region IIfcFlowMovingDevice explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowMovingDevice(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -21,38 +21,13 @@ using Xbim.Ifc2x3.TimeSeriesResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcIrregularTimeSeriesValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcIrregularTimeSeriesValue : IPersistEntity
-	{
-		IIfcDateTimeSelect @TimeStamp { get;  set; }
-		IItemSet<IIfcValue> @ListValues { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcIrregularTimeSeriesValue", 609)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeriesValue : PersistEntity, IInstantiableEntity, IIfcIrregularTimeSeriesValue, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeriesValue>
+	public  partial class @IfcIrregularTimeSeriesValue : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeriesValue>
 	{
-		#region IIfcIrregularTimeSeriesValue explicit implementation
-		IIfcDateTimeSelect IIfcIrregularTimeSeriesValue.TimeStamp { 
- 
- 
-			get { return @TimeStamp; } 
-			set { TimeStamp = value as IfcDateTimeSelect;}
-		}	
-		IItemSet<IIfcValue> IIfcIrregularTimeSeriesValue.ListValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @ListValues); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIrregularTimeSeriesValue(IModel model, int label, bool activated) : base(model, label, activated)  

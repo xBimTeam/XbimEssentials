@@ -19,52 +19,13 @@ using Xbim.Ifc2x3.ConstructionMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConstructionResource
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConstructionResource : IIfcResource
-	{
-		IfcIdentifier? @ResourceIdentifier { get;  set; }
-		IfcLabel? @ResourceGroup { get;  set; }
-		IfcResourceConsumptionEnum? @ResourceConsumption { get;  set; }
-		IIfcMeasureWithUnit @BaseQuantity { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionResource", 157)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstructionResource : IfcResource, IIfcConstructionResource, IEquatable<@IfcConstructionResource>
+	public abstract partial class @IfcConstructionResource : IfcResource, IEquatable<@IfcConstructionResource>
 	{
-		#region IIfcConstructionResource explicit implementation
-		IfcIdentifier? IIfcConstructionResource.ResourceIdentifier { 
- 
-			get { return @ResourceIdentifier; } 
-			set { ResourceIdentifier = value;}
-		}	
-		IfcLabel? IIfcConstructionResource.ResourceGroup { 
- 
-			get { return @ResourceGroup; } 
-			set { ResourceGroup = value;}
-		}	
-		IfcResourceConsumptionEnum? IIfcConstructionResource.ResourceConsumption { 
- 
-			get { return @ResourceConsumption; } 
-			set { ResourceConsumption = value;}
-		}	
-		IIfcMeasureWithUnit IIfcConstructionResource.BaseQuantity { 
- 
- 
-			get { return @BaseQuantity; } 
-			set { BaseQuantity = value as IfcMeasureWithUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionResource(IModel model, int label, bool activated) : base(model, label, activated)  

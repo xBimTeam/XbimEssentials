@@ -18,40 +18,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyReferenceValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyReferenceValue : IIfcSimpleProperty
-	{
-		IfcLabel? @UsageName { get;  set; }
-		IIfcObjectReferenceSelect @PropertyReference { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyReferenceValue", 277)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyReferenceValue, IContainsEntityReferences, IEquatable<@IfcPropertyReferenceValue>
+	public  partial class @IfcPropertyReferenceValue : IfcSimpleProperty, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyReferenceValue>
 	{
-		#region IIfcPropertyReferenceValue explicit implementation
-		IfcLabel? IIfcPropertyReferenceValue.UsageName { 
- 
-			get { return @UsageName; } 
-			set { UsageName = value;}
-		}	
-		IIfcObjectReferenceSelect IIfcPropertyReferenceValue.PropertyReference { 
- 
- 
-			get { return @PropertyReference; } 
-			set { PropertyReference = value as IfcObjectReferenceSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyReferenceValue(IModel model, int label, bool activated) : base(model, label, activated)  

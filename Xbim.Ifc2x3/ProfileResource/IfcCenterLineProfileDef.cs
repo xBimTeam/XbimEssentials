@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCenterLineProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCenterLineProfileDef : IIfcArbitraryOpenProfileDef
-	{
-		IfcPositiveLengthMeasure @Thickness { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCenterLineProfileDef", 353)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IIfcCenterLineProfileDef, IContainsEntityReferences, IEquatable<@IfcCenterLineProfileDef>
+	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCenterLineProfileDef>
 	{
-		#region IIfcCenterLineProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCenterLineProfileDef.Thickness { 
- 
-			get { return @Thickness; } 
-			set { Thickness = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCenterLineProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

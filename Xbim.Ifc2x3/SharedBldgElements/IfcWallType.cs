@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWallType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWallType : IIfcBuildingElementType
-	{
-		IfcWallTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWallType", 282)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWallType : IfcBuildingElementType, IInstantiableEntity, IIfcWallType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWallType>
+	public  partial class @IfcWallType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWallType>
 	{
-		#region IIfcWallType explicit implementation
-		IfcWallTypeEnum IIfcWallType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWallType(IModel model, int label, bool activated) : base(model, label, activated)  

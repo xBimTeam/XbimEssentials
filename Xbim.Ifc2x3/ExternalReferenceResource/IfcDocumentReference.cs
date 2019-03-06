@@ -17,29 +17,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDocumentReference
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDocumentReference : IIfcExternalReference, IfcDocumentSelect
-	{
-		IEnumerable<IIfcDocumentInformation> @ReferenceToDocument {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentReference", 450)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IIfcDocumentReference, IEquatable<@IfcDocumentReference>
+	public  partial class @IfcDocumentReference : IfcExternalReference, IInstantiableEntity, IfcDocumentSelect, IEquatable<@IfcDocumentReference>
 	{
-		#region IIfcDocumentReference explicit implementation
-		 
-		IEnumerable<IIfcDocumentInformation> IIfcDocumentReference.ReferenceToDocument {  get { return @ReferenceToDocument; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentReference(IModel model, int label, bool activated) : base(model, label, activated)  

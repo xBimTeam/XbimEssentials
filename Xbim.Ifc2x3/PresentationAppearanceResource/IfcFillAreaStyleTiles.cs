@@ -19,44 +19,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFillAreaStyleTiles
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFillAreaStyleTiles : IIfcGeometricRepresentationItem, IfcFillStyleSelect
-	{
-		IIfcOneDirectionRepeatFactor @TilingPattern { get;  set; }
-		IEnumerable<IIfcFillAreaStyleTileShapeSelect> @Tiles { get; }
-		IfcPositiveRatioMeasure @TilingScale { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTiles", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTiles, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTiles>
+	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IfcFillStyleSelect, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTiles>
 	{
-		#region IIfcFillAreaStyleTiles explicit implementation
-		IIfcOneDirectionRepeatFactor IIfcFillAreaStyleTiles.TilingPattern { 
- 
- 
-			get { return @TilingPattern; } 
-			set { TilingPattern = value as IfcOneDirectionRepeatFactor;}
-		}	
-		IEnumerable<IIfcFillAreaStyleTileShapeSelect> IIfcFillAreaStyleTiles.Tiles { 
-			get { return new Common.Collections.ProxyItemSet<IfcFillAreaStyleTileShapeSelect, IIfcFillAreaStyleTileShapeSelect>( @Tiles); } 
-		}	
-		IfcPositiveRatioMeasure IIfcFillAreaStyleTiles.TilingScale { 
- 
-			get { return @TilingScale; } 
-			set { TilingScale = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleTiles(IModel model, int label, bool activated) : base(model, label, activated)  

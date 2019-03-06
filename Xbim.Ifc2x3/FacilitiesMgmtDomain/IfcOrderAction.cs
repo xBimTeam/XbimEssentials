@@ -19,33 +19,13 @@ using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOrderAction
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOrderAction : IIfcTask
-	{
-		IfcIdentifier @ActionID { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcOrderAction", 591)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IIfcOrderAction, IContainsEntityReferences, IEquatable<@IfcOrderAction>
+	public  partial class @IfcOrderAction : IfcTask, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOrderAction>
 	{
-		#region IIfcOrderAction explicit implementation
-		IfcIdentifier IIfcOrderAction.ActionID { 
- 
-			get { return @ActionID; } 
-			set { ActionID = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrderAction(IModel model, int label, bool activated) : base(model, label, activated)  

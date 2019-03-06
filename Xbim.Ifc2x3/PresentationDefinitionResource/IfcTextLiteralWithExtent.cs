@@ -18,40 +18,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextLiteralWithExtent
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextLiteralWithExtent : IIfcTextLiteral
-	{
-		IIfcPlanarExtent @Extent { get;  set; }
-		IfcBoxAlignment @BoxAlignment { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextLiteralWithExtent", 426)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IIfcTextLiteralWithExtent, IContainsEntityReferences, IEquatable<@IfcTextLiteralWithExtent>
+	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTextLiteralWithExtent>
 	{
-		#region IIfcTextLiteralWithExtent explicit implementation
-		IIfcPlanarExtent IIfcTextLiteralWithExtent.Extent { 
- 
- 
-			get { return @Extent; } 
-			set { Extent = value as IfcPlanarExtent;}
-		}	
-		IfcBoxAlignment IIfcTextLiteralWithExtent.BoxAlignment { 
- 
-			get { return @BoxAlignment; } 
-			set { BoxAlignment = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextLiteralWithExtent(IModel model, int label, bool activated) : base(model, label, activated)  

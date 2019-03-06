@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVirtualElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVirtualElement : IIfcElement
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcVirtualElement", 168)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IIfcVirtualElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualElement>
+	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualElement>
 	{
-		#region IIfcVirtualElement explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVirtualElement(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,41 +18,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPolygonalBoundedHalfSpace
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPolygonalBoundedHalfSpace : IIfcHalfSpaceSolid
-	{
-		IIfcAxis2Placement3D @Position { get;  set; }
-		IIfcBoundedCurve @PolygonalBoundary { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcPolygonalBoundedHalfSpace", 623)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcPolygonalBoundedHalfSpace, IContainsEntityReferences, IEquatable<@IfcPolygonalBoundedHalfSpace>
+	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{
-		#region IIfcPolygonalBoundedHalfSpace explicit implementation
-		IIfcAxis2Placement3D IIfcPolygonalBoundedHalfSpace.Position { 
- 
- 
-			get { return @Position; } 
-			set { Position = value as IfcAxis2Placement3D;}
-		}	
-		IIfcBoundedCurve IIfcPolygonalBoundedHalfSpace.PolygonalBoundary { 
- 
- 
-			get { return @PolygonalBoundary; } 
-			set { PolygonalBoundary = value as IfcBoundedCurve;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPolygonalBoundedHalfSpace(IModel model, int label, bool activated) : base(model, label, activated)  

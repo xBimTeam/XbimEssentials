@@ -18,39 +18,13 @@ using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralSurfaceMember
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralSurfaceMember : IIfcStructuralMember
-	{
-		IfcStructuralSurfaceTypeEnum @PredefinedType { get;  set; }
-		IfcPositiveLengthMeasure? @Thickness { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceMember", 420)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IIfcStructuralSurfaceMember, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMember>
+	public  partial class @IfcStructuralSurfaceMember : IfcStructuralMember, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMember>
 	{
-		#region IIfcStructuralSurfaceMember explicit implementation
-		IfcStructuralSurfaceTypeEnum IIfcStructuralSurfaceMember.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcStructuralSurfaceMember.Thickness { 
- 
-			get { return @Thickness; } 
-			set { Thickness = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceMember(IModel model, int label, bool activated) : base(model, label, activated)  

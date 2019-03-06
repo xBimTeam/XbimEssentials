@@ -22,83 +22,13 @@ using Xbim.Ifc2x3.ConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConstraint
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConstraint : IPersistEntity
-	{
-		IfcLabel @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IfcConstraintEnum @ConstraintGrade { get;  set; }
-		IfcLabel? @ConstraintSource { get;  set; }
-		IIfcActorSelect @CreatingActor { get;  set; }
-		IIfcDateTimeSelect @CreationTime { get;  set; }
-		IfcLabel? @UserDefinedGrade { get;  set; }
-		IEnumerable<IIfcConstraintClassificationRelationship> @ClassifiedAs {  get; }
-		IEnumerable<IIfcConstraintRelationship> @RelatesConstraints {  get; }
-		IEnumerable<IIfcConstraintRelationship> @IsRelatedWith {  get; }
-		IEnumerable<IIfcPropertyConstraintRelationship> @PropertiesForConstraint {  get; }
-		IEnumerable<IIfcConstraintAggregationRelationship> @Aggregates {  get; }
-		IEnumerable<IIfcConstraintAggregationRelationship> @IsAggregatedIn {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraint", 81)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConstraint : PersistEntity, IIfcConstraint, IEquatable<@IfcConstraint>
+	public abstract partial class @IfcConstraint : PersistEntity, IEquatable<@IfcConstraint>
 	{
-		#region IIfcConstraint explicit implementation
-		IfcLabel IIfcConstraint.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcConstraint.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IfcConstraintEnum IIfcConstraint.ConstraintGrade { 
- 
-			get { return @ConstraintGrade; } 
-			set { ConstraintGrade = value;}
-		}	
-		IfcLabel? IIfcConstraint.ConstraintSource { 
- 
-			get { return @ConstraintSource; } 
-			set { ConstraintSource = value;}
-		}	
-		IIfcActorSelect IIfcConstraint.CreatingActor { 
- 
- 
-			get { return @CreatingActor; } 
-			set { CreatingActor = value as IfcActorSelect;}
-		}	
-		IIfcDateTimeSelect IIfcConstraint.CreationTime { 
- 
- 
-			get { return @CreationTime; } 
-			set { CreationTime = value as IfcDateTimeSelect;}
-		}	
-		IfcLabel? IIfcConstraint.UserDefinedGrade { 
- 
-			get { return @UserDefinedGrade; } 
-			set { UserDefinedGrade = value;}
-		}	
-		 
-		IEnumerable<IIfcConstraintClassificationRelationship> IIfcConstraint.ClassifiedAs {  get { return @ClassifiedAs; } }
-		IEnumerable<IIfcConstraintRelationship> IIfcConstraint.RelatesConstraints {  get { return @RelatesConstraints; } }
-		IEnumerable<IIfcConstraintRelationship> IIfcConstraint.IsRelatedWith {  get { return @IsRelatedWith; } }
-		IEnumerable<IIfcPropertyConstraintRelationship> IIfcConstraint.PropertiesForConstraint {  get { return @PropertiesForConstraint; } }
-		IEnumerable<IIfcConstraintAggregationRelationship> IIfcConstraint.Aggregates {  get { return @Aggregates; } }
-		IEnumerable<IIfcConstraintAggregationRelationship> IIfcConstraint.IsAggregatedIn {  get { return @IsAggregatedIn; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstraint(IModel model, int label, bool activated) : base(model, label, activated)  

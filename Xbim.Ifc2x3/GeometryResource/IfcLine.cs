@@ -17,41 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLine
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLine : IIfcCurve
-	{
-		IIfcCartesianPoint @Pnt { get;  set; }
-		IIfcVector @Dir { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcLine", 272)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IIfcLine, IContainsEntityReferences, IEquatable<@IfcLine>
+	public  partial class @IfcLine : IfcCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLine>
 	{
-		#region IIfcLine explicit implementation
-		IIfcCartesianPoint IIfcLine.Pnt { 
- 
- 
-			get { return @Pnt; } 
-			set { Pnt = value as IfcCartesianPoint;}
-		}	
-		IIfcVector IIfcLine.Dir { 
- 
- 
-			get { return @Dir; } 
-			set { Dir = value as IfcVector;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLine(IModel model, int label, bool activated) : base(model, label, activated)  

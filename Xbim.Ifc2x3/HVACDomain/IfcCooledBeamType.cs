@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCooledBeamType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCooledBeamType : IIfcEnergyConversionDeviceType
-	{
-		IfcCooledBeamTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcCooledBeamType", 367)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCooledBeamType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCooledBeamType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCooledBeamType>
+	public  partial class @IfcCooledBeamType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCooledBeamType>
 	{
-		#region IIfcCooledBeamType explicit implementation
-		IfcCooledBeamTypeEnum IIfcCooledBeamType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCooledBeamType(IModel model, int label, bool activated) : base(model, label, activated)  

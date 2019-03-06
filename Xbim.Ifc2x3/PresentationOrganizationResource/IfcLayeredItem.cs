@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcLayeredItem : IIfcLayeredItem
+	public partial interface IfcLayeredItem : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,13 +25,3 @@ namespace Xbim.Ifc2x3.PresentationOrganizationResource
 	}
 }
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	public partial interface IIfcLayeredItem : IExpressSelectType, IPersistEntity
-	{
-		#region Custom code for a select interface
-		//## Custom code for a select interface
-		//##
-		#endregion
-	}
-}

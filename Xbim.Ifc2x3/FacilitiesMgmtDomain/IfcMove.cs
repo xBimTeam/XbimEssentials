@@ -20,45 +20,13 @@ using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMove
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMove : IIfcTask
-	{
-		IIfcSpatialStructureElement @MoveFrom { get;  set; }
-		IIfcSpatialStructureElement @MoveTo { get;  set; }
-		IItemSet<IfcText> @PunchList { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcMove", 74)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IIfcMove, IContainsEntityReferences, IEquatable<@IfcMove>
+	public  partial class @IfcMove : IfcTask, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcMove>
 	{
-		#region IIfcMove explicit implementation
-		IIfcSpatialStructureElement IIfcMove.MoveFrom { 
- 
- 
-			get { return @MoveFrom; } 
-			set { MoveFrom = value as IfcSpatialStructureElement;}
-		}	
-		IIfcSpatialStructureElement IIfcMove.MoveTo { 
- 
- 
-			get { return @MoveTo; } 
-			set { MoveTo = value as IfcSpatialStructureElement;}
-		}	
-		IItemSet<IfcText> IIfcMove.PunchList { 
-			get { return @PunchList; } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMove(IModel model, int label, bool activated) : base(model, label, activated)  

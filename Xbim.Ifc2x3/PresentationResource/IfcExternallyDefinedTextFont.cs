@@ -18,27 +18,13 @@ using Xbim.Ifc2x3.PresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcExternallyDefinedTextFont
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcExternallyDefinedTextFont : IIfcExternalReference, IfcTextFontSelect
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcExternallyDefinedTextFont", 132)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedTextFont, IEquatable<@IfcExternallyDefinedTextFont>
+	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IfcTextFontSelect, IEquatable<@IfcExternallyDefinedTextFont>
 	{
-		#region IIfcExternallyDefinedTextFont explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternallyDefinedTextFont(IModel model, int label, bool activated) : base(model, label, activated)  

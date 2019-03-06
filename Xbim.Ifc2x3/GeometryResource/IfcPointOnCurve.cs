@@ -18,40 +18,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPointOnCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPointOnCurve : IIfcPoint
-	{
-		IIfcCurve @BasisCurve { get;  set; }
-		IfcParameterValue @PointParameter { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPointOnCurve", 654)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IIfcPointOnCurve, IContainsEntityReferences, IEquatable<@IfcPointOnCurve>
+	public  partial class @IfcPointOnCurve : IfcPoint, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPointOnCurve>
 	{
-		#region IIfcPointOnCurve explicit implementation
-		IIfcCurve IIfcPointOnCurve.BasisCurve { 
- 
- 
-			get { return @BasisCurve; } 
-			set { BasisCurve = value as IfcCurve;}
-		}	
-		IfcParameterValue IIfcPointOnCurve.PointParameter { 
- 
-			get { return @PointParameter; } 
-			set { PointParameter = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPointOnCurve(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,45 +18,13 @@ using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadPlanarForce
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadPlanarForce : IIfcStructuralLoadStatic
-	{
-		IfcPlanarForceMeasure? @PlanarForceX { get;  set; }
-		IfcPlanarForceMeasure? @PlanarForceY { get;  set; }
-		IfcPlanarForceMeasure? @PlanarForceZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadPlanarForce", 174)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadPlanarForce, IEquatable<@IfcStructuralLoadPlanarForce>
+	public  partial class @IfcStructuralLoadPlanarForce : IfcStructuralLoadStatic, IInstantiableEntity, IEquatable<@IfcStructuralLoadPlanarForce>
 	{
-		#region IIfcStructuralLoadPlanarForce explicit implementation
-		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceX { 
- 
-			get { return @PlanarForceX; } 
-			set { PlanarForceX = value;}
-		}	
-		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceY { 
- 
-			get { return @PlanarForceY; } 
-			set { PlanarForceY = value;}
-		}	
-		IfcPlanarForceMeasure? IIfcStructuralLoadPlanarForce.PlanarForceZ { 
- 
-			get { return @PlanarForceZ; } 
-			set { PlanarForceZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadPlanarForce(IModel model, int label, bool activated) : base(model, label, activated)  

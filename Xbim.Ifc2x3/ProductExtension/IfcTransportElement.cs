@@ -18,45 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTransportElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTransportElement : IIfcElement
-	{
-		IfcTransportElementTypeEnum? @OperationType { get;  set; }
-		IfcMassMeasure? @CapacityByWeight { get;  set; }
-		IfcCountMeasure? @CapacityByNumber { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcTransportElement", 416)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IIfcTransportElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElement>
+	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElement>
 	{
-		#region IIfcTransportElement explicit implementation
-		IfcTransportElementTypeEnum? IIfcTransportElement.OperationType { 
- 
-			get { return @OperationType; } 
-			set { OperationType = value;}
-		}	
-		IfcMassMeasure? IIfcTransportElement.CapacityByWeight { 
- 
-			get { return @CapacityByWeight; } 
-			set { CapacityByWeight = value;}
-		}	
-		IfcCountMeasure? IIfcTransportElement.CapacityByNumber { 
- 
-			get { return @CapacityByNumber; } 
-			set { CapacityByNumber = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTransportElement(IModel model, int label, bool activated) : base(model, label, activated)  

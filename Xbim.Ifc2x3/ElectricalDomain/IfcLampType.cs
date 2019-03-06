@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLampType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLampType : IIfcFlowTerminalType
-	{
-		IfcLampTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcLampType", 592)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLampType : IfcFlowTerminalType, IInstantiableEntity, IIfcLampType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLampType>
+	public  partial class @IfcLampType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLampType>
 	{
-		#region IIfcLampType explicit implementation
-		IfcLampTypeEnum IIfcLampType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLampType(IModel model, int label, bool activated) : base(model, label, activated)  

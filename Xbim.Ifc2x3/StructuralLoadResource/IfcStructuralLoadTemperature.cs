@@ -18,45 +18,13 @@ using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadTemperature
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadTemperature : IIfcStructuralLoadStatic
-	{
-		IfcThermodynamicTemperatureMeasure? @DeltaT_Constant { get;  set; }
-		IfcThermodynamicTemperatureMeasure? @DeltaT_Y { get;  set; }
-		IfcThermodynamicTemperatureMeasure? @DeltaT_Z { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadTemperature", 36)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadTemperature : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadTemperature, IEquatable<@IfcStructuralLoadTemperature>
+	public  partial class @IfcStructuralLoadTemperature : IfcStructuralLoadStatic, IInstantiableEntity, IEquatable<@IfcStructuralLoadTemperature>
 	{
-		#region IIfcStructuralLoadTemperature explicit implementation
-		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaT_Constant { 
- 
-			get { return @DeltaT_Constant; } 
-			set { DeltaT_Constant = value;}
-		}	
-		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaT_Y { 
- 
-			get { return @DeltaT_Y; } 
-			set { DeltaT_Y = value;}
-		}	
-		IfcThermodynamicTemperatureMeasure? IIfcStructuralLoadTemperature.DeltaT_Z { 
- 
-			get { return @DeltaT_Z; } 
-			set { DeltaT_Z = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadTemperature(IModel model, int label, bool activated) : base(model, label, activated)  

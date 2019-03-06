@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcHeatExchangerType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcHeatExchangerType : IIfcEnergyConversionDeviceType
-	{
-		IfcHeatExchangerTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcHeatExchangerType", 365)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHeatExchangerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcHeatExchangerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcHeatExchangerType>
+	public  partial class @IfcHeatExchangerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcHeatExchangerType>
 	{
-		#region IIfcHeatExchangerType explicit implementation
-		IfcHeatExchangerTypeEnum IIfcHeatExchangerType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHeatExchangerType(IModel model, int label, bool activated) : base(model, label, activated)  

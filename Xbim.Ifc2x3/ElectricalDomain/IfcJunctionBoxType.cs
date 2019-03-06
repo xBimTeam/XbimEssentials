@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcJunctionBoxType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcJunctionBoxType : IIfcFlowFittingType
-	{
-		IfcJunctionBoxTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcJunctionBoxType", 593)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcJunctionBoxType : IfcFlowFittingType, IInstantiableEntity, IIfcJunctionBoxType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcJunctionBoxType>
+	public  partial class @IfcJunctionBoxType : IfcFlowFittingType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcJunctionBoxType>
 	{
-		#region IIfcJunctionBoxType explicit implementation
-		IfcJunctionBoxTypeEnum IIfcJunctionBoxType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcJunctionBoxType(IModel model, int label, bool activated) : base(model, label, activated)  

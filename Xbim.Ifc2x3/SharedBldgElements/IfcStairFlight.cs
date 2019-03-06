@@ -19,51 +19,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStairFlight
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStairFlight : IIfcBuildingElement
-	{
-		long? @NumberOfRiser { get;  set; }
-		long? @NumberOfTreads { get;  set; }
-		IfcPositiveLengthMeasure? @RiserHeight { get;  set; }
-		IfcPositiveLengthMeasure? @TreadLength { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcStairFlight", 25)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IIfcStairFlight, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStairFlight>
+	public  partial class @IfcStairFlight : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStairFlight>
 	{
-		#region IIfcStairFlight explicit implementation
-		long? IIfcStairFlight.NumberOfRiser { 
- 
-			get { return @NumberOfRiser; } 
-			set { NumberOfRiser = value;}
-		}	
-		long? IIfcStairFlight.NumberOfTreads { 
- 
-			get { return @NumberOfTreads; } 
-			set { NumberOfTreads = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcStairFlight.RiserHeight { 
- 
-			get { return @RiserHeight; } 
-			set { RiserHeight = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcStairFlight.TreadLength { 
- 
-			get { return @TreadLength; } 
-			set { TreadLength = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStairFlight(IModel model, int label, bool activated) : base(model, label, activated)  

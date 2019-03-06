@@ -17,29 +17,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGroup
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGroup : IIfcObject
-	{
-		IIfcRelAssignsToGroup @IsGroupedBy {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcGroup", 228)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IContainsEntityReferences, IEquatable<@IfcGroup>
+	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGroup>
 	{
-		#region IIfcGroup explicit implementation
-		 
-		IIfcRelAssignsToGroup IIfcGroup.IsGroupedBy {  get { return @IsGroupedBy; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGroup(IModel model, int label, bool activated) : base(model, label, activated)  

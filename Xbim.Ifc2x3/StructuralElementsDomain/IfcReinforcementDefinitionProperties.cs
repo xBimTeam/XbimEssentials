@@ -20,37 +20,13 @@ using Xbim.Ifc2x3.StructuralElementsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcReinforcementDefinitionProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcReinforcementDefinitionProperties : IIfcPropertySetDefinition
-	{
-		IfcLabel? @DefinitionType { get;  set; }
-		IItemSet<IIfcSectionReinforcementProperties> @ReinforcementSectionDefinitions { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcementDefinitionProperties", 263)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementDefinitionProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcReinforcementDefinitionProperties, IContainsEntityReferences, IEquatable<@IfcReinforcementDefinitionProperties>
+	public  partial class @IfcReinforcementDefinitionProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcReinforcementDefinitionProperties>
 	{
-		#region IIfcReinforcementDefinitionProperties explicit implementation
-		IfcLabel? IIfcReinforcementDefinitionProperties.DefinitionType { 
- 
-			get { return @DefinitionType; } 
-			set { DefinitionType = value;}
-		}	
-		IItemSet<IIfcSectionReinforcementProperties> IIfcReinforcementDefinitionProperties.ReinforcementSectionDefinitions { 
-			get { return new Common.Collections.ProxyItemSet<IfcSectionReinforcementProperties, IIfcSectionReinforcementProperties>( @ReinforcementSectionDefinitions); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcementDefinitionProperties(IModel model, int label, bool activated) : base(model, label, activated)  

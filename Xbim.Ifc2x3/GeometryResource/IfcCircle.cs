@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCircle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCircle : IIfcConic
-	{
-		IfcPositiveLengthMeasure @Radius { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCircle", 336)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IIfcCircle, IContainsEntityReferences, IEquatable<@IfcCircle>
+	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCircle>
 	{
-		#region IIfcCircle explicit implementation
-		IfcPositiveLengthMeasure IIfcCircle.Radius { 
- 
-			get { return @Radius; } 
-			set { Radius = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCircle(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -19,41 +19,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGrid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGrid : IIfcProduct
-	{
-		IItemSet<IIfcGridAxis> @UAxes { get; }
-		IItemSet<IIfcGridAxis> @VAxes { get; }
-		IItemSet<IIfcGridAxis> @WAxes { get; }
-		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcGrid", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IIfcGrid, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
+	public  partial class @IfcGrid : IfcProduct, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
 	{
-		#region IIfcGrid explicit implementation
-		IItemSet<IIfcGridAxis> IIfcGrid.UAxes { 
-			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @UAxes); } 
-		}	
-		IItemSet<IIfcGridAxis> IIfcGrid.VAxes { 
-			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @VAxes); } 
-		}	
-		IItemSet<IIfcGridAxis> IIfcGrid.WAxes { 
-			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @WAxes); } 
-		}	
-		 
-		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcGrid.ContainedInStructure {  get { return @ContainedInStructure; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGrid(IModel model, int label, bool activated) : base(model, label, activated)  

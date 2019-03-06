@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRadiusDimension
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRadiusDimension : IIfcDimensionCurveDirectedCallout
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcRadiusDimension", 751)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRadiusDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcRadiusDimension, IContainsEntityReferences, IEquatable<@IfcRadiusDimension>
+	public  partial class @IfcRadiusDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRadiusDimension>
 	{
-		#region IIfcRadiusDimension explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRadiusDimension(IModel model, int label, bool activated) : base(model, label, activated)  

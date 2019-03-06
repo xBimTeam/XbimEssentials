@@ -18,57 +18,13 @@ using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcHygroscopicMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcHygroscopicMaterialProperties : IIfcMaterialProperties
-	{
-		IfcPositiveRatioMeasure? @UpperVaporResistanceFactor { get;  set; }
-		IfcPositiveRatioMeasure? @LowerVaporResistanceFactor { get;  set; }
-		IfcIsothermalMoistureCapacityMeasure? @IsothermalMoistureCapacity { get;  set; }
-		IfcVaporPermeabilityMeasure? @VaporPermeability { get;  set; }
-		IfcMoistureDiffusivityMeasure? @MoistureDiffusivity { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcHygroscopicMaterialProperties", 717)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcHygroscopicMaterialProperties, IContainsEntityReferences, IEquatable<@IfcHygroscopicMaterialProperties>
+	public  partial class @IfcHygroscopicMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcHygroscopicMaterialProperties>
 	{
-		#region IIfcHygroscopicMaterialProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.UpperVaporResistanceFactor { 
- 
-			get { return @UpperVaporResistanceFactor; } 
-			set { UpperVaporResistanceFactor = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcHygroscopicMaterialProperties.LowerVaporResistanceFactor { 
- 
-			get { return @LowerVaporResistanceFactor; } 
-			set { LowerVaporResistanceFactor = value;}
-		}	
-		IfcIsothermalMoistureCapacityMeasure? IIfcHygroscopicMaterialProperties.IsothermalMoistureCapacity { 
- 
-			get { return @IsothermalMoistureCapacity; } 
-			set { IsothermalMoistureCapacity = value;}
-		}	
-		IfcVaporPermeabilityMeasure? IIfcHygroscopicMaterialProperties.VaporPermeability { 
- 
-			get { return @VaporPermeability; } 
-			set { VaporPermeability = value;}
-		}	
-		IfcMoistureDiffusivityMeasure? IIfcHygroscopicMaterialProperties.MoistureDiffusivity { 
- 
-			get { return @MoistureDiffusivity; } 
-			set { MoistureDiffusivity = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHygroscopicMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

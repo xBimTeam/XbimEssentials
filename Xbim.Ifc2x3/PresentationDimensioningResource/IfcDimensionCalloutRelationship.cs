@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDimensionCalloutRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDimensionCalloutRelationship : IIfcDraughtingCalloutRelationship
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCalloutRelationship", 741)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCalloutRelationship : IfcDraughtingCalloutRelationship, IInstantiableEntity, IIfcDimensionCalloutRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCalloutRelationship>
+	public  partial class @IfcDimensionCalloutRelationship : IfcDraughtingCalloutRelationship, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCalloutRelationship>
 	{
-		#region IIfcDimensionCalloutRelationship explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDimensionCalloutRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

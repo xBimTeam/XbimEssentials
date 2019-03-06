@@ -20,46 +20,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCurveStyleFontAndScaling
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCurveStyleFontAndScaling : IPersistEntity, IfcCurveFontOrScaledCurveFontSelect
-	{
-		IfcLabel? @Name { get;  set; }
-		IIfcCurveStyleFontSelect @CurveFont { get;  set; }
-		IfcPositiveRatioMeasure @CurveFontScaling { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyleFontAndScaling", 569)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyleFontAndScaling : PersistEntity, IInstantiableEntity, IIfcCurveStyleFontAndScaling, IContainsEntityReferences, IEquatable<@IfcCurveStyleFontAndScaling>
+	public  partial class @IfcCurveStyleFontAndScaling : PersistEntity, IInstantiableEntity, IfcCurveFontOrScaledCurveFontSelect, IContainsEntityReferences, IEquatable<@IfcCurveStyleFontAndScaling>
 	{
-		#region IIfcCurveStyleFontAndScaling explicit implementation
-		IfcLabel? IIfcCurveStyleFontAndScaling.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IIfcCurveStyleFontSelect IIfcCurveStyleFontAndScaling.CurveFont { 
- 
- 
-			get { return @CurveFont; } 
-			set { CurveFont = value as IfcCurveStyleFontSelect;}
-		}	
-		IfcPositiveRatioMeasure IIfcCurveStyleFontAndScaling.CurveFontScaling { 
- 
-			get { return @CurveFontScaling; } 
-			set { CurveFontScaling = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyleFontAndScaling(IModel model, int label, bool activated) : base(model, label, activated)  

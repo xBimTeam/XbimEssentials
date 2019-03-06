@@ -18,48 +18,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyBoundedValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyBoundedValue : IIfcSimpleProperty
-	{
-		IIfcValue @UpperBoundValue { get;  set; }
-		IIfcValue @LowerBoundValue { get;  set; }
-		IIfcUnit @Unit { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyBoundedValue", 3)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyBoundedValue, IContainsEntityReferences, IEquatable<@IfcPropertyBoundedValue>
+	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyBoundedValue>
 	{
-		#region IIfcPropertyBoundedValue explicit implementation
-		IIfcValue IIfcPropertyBoundedValue.UpperBoundValue { 
- 
- 
-			get { return @UpperBoundValue; } 
-			set { UpperBoundValue = value as IfcValue;}
-		}	
-		IIfcValue IIfcPropertyBoundedValue.LowerBoundValue { 
- 
- 
-			get { return @LowerBoundValue; } 
-			set { LowerBoundValue = value as IfcValue;}
-		}	
-		IIfcUnit IIfcPropertyBoundedValue.Unit { 
- 
- 
-			get { return @Unit; } 
-			set { Unit = value as IfcUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyBoundedValue(IModel model, int label, bool activated) : base(model, label, activated)  

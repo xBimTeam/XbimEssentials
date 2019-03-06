@@ -18,43 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSpace
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSpace : IIfcSpatialStructureElement
-	{
-		IfcInternalOrExternalEnum @InteriorOrExteriorSpace { get;  set; }
-		IfcLengthMeasure? @ElevationWithFlooring { get;  set; }
-		IEnumerable<IIfcRelCoversSpaces> @HasCoverings {  get; }
-		IEnumerable<IIfcRelSpaceBoundary> @BoundedBy {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSpace", 454)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IIfcSpace, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpace>
+	public  partial class @IfcSpace : IfcSpatialStructureElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpace>
 	{
-		#region IIfcSpace explicit implementation
-		IfcInternalOrExternalEnum IIfcSpace.InteriorOrExteriorSpace { 
- 
-			get { return @InteriorOrExteriorSpace; } 
-			set { InteriorOrExteriorSpace = value;}
-		}	
-		IfcLengthMeasure? IIfcSpace.ElevationWithFlooring { 
- 
-			get { return @ElevationWithFlooring; } 
-			set { ElevationWithFlooring = value;}
-		}	
-		 
-		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings {  get { return @HasCoverings; } }
-		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy {  get { return @BoundedBy; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpace(IModel model, int label, bool activated) : base(model, label, activated)  

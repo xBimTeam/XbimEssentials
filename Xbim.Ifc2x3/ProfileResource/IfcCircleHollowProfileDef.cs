@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCircleHollowProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCircleHollowProfileDef : IIfcCircleProfileDef
-	{
-		IfcPositiveLengthMeasure @WallThickness { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCircleHollowProfileDef", 114)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IIfcCircleHollowProfileDef, IContainsEntityReferences, IEquatable<@IfcCircleHollowProfileDef>
+	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCircleHollowProfileDef>
 	{
-		#region IIfcCircleHollowProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCircleHollowProfileDef.WallThickness { 
- 
-			get { return @WallThickness; } 
-			set { WallThickness = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCircleHollowProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

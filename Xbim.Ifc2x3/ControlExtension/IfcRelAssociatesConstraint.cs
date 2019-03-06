@@ -20,40 +20,13 @@ using Xbim.Ifc2x3.ControlExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesConstraint
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesConstraint : IIfcRelAssociates
-	{
-		IfcLabel @Intent { get;  set; }
-		IIfcConstraint @RelatingConstraint { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcRelAssociatesConstraint", 711)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesConstraint, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesConstraint>
+	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesConstraint>
 	{
-		#region IIfcRelAssociatesConstraint explicit implementation
-		IfcLabel IIfcRelAssociatesConstraint.Intent { 
- 
-			get { return @Intent; } 
-			set { Intent = value;}
-		}	
-		IIfcConstraint IIfcRelAssociatesConstraint.RelatingConstraint { 
- 
- 
-			get { return @RelatingConstraint; } 
-			set { RelatingConstraint = value as IfcConstraint;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesConstraint(IModel model, int label, bool activated) : base(model, label, activated)  

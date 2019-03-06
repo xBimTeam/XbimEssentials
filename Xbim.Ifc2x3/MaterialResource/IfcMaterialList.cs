@@ -20,31 +20,13 @@ using Xbim.Ifc2x3.MaterialResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterialList
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterialList : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect
-	{
-		IItemSet<IIfcMaterial> @Materials { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialList", 246)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialList : PersistEntity, IInstantiableEntity, IIfcMaterialList, IContainsEntityReferences, IEquatable<@IfcMaterialList>
+	public  partial class @IfcMaterialList : PersistEntity, IInstantiableEntity, IfcMaterialSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IEquatable<@IfcMaterialList>
 	{
-		#region IIfcMaterialList explicit implementation
-		IItemSet<IIfcMaterial> IIfcMaterialList.Materials { 
-			get { return new Common.Collections.ProxyItemSet<IfcMaterial, IIfcMaterial>( @Materials); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialList(IModel model, int label, bool activated) : base(model, label, activated)  

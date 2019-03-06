@@ -17,41 +17,13 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGridPlacement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGridPlacement : IIfcObjectPlacement
-	{
-		IIfcVirtualGridIntersection @PlacementLocation { get;  set; }
-		IIfcVirtualGridIntersection @PlacementRefDirection { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcGridPlacement", 439)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcGridPlacement, IContainsEntityReferences, IEquatable<@IfcGridPlacement>
+	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGridPlacement>
 	{
-		#region IIfcGridPlacement explicit implementation
-		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementLocation { 
- 
- 
-			get { return @PlacementLocation; } 
-			set { PlacementLocation = value as IfcVirtualGridIntersection;}
-		}	
-		IIfcVirtualGridIntersection IIfcGridPlacement.PlacementRefDirection { 
- 
- 
-			get { return @PlacementRefDirection; } 
-			set { PlacementRefDirection = value as IfcVirtualGridIntersection;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGridPlacement(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,32 +18,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGeometricSet
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGeometricSet : IIfcGeometricRepresentationItem
-	{
-		IItemSet<IIfcGeometricSetSelect> @Elements { get; }
-		IfcDimensionCount @Dim  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcGeometricSet", 236)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcGeometricSet, IContainsEntityReferences, IEquatable<@IfcGeometricSet>
+	public  partial class @IfcGeometricSet : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGeometricSet>
 	{
-		#region IIfcGeometricSet explicit implementation
-		IItemSet<IIfcGeometricSetSelect> IIfcGeometricSet.Elements { 
-			get { return new Common.Collections.ProxyItemSet<IfcGeometricSetSelect, IIfcGeometricSetSelect>( @Elements); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricSet(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,49 +18,13 @@ using Xbim.Ifc2x3.QuantityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPhysicalComplexQuantity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPhysicalComplexQuantity : IIfcPhysicalQuantity
-	{
-		IItemSet<IIfcPhysicalQuantity> @HasQuantities { get; }
-		IfcLabel @Discrimination { get;  set; }
-		IfcLabel? @Quality { get;  set; }
-		IfcLabel? @Usage { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcPhysicalComplexQuantity", 604)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IIfcPhysicalComplexQuantity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPhysicalComplexQuantity>
+	public  partial class @IfcPhysicalComplexQuantity : IfcPhysicalQuantity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPhysicalComplexQuantity>
 	{
-		#region IIfcPhysicalComplexQuantity explicit implementation
-		IItemSet<IIfcPhysicalQuantity> IIfcPhysicalComplexQuantity.HasQuantities { 
-			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @HasQuantities); } 
-		}	
-		IfcLabel IIfcPhysicalComplexQuantity.Discrimination { 
- 
-			get { return @Discrimination; } 
-			set { Discrimination = value;}
-		}	
-		IfcLabel? IIfcPhysicalComplexQuantity.Quality { 
- 
-			get { return @Quality; } 
-			set { Quality = value;}
-		}	
-		IfcLabel? IIfcPhysicalComplexQuantity.Usage { 
- 
-			get { return @Usage; } 
-			set { Usage = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPhysicalComplexQuantity(IModel model, int label, bool activated) : base(model, label, activated)  

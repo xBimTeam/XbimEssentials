@@ -18,34 +18,13 @@ using Xbim.Ifc2x3.QuantityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPhysicalSimpleQuantity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPhysicalSimpleQuantity : IIfcPhysicalQuantity
-	{
-		IIfcNamedUnit @Unit { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcPhysicalSimpleQuantity", 101)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IIfcPhysicalSimpleQuantity, IEquatable<@IfcPhysicalSimpleQuantity>
+	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IEquatable<@IfcPhysicalSimpleQuantity>
 	{
-		#region IIfcPhysicalSimpleQuantity explicit implementation
-		IIfcNamedUnit IIfcPhysicalSimpleQuantity.Unit { 
- 
- 
-			get { return @Unit; } 
-			set { Unit = value as IfcNamedUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPhysicalSimpleQuantity(IModel model, int label, bool activated) : base(model, label, activated)  

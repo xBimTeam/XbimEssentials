@@ -21,49 +21,13 @@ using Xbim.Ifc2x3.ActorResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAddress
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAddress : IPersistEntity, IfcObjectReferenceSelect
-	{
-		IfcAddressTypeEnum? @Purpose { get;  set; }
-		IfcText? @Description { get;  set; }
-		IfcLabel? @UserDefinedPurpose { get;  set; }
-		IEnumerable<IIfcPerson> @OfPerson {  get; }
-		IEnumerable<IIfcOrganization> @OfOrganization {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcAddress", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAddress : PersistEntity, IIfcAddress, IEquatable<@IfcAddress>
+	public abstract partial class @IfcAddress : PersistEntity, IfcObjectReferenceSelect, IEquatable<@IfcAddress>
 	{
-		#region IIfcAddress explicit implementation
-		IfcAddressTypeEnum? IIfcAddress.Purpose { 
- 
-			get { return @Purpose; } 
-			set { Purpose = value;}
-		}	
-		IfcText? IIfcAddress.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IfcLabel? IIfcAddress.UserDefinedPurpose { 
- 
-			get { return @UserDefinedPurpose; } 
-			set { UserDefinedPurpose = value;}
-		}	
-		 
-		IEnumerable<IIfcPerson> IIfcAddress.OfPerson {  get { return @OfPerson; } }
-		IEnumerable<IIfcOrganization> IIfcAddress.OfOrganization {  get { return @OfOrganization; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAddress(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,34 +18,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOneDirectionRepeatFactor
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOneDirectionRepeatFactor : IIfcGeometricRepresentationItem, IfcHatchLineDistanceSelect
-	{
-		IIfcVector @RepeatFactor { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcOneDirectionRepeatFactor", 32)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcOneDirectionRepeatFactor, IContainsEntityReferences, IEquatable<@IfcOneDirectionRepeatFactor>
+	public  partial class @IfcOneDirectionRepeatFactor : IfcGeometricRepresentationItem, IInstantiableEntity, IfcHatchLineDistanceSelect, IContainsEntityReferences, IEquatable<@IfcOneDirectionRepeatFactor>
 	{
-		#region IIfcOneDirectionRepeatFactor explicit implementation
-		IIfcVector IIfcOneDirectionRepeatFactor.RepeatFactor { 
- 
- 
-			get { return @RepeatFactor; } 
-			set { RepeatFactor = value as IfcVector;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOneDirectionRepeatFactor(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -19,58 +19,13 @@ using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightSourcePositional
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightSourcePositional : IIfcLightSource
-	{
-		IIfcCartesianPoint @Position { get;  set; }
-		IfcPositiveLengthMeasure @Radius { get;  set; }
-		IfcReal @ConstantAttenuation { get;  set; }
-		IfcReal @DistanceAttenuation { get;  set; }
-		IfcReal @QuadricAttenuation { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourcePositional", 759)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IIfcLightSourcePositional, IContainsEntityReferences, IEquatable<@IfcLightSourcePositional>
+	public  partial class @IfcLightSourcePositional : IfcLightSource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLightSourcePositional>
 	{
-		#region IIfcLightSourcePositional explicit implementation
-		IIfcCartesianPoint IIfcLightSourcePositional.Position { 
- 
- 
-			get { return @Position; } 
-			set { Position = value as IfcCartesianPoint;}
-		}	
-		IfcPositiveLengthMeasure IIfcLightSourcePositional.Radius { 
- 
-			get { return @Radius; } 
-			set { Radius = value;}
-		}	
-		IfcReal IIfcLightSourcePositional.ConstantAttenuation { 
- 
-			get { return @ConstantAttenuation; } 
-			set { ConstantAttenuation = value;}
-		}	
-		IfcReal IIfcLightSourcePositional.DistanceAttenuation { 
- 
-			get { return @DistanceAttenuation; } 
-			set { DistanceAttenuation = value;}
-		}	
-		IfcReal IIfcLightSourcePositional.QuadricAttenuation { 
- 
-			get { return @QuadricAttenuation; } 
-			set { QuadricAttenuation = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourcePositional(IModel model, int label, bool activated) : base(model, label, activated)  

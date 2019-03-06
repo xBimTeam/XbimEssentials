@@ -17,34 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCartesianTransformationOperator2DnonUniform
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCartesianTransformationOperator2DnonUniform : IIfcCartesianTransformationOperator2D
-	{
-		double? @Scale2 { get;  set; }
-		double @Scl2  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator2DnonUniform", 147)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IIfcCartesianTransformationOperator2DnonUniform, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator2DnonUniform : IfcCartesianTransformationOperator2D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2DnonUniform>
 	{
-		#region IIfcCartesianTransformationOperator2DnonUniform explicit implementation
-		double? IIfcCartesianTransformationOperator2DnonUniform.Scale2 { 
- 
-			get { return @Scale2; } 
-			set { Scale2 = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator2DnonUniform(IModel model, int label, bool activated) : base(model, label, activated)  

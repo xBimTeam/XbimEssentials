@@ -18,35 +18,13 @@ using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDraughtingCallout
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDraughtingCallout : IIfcGeometricRepresentationItem
-	{
-		IItemSet<IIfcDraughtingCalloutElement> @Contents { get; }
-		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedFromCallout {  get; }
-		IEnumerable<IIfcDraughtingCalloutRelationship> @IsRelatedToCallout {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCallout", 222)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDraughtingCallout, IContainsEntityReferences, IEquatable<@IfcDraughtingCallout>
+	public  partial class @IfcDraughtingCallout : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcDraughtingCallout>
 	{
-		#region IIfcDraughtingCallout explicit implementation
-		IItemSet<IIfcDraughtingCalloutElement> IIfcDraughtingCallout.Contents { 
-			get { return new Common.Collections.ProxyItemSet<IfcDraughtingCalloutElement, IIfcDraughtingCalloutElement>( @Contents); } 
-		}	
-		 
-		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedFromCallout {  get { return @IsRelatedFromCallout; } }
-		IEnumerable<IIfcDraughtingCalloutRelationship> IIfcDraughtingCallout.IsRelatedToCallout {  get { return @IsRelatedToCallout; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDraughtingCallout(IModel model, int label, bool activated) : base(model, label, activated)  

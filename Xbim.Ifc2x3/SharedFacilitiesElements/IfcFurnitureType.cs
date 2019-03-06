@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedFacilitiesElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFurnitureType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFurnitureType : IIfcFurnishingElementType
-	{
-		IfcAssemblyPlaceEnum @AssemblyPlace { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcFurnitureType", 359)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnitureType : IfcFurnishingElementType, IInstantiableEntity, IIfcFurnitureType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFurnitureType>
+	public  partial class @IfcFurnitureType : IfcFurnishingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFurnitureType>
 	{
-		#region IIfcFurnitureType explicit implementation
-		IfcAssemblyPlaceEnum IIfcFurnitureType.AssemblyPlace { 
- 
-			get { return @AssemblyPlace; } 
-			set { AssemblyPlace = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFurnitureType(IModel model, int label, bool activated) : base(model, label, activated)  

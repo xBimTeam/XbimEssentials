@@ -18,47 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsPathElements
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsPathElements : IIfcRelConnectsElements
-	{
-		IItemSet<long> @RelatingPriorities { get; }
-		IItemSet<long> @RelatedPriorities { get; }
-		IfcConnectionTypeEnum @RelatedConnectionType { get;  set; }
-		IfcConnectionTypeEnum @RelatingConnectionType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRelConnectsPathElements", 668)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsPathElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPathElements>
+	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPathElements>
 	{
-		#region IIfcRelConnectsPathElements explicit implementation
-		IItemSet<long> IIfcRelConnectsPathElements.RelatingPriorities { 
-			get { return @RelatingPriorities; } 
-		}	
-		IItemSet<long> IIfcRelConnectsPathElements.RelatedPriorities { 
-			get { return @RelatedPriorities; } 
-		}	
-		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatedConnectionType { 
- 
-			get { return @RelatedConnectionType; } 
-			set { RelatedConnectionType = value;}
-		}	
-		IfcConnectionTypeEnum IIfcRelConnectsPathElements.RelatingConnectionType { 
- 
-			get { return @RelatingConnectionType; } 
-			set { RelatingConnectionType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPathElements(IModel model, int label, bool activated) : base(model, label, activated)  

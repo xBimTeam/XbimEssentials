@@ -18,41 +18,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDefinedSymbol
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDefinedSymbol : IIfcGeometricRepresentationItem
-	{
-		IIfcDefinedSymbolSelect @Definition { get;  set; }
-		IIfcCartesianTransformationOperator2D @Target { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcDefinedSymbol", 461)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcDefinedSymbol, IContainsEntityReferences, IEquatable<@IfcDefinedSymbol>
+	public  partial class @IfcDefinedSymbol : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcDefinedSymbol>
 	{
-		#region IIfcDefinedSymbol explicit implementation
-		IIfcDefinedSymbolSelect IIfcDefinedSymbol.Definition { 
- 
- 
-			get { return @Definition; } 
-			set { Definition = value as IfcDefinedSymbolSelect;}
-		}	
-		IIfcCartesianTransformationOperator2D IIfcDefinedSymbol.Target { 
- 
- 
-			get { return @Target; } 
-			set { Target = value as IfcCartesianTransformationOperator2D;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDefinedSymbol(IModel model, int label, bool activated) : base(model, label, activated)  

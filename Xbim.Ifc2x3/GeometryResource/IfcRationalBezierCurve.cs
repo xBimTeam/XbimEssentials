@@ -17,32 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRationalBezierCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRationalBezierCurve : IIfcBezierCurve
-	{
-		IItemSet<double> @WeightsData { get; }
-		List<double> @Weights  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRationalBezierCurve", 546)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IIfcRationalBezierCurve, IContainsEntityReferences, IEquatable<@IfcRationalBezierCurve>
+	public  partial class @IfcRationalBezierCurve : IfcBezierCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRationalBezierCurve>
 	{
-		#region IIfcRationalBezierCurve explicit implementation
-		IItemSet<double> IIfcRationalBezierCurve.WeightsData { 
-			get { return @WeightsData; } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRationalBezierCurve(IModel model, int label, bool activated) : base(model, label, activated)  

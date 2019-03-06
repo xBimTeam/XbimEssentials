@@ -17,31 +17,13 @@ using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConnectedFaceSet
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConnectedFaceSet : IIfcTopologicalRepresentationItem
-	{
-		IItemSet<IIfcFace> @CfsFaces { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcConnectedFaceSet", 160)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcConnectedFaceSet, IContainsEntityReferences, IEquatable<@IfcConnectedFaceSet>
+	public  partial class @IfcConnectedFaceSet : IfcTopologicalRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectedFaceSet>
 	{
-		#region IIfcConnectedFaceSet explicit implementation
-		IItemSet<IIfcFace> IIfcConnectedFaceSet.CfsFaces { 
-			get { return new Common.Collections.ProxyItemSet<IfcFace, IIfcFace>( @CfsFaces); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectedFaceSet(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,34 +18,13 @@ using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsWithEccentricity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsWithEccentricity : IIfcRelConnectsStructuralMember
-	{
-		IIfcConnectionGeometry @ConnectionConstraint { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsWithEccentricity", 322)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IIfcRelConnectsWithEccentricity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithEccentricity>
+	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithEccentricity>
 	{
-		#region IIfcRelConnectsWithEccentricity explicit implementation
-		IIfcConnectionGeometry IIfcRelConnectsWithEccentricity.ConnectionConstraint { 
- 
- 
-			get { return @ConnectionConstraint; } 
-			set { ConnectionConstraint = value as IfcConnectionGeometry;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsWithEccentricity(IModel model, int label, bool activated) : base(model, label, activated)  

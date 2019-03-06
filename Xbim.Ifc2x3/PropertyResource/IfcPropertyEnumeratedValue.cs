@@ -18,38 +18,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyEnumeratedValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyEnumeratedValue : IIfcSimpleProperty
-	{
-		IItemSet<IIfcValue> @EnumerationValues { get; }
-		IIfcPropertyEnumeration @EnumerationReference { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyEnumeratedValue", 629)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyEnumeratedValue, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeratedValue>
+	public  partial class @IfcPropertyEnumeratedValue : IfcSimpleProperty, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeratedValue>
 	{
-		#region IIfcPropertyEnumeratedValue explicit implementation
-		IItemSet<IIfcValue> IIfcPropertyEnumeratedValue.EnumerationValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @EnumerationValues); } 
-		}	
-		IIfcPropertyEnumeration IIfcPropertyEnumeratedValue.EnumerationReference { 
- 
- 
-			get { return @EnumerationReference; } 
-			set { EnumerationReference = value as IfcPropertyEnumeration;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyEnumeratedValue(IModel model, int label, bool activated) : base(model, label, activated)  

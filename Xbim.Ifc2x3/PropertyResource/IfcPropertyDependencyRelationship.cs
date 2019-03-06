@@ -20,59 +20,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyDependencyRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyDependencyRelationship : IPersistEntity
-	{
-		IIfcProperty @DependingProperty { get;  set; }
-		IIfcProperty @DependantProperty { get;  set; }
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IfcText? @Expression { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyDependencyRelationship", 444)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyDependencyRelationship : PersistEntity, IInstantiableEntity, IIfcPropertyDependencyRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertyDependencyRelationship>
+	public  partial class @IfcPropertyDependencyRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertyDependencyRelationship>
 	{
-		#region IIfcPropertyDependencyRelationship explicit implementation
-		IIfcProperty IIfcPropertyDependencyRelationship.DependingProperty { 
- 
- 
-			get { return @DependingProperty; } 
-			set { DependingProperty = value as IfcProperty;}
-		}	
-		IIfcProperty IIfcPropertyDependencyRelationship.DependantProperty { 
- 
- 
-			get { return @DependantProperty; } 
-			set { DependantProperty = value as IfcProperty;}
-		}	
-		IfcLabel? IIfcPropertyDependencyRelationship.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcPropertyDependencyRelationship.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IfcText? IIfcPropertyDependencyRelationship.Expression { 
- 
-			get { return @Expression; } 
-			set { Expression = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyDependencyRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

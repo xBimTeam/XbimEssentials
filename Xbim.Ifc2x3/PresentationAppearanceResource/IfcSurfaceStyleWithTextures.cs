@@ -19,31 +19,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceStyleWithTextures
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceStyleWithTextures : IPersistEntity, IfcSurfaceStyleElementSelect
-	{
-		IItemSet<IIfcSurfaceTexture> @Textures { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleWithTextures", 392)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleWithTextures : PersistEntity, IInstantiableEntity, IIfcSurfaceStyleWithTextures, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleWithTextures>
+	public  partial class @IfcSurfaceStyleWithTextures : PersistEntity, IInstantiableEntity, IfcSurfaceStyleElementSelect, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleWithTextures>
 	{
-		#region IIfcSurfaceStyleWithTextures explicit implementation
-		IItemSet<IIfcSurfaceTexture> IIfcSurfaceStyleWithTextures.Textures { 
-			get { return new Common.Collections.ProxyItemSet<IfcSurfaceTexture, IIfcSurfaceTexture>( @Textures); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleWithTextures(IModel model, int label, bool activated) : base(model, label, activated)  

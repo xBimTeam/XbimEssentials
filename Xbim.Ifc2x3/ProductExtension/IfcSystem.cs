@@ -18,29 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSystem
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSystem : IIfcGroup
-	{
-		IEnumerable<IIfcRelServicesBuildings> @ServicesBuildings {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSystem", 229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IContainsEntityReferences, IEquatable<@IfcSystem>
+	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSystem>
 	{
-		#region IIfcSystem explicit implementation
-		 
-		IEnumerable<IIfcRelServicesBuildings> IIfcSystem.ServicesBuildings {  get { return @ServicesBuildings; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSystem(IModel model, int label, bool activated) : base(model, label, activated)  

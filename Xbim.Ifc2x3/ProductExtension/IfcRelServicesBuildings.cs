@@ -18,38 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelServicesBuildings
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelServicesBuildings : IIfcRelConnects
-	{
-		IIfcSystem @RelatingSystem { get;  set; }
-		IItemSet<IIfcSpatialStructureElement> @RelatedBuildings { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelServicesBuildings", 600)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IIfcRelServicesBuildings, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelServicesBuildings>
+	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelServicesBuildings>
 	{
-		#region IIfcRelServicesBuildings explicit implementation
-		IIfcSystem IIfcRelServicesBuildings.RelatingSystem { 
- 
- 
-			get { return @RelatingSystem; } 
-			set { RelatingSystem = value as IfcSystem;}
-		}	
-		IItemSet<IIfcSpatialStructureElement> IIfcRelServicesBuildings.RelatedBuildings { 
-			get { return new Common.Collections.ProxyItemSet<IfcSpatialStructureElement, IIfcSpatialStructureElement>( @RelatedBuildings); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelServicesBuildings(IModel model, int label, bool activated) : base(model, label, activated)  

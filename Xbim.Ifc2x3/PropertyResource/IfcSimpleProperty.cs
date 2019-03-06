@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSimpleProperty
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSimpleProperty : IIfcProperty
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcSimpleProperty", 4)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSimpleProperty : IfcProperty, IIfcSimpleProperty, IEquatable<@IfcSimpleProperty>
+	public abstract partial class @IfcSimpleProperty : IfcProperty, IEquatable<@IfcSimpleProperty>
 	{
-		#region IIfcSimpleProperty explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSimpleProperty(IModel model, int label, bool activated) : base(model, label, activated)  

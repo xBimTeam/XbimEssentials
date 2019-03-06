@@ -18,39 +18,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcEllipse
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcEllipse : IIfcConic
-	{
-		IfcPositiveLengthMeasure @SemiAxis1 { get;  set; }
-		IfcPositiveLengthMeasure @SemiAxis2 { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcEllipse", 298)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEllipse : IfcConic, IInstantiableEntity, IIfcEllipse, IContainsEntityReferences, IEquatable<@IfcEllipse>
+	public  partial class @IfcEllipse : IfcConic, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcEllipse>
 	{
-		#region IIfcEllipse explicit implementation
-		IfcPositiveLengthMeasure IIfcEllipse.SemiAxis1 { 
- 
-			get { return @SemiAxis1; } 
-			set { SemiAxis1 = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcEllipse.SemiAxis2 { 
- 
-			get { return @SemiAxis2; } 
-			set { SemiAxis2 = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEllipse(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,27 +18,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPreDefinedCurveFont
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPreDefinedCurveFont : IIfcPreDefinedItem, IfcCurveStyleFontSelect
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPreDefinedCurveFont", 287)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPreDefinedCurveFont : IfcPreDefinedItem, IIfcPreDefinedCurveFont, IEquatable<@IfcPreDefinedCurveFont>
+	public abstract partial class @IfcPreDefinedCurveFont : IfcPreDefinedItem, IfcCurveStyleFontSelect, IEquatable<@IfcPreDefinedCurveFont>
 	{
-		#region IIfcPreDefinedCurveFont explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedCurveFont(IModel model, int label, bool activated) : base(model, label, activated)  

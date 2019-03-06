@@ -18,27 +18,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAnnotationTextOccurrence
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAnnotationTextOccurrence : IIfcAnnotationOccurrence, IfcDraughtingCalloutElement
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationTextOccurrence", 122)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationTextOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IIfcAnnotationTextOccurrence, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationTextOccurrence>
+	public  partial class @IfcAnnotationTextOccurrence : IfcAnnotationOccurrence, IInstantiableEntity, IfcDraughtingCalloutElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationTextOccurrence>
 	{
-		#region IIfcAnnotationTextOccurrence explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationTextOccurrence(IModel model, int label, bool activated) : base(model, label, activated)  

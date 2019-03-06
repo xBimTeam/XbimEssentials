@@ -20,44 +20,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDocumentInformationRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDocumentInformationRelationship : IPersistEntity
-	{
-		IIfcDocumentInformation @RelatingDocument { get;  set; }
-		IItemSet<IIfcDocumentInformation> @RelatedDocuments { get; }
-		IfcLabel? @RelationshipType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentInformationRelationship", 491)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformationRelationship : PersistEntity, IInstantiableEntity, IIfcDocumentInformationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformationRelationship>
+	public  partial class @IfcDocumentInformationRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformationRelationship>
 	{
-		#region IIfcDocumentInformationRelationship explicit implementation
-		IIfcDocumentInformation IIfcDocumentInformationRelationship.RelatingDocument { 
- 
- 
-			get { return @RelatingDocument; } 
-			set { RelatingDocument = value as IfcDocumentInformation;}
-		}	
-		IItemSet<IIfcDocumentInformation> IIfcDocumentInformationRelationship.RelatedDocuments { 
-			get { return new Common.Collections.ProxyItemSet<IfcDocumentInformation, IIfcDocumentInformation>( @RelatedDocuments); } 
-		}	
-		IfcLabel? IIfcDocumentInformationRelationship.RelationshipType { 
- 
-			get { return @RelationshipType; } 
-			set { RelationshipType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformationRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -17,29 +17,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFeatureElementSubtraction
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFeatureElementSubtraction : IIfcFeatureElement
-	{
-		IIfcRelVoidsElement @VoidsElements {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcFeatureElementSubtraction", 499)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEquatable<@IfcFeatureElementSubtraction>
+	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IEquatable<@IfcFeatureElementSubtraction>
 	{
-		#region IIfcFeatureElementSubtraction explicit implementation
-		 
-		IIfcRelVoidsElement IIfcFeatureElementSubtraction.VoidsElements {  get { return @VoidsElements; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFeatureElementSubtraction(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFaceOuterBound
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFaceOuterBound : IIfcFaceBound
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcFaceOuterBound", 201)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceOuterBound : IfcFaceBound, IInstantiableEntity, IIfcFaceOuterBound, IContainsEntityReferences, IEquatable<@IfcFaceOuterBound>
+	public  partial class @IfcFaceOuterBound : IfcFaceBound, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcFaceOuterBound>
 	{
-		#region IIfcFaceOuterBound explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceOuterBound(IModel model, int label, bool activated) : base(model, label, activated)  

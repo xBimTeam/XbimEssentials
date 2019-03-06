@@ -20,31 +20,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextureVertex
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextureVertex : IPersistEntity
-	{
-		IItemSet<IfcParameterValue> @Coordinates { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureVertex", 735)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureVertex : PersistEntity, IInstantiableEntity, IIfcTextureVertex, IEquatable<@IfcTextureVertex>
+	public  partial class @IfcTextureVertex : PersistEntity, IInstantiableEntity, IEquatable<@IfcTextureVertex>
 	{
-		#region IIfcTextureVertex explicit implementation
-		IItemSet<IfcParameterValue> IIfcTextureVertex.Coordinates { 
-			get { return @Coordinates; } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureVertex(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -19,44 +19,13 @@ using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDerivedUnit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDerivedUnit : IPersistEntity, IfcUnit
-	{
-		IItemSet<IIfcDerivedUnitElement> @Elements { get; }
-		IfcDerivedUnitEnum @UnitType { get;  set; }
-		IfcLabel? @UserDefinedType { get;  set; }
-		Common.Geometry.XbimDimensionalExponents @Dimensions  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcDerivedUnit", 630)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnit : PersistEntity, IInstantiableEntity, IIfcDerivedUnit, IContainsEntityReferences, IEquatable<@IfcDerivedUnit>
+	public  partial class @IfcDerivedUnit : PersistEntity, IInstantiableEntity, IfcUnit, IContainsEntityReferences, IEquatable<@IfcDerivedUnit>
 	{
-		#region IIfcDerivedUnit explicit implementation
-		IItemSet<IIfcDerivedUnitElement> IIfcDerivedUnit.Elements { 
-			get { return new Common.Collections.ProxyItemSet<IfcDerivedUnitElement, IIfcDerivedUnitElement>( @Elements); } 
-		}	
-		IfcDerivedUnitEnum IIfcDerivedUnit.UnitType { 
- 
-			get { return @UnitType; } 
-			set { UnitType = value;}
-		}	
-		IfcLabel? IIfcDerivedUnit.UserDefinedType { 
- 
-			get { return @UserDefinedType; } 
-			set { UserDefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDerivedUnit(IModel model, int label, bool activated) : base(model, label, activated)  

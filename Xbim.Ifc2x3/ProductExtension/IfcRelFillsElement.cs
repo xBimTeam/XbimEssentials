@@ -18,41 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelFillsElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelFillsElement : IIfcRelConnects
-	{
-		IIfcOpeningElement @RelatingOpeningElement { get;  set; }
-		IIfcElement @RelatedBuildingElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelFillsElement", 563)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IIfcRelFillsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFillsElement>
+	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFillsElement>
 	{
-		#region IIfcRelFillsElement explicit implementation
-		IIfcOpeningElement IIfcRelFillsElement.RelatingOpeningElement { 
- 
- 
-			get { return @RelatingOpeningElement; } 
-			set { RelatingOpeningElement = value as IfcOpeningElement;}
-		}	
-		IIfcElement IIfcRelFillsElement.RelatedBuildingElement { 
- 
- 
-			get { return @RelatedBuildingElement; } 
-			set { RelatedBuildingElement = value as IfcElement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelFillsElement(IModel model, int label, bool activated) : base(model, label, activated)  

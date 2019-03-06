@@ -20,94 +20,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDoorLiningProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDoorLiningProperties : IIfcPropertySetDefinition
-	{
-		IfcPositiveLengthMeasure? @LiningDepth { get;  set; }
-		IfcPositiveLengthMeasure? @LiningThickness { get;  set; }
-		IfcPositiveLengthMeasure? @ThresholdDepth { get;  set; }
-		IfcPositiveLengthMeasure? @ThresholdThickness { get;  set; }
-		IfcPositiveLengthMeasure? @TransomThickness { get;  set; }
-		IfcLengthMeasure? @TransomOffset { get;  set; }
-		IfcLengthMeasure? @LiningOffset { get;  set; }
-		IfcLengthMeasure? @ThresholdOffset { get;  set; }
-		IfcPositiveLengthMeasure? @CasingThickness { get;  set; }
-		IfcPositiveLengthMeasure? @CasingDepth { get;  set; }
-		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcDoorLiningProperties", 493)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorLiningProperties, IContainsEntityReferences, IEquatable<@IfcDoorLiningProperties>
+	public  partial class @IfcDoorLiningProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcDoorLiningProperties>
 	{
-		#region IIfcDoorLiningProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningDepth { 
- 
-			get { return @LiningDepth; } 
-			set { LiningDepth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.LiningThickness { 
- 
-			get { return @LiningThickness; } 
-			set { LiningThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdDepth { 
- 
-			get { return @ThresholdDepth; } 
-			set { ThresholdDepth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.ThresholdThickness { 
- 
-			get { return @ThresholdThickness; } 
-			set { ThresholdThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.TransomThickness { 
- 
-			get { return @TransomThickness; } 
-			set { TransomThickness = value;}
-		}	
-		IfcLengthMeasure? IIfcDoorLiningProperties.TransomOffset { 
- 
-			get { return @TransomOffset; } 
-			set { TransomOffset = value;}
-		}	
-		IfcLengthMeasure? IIfcDoorLiningProperties.LiningOffset { 
- 
-			get { return @LiningOffset; } 
-			set { LiningOffset = value;}
-		}	
-		IfcLengthMeasure? IIfcDoorLiningProperties.ThresholdOffset { 
- 
-			get { return @ThresholdOffset; } 
-			set { ThresholdOffset = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingThickness { 
- 
-			get { return @CasingThickness; } 
-			set { CasingThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcDoorLiningProperties.CasingDepth { 
- 
-			get { return @CasingDepth; } 
-			set { CasingDepth = value;}
-		}	
-		IIfcShapeAspect IIfcDoorLiningProperties.ShapeAspectStyle { 
- 
- 
-			get { return @ShapeAspectStyle; } 
-			set { ShapeAspectStyle = value as IfcShapeAspect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorLiningProperties(IModel model, int label, bool activated) : base(model, label, activated)  

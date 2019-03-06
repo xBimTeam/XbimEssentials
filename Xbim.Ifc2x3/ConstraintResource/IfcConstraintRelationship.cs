@@ -20,50 +20,13 @@ using Xbim.Ifc2x3.ConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConstraintRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConstraintRelationship : IPersistEntity
-	{
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IIfcConstraint @RelatingConstraint { get;  set; }
-		IItemSet<IIfcConstraint> @RelatedConstraints { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraintRelationship", 374)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintRelationship : PersistEntity, IInstantiableEntity, IIfcConstraintRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintRelationship>
+	public  partial class @IfcConstraintRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintRelationship>
 	{
-		#region IIfcConstraintRelationship explicit implementation
-		IfcLabel? IIfcConstraintRelationship.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcConstraintRelationship.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IIfcConstraint IIfcConstraintRelationship.RelatingConstraint { 
- 
- 
-			get { return @RelatingConstraint; } 
-			set { RelatingConstraint = value as IfcConstraint;}
-		}	
-		IItemSet<IIfcConstraint> IIfcConstraintRelationship.RelatedConstraints { 
-			get { return new Common.Collections.ProxyItemSet<IfcConstraint, IIfcConstraint>( @RelatedConstraints); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstraintRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

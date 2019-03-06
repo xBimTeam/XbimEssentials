@@ -19,40 +19,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcExtrudedAreaSolid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcExtrudedAreaSolid : IIfcSweptAreaSolid
-	{
-		IIfcDirection @ExtrudedDirection { get;  set; }
-		IfcPositiveLengthMeasure @Depth { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcExtrudedAreaSolid", 238)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcExtrudedAreaSolid, IContainsEntityReferences, IEquatable<@IfcExtrudedAreaSolid>
+	public  partial class @IfcExtrudedAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcExtrudedAreaSolid>
 	{
-		#region IIfcExtrudedAreaSolid explicit implementation
-		IIfcDirection IIfcExtrudedAreaSolid.ExtrudedDirection { 
- 
- 
-			get { return @ExtrudedDirection; } 
-			set { ExtrudedDirection = value as IfcDirection;}
-		}	
-		IfcPositiveLengthMeasure IIfcExtrudedAreaSolid.Depth { 
- 
-			get { return @Depth; } 
-			set { Depth = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtrudedAreaSolid(IModel model, int label, bool activated) : base(model, label, activated)  

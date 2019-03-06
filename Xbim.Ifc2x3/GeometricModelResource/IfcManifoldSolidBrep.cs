@@ -18,34 +18,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcManifoldSolidBrep
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcManifoldSolidBrep : IIfcSolidModel
-	{
-		IIfcClosedShell @Outer { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcManifoldSolidBrep", 149)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IIfcManifoldSolidBrep, IEquatable<@IfcManifoldSolidBrep>
+	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IEquatable<@IfcManifoldSolidBrep>
 	{
-		#region IIfcManifoldSolidBrep explicit implementation
-		IIfcClosedShell IIfcManifoldSolidBrep.Outer { 
- 
- 
-			get { return @Outer; } 
-			set { Outer = value as IfcClosedShell;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcManifoldSolidBrep(IModel model, int label, bool activated) : base(model, label, activated)  

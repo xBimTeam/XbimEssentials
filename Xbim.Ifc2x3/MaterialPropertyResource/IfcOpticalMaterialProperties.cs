@@ -18,81 +18,13 @@ using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOpticalMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOpticalMaterialProperties : IIfcMaterialProperties
-	{
-		IfcPositiveRatioMeasure? @VisibleTransmittance { get;  set; }
-		IfcPositiveRatioMeasure? @SolarTransmittance { get;  set; }
-		IfcPositiveRatioMeasure? @ThermalIrTransmittance { get;  set; }
-		IfcPositiveRatioMeasure? @ThermalIrEmissivityBack { get;  set; }
-		IfcPositiveRatioMeasure? @ThermalIrEmissivityFront { get;  set; }
-		IfcPositiveRatioMeasure? @VisibleReflectanceBack { get;  set; }
-		IfcPositiveRatioMeasure? @VisibleReflectanceFront { get;  set; }
-		IfcPositiveRatioMeasure? @SolarReflectanceFront { get;  set; }
-		IfcPositiveRatioMeasure? @SolarReflectanceBack { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcOpticalMaterialProperties", 718)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcOpticalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcOpticalMaterialProperties>
+	public  partial class @IfcOpticalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOpticalMaterialProperties>
 	{
-		#region IIfcOpticalMaterialProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleTransmittance { 
- 
-			get { return @VisibleTransmittance; } 
-			set { VisibleTransmittance = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarTransmittance { 
- 
-			get { return @SolarTransmittance; } 
-			set { SolarTransmittance = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrTransmittance { 
- 
-			get { return @ThermalIrTransmittance; } 
-			set { ThermalIrTransmittance = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityBack { 
- 
-			get { return @ThermalIrEmissivityBack; } 
-			set { ThermalIrEmissivityBack = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.ThermalIrEmissivityFront { 
- 
-			get { return @ThermalIrEmissivityFront; } 
-			set { ThermalIrEmissivityFront = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceBack { 
- 
-			get { return @VisibleReflectanceBack; } 
-			set { VisibleReflectanceBack = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.VisibleReflectanceFront { 
- 
-			get { return @VisibleReflectanceFront; } 
-			set { VisibleReflectanceFront = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceFront { 
- 
-			get { return @SolarReflectanceFront; } 
-			set { SolarReflectanceFront = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcOpticalMaterialProperties.SolarReflectanceBack { 
- 
-			get { return @SolarReflectanceBack; } 
-			set { SolarReflectanceBack = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOpticalMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

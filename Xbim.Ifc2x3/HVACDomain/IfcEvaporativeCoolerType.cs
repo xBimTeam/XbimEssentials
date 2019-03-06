@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcEvaporativeCoolerType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcEvaporativeCoolerType : IIfcEnergyConversionDeviceType
-	{
-		IfcEvaporativeCoolerTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcEvaporativeCoolerType", 621)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEvaporativeCoolerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcEvaporativeCoolerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEvaporativeCoolerType>
+	public  partial class @IfcEvaporativeCoolerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEvaporativeCoolerType>
 	{
-		#region IIfcEvaporativeCoolerType explicit implementation
-		IfcEvaporativeCoolerTypeEnum IIfcEvaporativeCoolerType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEvaporativeCoolerType(IModel model, int label, bool activated) : base(model, label, activated)  

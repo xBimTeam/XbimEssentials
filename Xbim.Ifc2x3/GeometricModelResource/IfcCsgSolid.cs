@@ -17,34 +17,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCsgSolid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCsgSolid : IIfcSolidModel
-	{
-		IIfcCsgSelect @TreeRootExpression { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcCsgSolid", 548)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IIfcCsgSolid, IContainsEntityReferences, IEquatable<@IfcCsgSolid>
+	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCsgSolid>
 	{
-		#region IIfcCsgSolid explicit implementation
-		IIfcCsgSelect IIfcCsgSolid.TreeRootExpression { 
- 
- 
-			get { return @TreeRootExpression; } 
-			set { TreeRootExpression = value as IfcCsgSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCsgSolid(IModel model, int label, bool activated) : base(model, label, activated)  

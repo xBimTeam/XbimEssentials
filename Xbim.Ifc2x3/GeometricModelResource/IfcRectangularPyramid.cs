@@ -18,45 +18,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRectangularPyramid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRectangularPyramid : IIfcCsgPrimitive3D
-	{
-		IfcPositiveLengthMeasure @XLength { get;  set; }
-		IfcPositiveLengthMeasure @YLength { get;  set; }
-		IfcPositiveLengthMeasure @Height { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRectangularPyramid", 705)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRectangularPyramid, IContainsEntityReferences, IEquatable<@IfcRectangularPyramid>
+	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRectangularPyramid>
 	{
-		#region IIfcRectangularPyramid explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.XLength { 
- 
-			get { return @XLength; } 
-			set { XLength = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.YLength { 
- 
-			get { return @YLength; } 
-			set { YLength = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcRectangularPyramid.Height { 
- 
-			get { return @Height; } 
-			set { Height = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangularPyramid(IModel model, int label, bool activated) : base(model, label, activated)  

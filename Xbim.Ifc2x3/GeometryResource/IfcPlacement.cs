@@ -17,35 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPlacement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPlacement : IIfcGeometricRepresentationItem
-	{
-		IIfcCartesianPoint @Location { get;  set; }
-		IfcDimensionCount @Dim  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPlacement", 281)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IIfcPlacement, IEquatable<@IfcPlacement>
+	public abstract partial class @IfcPlacement : IfcGeometricRepresentationItem, IEquatable<@IfcPlacement>
 	{
-		#region IIfcPlacement explicit implementation
-		IIfcCartesianPoint IIfcPlacement.Location { 
- 
- 
-			get { return @Location; } 
-			set { Location = value as IfcCartesianPoint;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlacement(IModel model, int label, bool activated) : base(model, label, activated)  

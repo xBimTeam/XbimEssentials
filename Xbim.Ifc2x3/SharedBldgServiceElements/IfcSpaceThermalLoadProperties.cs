@@ -20,88 +20,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSpaceThermalLoadProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSpaceThermalLoadProperties : IIfcPropertySetDefinition
-	{
-		IfcPositiveRatioMeasure? @ApplicableValueRatio { get;  set; }
-		IfcThermalLoadSourceEnum @ThermalLoadSource { get;  set; }
-		IfcPropertySourceEnum @PropertySource { get;  set; }
-		IfcText? @SourceDescription { get;  set; }
-		IfcPowerMeasure @MaximumValue { get;  set; }
-		IfcPowerMeasure? @MinimumValue { get;  set; }
-		IIfcTimeSeries @ThermalLoadTimeSeriesValues { get;  set; }
-		IfcLabel? @UserDefinedThermalLoadSource { get;  set; }
-		IfcLabel? @UserDefinedPropertySource { get;  set; }
-		IfcThermalLoadTypeEnum @ThermalLoadType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSpaceThermalLoadProperties", 610)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSpaceThermalLoadProperties, IContainsEntityReferences, IEquatable<@IfcSpaceThermalLoadProperties>
+	public  partial class @IfcSpaceThermalLoadProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSpaceThermalLoadProperties>
 	{
-		#region IIfcSpaceThermalLoadProperties explicit implementation
-		IfcPositiveRatioMeasure? IIfcSpaceThermalLoadProperties.ApplicableValueRatio { 
- 
-			get { return @ApplicableValueRatio; } 
-			set { ApplicableValueRatio = value;}
-		}	
-		IfcThermalLoadSourceEnum IIfcSpaceThermalLoadProperties.ThermalLoadSource { 
- 
-			get { return @ThermalLoadSource; } 
-			set { ThermalLoadSource = value;}
-		}	
-		IfcPropertySourceEnum IIfcSpaceThermalLoadProperties.PropertySource { 
- 
-			get { return @PropertySource; } 
-			set { PropertySource = value;}
-		}	
-		IfcText? IIfcSpaceThermalLoadProperties.SourceDescription { 
- 
-			get { return @SourceDescription; } 
-			set { SourceDescription = value;}
-		}	
-		IfcPowerMeasure IIfcSpaceThermalLoadProperties.MaximumValue { 
- 
-			get { return @MaximumValue; } 
-			set { MaximumValue = value;}
-		}	
-		IfcPowerMeasure? IIfcSpaceThermalLoadProperties.MinimumValue { 
- 
-			get { return @MinimumValue; } 
-			set { MinimumValue = value;}
-		}	
-		IIfcTimeSeries IIfcSpaceThermalLoadProperties.ThermalLoadTimeSeriesValues { 
- 
- 
-			get { return @ThermalLoadTimeSeriesValues; } 
-			set { ThermalLoadTimeSeriesValues = value as IfcTimeSeries;}
-		}	
-		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedThermalLoadSource { 
- 
-			get { return @UserDefinedThermalLoadSource; } 
-			set { UserDefinedThermalLoadSource = value;}
-		}	
-		IfcLabel? IIfcSpaceThermalLoadProperties.UserDefinedPropertySource { 
- 
-			get { return @UserDefinedPropertySource; } 
-			set { UserDefinedPropertySource = value;}
-		}	
-		IfcThermalLoadTypeEnum IIfcSpaceThermalLoadProperties.ThermalLoadType { 
- 
-			get { return @ThermalLoadType; } 
-			set { ThermalLoadType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceThermalLoadProperties(IModel model, int label, bool activated) : base(model, label, activated)  

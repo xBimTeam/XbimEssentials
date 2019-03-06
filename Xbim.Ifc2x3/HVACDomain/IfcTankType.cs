@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTankType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTankType : IIfcFlowStorageDeviceType
-	{
-		IfcTankTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcTankType", 619)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTankType : IfcFlowStorageDeviceType, IInstantiableEntity, IIfcTankType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTankType>
+	public  partial class @IfcTankType : IfcFlowStorageDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTankType>
 	{
-		#region IIfcTankType explicit implementation
-		IfcTankTypeEnum IIfcTankType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTankType(IModel model, int label, bool activated) : base(model, label, activated)  

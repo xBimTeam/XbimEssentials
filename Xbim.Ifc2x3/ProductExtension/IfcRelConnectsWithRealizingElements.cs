@@ -18,37 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsWithRealizingElements
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsWithRealizingElements : IIfcRelConnectsElements
-	{
-		IItemSet<IIfcElement> @RealizingElements { get; }
-		IfcLabel? @ConnectionType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsWithRealizingElements", 313)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IIfcRelConnectsWithRealizingElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithRealizingElements>
+	public  partial class @IfcRelConnectsWithRealizingElements : IfcRelConnectsElements, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithRealizingElements>
 	{
-		#region IIfcRelConnectsWithRealizingElements explicit implementation
-		IItemSet<IIfcElement> IIfcRelConnectsWithRealizingElements.RealizingElements { 
-			get { return new Common.Collections.ProxyItemSet<IfcElement, IIfcElement>( @RealizingElements); } 
-		}	
-		IfcLabel? IIfcRelConnectsWithRealizingElements.ConnectionType { 
- 
-			get { return @ConnectionType; } 
-			set { ConnectionType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsWithRealizingElements(IModel model, int label, bool activated) : base(model, label, activated)  

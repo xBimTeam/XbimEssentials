@@ -17,57 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBSplineCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBSplineCurve : IIfcBoundedCurve
-	{
-		long @Degree { get;  set; }
-		IItemSet<IIfcCartesianPoint> @ControlPointsList { get; }
-		IfcBSplineCurveForm @CurveForm { get;  set; }
-		bool? @ClosedCurve { get;  set; }
-		bool? @SelfIntersect { get;  set; }
-		List<Common.Geometry.XbimPoint3D> @ControlPoints  { get ; }
-		long @UpperIndexOnControlPoints  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcBSplineCurve", 167)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IIfcBSplineCurve, IEquatable<@IfcBSplineCurve>
+	public abstract partial class @IfcBSplineCurve : IfcBoundedCurve, IEquatable<@IfcBSplineCurve>
 	{
-		#region IIfcBSplineCurve explicit implementation
-		long IIfcBSplineCurve.Degree { 
- 
-			get { return @Degree; } 
-			set { Degree = value;}
-		}	
-		IItemSet<IIfcCartesianPoint> IIfcBSplineCurve.ControlPointsList { 
-			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @ControlPointsList); } 
-		}	
-		IfcBSplineCurveForm IIfcBSplineCurve.CurveForm { 
- 
-			get { return @CurveForm; } 
-			set { CurveForm = value;}
-		}	
-		bool? IIfcBSplineCurve.ClosedCurve { 
- 
-			get { return @ClosedCurve; } 
-			set { ClosedCurve = value;}
-		}	
-		bool? IIfcBSplineCurve.SelfIntersect { 
- 
-			get { return @SelfIntersect; } 
-			set { SelfIntersect = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBSplineCurve(IModel model, int label, bool activated) : base(model, label, activated)  

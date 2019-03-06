@@ -21,76 +21,13 @@ using Xbim.Ifc2x3.ApprovalResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcApproval
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcApproval : IPersistEntity
-	{
-		IfcText? @Description { get;  set; }
-		IIfcDateTimeSelect @ApprovalDateTime { get;  set; }
-		IfcLabel? @ApprovalStatus { get;  set; }
-		IfcLabel? @ApprovalLevel { get;  set; }
-		IfcText? @ApprovalQualifier { get;  set; }
-		IfcLabel @Name { get;  set; }
-		IfcIdentifier @Identifier { get;  set; }
-		IEnumerable<IIfcApprovalActorRelationship> @Actors {  get; }
-		IEnumerable<IIfcApprovalRelationship> @IsRelatedWith {  get; }
-		IEnumerable<IIfcApprovalRelationship> @Relates {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApproval", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApproval : PersistEntity, IInstantiableEntity, IIfcApproval, IContainsEntityReferences, IEquatable<@IfcApproval>
+	public  partial class @IfcApproval : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcApproval>
 	{
-		#region IIfcApproval explicit implementation
-		IfcText? IIfcApproval.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IIfcDateTimeSelect IIfcApproval.ApprovalDateTime { 
- 
- 
-			get { return @ApprovalDateTime; } 
-			set { ApprovalDateTime = value as IfcDateTimeSelect;}
-		}	
-		IfcLabel? IIfcApproval.ApprovalStatus { 
- 
-			get { return @ApprovalStatus; } 
-			set { ApprovalStatus = value;}
-		}	
-		IfcLabel? IIfcApproval.ApprovalLevel { 
- 
-			get { return @ApprovalLevel; } 
-			set { ApprovalLevel = value;}
-		}	
-		IfcText? IIfcApproval.ApprovalQualifier { 
- 
-			get { return @ApprovalQualifier; } 
-			set { ApprovalQualifier = value;}
-		}	
-		IfcLabel IIfcApproval.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcIdentifier IIfcApproval.Identifier { 
- 
-			get { return @Identifier; } 
-			set { Identifier = value;}
-		}	
-		 
-		IEnumerable<IIfcApprovalActorRelationship> IIfcApproval.Actors {  get { return @Actors; } }
-		IEnumerable<IIfcApprovalRelationship> IIfcApproval.IsRelatedWith {  get { return @IsRelatedWith; } }
-		IEnumerable<IIfcApprovalRelationship> IIfcApproval.Relates {  get { return @Relates; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApproval(IModel model, int label, bool activated) : base(model, label, activated)  

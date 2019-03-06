@@ -20,31 +20,13 @@ using Xbim.Ifc2x3.TimeSeriesResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTimeSeriesValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTimeSeriesValue : IPersistEntity
-	{
-		IItemSet<IIfcValue> @ListValues { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeriesValue", 35)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesValue : PersistEntity, IInstantiableEntity, IIfcTimeSeriesValue, IEquatable<@IfcTimeSeriesValue>
+	public  partial class @IfcTimeSeriesValue : PersistEntity, IInstantiableEntity, IEquatable<@IfcTimeSeriesValue>
 	{
-		#region IIfcTimeSeriesValue explicit implementation
-		IItemSet<IIfcValue> IIfcTimeSeriesValue.ListValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @ListValues); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTimeSeriesValue(IModel model, int label, bool activated) : base(model, label, activated)  

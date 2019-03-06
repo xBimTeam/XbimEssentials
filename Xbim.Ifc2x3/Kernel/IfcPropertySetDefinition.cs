@@ -17,31 +17,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertySetDefinition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertySetDefinition : IIfcPropertyDefinition
-	{
-		IEnumerable<IIfcRelDefinesByProperties> @PropertyDefinitionOf {  get; }
-		IEnumerable<IIfcTypeObject> @DefinesType {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcPropertySetDefinition", 97)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertySetDefinition : IfcPropertyDefinition, IIfcPropertySetDefinition, IEquatable<@IfcPropertySetDefinition>
+	public abstract partial class @IfcPropertySetDefinition : IfcPropertyDefinition, IEquatable<@IfcPropertySetDefinition>
 	{
-		#region IIfcPropertySetDefinition explicit implementation
-		 
-		IEnumerable<IIfcRelDefinesByProperties> IIfcPropertySetDefinition.PropertyDefinitionOf {  get { return @PropertyDefinitionOf; } }
-		IEnumerable<IIfcTypeObject> IIfcPropertySetDefinition.DefinesType {  get { return @DefinesType; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySetDefinition(IModel model, int label, bool activated) : base(model, label, activated)  

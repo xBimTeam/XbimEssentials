@@ -18,47 +18,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBooleanResult
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBooleanResult : IIfcGeometricRepresentationItem, IfcBooleanOperand, IfcCsgSelect
-	{
-		IfcBooleanOperator @Operator { get;  set; }
-		IIfcBooleanOperand @FirstOperand { get;  set; }
-		IIfcBooleanOperand @SecondOperand { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBooleanResult", 339)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBooleanResult, IContainsEntityReferences, IEquatable<@IfcBooleanResult>
+	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IfcBooleanOperand, IfcCsgSelect, IContainsEntityReferences, IEquatable<@IfcBooleanResult>
 	{
-		#region IIfcBooleanResult explicit implementation
-		IfcBooleanOperator IIfcBooleanResult.Operator { 
- 
-			get { return @Operator; } 
-			set { Operator = value;}
-		}	
-		IIfcBooleanOperand IIfcBooleanResult.FirstOperand { 
- 
- 
-			get { return @FirstOperand; } 
-			set { FirstOperand = value as IfcBooleanOperand;}
-		}	
-		IIfcBooleanOperand IIfcBooleanResult.SecondOperand { 
- 
- 
-			get { return @SecondOperand; } 
-			set { SecondOperand = value as IfcBooleanOperand;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBooleanResult(IModel model, int label, bool activated) : base(model, label, activated)  

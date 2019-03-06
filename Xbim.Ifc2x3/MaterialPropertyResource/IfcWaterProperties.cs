@@ -18,69 +18,13 @@ using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWaterProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWaterProperties : IIfcMaterialProperties
-	{
-		bool? @IsPotable { get;  set; }
-		IfcIonConcentrationMeasure? @Hardness { get;  set; }
-		IfcIonConcentrationMeasure? @AlkalinityConcentration { get;  set; }
-		IfcIonConcentrationMeasure? @AcidityConcentration { get;  set; }
-		IfcNormalisedRatioMeasure? @ImpuritiesContent { get;  set; }
-		IfcPHMeasure? @PHLevel { get;  set; }
-		IfcNormalisedRatioMeasure? @DissolvedSolidsContent { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcWaterProperties", 721)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IIfcWaterProperties, IContainsEntityReferences, IEquatable<@IfcWaterProperties>
+	public  partial class @IfcWaterProperties : IfcMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcWaterProperties>
 	{
-		#region IIfcWaterProperties explicit implementation
-		bool? IIfcWaterProperties.IsPotable { 
- 
-			get { return @IsPotable; } 
-			set { IsPotable = value;}
-		}	
-		IfcIonConcentrationMeasure? IIfcWaterProperties.Hardness { 
- 
-			get { return @Hardness; } 
-			set { Hardness = value;}
-		}	
-		IfcIonConcentrationMeasure? IIfcWaterProperties.AlkalinityConcentration { 
- 
-			get { return @AlkalinityConcentration; } 
-			set { AlkalinityConcentration = value;}
-		}	
-		IfcIonConcentrationMeasure? IIfcWaterProperties.AcidityConcentration { 
- 
-			get { return @AcidityConcentration; } 
-			set { AcidityConcentration = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcWaterProperties.ImpuritiesContent { 
- 
-			get { return @ImpuritiesContent; } 
-			set { ImpuritiesContent = value;}
-		}	
-		IfcPHMeasure? IIfcWaterProperties.PHLevel { 
- 
-			get { return @PHLevel; } 
-			set { PHLevel = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcWaterProperties.DissolvedSolidsContent { 
- 
-			get { return @DissolvedSolidsContent; } 
-			set { DissolvedSolidsContent = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWaterProperties(IModel model, int label, bool activated) : base(model, label, activated)  

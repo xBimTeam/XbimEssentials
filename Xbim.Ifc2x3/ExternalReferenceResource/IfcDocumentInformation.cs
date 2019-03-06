@@ -22,135 +22,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDocumentInformation
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDocumentInformation : IPersistEntity, IfcDocumentSelect
-	{
-		IfcIdentifier @DocumentId { get;  set; }
-		IfcLabel @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IItemSet<IIfcDocumentReference> @DocumentReferences { get; }
-		IfcText? @Purpose { get;  set; }
-		IfcText? @IntendedUse { get;  set; }
-		IfcText? @Scope { get;  set; }
-		IfcLabel? @Revision { get;  set; }
-		IIfcActorSelect @DocumentOwner { get;  set; }
-		IItemSet<IIfcActorSelect> @Editors { get; }
-		IIfcDateAndTime @CreationTime { get;  set; }
-		IIfcDateAndTime @LastRevisionTime { get;  set; }
-		IIfcDocumentElectronicFormat @ElectronicFormat { get;  set; }
-		IIfcCalendarDate @ValidFrom { get;  set; }
-		IIfcCalendarDate @ValidUntil { get;  set; }
-		IfcDocumentConfidentialityEnum? @Confidentiality { get;  set; }
-		IfcDocumentStatusEnum? @Status { get;  set; }
-		IEnumerable<IIfcDocumentInformationRelationship> @IsPointedTo {  get; }
-		IEnumerable<IIfcDocumentInformationRelationship> @IsPointer {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcDocumentInformation", 208)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDocumentInformation : PersistEntity, IInstantiableEntity, IIfcDocumentInformation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformation>
+	public  partial class @IfcDocumentInformation : PersistEntity, IInstantiableEntity, IfcDocumentSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDocumentInformation>
 	{
-		#region IIfcDocumentInformation explicit implementation
-		IfcIdentifier IIfcDocumentInformation.DocumentId { 
- 
-			get { return @DocumentId; } 
-			set { DocumentId = value;}
-		}	
-		IfcLabel IIfcDocumentInformation.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcDocumentInformation.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IItemSet<IIfcDocumentReference> IIfcDocumentInformation.DocumentReferences { 
-			get { return new Common.Collections.ProxyItemSet<IfcDocumentReference, IIfcDocumentReference>( @DocumentReferences); } 
-		}	
-		IfcText? IIfcDocumentInformation.Purpose { 
- 
-			get { return @Purpose; } 
-			set { Purpose = value;}
-		}	
-		IfcText? IIfcDocumentInformation.IntendedUse { 
- 
-			get { return @IntendedUse; } 
-			set { IntendedUse = value;}
-		}	
-		IfcText? IIfcDocumentInformation.Scope { 
- 
-			get { return @Scope; } 
-			set { Scope = value;}
-		}	
-		IfcLabel? IIfcDocumentInformation.Revision { 
- 
-			get { return @Revision; } 
-			set { Revision = value;}
-		}	
-		IIfcActorSelect IIfcDocumentInformation.DocumentOwner { 
- 
- 
-			get { return @DocumentOwner; } 
-			set { DocumentOwner = value as IfcActorSelect;}
-		}	
-		IItemSet<IIfcActorSelect> IIfcDocumentInformation.Editors { 
-			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @Editors); } 
-		}	
-		IIfcDateAndTime IIfcDocumentInformation.CreationTime { 
- 
- 
-			get { return @CreationTime; } 
-			set { CreationTime = value as IfcDateAndTime;}
-		}	
-		IIfcDateAndTime IIfcDocumentInformation.LastRevisionTime { 
- 
- 
-			get { return @LastRevisionTime; } 
-			set { LastRevisionTime = value as IfcDateAndTime;}
-		}	
-		IIfcDocumentElectronicFormat IIfcDocumentInformation.ElectronicFormat { 
- 
- 
-			get { return @ElectronicFormat; } 
-			set { ElectronicFormat = value as IfcDocumentElectronicFormat;}
-		}	
-		IIfcCalendarDate IIfcDocumentInformation.ValidFrom { 
- 
- 
-			get { return @ValidFrom; } 
-			set { ValidFrom = value as IfcCalendarDate;}
-		}	
-		IIfcCalendarDate IIfcDocumentInformation.ValidUntil { 
- 
- 
-			get { return @ValidUntil; } 
-			set { ValidUntil = value as IfcCalendarDate;}
-		}	
-		IfcDocumentConfidentialityEnum? IIfcDocumentInformation.Confidentiality { 
- 
-			get { return @Confidentiality; } 
-			set { Confidentiality = value;}
-		}	
-		IfcDocumentStatusEnum? IIfcDocumentInformation.Status { 
- 
-			get { return @Status; } 
-			set { Status = value;}
-		}	
-		 
-		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo {  get { return @IsPointedTo; } }
-		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointer {  get { return @IsPointer; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDocumentInformation(IModel model, int label, bool activated) : base(model, label, activated)  

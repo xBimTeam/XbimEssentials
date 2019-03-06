@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStairFlightType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStairFlightType : IIfcBuildingElementType
-	{
-		IfcStairFlightTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcStairFlightType", 525)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStairFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcStairFlightType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStairFlightType>
+	public  partial class @IfcStairFlightType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStairFlightType>
 	{
-		#region IIfcStairFlightType explicit implementation
-		IfcStairFlightTypeEnum IIfcStairFlightType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStairFlightType(IModel model, int label, bool activated) : base(model, label, activated)  

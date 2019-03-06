@@ -18,81 +18,13 @@ using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCraneRailFShapeProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCraneRailFShapeProfileDef : IIfcParameterizedProfileDef
-	{
-		IfcPositiveLengthMeasure @OverallHeight { get;  set; }
-		IfcPositiveLengthMeasure @HeadWidth { get;  set; }
-		IfcPositiveLengthMeasure? @Radius { get;  set; }
-		IfcPositiveLengthMeasure @HeadDepth2 { get;  set; }
-		IfcPositiveLengthMeasure @HeadDepth3 { get;  set; }
-		IfcPositiveLengthMeasure @WebThickness { get;  set; }
-		IfcPositiveLengthMeasure @BaseDepth1 { get;  set; }
-		IfcPositiveLengthMeasure @BaseDepth2 { get;  set; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCraneRailFShapeProfileDef", 112)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCraneRailFShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCraneRailFShapeProfileDef>
+	public  partial class @IfcCraneRailFShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCraneRailFShapeProfileDef>
 	{
-		#region IIfcCraneRailFShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.OverallHeight { 
- 
-			get { return @OverallHeight; } 
-			set { OverallHeight = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadWidth { 
- 
-			get { return @HeadWidth; } 
-			set { HeadWidth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.Radius { 
- 
-			get { return @Radius; } 
-			set { Radius = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth2 { 
- 
-			get { return @HeadDepth2; } 
-			set { HeadDepth2 = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.HeadDepth3 { 
- 
-			get { return @HeadDepth3; } 
-			set { HeadDepth3 = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.WebThickness { 
- 
-			get { return @WebThickness; } 
-			set { WebThickness = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth1 { 
- 
-			get { return @BaseDepth1; } 
-			set { BaseDepth1 = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCraneRailFShapeProfileDef.BaseDepth2 { 
- 
-			get { return @BaseDepth2; } 
-			set { BaseDepth2 = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcCraneRailFShapeProfileDef.CentreOfGravityInY { 
- 
-			get { return @CentreOfGravityInY; } 
-			set { CentreOfGravityInY = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCraneRailFShapeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

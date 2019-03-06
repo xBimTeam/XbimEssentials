@@ -21,48 +21,13 @@ using Xbim.Ifc2x3.MaterialResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterialLayer
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterialLayer : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect
-	{
-		IIfcMaterial @Material { get;  set; }
-		IfcPositiveLengthMeasure @LayerThickness { get;  set; }
-		IfcLogical? @IsVentilated { get;  set; }
-		IIfcMaterialLayerSet @ToMaterialLayerSet {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialLayer", 446)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayer : PersistEntity, IInstantiableEntity, IIfcMaterialLayer, IContainsEntityReferences, IEquatable<@IfcMaterialLayer>
+	public  partial class @IfcMaterialLayer : PersistEntity, IInstantiableEntity, IfcMaterialSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IEquatable<@IfcMaterialLayer>
 	{
-		#region IIfcMaterialLayer explicit implementation
-		IIfcMaterial IIfcMaterialLayer.Material { 
- 
- 
-			get { return @Material; } 
-			set { Material = value as IfcMaterial;}
-		}	
-		IfcPositiveLengthMeasure IIfcMaterialLayer.LayerThickness { 
- 
-			get { return @LayerThickness; } 
-			set { LayerThickness = value;}
-		}	
-		IfcLogical? IIfcMaterialLayer.IsVentilated { 
- 
-			get { return @IsVentilated; } 
-			set { IsVentilated = value;}
-		}	
-		 
-		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayer(IModel model, int label, bool activated) : base(model, label, activated)  

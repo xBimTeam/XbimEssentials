@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRoof
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRoof : IIfcBuildingElement
-	{
-		IfcRoofTypeEnum @ShapeType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRoof", 347)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IIfcRoof, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoof>
+	public  partial class @IfcRoof : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoof>
 	{
-		#region IIfcRoof explicit implementation
-		IfcRoofTypeEnum IIfcRoof.ShapeType { 
- 
-			get { return @ShapeType; } 
-			set { ShapeType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRoof(IModel model, int label, bool activated) : base(model, label, activated)  

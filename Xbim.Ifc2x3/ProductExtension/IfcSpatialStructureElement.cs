@@ -19,45 +19,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSpatialStructureElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSpatialStructureElement : IIfcProduct
-	{
-		IfcLabel? @LongName { get;  set; }
-		IfcElementCompositionEnum @CompositionType { get;  set; }
-		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencesElements {  get; }
-		IEnumerable<IIfcRelServicesBuildings> @ServicedBySystems {  get; }
-		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainsElements {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSpatialStructureElement", 170)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSpatialStructureElement : IfcProduct, IIfcSpatialStructureElement, IEquatable<@IfcSpatialStructureElement>
+	public abstract partial class @IfcSpatialStructureElement : IfcProduct, IEquatable<@IfcSpatialStructureElement>
 	{
-		#region IIfcSpatialStructureElement explicit implementation
-		IfcLabel? IIfcSpatialStructureElement.LongName { 
- 
-			get { return @LongName; } 
-			set { LongName = value;}
-		}	
-		IfcElementCompositionEnum IIfcSpatialStructureElement.CompositionType { 
- 
-			get { return @CompositionType; } 
-			set { CompositionType = value;}
-		}	
-		 
-		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcSpatialStructureElement.ReferencesElements {  get { return @ReferencesElements; } }
-		IEnumerable<IIfcRelServicesBuildings> IIfcSpatialStructureElement.ServicedBySystems {  get { return @ServicedBySystems; } }
-		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcSpatialStructureElement.ContainsElements {  get { return @ContainsElements; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpatialStructureElement(IModel model, int label, bool activated) : base(model, label, activated)  

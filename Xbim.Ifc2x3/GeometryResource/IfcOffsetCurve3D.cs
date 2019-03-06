@@ -18,53 +18,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOffsetCurve3D
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOffsetCurve3D : IIfcCurve
-	{
-		IIfcCurve @BasisCurve { get;  set; }
-		IfcLengthMeasure @Distance { get;  set; }
-		bool? @SelfIntersect { get;  set; }
-		IIfcDirection @RefDirection { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcOffsetCurve3D", 67)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve3D>
+	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOffsetCurve3D>
 	{
-		#region IIfcOffsetCurve3D explicit implementation
-		IIfcCurve IIfcOffsetCurve3D.BasisCurve { 
- 
- 
-			get { return @BasisCurve; } 
-			set { BasisCurve = value as IfcCurve;}
-		}	
-		IfcLengthMeasure IIfcOffsetCurve3D.Distance { 
- 
-			get { return @Distance; } 
-			set { Distance = value;}
-		}	
-		bool? IIfcOffsetCurve3D.SelfIntersect { 
- 
-			get { return @SelfIntersect; } 
-			set { SelfIntersect = value;}
-		}	
-		IIfcDirection IIfcOffsetCurve3D.RefDirection { 
- 
- 
-			get { return @RefDirection; } 
-			set { RefDirection = value as IfcDirection;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOffsetCurve3D(IModel model, int label, bool activated) : base(model, label, activated)  

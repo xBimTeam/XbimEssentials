@@ -18,75 +18,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElectricalBaseProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElectricalBaseProperties : IIfcEnergyProperties
-	{
-		IfcElectricCurrentEnum? @ElectricCurrentType { get;  set; }
-		IfcElectricVoltageMeasure @InputVoltage { get;  set; }
-		IfcFrequencyMeasure @InputFrequency { get;  set; }
-		IfcElectricCurrentMeasure? @FullLoadCurrent { get;  set; }
-		IfcElectricCurrentMeasure? @MinimumCircuitCurrent { get;  set; }
-		IfcPowerMeasure? @MaximumPowerInput { get;  set; }
-		IfcPowerMeasure? @RatedPowerInput { get;  set; }
-		long @InputPhase { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcElectricalBaseProperties", 177)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IIfcElectricalBaseProperties, IContainsEntityReferences, IEquatable<@IfcElectricalBaseProperties>
+	public  partial class @IfcElectricalBaseProperties : IfcEnergyProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcElectricalBaseProperties>
 	{
-		#region IIfcElectricalBaseProperties explicit implementation
-		IfcElectricCurrentEnum? IIfcElectricalBaseProperties.ElectricCurrentType { 
- 
-			get { return @ElectricCurrentType; } 
-			set { ElectricCurrentType = value;}
-		}	
-		IfcElectricVoltageMeasure IIfcElectricalBaseProperties.InputVoltage { 
- 
-			get { return @InputVoltage; } 
-			set { InputVoltage = value;}
-		}	
-		IfcFrequencyMeasure IIfcElectricalBaseProperties.InputFrequency { 
- 
-			get { return @InputFrequency; } 
-			set { InputFrequency = value;}
-		}	
-		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.FullLoadCurrent { 
- 
-			get { return @FullLoadCurrent; } 
-			set { FullLoadCurrent = value;}
-		}	
-		IfcElectricCurrentMeasure? IIfcElectricalBaseProperties.MinimumCircuitCurrent { 
- 
-			get { return @MinimumCircuitCurrent; } 
-			set { MinimumCircuitCurrent = value;}
-		}	
-		IfcPowerMeasure? IIfcElectricalBaseProperties.MaximumPowerInput { 
- 
-			get { return @MaximumPowerInput; } 
-			set { MaximumPowerInput = value;}
-		}	
-		IfcPowerMeasure? IIfcElectricalBaseProperties.RatedPowerInput { 
- 
-			get { return @RatedPowerInput; } 
-			set { RatedPowerInput = value;}
-		}	
-		long IIfcElectricalBaseProperties.InputPhase { 
- 
-			get { return @InputPhase; } 
-			set { InputPhase = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricalBaseProperties(IModel model, int label, bool activated) : base(model, label, activated)  

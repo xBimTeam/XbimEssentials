@@ -19,33 +19,13 @@ using Xbim.Ifc2x3.ControlExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPerformanceHistory
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPerformanceHistory : IIfcControl
-	{
-		IfcLabel @LifeCyclePhase { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcPerformanceHistory", 710)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IIfcPerformanceHistory, IContainsEntityReferences, IEquatable<@IfcPerformanceHistory>
+	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPerformanceHistory>
 	{
-		#region IIfcPerformanceHistory explicit implementation
-		IfcLabel IIfcPerformanceHistory.LifeCyclePhase { 
- 
-			get { return @LifeCyclePhase; } 
-			set { LifeCyclePhase = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPerformanceHistory(IModel model, int label, bool activated) : base(model, label, activated)  

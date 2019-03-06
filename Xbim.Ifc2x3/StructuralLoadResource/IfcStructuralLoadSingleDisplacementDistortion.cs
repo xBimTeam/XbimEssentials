@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadSingleDisplacementDistortion
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadSingleDisplacementDistortion : IIfcStructuralLoadSingleDisplacement
-	{
-		IfcCurvatureMeasure? @Distortion { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleDisplacementDistortion", 290)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IIfcStructuralLoadSingleDisplacementDistortion, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
+	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
 	{
-		#region IIfcStructuralLoadSingleDisplacementDistortion explicit implementation
-		IfcCurvatureMeasure? IIfcStructuralLoadSingleDisplacementDistortion.Distortion { 
- 
-			get { return @Distortion; } 
-			set { Distortion = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleDisplacementDistortion(IModel model, int label, bool activated) : base(model, label, activated)  

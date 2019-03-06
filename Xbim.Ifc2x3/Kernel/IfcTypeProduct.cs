@@ -19,37 +19,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTypeProduct
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTypeProduct : IIfcTypeObject
-	{
-		IItemSet<IIfcRepresentationMap> @RepresentationMaps { get; }
-		IfcLabel? @Tag { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcTypeProduct", 43)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTypeProduct : IfcTypeObject, IInstantiableEntity, IIfcTypeProduct, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeProduct>
+	public  partial class @IfcTypeProduct : IfcTypeObject, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeProduct>
 	{
-		#region IIfcTypeProduct explicit implementation
-		IItemSet<IIfcRepresentationMap> IIfcTypeProduct.RepresentationMaps { 
-			get { return new Common.Collections.ProxyItemSet<IfcRepresentationMap, IIfcRepresentationMap>( @RepresentationMaps); } 
-		}	
-		IfcLabel? IIfcTypeProduct.Tag { 
- 
-			get { return @Tag; } 
-			set { Tag = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeProduct(IModel model, int label, bool activated) : base(model, label, activated)  

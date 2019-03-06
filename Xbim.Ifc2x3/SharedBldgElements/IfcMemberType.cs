@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMemberType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMemberType : IIfcBuildingElementType
-	{
-		IfcMemberTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcMemberType", 601)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMemberType : IfcBuildingElementType, IInstantiableEntity, IIfcMemberType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMemberType>
+	public  partial class @IfcMemberType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMemberType>
 	{
-		#region IIfcMemberType explicit implementation
-		IfcMemberTypeEnum IIfcMemberType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMemberType(IModel model, int label, bool activated) : base(model, label, activated)  

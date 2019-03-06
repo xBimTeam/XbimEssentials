@@ -19,57 +19,13 @@ using Xbim.Ifc2x3.StructuralElementsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcReinforcingBar
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcReinforcingBar : IIfcReinforcingElement
-	{
-		IfcPositiveLengthMeasure @NominalDiameter { get;  set; }
-		IfcAreaMeasure @CrossSectionArea { get;  set; }
-		IfcPositiveLengthMeasure? @BarLength { get;  set; }
-		IfcReinforcingBarRoleEnum @BarRole { get;  set; }
-		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcReinforcingBar", 571)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IIfcReinforcingBar, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingBar>
+	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingBar>
 	{
-		#region IIfcReinforcingBar explicit implementation
-		IfcPositiveLengthMeasure IIfcReinforcingBar.NominalDiameter { 
- 
-			get { return @NominalDiameter; } 
-			set { NominalDiameter = value;}
-		}	
-		IfcAreaMeasure IIfcReinforcingBar.CrossSectionArea { 
- 
-			get { return @CrossSectionArea; } 
-			set { CrossSectionArea = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcReinforcingBar.BarLength { 
- 
-			get { return @BarLength; } 
-			set { BarLength = value;}
-		}	
-		IfcReinforcingBarRoleEnum IIfcReinforcingBar.BarRole { 
- 
-			get { return @BarRole; } 
-			set { BarRole = value;}
-		}	
-		IfcReinforcingBarSurfaceEnum? IIfcReinforcingBar.BarSurface { 
- 
-			get { return @BarSurface; } 
-			set { BarSurface = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcingBar(IModel model, int label, bool activated) : base(model, label, activated)  

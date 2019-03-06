@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ConstructionMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLaborResource
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLaborResource : IIfcConstructionResource
-	{
-		IfcText? @SkillSet { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcLaborResource", 156)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IIfcLaborResource, IContainsEntityReferences, IEquatable<@IfcLaborResource>
+	public  partial class @IfcLaborResource : IfcConstructionResource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLaborResource>
 	{
-		#region IIfcLaborResource explicit implementation
-		IfcText? IIfcLaborResource.SkillSet { 
- 
-			get { return @SkillSet; } 
-			set { SkillSet = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLaborResource(IModel model, int label, bool activated) : base(model, label, activated)  

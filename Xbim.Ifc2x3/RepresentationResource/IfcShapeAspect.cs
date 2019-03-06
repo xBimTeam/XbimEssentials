@@ -20,56 +20,13 @@ using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcShapeAspect
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcShapeAspect : IPersistEntity
-	{
-		IItemSet<IIfcShapeModel> @ShapeRepresentations { get; }
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		bool? @ProductDefinitional { get;  set; }
-		IIfcProductDefinitionShape @PartOfProductDefinitionShape { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcShapeAspect", 665)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShapeAspect : PersistEntity, IInstantiableEntity, IIfcShapeAspect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeAspect>
+	public  partial class @IfcShapeAspect : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeAspect>
 	{
-		#region IIfcShapeAspect explicit implementation
-		IItemSet<IIfcShapeModel> IIfcShapeAspect.ShapeRepresentations { 
-			get { return new Common.Collections.ProxyItemSet<IfcShapeModel, IIfcShapeModel>( @ShapeRepresentations); } 
-		}	
-		IfcLabel? IIfcShapeAspect.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcShapeAspect.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		bool? IIfcShapeAspect.ProductDefinitional { 
- 
-			get { return @ProductDefinitional; } 
-			set { ProductDefinitional = value;}
-		}	
-		IIfcProductDefinitionShape IIfcShapeAspect.PartOfProductDefinitionShape { 
- 
- 
-			get { return @PartOfProductDefinitionShape; } 
-			set { PartOfProductDefinitionShape = value as IfcProductDefinitionShape;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcShapeAspect(IModel model, int label, bool activated) : base(model, label, activated)  

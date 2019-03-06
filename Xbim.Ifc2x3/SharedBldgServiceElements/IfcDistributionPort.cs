@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDistributionPort
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDistributionPort : IIfcPort
-	{
-		IfcFlowDirectionEnum? @FlowDirection { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionPort", 178)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IIfcDistributionPort, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionPort>
+	public  partial class @IfcDistributionPort : IfcPort, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionPort>
 	{
-		#region IIfcDistributionPort explicit implementation
-		IfcFlowDirectionEnum? IIfcDistributionPort.FlowDirection { 
- 
-			get { return @FlowDirection; } 
-			set { FlowDirection = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionPort(IModel model, int label, bool activated) : base(model, label, activated)  

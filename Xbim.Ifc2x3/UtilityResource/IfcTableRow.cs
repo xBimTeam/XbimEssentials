@@ -20,39 +20,13 @@ using Xbim.Ifc2x3.UtilityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTableRow
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTableRow : IPersistEntity
-	{
-		IItemSet<IIfcValue> @RowCells { get; }
-		bool @IsHeading { get;  set; }
-		IIfcTable @OfTable {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcTableRow", 661)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTableRow : PersistEntity, IInstantiableEntity, IIfcTableRow, IEquatable<@IfcTableRow>
+	public  partial class @IfcTableRow : PersistEntity, IInstantiableEntity, IEquatable<@IfcTableRow>
 	{
-		#region IIfcTableRow explicit implementation
-		IItemSet<IIfcValue> IIfcTableRow.RowCells { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @RowCells); } 
-		}	
-		bool IIfcTableRow.IsHeading { 
- 
-			get { return @IsHeading; } 
-			set { IsHeading = value;}
-		}	
-		 
-		IIfcTable IIfcTableRow.OfTable {  get { return @OfTable; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTableRow(IModel model, int label, bool activated) : base(model, label, activated)  

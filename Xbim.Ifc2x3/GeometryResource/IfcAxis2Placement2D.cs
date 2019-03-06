@@ -17,34 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAxis2Placement2D
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAxis2Placement2D : IIfcPlacement, IfcAxis2Placement
-	{
-		IIfcDirection @RefDirection { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcAxis2Placement2D", 411)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxis2Placement2D : IfcPlacement, IInstantiableEntity, IIfcAxis2Placement2D, IContainsEntityReferences, IEquatable<@IfcAxis2Placement2D>
+	public  partial class @IfcAxis2Placement2D : IfcPlacement, IInstantiableEntity, IfcAxis2Placement, IContainsEntityReferences, IEquatable<@IfcAxis2Placement2D>
 	{
-		#region IIfcAxis2Placement2D explicit implementation
-		IIfcDirection IIfcAxis2Placement2D.RefDirection { 
- 
- 
-			get { return @RefDirection; } 
-			set { RefDirection = value as IfcDirection;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAxis2Placement2D(IModel model, int label, bool activated) : base(model, label, activated)  

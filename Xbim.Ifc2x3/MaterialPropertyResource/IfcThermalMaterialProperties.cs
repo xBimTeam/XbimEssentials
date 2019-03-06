@@ -18,51 +18,13 @@ using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcThermalMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcThermalMaterialProperties : IIfcMaterialProperties
-	{
-		IfcSpecificHeatCapacityMeasure? @SpecificHeatCapacity { get;  set; }
-		IfcThermodynamicTemperatureMeasure? @BoilingPoint { get;  set; }
-		IfcThermodynamicTemperatureMeasure? @FreezingPoint { get;  set; }
-		IfcThermalConductivityMeasure? @ThermalConductivity { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcThermalMaterialProperties", 720)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcThermalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcThermalMaterialProperties, IContainsEntityReferences, IEquatable<@IfcThermalMaterialProperties>
+	public  partial class @IfcThermalMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcThermalMaterialProperties>
 	{
-		#region IIfcThermalMaterialProperties explicit implementation
-		IfcSpecificHeatCapacityMeasure? IIfcThermalMaterialProperties.SpecificHeatCapacity { 
- 
-			get { return @SpecificHeatCapacity; } 
-			set { SpecificHeatCapacity = value;}
-		}	
-		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.BoilingPoint { 
- 
-			get { return @BoilingPoint; } 
-			set { BoilingPoint = value;}
-		}	
-		IfcThermodynamicTemperatureMeasure? IIfcThermalMaterialProperties.FreezingPoint { 
- 
-			get { return @FreezingPoint; } 
-			set { FreezingPoint = value;}
-		}	
-		IfcThermalConductivityMeasure? IIfcThermalMaterialProperties.ThermalConductivity { 
- 
-			get { return @ThermalConductivity; } 
-			set { ThermalConductivity = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcThermalMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -19,33 +19,13 @@ using Xbim.Ifc2x3.SharedComponentElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcEdgeFeature
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcEdgeFeature : IIfcFeatureElementSubtraction
-	{
-		IfcPositiveLengthMeasure? @FeatureLength { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcEdgeFeature", 764)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IIfcEdgeFeature, IEquatable<@IfcEdgeFeature>
+	public abstract partial class @IfcEdgeFeature : IfcFeatureElementSubtraction, IEquatable<@IfcEdgeFeature>
 	{
-		#region IIfcEdgeFeature explicit implementation
-		IfcPositiveLengthMeasure? IIfcEdgeFeature.FeatureLength { 
- 
-			get { return @FeatureLength; } 
-			set { FeatureLength = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdgeFeature(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,63 +18,13 @@ using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBoundaryEdgeCondition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBoundaryEdgeCondition : IIfcBoundaryCondition
-	{
-		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthX { get;  set; }
-		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthY { get;  set; }
-		IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthZ { get;  set; }
-		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthX { get;  set; }
-		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthY { get;  set; }
-		IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryEdgeCondition", 319)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryEdgeCondition, IEquatable<@IfcBoundaryEdgeCondition>
+	public  partial class @IfcBoundaryEdgeCondition : IfcBoundaryCondition, IInstantiableEntity, IEquatable<@IfcBoundaryEdgeCondition>
 	{
-		#region IIfcBoundaryEdgeCondition explicit implementation
-		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthX { 
- 
-			get { return @LinearStiffnessByLengthX; } 
-			set { LinearStiffnessByLengthX = value;}
-		}	
-		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthY { 
- 
-			get { return @LinearStiffnessByLengthY; } 
-			set { LinearStiffnessByLengthY = value;}
-		}	
-		IfcModulusOfLinearSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.LinearStiffnessByLengthZ { 
- 
-			get { return @LinearStiffnessByLengthZ; } 
-			set { LinearStiffnessByLengthZ = value;}
-		}	
-		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthX { 
- 
-			get { return @RotationalStiffnessByLengthX; } 
-			set { RotationalStiffnessByLengthX = value;}
-		}	
-		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthY { 
- 
-			get { return @RotationalStiffnessByLengthY; } 
-			set { RotationalStiffnessByLengthY = value;}
-		}	
-		IfcModulusOfRotationalSubgradeReactionMeasure? IIfcBoundaryEdgeCondition.RotationalStiffnessByLengthZ { 
- 
-			get { return @RotationalStiffnessByLengthZ; } 
-			set { RotationalStiffnessByLengthZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryEdgeCondition(IModel model, int label, bool activated) : base(model, label, activated)  

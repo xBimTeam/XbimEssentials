@@ -18,34 +18,13 @@ using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcArbitraryClosedProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcArbitraryClosedProfileDef : IIfcProfileDef
-	{
-		IIfcCurve @OuterCurve { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcArbitraryClosedProfileDef", 115)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcArbitraryClosedProfileDef, IContainsEntityReferences, IEquatable<@IfcArbitraryClosedProfileDef>
+	public  partial class @IfcArbitraryClosedProfileDef : IfcProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcArbitraryClosedProfileDef>
 	{
-		#region IIfcArbitraryClosedProfileDef explicit implementation
-		IIfcCurve IIfcArbitraryClosedProfileDef.OuterCurve { 
- 
- 
-			get { return @OuterCurve; } 
-			set { OuterCurve = value as IfcCurve;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcArbitraryClosedProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

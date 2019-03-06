@@ -19,73 +19,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextStyleTextModel
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextStyleTextModel : IPersistEntity, IfcTextStyleSelect
-	{
-		IIfcSizeSelect @TextIndent { get;  set; }
-		IfcTextAlignment? @TextAlign { get;  set; }
-		IfcTextDecoration? @TextDecoration { get;  set; }
-		IIfcSizeSelect @LetterSpacing { get;  set; }
-		IIfcSizeSelect @WordSpacing { get;  set; }
-		IfcTextTransformation? @TextTransform { get;  set; }
-		IIfcSizeSelect @LineHeight { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleTextModel", 581)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleTextModel : PersistEntity, IInstantiableEntity, IIfcTextStyleTextModel, IEquatable<@IfcTextStyleTextModel>
+	public  partial class @IfcTextStyleTextModel : PersistEntity, IInstantiableEntity, IfcTextStyleSelect, IEquatable<@IfcTextStyleTextModel>
 	{
-		#region IIfcTextStyleTextModel explicit implementation
-		IIfcSizeSelect IIfcTextStyleTextModel.TextIndent { 
- 
- 
-			get { return @TextIndent; } 
-			set { TextIndent = value as IfcSizeSelect;}
-		}	
-		IfcTextAlignment? IIfcTextStyleTextModel.TextAlign { 
- 
-			get { return @TextAlign; } 
-			set { TextAlign = value;}
-		}	
-		IfcTextDecoration? IIfcTextStyleTextModel.TextDecoration { 
- 
-			get { return @TextDecoration; } 
-			set { TextDecoration = value;}
-		}	
-		IIfcSizeSelect IIfcTextStyleTextModel.LetterSpacing { 
- 
- 
-			get { return @LetterSpacing; } 
-			set { LetterSpacing = value as IfcSizeSelect;}
-		}	
-		IIfcSizeSelect IIfcTextStyleTextModel.WordSpacing { 
- 
- 
-			get { return @WordSpacing; } 
-			set { WordSpacing = value as IfcSizeSelect;}
-		}	
-		IfcTextTransformation? IIfcTextStyleTextModel.TextTransform { 
- 
-			get { return @TextTransform; } 
-			set { TextTransform = value;}
-		}	
-		IIfcSizeSelect IIfcTextStyleTextModel.LineHeight { 
- 
- 
-			get { return @LineHeight; } 
-			set { LineHeight = value as IfcSizeSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleTextModel(IModel model, int label, bool activated) : base(model, label, activated)  

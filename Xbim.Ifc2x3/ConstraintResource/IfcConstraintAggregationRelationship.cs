@@ -20,56 +20,13 @@ using Xbim.Ifc2x3.ConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConstraintAggregationRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConstraintAggregationRelationship : IPersistEntity
-	{
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IIfcConstraint @RelatingConstraint { get;  set; }
-		IItemSet<IIfcConstraint> @RelatedConstraints { get; }
-		IfcLogicalOperatorEnum @LogicalAggregator { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraintAggregationRelationship", 82)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintAggregationRelationship : PersistEntity, IInstantiableEntity, IIfcConstraintAggregationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintAggregationRelationship>
+	public  partial class @IfcConstraintAggregationRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintAggregationRelationship>
 	{
-		#region IIfcConstraintAggregationRelationship explicit implementation
-		IfcLabel? IIfcConstraintAggregationRelationship.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcConstraintAggregationRelationship.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IIfcConstraint IIfcConstraintAggregationRelationship.RelatingConstraint { 
- 
- 
-			get { return @RelatingConstraint; } 
-			set { RelatingConstraint = value as IfcConstraint;}
-		}	
-		IItemSet<IIfcConstraint> IIfcConstraintAggregationRelationship.RelatedConstraints { 
-			get { return new Common.Collections.ProxyItemSet<IfcConstraint, IIfcConstraint>( @RelatedConstraints); } 
-		}	
-		IfcLogicalOperatorEnum IIfcConstraintAggregationRelationship.LogicalAggregator { 
- 
-			get { return @LogicalAggregator; } 
-			set { LogicalAggregator = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstraintAggregationRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

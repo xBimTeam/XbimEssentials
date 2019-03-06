@@ -20,42 +20,13 @@ using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralActivity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralActivity : IIfcProduct
-	{
-		IIfcStructuralLoad @AppliedLoad { get;  set; }
-		IfcGlobalOrLocalEnum @GlobalOrLocal { get;  set; }
-		IIfcRelConnectsStructuralActivity @AssignedToStructuralItem {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralActivity", 41)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralActivity : IfcProduct, IIfcStructuralActivity, IEquatable<@IfcStructuralActivity>
+	public abstract partial class @IfcStructuralActivity : IfcProduct, IEquatable<@IfcStructuralActivity>
 	{
-		#region IIfcStructuralActivity explicit implementation
-		IIfcStructuralLoad IIfcStructuralActivity.AppliedLoad { 
- 
- 
-			get { return @AppliedLoad; } 
-			set { AppliedLoad = value as IfcStructuralLoad;}
-		}	
-		IfcGlobalOrLocalEnum IIfcStructuralActivity.GlobalOrLocal { 
- 
-			get { return @GlobalOrLocal; } 
-			set { GlobalOrLocal = value;}
-		}	
-		 
-		IIfcRelConnectsStructuralActivity IIfcStructuralActivity.AssignedToStructuralItem {  get { return @AssignedToStructuralItem; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralActivity(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProtectiveDeviceType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProtectiveDeviceType : IIfcFlowControllerType
-	{
-		IfcProtectiveDeviceTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcProtectiveDeviceType", 550)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProtectiveDeviceType : IfcFlowControllerType, IInstantiableEntity, IIfcProtectiveDeviceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProtectiveDeviceType>
+	public  partial class @IfcProtectiveDeviceType : IfcFlowControllerType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProtectiveDeviceType>
 	{
-		#region IIfcProtectiveDeviceType explicit implementation
-		IfcProtectiveDeviceTypeEnum IIfcProtectiveDeviceType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProtectiveDeviceType(IModel model, int label, bool activated) : base(model, label, activated)  

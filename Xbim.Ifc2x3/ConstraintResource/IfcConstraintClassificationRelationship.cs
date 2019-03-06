@@ -20,38 +20,13 @@ using Xbim.Ifc2x3.ConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConstraintClassificationRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConstraintClassificationRelationship : IPersistEntity
-	{
-		IIfcConstraint @ClassifiedConstraint { get;  set; }
-		IItemSet<IIfcClassificationNotationSelect> @RelatedClassifications { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcConstraintClassificationRelationship", 274)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstraintClassificationRelationship : PersistEntity, IInstantiableEntity, IIfcConstraintClassificationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintClassificationRelationship>
+	public  partial class @IfcConstraintClassificationRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcConstraintClassificationRelationship>
 	{
-		#region IIfcConstraintClassificationRelationship explicit implementation
-		IIfcConstraint IIfcConstraintClassificationRelationship.ClassifiedConstraint { 
- 
- 
-			get { return @ClassifiedConstraint; } 
-			set { ClassifiedConstraint = value as IfcConstraint;}
-		}	
-		IItemSet<IIfcClassificationNotationSelect> IIfcConstraintClassificationRelationship.RelatedClassifications { 
-			get { return new Common.Collections.ProxyItemSet<IfcClassificationNotationSelect, IIfcClassificationNotationSelect>( @RelatedClassifications); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstraintClassificationRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

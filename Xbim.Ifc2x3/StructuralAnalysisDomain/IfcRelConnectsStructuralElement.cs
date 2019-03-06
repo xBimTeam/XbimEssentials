@@ -19,41 +19,13 @@ using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsStructuralElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsStructuralElement : IIfcRelConnects
-	{
-		IIfcElement @RelatingElement { get;  set; }
-		IIfcStructuralMember @RelatedStructuralMember { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsStructuralElement", 413)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralElement>
+	public  partial class @IfcRelConnectsStructuralElement : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralElement>
 	{
-		#region IIfcRelConnectsStructuralElement explicit implementation
-		IIfcElement IIfcRelConnectsStructuralElement.RelatingElement { 
- 
- 
-			get { return @RelatingElement; } 
-			set { RelatingElement = value as IfcElement;}
-		}	
-		IIfcStructuralMember IIfcRelConnectsStructuralElement.RelatedStructuralMember { 
- 
- 
-			get { return @RelatedStructuralMember; } 
-			set { RelatedStructuralMember = value as IfcStructuralMember;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsStructuralElement(IModel model, int label, bool activated) : base(model, label, activated)  

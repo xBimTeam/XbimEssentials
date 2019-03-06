@@ -17,41 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCartesianTransformationOperator3DnonUniform
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCartesianTransformationOperator3DnonUniform : IIfcCartesianTransformationOperator3D
-	{
-		double? @Scale2 { get;  set; }
-		double? @Scale3 { get;  set; }
-		double @Scl2  { get ; }
-		double @Scl3  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator3DnonUniform", 479)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IIfcCartesianTransformationOperator3DnonUniform, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
+	public  partial class @IfcCartesianTransformationOperator3DnonUniform : IfcCartesianTransformationOperator3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator3DnonUniform>
 	{
-		#region IIfcCartesianTransformationOperator3DnonUniform explicit implementation
-		double? IIfcCartesianTransformationOperator3DnonUniform.Scale2 { 
- 
-			get { return @Scale2; } 
-			set { Scale2 = value;}
-		}	
-		double? IIfcCartesianTransformationOperator3DnonUniform.Scale3 { 
- 
-			get { return @Scale3; } 
-			set { Scale3 = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator3DnonUniform(IModel model, int label, bool activated) : base(model, label, activated)  

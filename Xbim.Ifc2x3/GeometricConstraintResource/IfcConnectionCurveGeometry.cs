@@ -17,41 +17,13 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConnectionCurveGeometry
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConnectionCurveGeometry : IIfcConnectionGeometry
-	{
-		IIfcCurveOrEdgeCurve @CurveOnRelatingElement { get;  set; }
-		IIfcCurveOrEdgeCurve @CurveOnRelatedElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionCurveGeometry", 590)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionCurveGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionCurveGeometry>
+	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectionCurveGeometry>
 	{
-		#region IIfcConnectionCurveGeometry explicit implementation
-		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatingElement { 
- 
- 
-			get { return @CurveOnRelatingElement; } 
-			set { CurveOnRelatingElement = value as IfcCurveOrEdgeCurve;}
-		}	
-		IIfcCurveOrEdgeCurve IIfcConnectionCurveGeometry.CurveOnRelatedElement { 
- 
- 
-			get { return @CurveOnRelatedElement; } 
-			set { CurveOnRelatedElement = value as IfcCurveOrEdgeCurve;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionCurveGeometry(IModel model, int label, bool activated) : base(model, label, activated)  

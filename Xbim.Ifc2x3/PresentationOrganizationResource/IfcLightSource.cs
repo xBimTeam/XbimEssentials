@@ -20,52 +20,13 @@ using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightSource
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightSource : IIfcGeometricRepresentationItem
-	{
-		IfcLabel? @Name { get;  set; }
-		IIfcColourRgb @LightColour { get;  set; }
-		IfcNormalisedRatioMeasure? @AmbientIntensity { get;  set; }
-		IfcNormalisedRatioMeasure? @Intensity { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSource", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IIfcLightSource, IEquatable<@IfcLightSource>
+	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IEquatable<@IfcLightSource>
 	{
-		#region IIfcLightSource explicit implementation
-		IfcLabel? IIfcLightSource.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IIfcColourRgb IIfcLightSource.LightColour { 
- 
- 
-			get { return @LightColour; } 
-			set { LightColour = value as IfcColourRgb;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcLightSource.AmbientIntensity { 
- 
-			get { return @AmbientIntensity; } 
-			set { AmbientIntensity = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcLightSource.Intensity { 
- 
-			get { return @Intensity; } 
-			set { Intensity = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSource(IModel model, int label, bool activated) : base(model, label, activated)  

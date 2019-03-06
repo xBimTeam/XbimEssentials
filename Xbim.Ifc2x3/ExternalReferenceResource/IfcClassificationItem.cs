@@ -20,51 +20,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcClassificationItem
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcClassificationItem : IPersistEntity
-	{
-		IIfcClassificationNotationFacet @Notation { get;  set; }
-		IIfcClassification @ItemOf { get;  set; }
-		IfcLabel @Title { get;  set; }
-		IEnumerable<IIfcClassificationItemRelationship> @IsClassifiedItemIn {  get; }
-		IEnumerable<IIfcClassificationItemRelationship> @IsClassifyingItemIn {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationItem", 14)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationItem : PersistEntity, IInstantiableEntity, IIfcClassificationItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationItem>
+	public  partial class @IfcClassificationItem : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationItem>
 	{
-		#region IIfcClassificationItem explicit implementation
-		IIfcClassificationNotationFacet IIfcClassificationItem.Notation { 
- 
- 
-			get { return @Notation; } 
-			set { Notation = value as IfcClassificationNotationFacet;}
-		}	
-		IIfcClassification IIfcClassificationItem.ItemOf { 
- 
- 
-			get { return @ItemOf; } 
-			set { ItemOf = value as IfcClassification;}
-		}	
-		IfcLabel IIfcClassificationItem.Title { 
- 
-			get { return @Title; } 
-			set { Title = value;}
-		}	
-		 
-		IEnumerable<IIfcClassificationItemRelationship> IIfcClassificationItem.IsClassifiedItemIn {  get { return @IsClassifiedItemIn; } }
-		IEnumerable<IIfcClassificationItemRelationship> IIfcClassificationItem.IsClassifyingItemIn {  get { return @IsClassifyingItemIn; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassificationItem(IModel model, int label, bool activated) : base(model, label, activated)  

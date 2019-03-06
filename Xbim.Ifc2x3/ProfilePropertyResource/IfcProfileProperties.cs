@@ -21,40 +21,13 @@ using Xbim.Ifc2x3.ProfilePropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProfileProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProfileProperties : IPersistEntity
-	{
-		IfcLabel? @ProfileName { get;  set; }
-		IIfcProfileDef @ProfileDefinition { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcProfileProperties", 649)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProfileProperties : PersistEntity, IIfcProfileProperties, IEquatable<@IfcProfileProperties>
+	public abstract partial class @IfcProfileProperties : PersistEntity, IEquatable<@IfcProfileProperties>
 	{
-		#region IIfcProfileProperties explicit implementation
-		IfcLabel? IIfcProfileProperties.ProfileName { 
- 
-			get { return @ProfileName; } 
-			set { ProfileName = value;}
-		}	
-		IIfcProfileDef IIfcProfileProperties.ProfileDefinition { 
- 
- 
-			get { return @ProfileDefinition; } 
-			set { ProfileDefinition = value as IfcProfileDef;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  

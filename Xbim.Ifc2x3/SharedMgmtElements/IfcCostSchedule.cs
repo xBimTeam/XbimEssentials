@@ -21,77 +21,13 @@ using Xbim.Ifc2x3.SharedMgmtElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCostSchedule
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCostSchedule : IIfcControl
-	{
-		IIfcActorSelect @SubmittedBy { get;  set; }
-		IIfcActorSelect @PreparedBy { get;  set; }
-		IIfcDateTimeSelect @SubmittedOn { get;  set; }
-		IfcLabel? @Status { get;  set; }
-		IItemSet<IIfcActorSelect> @TargetUsers { get; }
-		IIfcDateTimeSelect @UpdateDate { get;  set; }
-		IfcIdentifier @ID { get;  set; }
-		IfcCostScheduleTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcCostSchedule", 695)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IIfcCostSchedule, IContainsEntityReferences, IEquatable<@IfcCostSchedule>
+	public  partial class @IfcCostSchedule : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCostSchedule>
 	{
-		#region IIfcCostSchedule explicit implementation
-		IIfcActorSelect IIfcCostSchedule.SubmittedBy { 
- 
- 
-			get { return @SubmittedBy; } 
-			set { SubmittedBy = value as IfcActorSelect;}
-		}	
-		IIfcActorSelect IIfcCostSchedule.PreparedBy { 
- 
- 
-			get { return @PreparedBy; } 
-			set { PreparedBy = value as IfcActorSelect;}
-		}	
-		IIfcDateTimeSelect IIfcCostSchedule.SubmittedOn { 
- 
- 
-			get { return @SubmittedOn; } 
-			set { SubmittedOn = value as IfcDateTimeSelect;}
-		}	
-		IfcLabel? IIfcCostSchedule.Status { 
- 
-			get { return @Status; } 
-			set { Status = value;}
-		}	
-		IItemSet<IIfcActorSelect> IIfcCostSchedule.TargetUsers { 
-			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @TargetUsers); } 
-		}	
-		IIfcDateTimeSelect IIfcCostSchedule.UpdateDate { 
- 
- 
-			get { return @UpdateDate; } 
-			set { UpdateDate = value as IfcDateTimeSelect;}
-		}	
-		IfcIdentifier IIfcCostSchedule.ID { 
- 
-			get { return @ID; } 
-			set { ID = value;}
-		}	
-		IfcCostScheduleTypeEnum IIfcCostSchedule.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostSchedule(IModel model, int label, bool activated) : base(model, label, activated)  

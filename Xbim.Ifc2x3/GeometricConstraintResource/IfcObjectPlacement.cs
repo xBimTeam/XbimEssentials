@@ -20,31 +20,13 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcObjectPlacement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcObjectPlacement : IPersistEntity
-	{
-		IEnumerable<IIfcProduct> @PlacesObject {  get; }
-		IEnumerable<IIfcLocalPlacement> @ReferencedByPlacements {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcObjectPlacement", 440)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObjectPlacement : PersistEntity, IIfcObjectPlacement, IEquatable<@IfcObjectPlacement>
+	public abstract partial class @IfcObjectPlacement : PersistEntity, IEquatable<@IfcObjectPlacement>
 	{
-		#region IIfcObjectPlacement explicit implementation
-		 
-		IEnumerable<IIfcProduct> IIfcObjectPlacement.PlacesObject {  get { return @PlacesObject; } }
-		IEnumerable<IIfcLocalPlacement> IIfcObjectPlacement.ReferencedByPlacements {  get { return @ReferencedByPlacements; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjectPlacement(IModel model, int label, bool activated) : base(model, label, activated)  

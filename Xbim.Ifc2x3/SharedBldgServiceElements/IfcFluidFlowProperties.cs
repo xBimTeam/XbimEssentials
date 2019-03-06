@@ -21,125 +21,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFluidFlowProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFluidFlowProperties : IIfcPropertySetDefinition
-	{
-		IfcPropertySourceEnum @PropertySource { get;  set; }
-		IIfcTimeSeries @FlowConditionTimeSeries { get;  set; }
-		IIfcTimeSeries @VelocityTimeSeries { get;  set; }
-		IIfcTimeSeries @FlowrateTimeSeries { get;  set; }
-		IIfcMaterial @Fluid { get;  set; }
-		IIfcTimeSeries @PressureTimeSeries { get;  set; }
-		IfcLabel? @UserDefinedPropertySource { get;  set; }
-		IfcThermodynamicTemperatureMeasure? @TemperatureSingleValue { get;  set; }
-		IfcThermodynamicTemperatureMeasure? @WetBulbTemperatureSingleValue { get;  set; }
-		IIfcTimeSeries @WetBulbTemperatureTimeSeries { get;  set; }
-		IIfcTimeSeries @TemperatureTimeSeries { get;  set; }
-		IIfcDerivedMeasureValue @FlowrateSingleValue { get;  set; }
-		IfcPositiveRatioMeasure? @FlowConditionSingleValue { get;  set; }
-		IfcLinearVelocityMeasure? @VelocitySingleValue { get;  set; }
-		IfcPressureMeasure? @PressureSingleValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFluidFlowProperties", 466)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcFluidFlowProperties, IContainsEntityReferences, IEquatable<@IfcFluidFlowProperties>
+	public  partial class @IfcFluidFlowProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcFluidFlowProperties>
 	{
-		#region IIfcFluidFlowProperties explicit implementation
-		IfcPropertySourceEnum IIfcFluidFlowProperties.PropertySource { 
- 
-			get { return @PropertySource; } 
-			set { PropertySource = value;}
-		}	
-		IIfcTimeSeries IIfcFluidFlowProperties.FlowConditionTimeSeries { 
- 
- 
-			get { return @FlowConditionTimeSeries; } 
-			set { FlowConditionTimeSeries = value as IfcTimeSeries;}
-		}	
-		IIfcTimeSeries IIfcFluidFlowProperties.VelocityTimeSeries { 
- 
- 
-			get { return @VelocityTimeSeries; } 
-			set { VelocityTimeSeries = value as IfcTimeSeries;}
-		}	
-		IIfcTimeSeries IIfcFluidFlowProperties.FlowrateTimeSeries { 
- 
- 
-			get { return @FlowrateTimeSeries; } 
-			set { FlowrateTimeSeries = value as IfcTimeSeries;}
-		}	
-		IIfcMaterial IIfcFluidFlowProperties.Fluid { 
- 
- 
-			get { return @Fluid; } 
-			set { Fluid = value as IfcMaterial;}
-		}	
-		IIfcTimeSeries IIfcFluidFlowProperties.PressureTimeSeries { 
- 
- 
-			get { return @PressureTimeSeries; } 
-			set { PressureTimeSeries = value as IfcTimeSeries;}
-		}	
-		IfcLabel? IIfcFluidFlowProperties.UserDefinedPropertySource { 
- 
-			get { return @UserDefinedPropertySource; } 
-			set { UserDefinedPropertySource = value;}
-		}	
-		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.TemperatureSingleValue { 
- 
-			get { return @TemperatureSingleValue; } 
-			set { TemperatureSingleValue = value;}
-		}	
-		IfcThermodynamicTemperatureMeasure? IIfcFluidFlowProperties.WetBulbTemperatureSingleValue { 
- 
-			get { return @WetBulbTemperatureSingleValue; } 
-			set { WetBulbTemperatureSingleValue = value;}
-		}	
-		IIfcTimeSeries IIfcFluidFlowProperties.WetBulbTemperatureTimeSeries { 
- 
- 
-			get { return @WetBulbTemperatureTimeSeries; } 
-			set { WetBulbTemperatureTimeSeries = value as IfcTimeSeries;}
-		}	
-		IIfcTimeSeries IIfcFluidFlowProperties.TemperatureTimeSeries { 
- 
- 
-			get { return @TemperatureTimeSeries; } 
-			set { TemperatureTimeSeries = value as IfcTimeSeries;}
-		}	
-		IIfcDerivedMeasureValue IIfcFluidFlowProperties.FlowrateSingleValue { 
- 
- 
-			get { return @FlowrateSingleValue; } 
-			set { FlowrateSingleValue = value as IfcDerivedMeasureValue;}
-		}	
-		IfcPositiveRatioMeasure? IIfcFluidFlowProperties.FlowConditionSingleValue { 
- 
-			get { return @FlowConditionSingleValue; } 
-			set { FlowConditionSingleValue = value;}
-		}	
-		IfcLinearVelocityMeasure? IIfcFluidFlowProperties.VelocitySingleValue { 
- 
-			get { return @VelocitySingleValue; } 
-			set { VelocitySingleValue = value;}
-		}	
-		IfcPressureMeasure? IIfcFluidFlowProperties.PressureSingleValue { 
- 
-			get { return @PressureSingleValue; } 
-			set { PressureSingleValue = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFluidFlowProperties(IModel model, int label, bool activated) : base(model, label, activated)  

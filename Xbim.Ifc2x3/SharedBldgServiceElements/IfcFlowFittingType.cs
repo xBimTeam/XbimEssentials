@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFlowFittingType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFlowFittingType : IIfcDistributionFlowElementType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowFittingType", 512)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowFittingType : IfcDistributionFlowElementType, IIfcFlowFittingType, IEquatable<@IfcFlowFittingType>
+	public abstract partial class @IfcFlowFittingType : IfcDistributionFlowElementType, IEquatable<@IfcFlowFittingType>
 	{
-		#region IIfcFlowFittingType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowFittingType(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -20,43 +20,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRepresentationMap
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRepresentationMap : IPersistEntity
-	{
-		IIfcAxis2Placement @MappingOrigin { get;  set; }
-		IIfcRepresentation @MappedRepresentation { get;  set; }
-		IEnumerable<IIfcMappedItem> @MapUsage {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRepresentationMap", 95)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationMap : PersistEntity, IInstantiableEntity, IIfcRepresentationMap, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentationMap>
+	public  partial class @IfcRepresentationMap : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentationMap>
 	{
-		#region IIfcRepresentationMap explicit implementation
-		IIfcAxis2Placement IIfcRepresentationMap.MappingOrigin { 
- 
- 
-			get { return @MappingOrigin; } 
-			set { MappingOrigin = value as IfcAxis2Placement;}
-		}	
-		IIfcRepresentation IIfcRepresentationMap.MappedRepresentation { 
- 
- 
-			get { return @MappedRepresentation; } 
-			set { MappedRepresentation = value as IfcRepresentation;}
-		}	
-		 
-		IEnumerable<IIfcMappedItem> IIfcRepresentationMap.MapUsage {  get { return @MapUsage; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRepresentationMap(IModel model, int label, bool activated) : base(model, label, activated)  

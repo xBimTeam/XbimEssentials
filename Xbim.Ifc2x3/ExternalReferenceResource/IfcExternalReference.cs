@@ -22,45 +22,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcExternalReference
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcExternalReference : IPersistEntity, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect
-	{
-		IfcLabel? @Location { get;  set; }
-		IfcIdentifier? @ItemReference { get;  set; }
-		IfcLabel? @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcExternalReference", 133)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcExternalReference : PersistEntity, IIfcExternalReference, IEquatable<@IfcExternalReference>
+	public abstract partial class @IfcExternalReference : PersistEntity, IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IEquatable<@IfcExternalReference>
 	{
-		#region IIfcExternalReference explicit implementation
-		IfcLabel? IIfcExternalReference.Location { 
- 
-			get { return @Location; } 
-			set { Location = value;}
-		}	
-		IfcIdentifier? IIfcExternalReference.ItemReference { 
- 
-			get { return @ItemReference; } 
-			set { ItemReference = value;}
-		}	
-		IfcLabel? IIfcExternalReference.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternalReference(IModel model, int label, bool activated) : base(model, label, activated)  

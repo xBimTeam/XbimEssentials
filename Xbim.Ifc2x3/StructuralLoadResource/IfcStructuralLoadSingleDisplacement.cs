@@ -18,63 +18,13 @@ using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadSingleDisplacement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadSingleDisplacement : IIfcStructuralLoadStatic
-	{
-		IfcLengthMeasure? @DisplacementX { get;  set; }
-		IfcLengthMeasure? @DisplacementY { get;  set; }
-		IfcLengthMeasure? @DisplacementZ { get;  set; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRX { get;  set; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRY { get;  set; }
-		IfcPlaneAngleMeasure? @RotationalDisplacementRZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleDisplacement", 289)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleDisplacement, IEquatable<@IfcStructuralLoadSingleDisplacement>
+	public  partial class @IfcStructuralLoadSingleDisplacement : IfcStructuralLoadStatic, IInstantiableEntity, IEquatable<@IfcStructuralLoadSingleDisplacement>
 	{
-		#region IIfcStructuralLoadSingleDisplacement explicit implementation
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementX { 
- 
-			get { return @DisplacementX; } 
-			set { DisplacementX = value;}
-		}	
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementY { 
- 
-			get { return @DisplacementY; } 
-			set { DisplacementY = value;}
-		}	
-		IfcLengthMeasure? IIfcStructuralLoadSingleDisplacement.DisplacementZ { 
- 
-			get { return @DisplacementZ; } 
-			set { DisplacementZ = value;}
-		}	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRX { 
- 
-			get { return @RotationalDisplacementRX; } 
-			set { RotationalDisplacementRX = value;}
-		}	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRY { 
- 
-			get { return @RotationalDisplacementRY; } 
-			set { RotationalDisplacementRY = value;}
-		}	
-		IfcPlaneAngleMeasure? IIfcStructuralLoadSingleDisplacement.RotationalDisplacementRZ { 
- 
-			get { return @RotationalDisplacementRZ; } 
-			set { RotationalDisplacementRZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleDisplacement(IModel model, int label, bool activated) : base(model, label, activated)  

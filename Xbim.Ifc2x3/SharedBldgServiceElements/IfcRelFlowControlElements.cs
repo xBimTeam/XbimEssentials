@@ -18,38 +18,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelFlowControlElements
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelFlowControlElements : IIfcRelConnects
-	{
-		IItemSet<IIfcDistributionControlElement> @RelatedControlElements { get; }
-		IIfcDistributionFlowElement @RelatingFlowElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcRelFlowControlElements", 360)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IIfcRelFlowControlElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFlowControlElements>
+	public  partial class @IfcRelFlowControlElements : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFlowControlElements>
 	{
-		#region IIfcRelFlowControlElements explicit implementation
-		IItemSet<IIfcDistributionControlElement> IIfcRelFlowControlElements.RelatedControlElements { 
-			get { return new Common.Collections.ProxyItemSet<IfcDistributionControlElement, IIfcDistributionControlElement>( @RelatedControlElements); } 
-		}	
-		IIfcDistributionFlowElement IIfcRelFlowControlElements.RelatingFlowElement { 
- 
- 
-			get { return @RelatingFlowElement; } 
-			set { RelatingFlowElement = value as IfcDistributionFlowElement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelFlowControlElements(IModel model, int label, bool activated) : base(model, label, activated)  

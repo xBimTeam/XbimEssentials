@@ -19,34 +19,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFillAreaStyleTileSymbolWithStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFillAreaStyleTileSymbolWithStyle : IIfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect
-	{
-		IIfcAnnotationSymbolOccurrence @Symbol { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleTileSymbolWithStyle", 726)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleTileSymbolWithStyle, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
+	public  partial class @IfcFillAreaStyleTileSymbolWithStyle : IfcGeometricRepresentationItem, IInstantiableEntity, IfcFillAreaStyleTileShapeSelect, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTileSymbolWithStyle>
 	{
-		#region IIfcFillAreaStyleTileSymbolWithStyle explicit implementation
-		IIfcAnnotationSymbolOccurrence IIfcFillAreaStyleTileSymbolWithStyle.Symbol { 
- 
- 
-			get { return @Symbol; } 
-			set { Symbol = value as IfcAnnotationSymbolOccurrence;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleTileSymbolWithStyle(IModel model, int label, bool activated) : base(model, label, activated)  

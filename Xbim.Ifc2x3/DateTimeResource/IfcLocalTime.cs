@@ -20,58 +20,13 @@ using Xbim.Ifc2x3.DateTimeResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLocalTime
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLocalTime : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
-	{
-		IfcHourInDay @HourComponent { get;  set; }
-		IfcMinuteInHour? @MinuteComponent { get;  set; }
-		IfcSecondInMinute? @SecondComponent { get;  set; }
-		IIfcCoordinatedUniversalTimeOffset @Zone { get;  set; }
-		IfcDaylightSavingHour? @DaylightSavingOffset { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcLocalTime", 483)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalTime : PersistEntity, IInstantiableEntity, IIfcLocalTime, IContainsEntityReferences, IEquatable<@IfcLocalTime>
+	public  partial class @IfcLocalTime : PersistEntity, IInstantiableEntity, IfcDateTimeSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IEquatable<@IfcLocalTime>
 	{
-		#region IIfcLocalTime explicit implementation
-		IfcHourInDay IIfcLocalTime.HourComponent { 
- 
-			get { return @HourComponent; } 
-			set { HourComponent = value;}
-		}	
-		IfcMinuteInHour? IIfcLocalTime.MinuteComponent { 
- 
-			get { return @MinuteComponent; } 
-			set { MinuteComponent = value;}
-		}	
-		IfcSecondInMinute? IIfcLocalTime.SecondComponent { 
- 
-			get { return @SecondComponent; } 
-			set { SecondComponent = value;}
-		}	
-		IIfcCoordinatedUniversalTimeOffset IIfcLocalTime.Zone { 
- 
- 
-			get { return @Zone; } 
-			set { Zone = value as IfcCoordinatedUniversalTimeOffset;}
-		}	
-		IfcDaylightSavingHour? IIfcLocalTime.DaylightSavingOffset { 
- 
-			get { return @DaylightSavingOffset; } 
-			set { DaylightSavingOffset = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLocalTime(IModel model, int label, bool activated) : base(model, label, activated)  

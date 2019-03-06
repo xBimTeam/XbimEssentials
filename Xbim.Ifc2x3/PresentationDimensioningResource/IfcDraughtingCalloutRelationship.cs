@@ -20,53 +20,13 @@ using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDraughtingCalloutRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDraughtingCalloutRelationship : IPersistEntity
-	{
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IIfcDraughtingCallout @RelatingDraughtingCallout { get;  set; }
-		IIfcDraughtingCallout @RelatedDraughtingCallout { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDraughtingCalloutRelationship", 740)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingCalloutRelationship : PersistEntity, IInstantiableEntity, IIfcDraughtingCalloutRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDraughtingCalloutRelationship>
+	public  partial class @IfcDraughtingCalloutRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDraughtingCalloutRelationship>
 	{
-		#region IIfcDraughtingCalloutRelationship explicit implementation
-		IfcLabel? IIfcDraughtingCalloutRelationship.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcDraughtingCalloutRelationship.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatingDraughtingCallout { 
- 
- 
-			get { return @RelatingDraughtingCallout; } 
-			set { RelatingDraughtingCallout = value as IfcDraughtingCallout;}
-		}	
-		IIfcDraughtingCallout IIfcDraughtingCalloutRelationship.RelatedDraughtingCallout { 
- 
- 
-			get { return @RelatedDraughtingCallout; } 
-			set { RelatedDraughtingCallout = value as IfcDraughtingCallout;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDraughtingCalloutRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

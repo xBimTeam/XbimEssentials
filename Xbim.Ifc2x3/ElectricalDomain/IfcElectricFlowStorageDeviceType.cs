@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElectricFlowStorageDeviceType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElectricFlowStorageDeviceType : IIfcFlowStorageDeviceType
-	{
-		IfcElectricFlowStorageDeviceTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricFlowStorageDeviceType", 372)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricFlowStorageDeviceType : IfcFlowStorageDeviceType, IInstantiableEntity, IIfcElectricFlowStorageDeviceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricFlowStorageDeviceType>
+	public  partial class @IfcElectricFlowStorageDeviceType : IfcFlowStorageDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricFlowStorageDeviceType>
 	{
-		#region IIfcElectricFlowStorageDeviceType explicit implementation
-		IfcElectricFlowStorageDeviceTypeEnum IIfcElectricFlowStorageDeviceType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricFlowStorageDeviceType(IModel model, int label, bool activated) : base(model, label, activated)  

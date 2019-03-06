@@ -18,48 +18,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
-	{
-		IIfcCharacterStyleSelect @TextCharacterAppearance { get;  set; }
-		IIfcTextStyleSelect @TextStyle { get;  set; }
-		IIfcTextFontSelect @TextFontStyle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyle", 427)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IIfcTextStyle, IContainsEntityReferences, IEquatable<@IfcTextStyle>
+	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IfcPresentationStyleSelect, IContainsEntityReferences, IEquatable<@IfcTextStyle>
 	{
-		#region IIfcTextStyle explicit implementation
-		IIfcCharacterStyleSelect IIfcTextStyle.TextCharacterAppearance { 
- 
- 
-			get { return @TextCharacterAppearance; } 
-			set { TextCharacterAppearance = value as IfcCharacterStyleSelect;}
-		}	
-		IIfcTextStyleSelect IIfcTextStyle.TextStyle { 
- 
- 
-			get { return @TextStyle; } 
-			set { TextStyle = value as IfcTextStyleSelect;}
-		}	
-		IIfcTextFontSelect IIfcTextStyle.TextFontStyle { 
- 
- 
-			get { return @TextFontStyle; } 
-			set { TextFontStyle = value as IfcTextFontSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyle(IModel model, int label, bool activated) : base(model, label, activated)  

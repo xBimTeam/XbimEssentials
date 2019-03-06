@@ -18,34 +18,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesDocument
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesDocument : IIfcRelAssociates
-	{
-		IIfcDocumentSelect @RelatingDocument { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssociatesDocument", 307)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesDocument, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesDocument>
+	public  partial class @IfcRelAssociatesDocument : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesDocument>
 	{
-		#region IIfcRelAssociatesDocument explicit implementation
-		IIfcDocumentSelect IIfcRelAssociatesDocument.RelatingDocument { 
- 
- 
-			get { return @RelatingDocument; } 
-			set { RelatingDocument = value as IfcDocumentSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesDocument(IModel model, int label, bool activated) : base(model, label, activated)  

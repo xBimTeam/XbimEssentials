@@ -18,34 +18,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesClassification
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesClassification : IIfcRelAssociates
-	{
-		IIfcClassificationNotationSelect @RelatingClassification { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssociatesClassification", 343)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesClassification : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesClassification, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesClassification>
+	public  partial class @IfcRelAssociatesClassification : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesClassification>
 	{
-		#region IIfcRelAssociatesClassification explicit implementation
-		IIfcClassificationNotationSelect IIfcRelAssociatesClassification.RelatingClassification { 
- 
- 
-			get { return @RelatingClassification; } 
-			set { RelatingClassification = value as IfcClassificationNotationSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesClassification(IModel model, int label, bool activated) : base(model, label, activated)  

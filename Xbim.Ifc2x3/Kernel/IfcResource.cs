@@ -17,29 +17,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcResource
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcResource : IIfcObject
-	{
-		IEnumerable<IIfcRelAssignsToResource> @ResourceOf {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcResource", 158)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcResource : IfcObject, IIfcResource, IEquatable<@IfcResource>
+	public abstract partial class @IfcResource : IfcObject, IEquatable<@IfcResource>
 	{
-		#region IIfcResource explicit implementation
-		 
-		IEnumerable<IIfcRelAssignsToResource> IIfcResource.ResourceOf {  get { return @ResourceOf; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcResource(IModel model, int label, bool activated) : base(model, label, activated)  

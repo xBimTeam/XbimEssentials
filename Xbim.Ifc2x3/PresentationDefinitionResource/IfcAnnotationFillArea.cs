@@ -18,38 +18,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAnnotationFillArea
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAnnotationFillArea : IIfcGeometricRepresentationItem
-	{
-		IIfcCurve @OuterBoundary { get;  set; }
-		IItemSet<IIfcCurve> @InnerBoundaries { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationFillArea", 173)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationFillArea, IContainsEntityReferences, IEquatable<@IfcAnnotationFillArea>
+	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAnnotationFillArea>
 	{
-		#region IIfcAnnotationFillArea explicit implementation
-		IIfcCurve IIfcAnnotationFillArea.OuterBoundary { 
- 
- 
-			get { return @OuterBoundary; } 
-			set { OuterBoundary = value as IfcCurve;}
-		}	
-		IItemSet<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { 
-			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerBoundaries); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationFillArea(IModel model, int label, bool activated) : base(model, label, activated)  

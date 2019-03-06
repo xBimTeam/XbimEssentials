@@ -18,35 +18,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcObject
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcObject : IIfcObjectDefinition
-	{
-		IfcLabel? @ObjectType { get;  set; }
-		IEnumerable<IIfcRelDefines> @IsDefinedBy {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcObject", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObject : IfcObjectDefinition, IIfcObject, IEquatable<@IfcObject>
+	public abstract partial class @IfcObject : IfcObjectDefinition, IEquatable<@IfcObject>
 	{
-		#region IIfcObject explicit implementation
-		IfcLabel? IIfcObject.ObjectType { 
- 
-			get { return @ObjectType; } 
-			set { ObjectType = value;}
-		}	
-		 
-		IEnumerable<IIfcRelDefines> IIfcObject.IsDefinedBy {  get { return @IsDefinedBy; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObject(IModel model, int label, bool activated) : base(model, label, activated)  

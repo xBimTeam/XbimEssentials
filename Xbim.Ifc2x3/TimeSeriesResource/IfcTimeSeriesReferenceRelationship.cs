@@ -20,38 +20,13 @@ using Xbim.Ifc2x3.TimeSeriesResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTimeSeriesReferenceRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTimeSeriesReferenceRelationship : IPersistEntity
-	{
-		IIfcTimeSeries @ReferencedTimeSeries { get;  set; }
-		IItemSet<IIfcDocumentSelect> @TimeSeriesReferences { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeriesReferenceRelationship", 673)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTimeSeriesReferenceRelationship : PersistEntity, IInstantiableEntity, IIfcTimeSeriesReferenceRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTimeSeriesReferenceRelationship>
+	public  partial class @IfcTimeSeriesReferenceRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTimeSeriesReferenceRelationship>
 	{
-		#region IIfcTimeSeriesReferenceRelationship explicit implementation
-		IIfcTimeSeries IIfcTimeSeriesReferenceRelationship.ReferencedTimeSeries { 
- 
- 
-			get { return @ReferencedTimeSeries; } 
-			set { ReferencedTimeSeries = value as IfcTimeSeries;}
-		}	
-		IItemSet<IIfcDocumentSelect> IIfcTimeSeriesReferenceRelationship.TimeSeriesReferences { 
-			get { return new Common.Collections.ProxyItemSet<IfcDocumentSelect, IIfcDocumentSelect>( @TimeSeriesReferences); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTimeSeriesReferenceRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

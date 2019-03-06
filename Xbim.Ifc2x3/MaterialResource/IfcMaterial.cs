@@ -22,37 +22,13 @@ using Xbim.Ifc2x3.MaterialResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterial
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterial : IPersistEntity, IfcMaterialSelect, IfcObjectReferenceSelect
-	{
-		IfcLabel @Name { get;  set; }
-		IEnumerable<IIfcMaterialDefinitionRepresentation> @HasRepresentation {  get; }
-		IEnumerable<IIfcMaterialClassificationRelationship> @ClassifiedAs {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterial", 94)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterial : PersistEntity, IInstantiableEntity, IIfcMaterial, IEquatable<@IfcMaterial>
+	public  partial class @IfcMaterial : PersistEntity, IInstantiableEntity, IfcMaterialSelect, IfcObjectReferenceSelect, IEquatable<@IfcMaterial>
 	{
-		#region IIfcMaterial explicit implementation
-		IfcLabel IIfcMaterial.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation {  get { return @HasRepresentation; } }
-		IEnumerable<IIfcMaterialClassificationRelationship> IIfcMaterial.ClassifiedAs {  get { return @ClassifiedAs; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterial(IModel model, int label, bool activated) : base(model, label, activated)  

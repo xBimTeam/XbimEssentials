@@ -20,58 +20,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDoorPanelProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDoorPanelProperties : IIfcPropertySetDefinition
-	{
-		IfcPositiveLengthMeasure? @PanelDepth { get;  set; }
-		IfcDoorPanelOperationEnum @PanelOperation { get;  set; }
-		IfcNormalisedRatioMeasure? @PanelWidth { get;  set; }
-		IfcDoorPanelPositionEnum @PanelPosition { get;  set; }
-		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcDoorPanelProperties", 602)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcDoorPanelProperties, IContainsEntityReferences, IEquatable<@IfcDoorPanelProperties>
+	public  partial class @IfcDoorPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcDoorPanelProperties>
 	{
-		#region IIfcDoorPanelProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoorPanelProperties.PanelDepth { 
- 
-			get { return @PanelDepth; } 
-			set { PanelDepth = value;}
-		}	
-		IfcDoorPanelOperationEnum IIfcDoorPanelProperties.PanelOperation { 
- 
-			get { return @PanelOperation; } 
-			set { PanelOperation = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcDoorPanelProperties.PanelWidth { 
- 
-			get { return @PanelWidth; } 
-			set { PanelWidth = value;}
-		}	
-		IfcDoorPanelPositionEnum IIfcDoorPanelProperties.PanelPosition { 
- 
-			get { return @PanelPosition; } 
-			set { PanelPosition = value;}
-		}	
-		IIfcShapeAspect IIfcDoorPanelProperties.ShapeAspectStyle { 
- 
- 
-			get { return @ShapeAspectStyle; } 
-			set { ShapeAspectStyle = value as IfcShapeAspect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorPanelProperties(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFurnishingElementType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFurnishingElementType : IIfcElementType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcFurnishingElementType", 358)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFurnishingElementType : IfcElementType, IInstantiableEntity, IIfcFurnishingElementType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFurnishingElementType>
+	public  partial class @IfcFurnishingElementType : IfcElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFurnishingElementType>
 	{
-		#region IIfcFurnishingElementType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFurnishingElementType(IModel model, int label, bool activated) : base(model, label, activated)  

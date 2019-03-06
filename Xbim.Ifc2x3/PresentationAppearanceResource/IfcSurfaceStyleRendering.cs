@@ -18,81 +18,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceStyleRendering
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceStyleRendering : IIfcSurfaceStyleShading
-	{
-		IfcNormalisedRatioMeasure? @Transparency { get;  set; }
-		IIfcColourOrFactor @DiffuseColour { get;  set; }
-		IIfcColourOrFactor @TransmissionColour { get;  set; }
-		IIfcColourOrFactor @DiffuseTransmissionColour { get;  set; }
-		IIfcColourOrFactor @ReflectionColour { get;  set; }
-		IIfcColourOrFactor @SpecularColour { get;  set; }
-		IIfcSpecularHighlightSelect @SpecularHighlight { get;  set; }
-		IfcReflectanceMethodEnum @ReflectanceMethod { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRendering", 317)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IIfcSurfaceStyleRendering, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleRendering>
+	public  partial class @IfcSurfaceStyleRendering : IfcSurfaceStyleShading, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleRendering>
 	{
-		#region IIfcSurfaceStyleRendering explicit implementation
-		IfcNormalisedRatioMeasure? IIfcSurfaceStyleRendering.Transparency { 
- 
-			get { return @Transparency; } 
-			set { Transparency = value;}
-		}	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseColour { 
- 
- 
-			get { return @DiffuseColour; } 
-			set { DiffuseColour = value as IfcColourOrFactor;}
-		}	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.TransmissionColour { 
- 
- 
-			get { return @TransmissionColour; } 
-			set { TransmissionColour = value as IfcColourOrFactor;}
-		}	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.DiffuseTransmissionColour { 
- 
- 
-			get { return @DiffuseTransmissionColour; } 
-			set { DiffuseTransmissionColour = value as IfcColourOrFactor;}
-		}	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.ReflectionColour { 
- 
- 
-			get { return @ReflectionColour; } 
-			set { ReflectionColour = value as IfcColourOrFactor;}
-		}	
-		IIfcColourOrFactor IIfcSurfaceStyleRendering.SpecularColour { 
- 
- 
-			get { return @SpecularColour; } 
-			set { SpecularColour = value as IfcColourOrFactor;}
-		}	
-		IIfcSpecularHighlightSelect IIfcSurfaceStyleRendering.SpecularHighlight { 
- 
- 
-			get { return @SpecularHighlight; } 
-			set { SpecularHighlight = value as IfcSpecularHighlightSelect;}
-		}	
-		IfcReflectanceMethodEnum IIfcSurfaceStyleRendering.ReflectanceMethod { 
- 
-			get { return @ReflectanceMethod; } 
-			set { ReflectanceMethod = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleRendering(IModel model, int label, bool activated) : base(model, label, activated)  

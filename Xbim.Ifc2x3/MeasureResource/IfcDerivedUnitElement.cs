@@ -19,40 +19,13 @@ using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDerivedUnitElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDerivedUnitElement : IPersistEntity
-	{
-		IIfcNamedUnit @Unit { get;  set; }
-		long @Exponent { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcDerivedUnitElement", 380)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedUnitElement : PersistEntity, IInstantiableEntity, IIfcDerivedUnitElement, IContainsEntityReferences, IEquatable<@IfcDerivedUnitElement>
+	public  partial class @IfcDerivedUnitElement : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcDerivedUnitElement>
 	{
-		#region IIfcDerivedUnitElement explicit implementation
-		IIfcNamedUnit IIfcDerivedUnitElement.Unit { 
- 
- 
-			get { return @Unit; } 
-			set { Unit = value as IfcNamedUnit;}
-		}	
-		long IIfcDerivedUnitElement.Exponent { 
- 
-			get { return @Exponent; } 
-			set { Exponent = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDerivedUnitElement(IModel model, int label, bool activated) : base(model, label, activated)  

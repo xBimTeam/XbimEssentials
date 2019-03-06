@@ -19,31 +19,13 @@ using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcUnitAssignment
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcUnitAssignment : IPersistEntity
-	{
-		IItemSet<IIfcUnit> @Units { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcUnitAssignment", 245)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitAssignment : PersistEntity, IInstantiableEntity, IIfcUnitAssignment, IContainsEntityReferences, IEquatable<@IfcUnitAssignment>
+	public  partial class @IfcUnitAssignment : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcUnitAssignment>
 	{
-		#region IIfcUnitAssignment explicit implementation
-		IItemSet<IIfcUnit> IIfcUnitAssignment.Units { 
-			get { return new Common.Collections.ProxyItemSet<IfcUnit, IIfcUnit>( @Units); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcUnitAssignment(IModel model, int label, bool activated) : base(model, label, activated)  

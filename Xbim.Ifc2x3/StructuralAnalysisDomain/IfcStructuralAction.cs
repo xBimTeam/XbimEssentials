@@ -17,40 +17,13 @@ using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralAction
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralAction : IIfcStructuralActivity
-	{
-		bool @DestabilizingLoad { get;  set; }
-		IIfcStructuralReaction @CausedBy { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralAction", 40)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralAction : IfcStructuralActivity, IIfcStructuralAction, IEquatable<@IfcStructuralAction>
+	public abstract partial class @IfcStructuralAction : IfcStructuralActivity, IEquatable<@IfcStructuralAction>
 	{
-		#region IIfcStructuralAction explicit implementation
-		bool IIfcStructuralAction.DestabilizingLoad { 
- 
-			get { return @DestabilizingLoad; } 
-			set { DestabilizingLoad = value;}
-		}	
-		IIfcStructuralReaction IIfcStructuralAction.CausedBy { 
- 
- 
-			get { return @CausedBy; } 
-			set { CausedBy = value as IfcStructuralReaction;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralAction(IModel model, int label, bool activated) : base(model, label, activated)  

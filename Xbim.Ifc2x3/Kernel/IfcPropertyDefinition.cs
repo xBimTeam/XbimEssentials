@@ -17,29 +17,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyDefinition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyDefinition : IIfcRoot
-	{
-		IEnumerable<IIfcRelAssociates> @HasAssociations {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcPropertyDefinition", 98)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPropertyDefinition : IfcRoot, IIfcPropertyDefinition, IEquatable<@IfcPropertyDefinition>
+	public abstract partial class @IfcPropertyDefinition : IfcRoot, IEquatable<@IfcPropertyDefinition>
 	{
-		#region IIfcPropertyDefinition explicit implementation
-		 
-		IEnumerable<IIfcRelAssociates> IIfcPropertyDefinition.HasAssociations {  get { return @HasAssociations; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyDefinition(IModel model, int label, bool activated) : base(model, label, activated)  

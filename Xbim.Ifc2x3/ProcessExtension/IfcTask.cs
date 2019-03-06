@@ -19,57 +19,13 @@ using Xbim.Ifc2x3.ProcessExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTask
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTask : IIfcProcess
-	{
-		IfcIdentifier @TaskId { get;  set; }
-		IfcLabel? @Status { get;  set; }
-		IfcLabel? @WorkMethod { get;  set; }
-		bool @IsMilestone { get;  set; }
-		long? @Priority { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcTask", 72)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IIfcTask, IContainsEntityReferences, IEquatable<@IfcTask>
+	public  partial class @IfcTask : IfcProcess, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTask>
 	{
-		#region IIfcTask explicit implementation
-		IfcIdentifier IIfcTask.TaskId { 
- 
-			get { return @TaskId; } 
-			set { TaskId = value;}
-		}	
-		IfcLabel? IIfcTask.Status { 
- 
-			get { return @Status; } 
-			set { Status = value;}
-		}	
-		IfcLabel? IIfcTask.WorkMethod { 
- 
-			get { return @WorkMethod; } 
-			set { WorkMethod = value;}
-		}	
-		bool IIfcTask.IsMilestone { 
- 
-			get { return @IsMilestone; } 
-			set { IsMilestone = value;}
-		}	
-		long? IIfcTask.Priority { 
- 
-			get { return @Priority; } 
-			set { Priority = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTask(IModel model, int label, bool activated) : base(model, label, activated)  

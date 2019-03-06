@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.BuildingcontrolsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcControllerType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcControllerType : IIfcDistributionControlElementType
-	{
-		IfcControllerTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	[ExpressType("IfcControllerType", 484)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcControllerType : IfcDistributionControlElementType, IInstantiableEntity, IIfcControllerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcControllerType>
+	public  partial class @IfcControllerType : IfcDistributionControlElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcControllerType>
 	{
-		#region IIfcControllerType explicit implementation
-		IfcControllerTypeEnum IIfcControllerType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcControllerType(IModel model, int label, bool activated) : base(model, label, activated)  

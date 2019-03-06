@@ -19,39 +19,13 @@ using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcEnergyProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcEnergyProperties : IIfcPropertySetDefinition
-	{
-		IfcEnergySequenceEnum? @EnergySequence { get;  set; }
-		IfcLabel? @UserDefinedEnergySequence { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcEnergyProperties", 176)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcEnergyProperties, IContainsEntityReferences, IEquatable<@IfcEnergyProperties>
+	public  partial class @IfcEnergyProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcEnergyProperties>
 	{
-		#region IIfcEnergyProperties explicit implementation
-		IfcEnergySequenceEnum? IIfcEnergyProperties.EnergySequence { 
- 
-			get { return @EnergySequence; } 
-			set { EnergySequence = value;}
-		}	
-		IfcLabel? IIfcEnergyProperties.UserDefinedEnergySequence { 
- 
-			get { return @UserDefinedEnergySequence; } 
-			set { UserDefinedEnergySequence = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEnergyProperties(IModel model, int label, bool activated) : base(model, label, activated)  

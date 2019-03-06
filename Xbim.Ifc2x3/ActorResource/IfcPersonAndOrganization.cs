@@ -20,45 +20,13 @@ using Xbim.Ifc2x3.ActorResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPersonAndOrganization
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPersonAndOrganization : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect
-	{
-		IIfcPerson @ThePerson { get;  set; }
-		IIfcOrganization @TheOrganization { get;  set; }
-		IItemSet<IIfcActorRole> @Roles { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPersonAndOrganization", 663)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPersonAndOrganization : PersistEntity, IInstantiableEntity, IIfcPersonAndOrganization, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPersonAndOrganization>
+	public  partial class @IfcPersonAndOrganization : PersistEntity, IInstantiableEntity, IfcActorSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPersonAndOrganization>
 	{
-		#region IIfcPersonAndOrganization explicit implementation
-		IIfcPerson IIfcPersonAndOrganization.ThePerson { 
- 
- 
-			get { return @ThePerson; } 
-			set { ThePerson = value as IfcPerson;}
-		}	
-		IIfcOrganization IIfcPersonAndOrganization.TheOrganization { 
- 
- 
-			get { return @TheOrganization; } 
-			set { TheOrganization = value as IfcOrganization;}
-		}	
-		IItemSet<IIfcActorRole> IIfcPersonAndOrganization.Roles { 
-			get { return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>( @Roles); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPersonAndOrganization(IModel model, int label, bool activated) : base(model, label, activated)  

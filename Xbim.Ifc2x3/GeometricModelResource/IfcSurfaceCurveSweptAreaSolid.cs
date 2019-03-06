@@ -19,53 +19,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceCurveSweptAreaSolid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceCurveSweptAreaSolid : IIfcSweptAreaSolid
-	{
-		IIfcCurve @Directrix { get;  set; }
-		IfcParameterValue @StartParam { get;  set; }
-		IfcParameterValue @EndParam { get;  set; }
-		IIfcSurface @ReferenceSurface { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSurfaceCurveSweptAreaSolid", 480)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IIfcSurfaceCurveSweptAreaSolid, IContainsEntityReferences, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
+	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
 	{
-		#region IIfcSurfaceCurveSweptAreaSolid explicit implementation
-		IIfcCurve IIfcSurfaceCurveSweptAreaSolid.Directrix { 
- 
- 
-			get { return @Directrix; } 
-			set { Directrix = value as IfcCurve;}
-		}	
-		IfcParameterValue IIfcSurfaceCurveSweptAreaSolid.StartParam { 
- 
-			get { return @StartParam; } 
-			set { StartParam = value;}
-		}	
-		IfcParameterValue IIfcSurfaceCurveSweptAreaSolid.EndParam { 
- 
-			get { return @EndParam; } 
-			set { EndParam = value;}
-		}	
-		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface { 
- 
- 
-			get { return @ReferenceSurface; } 
-			set { ReferenceSurface = value as IfcSurface;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceCurveSweptAreaSolid(IModel model, int label, bool activated) : base(model, label, activated)  

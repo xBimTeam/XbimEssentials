@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.StructuralElementsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFooting
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFooting : IIfcBuildingElement
-	{
-		IfcFootingTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcFooting", 120)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFooting : IfcBuildingElement, IInstantiableEntity, IIfcFooting, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFooting>
+	public  partial class @IfcFooting : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFooting>
 	{
-		#region IIfcFooting explicit implementation
-		IfcFootingTypeEnum IIfcFooting.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFooting(IModel model, int label, bool activated) : base(model, label, activated)  

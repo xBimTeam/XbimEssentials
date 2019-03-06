@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.ProcessExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWorkSchedule
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWorkSchedule : IIfcWorkControl
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcWorkSchedule", 186)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IIfcWorkSchedule, IContainsEntityReferences, IEquatable<@IfcWorkSchedule>
+	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcWorkSchedule>
 	{
-		#region IIfcWorkSchedule explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkSchedule(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -20,39 +20,13 @@ using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelaxation
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelaxation : IPersistEntity
-	{
-		IfcNormalisedRatioMeasure @RelaxationValue { get;  set; }
-		IfcNormalisedRatioMeasure @InitialStress { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcRelaxation", 364)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelaxation : PersistEntity, IInstantiableEntity, IIfcRelaxation, IEquatable<@IfcRelaxation>
+	public  partial class @IfcRelaxation : PersistEntity, IInstantiableEntity, IEquatable<@IfcRelaxation>
 	{
-		#region IIfcRelaxation explicit implementation
-		IfcNormalisedRatioMeasure IIfcRelaxation.RelaxationValue { 
- 
-			get { return @RelaxationValue; } 
-			set { RelaxationValue = value;}
-		}	
-		IfcNormalisedRatioMeasure IIfcRelaxation.InitialStress { 
- 
-			get { return @InitialStress; } 
-			set { InitialStress = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelaxation(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -20,66 +20,13 @@ using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightSourceGoniometric
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightSourceGoniometric : IIfcLightSource
-	{
-		IIfcAxis2Placement3D @Position { get;  set; }
-		IIfcColourRgb @ColourAppearance { get;  set; }
-		IfcThermodynamicTemperatureMeasure @ColourTemperature { get;  set; }
-		IfcLuminousFluxMeasure @LuminousFlux { get;  set; }
-		IfcLightEmissionSourceEnum @LightEmissionSource { get;  set; }
-		IIfcLightDistributionDataSourceSelect @LightDistributionDataSource { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceGoniometric", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IIfcLightSourceGoniometric, IContainsEntityReferences, IEquatable<@IfcLightSourceGoniometric>
+	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLightSourceGoniometric>
 	{
-		#region IIfcLightSourceGoniometric explicit implementation
-		IIfcAxis2Placement3D IIfcLightSourceGoniometric.Position { 
- 
- 
-			get { return @Position; } 
-			set { Position = value as IfcAxis2Placement3D;}
-		}	
-		IIfcColourRgb IIfcLightSourceGoniometric.ColourAppearance { 
- 
- 
-			get { return @ColourAppearance; } 
-			set { ColourAppearance = value as IfcColourRgb;}
-		}	
-		IfcThermodynamicTemperatureMeasure IIfcLightSourceGoniometric.ColourTemperature { 
- 
-			get { return @ColourTemperature; } 
-			set { ColourTemperature = value;}
-		}	
-		IfcLuminousFluxMeasure IIfcLightSourceGoniometric.LuminousFlux { 
- 
-			get { return @LuminousFlux; } 
-			set { LuminousFlux = value;}
-		}	
-		IfcLightEmissionSourceEnum IIfcLightSourceGoniometric.LightEmissionSource { 
- 
-			get { return @LightEmissionSource; } 
-			set { LightEmissionSource = value;}
-		}	
-		IIfcLightDistributionDataSourceSelect IIfcLightSourceGoniometric.LightDistributionDataSource { 
- 
- 
-			get { return @LightDistributionDataSource; } 
-			set { LightDistributionDataSource = value as IfcLightDistributionDataSourceSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceGoniometric(IModel model, int label, bool activated) : base(model, label, activated)  

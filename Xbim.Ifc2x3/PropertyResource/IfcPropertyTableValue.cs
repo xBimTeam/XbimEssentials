@@ -18,55 +18,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyTableValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyTableValue : IIfcSimpleProperty
-	{
-		IItemSet<IIfcValue> @DefiningValues { get; }
-		IItemSet<IIfcValue> @DefinedValues { get; }
-		IfcText? @Expression { get;  set; }
-		IIfcUnit @DefiningUnit { get;  set; }
-		IIfcUnit @DefinedUnit { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyTableValue", 557)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyTableValue, IContainsEntityReferences, IEquatable<@IfcPropertyTableValue>
+	public  partial class @IfcPropertyTableValue : IfcSimpleProperty, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyTableValue>
 	{
-		#region IIfcPropertyTableValue explicit implementation
-		IItemSet<IIfcValue> IIfcPropertyTableValue.DefiningValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @DefiningValues); } 
-		}	
-		IItemSet<IIfcValue> IIfcPropertyTableValue.DefinedValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @DefinedValues); } 
-		}	
-		IfcText? IIfcPropertyTableValue.Expression { 
- 
-			get { return @Expression; } 
-			set { Expression = value;}
-		}	
-		IIfcUnit IIfcPropertyTableValue.DefiningUnit { 
- 
- 
-			get { return @DefiningUnit; } 
-			set { DefiningUnit = value as IfcUnit;}
-		}	
-		IIfcUnit IIfcPropertyTableValue.DefinedUnit { 
- 
- 
-			get { return @DefinedUnit; } 
-			set { DefinedUnit = value as IfcUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyTableValue(IModel model, int label, bool activated) : base(model, label, activated)  

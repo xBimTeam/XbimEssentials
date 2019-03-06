@@ -19,37 +19,13 @@ using Xbim.Ifc2x3.ConstructionMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConstructionMaterialResource
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConstructionMaterialResource : IIfcConstructionResource
-	{
-		IItemSet<IIfcActorSelect> @Suppliers { get; }
-		IfcRatioMeasure? @UsageRatio { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcConstructionMaterialResource", 243)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IIfcConstructionMaterialResource, IContainsEntityReferences, IEquatable<@IfcConstructionMaterialResource>
+	public  partial class @IfcConstructionMaterialResource : IfcConstructionResource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConstructionMaterialResource>
 	{
-		#region IIfcConstructionMaterialResource explicit implementation
-		IItemSet<IIfcActorSelect> IIfcConstructionMaterialResource.Suppliers { 
-			get { return new Common.Collections.ProxyItemSet<IfcActorSelect, IIfcActorSelect>( @Suppliers); } 
-		}	
-		IfcRatioMeasure? IIfcConstructionMaterialResource.UsageRatio { 
- 
-			get { return @UsageRatio; } 
-			set { UsageRatio = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConstructionMaterialResource(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -20,48 +20,13 @@ using Xbim.Ifc2x3.ApprovalResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcApprovalActorRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcApprovalActorRelationship : IPersistEntity
-	{
-		IIfcActorSelect @Actor { get;  set; }
-		IIfcApproval @Approval { get;  set; }
-		IIfcActorRole @Role { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApprovalActorRelationship", 442)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalActorRelationship : PersistEntity, IInstantiableEntity, IIfcApprovalActorRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcApprovalActorRelationship>
+	public  partial class @IfcApprovalActorRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcApprovalActorRelationship>
 	{
-		#region IIfcApprovalActorRelationship explicit implementation
-		IIfcActorSelect IIfcApprovalActorRelationship.Actor { 
- 
- 
-			get { return @Actor; } 
-			set { Actor = value as IfcActorSelect;}
-		}	
-		IIfcApproval IIfcApprovalActorRelationship.Approval { 
- 
- 
-			get { return @Approval; } 
-			set { Approval = value as IfcApproval;}
-		}	
-		IIfcActorRole IIfcApprovalActorRelationship.Role { 
- 
- 
-			get { return @Role; } 
-			set { Role = value as IfcActorRole;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApprovalActorRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

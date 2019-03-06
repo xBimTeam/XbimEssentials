@@ -17,34 +17,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssignsToResource
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssignsToResource : IIfcRelAssigns
-	{
-		IIfcResource @RelatingResource { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToResource", 9)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToResource, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToResource>
+	public  partial class @IfcRelAssignsToResource : IfcRelAssigns, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToResource>
 	{
-		#region IIfcRelAssignsToResource explicit implementation
-		IIfcResource IIfcRelAssignsToResource.RelatingResource { 
- 
- 
-			get { return @RelatingResource; } 
-			set { RelatingResource = value as IfcResource;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToResource(IModel model, int label, bool activated) : base(model, label, activated)  

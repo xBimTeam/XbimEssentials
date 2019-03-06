@@ -18,48 +18,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsPorts
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsPorts : IIfcRelConnects
-	{
-		IIfcPort @RelatingPort { get;  set; }
-		IIfcPort @RelatedPort { get;  set; }
-		IIfcElement @RealizingElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsPorts", 215)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPorts, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPorts>
+	public  partial class @IfcRelConnectsPorts : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPorts>
 	{
-		#region IIfcRelConnectsPorts explicit implementation
-		IIfcPort IIfcRelConnectsPorts.RelatingPort { 
- 
- 
-			get { return @RelatingPort; } 
-			set { RelatingPort = value as IfcPort;}
-		}	
-		IIfcPort IIfcRelConnectsPorts.RelatedPort { 
- 
- 
-			get { return @RelatedPort; } 
-			set { RelatedPort = value as IfcPort;}
-		}	
-		IIfcElement IIfcRelConnectsPorts.RealizingElement { 
- 
- 
-			get { return @RealizingElement; } 
-			set { RealizingElement = value as IfcElement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPorts(IModel model, int label, bool activated) : base(model, label, activated)  

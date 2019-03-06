@@ -18,31 +18,13 @@ using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcArbitraryProfileDefWithVoids
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcArbitraryProfileDefWithVoids : IIfcArbitraryClosedProfileDef
-	{
-		IItemSet<IIfcCurve> @InnerCurves { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcArbitraryProfileDefWithVoids", 116)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IIfcArbitraryProfileDefWithVoids, IContainsEntityReferences, IEquatable<@IfcArbitraryProfileDefWithVoids>
+	public  partial class @IfcArbitraryProfileDefWithVoids : IfcArbitraryClosedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcArbitraryProfileDefWithVoids>
 	{
-		#region IIfcArbitraryProfileDefWithVoids explicit implementation
-		IItemSet<IIfcCurve> IIfcArbitraryProfileDefWithVoids.InnerCurves { 
-			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerCurves); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcArbitraryProfileDefWithVoids(IModel model, int label, bool activated) : base(model, label, activated)  

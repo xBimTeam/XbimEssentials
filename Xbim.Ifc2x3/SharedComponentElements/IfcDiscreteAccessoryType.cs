@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.SharedComponentElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDiscreteAccessoryType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDiscreteAccessoryType : IIfcElementComponentType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcDiscreteAccessoryType", 135)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDiscreteAccessoryType : IfcElementComponentType, IInstantiableEntity, IIfcDiscreteAccessoryType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDiscreteAccessoryType>
+	public  partial class @IfcDiscreteAccessoryType : IfcElementComponentType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDiscreteAccessoryType>
 	{
-		#region IIfcDiscreteAccessoryType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDiscreteAccessoryType(IModel model, int label, bool activated) : base(model, label, activated)  

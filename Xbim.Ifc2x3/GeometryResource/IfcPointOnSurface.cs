@@ -18,46 +18,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPointOnSurface
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPointOnSurface : IIfcPoint
-	{
-		IIfcSurface @BasisSurface { get;  set; }
-		IfcParameterValue @PointParameterU { get;  set; }
-		IfcParameterValue @PointParameterV { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPointOnSurface", 65)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IIfcPointOnSurface, IContainsEntityReferences, IEquatable<@IfcPointOnSurface>
+	public  partial class @IfcPointOnSurface : IfcPoint, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPointOnSurface>
 	{
-		#region IIfcPointOnSurface explicit implementation
-		IIfcSurface IIfcPointOnSurface.BasisSurface { 
- 
- 
-			get { return @BasisSurface; } 
-			set { BasisSurface = value as IfcSurface;}
-		}	
-		IfcParameterValue IIfcPointOnSurface.PointParameterU { 
- 
-			get { return @PointParameterU; } 
-			set { PointParameterU = value;}
-		}	
-		IfcParameterValue IIfcPointOnSurface.PointParameterV { 
- 
-			get { return @PointParameterV; } 
-			set { PointParameterV = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPointOnSurface(IModel model, int label, bool activated) : base(model, label, activated)  

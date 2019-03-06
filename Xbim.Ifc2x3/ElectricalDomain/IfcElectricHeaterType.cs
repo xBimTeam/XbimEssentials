@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElectricHeaterType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElectricHeaterType : IIfcFlowTerminalType
-	{
-		IfcElectricHeaterTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricHeaterType", 190)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricHeaterType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricHeaterType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricHeaterType>
+	public  partial class @IfcElectricHeaterType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricHeaterType>
 	{
-		#region IIfcElectricHeaterType explicit implementation
-		IfcElectricHeaterTypeEnum IIfcElectricHeaterType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricHeaterType(IModel model, int label, bool activated) : base(model, label, activated)  

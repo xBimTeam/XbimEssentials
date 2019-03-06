@@ -17,38 +17,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelDecomposes
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelDecomposes : IIfcRelationship
-	{
-		IIfcObjectDefinition @RelatingObject { get;  set; }
-		IItemSet<IIfcObjectDefinition> @RelatedObjects { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelDecomposes", 306)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelDecomposes : IfcRelationship, IIfcRelDecomposes, IEquatable<@IfcRelDecomposes>
+	public abstract partial class @IfcRelDecomposes : IfcRelationship, IEquatable<@IfcRelDecomposes>
 	{
-		#region IIfcRelDecomposes explicit implementation
-		IIfcObjectDefinition IIfcRelDecomposes.RelatingObject { 
- 
- 
-			get { return @RelatingObject; } 
-			set { RelatingObject = value as IfcObjectDefinition;}
-		}	
-		IItemSet<IIfcObjectDefinition> IIfcRelDecomposes.RelatedObjects { 
-			get { return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>( @RelatedObjects); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDecomposes(IModel model, int label, bool activated) : base(model, label, activated)  

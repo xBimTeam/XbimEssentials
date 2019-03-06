@@ -18,46 +18,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOffsetCurve2D
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOffsetCurve2D : IIfcCurve
-	{
-		IIfcCurve @BasisCurve { get;  set; }
-		IfcLengthMeasure @Distance { get;  set; }
-		bool? @SelfIntersect { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcOffsetCurve2D", 687)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve2D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve2D>
+	public  partial class @IfcOffsetCurve2D : IfcCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOffsetCurve2D>
 	{
-		#region IIfcOffsetCurve2D explicit implementation
-		IIfcCurve IIfcOffsetCurve2D.BasisCurve { 
- 
- 
-			get { return @BasisCurve; } 
-			set { BasisCurve = value as IfcCurve;}
-		}	
-		IfcLengthMeasure IIfcOffsetCurve2D.Distance { 
- 
-			get { return @Distance; } 
-			set { Distance = value;}
-		}	
-		bool? IIfcOffsetCurve2D.SelfIntersect { 
- 
-			get { return @SelfIntersect; } 
-			set { SelfIntersect = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOffsetCurve2D(IModel model, int label, bool activated) : base(model, label, activated)  

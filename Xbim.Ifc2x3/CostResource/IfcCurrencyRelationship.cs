@@ -22,61 +22,13 @@ using Xbim.Ifc2x3.CostResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCurrencyRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCurrencyRelationship : IPersistEntity
-	{
-		IIfcMonetaryUnit @RelatingMonetaryUnit { get;  set; }
-		IIfcMonetaryUnit @RelatedMonetaryUnit { get;  set; }
-		IfcPositiveRatioMeasure @ExchangeRate { get;  set; }
-		IIfcDateAndTime @RateDateTime { get;  set; }
-		IIfcLibraryInformation @RateSource { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcCurrencyRelationship", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurrencyRelationship : PersistEntity, IInstantiableEntity, IIfcCurrencyRelationship, IContainsEntityReferences, IEquatable<@IfcCurrencyRelationship>
+	public  partial class @IfcCurrencyRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCurrencyRelationship>
 	{
-		#region IIfcCurrencyRelationship explicit implementation
-		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatingMonetaryUnit { 
- 
- 
-			get { return @RelatingMonetaryUnit; } 
-			set { RelatingMonetaryUnit = value as IfcMonetaryUnit;}
-		}	
-		IIfcMonetaryUnit IIfcCurrencyRelationship.RelatedMonetaryUnit { 
- 
- 
-			get { return @RelatedMonetaryUnit; } 
-			set { RelatedMonetaryUnit = value as IfcMonetaryUnit;}
-		}	
-		IfcPositiveRatioMeasure IIfcCurrencyRelationship.ExchangeRate { 
- 
-			get { return @ExchangeRate; } 
-			set { ExchangeRate = value;}
-		}	
-		IIfcDateAndTime IIfcCurrencyRelationship.RateDateTime { 
- 
- 
-			get { return @RateDateTime; } 
-			set { RateDateTime = value as IfcDateAndTime;}
-		}	
-		IIfcLibraryInformation IIfcCurrencyRelationship.RateSource { 
- 
- 
-			get { return @RateSource; } 
-			set { RateSource = value as IfcLibraryInformation;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurrencyRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

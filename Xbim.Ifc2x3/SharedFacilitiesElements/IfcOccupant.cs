@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.SharedFacilitiesElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOccupant
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOccupant : IIfcActor
-	{
-		IfcOccupantTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcOccupant", 641)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IIfcOccupant, IContainsEntityReferences, IEquatable<@IfcOccupant>
+	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOccupant>
 	{
-		#region IIfcOccupant explicit implementation
-		IfcOccupantTypeEnum IIfcOccupant.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOccupant(IModel model, int label, bool activated) : base(model, label, activated)  

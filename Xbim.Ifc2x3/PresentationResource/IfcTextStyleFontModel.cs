@@ -18,56 +18,13 @@ using Xbim.Ifc2x3.PresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextStyleFontModel
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextStyleFontModel : IIfcPreDefinedTextFont
-	{
-		IItemSet<IfcTextFontName> @FontFamily { get; }
-		IfcFontStyle? @FontStyle { get;  set; }
-		IfcFontVariant? @FontVariant { get;  set; }
-		IfcFontWeight? @FontWeight { get;  set; }
-		IIfcSizeSelect @FontSize { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcTextStyleFontModel", 503)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IIfcTextStyleFontModel, IEquatable<@IfcTextStyleFontModel>
+	public  partial class @IfcTextStyleFontModel : IfcPreDefinedTextFont, IInstantiableEntity, IEquatable<@IfcTextStyleFontModel>
 	{
-		#region IIfcTextStyleFontModel explicit implementation
-		IItemSet<IfcTextFontName> IIfcTextStyleFontModel.FontFamily { 
-			get { return @FontFamily; } 
-		}	
-		IfcFontStyle? IIfcTextStyleFontModel.FontStyle { 
- 
-			get { return @FontStyle; } 
-			set { FontStyle = value;}
-		}	
-		IfcFontVariant? IIfcTextStyleFontModel.FontVariant { 
- 
-			get { return @FontVariant; } 
-			set { FontVariant = value;}
-		}	
-		IfcFontWeight? IIfcTextStyleFontModel.FontWeight { 
- 
-			get { return @FontWeight; } 
-			set { FontWeight = value;}
-		}	
-		IIfcSizeSelect IIfcTextStyleFontModel.FontSize { 
- 
- 
-			get { return @FontSize; } 
-			set { FontSize = value as IfcSizeSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleFontModel(IModel model, int label, bool activated) : base(model, label, activated)  

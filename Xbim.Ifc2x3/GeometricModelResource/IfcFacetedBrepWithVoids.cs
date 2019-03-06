@@ -18,31 +18,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFacetedBrepWithVoids
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFacetedBrepWithVoids : IIfcManifoldSolidBrep
-	{
-		IItemSet<IIfcClosedShell> @Voids { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcFacetedBrepWithVoids", 369)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFacetedBrepWithVoids : IfcManifoldSolidBrep, IInstantiableEntity, IIfcFacetedBrepWithVoids, IContainsEntityReferences, IEquatable<@IfcFacetedBrepWithVoids>
+	public  partial class @IfcFacetedBrepWithVoids : IfcManifoldSolidBrep, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcFacetedBrepWithVoids>
 	{
-		#region IIfcFacetedBrepWithVoids explicit implementation
-		IItemSet<IIfcClosedShell> IIfcFacetedBrepWithVoids.Voids { 
-			get { return new Common.Collections.ProxyItemSet<IfcClosedShell, IIfcClosedShell>( @Voids); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFacetedBrepWithVoids(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -21,88 +21,13 @@ using Xbim.Ifc2x3.ProcessExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWorkControl
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWorkControl : IIfcControl
-	{
-		IfcIdentifier @Identifier { get;  set; }
-		IIfcDateTimeSelect @CreationDate { get;  set; }
-		IItemSet<IIfcPerson> @Creators { get; }
-		IfcLabel? @Purpose { get;  set; }
-		IfcTimeMeasure? @Duration { get;  set; }
-		IfcTimeMeasure? @TotalFloat { get;  set; }
-		IIfcDateTimeSelect @StartTime { get;  set; }
-		IIfcDateTimeSelect @FinishTime { get;  set; }
-		IfcWorkControlTypeEnum? @WorkControlType { get;  set; }
-		IfcLabel? @UserDefinedControlType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcWorkControl", 185)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcWorkControl : IfcControl, IIfcWorkControl, IEquatable<@IfcWorkControl>
+	public abstract partial class @IfcWorkControl : IfcControl, IEquatable<@IfcWorkControl>
 	{
-		#region IIfcWorkControl explicit implementation
-		IfcIdentifier IIfcWorkControl.Identifier { 
- 
-			get { return @Identifier; } 
-			set { Identifier = value;}
-		}	
-		IIfcDateTimeSelect IIfcWorkControl.CreationDate { 
- 
- 
-			get { return @CreationDate; } 
-			set { CreationDate = value as IfcDateTimeSelect;}
-		}	
-		IItemSet<IIfcPerson> IIfcWorkControl.Creators { 
-			get { return new Common.Collections.ProxyItemSet<IfcPerson, IIfcPerson>( @Creators); } 
-		}	
-		IfcLabel? IIfcWorkControl.Purpose { 
- 
-			get { return @Purpose; } 
-			set { Purpose = value;}
-		}	
-		IfcTimeMeasure? IIfcWorkControl.Duration { 
- 
-			get { return @Duration; } 
-			set { Duration = value;}
-		}	
-		IfcTimeMeasure? IIfcWorkControl.TotalFloat { 
- 
-			get { return @TotalFloat; } 
-			set { TotalFloat = value;}
-		}	
-		IIfcDateTimeSelect IIfcWorkControl.StartTime { 
- 
- 
-			get { return @StartTime; } 
-			set { StartTime = value as IfcDateTimeSelect;}
-		}	
-		IIfcDateTimeSelect IIfcWorkControl.FinishTime { 
- 
- 
-			get { return @FinishTime; } 
-			set { FinishTime = value as IfcDateTimeSelect;}
-		}	
-		IfcWorkControlTypeEnum? IIfcWorkControl.WorkControlType { 
- 
-			get { return @WorkControlType; } 
-			set { WorkControlType = value;}
-		}	
-		IfcLabel? IIfcWorkControl.UserDefinedControlType { 
- 
-			get { return @UserDefinedControlType; } 
-			set { UserDefinedControlType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWorkControl(IModel model, int label, bool activated) : base(model, label, activated)  

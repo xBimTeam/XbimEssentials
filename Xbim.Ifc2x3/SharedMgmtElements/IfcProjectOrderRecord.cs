@@ -18,37 +18,13 @@ using Xbim.Ifc2x3.SharedMgmtElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProjectOrderRecord
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProjectOrderRecord : IIfcControl
-	{
-		IItemSet<IIfcRelAssignsToProjectOrder> @Records { get; }
-		IfcProjectOrderRecordTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcProjectOrderRecord", 697)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IIfcProjectOrderRecord, IContainsEntityReferences, IEquatable<@IfcProjectOrderRecord>
+	public  partial class @IfcProjectOrderRecord : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProjectOrderRecord>
 	{
-		#region IIfcProjectOrderRecord explicit implementation
-		IItemSet<IIfcRelAssignsToProjectOrder> IIfcProjectOrderRecord.Records { 
-			get { return new Common.Collections.ProxyItemSet<IfcRelAssignsToProjectOrder, IIfcRelAssignsToProjectOrder>( @Records); } 
-		}	
-		IfcProjectOrderRecordTypeEnum IIfcProjectOrderRecord.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectOrderRecord(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -17,27 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPlane
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPlane : IIfcElementarySurface
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPlane", 388)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IIfcPlane, IContainsEntityReferences, IEquatable<@IfcPlane>
+	public  partial class @IfcPlane : IfcElementarySurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPlane>
 	{
-		#region IIfcPlane explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlane(IModel model, int label, bool activated) : base(model, label, activated)  

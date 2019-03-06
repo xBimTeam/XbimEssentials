@@ -19,39 +19,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWindow
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWindow : IIfcBuildingElement
-	{
-		IfcPositiveLengthMeasure? @OverallHeight { get;  set; }
-		IfcPositiveLengthMeasure? @OverallWidth { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWindow", 667)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindow : IfcBuildingElement, IInstantiableEntity, IIfcWindow, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindow>
+	public  partial class @IfcWindow : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindow>
 	{
-		#region IIfcWindow explicit implementation
-		IfcPositiveLengthMeasure? IIfcWindow.OverallHeight { 
- 
-			get { return @OverallHeight; } 
-			set { OverallHeight = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcWindow.OverallWidth { 
- 
-			get { return @OverallWidth; } 
-			set { OverallWidth = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindow(IModel model, int label, bool activated) : base(model, label, activated)  

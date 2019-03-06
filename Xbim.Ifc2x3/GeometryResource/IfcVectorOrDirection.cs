@@ -16,7 +16,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcVectorOrDirection : IIfcVectorOrDirection
+	public partial interface IfcVectorOrDirection : IExpressSelectType, IPersistEntity
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -25,13 +25,3 @@ namespace Xbim.Ifc2x3.GeometryResource
 	}
 }
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	public partial interface IIfcVectorOrDirection : IExpressSelectType, IPersistEntity
-	{
-		#region Custom code for a select interface
-		//## Custom code for a select interface
-		//##
-		#endregion
-	}
-}

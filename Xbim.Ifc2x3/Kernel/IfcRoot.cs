@@ -21,52 +21,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRoot
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRoot : IPersistEntity
-	{
-		IfcGloballyUniqueId @GlobalId { get;  set; }
-		IIfcOwnerHistory @OwnerHistory { get;  set; }
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRoot", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRoot : PersistEntity, IIfcRoot, IEquatable<@IfcRoot>
+	public abstract partial class @IfcRoot : PersistEntity, IEquatable<@IfcRoot>
 	{
-		#region IIfcRoot explicit implementation
-		IfcGloballyUniqueId IIfcRoot.GlobalId { 
- 
-			get { return @GlobalId; } 
-			set { GlobalId = value;}
-		}	
-		IIfcOwnerHistory IIfcRoot.OwnerHistory { 
- 
- 
-			get { return @OwnerHistory; } 
-			set { OwnerHistory = value as IfcOwnerHistory;}
-		}	
-		IfcLabel? IIfcRoot.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcRoot.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRoot(IModel model, int label, bool activated) : base(model, label, activated)  

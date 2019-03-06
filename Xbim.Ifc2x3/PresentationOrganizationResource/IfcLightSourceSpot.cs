@@ -19,52 +19,13 @@ using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightSourceSpot
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightSourceSpot : IIfcLightSourcePositional
-	{
-		IIfcDirection @Orientation { get;  set; }
-		IfcReal? @ConcentrationExponent { get;  set; }
-		IfcPositivePlaneAngleMeasure @SpreadAngle { get;  set; }
-		IfcPositivePlaneAngleMeasure @BeamWidthAngle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightSourceSpot", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IIfcLightSourceSpot, IContainsEntityReferences, IEquatable<@IfcLightSourceSpot>
+	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLightSourceSpot>
 	{
-		#region IIfcLightSourceSpot explicit implementation
-		IIfcDirection IIfcLightSourceSpot.Orientation { 
- 
- 
-			get { return @Orientation; } 
-			set { Orientation = value as IfcDirection;}
-		}	
-		IfcReal? IIfcLightSourceSpot.ConcentrationExponent { 
- 
-			get { return @ConcentrationExponent; } 
-			set { ConcentrationExponent = value;}
-		}	
-		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.SpreadAngle { 
- 
-			get { return @SpreadAngle; } 
-			set { SpreadAngle = value;}
-		}	
-		IfcPositivePlaneAngleMeasure IIfcLightSourceSpot.BeamWidthAngle { 
- 
-			get { return @BeamWidthAngle; } 
-			set { BeamWidthAngle = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightSourceSpot(IModel model, int label, bool activated) : base(model, label, activated)  

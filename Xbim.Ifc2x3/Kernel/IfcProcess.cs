@@ -17,33 +17,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProcess
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProcess : IIfcObject
-	{
-		IEnumerable<IIfcRelAssignsToProcess> @OperatesOn {  get; }
-		IEnumerable<IIfcRelSequence> @IsSuccessorFrom {  get; }
-		IEnumerable<IIfcRelSequence> @IsPredecessorTo {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcProcess", 73)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcProcess : IfcObject, IIfcProcess, IEquatable<@IfcProcess>
+	public abstract partial class @IfcProcess : IfcObject, IEquatable<@IfcProcess>
 	{
-		#region IIfcProcess explicit implementation
-		 
-		IEnumerable<IIfcRelAssignsToProcess> IIfcProcess.OperatesOn {  get { return @OperatesOn; } }
-		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom {  get { return @IsSuccessorFrom; } }
-		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo {  get { return @IsPredecessorTo; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProcess(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -18,51 +18,13 @@ using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDoorStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDoorStyle : IIfcTypeProduct
-	{
-		IfcDoorStyleOperationEnum @OperationType { get;  set; }
-		IfcDoorStyleConstructionEnum @ConstructionType { get;  set; }
-		bool @ParameterTakesPrecedence { get;  set; }
-		bool @Sizeable { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcDoorStyle", 492)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IIfcDoorStyle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoorStyle>
+	public  partial class @IfcDoorStyle : IfcTypeProduct, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoorStyle>
 	{
-		#region IIfcDoorStyle explicit implementation
-		IfcDoorStyleOperationEnum IIfcDoorStyle.OperationType { 
- 
-			get { return @OperationType; } 
-			set { OperationType = value;}
-		}	
-		IfcDoorStyleConstructionEnum IIfcDoorStyle.ConstructionType { 
- 
-			get { return @ConstructionType; } 
-			set { ConstructionType = value;}
-		}	
-		bool IIfcDoorStyle.ParameterTakesPrecedence { 
- 
-			get { return @ParameterTakesPrecedence; } 
-			set { ParameterTakesPrecedence = value;}
-		}	
-		bool IIfcDoorStyle.Sizeable { 
- 
-			get { return @Sizeable; } 
-			set { Sizeable = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoorStyle(IModel model, int label, bool activated) : base(model, label, activated)  

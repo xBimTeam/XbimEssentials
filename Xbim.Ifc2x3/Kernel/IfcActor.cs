@@ -18,36 +18,13 @@ using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcActor
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcActor : IIfcObject
-	{
-		IIfcActorSelect @TheActor { get;  set; }
-		IEnumerable<IIfcRelAssignsToActor> @IsActingUpon {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcActor", 250)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IIfcActor, IContainsEntityReferences, IEquatable<@IfcActor>
+	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcActor>
 	{
-		#region IIfcActor explicit implementation
-		IIfcActorSelect IIfcActor.TheActor { 
- 
- 
-			get { return @TheActor; } 
-			set { TheActor = value as IfcActorSelect;}
-		}	
-		 
-		IEnumerable<IIfcRelAssignsToActor> IIfcActor.IsActingUpon {  get { return @IsActingUpon; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcActor(IModel model, int label, bool activated) : base(model, label, activated)  

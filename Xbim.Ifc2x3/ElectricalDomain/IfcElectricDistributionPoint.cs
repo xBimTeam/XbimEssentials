@@ -19,39 +19,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElectricDistributionPoint
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElectricDistributionPoint : IIfcFlowController
-	{
-		IfcElectricDistributionPointFunctionEnum @DistributionPointFunction { get;  set; }
-		IfcLabel? @UserDefinedFunction { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricDistributionPoint", 242)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IIfcElectricDistributionPoint, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricDistributionPoint>
+	public  partial class @IfcElectricDistributionPoint : IfcFlowController, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricDistributionPoint>
 	{
-		#region IIfcElectricDistributionPoint explicit implementation
-		IfcElectricDistributionPointFunctionEnum IIfcElectricDistributionPoint.DistributionPointFunction { 
- 
-			get { return @DistributionPointFunction; } 
-			set { DistributionPointFunction = value;}
-		}	
-		IfcLabel? IIfcElectricDistributionPoint.UserDefinedFunction { 
- 
-			get { return @UserDefinedFunction; } 
-			set { UserDefinedFunction = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricDistributionPoint(IModel model, int label, bool activated) : base(model, label, activated)  

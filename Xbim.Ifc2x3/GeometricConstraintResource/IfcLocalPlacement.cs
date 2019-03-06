@@ -18,41 +18,13 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLocalPlacement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLocalPlacement : IIfcObjectPlacement
-	{
-		IIfcObjectPlacement @PlacementRelTo { get;  set; }
-		IIfcAxis2Placement @RelativePlacement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcLocalPlacement", 481)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IIfcLocalPlacement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLocalPlacement>
+	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLocalPlacement>
 	{
-		#region IIfcLocalPlacement explicit implementation
-		IIfcObjectPlacement IIfcLocalPlacement.PlacementRelTo { 
- 
- 
-			get { return @PlacementRelTo; } 
-			set { PlacementRelTo = value as IfcObjectPlacement;}
-		}	
-		IIfcAxis2Placement IIfcLocalPlacement.RelativePlacement { 
- 
- 
-			get { return @RelativePlacement; } 
-			set { RelativePlacement = value as IfcAxis2Placement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLocalPlacement(IModel model, int label, bool activated) : base(model, label, activated)  

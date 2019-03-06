@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFanType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFanType : IIfcFlowMovingDeviceType
-	{
-		IfcFanTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcFanType", 651)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFanType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcFanType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFanType>
+	public  partial class @IfcFanType : IfcFlowMovingDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFanType>
 	{
-		#region IIfcFanType explicit implementation
-		IfcFanTypeEnum IIfcFanType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFanType(IModel model, int label, bool activated) : base(model, label, activated)  

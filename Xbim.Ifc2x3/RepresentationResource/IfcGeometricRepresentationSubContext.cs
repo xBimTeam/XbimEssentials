@@ -19,52 +19,13 @@ using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGeometricRepresentationSubContext
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGeometricRepresentationSubContext : IIfcGeometricRepresentationContext
-	{
-		IIfcGeometricRepresentationContext @ParentContext { get;  set; }
-		IfcPositiveRatioMeasure? @TargetScale { get;  set; }
-		IfcGeometricProjectionEnum @TargetView { get;  set; }
-		IfcLabel? @UserDefinedTargetView { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcGeometricRepresentationSubContext", 556)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeometricRepresentationSubContext>
+	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
-		#region IIfcGeometricRepresentationSubContext explicit implementation
-		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { 
- 
- 
-			get { return @ParentContext; } 
-			set { ParentContext = value as IfcGeometricRepresentationContext;}
-		}	
-		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { 
- 
-			get { return @TargetScale; } 
-			set { TargetScale = value;}
-		}	
-		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { 
- 
-			get { return @TargetView; } 
-			set { TargetView = value;}
-		}	
-		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { 
- 
-			get { return @UserDefinedTargetView; } 
-			set { UserDefinedTargetView = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationSubContext(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -17,41 +17,13 @@ using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMappedItem
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMappedItem : IIfcRepresentationItem
-	{
-		IIfcRepresentationMap @MappingSource { get;  set; }
-		IIfcCartesianTransformationOperator @MappingTarget { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcMappedItem", 333)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMappedItem : IfcRepresentationItem, IInstantiableEntity, IIfcMappedItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMappedItem>
+	public  partial class @IfcMappedItem : IfcRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMappedItem>
 	{
-		#region IIfcMappedItem explicit implementation
-		IIfcRepresentationMap IIfcMappedItem.MappingSource { 
- 
- 
-			get { return @MappingSource; } 
-			set { MappingSource = value as IfcRepresentationMap;}
-		}	
-		IIfcCartesianTransformationOperator IIfcMappedItem.MappingTarget { 
- 
- 
-			get { return @MappingTarget; } 
-			set { MappingTarget = value as IfcCartesianTransformationOperator;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMappedItem(IModel model, int label, bool activated) : base(model, label, activated)  

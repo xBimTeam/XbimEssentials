@@ -22,57 +22,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLibraryInformation
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLibraryInformation : IPersistEntity, IfcLibrarySelect
-	{
-		IfcLabel @Name { get;  set; }
-		IfcLabel? @Version { get;  set; }
-		IIfcOrganization @Publisher { get;  set; }
-		IIfcCalendarDate @VersionDate { get;  set; }
-		IItemSet<IIfcLibraryReference> @LibraryReference { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcLibraryInformation", 449)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLibraryInformation : PersistEntity, IInstantiableEntity, IIfcLibraryInformation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLibraryInformation>
+	public  partial class @IfcLibraryInformation : PersistEntity, IInstantiableEntity, IfcLibrarySelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLibraryInformation>
 	{
-		#region IIfcLibraryInformation explicit implementation
-		IfcLabel IIfcLibraryInformation.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcLabel? IIfcLibraryInformation.Version { 
- 
-			get { return @Version; } 
-			set { Version = value;}
-		}	
-		IIfcOrganization IIfcLibraryInformation.Publisher { 
- 
- 
-			get { return @Publisher; } 
-			set { Publisher = value as IfcOrganization;}
-		}	
-		IIfcCalendarDate IIfcLibraryInformation.VersionDate { 
- 
- 
-			get { return @VersionDate; } 
-			set { VersionDate = value as IfcCalendarDate;}
-		}	
-		IItemSet<IIfcLibraryReference> IIfcLibraryInformation.LibraryReference { 
-			get { return new Common.Collections.ProxyItemSet<IfcLibraryReference, IIfcLibraryReference>( @LibraryReference); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLibraryInformation(IModel model, int label, bool activated) : base(model, label, activated)  

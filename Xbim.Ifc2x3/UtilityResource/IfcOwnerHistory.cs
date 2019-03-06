@@ -21,79 +21,13 @@ using Xbim.Ifc2x3.UtilityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOwnerHistory
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOwnerHistory : IPersistEntity
-	{
-		IIfcPersonAndOrganization @OwningUser { get;  set; }
-		IIfcApplication @OwningApplication { get;  set; }
-		IfcStateEnum? @State { get;  set; }
-		IfcChangeActionEnum @ChangeAction { get;  set; }
-		IfcTimeStamp? @LastModifiedDate { get;  set; }
-		IIfcPersonAndOrganization @LastModifyingUser { get;  set; }
-		IIfcApplication @LastModifyingApplication { get;  set; }
-		IfcTimeStamp @CreationDate { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcOwnerHistory", 519)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOwnerHistory : PersistEntity, IInstantiableEntity, IIfcOwnerHistory, IContainsEntityReferences, IEquatable<@IfcOwnerHistory>
+	public  partial class @IfcOwnerHistory : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOwnerHistory>
 	{
-		#region IIfcOwnerHistory explicit implementation
-		IIfcPersonAndOrganization IIfcOwnerHistory.OwningUser { 
- 
- 
-			get { return @OwningUser; } 
-			set { OwningUser = value as IfcPersonAndOrganization;}
-		}	
-		IIfcApplication IIfcOwnerHistory.OwningApplication { 
- 
- 
-			get { return @OwningApplication; } 
-			set { OwningApplication = value as IfcApplication;}
-		}	
-		IfcStateEnum? IIfcOwnerHistory.State { 
- 
-			get { return @State; } 
-			set { State = value;}
-		}	
-		IfcChangeActionEnum IIfcOwnerHistory.ChangeAction { 
- 
-			get { return @ChangeAction; } 
-			set { ChangeAction = value;}
-		}	
-		IfcTimeStamp? IIfcOwnerHistory.LastModifiedDate { 
- 
-			get { return @LastModifiedDate; } 
-			set { LastModifiedDate = value;}
-		}	
-		IIfcPersonAndOrganization IIfcOwnerHistory.LastModifyingUser { 
- 
- 
-			get { return @LastModifyingUser; } 
-			set { LastModifyingUser = value as IfcPersonAndOrganization;}
-		}	
-		IIfcApplication IIfcOwnerHistory.LastModifyingApplication { 
- 
- 
-			get { return @LastModifyingApplication; } 
-			set { LastModifyingApplication = value as IfcApplication;}
-		}	
-		IfcTimeStamp IIfcOwnerHistory.CreationDate { 
- 
-			get { return @CreationDate; } 
-			set { CreationDate = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOwnerHistory(IModel model, int label, bool activated) : base(model, label, activated)  

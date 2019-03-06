@@ -17,7 +17,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 {
     // ReSharper disable once InconsistentNaming
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial interface IfcDateTimeSelect : IfcMetricValueSelect, IIfcDateTimeSelect
+	public partial interface IfcDateTimeSelect : IfcMetricValueSelect, IPersistEntity
 	{
 		#region Custom code for a select
 		//## Custom code for a select
@@ -26,13 +26,3 @@ namespace Xbim.Ifc2x3.DateTimeResource
 	}
 }
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	public partial interface IIfcDateTimeSelect : IIfcMetricValueSelect, IPersistEntity
-	{
-		#region Custom code for a select interface
-		//## Custom code for a select interface
-		//##
-		#endregion
-	}
-}

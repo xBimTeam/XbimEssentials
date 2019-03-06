@@ -18,36 +18,13 @@ using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralConnection
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralConnection : IIfcStructuralItem
-	{
-		IIfcBoundaryCondition @AppliedCondition { get;  set; }
-		IEnumerable<IIfcRelConnectsStructuralMember> @ConnectsStructuralMembers {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralConnection", 265)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IIfcStructuralConnection, IEquatable<@IfcStructuralConnection>
+	public abstract partial class @IfcStructuralConnection : IfcStructuralItem, IEquatable<@IfcStructuralConnection>
 	{
-		#region IIfcStructuralConnection explicit implementation
-		IIfcBoundaryCondition IIfcStructuralConnection.AppliedCondition { 
- 
- 
-			get { return @AppliedCondition; } 
-			set { AppliedCondition = value as IfcBoundaryCondition;}
-		}	
-		 
-		IEnumerable<IIfcRelConnectsStructuralMember> IIfcStructuralConnection.ConnectsStructuralMembers {  get { return @ConnectsStructuralMembers; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralConnection(IModel model, int label, bool activated) : base(model, label, activated)  

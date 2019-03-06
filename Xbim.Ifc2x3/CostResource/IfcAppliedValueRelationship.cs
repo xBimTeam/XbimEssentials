@@ -20,56 +20,13 @@ using Xbim.Ifc2x3.CostResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAppliedValueRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAppliedValueRelationship : IPersistEntity
-	{
-		IIfcAppliedValue @ComponentOfTotal { get;  set; }
-		IItemSet<IIfcAppliedValue> @Components { get; }
-		IfcArithmeticOperatorEnum @ArithmeticOperator { get;  set; }
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcAppliedValueRelationship", 691)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAppliedValueRelationship : PersistEntity, IInstantiableEntity, IIfcAppliedValueRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAppliedValueRelationship>
+	public  partial class @IfcAppliedValueRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAppliedValueRelationship>
 	{
-		#region IIfcAppliedValueRelationship explicit implementation
-		IIfcAppliedValue IIfcAppliedValueRelationship.ComponentOfTotal { 
- 
- 
-			get { return @ComponentOfTotal; } 
-			set { ComponentOfTotal = value as IfcAppliedValue;}
-		}	
-		IItemSet<IIfcAppliedValue> IIfcAppliedValueRelationship.Components { 
-			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @Components); } 
-		}	
-		IfcArithmeticOperatorEnum IIfcAppliedValueRelationship.ArithmeticOperator { 
- 
-			get { return @ArithmeticOperator; } 
-			set { ArithmeticOperator = value;}
-		}	
-		IfcLabel? IIfcAppliedValueRelationship.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcAppliedValueRelationship.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAppliedValueRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

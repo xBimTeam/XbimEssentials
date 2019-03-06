@@ -20,33 +20,13 @@ using Xbim.Ifc2x3.PresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcColourSpecification
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcColourSpecification : IPersistEntity, IfcColour
-	{
-		IfcLabel? @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcColourSpecification", 28)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcColourSpecification : PersistEntity, IIfcColourSpecification, IEquatable<@IfcColourSpecification>
+	public abstract partial class @IfcColourSpecification : PersistEntity, IfcColour, IEquatable<@IfcColourSpecification>
 	{
-		#region IIfcColourSpecification explicit implementation
-		IfcLabel? IIfcColourSpecification.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcColourSpecification(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -19,32 +19,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcShellBasedSurfaceModel
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcShellBasedSurfaceModel : IIfcGeometricRepresentationItem
-	{
-		IItemSet<IIfcShell> @SbsmBoundary { get; }
-		IfcDimensionCount @Dim  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcShellBasedSurfaceModel", 235)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcShellBasedSurfaceModel, IContainsEntityReferences, IEquatable<@IfcShellBasedSurfaceModel>
+	public  partial class @IfcShellBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcShellBasedSurfaceModel>
 	{
-		#region IIfcShellBasedSurfaceModel explicit implementation
-		IItemSet<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { 
-			get { return new Common.Collections.ProxyItemSet<IfcShell, IIfcShell>( @SbsmBoundary); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcShellBasedSurfaceModel(IModel model, int label, bool activated) : base(model, label, activated)  

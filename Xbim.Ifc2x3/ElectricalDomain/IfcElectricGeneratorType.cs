@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElectricGeneratorType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElectricGeneratorType : IIfcEnergyConversionDeviceType
-	{
-		IfcElectricGeneratorTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricGeneratorType", 241)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricGeneratorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcElectricGeneratorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricGeneratorType>
+	public  partial class @IfcElectricGeneratorType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricGeneratorType>
 	{
-		#region IIfcElectricGeneratorType explicit implementation
-		IfcElectricGeneratorTypeEnum IIfcElectricGeneratorType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricGeneratorType(IModel model, int label, bool activated) : base(model, label, activated)  

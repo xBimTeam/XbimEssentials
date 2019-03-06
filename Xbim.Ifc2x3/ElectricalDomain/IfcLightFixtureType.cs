@@ -18,33 +18,13 @@ using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightFixtureType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightFixtureType : IIfcFlowTerminalType
-	{
-		IfcLightFixtureTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcLightFixtureType", 517)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightFixtureType : IfcFlowTerminalType, IInstantiableEntity, IIfcLightFixtureType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLightFixtureType>
+	public  partial class @IfcLightFixtureType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLightFixtureType>
 	{
-		#region IIfcLightFixtureType explicit implementation
-		IfcLightFixtureTypeEnum IIfcLightFixtureType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightFixtureType(IModel model, int label, bool activated) : base(model, label, activated)  

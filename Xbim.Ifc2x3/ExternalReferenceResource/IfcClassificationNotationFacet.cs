@@ -20,33 +20,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcClassificationNotationFacet
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcClassificationNotationFacet : IPersistEntity
-	{
-		IfcLabel @NotationValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationNotationFacet", 251)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationNotationFacet : PersistEntity, IInstantiableEntity, IIfcClassificationNotationFacet, IEquatable<@IfcClassificationNotationFacet>
+	public  partial class @IfcClassificationNotationFacet : PersistEntity, IInstantiableEntity, IEquatable<@IfcClassificationNotationFacet>
 	{
-		#region IIfcClassificationNotationFacet explicit implementation
-		IfcLabel IIfcClassificationNotationFacet.NotationValue { 
- 
-			get { return @NotationValue; } 
-			set { NotationValue = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassificationNotationFacet(IModel model, int label, bool activated) : base(model, label, activated)  

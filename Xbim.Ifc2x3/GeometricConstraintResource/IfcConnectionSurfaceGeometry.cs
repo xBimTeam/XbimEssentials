@@ -17,41 +17,13 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConnectionSurfaceGeometry
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConnectionSurfaceGeometry : IIfcConnectionGeometry
-	{
-		IIfcSurfaceOrFaceSurface @SurfaceOnRelatingElement { get;  set; }
-		IIfcSurfaceOrFaceSurface @SurfaceOnRelatedElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionSurfaceGeometry", 69)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionSurfaceGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionSurfaceGeometry>
+	public  partial class @IfcConnectionSurfaceGeometry : IfcConnectionGeometry, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectionSurfaceGeometry>
 	{
-		#region IIfcConnectionSurfaceGeometry explicit implementation
-		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatingElement { 
- 
- 
-			get { return @SurfaceOnRelatingElement; } 
-			set { SurfaceOnRelatingElement = value as IfcSurfaceOrFaceSurface;}
-		}	
-		IIfcSurfaceOrFaceSurface IIfcConnectionSurfaceGeometry.SurfaceOnRelatedElement { 
- 
- 
-			get { return @SurfaceOnRelatedElement; } 
-			set { SurfaceOnRelatedElement = value as IfcSurfaceOrFaceSurface;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionSurfaceGeometry(IModel model, int label, bool activated) : base(model, label, activated)  

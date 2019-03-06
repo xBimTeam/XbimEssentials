@@ -18,45 +18,13 @@ using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConnectionPointEccentricity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConnectionPointEccentricity : IIfcConnectionPointGeometry
-	{
-		IfcLengthMeasure? @EccentricityInX { get;  set; }
-		IfcLengthMeasure? @EccentricityInY { get;  set; }
-		IfcLengthMeasure? @EccentricityInZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPointEccentricity", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IIfcConnectionPointEccentricity, IContainsEntityReferences, IEquatable<@IfcConnectionPointEccentricity>
+	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectionPointEccentricity>
 	{
-		#region IIfcConnectionPointEccentricity explicit implementation
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInX { 
- 
-			get { return @EccentricityInX; } 
-			set { EccentricityInX = value;}
-		}	
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInY { 
- 
-			get { return @EccentricityInY; } 
-			set { EccentricityInY = value;}
-		}	
-		IfcLengthMeasure? IIfcConnectionPointEccentricity.EccentricityInZ { 
- 
-			get { return @EccentricityInZ; } 
-			set { EccentricityInZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPointEccentricity(IModel model, int label, bool activated) : base(model, label, activated)  

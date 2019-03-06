@@ -20,41 +20,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextStyleForDefinedFont
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextStyleForDefinedFont : IPersistEntity, IfcCharacterStyleSelect
-	{
-		IIfcColour @Colour { get;  set; }
-		IIfcColour @BackgroundColour { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleForDefinedFont", 611)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleForDefinedFont : PersistEntity, IInstantiableEntity, IIfcTextStyleForDefinedFont, IContainsEntityReferences, IEquatable<@IfcTextStyleForDefinedFont>
+	public  partial class @IfcTextStyleForDefinedFont : PersistEntity, IInstantiableEntity, IfcCharacterStyleSelect, IContainsEntityReferences, IEquatable<@IfcTextStyleForDefinedFont>
 	{
-		#region IIfcTextStyleForDefinedFont explicit implementation
-		IIfcColour IIfcTextStyleForDefinedFont.Colour { 
- 
- 
-			get { return @Colour; } 
-			set { Colour = value as IfcColour;}
-		}	
-		IIfcColour IIfcTextStyleForDefinedFont.BackgroundColour { 
- 
- 
-			get { return @BackgroundColour; } 
-			set { BackgroundColour = value as IfcColour;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleForDefinedFont(IModel model, int label, bool activated) : base(model, label, activated)  

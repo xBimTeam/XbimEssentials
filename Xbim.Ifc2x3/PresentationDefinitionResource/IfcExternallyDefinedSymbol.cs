@@ -18,27 +18,13 @@ using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcExternallyDefinedSymbol
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcExternallyDefinedSymbol : IIfcExternalReference, IfcDefinedSymbolSelect
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcExternallyDefinedSymbol", 391)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedSymbol : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSymbol, IEquatable<@IfcExternallyDefinedSymbol>
+	public  partial class @IfcExternallyDefinedSymbol : IfcExternalReference, IInstantiableEntity, IfcDefinedSymbolSelect, IEquatable<@IfcExternallyDefinedSymbol>
 	{
-		#region IIfcExternallyDefinedSymbol explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternallyDefinedSymbol(IModel model, int label, bool activated) : base(model, label, activated)  

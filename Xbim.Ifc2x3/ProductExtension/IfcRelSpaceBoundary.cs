@@ -19,60 +19,13 @@ using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelSpaceBoundary
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelSpaceBoundary : IIfcRelConnects
-	{
-		IIfcSpace @RelatingSpace { get;  set; }
-		IIfcElement @RelatedBuildingElement { get;  set; }
-		IIfcConnectionGeometry @ConnectionGeometry { get;  set; }
-		IfcPhysicalOrVirtualEnum @PhysicalOrVirtualBoundary { get;  set; }
-		IfcInternalOrExternalEnum @InternalOrExternalBoundary { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelSpaceBoundary", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IIfcRelSpaceBoundary, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary>
+	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary>
 	{
-		#region IIfcRelSpaceBoundary explicit implementation
-		IIfcSpace IIfcRelSpaceBoundary.RelatingSpace { 
- 
- 
-			get { return @RelatingSpace; } 
-			set { RelatingSpace = value as IfcSpace;}
-		}	
-		IIfcElement IIfcRelSpaceBoundary.RelatedBuildingElement { 
- 
- 
-			get { return @RelatedBuildingElement; } 
-			set { RelatedBuildingElement = value as IfcElement;}
-		}	
-		IIfcConnectionGeometry IIfcRelSpaceBoundary.ConnectionGeometry { 
- 
- 
-			get { return @ConnectionGeometry; } 
-			set { ConnectionGeometry = value as IfcConnectionGeometry;}
-		}	
-		IfcPhysicalOrVirtualEnum IIfcRelSpaceBoundary.PhysicalOrVirtualBoundary { 
- 
-			get { return @PhysicalOrVirtualBoundary; } 
-			set { PhysicalOrVirtualBoundary = value;}
-		}	
-		IfcInternalOrExternalEnum IIfcRelSpaceBoundary.InternalOrExternalBoundary { 
- 
-			get { return @InternalOrExternalBoundary; } 
-			set { InternalOrExternalBoundary = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelSpaceBoundary(IModel model, int label, bool activated) : base(model, label, activated)  

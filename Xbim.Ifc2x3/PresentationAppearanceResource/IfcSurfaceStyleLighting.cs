@@ -20,55 +20,13 @@ using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceStyleLighting
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceStyleLighting : IPersistEntity, IfcSurfaceStyleElementSelect
-	{
-		IIfcColourRgb @DiffuseTransmissionColour { get;  set; }
-		IIfcColourRgb @DiffuseReflectionColour { get;  set; }
-		IIfcColourRgb @TransmissionColour { get;  set; }
-		IIfcColourRgb @ReflectanceColour { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleLighting", 117)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleLighting : PersistEntity, IInstantiableEntity, IIfcSurfaceStyleLighting, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleLighting>
+	public  partial class @IfcSurfaceStyleLighting : PersistEntity, IInstantiableEntity, IfcSurfaceStyleElementSelect, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleLighting>
 	{
-		#region IIfcSurfaceStyleLighting explicit implementation
-		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseTransmissionColour { 
- 
- 
-			get { return @DiffuseTransmissionColour; } 
-			set { DiffuseTransmissionColour = value as IfcColourRgb;}
-		}	
-		IIfcColourRgb IIfcSurfaceStyleLighting.DiffuseReflectionColour { 
- 
- 
-			get { return @DiffuseReflectionColour; } 
-			set { DiffuseReflectionColour = value as IfcColourRgb;}
-		}	
-		IIfcColourRgb IIfcSurfaceStyleLighting.TransmissionColour { 
- 
- 
-			get { return @TransmissionColour; } 
-			set { TransmissionColour = value as IfcColourRgb;}
-		}	
-		IIfcColourRgb IIfcSurfaceStyleLighting.ReflectanceColour { 
- 
- 
-			get { return @ReflectanceColour; } 
-			set { ReflectanceColour = value as IfcColourRgb;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleLighting(IModel model, int label, bool activated) : base(model, label, activated)  

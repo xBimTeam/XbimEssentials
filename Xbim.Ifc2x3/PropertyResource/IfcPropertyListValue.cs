@@ -18,38 +18,13 @@ using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertyListValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertyListValue : IIfcSimpleProperty
-	{
-		IItemSet<IIfcValue> @ListValues { get; }
-		IIfcUnit @Unit { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertyListValue", 489)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertyListValue, IContainsEntityReferences, IEquatable<@IfcPropertyListValue>
+	public  partial class @IfcPropertyListValue : IfcSimpleProperty, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyListValue>
 	{
-		#region IIfcPropertyListValue explicit implementation
-		IItemSet<IIfcValue> IIfcPropertyListValue.ListValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @ListValues); } 
-		}	
-		IIfcUnit IIfcPropertyListValue.Unit { 
- 
- 
-			get { return @Unit; } 
-			set { Unit = value as IfcUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertyListValue(IModel model, int label, bool activated) : base(model, label, activated)  

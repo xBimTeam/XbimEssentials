@@ -19,58 +19,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSweptDiskSolid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSweptDiskSolid : IIfcSolidModel
-	{
-		IIfcCurve @Directrix { get;  set; }
-		IfcPositiveLengthMeasure @Radius { get;  set; }
-		IfcPositiveLengthMeasure? @InnerRadius { get;  set; }
-		IfcParameterValue @StartParam { get;  set; }
-		IfcParameterValue @EndParam { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSweptDiskSolid", 547)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IIfcSweptDiskSolid, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolid>
+	public  partial class @IfcSweptDiskSolid : IfcSolidModel, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolid>
 	{
-		#region IIfcSweptDiskSolid explicit implementation
-		IIfcCurve IIfcSweptDiskSolid.Directrix { 
- 
- 
-			get { return @Directrix; } 
-			set { Directrix = value as IfcCurve;}
-		}	
-		IfcPositiveLengthMeasure IIfcSweptDiskSolid.Radius { 
- 
-			get { return @Radius; } 
-			set { Radius = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcSweptDiskSolid.InnerRadius { 
- 
-			get { return @InnerRadius; } 
-			set { InnerRadius = value;}
-		}	
-		IfcParameterValue IIfcSweptDiskSolid.StartParam { 
- 
-			get { return @StartParam; } 
-			set { StartParam = value;}
-		}	
-		IfcParameterValue IIfcSweptDiskSolid.EndParam { 
- 
-			get { return @EndParam; } 
-			set { EndParam = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptDiskSolid(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -19,43 +19,13 @@ using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSectionedSpine
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSectionedSpine : IIfcGeometricRepresentationItem
-	{
-		IIfcCompositeCurve @SpineCurve { get;  set; }
-		IItemSet<IIfcProfileDef> @CrossSections { get; }
-		IItemSet<IIfcAxis2Placement3D> @CrossSectionPositions { get; }
-		IfcDimensionCount @Dim  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSectionedSpine", 300)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcSectionedSpine, IContainsEntityReferences, IEquatable<@IfcSectionedSpine>
+	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSectionedSpine>
 	{
-		#region IIfcSectionedSpine explicit implementation
-		IIfcCompositeCurve IIfcSectionedSpine.SpineCurve { 
- 
- 
-			get { return @SpineCurve; } 
-			set { SpineCurve = value as IfcCompositeCurve;}
-		}	
-		IItemSet<IIfcProfileDef> IIfcSectionedSpine.CrossSections { 
-			get { return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>( @CrossSections); } 
-		}	
-		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { 
-			get { return new Common.Collections.ProxyItemSet<IfcAxis2Placement3D, IIfcAxis2Placement3D>( @CrossSectionPositions); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionedSpine(IModel model, int label, bool activated) : base(model, label, activated)  

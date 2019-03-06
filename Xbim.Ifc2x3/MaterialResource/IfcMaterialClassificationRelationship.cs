@@ -20,38 +20,13 @@ using Xbim.Ifc2x3.MaterialResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterialClassificationRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterialClassificationRelationship : IPersistEntity
-	{
-		IEnumerable<IIfcClassificationNotationSelect> @MaterialClassifications { get; }
-		IIfcMaterial @ClassifiedMaterial { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialClassificationRelationship", 8)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialClassificationRelationship : PersistEntity, IInstantiableEntity, IIfcMaterialClassificationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialClassificationRelationship>
+	public  partial class @IfcMaterialClassificationRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialClassificationRelationship>
 	{
-		#region IIfcMaterialClassificationRelationship explicit implementation
-		IEnumerable<IIfcClassificationNotationSelect> IIfcMaterialClassificationRelationship.MaterialClassifications { 
-			get { return new Common.Collections.ProxyItemSet<IfcClassificationNotationSelect, IIfcClassificationNotationSelect>( @MaterialClassifications); } 
-		}	
-		IIfcMaterial IIfcMaterialClassificationRelationship.ClassifiedMaterial { 
- 
- 
-			get { return @ClassifiedMaterial; } 
-			set { ClassifiedMaterial = value as IfcMaterial;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialClassificationRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

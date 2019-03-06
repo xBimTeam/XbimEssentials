@@ -20,50 +20,13 @@ using Xbim.Ifc2x3.ActorResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOrganizationRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOrganizationRelationship : IPersistEntity
-	{
-		IfcLabel @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IIfcOrganization @RelatingOrganization { get;  set; }
-		IItemSet<IIfcOrganization> @RelatedOrganizations { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcOrganizationRelationship", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrganizationRelationship : PersistEntity, IInstantiableEntity, IIfcOrganizationRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganizationRelationship>
+	public  partial class @IfcOrganizationRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganizationRelationship>
 	{
-		#region IIfcOrganizationRelationship explicit implementation
-		IfcLabel IIfcOrganizationRelationship.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcOrganizationRelationship.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IIfcOrganization IIfcOrganizationRelationship.RelatingOrganization { 
- 
- 
-			get { return @RelatingOrganization; } 
-			set { RelatingOrganization = value as IfcOrganization;}
-		}	
-		IItemSet<IIfcOrganization> IIfcOrganizationRelationship.RelatedOrganizations { 
-			get { return new Common.Collections.ProxyItemSet<IfcOrganization, IIfcOrganization>( @RelatedOrganizations); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrganizationRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

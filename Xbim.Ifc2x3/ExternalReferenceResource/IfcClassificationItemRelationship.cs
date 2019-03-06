@@ -19,38 +19,13 @@ using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcClassificationItemRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcClassificationItemRelationship : IPersistEntity
-	{
-		IIfcClassificationItem @RelatingItem { get;  set; }
-		IItemSet<IIfcClassificationItem> @RelatedItems { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationItemRelationship", 210)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationItemRelationship : PersistEntity, IInstantiableEntity, IIfcClassificationItemRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationItemRelationship>
+	public  partial class @IfcClassificationItemRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationItemRelationship>
 	{
-		#region IIfcClassificationItemRelationship explicit implementation
-		IIfcClassificationItem IIfcClassificationItemRelationship.RelatingItem { 
- 
- 
-			get { return @RelatingItem; } 
-			set { RelatingItem = value as IfcClassificationItem;}
-		}	
-		IItemSet<IIfcClassificationItem> IIfcClassificationItemRelationship.RelatedItems { 
-			get { return new Common.Collections.ProxyItemSet<IfcClassificationItem, IIfcClassificationItem>( @RelatedItems); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassificationItemRelationship(IModel model, int label, bool activated) : base(model, label, activated)  
