@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedComponentElements;
 
 namespace Xbim.IfcRail.SharedComponentElements
 {
-	[ExpressType("IfcElementComponentType", 659)]
+	[ExpressType("IfcElementComponentType", 136)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcElementComponentType : IfcElementType, IEquatable<@IfcElementComponentType>
 	{

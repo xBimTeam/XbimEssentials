@@ -13,7 +13,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcLinearStiffnessMeasure", 55)]
+	[ExpressType("IfcLinearStiffnessMeasure", 399)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLinearStiffnessMeasure : IfcDerivedMeasureValue, IfcTranslationalStiffnessSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>

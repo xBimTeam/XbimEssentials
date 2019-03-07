@@ -19,7 +19,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcBoundaryNodeConditionWarping", 475)]
+	[ExpressType("IfcBoundaryNodeConditionWarping", 395)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoundaryNodeConditionWarping : IfcBoundaryNodeCondition, IInstantiableEntity, IEquatable<@IfcBoundaryNodeConditionWarping>
 	{

@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcFillAreaStyleTiles", 706)]
+	[ExpressType("IfcFillAreaStyleTiles", 725)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFillAreaStyleTiles : IfcGeometricRepresentationItem, IInstantiableEntity, IfcFillStyleSelect, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleTiles>
 	{

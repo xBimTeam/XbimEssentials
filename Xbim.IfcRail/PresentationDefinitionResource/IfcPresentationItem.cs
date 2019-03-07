@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationDefinitionResource;
 
 namespace Xbim.IfcRail.PresentationDefinitionResource
 {
-	[ExpressType("IfcPresentationItem", 889)]
+	[ExpressType("IfcPresentationItem", 1227)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPresentationItem : PersistEntity, IEquatable<@IfcPresentationItem>
 	{

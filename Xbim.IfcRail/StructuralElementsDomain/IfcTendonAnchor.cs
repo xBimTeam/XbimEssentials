@@ -19,7 +19,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcTendonAnchor", 1155)]
+	[ExpressType("IfcTendonAnchor", 675)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTendonAnchor : IfcReinforcingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendonAnchor>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProfileResource;
 
 namespace Xbim.IfcRail.ProfileResource
 {
-	[ExpressType("IfcCenterLineProfileDef", 515)]
+	[ExpressType("IfcCenterLineProfileDef", 353)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCenterLineProfileDef : IfcArbitraryOpenProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCenterLineProfileDef>
 	{

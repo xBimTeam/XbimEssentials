@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcAccelerationMeasure", 2)]
+	[ExpressType("IfcAccelerationMeasure", 579)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcAccelerationMeasure : IfcDerivedMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>

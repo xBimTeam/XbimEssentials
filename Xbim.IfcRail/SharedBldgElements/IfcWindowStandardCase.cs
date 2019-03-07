@@ -19,7 +19,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcWindowStandardCase", 1222)]
+	[ExpressType("IfcWindowStandardCase", 1316)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowStandardCase : IfcWindow, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindowStandardCase>
 	{

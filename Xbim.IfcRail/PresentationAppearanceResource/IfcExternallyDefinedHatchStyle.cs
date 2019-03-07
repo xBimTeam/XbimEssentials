@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcExternallyDefinedHatchStyle", 682)]
+	[ExpressType("IfcExternallyDefinedHatchStyle", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IfcFillStyleSelect, IEquatable<@IfcExternallyDefinedHatchStyle>
 	{

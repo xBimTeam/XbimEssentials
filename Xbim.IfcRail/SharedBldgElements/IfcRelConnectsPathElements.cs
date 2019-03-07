@@ -21,7 +21,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcRelConnectsPathElements", 981)]
+	[ExpressType("IfcRelConnectsPathElements", 668)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsPathElements : IfcRelConnectsElements, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPathElements>
 	{

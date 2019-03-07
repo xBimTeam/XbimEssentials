@@ -23,7 +23,7 @@ using Xbim.IfcRail.UtilityResource;
 
 namespace Xbim.IfcRail.UtilityResource
 {
-	[ExpressType("IfcTableColumn", 1145)]
+	[ExpressType("IfcTableColumn", 1292)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTableColumn : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTableColumn>
 	{

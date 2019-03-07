@@ -20,7 +20,7 @@ using Xbim.IfcRail.TopologyResource;
 
 namespace Xbim.IfcRail.TopologyResource
 {
-	[ExpressType("IfcFaceBound", 689)]
+	[ExpressType("IfcFaceBound", 86)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFaceBound : IfcTopologicalRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcFaceBound>
 	{

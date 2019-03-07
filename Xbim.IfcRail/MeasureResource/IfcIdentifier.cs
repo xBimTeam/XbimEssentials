@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcIdentifier", 41)]
+	[ExpressType("IfcIdentifier", 615)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcIdentifier : IfcSimpleValue, IExpressValueType, IExpressStringType, System.IEquatable<string>

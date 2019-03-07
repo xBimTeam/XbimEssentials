@@ -22,7 +22,7 @@ using Xbim.IfcRail.TopologyResource;
 
 namespace Xbim.IfcRail.TopologyResource
 {
-	[ExpressType("IfcFaceSurface", 691)]
+	[ExpressType("IfcFaceSurface", 85)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IfcSurfaceOrFaceSurface, IContainsEntityReferences, IEquatable<@IfcFaceSurface>
 	{

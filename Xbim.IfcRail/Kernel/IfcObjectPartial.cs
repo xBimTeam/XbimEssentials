@@ -8,6 +8,7 @@ using Xbim.IfcRail.ProductExtension;
 
 using Xbim.IfcRail.QuantityResource;
 using System.Reflection;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.IfcRail.Kernel
 {
@@ -127,7 +128,7 @@ namespace Xbim.IfcRail.Kernel
 
         public IIfcPropertySingleValue SetPropertySingleValue(string pSetName, string propertyName, IfcValue value)
         {
-            var pset = GetPropertySet(pSetName);
+            var pset = GetPropertySet(pSetName) as IfcPropertySet;
             if (pset == null)
             {
                 pset = Model.Instances.New<IfcPropertySet>();
@@ -138,7 +139,7 @@ namespace Xbim.IfcRail.Kernel
             }
 
             //change existing property of the same name from the property set
-            var singleVal = GetPropertySingleValue(pSetName, propertyName);
+            var singleVal = GetPropertySingleValue(pSetName, propertyName) as IfcPropertySingleValue;
             if (singleVal != null)
             {
                 singleVal.NominalValue = value;
@@ -161,8 +162,8 @@ namespace Xbim.IfcRail.Kernel
         /// <returns></returns>
         public IEnumerable<IIfcElement> GetExternalElements(IModel model)
         {
-            return model.Instances.OfType<IIfcRelSpaceBoundary>().Where(r => r.InternalOrExternalBoundary == IfcInternalOrExternalEnum.EXTERNAL
-                && r.PhysicalOrVirtualBoundary == IfcPhysicalOrVirtualEnum.PHYSICAL
+            return model.Instances.OfType<IfcRelSpaceBoundary>().Where(r => r.InternalOrExternalBoundary == ProductExtension.IfcInternalOrExternalEnum.EXTERNAL
+                && r.PhysicalOrVirtualBoundary == ProductExtension.IfcPhysicalOrVirtualEnum.PHYSICAL
                 && r.RelatedBuildingElement != null).Select(rsb => rsb.RelatedBuildingElement).Distinct();
         }
 
@@ -233,7 +234,7 @@ namespace Xbim.IfcRail.Kernel
         /// <param name="methodOfMeasurement">Sets the method of measurement, if not null overrides previous value</param>
         public IIfcElementQuantity AddQuantity(string propertySetName, IIfcPhysicalQuantity quantity, string methodOfMeasurement)
         {
-            var pset = GetElementQuantity(propertySetName);
+            var pset = GetElementQuantity(propertySetName) as IfcElementQuantity;
 
             if (pset == null)
             {
@@ -243,7 +244,7 @@ namespace Xbim.IfcRail.Kernel
                 relDef.RelatingPropertyDefinition = pset;
                 relDef.RelatedObjects.Add(this);
             }
-            pset.Quantities.Add(quantity);
+            pset.Quantities.Add(quantity as IfcPhysicalQuantity);
             if (!string.IsNullOrEmpty(methodOfMeasurement)) pset.MethodOfMeasurement = methodOfMeasurement;
             return pset;
         }
@@ -278,7 +279,7 @@ namespace Xbim.IfcRail.Kernel
         {
 
 
-            var qset = GetElementQuantity(qSetName);
+            var qset = GetElementQuantity(qSetName) as IfcElementQuantity;
             if (qset == null)
             {
                 qset = Model.Instances.New<IfcElementQuantity>();
@@ -289,7 +290,7 @@ namespace Xbim.IfcRail.Kernel
             }
 
             //remove existing simple quality
-            var simpleQuality = GetElementPhysicalSimpleQuantity(qSetName, qualityName);
+            var simpleQuality = GetElementPhysicalSimpleQuantity(qSetName, qualityName) as IfcPhysicalSimpleQuantity;
             if (simpleQuality != null)
             {
                 var elementQuality = GetElementQuantity(qSetName);
@@ -321,7 +322,7 @@ namespace Xbim.IfcRail.Kernel
                     return;
             }
 
-            simpleQuality.Unit = unit;
+            simpleQuality.Unit = unit as IfcNamedUnit;
             simpleQuality.Name = qualityName;
 
             qset.Quantities.Add(simpleQuality);

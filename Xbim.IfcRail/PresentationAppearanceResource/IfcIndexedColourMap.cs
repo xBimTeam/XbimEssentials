@@ -22,7 +22,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcIndexedColourMap", 754)]
+	[ExpressType("IfcIndexedColourMap", 1189)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedColourMap : IfcPresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcIndexedColourMap>
 	{

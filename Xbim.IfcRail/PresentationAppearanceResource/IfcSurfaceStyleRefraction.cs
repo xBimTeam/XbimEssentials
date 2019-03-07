@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcSurfaceStyleRefraction", 1129)]
+	[ExpressType("IfcSurfaceStyleRefraction", 636)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceStyleRefraction : IfcPresentationItem, IInstantiableEntity, IfcSurfaceStyleElementSelect, IEquatable<@IfcSurfaceStyleRefraction>
 	{

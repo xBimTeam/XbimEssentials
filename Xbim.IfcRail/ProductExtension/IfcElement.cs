@@ -23,7 +23,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcElement", 655)]
+	[ExpressType("IfcElement", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcElement : IfcProduct, IfcStructuralActivityAssignmentSelect, IEquatable<@IfcElement>
 	{

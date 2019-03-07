@@ -21,7 +21,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcReinforcingBar", 957)]
+	[ExpressType("IfcReinforcingBar", 571)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcingBar : IfcReinforcingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingBar>
 	{

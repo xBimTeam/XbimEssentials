@@ -20,7 +20,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcMapConversion", 793)]
+	[ExpressType("IfcMapConversion", 1200)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMapConversion : IfcCoordinateOperation, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMapConversion>
 	{

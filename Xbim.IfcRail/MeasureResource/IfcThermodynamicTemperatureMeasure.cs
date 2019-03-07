@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcThermodynamicTemperatureMeasure", 120)]
+	[ExpressType("IfcThermodynamicTemperatureMeasure", 428)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcThermodynamicTemperatureMeasure : IfcMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>

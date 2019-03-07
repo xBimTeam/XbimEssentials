@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcBuildingElementProxyType", 489)]
+	[ExpressType("IfcBuildingElementProxyType", 107)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingElementProxyType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementProxyType>
 	{

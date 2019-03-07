@@ -21,7 +21,7 @@ using Xbim.IfcRail.MeasureResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcMonetaryUnit", 824)]
+	[ExpressType("IfcMonetaryUnit", 545)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMonetaryUnit : PersistEntity, IInstantiableEntity, IfcUnit, IEquatable<@IfcMonetaryUnit>
 	{

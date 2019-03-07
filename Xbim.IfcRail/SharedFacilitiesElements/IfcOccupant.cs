@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedFacilitiesElements;
 
 namespace Xbim.IfcRail.SharedFacilitiesElements
 {
-	[ExpressType("IfcOccupant", 832)]
+	[ExpressType("IfcOccupant", 641)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOccupant : IfcActor, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOccupant>
 	{

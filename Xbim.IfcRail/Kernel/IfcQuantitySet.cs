@@ -19,7 +19,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcQuantitySet", 933)]
+	[ExpressType("IfcQuantitySet", 1239)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcQuantitySet : IfcPropertySetDefinition, IEquatable<@IfcQuantitySet>
 	{

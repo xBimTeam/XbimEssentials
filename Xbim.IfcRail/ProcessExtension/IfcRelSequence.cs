@@ -22,7 +22,7 @@ using Xbim.IfcRail.ProcessExtension;
 
 namespace Xbim.IfcRail.ProcessExtension
 {
-	[ExpressType("IfcRelSequence", 1005)]
+	[ExpressType("IfcRelSequence", 490)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSequence : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSequence>
 	{

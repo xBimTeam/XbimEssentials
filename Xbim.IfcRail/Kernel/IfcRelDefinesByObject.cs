@@ -19,7 +19,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcRelDefinesByObject", 994)]
+	[ExpressType("IfcRelDefinesByObject", 1250)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelDefinesByObject : IfcRelDefines, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByObject>
 	{

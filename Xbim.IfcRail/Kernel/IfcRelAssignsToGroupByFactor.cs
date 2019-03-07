@@ -20,7 +20,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcRelAssignsToGroupByFactor", 968)]
+	[ExpressType("IfcRelAssignsToGroupByFactor", 1248)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToGroupByFactor : IfcRelAssignsToGroup, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToGroupByFactor>
 	{

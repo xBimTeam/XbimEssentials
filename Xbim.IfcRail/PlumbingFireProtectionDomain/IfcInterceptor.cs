@@ -20,7 +20,7 @@ using Xbim.IfcRail.PlumbingFireProtectionDomain;
 
 namespace Xbim.IfcRail.PlumbingFireProtectionDomain
 {
-	[ExpressType("IfcInterceptor", 760)]
+	[ExpressType("IfcInterceptor", 1193)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcInterceptor : IfcFlowTreatmentDevice, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcInterceptor>
 	{

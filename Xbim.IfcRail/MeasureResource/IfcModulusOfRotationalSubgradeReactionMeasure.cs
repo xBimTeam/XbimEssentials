@@ -13,7 +13,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcModulusOfRotationalSubgradeReactionMeasure", 69)]
+	[ExpressType("IfcModulusOfRotationalSubgradeReactionMeasure", 613)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcModulusOfRotationalSubgradeReactionMeasure : IfcDerivedMeasureValue, IfcModulusOfRotationalSubgradeReactionSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>

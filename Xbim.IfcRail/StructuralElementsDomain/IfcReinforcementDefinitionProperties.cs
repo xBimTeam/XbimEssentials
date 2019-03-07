@@ -22,7 +22,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcReinforcementDefinitionProperties", 956)]
+	[ExpressType("IfcReinforcementDefinitionProperties", 263)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcementDefinitionProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcReinforcementDefinitionProperties>
 	{

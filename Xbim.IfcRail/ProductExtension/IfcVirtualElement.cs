@@ -19,7 +19,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcVirtualElement", 1210)]
+	[ExpressType("IfcVirtualElement", 168)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualElement>
 	{

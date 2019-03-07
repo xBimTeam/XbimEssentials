@@ -19,7 +19,7 @@ using Xbim.IfcRail.StructuralAnalysisDomain;
 
 namespace Xbim.IfcRail.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralSurfaceMemberVarying", 1112)]
+	[ExpressType("IfcStructuralSurfaceMemberVarying", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{

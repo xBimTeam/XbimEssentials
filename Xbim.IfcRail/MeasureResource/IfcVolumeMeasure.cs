@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcVolumeMeasure", 127)]
+	[ExpressType("IfcVolumeMeasure", 314)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcVolumeMeasure : IfcMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>

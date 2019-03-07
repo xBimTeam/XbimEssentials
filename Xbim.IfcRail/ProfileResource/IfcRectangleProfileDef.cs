@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProfileResource;
 
 namespace Xbim.IfcRail.ProfileResource
 {
-	[ExpressType("IfcRectangleProfileDef", 948)]
+	[ExpressType("IfcRectangleProfileDef", 103)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangleProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRectangleProfileDef>
 	{

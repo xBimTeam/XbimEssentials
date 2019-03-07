@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.IfcRail.Kernel
 {

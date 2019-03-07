@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationDefinitionResource;
 
 namespace Xbim.IfcRail.PresentationDefinitionResource
 {
-	[ExpressType("IfcPlanarExtent", 868)]
+	[ExpressType("IfcPlanarExtent", 469)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IEquatable<@IfcPlanarExtent>
 	{

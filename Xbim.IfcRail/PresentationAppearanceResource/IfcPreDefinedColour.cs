@@ -19,7 +19,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcPreDefinedColour", 883)]
+	[ExpressType("IfcPreDefinedColour", 608)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPreDefinedColour : IfcPreDefinedItem, IfcColour, IEquatable<@IfcPreDefinedColour>
 	{

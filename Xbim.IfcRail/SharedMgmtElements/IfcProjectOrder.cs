@@ -21,7 +21,7 @@ using Xbim.IfcRail.SharedMgmtElements;
 
 namespace Xbim.IfcRail.SharedMgmtElements
 {
-	[ExpressType("IfcProjectOrder", 904)]
+	[ExpressType("IfcProjectOrder", 696)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectOrder : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProjectOrder>
 	{

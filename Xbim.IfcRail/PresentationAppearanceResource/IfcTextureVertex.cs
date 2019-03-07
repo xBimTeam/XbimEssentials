@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcTextureVertex", 1171)]
+	[ExpressType("IfcTextureVertex", 735)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextureVertex : IfcPresentationItem, IInstantiableEntity, IEquatable<@IfcTextureVertex>
 	{

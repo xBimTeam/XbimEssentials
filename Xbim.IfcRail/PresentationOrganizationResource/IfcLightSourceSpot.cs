@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationOrganizationResource;
 
 namespace Xbim.IfcRail.PresentationOrganizationResource
 {
-	[ExpressType("IfcLightSourceSpot", 785)]
+	[ExpressType("IfcLightSourceSpot", 760)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightSourceSpot : IfcLightSourcePositional, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLightSourceSpot>
 	{

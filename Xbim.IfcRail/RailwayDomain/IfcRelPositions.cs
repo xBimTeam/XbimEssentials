@@ -21,7 +21,7 @@ using Xbim.IfcRail.RailwayDomain;
 
 namespace Xbim.IfcRail.RailwayDomain
 {
-	[ExpressType("IfcRelPositions", 1002)]
+	[ExpressType("IfcRelPositions", 1382)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelPositions : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelPositions>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcSurfaceFeature", 1123)]
+	[ExpressType("IfcSurfaceFeature", 1287)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceFeature : IfcFeatureElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSurfaceFeature>
 	{

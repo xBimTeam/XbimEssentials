@@ -22,7 +22,7 @@ using Xbim.IfcRail.PropertyResource;
 
 namespace Xbim.IfcRail.PropertyResource
 {
-	[ExpressType("IfcPropertyAbstraction", 908)]
+	[ExpressType("IfcPropertyAbstraction", 1231)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPropertyAbstraction : PersistEntity, IfcResourceObjectSelect, IEquatable<@IfcPropertyAbstraction>
 	{

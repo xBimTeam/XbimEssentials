@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcSpecularExponent", 106)]
+	[ExpressType("IfcSpecularExponent", 325)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcSpecularExponent : IfcSpecularHighlightSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>

@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationDefinitionResource;
 
 namespace Xbim.IfcRail.PresentationDefinitionResource
 {
-	[ExpressType("IfcPlanarBox", 867)]
+	[ExpressType("IfcPlanarBox", 762)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPlanarBox>
 	{

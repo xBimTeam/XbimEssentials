@@ -22,7 +22,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcRelInterferesElements", 1000)]
+	[ExpressType("IfcRelInterferesElements", 1252)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelInterferesElements : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelInterferesElements>
 	{

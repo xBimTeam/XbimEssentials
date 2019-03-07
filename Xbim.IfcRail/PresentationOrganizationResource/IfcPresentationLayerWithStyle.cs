@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationOrganizationResource;
 
 namespace Xbim.IfcRail.PresentationOrganizationResource
 {
-	[ExpressType("IfcPresentationLayerWithStyle", 891)]
+	[ExpressType("IfcPresentationLayerWithStyle", 259)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerWithStyle>
 	{

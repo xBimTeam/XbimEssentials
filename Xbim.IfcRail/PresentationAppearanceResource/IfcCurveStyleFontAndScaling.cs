@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcCurveStyleFontAndScaling", 597)]
+	[ExpressType("IfcCurveStyleFontAndScaling", 569)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveStyleFontAndScaling : IfcPresentationItem, IInstantiableEntity, IfcCurveFontOrScaledCurveFontSelect, IContainsEntityReferences, IEquatable<@IfcCurveStyleFontAndScaling>
 	{

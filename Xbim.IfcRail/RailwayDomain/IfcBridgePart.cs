@@ -19,7 +19,7 @@ using Xbim.IfcRail.RailwayDomain;
 
 namespace Xbim.IfcRail.RailwayDomain
 {
-	[ExpressType("IfcBridgePart", 482)]
+	[ExpressType("IfcBridgePart", 1372)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBridgePart : IfcFacilityPart, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBridgePart>
 	{

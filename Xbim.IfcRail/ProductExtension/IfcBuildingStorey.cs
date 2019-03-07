@@ -21,7 +21,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcBuildingStorey", 491)]
+	[ExpressType("IfcBuildingStorey", 459)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuildingStorey : IfcFacilityPart, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingStorey>
 	{

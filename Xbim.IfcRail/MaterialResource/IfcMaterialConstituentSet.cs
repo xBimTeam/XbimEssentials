@@ -20,7 +20,7 @@ using Xbim.IfcRail.MaterialResource;
 
 namespace Xbim.IfcRail.MaterialResource
 {
-	[ExpressType("IfcMaterialConstituentSet", 798)]
+	[ExpressType("IfcMaterialConstituentSet", 1202)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialConstituentSet : IfcMaterialDefinition, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialConstituentSet>
 	{

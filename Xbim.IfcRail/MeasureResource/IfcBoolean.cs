@@ -13,7 +13,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcBoolean", 9)]
+	[ExpressType("IfcBoolean", 616)]
 	[DefinedType(typeof(bool))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcBoolean : IfcModulusOfRotationalSubgradeReactionSelect, IfcModulusOfSubgradeReactionSelect, IfcModulusOfTranslationalSubgradeReactionSelect, IfcRotationalStiffnessSelect, IfcSimpleValue, IfcTranslationalStiffnessSelect, IfcWarpingStiffnessSelect, IExpressValueType, IExpressBooleanType, System.IEquatable<bool>

@@ -22,7 +22,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcStructuralConnectionCondition", 1081)]
+	[ExpressType("IfcStructuralConnectionCondition", 639)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralConnectionCondition : PersistEntity, IEquatable<@IfcStructuralConnectionCondition>
 	{

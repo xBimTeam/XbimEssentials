@@ -21,7 +21,7 @@ using Xbim.IfcRail.StructuralAnalysisDomain;
 
 namespace Xbim.IfcRail.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralLoadGroup", 1092)]
+	[ExpressType("IfcStructuralLoadGroup", 573)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcStructuralLoadGroup>
 	{

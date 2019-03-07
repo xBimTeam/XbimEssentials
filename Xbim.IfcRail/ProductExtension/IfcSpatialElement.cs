@@ -21,7 +21,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcSpatialElement", 1063)]
+	[ExpressType("IfcSpatialElement", 1273)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSpatialElement : IfcProduct, IEquatable<@IfcSpatialElement>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcFooting", 730)]
+	[ExpressType("IfcFooting", 120)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFooting : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFooting>
 	{

@@ -21,7 +21,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcCoordinateOperation", 577)]
+	[ExpressType("IfcCoordinateOperation", 1143)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCoordinateOperation : PersistEntity, IEquatable<@IfcCoordinateOperation>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralAnalysisDomain;
 
 namespace Xbim.IfcRail.StructuralAnalysisDomain
 {
-	[ExpressType("IfcRelConnectsStructuralActivity", 984)]
+	[ExpressType("IfcRelConnectsStructuralActivity", 211)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralActivity>
 	{

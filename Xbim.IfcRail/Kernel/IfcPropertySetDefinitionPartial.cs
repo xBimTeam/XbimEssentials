@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.IfcRail.Kernel
 {

@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralAnalysisDomain;
 
 namespace Xbim.IfcRail.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralItem", 1087)]
+	[ExpressType("IfcStructuralItem", 226)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralItem : IfcProduct, IfcStructuralActivityAssignmentSelect, IEquatable<@IfcStructuralItem>
 	{

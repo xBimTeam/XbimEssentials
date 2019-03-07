@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralAnalysisDomain;
 
 namespace Xbim.IfcRail.StructuralAnalysisDomain
 {
-	[ExpressType("IfcRelConnectsWithEccentricity", 986)]
+	[ExpressType("IfcRelConnectsWithEccentricity", 322)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelConnectsWithEccentricity : IfcRelConnectsStructuralMember, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsWithEccentricity>
 	{

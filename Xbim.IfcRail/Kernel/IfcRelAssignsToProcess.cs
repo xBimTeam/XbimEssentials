@@ -20,7 +20,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcRelAssignsToProcess", 969)]
+	[ExpressType("IfcRelAssignsToProcess", 249)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProcess>
 	{

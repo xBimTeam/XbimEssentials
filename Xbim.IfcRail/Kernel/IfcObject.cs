@@ -20,7 +20,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcObject", 828)]
+	[ExpressType("IfcObject", 21)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcObject : IfcObjectDefinition, IEquatable<@IfcObject>
 	{

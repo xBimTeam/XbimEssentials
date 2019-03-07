@@ -23,7 +23,7 @@ using Xbim.IfcRail.SharedFacilitiesElements;
 
 namespace Xbim.IfcRail.SharedFacilitiesElements
 {
-	[ExpressType("IfcInventory", 763)]
+	[ExpressType("IfcInventory", 768)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcInventory : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcInventory>
 	{

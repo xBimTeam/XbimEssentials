@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcStructuralLoadSingleForceWarping", 1099)]
+	[ExpressType("IfcStructuralLoadSingleForceWarping", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{

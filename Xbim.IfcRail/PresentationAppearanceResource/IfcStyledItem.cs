@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcStyledItem", 1115)]
+	[ExpressType("IfcStyledItem", 56)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStyledItem>
 	{

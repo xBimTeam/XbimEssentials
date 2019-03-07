@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcRelReferencedInSpatialStructure", 1004)]
+	[ExpressType("IfcRelReferencedInSpatialStructure", 455)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelReferencedInSpatialStructure>
 	{

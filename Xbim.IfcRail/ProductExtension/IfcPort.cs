@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcPort", 880)]
+	[ExpressType("IfcPort", 179)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPort : IfcProduct, IEquatable<@IfcPort>
 	{

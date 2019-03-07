@@ -20,7 +20,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcProjectedCRS", 905)]
+	[ExpressType("IfcProjectedCRS", 1230)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectedCRS : IfcCoordinateReferenceSystem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProjectedCRS>
 	{

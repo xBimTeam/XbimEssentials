@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcFillAreaStyleHatching", 705)]
+	[ExpressType("IfcFillAreaStyleHatching", 462)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IfcFillStyleSelect, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleHatching>
 	{

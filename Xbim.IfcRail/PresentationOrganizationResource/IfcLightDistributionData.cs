@@ -22,7 +22,7 @@ using Xbim.IfcRail.PresentationOrganizationResource;
 
 namespace Xbim.IfcRail.PresentationOrganizationResource
 {
-	[ExpressType("IfcLightDistributionData", 776)]
+	[ExpressType("IfcLightDistributionData", 753)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightDistributionData : PersistEntity, IInstantiableEntity, IEquatable<@IfcLightDistributionData>
 	{

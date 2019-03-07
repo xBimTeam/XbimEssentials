@@ -21,7 +21,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcRelSpaceBoundary", 1007)]
+	[ExpressType("IfcRelSpaceBoundary", 15)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelSpaceBoundary : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelSpaceBoundary>
 	{

@@ -22,7 +22,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcProductRepresentation", 899)]
+	[ExpressType("IfcProductRepresentation", 1)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProductRepresentation : PersistEntity, IEquatable<@IfcProductRepresentation>
 	{

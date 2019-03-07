@@ -19,7 +19,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcOpeningStandardCase", 839)]
+	[ExpressType("IfcOpeningStandardCase", 1217)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOpeningStandardCase : IfcOpeningElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOpeningStandardCase>
 	{

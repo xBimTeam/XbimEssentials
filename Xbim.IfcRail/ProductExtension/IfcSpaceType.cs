@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcSpaceType", 1062)]
+	[ExpressType("IfcSpaceType", 529)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpaceType>
 	{

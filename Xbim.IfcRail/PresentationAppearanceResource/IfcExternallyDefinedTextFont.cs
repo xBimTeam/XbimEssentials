@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcExternallyDefinedTextFont", 684)]
+	[ExpressType("IfcExternallyDefinedTextFont", 132)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternallyDefinedTextFont : IfcExternalReference, IInstantiableEntity, IfcTextFontSelect, IEquatable<@IfcExternallyDefinedTextFont>
 	{

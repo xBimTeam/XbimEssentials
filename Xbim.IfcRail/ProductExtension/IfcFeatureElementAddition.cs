@@ -19,7 +19,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcFeatureElementAddition", 702)]
+	[ExpressType("IfcFeatureElementAddition", 385)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcFeatureElementAddition : IfcFeatureElement, IEquatable<@IfcFeatureElementAddition>
 	{

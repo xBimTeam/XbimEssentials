@@ -20,7 +20,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcPropertySetTemplate", 918)]
+	[ExpressType("IfcPropertySetTemplate", 1232)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertySetTemplate : IfcPropertyTemplateDefinition, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertySetTemplate>
 	{

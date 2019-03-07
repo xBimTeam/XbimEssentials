@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcReinforcingMesh", 961)]
+	[ExpressType("IfcReinforcingMesh", 531)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcReinforcingMesh : IfcReinforcingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReinforcingMesh>
 	{

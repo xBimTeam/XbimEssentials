@@ -22,7 +22,7 @@ using Xbim.IfcRail.ProcessExtension;
 
 namespace Xbim.IfcRail.ProcessExtension
 {
-	[ExpressType("IfcEvent", 673)]
+	[ExpressType("IfcEvent", 1168)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEvent : IfcProcess, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcEvent>
 	{

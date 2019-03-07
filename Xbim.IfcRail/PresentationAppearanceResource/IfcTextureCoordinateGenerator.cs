@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcTextureCoordinateGenerator", 1169)]
+	[ExpressType("IfcTextureCoordinateGenerator", 733)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTextureCoordinateGenerator>
 	{

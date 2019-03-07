@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcNonNegativeLengthMeasure", 76)]
+	[ExpressType("IfcNonNegativeLengthMeasure", 994)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcNonNegativeLengthMeasure : IfcMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>

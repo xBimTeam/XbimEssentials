@@ -20,7 +20,7 @@ using Xbim.IfcRail.RailwayDomain;
 
 namespace Xbim.IfcRail.RailwayDomain
 {
-	[ExpressType("IfcRailElement", 939)]
+	[ExpressType("IfcRailElement", 1380)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRailElement : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRailElement>
 	{

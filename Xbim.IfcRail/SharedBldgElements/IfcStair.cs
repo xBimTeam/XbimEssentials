@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcStair", 1073)]
+	[ExpressType("IfcStair", 346)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStair : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStair>
 	{

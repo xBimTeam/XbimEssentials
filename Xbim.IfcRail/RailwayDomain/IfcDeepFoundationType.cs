@@ -20,7 +20,7 @@ using Xbim.IfcRail.RailwayDomain;
 
 namespace Xbim.IfcRail.RailwayDomain
 {
-	[ExpressType("IfcDeepFoundationType", 603)]
+	[ExpressType("IfcDeepFoundationType", 1377)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDeepFoundationType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDeepFoundationType>
 	{

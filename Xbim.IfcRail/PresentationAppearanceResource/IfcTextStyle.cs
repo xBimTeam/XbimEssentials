@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcTextStyle", 1164)]
+	[ExpressType("IfcTextStyle", 427)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextStyle : IfcPresentationStyle, IInstantiableEntity, IfcPresentationStyleSelect, IContainsEntityReferences, IEquatable<@IfcTextStyle>
 	{

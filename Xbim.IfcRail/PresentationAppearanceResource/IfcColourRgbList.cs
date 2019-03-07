@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcColourRgbList", 532)]
+	[ExpressType("IfcColourRgbList", 1125)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcColourRgbList : IfcPresentationItem, IInstantiableEntity, IEquatable<@IfcColourRgbList>
 	{

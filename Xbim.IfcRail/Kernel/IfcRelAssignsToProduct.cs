@@ -19,7 +19,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcRelAssignsToProduct", 970)]
+	[ExpressType("IfcRelAssignsToProduct", 309)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProduct>
 	{

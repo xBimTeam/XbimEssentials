@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcCovering", 582)]
+	[ExpressType("IfcCovering", 382)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCovering>
 	{

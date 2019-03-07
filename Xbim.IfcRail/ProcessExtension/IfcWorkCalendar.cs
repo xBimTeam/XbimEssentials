@@ -21,7 +21,7 @@ using Xbim.IfcRail.ProcessExtension;
 
 namespace Xbim.IfcRail.ProcessExtension
 {
-	[ExpressType("IfcWorkCalendar", 1225)]
+	[ExpressType("IfcWorkCalendar", 1318)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkCalendar : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcWorkCalendar>
 	{

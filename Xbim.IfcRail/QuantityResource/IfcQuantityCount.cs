@@ -20,7 +20,7 @@ using Xbim.IfcRail.QuantityResource;
 
 namespace Xbim.IfcRail.QuantityResource
 {
-	[ExpressType("IfcQuantityCount", 931)]
+	[ExpressType("IfcQuantityCount", 457)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcQuantityCount>
 	{

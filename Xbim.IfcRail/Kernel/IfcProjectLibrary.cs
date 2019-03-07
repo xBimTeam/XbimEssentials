@@ -19,7 +19,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcProjectLibrary", 903)]
+	[ExpressType("IfcProjectLibrary", 1229)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectLibrary : IfcContext, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProjectLibrary>
 	{

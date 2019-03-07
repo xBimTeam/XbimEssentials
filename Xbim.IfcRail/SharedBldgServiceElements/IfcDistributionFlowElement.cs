@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedBldgServiceElements;
 
 namespace Xbim.IfcRail.SharedBldgServiceElements
 {
-	[ExpressType("IfcDistributionFlowElement", 619)]
+	[ExpressType("IfcDistributionFlowElement", 45)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistributionFlowElement : IfcDistributionElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionFlowElement>
 	{

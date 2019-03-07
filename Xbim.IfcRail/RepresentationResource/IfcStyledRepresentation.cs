@@ -19,7 +19,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcStyledRepresentation", 1116)]
+	[ExpressType("IfcStyledRepresentation", 162)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStyledRepresentation : IfcStyleModel, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStyledRepresentation>
 	{

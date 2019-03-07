@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcShadingDeviceType", 1043)]
+	[ExpressType("IfcShadingDeviceType", 1266)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShadingDeviceType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShadingDeviceType>
 	{

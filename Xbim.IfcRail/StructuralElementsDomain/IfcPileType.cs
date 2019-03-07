@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcPileType", 860)]
+	[ExpressType("IfcPileType", 1221)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPileType : IfcDeepFoundationType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPileType>
 	{

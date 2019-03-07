@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcTextTransformation", 114)]
+	[ExpressType("IfcTextTransformation", 404)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcTextTransformation : IExpressValueType, IExpressStringType, System.IEquatable<string>

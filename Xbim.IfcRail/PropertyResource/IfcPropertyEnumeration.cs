@@ -20,7 +20,7 @@ using Xbim.IfcRail.PropertyResource;
 
 namespace Xbim.IfcRail.PropertyResource
 {
-	[ExpressType("IfcPropertyEnumeration", 913)]
+	[ExpressType("IfcPropertyEnumeration", 597)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyEnumeration : IfcPropertyAbstraction, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyEnumeration>
 	{

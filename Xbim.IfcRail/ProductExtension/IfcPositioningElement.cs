@@ -21,7 +21,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcPositioningElement", 881)]
+	[ExpressType("IfcPositioningElement", 1331)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPositioningElement : IfcProduct, IEquatable<@IfcPositioningElement>
 	{

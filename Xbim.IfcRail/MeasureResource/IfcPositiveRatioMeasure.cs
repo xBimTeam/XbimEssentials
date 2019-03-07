@@ -13,7 +13,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcPositiveRatioMeasure", 86)]
+	[ExpressType("IfcPositiveRatioMeasure", 387)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcPositiveRatioMeasure : IfcMeasureValue, IfcSizeSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>

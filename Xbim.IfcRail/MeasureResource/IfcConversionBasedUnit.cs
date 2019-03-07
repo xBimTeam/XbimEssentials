@@ -20,7 +20,7 @@ using Xbim.IfcRail.MeasureResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcConversionBasedUnit", 571)]
+	[ExpressType("IfcConversionBasedUnit", 92)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IfcResourceObjectSelect, IContainsEntityReferences, IEquatable<@IfcConversionBasedUnit>
 	{

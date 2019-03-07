@@ -21,7 +21,7 @@ using Xbim.IfcRail.TopologyResource;
 
 namespace Xbim.IfcRail.TopologyResource
 {
-	[ExpressType("IfcVertexPoint", 1205)]
+	[ExpressType("IfcVertexPoint", 521)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IfcPointOrVertexPoint, IContainsEntityReferences, IEquatable<@IfcVertexPoint>
 	{

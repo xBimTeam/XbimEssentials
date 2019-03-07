@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcSurfaceReinforcementArea", 1126)]
+	[ExpressType("IfcSurfaceReinforcementArea", 1288)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceReinforcementArea : IfcStructuralLoadOrResult, IInstantiableEntity, IEquatable<@IfcSurfaceReinforcementArea>
 	{

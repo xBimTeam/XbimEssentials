@@ -21,7 +21,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcProcess", 896)]
+	[ExpressType("IfcProcess", 73)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProcess : IfcObject, IfcProcessSelect, IEquatable<@IfcProcess>
 	{

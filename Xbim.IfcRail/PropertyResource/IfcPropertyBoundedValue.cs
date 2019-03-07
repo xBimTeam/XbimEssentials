@@ -20,7 +20,7 @@ using Xbim.IfcRail.PropertyResource;
 
 namespace Xbim.IfcRail.PropertyResource
 {
-	[ExpressType("IfcPropertyBoundedValue", 909)]
+	[ExpressType("IfcPropertyBoundedValue", 3)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyBoundedValue : IfcSimpleProperty, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertyBoundedValue>
 	{

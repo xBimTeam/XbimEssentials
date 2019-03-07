@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcNullStyle", 131)]
+	[ExpressType("IfcNullStyle", 566)]
 	[DefinedType(typeof(IfcNullStyleEnum))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcNullStyle : IfcPresentationStyleSelect, IExpressValueType, System.IEquatable<IfcNullStyleEnum>

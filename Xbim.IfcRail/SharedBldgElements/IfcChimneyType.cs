@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcChimneyType", 519)]
+	[ExpressType("IfcChimneyType", 1121)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcChimneyType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcChimneyType>
 	{

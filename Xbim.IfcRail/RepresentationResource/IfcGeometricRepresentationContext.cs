@@ -21,7 +21,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcGeometricRepresentationContext", 739)]
+	[ExpressType("IfcGeometricRepresentationContext", 555)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IfcCoordinateReferenceSystemSelect, IContainsEntityReferences, IEquatable<@IfcGeometricRepresentationContext>
 	{

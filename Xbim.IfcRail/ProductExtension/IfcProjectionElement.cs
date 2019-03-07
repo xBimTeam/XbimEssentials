@@ -19,7 +19,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcProjectionElement", 906)]
+	[ExpressType("IfcProjectionElement", 384)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProjectionElement : IfcFeatureElementAddition, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProjectionElement>
 	{

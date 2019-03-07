@@ -21,7 +21,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcWindow", 1219)]
+	[ExpressType("IfcWindow", 667)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindow : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindow>
 	{

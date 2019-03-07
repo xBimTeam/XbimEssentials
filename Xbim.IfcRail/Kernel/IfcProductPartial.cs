@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Xbim.IfcRail.ProductExtension;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.IfcRail.Kernel
 {

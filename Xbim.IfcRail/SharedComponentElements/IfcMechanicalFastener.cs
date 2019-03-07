@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedComponentElements;
 
 namespace Xbim.IfcRail.SharedComponentElements
 {
-	[ExpressType("IfcMechanicalFastener", 815)]
+	[ExpressType("IfcMechanicalFastener", 536)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMechanicalFastener : IfcElementComponent, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMechanicalFastener>
 	{

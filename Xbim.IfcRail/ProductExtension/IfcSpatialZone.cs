@@ -19,7 +19,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcSpatialZone", 1067)]
+	[ExpressType("IfcSpatialZone", 1275)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSpatialZone : IfcSpatialElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpatialZone>
 	{

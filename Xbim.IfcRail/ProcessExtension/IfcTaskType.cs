@@ -21,7 +21,7 @@ using Xbim.IfcRail.ProcessExtension;
 
 namespace Xbim.IfcRail.ProcessExtension
 {
-	[ExpressType("IfcTaskType", 1152)]
+	[ExpressType("IfcTaskType", 1296)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTaskType : IfcTypeProcess, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTaskType>
 	{

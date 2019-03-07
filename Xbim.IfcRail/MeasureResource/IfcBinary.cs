@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcBinary", 8)]
+	[ExpressType("IfcBinary", 986)]
 	[DefinedType(typeof(byte[]))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcBinary : IfcSimpleValue, IExpressValueType, IExpressBinaryType, System.IEquatable<byte[]>

@@ -19,7 +19,7 @@ using Xbim.IfcRail.SharedBldgServiceElements;
 
 namespace Xbim.IfcRail.SharedBldgServiceElements
 {
-	[ExpressType("IfcEnergyConversionDevice", 665)]
+	[ExpressType("IfcEnergyConversionDevice", 175)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEnergyConversionDevice : IfcDistributionFlowElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEnergyConversionDevice>
 	{

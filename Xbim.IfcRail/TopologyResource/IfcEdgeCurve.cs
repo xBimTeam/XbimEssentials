@@ -22,7 +22,7 @@ using Xbim.IfcRail.TopologyResource;
 
 namespace Xbim.IfcRail.TopologyResource
 {
-	[ExpressType("IfcEdgeCurve", 641)]
+	[ExpressType("IfcEdgeCurve", 203)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IfcCurveOrEdgeCurve, IContainsEntityReferences, IEquatable<@IfcEdgeCurve>
 	{

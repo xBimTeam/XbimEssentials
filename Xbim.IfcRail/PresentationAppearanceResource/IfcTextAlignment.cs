@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcTextAlignment", 111)]
+	[ExpressType("IfcTextAlignment", 583)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcTextAlignment : IExpressValueType, IExpressStringType, System.IEquatable<string>

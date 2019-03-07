@@ -19,7 +19,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcStructuralLoadStatic", 1100)]
+	[ExpressType("IfcStructuralLoadStatic", 37)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralLoadStatic : IfcStructuralLoadOrResult, IEquatable<@IfcStructuralLoadStatic>
 	{

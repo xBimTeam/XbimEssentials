@@ -19,7 +19,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcWallElementedCase", 1214)]
+	[ExpressType("IfcWallElementedCase", 1314)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWallElementedCase : IfcWall, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWallElementedCase>
 	{

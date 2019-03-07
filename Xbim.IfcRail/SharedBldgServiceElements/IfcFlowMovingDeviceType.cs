@@ -19,7 +19,7 @@ using Xbim.IfcRail.SharedBldgServiceElements;
 
 namespace Xbim.IfcRail.SharedBldgServiceElements
 {
-	[ExpressType("IfcFlowMovingDeviceType", 721)]
+	[ExpressType("IfcFlowMovingDeviceType", 587)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcFlowMovingDeviceType : IfcDistributionFlowElementType, IEquatable<@IfcFlowMovingDeviceType>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcProxy", 927)]
+	[ExpressType("IfcProxy", 447)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProxy>
 	{

@@ -23,7 +23,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcRoot", 1028)]
+	[ExpressType("IfcRoot", 12)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcRoot : PersistEntity, IEquatable<@IfcRoot>
 	{

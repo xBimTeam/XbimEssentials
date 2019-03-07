@@ -21,7 +21,7 @@ using Xbim.IfcRail.ProfileResource;
 
 namespace Xbim.IfcRail.ProfileResource
 {
-	[ExpressType("IfcSectionReinforcementProperties", 1036)]
+	[ExpressType("IfcSectionReinforcementProperties", 508)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSectionReinforcementProperties : IfcPreDefinedProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSectionReinforcementProperties>
 	{

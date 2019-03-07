@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Xbim.Ifc4.Interfaces;
 using Xbim.IfcRail.MeasureResource;
 
 namespace Xbim.IfcRail.ProductExtension
@@ -35,33 +36,5 @@ namespace Xbim.IfcRail.ProductExtension
                 return storeys;
             }
         }
-
-#region Properties
-
-        /// <summary>
-        /// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
-        /// </summary>
-        /// <returns></returns>
-        public IfcAreaMeasure? GrossFloorArea
-        {
-            get
-            {
-                var qArea = GetQuantity<IIfcQuantityArea>("BaseQuantities", "GrossFloorArea") ??
-                            GetQuantity<IIfcQuantityArea>("GrossFloorArea");
-                return qArea != null ? (IfcAreaMeasure?)qArea.AreaValue : null;
-            }
-        }
-
-        public IfcLengthMeasure? TotalHeight
-        {
-            get
-            {
-                var qLen = GetQuantity<IIfcQuantityLength>("BaseQuantities", "TotalHeight") ??
-                           GetQuantity<IIfcQuantityLength>("TotalHeight");
-                return qLen != null ? (IfcLengthMeasure?)qLen.LengthValue : null;
-            }
-        }
-
-#endregion
     }
 }

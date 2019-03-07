@@ -20,7 +20,7 @@ using Xbim.IfcRail.TopologyResource;
 
 namespace Xbim.IfcRail.TopologyResource
 {
-	[ExpressType("IfcClosedShell", 528)]
+	[ExpressType("IfcClosedShell", 161)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IfcShell, IfcSolidOrShell, IContainsEntityReferences, IEquatable<@IfcClosedShell>
 	{

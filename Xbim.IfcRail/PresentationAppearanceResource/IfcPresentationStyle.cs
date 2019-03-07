@@ -17,12 +17,13 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.IfcRail.PresentationAppearanceResource;
 //## Custom using statements
+using Xbim.Ifc4.Interfaces;
 //##
 
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcPresentationStyle", 892)]
+	[ExpressType("IfcPresentationStyle", 34)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPresentationStyle : PersistEntity, IfcStyleAssignmentSelect, IEquatable<@IfcPresentationStyle>
 	{

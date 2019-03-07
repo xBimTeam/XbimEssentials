@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcLinearPositioningElement", 789)]
+	[ExpressType("IfcLinearPositioningElement", 1350)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLinearPositioningElement : IfcPositioningElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLinearPositioningElement>
 	{

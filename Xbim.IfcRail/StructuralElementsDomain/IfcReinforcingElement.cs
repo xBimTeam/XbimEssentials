@@ -21,7 +21,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcReinforcingElement", 959)]
+	[ExpressType("IfcReinforcingElement", 262)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcReinforcingElement : IfcElementComponent, IEquatable<@IfcReinforcingElement>
 	{

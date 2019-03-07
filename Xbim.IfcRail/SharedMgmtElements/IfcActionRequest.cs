@@ -21,7 +21,7 @@ using Xbim.IfcRail.SharedMgmtElements;
 
 namespace Xbim.IfcRail.SharedMgmtElements
 {
-	[ExpressType("IfcActionRequest", 412)]
+	[ExpressType("IfcActionRequest", 516)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcActionRequest>
 	{

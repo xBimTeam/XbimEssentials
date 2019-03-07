@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcRelServicesBuildings", 1006)]
+	[ExpressType("IfcRelServicesBuildings", 600)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelServicesBuildings : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelServicesBuildings>
 	{

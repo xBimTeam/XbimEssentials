@@ -21,7 +21,7 @@ using Xbim.IfcRail.PropertyResource;
 
 namespace Xbim.IfcRail.PropertyResource
 {
-	[ExpressType("IfcPropertyDependencyRelationship", 911)]
+	[ExpressType("IfcPropertyDependencyRelationship", 444)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPropertyDependencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPropertyDependencyRelationship>
 	{

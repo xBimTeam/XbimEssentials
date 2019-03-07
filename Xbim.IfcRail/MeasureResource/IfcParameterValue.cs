@@ -13,7 +13,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcParameterValue", 80)]
+	[ExpressType("IfcParameterValue", 52)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcParameterValue : IfcMeasureValue, IfcTrimmingSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>

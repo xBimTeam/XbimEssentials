@@ -19,7 +19,7 @@ using Xbim.IfcRail.PresentationDefinitionResource;
 
 namespace Xbim.IfcRail.PresentationDefinitionResource
 {
-	[ExpressType("IfcTextLiteralWithExtent", 1163)]
+	[ExpressType("IfcTextLiteralWithExtent", 426)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTextLiteralWithExtent : IfcTextLiteral, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTextLiteralWithExtent>
 	{

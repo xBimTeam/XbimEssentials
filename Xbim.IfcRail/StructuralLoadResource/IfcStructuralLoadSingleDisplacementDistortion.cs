@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcStructuralLoadSingleDisplacementDistortion", 1097)]
+	[ExpressType("IfcStructuralLoadSingleDisplacementDistortion", 290)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcStructuralLoadSingleDisplacementDistortion : IfcStructuralLoadSingleDisplacement, IInstantiableEntity, IEquatable<@IfcStructuralLoadSingleDisplacementDistortion>
 	{

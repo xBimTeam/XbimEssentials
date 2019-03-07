@@ -154,7 +154,7 @@ namespace Xbim.IfcRail.Kernel
                 decomposition.RelatedObjects.Add(site);
         }
 
-        public IEnumerable<IIfcSite> Sites
+        public IEnumerable<Ifc4.Interfaces.IIfcSite> Sites
         {
             get {
                 return IsDecomposedBy.SelectMany(rel => Enumerable.OfType<IfcSite>(rel.RelatedObjects));
@@ -180,7 +180,7 @@ namespace Xbim.IfcRail.Kernel
         /// <summary>
         /// Returns all buildings at the highest level of spatial structural decomposition (i.e. root buildings)
         /// </summary>
-        public IEnumerable<IIfcBuilding> Buildings
+        public IEnumerable<Ifc4.Interfaces.IIfcBuilding> Buildings
         {
             get
             {               
@@ -199,7 +199,7 @@ namespace Xbim.IfcRail.Kernel
             }
         }
 
-        public IEnumerable<IIfcSpatialStructureElement> SpatialStructuralElements
+        public IEnumerable<Ifc4.Interfaces.IIfcSpatialStructureElement> SpatialStructuralElements
         {
             get
             {

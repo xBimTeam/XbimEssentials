@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProfileResource;
 
 namespace Xbim.IfcRail.ProfileResource
 {
-	[ExpressType("IfcMirroredProfileDef", 823)]
+	[ExpressType("IfcMirroredProfileDef", 1215)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcMirroredProfileDef>
 	{

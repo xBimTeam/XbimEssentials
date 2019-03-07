@@ -20,7 +20,7 @@ using Xbim.IfcRail.RailwayDomain;
 
 namespace Xbim.IfcRail.RailwayDomain
 {
-	[ExpressType("IfcTendonConduitType", 1158)]
+	[ExpressType("IfcTendonConduitType", 1384)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTendonConduitType : IfcReinforcingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendonConduitType>
 	{

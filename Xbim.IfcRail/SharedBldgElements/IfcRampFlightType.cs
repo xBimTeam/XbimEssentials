@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcRampFlightType", 943)]
+	[ExpressType("IfcRampFlightType", 283)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRampFlightType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRampFlightType>
 	{

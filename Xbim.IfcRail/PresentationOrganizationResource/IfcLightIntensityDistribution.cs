@@ -21,7 +21,7 @@ using Xbim.IfcRail.PresentationOrganizationResource;
 
 namespace Xbim.IfcRail.PresentationOrganizationResource
 {
-	[ExpressType("IfcLightIntensityDistribution", 779)]
+	[ExpressType("IfcLightIntensityDistribution", 754)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightIntensityDistribution : PersistEntity, IInstantiableEntity, IfcLightDistributionDataSourceSelect, IContainsEntityReferences, IEquatable<@IfcLightIntensityDistribution>
 	{

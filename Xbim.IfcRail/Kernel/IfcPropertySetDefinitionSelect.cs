@@ -9,6 +9,8 @@
 
 using Xbim.Common;
 //## Custom using statements
+using System.Collections.Generic;
+using Xbim.Ifc4.Interfaces;
 //##
 
 namespace Xbim.IfcRail.Kernel
@@ -19,7 +21,8 @@ namespace Xbim.IfcRail.Kernel
 	{
 		#region Custom code for a select
 		//## Custom code for a select
-		//##
+        IEnumerable<IIfcPropertySetDefinition> PropertySetDefinitions { get; }
+        //##
 		#endregion
 	}
 }

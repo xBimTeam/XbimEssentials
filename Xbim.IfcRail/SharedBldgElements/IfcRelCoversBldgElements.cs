@@ -21,7 +21,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcRelCoversBldgElements", 989)]
+	[ExpressType("IfcRelCoversBldgElements", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversBldgElements>
 	{

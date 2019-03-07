@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcFailureConnectionCondition", 696)]
+	[ExpressType("IfcFailureConnectionCondition", 640)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IEquatable<@IfcFailureConnectionCondition>
 	{

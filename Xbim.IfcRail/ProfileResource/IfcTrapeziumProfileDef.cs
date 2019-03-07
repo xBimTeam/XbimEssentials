@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProfileResource;
 
 namespace Xbim.IfcRail.ProfileResource
 {
-	[ExpressType("IfcTrapeziumProfileDef", 1184)]
+	[ExpressType("IfcTrapeziumProfileDef", 561)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTrapeziumProfileDef>
 	{

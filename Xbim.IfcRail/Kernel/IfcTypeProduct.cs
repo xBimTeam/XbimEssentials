@@ -21,7 +21,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcTypeProduct", 1192)]
+	[ExpressType("IfcTypeProduct", 43)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTypeProduct : IfcTypeObject, IInstantiableEntity, IfcProductSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeProduct>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationDefinitionResource;
 
 namespace Xbim.IfcRail.PresentationDefinitionResource
 {
-	[ExpressType("IfcAnnotationFillArea", 440)]
+	[ExpressType("IfcAnnotationFillArea", 173)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAnnotationFillArea : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAnnotationFillArea>
 	{

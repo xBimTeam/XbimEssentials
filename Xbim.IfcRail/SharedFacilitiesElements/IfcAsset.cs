@@ -24,7 +24,7 @@ using Xbim.IfcRail.SharedFacilitiesElements;
 
 namespace Xbim.IfcRail.SharedFacilitiesElements
 {
-	[ExpressType("IfcAsset", 448)]
+	[ExpressType("IfcAsset", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAsset>
 	{

@@ -23,7 +23,7 @@ using Xbim.IfcRail.ProcessExtension;
 
 namespace Xbim.IfcRail.ProcessExtension
 {
-	[ExpressType("IfcWorkControl", 1226)]
+	[ExpressType("IfcWorkControl", 185)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcWorkControl : IfcControl, IEquatable<@IfcWorkControl>
 	{

@@ -22,7 +22,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcCoordinateReferenceSystem", 578)]
+	[ExpressType("IfcCoordinateReferenceSystem", 1144)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCoordinateReferenceSystem : PersistEntity, IfcCoordinateReferenceSystemSelect, IEquatable<@IfcCoordinateReferenceSystem>
 	{

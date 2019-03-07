@@ -23,7 +23,7 @@ using Xbim.IfcRail.UtilityResource;
 
 namespace Xbim.IfcRail.UtilityResource
 {
-	[ExpressType("IfcOwnerHistory", 847)]
+	[ExpressType("IfcOwnerHistory", 519)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOwnerHistory : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOwnerHistory>
 	{

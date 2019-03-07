@@ -22,7 +22,7 @@ using Xbim.IfcRail.PresentationOrganizationResource;
 
 namespace Xbim.IfcRail.PresentationOrganizationResource
 {
-	[ExpressType("IfcLightSourceGoniometric", 783)]
+	[ExpressType("IfcLightSourceGoniometric", 758)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightSourceGoniometric : IfcLightSource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLightSourceGoniometric>
 	{

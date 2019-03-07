@@ -21,7 +21,7 @@ using Xbim.IfcRail.SharedBldgElements;
 
 namespace Xbim.IfcRail.SharedBldgElements
 {
-	[ExpressType("IfcDoorType", 631)]
+	[ExpressType("IfcDoorType", 1152)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDoorType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoorType>
 	{

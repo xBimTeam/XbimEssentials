@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcIndexedTextureMap", 758)]
+	[ExpressType("IfcIndexedTextureMap", 1191)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcIndexedTextureMap : IfcTextureCoordinate, IEquatable<@IfcIndexedTextureMap>
 	{

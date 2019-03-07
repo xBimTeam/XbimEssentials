@@ -20,7 +20,7 @@ using Xbim.IfcRail.RailwayDomain;
 
 namespace Xbim.IfcRail.RailwayDomain
 {
-	[ExpressType("IfcVibrationDamper", 1206)]
+	[ExpressType("IfcVibrationDamper", 1385)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVibrationDamper : IfcElementComponent, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVibrationDamper>
 	{

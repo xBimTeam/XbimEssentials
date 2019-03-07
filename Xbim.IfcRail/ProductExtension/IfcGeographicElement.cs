@@ -19,7 +19,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcGeographicElement", 736)]
+	[ExpressType("IfcGeographicElement", 1185)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeographicElement : IfcElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeographicElement>
 	{

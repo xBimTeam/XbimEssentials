@@ -20,7 +20,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcActor", 413)]
+	[ExpressType("IfcActor", 250)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActor : IfcObject, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcActor>
 	{

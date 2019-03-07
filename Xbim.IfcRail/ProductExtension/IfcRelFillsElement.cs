@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcRelFillsElement", 998)]
+	[ExpressType("IfcRelFillsElement", 563)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelFillsElement : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelFillsElement>
 	{

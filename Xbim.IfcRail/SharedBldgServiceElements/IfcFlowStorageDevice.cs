@@ -19,7 +19,7 @@ using Xbim.IfcRail.SharedBldgServiceElements;
 
 namespace Xbim.IfcRail.SharedBldgServiceElements
 {
-	[ExpressType("IfcFlowStorageDevice", 724)]
+	[ExpressType("IfcFlowStorageDevice", 371)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowStorageDevice>
 	{

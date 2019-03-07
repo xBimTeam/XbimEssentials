@@ -14,7 +14,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcComplexNumber", 12)]
+	[ExpressType("IfcComplexNumber", 650)]
 	[DefinedType(typeof(List<double>))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcComplexNumber : IfcMeasureValue, IExpressComplexType, System.IEquatable<List<double>>

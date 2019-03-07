@@ -19,7 +19,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcDraughtingPreDefinedCurveFont", 633)]
+	[ExpressType("IfcDraughtingPreDefinedCurveFont", 286)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDraughtingPreDefinedCurveFont : IfcPreDefinedCurveFont, IInstantiableEntity, IEquatable<@IfcDraughtingPreDefinedCurveFont>
 	{

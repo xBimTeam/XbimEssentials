@@ -20,7 +20,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcMaterialDefinitionRepresentation", 800)]
+	[ExpressType("IfcMaterialDefinitionRepresentation", 2)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{

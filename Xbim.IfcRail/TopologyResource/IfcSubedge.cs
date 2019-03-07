@@ -19,7 +19,7 @@ using Xbim.IfcRail.TopologyResource;
 
 namespace Xbim.IfcRail.TopologyResource
 {
-	[ExpressType("IfcSubedge", 1119)]
+	[ExpressType("IfcSubedge", 487)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSubedge>
 	{

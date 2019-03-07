@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProfileResource;
 
 namespace Xbim.IfcRail.ProfileResource
 {
-	[ExpressType("IfcCircleHollowProfileDef", 521)]
+	[ExpressType("IfcCircleHollowProfileDef", 114)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCircleHollowProfileDef : IfcCircleProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCircleHollowProfileDef>
 	{

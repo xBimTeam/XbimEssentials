@@ -19,7 +19,7 @@ using Xbim.IfcRail.StructuralLoadResource;
 
 namespace Xbim.IfcRail.StructuralLoadResource
 {
-	[ExpressType("IfcBoundaryFaceCondition", 473)]
+	[ExpressType("IfcBoundaryFaceCondition", 674)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IEquatable<@IfcBoundaryFaceCondition>
 	{

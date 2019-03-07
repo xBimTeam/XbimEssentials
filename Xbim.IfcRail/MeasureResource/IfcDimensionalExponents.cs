@@ -21,7 +21,7 @@ using Xbim.IfcRail.MeasureResource;
 
 namespace Xbim.IfcRail.MeasureResource
 {
-	[ExpressType("IfcDimensionalExponents", 607)]
+	[ExpressType("IfcDimensionalExponents", 303)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDimensionalExponents : PersistEntity, IInstantiableEntity, IEquatable<@IfcDimensionalExponents>
 	{

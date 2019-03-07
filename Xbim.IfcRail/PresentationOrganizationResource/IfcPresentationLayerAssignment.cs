@@ -22,7 +22,7 @@ using Xbim.IfcRail.PresentationOrganizationResource;
 
 namespace Xbim.IfcRail.PresentationOrganizationResource
 {
-	[ExpressType("IfcPresentationLayerAssignment", 890)]
+	[ExpressType("IfcPresentationLayerAssignment", 258)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPresentationLayerAssignment : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerAssignment>
 	{

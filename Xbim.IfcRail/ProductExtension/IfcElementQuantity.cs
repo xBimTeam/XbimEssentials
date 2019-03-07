@@ -22,7 +22,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcElementQuantity", 660)]
+	[ExpressType("IfcElementQuantity", 458)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElementQuantity : IfcQuantitySet, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcElementQuantity>
 	{

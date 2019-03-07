@@ -19,7 +19,7 @@ using Xbim.IfcRail.ProcessExtension;
 
 namespace Xbim.IfcRail.ProcessExtension
 {
-	[ExpressType("IfcWorkSchedule", 1228)]
+	[ExpressType("IfcWorkSchedule", 186)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWorkSchedule : IfcWorkControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcWorkSchedule>
 	{

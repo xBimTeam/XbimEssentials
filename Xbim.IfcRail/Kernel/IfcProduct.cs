@@ -22,7 +22,7 @@ using Xbim.IfcRail.Kernel;
 
 namespace Xbim.IfcRail.Kernel
 {
-	[ExpressType("IfcProduct", 897)]
+	[ExpressType("IfcProduct", 20)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcProduct : IfcObject, IfcProductSelect, IEquatable<@IfcProduct>
 	{

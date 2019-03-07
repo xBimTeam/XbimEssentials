@@ -23,7 +23,7 @@ using Xbim.IfcRail.RepresentationResource;
 
 namespace Xbim.IfcRail.RepresentationResource
 {
-	[ExpressType("IfcShapeAspect", 1044)]
+	[ExpressType("IfcShapeAspect", 665)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcShapeAspect : PersistEntity, IInstantiableEntity, IfcResourceObjectSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcShapeAspect>
 	{

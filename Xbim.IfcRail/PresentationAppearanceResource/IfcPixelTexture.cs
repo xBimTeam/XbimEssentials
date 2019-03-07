@@ -20,7 +20,7 @@ using Xbim.IfcRail.PresentationAppearanceResource;
 
 namespace Xbim.IfcRail.PresentationAppearanceResource
 {
-	[ExpressType("IfcPixelTexture", 865)]
+	[ExpressType("IfcPixelTexture", 728)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPixelTexture>
 	{

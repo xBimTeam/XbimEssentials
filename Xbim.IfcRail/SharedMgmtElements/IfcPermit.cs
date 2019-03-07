@@ -21,7 +21,7 @@ using Xbim.IfcRail.SharedMgmtElements;
 
 namespace Xbim.IfcRail.SharedMgmtElements
 {
-	[ExpressType("IfcPermit", 853)]
+	[ExpressType("IfcPermit", 189)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPermit>
 	{

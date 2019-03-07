@@ -20,7 +20,7 @@ using Xbim.IfcRail.StructuralElementsDomain;
 
 namespace Xbim.IfcRail.StructuralElementsDomain
 {
-	[ExpressType("IfcVoidingFeature", 1212)]
+	[ExpressType("IfcVoidingFeature", 1313)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVoidingFeature : IfcFeatureElementSubtraction, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVoidingFeature>
 	{

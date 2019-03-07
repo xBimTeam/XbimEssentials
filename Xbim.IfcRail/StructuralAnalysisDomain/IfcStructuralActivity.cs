@@ -22,7 +22,7 @@ using Xbim.IfcRail.StructuralAnalysisDomain;
 
 namespace Xbim.IfcRail.StructuralAnalysisDomain
 {
-	[ExpressType("IfcStructuralActivity", 1078)]
+	[ExpressType("IfcStructuralActivity", 41)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcStructuralActivity : IfcProduct, IEquatable<@IfcStructuralActivity>
 	{

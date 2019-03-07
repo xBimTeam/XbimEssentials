@@ -22,7 +22,7 @@ using Xbim.IfcRail.SharedMgmtElements;
 
 namespace Xbim.IfcRail.SharedMgmtElements
 {
-	[ExpressType("IfcCostItem", 579)]
+	[ExpressType("IfcCostItem", 694)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCostItem>
 	{

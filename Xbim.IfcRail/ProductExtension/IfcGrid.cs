@@ -20,7 +20,7 @@ using Xbim.IfcRail.ProductExtension;
 
 namespace Xbim.IfcRail.ProductExtension
 {
-	[ExpressType("IfcGrid", 743)]
+	[ExpressType("IfcGrid", 564)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGrid : IfcPositioningElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGrid>
 	{

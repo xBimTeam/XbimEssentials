@@ -20,7 +20,7 @@ using Xbim.IfcRail.SharedFacilitiesElements;
 
 namespace Xbim.IfcRail.SharedFacilitiesElements
 {
-	[ExpressType("IfcSystemFurnitureElement", 1141)]
+	[ExpressType("IfcSystemFurnitureElement", 1291)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSystemFurnitureElement : IfcFurnishingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSystemFurnitureElement>
 	{

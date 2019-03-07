@@ -24,7 +24,7 @@ using Xbim.IfcRail.UtilityResource;
 
 namespace Xbim.IfcRail.UtilityResource
 {
-	[ExpressType("IfcTable", 1144)]
+	[ExpressType("IfcTable", 377)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTable : PersistEntity, IInstantiableEntity, IfcMetricValueSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IEquatable<@IfcTable>
 	{

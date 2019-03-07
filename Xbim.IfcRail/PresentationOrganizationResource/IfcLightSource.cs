@@ -22,7 +22,7 @@ using Xbim.IfcRail.PresentationOrganizationResource;
 
 namespace Xbim.IfcRail.PresentationOrganizationResource
 {
-	[ExpressType("IfcLightSource", 780)]
+	[ExpressType("IfcLightSource", 755)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcLightSource : IfcGeometricRepresentationItem, IEquatable<@IfcLightSource>
 	{

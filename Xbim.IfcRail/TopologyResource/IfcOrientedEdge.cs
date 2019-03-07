@@ -20,7 +20,7 @@ using Xbim.IfcRail.TopologyResource;
 
 namespace Xbim.IfcRail.TopologyResource
 {
-	[ExpressType("IfcOrientedEdge", 843)]
+	[ExpressType("IfcOrientedEdge", 596)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOrientedEdge>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.QuantityResource;
 
 namespace Xbim.IfcRail.QuantityResource
 {
-	[ExpressType("IfcPhysicalSimpleQuantity", 858)]
+	[ExpressType("IfcPhysicalSimpleQuantity", 101)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPhysicalSimpleQuantity : IfcPhysicalQuantity, IEquatable<@IfcPhysicalSimpleQuantity>
 	{

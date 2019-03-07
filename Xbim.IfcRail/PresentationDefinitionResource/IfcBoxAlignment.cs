@@ -13,7 +13,7 @@ using Xbim.IfcRail.MeasureResource;
 
 namespace Xbim.IfcRail.PresentationDefinitionResource
 {
-	[ExpressType("IfcBoxAlignment", 10)]
+	[ExpressType("IfcBoxAlignment", 188)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcBoxAlignment : IExpressValueType, IExpressStringType, System.IEquatable<string>

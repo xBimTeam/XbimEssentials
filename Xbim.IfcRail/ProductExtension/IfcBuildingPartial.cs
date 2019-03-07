@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.IfcRail.ProductExtension
 {
