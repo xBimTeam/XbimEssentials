@@ -1,17 +1,15 @@
 using System;
 using Microsoft.Extensions.Logging;
-using Xbim.Common;
-using System.Text;
-using System.Linq;
 using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
+using Xbim.IfcRail.RepresentationResource;
 
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
 namespace Xbim.IfcRail.StructuralAnalysisDomain
 {
-	public partial class IfcStructuralCurveAction : IExpressValidatable
+    public partial class IfcStructuralCurveAction : IExpressValidatable
 	{
 		public enum IfcStructuralCurveActionClause
 		{

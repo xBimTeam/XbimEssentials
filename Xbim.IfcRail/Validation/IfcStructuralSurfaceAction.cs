@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Xbim.Common.Enumerations;
 using Xbim.Common.ExpressValidation;
+using Xbim.IfcRail.RepresentationResource;
 
 // ReSharper disable once CheckNamespace
 // ReSharper disable InconsistentNaming
