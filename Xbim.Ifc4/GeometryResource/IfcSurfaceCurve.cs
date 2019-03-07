@@ -119,12 +119,11 @@ namespace Xbim.Ifc4.GeometryResource
 		{
 			get 
 			{
-				//## Getter for BasisSurface
-				//TODO: Implement getter for derived attribute BasisSurface
-				throw new NotImplementedException();
-				//##
-			}
-		}
+                //## Getter for BasisSurface
+                return Functions.IfcGetBasisSurface(this).ToList();
+                //##
+            }
+        }
 
 		#endregion
 
