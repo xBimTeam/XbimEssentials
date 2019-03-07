@@ -1275,6 +1275,30 @@ namespace Xbim.IfcRail
 
         #endregion
 
-        
+        internal static IEnumerable<IfcSurface> IfcGetBasisSurface(IfcCurve c)
+        {
+            if (c is IfcPcurve pc)
+            {
+                return new[] { pc.BasisSurface };
+            }
+
+            if (c is IfcSurfaceCurve sc)
+            {
+                return sc.AssociatedGeometry.Select(g => g.BasisSurface);
+            }
+
+            if (c is IfcCompositeCurveOnSurface cc && cc.Segments.Count > 0)
+            {
+                var surfs = IfcGetBasisSurface(cc.Segments[0].ParentCurve);
+                for (int i = 1; i < cc.Segments.Count; i++)
+                {
+                    var surfs2 = IfcGetBasisSurface(cc.Segments[i].ParentCurve);
+                    surfs = surfs.Intersect(surfs2);
+                }
+                return surfs;
+            }
+            return Enumerable.Empty<IfcSurface>();
+        }
+
     }
 }

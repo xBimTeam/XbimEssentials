@@ -61,12 +61,11 @@ namespace Xbim.IfcRail.GeometricModelResource
 		{
 			get 
 			{
-				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
-				//##
-			}
-		}
+                //## Getter for Dim
+                return 3;
+                //##
+            }
+        }
 
 		#endregion
 
