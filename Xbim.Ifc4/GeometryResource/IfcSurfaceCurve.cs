@@ -28,7 +28,7 @@ namespace Xbim.Ifc4.Interfaces
 		IIfcCurve @Curve3D { get;  set; }
 		IItemSet<IIfcPcurve> @AssociatedGeometry { get; }
 		IfcPreferredSurfaceCurveRepresentation @MasterRepresentation { get;  set; }
-		List<IfcSurface> @BasisSurface  { get ; }
+		List<IIfcSurface> @BasisSurface  { get ; }
 	
 	}
 }

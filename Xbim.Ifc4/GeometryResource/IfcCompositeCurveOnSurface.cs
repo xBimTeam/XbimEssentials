@@ -25,7 +25,7 @@ namespace Xbim.Ifc4.Interfaces
 	// ReSharper disable once PartialTypeWithSinglePart
 	public partial interface @IIfcCompositeCurveOnSurface : IIfcCompositeCurve, IfcCurveOnSurface
 	{
-		List<IfcSurface> @BasisSurface  { get ; }
+		List<IIfcSurface> @BasisSurface  { get ; }
 	
 	}
 }
