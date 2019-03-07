@@ -9,7 +9,8 @@ namespace Xbim.IfcRail.Kernel
         {
             get
             {
-                return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains(this)).Select(s => s.RelatingStructure).FirstOrDefault();
+                return Model.Instances.Where<IIfcRelContainedInSpatialStructure>(r => r.RelatedElements.Contains(this), nameof(IIfcRelContainedInSpatialStructure.RelatedElements))
+                    .Select(s => s.RelatingStructure).FirstOrDefault();
             }
         }
     }
