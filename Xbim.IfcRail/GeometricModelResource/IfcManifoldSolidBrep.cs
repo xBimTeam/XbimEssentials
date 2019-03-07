@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcManifoldSolidBrep", 792)]
+	[ExpressType("IfcManifoldSolidBrep", 149)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcManifoldSolidBrep : IfcSolidModel, IEquatable<@IfcManifoldSolidBrep>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcPolygonalFaceSet", 878)]
+	[ExpressType("IfcPolygonalFaceSet", 1324)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolygonalFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPolygonalFaceSet>
 	{

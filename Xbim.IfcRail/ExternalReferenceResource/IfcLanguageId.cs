@@ -13,7 +13,7 @@ using Xbim.IfcRail.MeasureResource;
 
 namespace Xbim.IfcRail.ExternalReferenceResource
 {
-	[ExpressType("IfcLanguageId", 50)]
+	[ExpressType("IfcLanguageId", 992)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcLanguageId : IExpressValueType, IExpressStringType, System.IEquatable<string>

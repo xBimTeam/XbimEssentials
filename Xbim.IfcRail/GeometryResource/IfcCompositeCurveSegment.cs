@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcCompositeCurveSegment", 543)]
+	[ExpressType("IfcCompositeCurveSegment", 460)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCompositeCurveSegment>
 	{

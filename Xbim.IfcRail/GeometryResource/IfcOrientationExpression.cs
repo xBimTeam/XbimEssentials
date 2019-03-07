@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcOrientationExpression", 842)]
+	[ExpressType("IfcOrientationExpression", 1352)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOrientationExpression : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOrientationExpression>
 	{

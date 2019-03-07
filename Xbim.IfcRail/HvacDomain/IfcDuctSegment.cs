@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcDuctSegment", 636)]
+	[ExpressType("IfcDuctSegment", 1154)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDuctSegment : IfcFlowSegment, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctSegment>
 	{

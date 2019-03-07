@@ -13,7 +13,7 @@ using Xbim.IfcRail.MeasureResource;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcTimeStamp", 123)]
+	[ExpressType("IfcTimeStamp", 605)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcTimeStamp : IfcSimpleValue, IExpressValueType, IExpressIntegerType, System.IEquatable<long>

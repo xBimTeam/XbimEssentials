@@ -25,7 +25,7 @@ using Xbim.IfcRail.DateTimeResource;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcTimeSeries", 1174)]
+	[ExpressType("IfcTimeSeries", 418)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTimeSeries : PersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IEquatable<@IfcTimeSeries>
 	{

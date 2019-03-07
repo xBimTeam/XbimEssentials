@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcRectangularTrimmedSurface", 950)]
+	[ExpressType("IfcRectangularTrimmedSurface", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRectangularTrimmedSurface>
 	{

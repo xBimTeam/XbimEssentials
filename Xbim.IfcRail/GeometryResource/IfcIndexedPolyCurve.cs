@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcIndexedPolyCurve", 755)]
+	[ExpressType("IfcIndexedPolyCurve", 1190)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedPolyCurve : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcIndexedPolyCurve>
 	{

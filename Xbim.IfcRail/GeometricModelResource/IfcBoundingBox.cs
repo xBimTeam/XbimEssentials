@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcBoundingBox", 478)]
+	[ExpressType("IfcBoundingBox", 151)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcBoundingBox>
 	{

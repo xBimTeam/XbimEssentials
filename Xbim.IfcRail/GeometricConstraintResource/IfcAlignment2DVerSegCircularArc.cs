@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignment2DVerSegCircularArc", 433)]
+	[ExpressType("IfcAlignment2DVerSegCircularArc", 1335)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignment2DVerSegCircularArc : IfcAlignment2DVerticalSegment, IInstantiableEntity, IEquatable<@IfcAlignment2DVerSegCircularArc>
 	{

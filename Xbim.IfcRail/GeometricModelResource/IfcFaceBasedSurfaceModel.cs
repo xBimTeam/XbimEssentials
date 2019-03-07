@@ -22,7 +22,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcFaceBasedSurfaceModel", 688)]
+	[ExpressType("IfcFaceBasedSurfaceModel", 438)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFaceBasedSurfaceModel : IfcGeometricRepresentationItem, IInstantiableEntity, IfcSurfaceOrFaceSurface, IContainsEntityReferences, IEquatable<@IfcFaceBasedSurfaceModel>
 	{

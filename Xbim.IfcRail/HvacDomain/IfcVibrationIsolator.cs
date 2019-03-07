@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcVibrationIsolator", 1208)]
+	[ExpressType("IfcVibrationIsolator", 1312)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVibrationIsolator : IfcElementComponent, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVibrationIsolator>
 	{

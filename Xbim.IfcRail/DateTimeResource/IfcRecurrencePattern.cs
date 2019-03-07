@@ -22,7 +22,7 @@ using Xbim.IfcRail.DateTimeResource;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcRecurrencePattern", 951)]
+	[ExpressType("IfcRecurrencePattern", 1243)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRecurrencePattern : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRecurrencePattern>
 	{

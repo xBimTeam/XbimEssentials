@@ -23,7 +23,7 @@ using Xbim.IfcRail.ExternalReferenceResource;
 
 namespace Xbim.IfcRail.ExternalReferenceResource
 {
-	[ExpressType("IfcDocumentInformation", 623)]
+	[ExpressType("IfcDocumentInformation", 208)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDocumentInformation : IfcExternalInformation, IInstantiableEntity, IfcDocumentSelect, IContainsEntityReferences, IEquatable<@IfcDocumentInformation>
 	{

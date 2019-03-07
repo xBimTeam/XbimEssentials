@@ -21,7 +21,7 @@ using Xbim.IfcRail.ControlExtension;
 
 namespace Xbim.IfcRail.ControlExtension
 {
-	[ExpressType("IfcRelAssociatesApproval", 973)]
+	[ExpressType("IfcRelAssociatesApproval", 342)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesApproval>
 	{

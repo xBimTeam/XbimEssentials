@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcPoint", 873)]
+	[ExpressType("IfcPoint", 66)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcPoint : IfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcPointOrVertexPoint, IEquatable<@IfcPoint>
 	{

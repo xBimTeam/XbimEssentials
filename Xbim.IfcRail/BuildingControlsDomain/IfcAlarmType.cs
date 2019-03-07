@@ -20,7 +20,7 @@ using Xbim.IfcRail.BuildingControlsDomain;
 
 namespace Xbim.IfcRail.BuildingControlsDomain
 {
-	[ExpressType("IfcAlarmType", 428)]
+	[ExpressType("IfcAlarmType", 275)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlarmType>
 	{

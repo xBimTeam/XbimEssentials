@@ -25,7 +25,7 @@ using Xbim.IfcRail.ConstraintResource;
 
 namespace Xbim.IfcRail.ConstraintResource
 {
-	[ExpressType("IfcConstraint", 557)]
+	[ExpressType("IfcConstraint", 81)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcConstraint : PersistEntity, IfcResourceObjectSelect, IEquatable<@IfcConstraint>
 	{

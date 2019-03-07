@@ -22,7 +22,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcRepresentationMap", 1016)]
+	[ExpressType("IfcRepresentationMap", 95)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRepresentationMap : PersistEntity, IInstantiableEntity, IfcProductRepresentationSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentationMap>
 	{

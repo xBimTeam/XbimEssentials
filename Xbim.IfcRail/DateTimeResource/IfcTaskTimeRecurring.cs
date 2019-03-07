@@ -19,7 +19,7 @@ using Xbim.IfcRail.DateTimeResource;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcTaskTimeRecurring", 1151)]
+	[ExpressType("IfcTaskTimeRecurring", 1295)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTaskTimeRecurring : IfcTaskTime, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTaskTimeRecurring>
 	{

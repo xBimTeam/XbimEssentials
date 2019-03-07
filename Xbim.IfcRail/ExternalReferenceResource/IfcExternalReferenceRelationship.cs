@@ -19,7 +19,7 @@ using Xbim.IfcRail.ExternalReferenceResource;
 
 namespace Xbim.IfcRail.ExternalReferenceResource
 {
-	[ExpressType("IfcExternalReferenceRelationship", 679)]
+	[ExpressType("IfcExternalReferenceRelationship", 1173)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcExternalReferenceRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcExternalReferenceRelationship>
 	{

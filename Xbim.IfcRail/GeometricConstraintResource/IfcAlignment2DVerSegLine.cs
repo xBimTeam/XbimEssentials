@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignment2DVerSegLine", 434)]
+	[ExpressType("IfcAlignment2DVerSegLine", 1336)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignment2DVerSegLine : IfcAlignment2DVerticalSegment, IInstantiableEntity, IEquatable<@IfcAlignment2DVerSegLine>
 	{

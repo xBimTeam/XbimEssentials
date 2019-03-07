@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcElectricDistributionBoard", 645)]
+	[ExpressType("IfcElectricDistributionBoard", 1157)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricDistributionBoard : IfcFlowController, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricDistributionBoard>
 	{

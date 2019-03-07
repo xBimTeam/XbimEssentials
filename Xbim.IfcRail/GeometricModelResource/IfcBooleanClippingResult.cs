@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcBooleanClippingResult", 468)]
+	[ExpressType("IfcBooleanClippingResult", 340)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcBooleanClippingResult>
 	{

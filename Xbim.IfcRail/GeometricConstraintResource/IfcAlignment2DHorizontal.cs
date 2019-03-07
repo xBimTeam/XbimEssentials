@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignment2DHorizontal", 430)]
+	[ExpressType("IfcAlignment2DHorizontal", 1332)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignment2DHorizontal : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DHorizontal>
 	{

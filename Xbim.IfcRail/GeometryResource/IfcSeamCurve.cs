@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcSeamCurve", 1034)]
+	[ExpressType("IfcSeamCurve", 1325)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSeamCurve : IfcSurfaceCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSeamCurve>
 	{

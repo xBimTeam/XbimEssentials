@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcPolyline", 879)]
+	[ExpressType("IfcPolyline", 500)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPolyline>
 	{

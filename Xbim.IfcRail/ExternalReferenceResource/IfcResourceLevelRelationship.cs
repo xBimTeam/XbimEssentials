@@ -22,7 +22,7 @@ using Xbim.IfcRail.ExternalReferenceResource;
 
 namespace Xbim.IfcRail.ExternalReferenceResource
 {
-	[ExpressType("IfcResourceLevelRelationship", 1020)]
+	[ExpressType("IfcResourceLevelRelationship", 1258)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcResourceLevelRelationship : PersistEntity, IEquatable<@IfcResourceLevelRelationship>
 	{

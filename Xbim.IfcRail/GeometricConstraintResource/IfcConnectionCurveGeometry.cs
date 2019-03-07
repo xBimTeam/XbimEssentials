@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcConnectionCurveGeometry", 551)]
+	[ExpressType("IfcConnectionCurveGeometry", 590)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConnectionCurveGeometry : IfcConnectionGeometry, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectionCurveGeometry>
 	{

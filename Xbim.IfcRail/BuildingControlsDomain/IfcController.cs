@@ -20,7 +20,7 @@ using Xbim.IfcRail.BuildingControlsDomain;
 
 namespace Xbim.IfcRail.BuildingControlsDomain
 {
-	[ExpressType("IfcController", 569)]
+	[ExpressType("IfcController", 1139)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcController : IfcDistributionControlElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcController>
 	{

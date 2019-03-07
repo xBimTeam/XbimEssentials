@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcMotorConnection", 825)]
+	[ExpressType("IfcMotorConnection", 1216)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMotorConnection : IfcEnergyConversionDevice, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMotorConnection>
 	{

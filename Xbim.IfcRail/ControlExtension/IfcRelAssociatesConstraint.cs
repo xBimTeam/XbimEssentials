@@ -22,7 +22,7 @@ using Xbim.IfcRail.ControlExtension;
 
 namespace Xbim.IfcRail.ControlExtension
 {
-	[ExpressType("IfcRelAssociatesConstraint", 975)]
+	[ExpressType("IfcRelAssociatesConstraint", 711)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelAssociatesConstraint : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesConstraint>
 	{

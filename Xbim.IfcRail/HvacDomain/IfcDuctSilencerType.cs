@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcDuctSilencerType", 639)]
+	[ExpressType("IfcDuctSilencerType", 141)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctSilencerType>
 	{

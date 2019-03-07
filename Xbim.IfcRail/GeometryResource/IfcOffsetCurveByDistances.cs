@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcOffsetCurveByDistances", 836)]
+	[ExpressType("IfcOffsetCurveByDistances", 1351)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOffsetCurveByDistances : IfcOffsetCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOffsetCurveByDistances>
 	{

@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcDayInWeekNumber", 20)]
+	[ExpressType("IfcDayInWeekNumber", 990)]
 	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcDayInWeekNumber : IExpressValueType, IExpressIntegerType, System.IEquatable<long>

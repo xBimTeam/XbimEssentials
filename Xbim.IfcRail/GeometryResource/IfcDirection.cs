@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcDirection", 608)]
+	[ExpressType("IfcDirection", 344)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDirection : IfcGeometricRepresentationItem, IInstantiableEntity, IfcGridPlacementDirectionSelect, IfcVectorOrDirection, IEquatable<@IfcDirection>
 	{

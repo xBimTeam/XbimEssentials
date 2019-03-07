@@ -23,7 +23,7 @@ using Xbim.IfcRail.ActorResource;
 
 namespace Xbim.IfcRail.ActorResource
 {
-	[ExpressType("IfcActorRole", 414)]
+	[ExpressType("IfcActorRole", 595)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcActorRole : PersistEntity, IInstantiableEntity, IfcResourceObjectSelect, IEquatable<@IfcActorRole>
 	{

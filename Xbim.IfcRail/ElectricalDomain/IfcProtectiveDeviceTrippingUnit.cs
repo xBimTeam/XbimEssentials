@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcProtectiveDeviceTrippingUnit", 924)]
+	[ExpressType("IfcProtectiveDeviceTrippingUnit", 1236)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcProtectiveDeviceTrippingUnit : IfcDistributionControlElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProtectiveDeviceTrippingUnit>
 	{

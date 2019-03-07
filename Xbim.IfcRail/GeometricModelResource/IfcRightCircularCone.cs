@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcRightCircularCone", 1024)]
+	[ExpressType("IfcRightCircularCone", 703)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRightCircularCone>
 	{

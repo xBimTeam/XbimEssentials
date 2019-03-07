@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcBooleanResult", 469)]
+	[ExpressType("IfcBooleanResult", 339)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBooleanResult : IfcGeometricRepresentationItem, IInstantiableEntity, IfcBooleanOperand, IfcCsgSelect, IContainsEntityReferences, IEquatable<@IfcBooleanResult>
 	{

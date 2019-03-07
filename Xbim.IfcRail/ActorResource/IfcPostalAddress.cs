@@ -20,7 +20,7 @@ using Xbim.IfcRail.ActorResource;
 
 namespace Xbim.IfcRail.ActorResource
 {
-	[ExpressType("IfcPostalAddress", 882)]
+	[ExpressType("IfcPostalAddress", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IEquatable<@IfcPostalAddress>
 	{

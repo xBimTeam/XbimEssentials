@@ -19,7 +19,7 @@ using Xbim.IfcRail.CostResource;
 
 namespace Xbim.IfcRail.CostResource
 {
-	[ExpressType("IfcCostValue", 581)]
+	[ExpressType("IfcCostValue", 658)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCostValue>
 	{

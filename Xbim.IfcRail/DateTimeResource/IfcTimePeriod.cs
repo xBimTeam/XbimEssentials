@@ -21,7 +21,7 @@ using Xbim.IfcRail.DateTimeResource;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcTimePeriod", 1173)]
+	[ExpressType("IfcTimePeriod", 1302)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTimePeriod : PersistEntity, IInstantiableEntity, IEquatable<@IfcTimePeriod>
 	{

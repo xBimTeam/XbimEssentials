@@ -21,7 +21,7 @@ using Xbim.IfcRail.ArchitectureDomain;
 
 namespace Xbim.IfcRail.ArchitectureDomain
 {
-	[ExpressType("IfcWindowStyle", 1223)]
+	[ExpressType("IfcWindowStyle", 345)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcWindowStyle : IfcTypeProduct, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWindowStyle>
 	{

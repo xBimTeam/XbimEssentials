@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcMedicalDeviceType", 818)]
+	[ExpressType("IfcMedicalDeviceType", 1213)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMedicalDeviceType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMedicalDeviceType>
 	{

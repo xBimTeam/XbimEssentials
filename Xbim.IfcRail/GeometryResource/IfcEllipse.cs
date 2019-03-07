@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcEllipse", 663)]
+	[ExpressType("IfcEllipse", 298)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEllipse : IfcConic, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcEllipse>
 	{

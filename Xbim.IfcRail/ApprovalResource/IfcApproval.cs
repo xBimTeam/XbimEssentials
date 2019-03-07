@@ -26,7 +26,7 @@ using Xbim.IfcRail.ApprovalResource;
 
 namespace Xbim.IfcRail.ApprovalResource
 {
-	[ExpressType("IfcApproval", 443)]
+	[ExpressType("IfcApproval", 626)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApproval : PersistEntity, IInstantiableEntity, IfcResourceObjectSelect, IContainsEntityReferences, IEquatable<@IfcApproval>
 	{

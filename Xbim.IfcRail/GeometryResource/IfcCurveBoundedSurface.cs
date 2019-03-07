@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcCurveBoundedSurface", 593)]
+	[ExpressType("IfcCurveBoundedSurface", 1146)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveBoundedSurface : IfcBoundedSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCurveBoundedSurface>
 	{

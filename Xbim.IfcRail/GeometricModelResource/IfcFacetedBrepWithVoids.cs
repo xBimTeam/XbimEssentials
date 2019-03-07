@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcFacetedBrepWithVoids", 693)]
+	[ExpressType("IfcFacetedBrepWithVoids", 369)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFacetedBrepWithVoids : IfcFacetedBrep, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcFacetedBrepWithVoids>
 	{

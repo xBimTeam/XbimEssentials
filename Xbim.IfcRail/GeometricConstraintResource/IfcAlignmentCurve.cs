@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignmentCurve", 438)]
+	[ExpressType("IfcAlignmentCurve", 1347)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignmentCurve : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignmentCurve>
 	{

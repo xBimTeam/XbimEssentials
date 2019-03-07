@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcToroidalSurface", 1178)]
+	[ExpressType("IfcToroidalSurface", 1328)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcToroidalSurface : IfcElementarySurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcToroidalSurface>
 	{

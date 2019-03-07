@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcElectricTimeControlType", 654)]
+	[ExpressType("IfcElectricTimeControlType", 273)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcElectricTimeControlType : IfcFlowControllerType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricTimeControlType>
 	{

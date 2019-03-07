@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcBurnerType", 494)]
+	[ExpressType("IfcBurnerType", 1110)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBurnerType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBurnerType>
 	{

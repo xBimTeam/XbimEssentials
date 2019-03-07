@@ -22,7 +22,7 @@ using Xbim.IfcRail.DateTimeResource;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcTimeSeriesValue", 1175)]
+	[ExpressType("IfcTimeSeriesValue", 35)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTimeSeriesValue : PersistEntity, IInstantiableEntity, IEquatable<@IfcTimeSeriesValue>
 	{

@@ -24,7 +24,7 @@ using Xbim.IfcRail.ActorResource;
 
 namespace Xbim.IfcRail.ActorResource
 {
-	[ExpressType("IfcPerson", 854)]
+	[ExpressType("IfcPerson", 198)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPerson : PersistEntity, IInstantiableEntity, IfcActorSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPerson>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcCartesianPointList", 507)]
+	[ExpressType("IfcCartesianPointList", 1116)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcCartesianPointList : IfcGeometricRepresentationItem, IEquatable<@IfcCartesianPointList>
 	{

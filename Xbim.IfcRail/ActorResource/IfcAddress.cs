@@ -23,7 +23,7 @@ using Xbim.IfcRail.ActorResource;
 
 namespace Xbim.IfcRail.ActorResource
 {
-	[ExpressType("IfcAddress", 417)]
+	[ExpressType("IfcAddress", 554)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcAddress : PersistEntity, IfcObjectReferenceSelect, IEquatable<@IfcAddress>
 	{

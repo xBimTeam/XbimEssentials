@@ -20,7 +20,7 @@ using Xbim.IfcRail.ApprovalResource;
 
 namespace Xbim.IfcRail.ApprovalResource
 {
-	[ExpressType("IfcApprovalRelationship", 444)]
+	[ExpressType("IfcApprovalRelationship", 552)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcApprovalRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcApprovalRelationship>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcRationalBSplineSurfaceWithKnots", 946)]
+	[ExpressType("IfcRationalBSplineSurfaceWithKnots", 1242)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRationalBSplineSurfaceWithKnots : IfcBSplineSurfaceWithKnots, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRationalBSplineSurfaceWithKnots>
 	{

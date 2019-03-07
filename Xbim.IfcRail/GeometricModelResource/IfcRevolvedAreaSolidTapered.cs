@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcRevolvedAreaSolidTapered", 1023)]
+	[ExpressType("IfcRevolvedAreaSolidTapered", 1260)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRevolvedAreaSolidTapered : IfcRevolvedAreaSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRevolvedAreaSolidTapered>
 	{

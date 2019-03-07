@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcCableFittingType", 501)]
+	[ExpressType("IfcCableFittingType", 1114)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCableFittingType : IfcFlowFittingType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCableFittingType>
 	{

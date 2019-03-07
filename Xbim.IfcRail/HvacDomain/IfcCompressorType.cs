@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcCompressorType", 546)]
+	[ExpressType("IfcCompressorType", 586)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCompressorType : IfcFlowMovingDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompressorType>
 	{

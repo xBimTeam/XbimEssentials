@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcSectionedSpine", 1039)]
+	[ExpressType("IfcSectionedSpine", 300)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSectionedSpine : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSectionedSpine>
 	{

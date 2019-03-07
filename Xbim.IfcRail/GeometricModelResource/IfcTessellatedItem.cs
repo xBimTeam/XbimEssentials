@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcTessellatedItem", 1161)]
+	[ExpressType("IfcTessellatedItem", 1300)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcTessellatedItem : IfcGeometricRepresentationItem, IEquatable<@IfcTessellatedItem>
 	{

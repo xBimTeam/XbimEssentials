@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcRightCircularCylinder", 1025)]
+	[ExpressType("IfcRightCircularCylinder", 704)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRightCircularCylinder : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRightCircularCylinder>
 	{

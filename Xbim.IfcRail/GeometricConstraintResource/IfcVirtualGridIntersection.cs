@@ -22,7 +22,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcVirtualGridIntersection", 1211)]
+	[ExpressType("IfcVirtualGridIntersection", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVirtualGridIntersection : PersistEntity, IInstantiableEntity, IfcGridPlacementDirectionSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualGridIntersection>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.ConstraintResource;
 
 namespace Xbim.IfcRail.ConstraintResource
 {
-	[ExpressType("IfcResourceConstraintRelationship", 1019)]
+	[ExpressType("IfcResourceConstraintRelationship", 1257)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcResourceConstraintRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcResourceConstraintRelationship>
 	{

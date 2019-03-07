@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcTriangulatedFaceSet", 1185)]
+	[ExpressType("IfcTriangulatedFaceSet", 1304)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTriangulatedFaceSet : IfcTessellatedFaceSet, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTriangulatedFaceSet>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcTubeBundle", 1188)]
+	[ExpressType("IfcTubeBundle", 1305)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTubeBundle : IfcEnergyConversionDevice, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTubeBundle>
 	{

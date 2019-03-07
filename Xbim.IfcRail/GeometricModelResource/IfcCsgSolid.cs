@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcCsgSolid", 587)]
+	[ExpressType("IfcCsgSolid", 548)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCsgSolid : IfcSolidModel, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCsgSolid>
 	{

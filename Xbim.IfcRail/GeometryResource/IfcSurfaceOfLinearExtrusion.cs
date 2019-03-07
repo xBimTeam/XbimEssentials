@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcSurfaceOfLinearExtrusion", 1124)]
+	[ExpressType("IfcSurfaceOfLinearExtrusion", 256)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcIndexedPolygonalFace", 756)]
+	[ExpressType("IfcIndexedPolygonalFace", 1321)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcIndexedPolygonalFace : IfcTessellatedItem, IInstantiableEntity, IEquatable<@IfcIndexedPolygonalFace>
 	{

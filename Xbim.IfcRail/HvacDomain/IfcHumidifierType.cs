@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcHumidifierType", 751)]
+	[ExpressType("IfcHumidifierType", 64)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcHumidifierType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcHumidifierType>
 	{

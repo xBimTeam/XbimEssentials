@@ -24,7 +24,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcGridAxis", 744)]
+	[ExpressType("IfcGridAxis", 441)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGridAxis : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGridAxis>
 	{

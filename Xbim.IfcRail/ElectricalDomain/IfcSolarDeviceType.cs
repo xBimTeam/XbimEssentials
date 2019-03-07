@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcSolarDeviceType", 1057)]
+	[ExpressType("IfcSolarDeviceType", 1271)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSolarDeviceType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSolarDeviceType>
 	{

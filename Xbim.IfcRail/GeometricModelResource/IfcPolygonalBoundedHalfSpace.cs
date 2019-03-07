@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcPolygonalBoundedHalfSpace", 877)]
+	[ExpressType("IfcPolygonalBoundedHalfSpace", 623)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPolygonalBoundedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPolygonalBoundedHalfSpace>
 	{

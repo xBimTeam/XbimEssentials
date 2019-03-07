@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcBoundedCurve", 476)]
+	[ExpressType("IfcBoundedCurve", 144)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBoundedCurve : IfcCurve, IfcCurveOrEdgeCurve, IEquatable<@IfcBoundedCurve>
 	{

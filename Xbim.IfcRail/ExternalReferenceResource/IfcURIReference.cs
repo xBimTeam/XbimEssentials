@@ -12,7 +12,7 @@ using Xbim.Common.Exceptions;
 
 namespace Xbim.IfcRail.ExternalReferenceResource
 {
-	[ExpressType("IfcURIReference", 125)]
+	[ExpressType("IfcURIReference", 1001)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial struct IfcURIReference : IExpressValueType, IExpressStringType, System.IEquatable<string>

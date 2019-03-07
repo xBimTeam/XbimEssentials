@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcCircle", 520)]
+	[ExpressType("IfcCircle", 336)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCircle : IfcConic, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCircle>
 	{

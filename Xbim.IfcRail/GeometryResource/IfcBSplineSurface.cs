@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcBSplineSurface", 457)]
+	[ExpressType("IfcBSplineSurface", 1102)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcBSplineSurface : IfcBoundedSurface, IEquatable<@IfcBSplineSurface>
 	{

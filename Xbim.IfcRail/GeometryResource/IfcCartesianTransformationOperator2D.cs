@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcCartesianTransformationOperator2D", 511)]
+	[ExpressType("IfcCartesianTransformationOperator2D", 145)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2D>
 	{

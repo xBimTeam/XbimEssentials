@@ -20,7 +20,7 @@ using Xbim.IfcRail.ConstraintResource;
 
 namespace Xbim.IfcRail.ConstraintResource
 {
-	[ExpressType("IfcMetric", 822)]
+	[ExpressType("IfcMetric", 80)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcMetric>
 	{

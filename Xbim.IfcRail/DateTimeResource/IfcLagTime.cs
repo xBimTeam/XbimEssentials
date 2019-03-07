@@ -19,7 +19,7 @@ using Xbim.IfcRail.DateTimeResource;
 
 namespace Xbim.IfcRail.DateTimeResource
 {
-	[ExpressType("IfcLagTime", 771)]
+	[ExpressType("IfcLagTime", 1197)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLagTime : IfcSchedulingTime, IInstantiableEntity, IEquatable<@IfcLagTime>
 	{

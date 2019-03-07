@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcSphere", 1069)]
+	[ExpressType("IfcSphere", 706)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSphere>
 	{

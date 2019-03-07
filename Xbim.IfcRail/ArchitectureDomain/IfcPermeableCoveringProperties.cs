@@ -22,7 +22,7 @@ using Xbim.IfcRail.ArchitectureDomain;
 
 namespace Xbim.IfcRail.ArchitectureDomain
 {
-	[ExpressType("IfcPermeableCoveringProperties", 852)]
+	[ExpressType("IfcPermeableCoveringProperties", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPermeableCoveringProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPermeableCoveringProperties>
 	{

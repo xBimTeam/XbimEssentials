@@ -21,7 +21,7 @@ using Xbim.IfcRail.ExternalReferenceResource;
 
 namespace Xbim.IfcRail.ExternalReferenceResource
 {
-	[ExpressType("IfcExternalInformation", 677)]
+	[ExpressType("IfcExternalInformation", 1172)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcExternalInformation : PersistEntity, IfcResourceObjectSelect, IEquatable<@IfcExternalInformation>
 	{

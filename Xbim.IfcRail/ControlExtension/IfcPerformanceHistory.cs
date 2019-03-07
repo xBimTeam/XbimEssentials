@@ -21,7 +21,7 @@ using Xbim.IfcRail.ControlExtension;
 
 namespace Xbim.IfcRail.ControlExtension
 {
-	[ExpressType("IfcPerformanceHistory", 851)]
+	[ExpressType("IfcPerformanceHistory", 710)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPerformanceHistory : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPerformanceHistory>
 	{

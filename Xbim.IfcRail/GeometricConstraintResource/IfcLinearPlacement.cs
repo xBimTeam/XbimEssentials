@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcLinearPlacement", 788)]
+	[ExpressType("IfcLinearPlacement", 1349)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLinearPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLinearPlacement>
 	{

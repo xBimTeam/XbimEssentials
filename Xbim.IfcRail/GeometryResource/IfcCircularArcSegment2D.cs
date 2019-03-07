@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcCircularArcSegment2D", 523)]
+	[ExpressType("IfcCircularArcSegment2D", 1340)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCircularArcSegment2D : IfcCurveSegment2D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCircularArcSegment2D>
 	{

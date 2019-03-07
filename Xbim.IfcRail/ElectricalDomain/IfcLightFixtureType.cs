@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcLightFixtureType", 778)]
+	[ExpressType("IfcLightFixtureType", 517)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcLightFixtureType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLightFixtureType>
 	{

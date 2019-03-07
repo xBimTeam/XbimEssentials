@@ -21,7 +21,7 @@ using Xbim.IfcRail.ActorResource;
 
 namespace Xbim.IfcRail.ActorResource
 {
-	[ExpressType("IfcTelecomAddress", 1153)]
+	[ExpressType("IfcTelecomAddress", 553)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IEquatable<@IfcTelecomAddress>
 	{

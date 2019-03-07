@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcCartesianPoint", 506)]
+	[ExpressType("IfcCartesianPoint", 410)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IfcTrimmingSelect, IEquatable<@IfcCartesianPoint>
 	{

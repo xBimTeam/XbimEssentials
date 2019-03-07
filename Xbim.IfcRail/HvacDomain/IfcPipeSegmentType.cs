@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcPipeSegmentType", 864)]
+	[ExpressType("IfcPipeSegmentType", 62)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPipeSegmentType : IfcFlowSegmentType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPipeSegmentType>
 	{

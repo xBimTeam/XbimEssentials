@@ -19,7 +19,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcAdvancedBrep", 418)]
+	[ExpressType("IfcAdvancedBrep", 1092)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAdvancedBrep : IfcManifoldSolidBrep, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAdvancedBrep>
 	{

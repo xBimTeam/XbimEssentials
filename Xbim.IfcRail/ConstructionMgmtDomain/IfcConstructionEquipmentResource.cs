@@ -19,7 +19,7 @@ using Xbim.IfcRail.ConstructionMgmtDomain;
 
 namespace Xbim.IfcRail.ConstructionMgmtDomain
 {
-	[ExpressType("IfcConstructionEquipmentResource", 558)]
+	[ExpressType("IfcConstructionEquipmentResource", 408)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConstructionEquipmentResource : IfcConstructionResource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConstructionEquipmentResource>
 	{

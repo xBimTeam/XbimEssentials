@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcSurfaceCurveSweptAreaSolid", 1122)]
+	[ExpressType("IfcSurfaceCurveSweptAreaSolid", 480)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSurfaceCurveSweptAreaSolid : IfcSweptAreaSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSurfaceCurveSweptAreaSolid>
 	{

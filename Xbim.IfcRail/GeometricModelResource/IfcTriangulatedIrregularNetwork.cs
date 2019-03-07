@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcTriangulatedIrregularNetwork", 1186)]
+	[ExpressType("IfcTriangulatedIrregularNetwork", 1357)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTriangulatedIrregularNetwork : IfcTriangulatedFaceSet, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTriangulatedIrregularNetwork>
 	{

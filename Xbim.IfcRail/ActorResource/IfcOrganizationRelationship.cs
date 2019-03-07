@@ -20,7 +20,7 @@ using Xbim.IfcRail.ActorResource;
 
 namespace Xbim.IfcRail.ActorResource
 {
-	[ExpressType("IfcOrganizationRelationship", 841)]
+	[ExpressType("IfcOrganizationRelationship", 486)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOrganizationRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOrganizationRelationship>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcAirToAirHeatRecovery", 425)]
+	[ExpressType("IfcAirToAirHeatRecovery", 1097)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAirToAirHeatRecovery : IfcEnergyConversionDevice, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirToAirHeatRecovery>
 	{

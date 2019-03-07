@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcAirTerminal", 421)]
+	[ExpressType("IfcAirTerminal", 1095)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAirTerminal : IfcFlowTerminal, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirTerminal>
 	{

@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcCooledBeamType", 574)]
+	[ExpressType("IfcCooledBeamType", 367)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCooledBeamType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCooledBeamType>
 	{

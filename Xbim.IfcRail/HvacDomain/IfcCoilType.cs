@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcCoilType", 530)]
+	[ExpressType("IfcCoilType", 622)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCoilType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCoilType>
 	{

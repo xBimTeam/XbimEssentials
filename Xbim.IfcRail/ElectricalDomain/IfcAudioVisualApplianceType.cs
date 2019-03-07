@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcAudioVisualApplianceType", 451)]
+	[ExpressType("IfcAudioVisualApplianceType", 1100)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAudioVisualApplianceType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAudioVisualApplianceType>
 	{

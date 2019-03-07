@@ -22,7 +22,7 @@ using Xbim.IfcRail.ArchitectureDomain;
 
 namespace Xbim.IfcRail.ArchitectureDomain
 {
-	[ExpressType("IfcDoorLiningProperties", 627)]
+	[ExpressType("IfcDoorLiningProperties", 493)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDoorLiningProperties : IfcPreDefinedPropertySet, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcDoorLiningProperties>
 	{

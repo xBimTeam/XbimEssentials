@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcRectangularPyramid", 949)]
+	[ExpressType("IfcRectangularPyramid", 705)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRectangularPyramid : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRectangularPyramid>
 	{

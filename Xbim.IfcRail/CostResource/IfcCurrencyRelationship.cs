@@ -22,7 +22,7 @@ using Xbim.IfcRail.CostResource;
 
 namespace Xbim.IfcRail.CostResource
 {
-	[ExpressType("IfcCurrencyRelationship", 588)]
+	[ExpressType("IfcCurrencyRelationship", 195)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurrencyRelationship : IfcResourceLevelRelationship, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCurrencyRelationship>
 	{

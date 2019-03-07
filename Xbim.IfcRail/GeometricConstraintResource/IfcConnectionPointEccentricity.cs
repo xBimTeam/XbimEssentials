@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricConstraintResource;
 
 namespace Xbim.IfcRail.GeometricConstraintResource
 {
-	[ExpressType("IfcConnectionPointEccentricity", 553)]
+	[ExpressType("IfcConnectionPointEccentricity", 405)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcConnectionPointEccentricity : IfcConnectionPointGeometry, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectionPointEccentricity>
 	{

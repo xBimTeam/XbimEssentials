@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcBoiler", 466)]
+	[ExpressType("IfcBoiler", 1105)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBoiler : IfcEnergyConversionDevice, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBoiler>
 	{

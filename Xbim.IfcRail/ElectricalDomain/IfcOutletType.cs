@@ -20,7 +20,7 @@ using Xbim.IfcRail.ElectricalDomain;
 
 namespace Xbim.IfcRail.ElectricalDomain
 {
-	[ExpressType("IfcOutletType", 846)]
+	[ExpressType("IfcOutletType", 240)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcOutletType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOutletType>
 	{

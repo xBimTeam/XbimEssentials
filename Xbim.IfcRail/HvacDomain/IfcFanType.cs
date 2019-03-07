@@ -20,7 +20,7 @@ using Xbim.IfcRail.HvacDomain;
 
 namespace Xbim.IfcRail.HvacDomain
 {
-	[ExpressType("IfcFanType", 698)]
+	[ExpressType("IfcFanType", 651)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFanType : IfcFlowMovingDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFanType>
 	{

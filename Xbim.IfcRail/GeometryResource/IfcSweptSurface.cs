@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcSweptSurface", 1137)]
+	[ExpressType("IfcSweptSurface", 110)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSweptSurface : IfcSurface, IEquatable<@IfcSweptSurface>
 	{

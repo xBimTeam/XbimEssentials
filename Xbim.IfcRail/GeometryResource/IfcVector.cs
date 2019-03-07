@@ -21,7 +21,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcVector", 1202)]
+	[ExpressType("IfcVector", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IfcHatchLineDistanceSelect, IfcVectorOrDirection, IContainsEntityReferences, IEquatable<@IfcVector>
 	{

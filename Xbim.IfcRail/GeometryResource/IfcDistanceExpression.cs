@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometryResource;
 
 namespace Xbim.IfcRail.GeometryResource
 {
-	[ExpressType("IfcDistanceExpression", 611)]
+	[ExpressType("IfcDistanceExpression", 1348)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcDistanceExpression : IfcGeometricRepresentationItem, IInstantiableEntity, IEquatable<@IfcDistanceExpression>
 	{

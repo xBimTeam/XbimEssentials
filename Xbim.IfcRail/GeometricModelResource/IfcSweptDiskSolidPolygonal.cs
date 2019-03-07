@@ -20,7 +20,7 @@ using Xbim.IfcRail.GeometricModelResource;
 
 namespace Xbim.IfcRail.GeometricModelResource
 {
-	[ExpressType("IfcSweptDiskSolidPolygonal", 1136)]
+	[ExpressType("IfcSweptDiskSolidPolygonal", 1289)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSweptDiskSolidPolygonal : IfcSweptDiskSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSweptDiskSolidPolygonal>
 	{

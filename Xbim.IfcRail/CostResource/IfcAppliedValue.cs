@@ -26,7 +26,7 @@ using Xbim.IfcRail.CostResource;
 
 namespace Xbim.IfcRail.CostResource
 {
-	[ExpressType("IfcAppliedValue", 442)]
+	[ExpressType("IfcAppliedValue", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAppliedValue : PersistEntity, IInstantiableEntity, IfcMetricValueSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect, IContainsEntityReferences, IEquatable<@IfcAppliedValue>
 	{

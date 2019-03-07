@@ -21,7 +21,7 @@ using Xbim.IfcRail.ExternalReferenceResource;
 
 namespace Xbim.IfcRail.ExternalReferenceResource
 {
-	[ExpressType("IfcClassificationReference", 527)]
+	[ExpressType("IfcClassificationReference", 209)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IfcClassificationReferenceSelect, IfcClassificationSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcClassificationReference>
 	{
