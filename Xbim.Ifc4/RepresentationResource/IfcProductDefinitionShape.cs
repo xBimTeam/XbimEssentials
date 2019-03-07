@@ -39,7 +39,6 @@ namespace Xbim.Ifc4.RepresentationResource
 	public  partial class @IfcProductDefinitionShape : IfcProductRepresentation, IInstantiableEntity, IIfcProductDefinitionShape, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductDefinitionShape>
 	{
 		#region IIfcProductDefinitionShape explicit implementation
-		 
 		IEnumerable<IIfcProduct> IIfcProductDefinitionShape.ShapeOfProduct {  get { return @ShapeOfProduct; } }
 		IEnumerable<IIfcShapeAspect> IIfcProductDefinitionShape.HasShapeAspects {  get { return @HasShapeAspects; } }
 		#endregion

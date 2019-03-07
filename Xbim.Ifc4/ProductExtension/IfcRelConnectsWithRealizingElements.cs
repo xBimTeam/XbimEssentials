@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @ConnectionType; } 
 			set { ConnectionType = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

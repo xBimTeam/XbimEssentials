@@ -51,7 +51,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @RelatedOpeningElement; } 
 			set { RelatedOpeningElement = value as IfcFeatureElementSubtraction;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -81,7 +81,6 @@ namespace Xbim.Ifc4.MaterialResource
 			get { return @Priority; } 
 			set { Priority = value;}
 		}	
-		 
 		IIfcMaterialLayerSet IIfcMaterialLayer.ToMaterialLayerSet {  get { return @ToMaterialLayerSet; } }
 		#endregion
 

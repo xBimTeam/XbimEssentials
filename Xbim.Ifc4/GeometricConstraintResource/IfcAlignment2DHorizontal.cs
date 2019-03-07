@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		IItemSet<IIfcAlignment2DHorizontalSegment> IIfcAlignment2DHorizontal.Segments { 
 			get { return new Common.Collections.ProxyItemSet<IfcAlignment2DHorizontalSegment, IIfcAlignment2DHorizontalSegment>( @Segments); } 
 		}	
-		 
 		IEnumerable<IIfcAlignmentCurve> IIfcAlignment2DHorizontal.ToAlignmentCurve {  get { return @ToAlignmentCurve; } }
 		#endregion
 

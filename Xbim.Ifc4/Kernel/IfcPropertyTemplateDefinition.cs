@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.Kernel
 	public abstract partial class @IfcPropertyTemplateDefinition : IfcPropertyDefinition, IIfcPropertyTemplateDefinition, IEquatable<@IfcPropertyTemplateDefinition>
 	{
 		#region IIfcPropertyTemplateDefinition explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

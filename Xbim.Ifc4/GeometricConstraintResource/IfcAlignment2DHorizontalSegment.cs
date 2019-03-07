@@ -45,7 +45,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			get { return @CurveGeometry; } 
 			set { CurveGeometry = value as IfcCurveSegment2D;}
 		}	
-		 
 		IEnumerable<IIfcAlignment2DHorizontal> IIfcAlignment2DHorizontalSegment.ToHorizontal {  get { return @ToHorizontal; } }
 		#endregion
 

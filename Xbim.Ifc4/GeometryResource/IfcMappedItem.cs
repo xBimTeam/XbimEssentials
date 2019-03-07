@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @MappingTarget; } 
 			set { MappingTarget = value as IfcCartesianTransformationOperator;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

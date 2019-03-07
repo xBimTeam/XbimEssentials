@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcSeamCurve : IfcSurfaceCurve, IInstantiableEntity, IIfcSeamCurve, IContainsEntityReferences, IEquatable<@IfcSeamCurve>
 	{
 		#region IIfcSeamCurve explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

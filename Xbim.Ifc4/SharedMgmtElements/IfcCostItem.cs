@@ -53,7 +53,6 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		IItemSet<IIfcPhysicalQuantity> IIfcCostItem.CostQuantities { 
 			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @CostQuantities); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

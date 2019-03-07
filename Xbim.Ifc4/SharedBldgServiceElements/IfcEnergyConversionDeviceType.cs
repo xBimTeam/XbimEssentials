@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public abstract partial class @IfcEnergyConversionDeviceType : IfcDistributionFlowElementType, IIfcEnergyConversionDeviceType, IEquatable<@IfcEnergyConversionDeviceType>
 	{
 		#region IIfcEnergyConversionDeviceType explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

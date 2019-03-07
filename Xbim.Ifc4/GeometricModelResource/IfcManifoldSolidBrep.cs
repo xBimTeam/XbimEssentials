@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @Outer; } 
 			set { Outer = value as IfcClosedShell;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @ReferenceCurve; } 
 			set { ReferenceCurve = value as IfcCurve;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IEnumerable<IfcReal> IIfcTextureCoordinateGenerator.Parameter { 
 			get { return @Parameter; } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -49,7 +49,8 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
-		 
+		IfcInteger IIfcCompositeCurve.@NSegments  { get { return @NSegments; } }
+		IfcLogical IIfcCompositeCurve.@ClosedCurve  { get { return @ClosedCurve; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

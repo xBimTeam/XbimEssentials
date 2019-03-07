@@ -42,7 +42,7 @@ namespace Xbim.Ifc4.GeometryResource
 		IItemSet<IfcReal> IIfcRationalBSplineCurveWithKnots.WeightsData { 
 			get { return @WeightsData; } 
 		}	
-		 
+		List<IfcReal> IIfcRationalBSplineCurveWithKnots.@Weights  { get { return new List<IfcReal>(@Weights); } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

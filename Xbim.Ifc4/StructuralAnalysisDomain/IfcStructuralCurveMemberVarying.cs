@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralCurveMemberVarying : IfcStructuralCurveMember, IInstantiableEntity, IIfcStructuralCurveMemberVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveMemberVarying>
 	{
 		#region IIfcStructuralCurveMemberVarying explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.QuantityResource
 			get { return @Unit; } 
 			set { Unit = value as IfcNamedUnit;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

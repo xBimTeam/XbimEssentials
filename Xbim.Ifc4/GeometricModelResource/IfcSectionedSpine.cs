@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IIfcAxis2Placement3D> IIfcSectionedSpine.CrossSectionPositions { 
 			get { return new Common.Collections.ProxyItemSet<IfcAxis2Placement3D, IIfcAxis2Placement3D>( @CrossSectionPositions); } 
 		}	
-		 
+		IfcDimensionCount IIfcSectionedSpine.@Dim  { get { return @Dim; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

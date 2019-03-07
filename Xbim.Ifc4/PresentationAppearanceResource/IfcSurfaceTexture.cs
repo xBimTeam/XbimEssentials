@@ -70,7 +70,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IItemSet<IfcIdentifier> IIfcSurfaceTexture.Parameter { 
 			get { return @Parameter; } 
 		}	
-		 
 		IEnumerable<IIfcTextureCoordinate> IIfcSurfaceTexture.IsMappedBy {  get { return @IsMappedBy; } }
 		IEnumerable<IIfcSurfaceStyleWithTextures> IIfcSurfaceTexture.UsedInStyles {  get { return @UsedInStyles; } }
 		#endregion

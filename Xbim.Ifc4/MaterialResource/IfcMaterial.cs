@@ -59,7 +59,6 @@ namespace Xbim.Ifc4.MaterialResource
 			get { return @Category; } 
 			set { Category = value;}
 		}	
-		 
 		IEnumerable<IIfcMaterialDefinitionRepresentation> IIfcMaterial.HasRepresentation {  get { return @HasRepresentation; } }
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.IsRelatedWith {  get { return @IsRelatedWith; } }
 		IEnumerable<IIfcMaterialRelationship> IIfcMaterial.RelatesTo {  get { return @RelatesTo; } }

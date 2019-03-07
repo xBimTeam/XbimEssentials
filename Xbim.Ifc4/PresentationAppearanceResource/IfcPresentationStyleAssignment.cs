@@ -42,7 +42,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IItemSet<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { 
 			get { return new Common.Collections.ProxyItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>( @Styles); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

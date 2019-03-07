@@ -58,7 +58,7 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @ParentCurve; } 
 			set { ParentCurve = value as IfcCurve;}
 		}	
-		 
+		IfcDimensionCount IIfcCompositeCurveSegment.@Dim  { get { return @Dim; } }
 		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves {  get { return @UsingCurves; } }
 		#endregion
 

@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @RelatingTemplate; } 
 			set { RelatingTemplate = value as IfcPropertySetTemplate;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public  partial class @IfcFlowStorageDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowStorageDevice, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowStorageDevice>
 	{
 		#region IIfcFlowStorageDevice explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

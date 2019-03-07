@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralPlanarAction : IfcStructuralSurfaceAction, IInstantiableEntity, IIfcStructuralPlanarAction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPlanarAction>
 	{
 		#region IIfcStructuralPlanarAction explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

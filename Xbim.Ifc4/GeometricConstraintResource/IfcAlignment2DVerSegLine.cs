@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public  partial class @IfcAlignment2DVerSegLine : IfcAlignment2DVerticalSegment, IInstantiableEntity, IIfcAlignment2DVerSegLine, IEquatable<@IfcAlignment2DVerSegLine>
 	{
 		#region IIfcAlignment2DVerSegLine explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

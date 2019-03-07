@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @IsCCW; } 
 			set { IsCCW = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

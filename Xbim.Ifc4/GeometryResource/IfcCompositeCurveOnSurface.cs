@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCompositeCurveOnSurface : IfcCompositeCurve, IInstantiableEntity, IIfcCompositeCurveOnSurface, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompositeCurveOnSurface>
 	{
 		#region IIfcCompositeCurveOnSurface explicit implementation
-		 
+		List<IIfcSurface> IIfcCompositeCurveOnSurface.@BasisSurface  { get { return new List<IIfcSurface>(@BasisSurface); } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

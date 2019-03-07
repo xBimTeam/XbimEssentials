@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @MasterRepresentation; } 
 			set { MasterRepresentation = value;}
 		}	
-		 
+		List<IIfcSurface> IIfcSurfaceCurve.@BasisSurface  { get { return new List<IIfcSurface>(@BasisSurface); } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

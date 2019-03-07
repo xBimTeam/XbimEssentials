@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSurfaceStyle, IEquatable<@IfcExternallyDefinedSurfaceStyle>
 	{
 		#region IIfcExternallyDefinedSurfaceStyle explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

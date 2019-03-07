@@ -67,7 +67,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 			get { return @BarSurface; } 
 			set { BarSurface = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -69,7 +69,6 @@ namespace Xbim.Ifc4.ConstraintResource
 			get { return @InnerReference; } 
 			set { InnerReference = value as IfcReference;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

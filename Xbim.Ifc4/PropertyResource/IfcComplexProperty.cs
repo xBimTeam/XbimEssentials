@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.PropertyResource
 		IItemSet<IIfcProperty> IIfcComplexProperty.HasProperties { 
 			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @HasProperties); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

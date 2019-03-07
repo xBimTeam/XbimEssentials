@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @VerticalAxisDirection; } 
 			set { VerticalAxisDirection = value as IfcDirection;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

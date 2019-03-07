@@ -38,7 +38,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcAnnotation : IfcProduct, IInstantiableEntity, IIfcAnnotation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotation>
 	{
 		#region IIfcAnnotation explicit implementation
-		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcAnnotation.ContainedInStructure {  get { return @ContainedInStructure; } }
 		#endregion
 

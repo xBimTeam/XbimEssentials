@@ -58,7 +58,6 @@ namespace Xbim.Ifc4.PropertyResource
 			get { return @Expression; } 
 			set { Expression = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

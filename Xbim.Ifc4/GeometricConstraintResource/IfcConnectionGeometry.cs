@@ -38,7 +38,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 	public abstract partial class @IfcConnectionGeometry : PersistEntity, IIfcConnectionGeometry, IEquatable<@IfcConnectionGeometry>
 	{
 		#region IIfcConnectionGeometry explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

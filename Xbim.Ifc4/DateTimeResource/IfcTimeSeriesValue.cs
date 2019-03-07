@@ -43,7 +43,6 @@ namespace Xbim.Ifc4.DateTimeResource
 		IItemSet<IIfcValue> IIfcTimeSeriesValue.ListValues { 
 			get { return new Common.Collections.ProxyItemSet<IfcValue, IIfcValue>( @ListValues); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

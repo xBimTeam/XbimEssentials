@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			get { return @SameSense; } 
 			set { SameSense = value;}
 		}	
-		 
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW {  get { return @PartOfW; } }
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV {  get { return @PartOfV; } }
 		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfU {  get { return @PartOfU; } }
