@@ -51,11 +51,42 @@ namespace Xbim.Ifc4.ProfileResource
 		{
 			get 
 			{
-				//## Overriding derived attribute Operator getter
-				//TODO: Implement overriding derived attribute Operator getter
-                throw new NotImplementedException();
-				//##
-			}
+                //## Overriding derived attribute Operator getter
+                //We need to use parser because it will not run in any transaction
+                var p = new IO.Step21.Parser.PropertyValue();
+                var n = new int[] { };
+                var a1 = new IfcDirection(Model, -1, true);
+                p.Init("-1.", Common.Step21.StepParserType.Real);
+                ((IPersist)a1).Parse(0, p, n);
+                p.Init("0.", Common.Step21.StepParserType.Real);
+                ((IPersist)a1).Parse(0, p, n);
+
+                var a2 = new IfcDirection(Model, -1, true);
+                p.Init("0.", Common.Step21.StepParserType.Real);
+                ((IPersist)a2).Parse(0, p, n);
+                p.Init("1.", Common.Step21.StepParserType.Real);
+                ((IPersist)a2).Parse(0, p, n);
+
+                var o = new IfcCartesianPoint(Model, -1, true);
+                p.Init("0.", Common.Step21.StepParserType.Real);
+                ((IPersist)o).Parse(0, p, n);
+                p.Init("0.", Common.Step21.StepParserType.Real);
+                ((IPersist)o).Parse(0, p, n);
+
+
+                var r = new IfcCartesianTransformationOperator2D(Model, -1, true);
+                p.Init(a1);
+                ((IPersist)r).Parse(0, p, n);
+                p.Init(a2);
+                ((IPersist)r).Parse(1, p, n);
+                p.Init(o);
+                ((IPersist)r).Parse(2, p, n);
+                p.Init("1.", Common.Step21.StepParserType.Real);
+                ((IPersist)r).Parse(3, p, n);
+
+                return r;
+                //##
+            }
 			set 
 			{ 
 				throw new System.Exception("It is not possible to set a value of derived property Operator in IfcMirroredProfileDef"); 
