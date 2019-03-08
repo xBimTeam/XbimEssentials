@@ -33,7 +33,10 @@ namespace Xbim.IfcRail.GeometryResource
 			get 
 			{
                 //## Getter for Weights in an interface
-                return Weights.Select(w => new Xbim.Ifc4.MeasureResource.IfcReal(w)).ToList();
+                return Weights
+                    .Select(w => new List<Xbim.Ifc4.MeasureResource.IfcReal>(w
+                    .Select(r => new Xbim.Ifc4.MeasureResource.IfcReal(r))))
+                    .ToList();
                 //##
             }
         }
