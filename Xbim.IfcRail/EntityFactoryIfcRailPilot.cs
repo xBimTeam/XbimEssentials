@@ -1643,7 +1643,7 @@ namespace Xbim.IfcRail
 		public XbimSchemaVersion SchemaVersion { 
 			get
 			{
-				return XbimSchemaVersion.Unsupported;
+				return XbimSchemaVersion.IfcRail;
 			}
 		}
 

@@ -457,6 +457,21 @@ namespace Xbim.Ifc
                         po.ThePerson = person;
                     });
                 }
+                else if (SchemaVersion == XbimSchemaVersion.IfcRail)
+                {
+                    var person = Instances.New<IfcRail.ActorResource.IfcPerson>(p =>
+                    {
+                        p.GivenName = EditorDetails.EditorsGivenName;
+                        p.FamilyName = EditorDetails.EditorsFamilyName;
+                    });
+                    var organization = Instances.OfType<IfcRail.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
+                        ?? Instances.New<IfcRail.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
+                    _defaultOwningUser = Instances.New<IfcRail.ActorResource.IfcPersonAndOrganization>(po =>
+                    {
+                        po.TheOrganization = organization;
+                        po.ThePerson = person;
+                    });
+                }
                 else
                 {
                     var person = Instances.New<Ifc2x3.ActorResource.IfcPerson>(p =>
@@ -502,6 +517,18 @@ namespace Xbim.Ifc
                                  a.Version = EditorDetails.ApplicationVersion;
                              }
                 ));
+                else if (SchemaVersion == XbimSchemaVersion.IfcRail)
+                    return _defaultOwningApplication ??
+                         (_defaultOwningApplication =
+                             Instances.New<IfcRail.UtilityResource.IfcApplication>(a =>
+                             {
+                                 a.ApplicationDeveloper = Instances.OfType<IfcRail.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
+                                 ?? Instances.New<IfcRail.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
+                                 a.ApplicationFullName = EditorDetails.ApplicationFullName;
+                                 a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
+                                 a.Version = EditorDetails.ApplicationVersion;
+                             }
+                ));
                 return _defaultOwningApplication ??
                         (_defaultOwningApplication =
                             Instances.New<Ifc2x3.UtilityResource.IfcApplication>(a =>
@@ -530,6 +557,14 @@ namespace Xbim.Ifc
                     histAdd.ChangeAction = IfcChangeActionEnum.ADDED;
                     _ownerHistoryAddObject = histAdd;
                 }
+                else if (SchemaVersion == XbimSchemaVersion.IfcRail)
+                {
+                    var histAdd = Instances.New<IfcRail.UtilityResource.IfcOwnerHistory>();
+                    histAdd.OwningUser = (IfcRail.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histAdd.OwningApplication = (IfcRail.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histAdd.ChangeAction = IfcRail.UtilityResource.IfcChangeActionEnum.ADDED;
+                    _ownerHistoryAddObject = histAdd;
+                }
                 else
                 {
                     var histAdd = Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
@@ -554,6 +589,14 @@ namespace Xbim.Ifc
                     histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
                     histmod.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
                     histmod.ChangeAction = IfcChangeActionEnum.MODIFIED;
+                    _ownerHistoryModifyObject = histmod;
+                }
+                else if (SchemaVersion == XbimSchemaVersion.IfcRail)
+                {
+                    var histmod = Instances.New<IfcRail.UtilityResource.IfcOwnerHistory>();
+                    histmod.OwningUser = (IfcRail.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histmod.OwningApplication = (IfcRail.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histmod.ChangeAction = IfcRail.UtilityResource.IfcChangeActionEnum.MODIFIED;
                     _ownerHistoryModifyObject = histmod;
                 }
                 else
