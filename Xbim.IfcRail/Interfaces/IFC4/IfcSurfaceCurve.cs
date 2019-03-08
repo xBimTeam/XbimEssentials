@@ -88,11 +88,10 @@ namespace Xbim.IfcRail.GeometryResource
 			get 
 			{
 				//## Getter for BasisSurface in an interface
-				//TODO: Implement getter for derived attribute BasisSurface in an interface
-				throw new System.NotImplementedException();
-				//##
-			}
-		}
+                return BasisSurface.Select(s => s as IIfcSurface).ToList();
+                //##
+            }
+        }
 
 	//## Custom code
 	//##

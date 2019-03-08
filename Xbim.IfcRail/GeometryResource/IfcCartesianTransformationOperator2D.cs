@@ -37,9 +37,8 @@ namespace Xbim.IfcRail.GeometryResource
 		{
 			get 
 			{
-				//## Getter for U
-				//TODO: Implement getter for derived attribute U
-				throw new System.NotImplementedException();
+                //## Getter for U
+                return U;
 				//##
 			}
 		}
