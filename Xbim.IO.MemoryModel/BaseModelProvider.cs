@@ -28,6 +28,8 @@ namespace Xbim.IO
                     return new Ifc4.EntityFactoryIfc4x1();
                 case XbimSchemaVersion.Ifc2X3:
                     return new Ifc2x3.EntityFactoryIfc2x3();
+                case XbimSchemaVersion.IfcRail:
+                    return new IfcRail.EntityFactoryIfcRailPilot();
                 case XbimSchemaVersion.Cobie2X4:
                 case XbimSchemaVersion.Unsupported:
                 default:

@@ -123,6 +123,8 @@ namespace Xbim.Ifc
                     return XbimSchemaVersion.Ifc4;
                 if (string.Compare(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase) == 0)
                     return XbimSchemaVersion.Ifc4x1;
+                if (string.Equals(schema, "IFC_Rail_Pilot", StringComparison.OrdinalIgnoreCase))
+                    return XbimSchemaVersion.IfcRail;
                 if (string.Compare(schema, "Ifc2x3", StringComparison.OrdinalIgnoreCase) == 0)
                     return XbimSchemaVersion.Ifc2X3;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
