@@ -33,9 +33,8 @@ namespace Xbim.IfcRail.GeometryResource
 		{
 			get 
 			{
-				//## Getter for Weights in an interface
-				//TODO: Implement getter for derived attribute Weights in an interface
-				throw new System.NotImplementedException();
+                //## Getter for Weights in an interface
+                return Weights.Select(w => new Xbim.Ifc4.MeasureResource.IfcReal(w)).ToList();
 				//##
 			}
 		}
