@@ -38,7 +38,12 @@ namespace Xbim.IfcRail.Kernel
 				if (ifcpropertysetdefinition != null) 
 					return ifcpropertysetdefinition;
 				if (RelatingPropertyDefinition is IfcPropertySetDefinitionSet) 
-					return new Ifc4.Kernel.IfcPropertySetDefinitionSet((IfcPropertySetDefinitionSet)RelatingPropertyDefinition);
+					//## Handle defined type IfcPropertySetDefinitionSet which is not a part of the target select interface IIfcPropertySetDefinitionSelect in property RelatingPropertyDefinition
+                {
+                    var defSet = ((IfcPropertySetDefinitionSet)RelatingPropertyDefinition).PropertySetDefinitions.ToList();
+                    return new Ifc4.Kernel.IfcPropertySetDefinitionSet(defSet);
+                }
+					//##
 				return null;
 			} 
 			set
@@ -56,8 +61,10 @@ namespace Xbim.IfcRail.Kernel
 				}
 				if (value is Ifc4.Kernel.IfcPropertySetDefinitionSet) 
 				{
-					RelatingPropertyDefinition = new IfcPropertySetDefinitionSet((Ifc4.Kernel.IfcPropertySetDefinitionSet)value);
-					return;
+                    //## Handle setting of defined type IfcPropertySetDefinitionSet which is not a part of the target select interface IIfcPropertySetDefinitionSelect in property RelatingPropertyDefinition
+                    var v = ((Ifc4.Kernel.IfcPropertySetDefinitionSet)value).PropertySetDefinitions.Cast<IfcPropertySetDefinition>().ToList();
+                    RelatingPropertyDefinition = new Kernel.IfcPropertySetDefinitionSet(v);
+					//##
 				}
 				
 			}
