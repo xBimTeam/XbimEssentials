@@ -61,7 +61,7 @@ namespace Xbim.IfcRail.Kernel
 				}
 				if (value is Ifc4.Kernel.IfcPropertySetDefinitionSet) 
 				{
-                    //## Handle setting of defined type IfcPropertySetDefinitionSet which is not a part of the target select interface IIfcPropertySetDefinitionSelect in property RelatingPropertyDefinition
+					//## Handle setting of defined type IfcPropertySetDefinitionSet which is not a part of the target select interface IIfcPropertySetDefinitionSelect in property RelatingPropertyDefinition
                     var v = ((Ifc4.Kernel.IfcPropertySetDefinitionSet)value).PropertySetDefinitions.Cast<IfcPropertySetDefinition>().ToList();
                     RelatingPropertyDefinition = new Kernel.IfcPropertySetDefinitionSet(v);
 					//##
