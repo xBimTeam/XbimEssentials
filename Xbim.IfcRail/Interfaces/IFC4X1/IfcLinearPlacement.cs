@@ -23,17 +23,17 @@ namespace Xbim.IfcRail.GeometricConstraintResource
 		{ 
 			get
 			{
-                //## Handle return of PlacementRelTo for which no match was found
+				//## Handle return of PlacementRelTo for which no match was found
                 return PlacementMeasuredAlong;
 				//##
 			} 
 			set
 			{
-                //## Handle setting of PlacementRelTo for which no match was found
+				//## Handle setting of PlacementRelTo for which no match was found
                 PlacementMeasuredAlong = value as GeometryResource.IfcCurve;
                 //##
-
-            }
+				
+			}
 		}
 
 		[CrossSchemaAttribute(typeof(IIfcLinearPlacement), 2)]

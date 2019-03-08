@@ -86,10 +86,10 @@ namespace Xbim.IfcRail.GeometryResource
 		{
 			get 
 			{
-                //## Getter for BasisSurface
+				//## Getter for BasisSurface
                 return Functions.IfcGetBasisSurface(this).ToList();
                 //##
-            }
+			}
 		}
 
 		#endregion

@@ -61,11 +61,11 @@ namespace Xbim.IfcRail.GeometricModelResource
 		{
 			get 
 			{
-                //## Getter for Dim
+				//## Getter for Dim
                 return 3;
                 //##
-            }
-        }
+			}
+		}
 
 		#endregion
 
