@@ -97,6 +97,16 @@ steps:
 - script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
   displayName: 'Xbim.IFC4 - packing'
 
+# Ifc Rail
+- script: dotnet remove Xbim.IfcRail\Xbim.IfcRail.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+  displayName: 'Xbim.IFC Rail - remove project references'
+
+- script: dotnet add Xbim.IfcRail\Xbim.IfcRail.csproj package Xbim.Ifc4 -s $(Build.BinariesDirectory) -v $(packageversion)
+  displayName: 'Xbim.IFCRail - adding package references'
+
+- script: dotnet pack Xbim.IfcRail/Xbim.IfcRail.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+  displayName: 'Xbim.IFCRail - packing'  
+  
 # Ifc2x3
 - script: dotnet remove Xbim.Ifc2x3\Xbim.Ifc2x3.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
   displayName: 'Xbim.IFC2x3 - remove project references'
