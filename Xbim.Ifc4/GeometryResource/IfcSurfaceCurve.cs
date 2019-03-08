@@ -119,11 +119,11 @@ namespace Xbim.Ifc4.GeometryResource
 		{
 			get 
 			{
-                //## Getter for BasisSurface
+				//## Getter for BasisSurface
                 return Functions.IfcGetBasisSurface(this).ToList();
                 //##
-            }
-        }
+			}
+		}
 
 		#endregion
 

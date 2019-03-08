@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		{
 			get 
 			{
-                //## Getter for Dim
+				//## Getter for Dim
                 return 3;
 				//##
 			}

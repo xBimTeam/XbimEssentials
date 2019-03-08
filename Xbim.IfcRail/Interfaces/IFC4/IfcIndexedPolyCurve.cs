@@ -88,7 +88,7 @@ namespace Xbim.IfcRail.GeometryResource
 			switch (name)
 			{
 				case "IfcArcIndex":
-                    //## Handle return defined type IfcArcIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
+					//## Handle return defined type IfcArcIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
                     {
                         var values = (member as IExpressComplexType).Properties
                             .Cast<Ifc4.MeasureResource.IfcPositiveInteger>()
@@ -97,8 +97,8 @@ namespace Xbim.IfcRail.GeometryResource
                         return new GeometryResource.IfcArcIndex(values);
                     }
                 //##
-                case "IfcLineIndex":
-                    //## Handle return defined type IfcLineIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
+				case "IfcLineIndex":
+					//## Handle return defined type IfcLineIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
                     {
                         var values = (member as IExpressComplexType).Properties
                             .Cast<Ifc4.MeasureResource.IfcPositiveInteger>()
@@ -107,7 +107,7 @@ namespace Xbim.IfcRail.GeometryResource
                         return new GeometryResource.IfcLineIndex(values);
                     }
                 //##
-                default:
+				default:
 					throw new System.NotSupportedException();
 			}
 		}
