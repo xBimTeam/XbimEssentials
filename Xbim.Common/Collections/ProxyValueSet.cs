@@ -14,7 +14,7 @@ namespace Xbim.Common.Collections
         //where TInner : struct
         //where TOuter : struct
     {
-        private readonly IItemSet<TInner> _inner;
+        internal readonly IItemSet<TInner> _inner;
         private readonly Func<TInner, TOuter> _toOut;
         private readonly Func<TOuter, TInner> _toIn;
         private IList List { get { return _inner as IList; } }
