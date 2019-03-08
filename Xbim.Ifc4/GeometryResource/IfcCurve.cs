@@ -16,6 +16,7 @@ using Xbim.Common.Exceptions;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.GeometryResource;
 //## Custom using statements
+using Xbim.Ifc4.GeometricConstraintResource;
 //##
 
 namespace Xbim.Ifc4.Interfaces
@@ -75,7 +76,17 @@ namespace Xbim.Ifc4.GeometryResource
 			        return 2;
                 if (this is IfcOffsetCurve3D)
 			        return 3;
-			    return new IfcDimensionCount(0);
+                if (this is IfcOffsetCurveByDistances)
+                    return 3;
+                if (this is IfcCurveSegment2D)
+                    return 2;
+                if (this is IfcAlignmentCurve)
+                    return 3;
+                if (this is IfcPcurve)
+                    return 3;
+                if (this is IfcIndexedPolyCurve ipc)
+                    return ipc.Points.Dim;
+                return new IfcDimensionCount(0);
 			    //##
 			}
 		}

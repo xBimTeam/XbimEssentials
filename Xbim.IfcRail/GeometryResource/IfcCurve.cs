@@ -38,32 +38,42 @@ namespace Xbim.IfcRail.GeometryResource
 		{
 			get 
 			{
-				//## Getter for Dim
-			    var line = this as IfcLine;
-			    if (line != null)
-			        return line.Pnt.Dim;
-			    var conic = this as IfcConic;
-			    if (conic != null)
-			        return conic.Position.Dim;
-			    var polyline = this as IfcPolyline;
-			    if (polyline != null)
-			        return polyline.Points[1].Dim;
-			    var trimmed = this as IfcTrimmedCurve;
-			    if (trimmed != null)
-			        return trimmed.BasisCurve.Dim;
-			    var composit = this as IfcCompositeCurve;
-			    if (composit != null)
-			        return composit.Segments[1].Dim;
-			    var bspline = this as IfcBSplineCurve;
-			    if (bspline != null)
-			        return bspline.ControlPointsList[1].Dim;
-			    if (this is IfcOffsetCurve2D)
-			        return 2;
+                //## Getter for Dim
+                var line = this as IfcLine;
+                if (line != null)
+                    return line.Pnt.Dim;
+                var conic = this as IfcConic;
+                if (conic != null)
+                    return conic.Position.Dim;
+                var polyline = this as IfcPolyline;
+                if (polyline != null)
+                    return polyline.Points[1].Dim;
+                var trimmed = this as IfcTrimmedCurve;
+                if (trimmed != null)
+                    return trimmed.BasisCurve.Dim;
+                var composit = this as IfcCompositeCurve;
+                if (composit != null)
+                    return composit.Segments[1].Dim;
+                var bspline = this as IfcBSplineCurve;
+                if (bspline != null)
+                    return bspline.ControlPointsList[1].Dim;
+                if (this is IfcOffsetCurve2D)
+                    return 2;
                 if (this is IfcOffsetCurve3D)
-			        return 3;
-			    return new IfcDimensionCount(0);
-			    //##
-			}
+                    return 3;
+                if (this is IfcOffsetCurveByDistances)
+                    return 3;
+                if (this is IfcCurveSegment2D)
+                    return 2;
+                if (this is GeometricConstraintResource.IfcAlignmentCurve)
+                    return 3;
+                if (this is IfcPcurve)
+                    return 3;
+                if (this is IfcIndexedPolyCurve ipc)
+                    return ipc.Points.Dim;
+                return new IfcDimensionCount(0);
+                //##
+            }
 		}
 
 		#endregion
