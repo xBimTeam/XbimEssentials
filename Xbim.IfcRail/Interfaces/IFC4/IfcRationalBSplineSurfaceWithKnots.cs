@@ -23,7 +23,9 @@ namespace Xbim.IfcRail.GeometryResource
 		{ 
 			get
 			{
-				return new Common.Collections.ProxyNestedItemSet<MeasureResource.IfcReal, Ifc4.MeasureResource.IfcReal>(WeightsData);
+				return new Common.Collections.ProxyNestedValueSet<MeasureResource.IfcReal, Ifc4.MeasureResource.IfcReal>(WeightsData, 
+					s => new Ifc4.MeasureResource.IfcReal(s), 
+					t => new MeasureResource.IfcReal(t));
 			} 
 		}
 		List<List<Xbim.Ifc4.MeasureResource.IfcReal>> IIfcRationalBSplineSurfaceWithKnots.Weights 

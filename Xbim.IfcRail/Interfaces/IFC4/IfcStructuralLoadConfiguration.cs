@@ -33,7 +33,9 @@ namespace Xbim.IfcRail.StructuralLoadResource
 		{ 
 			get
 			{
-				return new Common.Collections.ProxyNestedItemSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(Locations);
+				return new Common.Collections.ProxyNestedValueSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(Locations, 
+					s => new Ifc4.MeasureResource.IfcLengthMeasure(s), 
+					t => new MeasureResource.IfcLengthMeasure(t));
 			} 
 		}
 	//## Custom code

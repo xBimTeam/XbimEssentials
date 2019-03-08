@@ -23,7 +23,9 @@ namespace Xbim.IfcRail.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return new Common.Collections.ProxyNestedItemSet<MeasureResource.IfcParameterValue, Ifc4.MeasureResource.IfcParameterValue>(TexCoordsList);
+				return new Common.Collections.ProxyNestedValueSet<MeasureResource.IfcParameterValue, Ifc4.MeasureResource.IfcParameterValue>(TexCoordsList, 
+					s => new Ifc4.MeasureResource.IfcParameterValue(s), 
+					t => new MeasureResource.IfcParameterValue(t));
 			} 
 		}
 	//## Custom code

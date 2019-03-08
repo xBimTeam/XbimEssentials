@@ -23,7 +23,9 @@ namespace Xbim.IfcRail.GeometricModelResource
 		{ 
 			get
 			{
-				return new Common.Collections.ProxyNestedItemSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(CoordList);
+				return new Common.Collections.ProxyNestedValueSet<MeasureResource.IfcLengthMeasure, Ifc4.MeasureResource.IfcLengthMeasure>(CoordList, 
+					s => new Ifc4.MeasureResource.IfcLengthMeasure(s), 
+					t => new MeasureResource.IfcLengthMeasure(t));
 			} 
 		}
 

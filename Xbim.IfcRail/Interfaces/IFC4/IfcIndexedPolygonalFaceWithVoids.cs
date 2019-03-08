@@ -23,7 +23,9 @@ namespace Xbim.IfcRail.GeometricModelResource
 		{ 
 			get
 			{
-				return new Common.Collections.ProxyNestedItemSet<MeasureResource.IfcPositiveInteger, Ifc4.MeasureResource.IfcPositiveInteger>(InnerCoordIndices);
+				return new Common.Collections.ProxyNestedValueSet<MeasureResource.IfcPositiveInteger, Ifc4.MeasureResource.IfcPositiveInteger>(InnerCoordIndices, 
+					s => new Ifc4.MeasureResource.IfcPositiveInteger(s), 
+					t => new MeasureResource.IfcPositiveInteger(t));
 			} 
 		}
 	//## Custom code

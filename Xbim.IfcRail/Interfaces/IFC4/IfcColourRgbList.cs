@@ -23,7 +23,9 @@ namespace Xbim.IfcRail.PresentationAppearanceResource
 		{ 
 			get
 			{
-				return new Common.Collections.ProxyNestedItemSet<MeasureResource.IfcNormalisedRatioMeasure, Ifc4.MeasureResource.IfcNormalisedRatioMeasure>(ColourList);
+				return new Common.Collections.ProxyNestedValueSet<MeasureResource.IfcNormalisedRatioMeasure, Ifc4.MeasureResource.IfcNormalisedRatioMeasure>(ColourList, 
+					s => new Ifc4.MeasureResource.IfcNormalisedRatioMeasure(s), 
+					t => new MeasureResource.IfcNormalisedRatioMeasure(t));
 			} 
 		}
 	//## Custom code
