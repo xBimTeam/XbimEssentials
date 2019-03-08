@@ -118,10 +118,13 @@ steps:
   displayName: 'Xbim.IFC2x3 - packing'
 
 # Memory Model
-- script: dotnet remove Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+- script: dotnet remove Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj ..\Xbim.Ifc4\Xbim.IfcRail.csproj
   displayName: 'Xbim.IO.MemoryModel - remove project references'
 
 - script: dotnet add Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(packageversion)
+  displayName: 'Xbim.IO.MemoryModel - add package references'
+  
+- script: dotnet add Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj package Xbim.IfcRail -s $(Build.BinariesDirectory) -v $(packageversion)
   displayName: 'Xbim.IO.MemoryModel - add package references'
 
 - script: dotnet pack Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
