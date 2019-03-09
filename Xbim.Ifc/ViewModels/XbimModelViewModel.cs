@@ -58,6 +58,7 @@ namespace Xbim.Ifc.ViewModels
                         _children.Add(new SpatialViewModel(item, this));
                     }
                     
+                    // todo: federated memory models are not successfully converted to IFederatedeModel
                     var federation = _model as IFederatedModel;
                     if (federation == null) return _children;
                     
