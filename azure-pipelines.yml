@@ -167,7 +167,7 @@ steps:
     ((Get-Content -path Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(packageversion)') | Set-Content -Path Xbim.Essentials.nuspec
   displayName: 'Xbim.Essentials - Setting packageversion $(packageversion)'
 
-- script: nuget pack Xbim.Essentials.nuspec -o $(Build.BinariesDirectory)
+- script: nuget pack Xbim.Essentials.nuspec -OutputDirectory $(Build.BinariesDirectory)
   displayName: 'Xbim.Essentials - packing'
   
 # Copy artifacts and Publish
