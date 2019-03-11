@@ -56,6 +56,8 @@ steps:
 
 - task: NuGetToolInstaller@0
   displayName: 'Install Nuget'
+  inputs:
+    versionSpec: '4.6.2'
 
 # Version .NET Core project files
 # Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
