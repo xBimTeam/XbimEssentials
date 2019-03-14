@@ -20,7 +20,7 @@ namespace Xbim.Ifc
     /// <summary>
     /// The <see cref="IfcStore"/> is the main entry point for working with Model files of any format.
     /// 
-    /// IfcStore handles opening, parsing, export, and (optionally persistance) of Ifc files in any format,
+    /// IfcStore handles opening, parsing, export, and (optionally persistence) of Ifc files in any format,
     /// as well as accessing internal XBIM formats (such as *.xbim) files. 
     /// </summary>
     /// <remarks>
@@ -36,7 +36,7 @@ namespace Xbim.Ifc
     /// referenced and loaded. ASP.NET apps do this automatically, but console and windows apps may not load the
     /// DLL into the AppDomain unless a type is referenced.
     /// If the store cannot be discover the Heuristic provider it will fall back to a <see cref="MemoryModelProvider"/>
-    /// which is is less efficient with larger models. 
+    /// which is less efficient with larger models.
     /// </para>
     /// <para>
     /// To guarantee the correct provider regardless, configure <see cref="IfcStore.ModelProviderFactory"/> with the 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc
         public XbimEditorCredentials EditorDetails { get; private set; }
 
         /// <summary>
-        /// Provides access to model persistance capabilities
+        /// Provides access to model persistence capabilities
         /// </summary>
         protected IModelProvider ModelProvider
         {
@@ -866,7 +866,7 @@ namespace Xbim.Ifc
         #region Equality
 
         /// <summary>
-        /// Returns true if it is another reference to this or if is is an embeded model
+        /// Returns true if it is another reference to this or if it is an embedded model
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -876,7 +876,7 @@ namespace Xbim.Ifc
         }
 
         /// <summary>
-        /// Returns true if it is another reference to this or if is is an embeded model
+        /// Returns true if it is another reference to this or if it is an embedded model
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
