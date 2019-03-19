@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Xbim.Common.Collections
 {
-    public class ExtendedSingleSet<TInner, TOuter> : IItemSet<TOuter>
+    public class ExtendedSingleSet<TInner, TOuter> : IItemSet<TOuter>, IList
     {
         private TInner Inner
         {
@@ -195,6 +195,18 @@ namespace Xbim.Common.Collections
             get { return _extended.OwningEntity; }
         }
 
+        bool IList.IsReadOnly => false;
+
+        bool IList.IsFixedSize => false;
+
+        int ICollection.Count => Count;
+
+        object ICollection.SyncRoot => new { };
+
+        bool ICollection.IsSynchronized => true;
+
+        object IList.this[int index] { get => this[index]; set => this[index] = (TOuter)value; }
+
         public TOuter GetAt(int index)
         {
             throw new NotImplementedException();
@@ -218,6 +230,47 @@ namespace Xbim.Common.Collections
         public IEnumerable<TW> Where<TW>(Func<TW, bool> predicate) where TW : TOuter
         {
             return Enumerable.OfType<TW>(this).Where(predicate);
+        }
+
+        int IList.Add(object value)
+        {
+            Add((TOuter)value);
+            return Count - 1;
+        }
+
+        bool IList.Contains(object value)
+        {
+            return Contains((TOuter)value);
+        }
+
+        void IList.Clear()
+        {
+            Clear();
+        }
+
+        int IList.IndexOf(object value)
+        {
+            return IndexOf((TOuter)value);
+        }
+
+        void IList.Insert(int index, object value)
+        {
+            Insert(index, (TOuter)value);
+        }
+
+        void IList.Remove(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IList.RemoveAt(int index)
+        {
+            RemoveAt(index);
+        }
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            Array.Copy(this.ToArray(), 0, array, index, Count - index);
         }
     }
 }

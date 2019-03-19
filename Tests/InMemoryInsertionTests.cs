@@ -35,13 +35,15 @@ namespace Xbim.Essentials.Tests
                     {
                         var w = new Stopwatch();
                         w.Start();
-                        iModel.InsertCopy(model.Instances[61828], new XbimInstanceHandleMap(model, iModel), null, true, true);
+                        var wall = model.Instances.FirstOrDefault<Ifc4.SharedBldgElements.IfcWall>();
+                        iModel.InsertCopy(wall, new XbimInstanceHandleMap(model, iModel), null, true, true);
                         txn.Commit();
                         w.Stop();
-                     
-                       // Debug.WriteLine("Time to insert {0} walls (Overall {1} entities): {2}ms", iWalls.Count, iModel.Instances.Count, w.ElapsedMilliseconds);
 
-                        //Assert.IsTrue(iWalls.Count >= 1);
+                        // Debug.WriteLine("Time to insert {0} walls (Overall {1} entities): {2}ms", iWalls.Count, iModel.Instances.Count, w.ElapsedMilliseconds);
+
+                        var iWalls = iModel.Instances.OfType<Ifc4.SharedBldgElements.IfcWall>().ToList();
+                        Assert.IsTrue(iWalls.Count >= 1);
                        
                     }
                     var tw = File.Create("Ifc4WithNestedListsExtract.ifc");

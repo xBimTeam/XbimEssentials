@@ -141,18 +141,18 @@ namespace Xbim.Common
                     if (pVal == null) continue;
 
                     //it might be uninitialized optional item set
-                    var optSet = pVal as IOptionalItemSet;
-                    if (optSet != null && !optSet.Initialized) continue;
+                    if (pVal is IOptionalItemSet optSet && !optSet.Initialized)
+                        continue;
 
                     //or it is non-optional item set implementing IList
-                    var itemSet = pVal as IList;
-                    if (itemSet != null)
+                    if (pVal is IList list)
                     {
-                        if (itemSet.Contains(entity))
-                            itemSet.Remove(entity);
+                        if (!list.Contains(entity))
+                            continue;
+
+                        list.Remove(entity);
                         if (replacement != null)
-                            itemSet.Add(replacement);
-                        continue;
+                            list.Add(replacement);
                     }
 
                     //fall back operating on common list functions using reflection (this is slow)
