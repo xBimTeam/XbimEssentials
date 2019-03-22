@@ -288,17 +288,19 @@ namespace Xbim.Common.Model
             if (_model.IsTransactional && _model.CurrentTransaction == null) throw new Exception("Operation out of transaction");
             var key = entity.GetType();
             bool removed = false;
-            Action doAction = () =>
+            void doAction()
             {
-                _internal.Remove(key,entity);
-                removed =_collection.Remove(entity.EntityLabel);
+                _internal.Remove(key, entity);
+                removed = _collection.Remove(entity.EntityLabel);
                 _naturalOrder?.Remove(entity.EntityLabel);
-            };
-            Action undo = () =>
+                ModelSetter.SetToNull(entity);
+            }
+            void undo()
             {
                 _internal.Add(key,entity);
                 _collection.Add(entity.EntityLabel, entity);
                 _naturalOrder?.Add(entity.EntityLabel);
+                ModelSetter.Set(entity, _model);
             };
 
             if (!_model.IsTransactional)

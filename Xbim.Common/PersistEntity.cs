@@ -19,7 +19,7 @@ namespace Xbim.Common
         #region IPersistEntity
         public int EntityLabel { get; private set; }
 
-        public IModel Model { get; private set; }
+        public IModel Model { get; internal set; }
 
         /// <summary>
         /// This property is deprecated and likely to be removed. Use just 'Model' instead.

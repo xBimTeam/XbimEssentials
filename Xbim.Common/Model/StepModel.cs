@@ -135,7 +135,36 @@ namespace Xbim.Common.Model
         /// <param name="entity">Entity to be deleted</param>
         public virtual void Delete(IPersistEntity entity)
         {
-            ModelHelper.Delete(this, entity, e => _instances.RemoveReversible(e));
+            ModelHelper.RemoveReferences(this, entity);
+            _instances.RemoveReversible(entity);
+        }
+
+        public virtual void Delete(IEnumerable<IPersistEntity> entities)
+        {
+            ModelHelper.RemoveReferences(this, entities);
+            foreach (var e in entities)
+                _instances.RemoveReversible(e);
+        }
+
+        /// <summary>
+        /// This function will replace specified entities with new entities of defined type. This can be used to fix wrong types in the 
+        /// model or to make type identification more precise (for example replacing IfcBuildingElementProxy with IfcFlowFittingDevice).
+        /// Reeplacement takes care of all references in the model to maintain referential integrity and removes entities from the model.
+        /// You should not use these entities any further and make sure you don't hold any references to them. Types must share some common ancestor.
+        /// </summary>
+        /// <typeparam name="TOriginal">Original type</typeparam>
+        /// <typeparam name="TReplacement">New type</typeparam>
+        /// <param name="entities">Entities to be replaced</param>
+        /// <param name="action">Action to be performed on the newly created entities [oprional]</param>
+        /// <returns></returns>
+        public virtual Dictionary<TOriginal, TReplacement> Replace<TOriginal, TReplacement>(IEnumerable<TOriginal> entities, Action<TOriginal, TReplacement> action = null)
+            where TReplacement : IInstantiableEntity
+            where TOriginal : IPersistEntity
+        {
+            var results = ModelHelper.Replace<TOriginal, TReplacement>(this, entities, action);
+            foreach (var item in results.Where(k => k.Value != null).Select(v => v.Key).ToList())
+                _instances.RemoveReversible(item);
+            return results;
         }
 
 
@@ -153,7 +182,7 @@ namespace Xbim.Common.Model
 
         public IStepFileHeader Header { get; protected set; }
 
-        public virtual bool IsTransactional { get; private set; }
+        public virtual bool IsTransactional { get; set; }
 
         /// <summary>
         /// Weak reference allows garbage collector to collect transaction once it goes out of the scope
