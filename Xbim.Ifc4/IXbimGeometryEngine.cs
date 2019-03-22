@@ -85,6 +85,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolid CreateSolid(IIfcFaceBasedSurfaceModel ifcSurface, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcShellBasedSurfaceModel ifcSurface, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcTriangulatedFaceSet ifcSurface, ILogger logger = null);
+        IXbimSolid CreateAlignment(IIfcAlignment alignment, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcFaceBasedSurfaceModel ifcSurface, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcShellBasedSurfaceModel ifcSurface, ILogger logger = null);
         IXbimSolidSet CreateSolidSet(IIfcTriangulatedFaceSet ifcSurface, ILogger logger = null);
@@ -97,6 +98,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimFace CreateFace(IIfcSurface surface, ILogger logger = null);
         IXbimFace CreateFace(IIfcPlane plane, ILogger logger = null);
         IXbimFace CreateFace(IXbimWire wire, ILogger logger = null);
+        IXbimFace CreateFace(IIfcAlignment2DHorizontal alignment, ILogger logger = null);
 
         //Create Wire
         IXbimWire CreateWire(IIfcCurve curve, ILogger logger = null);
@@ -127,6 +129,7 @@ namespace Xbim.Ifc4.Interfaces
         IXbimSolidSet CreateSolidSet();
         IXbimSolidSet CreateSolidSet(IIfcBooleanResult boolOp, ILogger logger=null);
         IXbimSolidSet CreateGrid(IIfcGrid grid, ILogger logger = null);
+        
         //converts an object placement to a matrix transform in the WCS
         XbimMatrix3D ToMatrix3D(IIfcObjectPlacement objPlacement, ILogger logger=null);
         //Read and write functions
