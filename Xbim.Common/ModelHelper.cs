@@ -295,7 +295,7 @@ namespace Xbim.Common
                     else
                     {
                         var e = new NotSupportedException($"Property {toCheck.GetType().Name}.{pInfo.Name} doesn't implement IList interface which is necessary for replacement code to work");
-                        log.LogError(e, "Failed to replace in list");
+                        log.LogError($"Failed to replace in list: {e.Message}");
                         throw e;
                     }
                 }
@@ -375,7 +375,7 @@ namespace Xbim.Common
                     else
                     {
                         var e = new NotSupportedException($"Property {toCheck.GetType().Name}.{pInfo.Name} doesn't implement IList interface which is necessary for replacement code to work");
-                        log.LogError(e, "Failed to replace in list");
+                        log.LogError($"Failed to replace in list: {e.Message}");
                         throw e;
                     }
                 }

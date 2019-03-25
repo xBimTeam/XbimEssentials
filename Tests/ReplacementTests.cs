@@ -28,7 +28,8 @@ namespace Xbim.Essentials.Tests
                 {
                     wall = i.New<IfcWall>();
                     pset = i.New<IfcPropertySet>();
-                    rel = i.New<IfcRelDefinesByProperties>(r => {
+                    rel = i.New<IfcRelDefinesByProperties>(r =>
+                    {
                         r.RelatedObjects.Add(wall);
                         r.RelatingPropertyDefinition = pset;
                     });
@@ -62,7 +63,8 @@ namespace Xbim.Essentials.Tests
                 {
                     wall = i.New<IfcWall>();
                     pset = i.New<IfcPropertySet>();
-                    rel = i.New<IfcRelDefinesByProperties>(r => {
+                    rel = i.New<IfcRelDefinesByProperties>(r =>
+                    {
                         r.RelatedObjects.Add(wall);
                         r.RelatingPropertyDefinition = pset;
                     });
