@@ -102,11 +102,11 @@ namespace Xbim.IO.Memory
             {
                 {
                     var model = CreateMemoryModel(schemaVersion);
-                    if (storageType.HasFlag(StorageType.IfcZip) || storageType.HasFlag(StorageType.Zip))
+                    if (storageType.HasFlag(StorageType.IfcZip) || storageType.HasFlag(StorageType.Zip) || storageType.HasFlag(StorageType.StpZip))
                     {
                         model.LoadZip(path, progDelegate);
                     }
-                    else if (storageType.HasFlag(StorageType.Ifc))
+                    else if (storageType.HasFlag(StorageType.Ifc) || storageType.HasFlag(StorageType.Stp))
                     {
                         model.LoadStep21(path, progDelegate);
                     }
