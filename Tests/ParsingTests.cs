@@ -54,8 +54,18 @@ namespace Xbim.Essentials.Tests
         [DeploymentItem(@"TestFiles\InvalidTriangulatedFaceSet.ifc")]
         public void ToleratesListOfListsOfInts()
         {
-            // should survive parsing file with invalid type in list
+            // should survive parsing file with list of lists of ints instead of list of ints
             using (var store = IfcStore.Open(@"InvalidTriangulatedFaceSet.ifc"))
+            {
+                var faceset = store.Instances.First() as IIfcTriangulatedFaceSet;
+                Assert.IsNotNull(faceset);
+                var pnIndex = faceset.PnIndex;
+                Assert.IsNotNull(pnIndex);
+                Assert.IsTrue(pnIndex.Count > 0);
+            }
+
+            // make sure Esent will work in the same way
+            using (var store = IfcStore.Open(@"InvalidTriangulatedFaceSet.ifc", null, 0))
             {
                 var faceset = store.Instances.First() as IIfcTriangulatedFaceSet;
                 Assert.IsNotNull(faceset);
@@ -69,8 +79,16 @@ namespace Xbim.Essentials.Tests
         [DeploymentItem(@"TestFiles\InvalidMonetaryUnit.ifc")]
         public void ToleratesStringInsteadOfEnum()
         {
-            // should survive parsing file with invalid type in list
+            // should survive parsing file with enum value encoded as a string
             using (var store = IfcStore.Open(@"InvalidMonetaryUnit.ifc"))
+            {
+                var mUnit = store.Instances.First() as Ifc2x3.MeasureResource.IfcMonetaryUnit;
+                Assert.IsNotNull(mUnit);
+                Assert.AreEqual(Ifc2x3.MeasureResource.IfcCurrencyEnum.AUD, mUnit.Currency);
+            }
+
+            // make sure Esent will work in the same way
+            using (var store = IfcStore.Open(@"InvalidMonetaryUnit.ifc", null, 0))
             {
                 var mUnit = store.Instances.First() as Ifc2x3.MeasureResource.IfcMonetaryUnit;
                 Assert.IsNotNull(mUnit);

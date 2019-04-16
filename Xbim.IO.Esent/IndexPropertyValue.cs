@@ -37,6 +37,8 @@ namespace Xbim.IO.Parser
             get
             {
                 if (_parserType == StepParserType.Enum) return _string;
+                if (_parserType == StepParserType.String)
+                    return _string.Trim('.', '\'');
                 throw new Exception(string.Format("Wrong parameter type, found {0}, expected {1}",
                                                   _parserType.ToString(), "Enum"));
             }
