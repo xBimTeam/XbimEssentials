@@ -61,6 +61,8 @@ namespace Xbim.IO.Step21.Parser
             get
             {
                 if (_stepParserType == StepParserType.Enum) return _strVal;
+                if (_stepParserType == StepParserType.String)
+                    return _strVal.Trim('.', '\'');
                 else
                     throw new Exception(string.Format("Wrong parameter type, found {0}, expected {1}",
                                                       _stepParserType.ToString(), "Enum"));

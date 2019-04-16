@@ -51,6 +51,35 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        [DeploymentItem(@"TestFiles\InvalidTriangulatedFaceSet.ifc")]
+        public void ToleratesListOfListsOfInts()
+        {
+            // should survive parsing file with invalid type in list
+            using (var store = IfcStore.Open(@"InvalidTriangulatedFaceSet.ifc"))
+            {
+                var faceset = store.Instances.First() as IIfcTriangulatedFaceSet;
+                Assert.IsNotNull(faceset);
+                var pnIndex = faceset.PnIndex;
+                Assert.IsNotNull(pnIndex);
+                Assert.IsTrue(pnIndex.Count > 0);
+            }
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"TestFiles\InvalidMonetaryUnit.ifc")]
+        public void ToleratesStringInsteadOfEnum()
+        {
+            // should survive parsing file with invalid type in list
+            using (var store = IfcStore.Open(@"InvalidMonetaryUnit.ifc"))
+            {
+                var mUnit = store.Instances.First() as Ifc2x3.MeasureResource.IfcMonetaryUnit;
+                Assert.IsNotNull(mUnit);
+                Assert.AreEqual(Ifc2x3.MeasureResource.IfcCurrencyEnum.AUD, mUnit.Currency);
+            }
+        }
+
+
+        [TestMethod]
         [DeploymentItem(@"TestFiles\InvalidType.ifc")]
         public void ToleratesFileWithInvalidTypeInList()
         {
