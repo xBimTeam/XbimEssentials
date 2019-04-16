@@ -141,6 +141,9 @@
     <None Update="TestFiles\IfcCartesianPointList3D.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="TestFiles\IfcTriangulatedFaceSet.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\IkeaKitchenCabinets.ifcXML">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
