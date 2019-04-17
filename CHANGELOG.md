@@ -2,10 +2,19 @@
 
 All notable changes to this project should be documented in this file
 
+## [v5.0.213] 2018-12-17 Nuget Release
+
+The first official suite of Xbim v5 packages!
+
+### Changed
+- `IfcValidator` moved from `Xbim.Ifc` to `Xbim.Common` and renamed `Validator`
+
 ## [v5.0.204] 2018-12-11
 
 ### Changed
 - The base .NET Framework target has been raised from `net45` to `net47`. This is to enable .NET Standard [#213](https://github.com/xBimTeam/XbimEssentials/issues/213)
+- XBIMEssentials is now a 'meta package' which brings in the individual packages. **Important**: To avoid a [failed upgrade (#233)](https://github.com/xBimTeam/XbimEssentials/issues/233) 
+make sure you update your `net4x` projects to at least `net47` **before** you upgrade the Essentials package. 
 - All project major projects now use the new 'SDK' style *csproj* format [#216](https://github.com/xBimTeam/XbimEssentials/issues/216)
 - All tests consolidated into *Xbim.Essentials.Tests*
 - `XbimDBAccess` has moved from `Xbim.IO.Esent` namespace to `Xbim.IO` (in *Xbim.Common*)
@@ -26,7 +35,7 @@ This should enable the use of XBIM in .NET Core apps and other targets, as well 
 - Support for *Microsoft.Extensions.Logging* and 3rd party logging providers. (See *log4net* note below) [#214](https://github.com/xBimTeam/XbimEssentials/issues/214)
   - `Xbim.Common.XbimLogging` added as a host for *ILoggerFactory*
   - [Usage Example 1](https://github.com/xBimTeam/XbimExchange/blob/60f4d0489042fe46f7cccef515d633b861223bb2/Xbim.Exchange/Program.cs#L252): Using the standard [Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/)
-  - [Usage Example 2]((https://github.com/xBimTeam/XbimWindowsUI/blob/5557cf841670aee7d4f8d902ca25e0a43004b491/XbimXplorer/XplorerMainWindow.xaml.cs#L116)): Using [Serilog](https://serilog.net/) with XBim
+  - [Usage Example 2](https://github.com/xBimTeam/XbimWindowsUI/blob/5557cf841670aee7d4f8d902ca25e0a43004b491/XbimXplorer/XplorerMainWindow.xaml.cs#L116): Using [Serilog](https://serilog.net/) with XBim
 - Support for Visual Studio 2017
 - Support for partial files - selective scanning of part of the model
 - Inverse relation caching and entity caching

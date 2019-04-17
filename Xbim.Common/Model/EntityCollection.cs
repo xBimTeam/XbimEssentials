@@ -103,8 +103,7 @@ namespace Xbim.Common.Model
             {
                 foreach (var type in resultTypes)
                 {
-                    ICollection<IPersistEntity> entities;
-                    if (!_internal.TryGetValue(type, out entities)) continue;
+                    if (!_internal.TryGetValue(type, out ICollection<IPersistEntity> entities)) continue;
                     foreach (var candidate in entities.Where(c => condition((T) c)))
                         yield return (T) candidate;
                 }
@@ -113,8 +112,7 @@ namespace Xbim.Common.Model
             {
                 foreach (var type in resultTypes)
                 {
-                    ICollection<IPersistEntity> entities;
-                    if (!_internal.TryGetValue(type, out entities)) continue;
+                    if (!_internal.TryGetValue(type, out ICollection<IPersistEntity> entities)) continue;
                     foreach (var candidate in entities)
                         yield return (T) candidate;
                 }
@@ -144,10 +142,9 @@ namespace Xbim.Common.Model
             var resultTypes = GetQueryTypes(queryType);
             foreach (var resultType in resultTypes)
             {
-                ICollection<IPersistEntity> entities;
-                if (_internal.TryGetValue(resultType, out entities))
+                if (_internal.TryGetValue(resultType, out ICollection<IPersistEntity> entities))
                     foreach (var entity in entities)
-                        yield return (T) entity;
+                        yield return (T)entity;
             }
         }
 
@@ -157,8 +154,7 @@ namespace Xbim.Common.Model
             var resultTypes = GetQueryTypes(queryType);
             foreach (var resultType in resultTypes)
             {
-                ICollection<IPersistEntity> entities;
-                if (_internal.TryGetValue(resultType, out entities))
+                if (_internal.TryGetValue(resultType, out ICollection<IPersistEntity> entities))
                     foreach (var entity in entities)
                         yield return entity;
             }
@@ -218,9 +214,7 @@ namespace Xbim.Common.Model
         {
             get
             {
-                IPersistEntity result;
-
-                if (_collection.TryGetValue(label, out result))
+                if (_collection.TryGetValue(label, out IPersistEntity result))
                     return result;
                 return null;
             }
@@ -238,6 +232,9 @@ namespace Xbim.Common.Model
 
         internal void InternalAdd(IPersistEntity entity)
         {
+            if (entity == null)
+                return;
+
             var key = entity.GetType();
             _internal.Add(key, entity);
             try
@@ -247,8 +244,12 @@ namespace Xbim.Common.Model
             }
             catch (Exception ex)
             {
-               
-                _model.Logger?.LogError(string.Format("Duplicate entity label: #{0}", entity.EntityLabel), ex);
+
+                var exist = _collection[entity.EntityLabel];
+                if (entity.ExpressType != exist.ExpressType)
+                    _model.Logger?.LogError($"Duplicate entity #{entity.EntityLabel} with different data type ({exist.ExpressType.Name}/{entity.ExpressType.Name})", ex);
+                else
+                    _model.Logger?.LogWarning($"Duplicate entity #{entity.EntityLabel}", ex);
             }
         }
 

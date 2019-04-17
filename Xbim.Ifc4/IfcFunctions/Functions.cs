@@ -582,7 +582,10 @@ namespace Xbim.Ifc4
 
         internal static bool IfcCorrectObjectAssignment(IfcObjectTypeEnum? Constraint, IItemSet<IfcObjectDefinition> Objects)
         {
-            var val = IfcCorrectObjectAssignment((IfcObjectTypeEnum)Constraint, Objects.ToArray());
+            if (!Constraint.HasValue)
+                return true;
+
+            var val = IfcCorrectObjectAssignment(Constraint.Value, Objects.ToArray());
             if (!val.HasValue)
             {
                 throw new ArgumentException("Undetermined value in where clause.");

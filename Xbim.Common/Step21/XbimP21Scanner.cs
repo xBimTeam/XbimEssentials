@@ -38,16 +38,15 @@ namespace Xbim.IO.Step21
     /// uses the same methods but binds them to the scanner directly. This cuts off part of the
     /// structure security but it also cuts off processing time by about 20%.
     /// </summary>
-    public class XbimP21Scanner
+    public class XbimP21Scanner: IDisposable
     {
-        private ILogger _logger;
-        public ILogger Logger { get { return _logger; } private set { _logger = value; } }
-        public event ReportProgressDelegate ProgressStatus;
+        public ILogger Logger { get; private set; }
+        private event ReportProgressDelegate _progressStatus;
+        private List<ReportProgressDelegate> _progressStatusEvents = new List<ReportProgressDelegate>();
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         protected int ListNestLevel = -1;
         protected Part21Entity CurrentInstance;
         public CreateEntityDelegate EntityCreate;
-        private Dictionary<int, IPersist> _entities;
         protected PropertyValue PropertyValue;
         private List<DeferredReference> _deferredReferences;
         private double _streamSize = -1;
@@ -57,14 +56,32 @@ namespace Xbim.IO.Step21
 
         private readonly ParserErrorRegistry _errors = new ParserErrorRegistry();
 
+        /// <summary>
+        /// Missing references will not be reported if this is true
+        /// </summary>
+        public bool AllowMissingReferences { get; set; } = false;
+
         public HashSet<string> SkipTypes { get; } = new HashSet<string>();
-       // private HashSet<int> SkipEntities { get; } = new HashSet<int>();
+        
 
         public bool Cancel = false;
 
         public int[] NestedIndex
         {
             get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; }
+        }
+
+        public event ReportProgressDelegate ProgressStatus {
+            add
+            {
+                _progressStatus += value;
+                _progressStatusEvents.Add(value);
+            }
+            remove
+            {
+                _progressStatus += value;
+                _progressStatusEvents.Remove(value);
+            }
         }
 
         private Scanner _scanner;
@@ -94,7 +111,7 @@ namespace Xbim.IO.Step21
             // make it 4 at least
             if (entityApproxCount < 1) entityApproxCount = 4;
 
-            _entities = new Dictionary<int, IPersist>(entityApproxCount);
+            Entities = new Dictionary<int, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
 
@@ -114,7 +131,7 @@ namespace Xbim.IO.Step21
                 entityApproxCount = (int)(entityApproxCount * adjustRatio);
             }
            
-            _entities = new Dictionary<int, IPersist>(entityApproxCount);
+            Entities = new Dictionary<int, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
 
@@ -153,7 +170,7 @@ namespace Xbim.IO.Step21
                                 {
                                     var current = _processStack.Pop();
                                     //SkipEntities.Add(current.EntityLabel);
-                                    while (tok != endEntityToken)
+                                    while (tok != endEntityToken && tok != eofToken)
                                         tok = _scanner.yylex();
                                     break;
                                 }
@@ -161,7 +178,7 @@ namespace Xbim.IO.Step21
                                 if (!SetType(type))
                                 {
                                     // move to the end of entity if we couldn't create it
-                                    while (tok != endEntityToken)
+                                    while (tok != endEntityToken && tok != eofToken)
                                         tok = _scanner.yylex();
                                 }
                                 break;
@@ -281,7 +298,7 @@ namespace Xbim.IO.Step21
             var skipping = SkipTypes.Any(); //if we are skipping then we will have some references unresolved
             foreach (var defRef in _deferredReferences/*.Where(dr => !SkipEntities.Contains(dr.ReferenceId))*/)
             {
-                if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex) && !skipping)
+                if (!TrySetObjectValue(defRef.HostEntity, defRef.ParameterIndex, defRef.ReferenceId, defRef.NestedIndex) && !skipping && !AllowMissingReferences)
                     Logger?.LogWarning("Entity #{0,-5} is referenced but could not be instantiated",
                                                       defRef.ReferenceId);
             }
@@ -290,7 +307,7 @@ namespace Xbim.IO.Step21
             if (_errors.Any)
                 Logger?.LogWarning(_errors.Summary);
 
-            ProgressStatus?.Invoke(100, "Parsing finished.");
+            _progressStatus?.Invoke(100, "Parsing finished.");
         }
 
         protected void BeginHeader()
@@ -377,7 +394,7 @@ namespace Xbim.IO.Step21
             CurrentInstance = new Part21Entity(entityLabel);
             // Console.WriteLine(CurrentSemanticValue.strVal);
             _processStack.Push(CurrentInstance);
-            if (_streamSize < 0 || ProgressStatus == null)
+            if (_streamSize < 0 || _progressStatus == null)
                 return;
 
             if (_reportEntityCount++ < 500)
@@ -386,7 +403,7 @@ namespace Xbim.IO.Step21
             double pos = _scanner.Buffer.Pos;
             var percentage = Convert.ToInt32(pos / _streamSize * 100.0);
             _reportEntityCount = 0;
-            ProgressStatus(percentage, "Parsing");
+            _progressStatus?.Invoke(percentage, "Parsing");
         }
 
         protected bool SetType(string entityTypeName)
@@ -438,12 +455,22 @@ namespace Xbim.IO.Step21
             {
                 try
                 {
-                    _entities.Add(p21.EntityLabel, p21.Entity);
+                    Entities.Add(p21.EntityLabel, p21.Entity);
                 }
-                catch (Exception)
+                catch (ArgumentException)
                 {
-                    Logger?.LogError(LogEventIds.FailedEntity, $"Duplicate entity label: #{p21.EntityLabel}");
-                    ErrorCount++;
+                    var exist = Entities[p21.EntityLabel];
+                    var existType = exist.GetType().Name.ToUpperInvariant();
+                    var duplType = p21.Entity.GetType().Name.ToUpperInvariant();
+                    if (!string.Equals(existType, duplType, StringComparison.Ordinal))
+                    {
+                        Logger?.LogError(LogEventIds.FailedEntity, $"Duplicate entity label #{p21.EntityLabel} with different types: ({existType}/{duplType})");
+                        ErrorCount++;
+                    }
+                    else
+                    {
+                        Logger?.LogWarning(LogEventIds.FailedEntity, $"Duplicate entity label #{p21.EntityLabel}={existType}");
+                    }
                 }
             }
         }
@@ -649,17 +676,14 @@ namespace Xbim.IO.Step21
             }
         }
 
-        public Dictionary<int, IPersist> Entities
-        {
-            get { return _entities; }
-        }
+        public Dictionary<int, IPersist> Entities { get; private set; }
 
         internal bool TrySetObjectValue(IPersist host, int paramIndex, int refId, int[] listNextLevel)
         {
             if (_deferListItems) return false;
             try
             {
-                if (host != null && _entities.TryGetValue(refId, out IPersist refEntity))
+                if (host != null && Entities.TryGetValue(refId, out IPersist refEntity))
                 {
                     PropertyValue.Init(refEntity);
                     host.Parse(paramIndex, PropertyValue, listNextLevel);
@@ -677,6 +701,17 @@ namespace Xbim.IO.Step21
 
             }
             return false;
+        }
+
+        public void Dispose()
+        {
+            if (Entities.Count > 0)
+                Entities.Clear();
+            if (_progressStatusEvents.Count > 0)
+            {
+                _progressStatusEvents.ForEach(e => _progressStatus -= e);
+                _progressStatusEvents.Clear();
+            }
         }
     }
 

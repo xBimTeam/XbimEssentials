@@ -77,8 +77,8 @@ namespace Xbim.IO.Esent
         public override IModel Open(Stream stream, StorageType dataType, XbimSchemaVersion schema, XbimModelType modelType, XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1)
         {
             //any Esent model needs to run from the file so we need to create a temporal one
-            var xbimFilePath = Path.GetTempFileName();
-            xbimFilePath = Path.ChangeExtension(xbimFilePath, ".xbim");
+            var xbimFilePath = DatabaseFileName ?? Path.GetTempFileName();
+            xbimFilePath =  Path.ChangeExtension(xbimFilePath, ".xbim");
 
             switch (dataType)
             {
@@ -169,10 +169,10 @@ namespace Xbim.IO.Esent
             {
                 var fInfo = new FileInfo(path);
                 
-                var tmpFileName = Path.GetTempFileName();
+                var tmpFileName = DatabaseFileName ?? Path.GetTempFileName();
                 var model = CreateEsentModel(schemaVersion, codePageOverride);
                 // We delete the XBIM on close as the consumer is not controlling the generation of the XBIM file
-                if (model.CreateFrom(path, tmpFileName, progDelegate, keepOpen: true, deleteOnClose: true))
+                if (model.CreateFrom(path, tmpFileName, progDelegate, keepOpen: true, deleteOnClose: DatabaseFileName == null))
                     return model;
 
                 throw new FileLoadException(path + " file was not a valid IFC format");
@@ -212,5 +212,7 @@ namespace Xbim.IO.Esent
             };
             return model;
         }
+
+        public string DatabaseFileName { get; set; }
     }
 }
