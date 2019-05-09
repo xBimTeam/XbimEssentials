@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Xbim.Common;
 using Xbim.Common.Step21;
 
@@ -88,5 +89,11 @@ namespace Xbim.IO
         /// <param name="model"></param>
         /// <returns></returns>
         string GetLocation(IModel model);
+
+        /// <summary>
+        /// Gets and sets a delegate to allow consumers to determine the <see cref="IEntityFactory"/> to build 
+        /// for a given <see cref="XbimSchemaVersion"/>
+        /// </summary>
+        Func<XbimSchemaVersion, IEntityFactory> EntityFactoryResolver { get; set; }
     }
 }

@@ -282,11 +282,11 @@ namespace Xbim.Ifc
                 else //we can use a memory model
                 {
                     var model = CreateMemoryModel(schemaVersion);
-                    if (storageType.HasFlag(StorageType.IfcZip) || storageType.HasFlag(StorageType.Zip))
+                    if (storageType.HasFlag(StorageType.IfcZip) || storageType.HasFlag(StorageType.Zip) || storageType.HasFlag(StorageType.StpZip))
                     {
                         model.LoadZip(path, progDelegate);
                     }
-                    else if (storageType.HasFlag(StorageType.Ifc))
+                    else if (storageType.HasFlag(StorageType.Ifc) || storageType.HasFlag(StorageType.Stp))
                         model.LoadStep21(path, progDelegate);
                     else if (storageType.HasFlag(StorageType.IfcXml))
                         model.LoadXml(path, progDelegate);

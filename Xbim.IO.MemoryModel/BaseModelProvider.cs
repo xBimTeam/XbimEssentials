@@ -8,6 +8,7 @@ namespace Xbim.IO
     public abstract class BaseModelProvider : IModelProvider
     {
         public abstract StoreCapabilities Capabilities { get; }
+        public Func<XbimSchemaVersion, IEntityFactory> EntityFactoryResolver { get; set; }
 
         public abstract void Close(IModel model);
         public abstract IModel Create(XbimSchemaVersion ifcVersion, string path);
@@ -20,6 +21,15 @@ namespace Xbim.IO
 
         protected IEntityFactory GetFactory(XbimSchemaVersion type)
         {
+            if (EntityFactoryResolver != null)
+            {
+                var entityFactory = EntityFactoryResolver(type);
+                if (entityFactory != null)
+                {
+                    return entityFactory;
+                }
+            }
+
             switch (type)
             {
                 case XbimSchemaVersion.Ifc4:
