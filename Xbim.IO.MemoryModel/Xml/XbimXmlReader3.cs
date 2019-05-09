@@ -891,7 +891,7 @@ namespace Xbim.IO.Xml
                 {
                     while (input.Read())
                     {
-                        if (_streamSize != -1 && ProgressStatus != null)
+                        if (_streamSize != -1 && ProgressStatus != null && xmlStream.CanSeek)
                         {
                             double pos = xmlStream.Position;
                             var newPercentage = Convert.ToInt32(pos / _streamSize * 100.0);

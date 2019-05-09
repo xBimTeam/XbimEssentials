@@ -34,6 +34,29 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        public void OpenIfcZipXmlFile()
+        {
+            using (var models = new ModelFactory("HelloWallXml.ifczip"))
+            {
+                models.Do(m =>
+                    Assert.IsTrue(m.Instances.Count > 0)
+                );
+            }
+        }
+
+        [TestMethod]
+        public void OpenIfcZipXmlFileWithProgress()
+        {
+            // Opening Zipped IfcXml was crashing when updating progress, since the DeflateStream does not implement Position
+            void progress(int percent, object o) { };
+
+            var model = Ifc.IfcStore.Open("HelloWallXml.ifczip", null, null, progress, XbimDBAccess.Read);
+
+            Assert.IsTrue(model.Instances.Count > 0);
+  
+        }
+
+        [TestMethod]
         public void OpenIfcXmlFile()
         {
             using (var models = new ModelFactory("4walls1floorSite.ifcxml"))
