@@ -29,7 +29,13 @@ namespace Xbim.Essentials.Tests.Utilities
             FileProviders.Add((path) =>
             {
                 // return Esent DB
-                return Ifc.IfcStore.Open(path, null, 0);
+                return Ifc.IfcStore.Open(path, null, 0, (pct, o) => { });
+            });
+
+            FileProviders.Add((path) =>
+            {
+                // return Memory DB
+                return Ifc.IfcStore.Open(path, null, null, (pct, o) => { });
             });
 
             ModelProviders.Add((factory) =>

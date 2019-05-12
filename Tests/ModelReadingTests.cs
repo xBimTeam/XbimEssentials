@@ -80,6 +80,16 @@ namespace Xbim.IfcCore.UnitTests
         }
 
         [TestMethod]
+        [DeploymentItem("TestFiles/HelloWallXml.ifczip")]
+        public void OpenReadIfc4XmlZipFormatTest()
+        {
+            using (var mm = MemoryModel.OpenRead("HelloWallXml.ifczip"))
+            {
+                Assert.AreEqual(163, mm.Instances.Count);
+            }
+        }
+
+        [TestMethod]
         [DeploymentItem("TestFiles/4walls1floorSite.ifcxml")]
         public void OpenReadIfc2x3XmlFormatTest()
         {
