@@ -394,7 +394,7 @@ namespace Xbim.Tessellator
 
         public IEnumerator<IIfcCartesianPoint> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return points.GetEnumerator();
         }
 
         public int IndexOf(IIfcCartesianPoint item)
@@ -424,7 +424,7 @@ namespace Xbim.Tessellator
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotSupportedException();
+            return points.GetEnumerator();
         }
     }
 
