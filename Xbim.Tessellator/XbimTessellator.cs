@@ -39,7 +39,7 @@ namespace Xbim.Tessellator
                 shape is IIfcFaceBasedSurfaceModel ||
                 shape is IIfcShellBasedSurfaceModel ||
                 shape is IIfcConnectedFaceSet ||
-                shape is IIfcTriangulatedFaceSet ||
+                shape is IIfcTessellatedFaceSet ||
                 shape is IIfcFacetedBrep;
         }
 
@@ -55,6 +55,8 @@ namespace Xbim.Tessellator
             if (fbr != null) return Mesh(fbr);
             var tfs = shape as IIfcTriangulatedFaceSet;
             if (tfs != null) return Mesh(tfs);
+            var pfs = shape as IIfcPolygonalFaceSet;
+            if (pfs != null) return Mesh(pfs);
             throw new ArgumentException("Unsupported representation type for tessellation, " + shape.GetType().Name);
         }
 
@@ -117,10 +119,28 @@ namespace Xbim.Tessellator
             throw new Exception("Illegal Geometry type, " + _geometryType);
         }
 
+        public XbimShapeGeometry Mesh(IIfcPolygonalFaceSet triangulation)
+        {
+            if (_geometryType == XbimGeometryType.PolyhedronBinary)
+                return MeshPolyhedronBinary(triangulation);
+            if (_geometryType == XbimGeometryType.Polyhedron)
+                return MeshPolyhedronText(triangulation);
+            throw new Exception("Illegal Geometry type, " + _geometryType);
+        }
 
         private XbimShapeGeometry MeshPolyhedronText(IIfcTriangulatedFaceSet triangulation)
         {
             throw new NotImplementedException();
+        }
+        private XbimShapeGeometry MeshPolyhedronText(IIfcPolygonalFaceSet triangulation)
+        {
+            throw new NotImplementedException();
+        }
+        private XbimShapeGeometry MeshPolyhedronBinary(IIfcPolygonalFaceSet tess)
+        {
+            var faces = new List<IList<IIfcFace>>();
+            faces.Add(new XbimPolygonalFaceSet(tess));
+            return Mesh(faces, tess.EntityLabel, (float)tess.Model.ModelFactors.Precision);
         }
 
         private XbimShapeGeometry MeshPolyhedronBinary(IIfcTriangulatedFaceSet triangulation)
@@ -150,20 +170,20 @@ namespace Xbim.Tessellator
                     bool hasPnIndex = triangulation.PnIndex.Any();
                     if (hasPnIndex)
                     {
-                        
+
                         if (triangulation.PnIndex is List<IItemSet<IfcPositiveInteger>>) //the list of triplets has not been flattened
                         {
                             foreach (var item in triangulation.PnIndex as List<IItemSet<IfcPositiveInteger>>)
                             {
                                 normalIndex.Add(item);
                             }
-                            
+
                         }
                         else
                         {
                             for (int i = 0; i < triangulation.PnIndex.Count; i += 3)
                             {
-                                var item = new List<IfcPositiveInteger>() { triangulation.PnIndex[i] , triangulation.PnIndex[i+1] , triangulation.PnIndex[i+2] };
+                                var item = new List<IfcPositiveInteger>() { triangulation.PnIndex[i], triangulation.PnIndex[i + 1], triangulation.PnIndex[i + 2] };
                                 normalIndex.Add(item);
                             }
                         }
@@ -210,7 +230,7 @@ namespace Xbim.Tessellator
                     {
                         var triangleTpl = triangle.AsTriplet();
                         var normalsIndexTpl = normalIndex[triangleIndex].AsTriplet();
-                        
+
 
                         WriteIndex(binaryWriter, (uint)triangleTpl.A - 1, (uint)verticesCount);
                         packedNormals[(int)normalsIndexTpl.A - 1].Write(binaryWriter);
@@ -465,7 +485,7 @@ namespace Xbim.Tessellator
                     var polyLoop = bound.Bound as IIfcPolyLoop;
 
                     if (polyLoop == null) continue; //skip empty faces
-                    var polygon = polyLoop.Polygon.ToList();
+                    var polygon = polyLoop.Polygon;
 
                     if (polygon.Count < 3) continue; //skip non-polygonal faces
                     var is3D = (polygon[0].Dim == 3);

@@ -15,6 +15,22 @@ namespace Xbim.IO.Tests
     public class TessellatorTests
     {
         [TestMethod]
+        [DeploymentItem("TestFiles\\polygonal-face-tessellation.ifc")]
+        public void Test_PolygonalFaceSet_Tessellation()
+        {
+            XbimGeometryType tp = Xbim.Common.Geometry.XbimGeometryType.PolyhedronBinary;
+            using (var model = IfcStore.Open("polygonal-face-tessellation.ifc"))
+            {
+                var xbimTessellator = new XbimTessellator(model, tp);
+                XbimShapeGeometry shapeGeom = null;
+
+                var shape = model.Instances.FirstOrDefault<IIfcPolygonalFaceSet>();
+                shapeGeom = xbimTessellator.Mesh(shape);
+                Assert.AreEqual(8000000000000, shapeGeom.BoundingBox.Volume);
+            }
+        }
+
+        [TestMethod]
         [DeploymentItem("TestFiles\\Roof-01_BCAD.ifc")]
         public void TestBoundingBoxSize()
         {

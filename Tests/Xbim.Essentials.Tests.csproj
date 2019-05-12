@@ -177,6 +177,9 @@
     <None Update="TestFiles\OneWall.xBIM">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="TestFiles\polygonal-face-tessellation.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\QuantityTest.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
