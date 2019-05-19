@@ -1,23 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using Xbim.Common;
 
 namespace Xbim.Presentation
 {
     public class XbimIPersistEntityCollection<TType> : ICollection<TType> where TType : class, IPersistEntity 
     {
-        private readonly Dictionary<IModel, HashSet<TType>> _dictionary = new Dictionary<IModel, HashSet<TType>>();
+        /// <summary>
+        /// private dictionary changed from hashset to concurrent dictionay to resolve multi-threaded use of class.
+        /// Since there's no concurrentHashSet, we have used a dummy byte value that is never used.
+        /// This solution seems the most upvoted in https://stackoverflow.com/questions/18922985/concurrent-hashsett-in-net-framework
+        /// but there is a controversy.
+        /// The code might change in the future but the dictionary being private should not affect users.
+        /// </summary>
+        private readonly Dictionary<IModel, ConcurrentDictionary<TType, byte>> _dictionary = new Dictionary<IModel, ConcurrentDictionary<TType, byte>>();
 
         public void Add(TType item)
         {
-            HashSet<TType> found;
+            ConcurrentDictionary<TType, byte> found;
             var fnd = _dictionary.TryGetValue(item.Model, out found);
             if (!fnd)
             {
-                _dictionary.Add(item.Model, new HashSet<TType> { item });
+                var dic = new ConcurrentDictionary<TType, byte>();
+                dic.TryAdd(item, 0);
+                _dictionary.Add(item.Model, dic);
             }
             else
             {
-                found.Add(item);
+                found.TryAdd(item, 0);
             }
         }
 
@@ -28,15 +38,15 @@ namespace Xbim.Presentation
 
         public bool Contains(TType item)
         {
-            HashSet<TType> found;
-            return _dictionary.TryGetValue(item.Model, out found) && found.Contains(item);
+            ConcurrentDictionary<TType, byte> found;
+            return _dictionary.TryGetValue(item.Model, out found) && found.ContainsKey(item);
         }
 
         public void CopyTo(TType[] array, int arrayIndex) 
         {
             foreach (var dir in _dictionary)
             {
-                dir.Value.CopyTo(array, arrayIndex);
+                dir.Value.Keys.CopyTo(array, arrayIndex);
                 arrayIndex += dir.Value.Count;
             }
         }
@@ -61,11 +71,12 @@ namespace Xbim.Presentation
 
         public bool Remove(TType item)
         {
-            HashSet<TType> found;
+            ConcurrentDictionary<TType, byte> found;
             var fnd = _dictionary.TryGetValue(item.Model, out found);
             if (!fnd)
                 return false;
-            return found.Remove(item);
+            byte dummyValue;
+            return found.TryRemove(item, out dummyValue);
         }
 
         public IEnumerator<TType> GetEnumerator()
@@ -81,12 +92,12 @@ namespace Xbim.Presentation
         private class XbimIPersistIfcEntityCollectionEnumerator : IEnumerator<TType>
         {
             private readonly List<IEnumerator<TType>> _enumerators;
-            public XbimIPersistIfcEntityCollectionEnumerator(Dictionary<IModel, HashSet<TType>> collection)
+            public XbimIPersistIfcEntityCollectionEnumerator(Dictionary<IModel, ConcurrentDictionary<TType, byte>> collection)
             {
                 _enumerators = new List<IEnumerator<TType>>();
                 foreach (var vl in collection.Values)
                 {
-                    _enumerators.Add(vl.GetEnumerator());
+                    _enumerators.Add(vl.Keys.GetEnumerator());
                 }
             }
 
