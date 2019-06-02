@@ -2,16 +2,16 @@
 
 All notable changes to this project should be documented in this file
 
-## [Latest] 2019-05-30
+## [v5.1.527] 2019-05-30
 
-Candidate release for 5.1
+This is the 5.1 release of XBIM
 
 ### Changed
 - `IXbimGeometryEngine.CreateSurfaceModel` interface changed to use abstract Face Set
 - Allow IModelProviders to overide EntityFactory
 
 ### Added
-- Re-introduced method to parse header without loading whole file #229 
+- Re-introduced method to parse header without loading whole file [#229](https://github.com/xBimTeam/XbimEssentials/issues/229) 
 - `EsentModelProvider` allows filename to be specified
 - Support for IfcPolygonalFaceSet added to tessellation
 - Added separate .netcore unit test project
@@ -23,14 +23,14 @@ Candidate release for 5.1
 - `IfcStore` preserves Filename from model
 - Esent Model not removed when filename specified
 - Ifc4 'CorrectObjectAssignment' validation function fixed 
-- Fix for .netcore XML deserialisation #247
-- Fix for infinite loop in Scanner with bad EOF #249
-- Spelling corrections in IfcStore Xml Docs #250 #
+- Fix for .netcore XML deserialisation [#247](https://github.com/xBimTeam/XbimEssentials/issues/247)
+- Fix for infinite loop in Scanner with bad EOF [#249](https://github.com/xBimTeam/XbimEssentials/issues/249)
+- Spelling corrections in IfcStore Xml Docs [#250](https://github.com/xBimTeam/XbimEssentials/issues/250)
 - Better handling / reporting of duplicate entity labels
 - Improved handling of invalid Enums in parser
-- Handle ambiguous specification of PnIndex in IfcTriangulatedFaceSet xBimTeam/XbimGeometry#167
+- Handle ambiguous specification of PnIndex in IfcTriangulatedFaceSet [XbimGeometry#167](https://github.com/xBimTeam/XbimGeometry/issues/167)
 - `IfcStore` supports STP and STPZIP files.
-- Opening ifcXml file in ifcZip failed when using progress delegate #258
+- Opening ifcXml file in ifcZip failed when using progress delegate [#258](https://github.com/xBimTeam/XbimEssentials/issues/258)
 
 
 ## [v5.0.213] 2018-12-17 Nuget Release
