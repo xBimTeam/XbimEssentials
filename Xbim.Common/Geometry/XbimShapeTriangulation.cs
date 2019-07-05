@@ -75,9 +75,9 @@ namespace Xbim.Common.Geometry
             bw.Write((Int32)_faces.Sum(face => face.TriangleCount));
             foreach (var v in _vertices)
             {
-                bw.Write((float)v.X);
-                bw.Write((float)v.Y);
-                bw.Write((float)v.Z);
+                bw.Write(v.X);
+                bw.Write(v.Y);
+                bw.Write(v.Z);
             }
 
             bw.Write((Int32)_faces.Count);
@@ -115,7 +115,7 @@ namespace Xbim.Common.Geometry
         /// </summary>
         /// <param name="positions">The destination position list, [0,1,2] for position [3,4,5] for normal.</param>
         /// <param name="indices">the destination of indices pointing to positions.</param>
-        public void ToPointsWithNormalsAndIndices(out List<float[]> positions, out List<int> indices)
+        public void ToPointsWithNormalsAndIndices(out List<double[]> positions, out List<int> indices)
         {
             var ps = new Dictionary<PointAndNormal, int>();
             indices = new List<int>();
@@ -153,21 +153,21 @@ namespace Xbim.Common.Geometry
                     }
                 }
             }
-            positions = new List<float[]>(ps.Count);
+            positions = new List<double[]>(ps.Count);
 
             foreach (var pointAndNormal in ps.Keys)
             {
-                var f = new float[6];
+                var f = new double[6];
 
                 var p = _vertices[pointAndNormal.Index];
-                f[0] = (float)p.X;
-                f[1] = (float)p.Y;
-                f[2] = (float)p.Z;
+                f[0] = p.X;
+                f[1] = p.Y;
+                f[2] = p.Z;
 
                 var v = pointAndNormal.Normal.Normal;
-                f[3] = (float)v.X;
-                f[4] = (float)v.Y;
-                f[5] = (float)v.Z;
+                f[3] = v.X;
+                f[4] = v.Y;
+                f[5] = v.Z;
 
                 positions.Add(f);
             }

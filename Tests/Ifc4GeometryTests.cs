@@ -26,7 +26,7 @@ namespace  Xbim.Essentials.Tests
                 Assert.IsNotNull(basinTess);
                 Assert.IsTrue(tessellator.CanMesh(basinTess));
                 var geom = tessellator.Mesh(basinTess);
-                Assert.IsTrue((int)(geom.BoundingBox.Volume) == 23913892);
+                Assert.IsTrue((int)(geom.BoundingBox.Volume) == 23913891);
                 
             }
         }

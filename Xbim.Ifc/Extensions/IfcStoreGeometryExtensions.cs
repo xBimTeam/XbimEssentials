@@ -69,9 +69,9 @@ namespace Xbim.Ifc
                     var bounds = r.ToXbimRect3D();
                     var centre = t.Transform(r.Centre);
                     //write out the centre of the region
-                    binaryStream.Write((Single)centre.X);
-                    binaryStream.Write((Single)centre.Y);
-                    binaryStream.Write((Single)centre.Z);
+                    binaryStream.Write(centre.X);
+                    binaryStream.Write(centre.Y);
+                    binaryStream.Write(centre.Z);
                     //bounding box of largest region
                     binaryStream.Write(bounds.ToFloatArray());
                 }

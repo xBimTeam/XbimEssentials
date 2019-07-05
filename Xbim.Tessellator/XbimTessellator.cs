@@ -66,17 +66,17 @@ namespace Xbim.Tessellator
             var faceSets = new List<IList<IIfcFace>>();
             foreach (var faceSet in faceBasedModel.FbsmFaces)
                 faceSets.Add(faceSet.CfsFaces.ToList());
-            return Mesh(faceSets, faceBasedModel.EntityLabel, (float)faceBasedModel.Model.ModelFactors.Precision);
+            return Mesh(faceSets, faceBasedModel.EntityLabel, faceBasedModel.Model.ModelFactors.Precision);
         }
 
 
 
         public XbimShapeGeometry Mesh(IIfcShellBasedSurfaceModel shellBasedModel)
         {
-            return Mesh(shellBasedModel.SbsmBoundary, shellBasedModel.EntityLabel, (float)shellBasedModel.Model.ModelFactors.Precision);
+            return Mesh(shellBasedModel.SbsmBoundary, shellBasedModel.EntityLabel, shellBasedModel.Model.ModelFactors.Precision);
         }
 
-        public XbimShapeGeometry Mesh(IEnumerable<IIfcShell> shellSet, int entityLabel, float precision)
+        public XbimShapeGeometry Mesh(IEnumerable<IIfcShell> shellSet, int entityLabel, double precision)
         {
             var shells = new List<IList<IIfcFace>>();
             foreach (var shell in shellSet)
@@ -93,7 +93,7 @@ namespace Xbim.Tessellator
         {
             var faces = new List<IList<IIfcFace>>();
             faces.Add(connectedFaceSet.CfsFaces.ToList());
-            return Mesh(faces, connectedFaceSet.EntityLabel, (float)connectedFaceSet.Model.ModelFactors.Precision);
+            return Mesh(faces, connectedFaceSet.EntityLabel, connectedFaceSet.Model.ModelFactors.Precision);
         }
 
         public XbimShapeGeometry Mesh(IIfcFacetedBrep fBRepModel)
@@ -101,7 +101,7 @@ namespace Xbim.Tessellator
             return Mesh(fBRepModel.Outer);
         }
 
-        public XbimShapeGeometry Mesh(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, float precision)
+        public XbimShapeGeometry Mesh(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, double precision)
         {
             if (_geometryType == XbimGeometryType.PolyhedronBinary)
                 return MeshPolyhedronBinary(facesList, entityLabel, precision);
@@ -140,7 +140,7 @@ namespace Xbim.Tessellator
         {
             var faces = new List<IList<IIfcFace>>();
             faces.Add(new XbimPolygonalFaceSet(tess));
-            return Mesh(faces, tess.EntityLabel, (float)tess.Model.ModelFactors.Precision);
+            return Mesh(faces, tess.EntityLabel, tess.Model.ModelFactors.Precision);
         }
 
         private XbimShapeGeometry MeshPolyhedronBinary(IIfcTriangulatedFaceSet triangulation)
@@ -160,7 +160,7 @@ namespace Xbim.Tessellator
                 shapeGeometry.BoundingBox = XbimRect3D.Empty;
 
                 //Write out the header
-                binaryWriter.Write((byte)1); //stream format version			
+                binaryWriter.Write((byte)2); //stream format version, v2 = positions as double
                 // ReSharper disable once RedundantCast
 
                 //now write out the faces
@@ -256,9 +256,9 @@ namespace Xbim.Tessellator
 
                     foreach (var vert in triangulatedMesh.Vertices)
                     {
-                        binaryWriter.Write((float)vert.X);
-                        binaryWriter.Write((float)vert.Y);
-                        binaryWriter.Write((float)vert.Z);
+                        binaryWriter.Write(vert.X);
+                        binaryWriter.Write(vert.Y);
+                        binaryWriter.Write(vert.Z);
                     }
                     facesCount = (uint)triangulatedMesh.Faces.Count;
                     binaryWriter.Write((UInt32)facesCount);
@@ -299,7 +299,7 @@ namespace Xbim.Tessellator
         }
 
 
-        private XbimShapeGeometry MeshPolyhedronText(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, float precision)
+        private XbimShapeGeometry MeshPolyhedronText(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, double precision)
         {
             var shapeGeometry = new XbimShapeGeometry();
             shapeGeometry.Format = XbimGeometryType.Polyhedron;
@@ -381,7 +381,7 @@ namespace Xbim.Tessellator
             return shapeGeometry;
         }
 
-        private XbimShapeGeometry MeshPolyhedronBinary(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, float precision)
+        private XbimShapeGeometry MeshPolyhedronBinary(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, double precision)
         {
             XbimShapeGeometry shapeGeometry = new XbimShapeGeometry();
             shapeGeometry.Format = XbimGeometryType.PolyhedronBinary;
@@ -412,16 +412,16 @@ namespace Xbim.Tessellator
                         boundingBox.Union(triangulatedMesh.BoundingBox);
                 }
 
-                binaryWriter.Write((byte)1); //stream format version			
+                binaryWriter.Write((byte)2); //stream format version, v2 = positions as double
                                              // ReSharper disable once RedundantCast
                 binaryWriter.Write((UInt32)verticesCount); //number of vertices
                 binaryWriter.Write(triangleCount); //number of triangles
 
                 foreach (var v in triangulatedMeshes.SelectMany(t => t.Vertices))
                 {
-                    binaryWriter.Write((float)v.X);
-                    binaryWriter.Write((float)v.Y);
-                    binaryWriter.Write((float)v.Z);
+                    binaryWriter.Write((double)v.X);
+                    binaryWriter.Write((double)v.Y);
+                    binaryWriter.Write((double)v.Z);
                 }
                 shapeGeometry.BoundingBox = boundingBox;
                 //now write out the faces
@@ -467,7 +467,7 @@ namespace Xbim.Tessellator
             return shapeGeometry;
         }
 
-        private XbimTriangulatedMesh TriangulateFaces(IList<IIfcFace> ifcFaces, int entityLabel, float precision)
+        private XbimTriangulatedMesh TriangulateFaces(IList<IIfcFace> ifcFaces, int entityLabel, double precision)
         {
             var faceId = 0;
 
@@ -575,7 +575,7 @@ namespace Xbim.Tessellator
         {
             var faceId = 0;
             var entityLabel = triangulation.EntityLabel;
-            var precision = (float)triangulation.Model.ModelFactors.Precision;
+            var precision = triangulation.Model.ModelFactors.Precision;
             var faceCount = triangulation.CoordIndex.Count();
             var triangulatedMesh = new XbimTriangulatedMesh(faceCount, precision);
             //add all the vertices in to the mesh
