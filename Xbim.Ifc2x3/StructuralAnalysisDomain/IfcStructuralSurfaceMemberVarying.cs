@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 2, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 19)]
 		public IItemSet<IfcPositiveLengthMeasure> @SubsequentThickness 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 				return _subsequentThickness;
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcShapeAspect @VaryingThicknessLocation 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.None, 3, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.None, new int [] { 3 }, new int [] { -1 }, 0)]
 		public List<IfcPositiveLengthMeasure> @VaryingThickness 
 		{
 			get 

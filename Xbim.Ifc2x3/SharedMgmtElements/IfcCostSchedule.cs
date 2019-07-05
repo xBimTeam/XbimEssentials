@@ -111,7 +111,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 12)]
 		public IfcActorSelect @SubmittedBy 
 		{ 
 			get 
@@ -127,7 +127,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				SetValue( v =>  _submittedBy = v, _submittedBy, value,  "SubmittedBy", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 13)]
 		public IfcActorSelect @PreparedBy 
 		{ 
 			get 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				SetValue( v =>  _preparedBy = v, _preparedBy, value,  "PreparedBy", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 14)]
 		public IfcDateTimeSelect @SubmittedOn 
 		{ 
 			get 
@@ -159,7 +159,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				SetValue( v =>  _submittedOn = v, _submittedOn, value,  "SubmittedOn", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcLabel? @Status 
 		{ 
 			get 
@@ -173,7 +173,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				SetValue( v =>  _status = v, _status, value,  "Status", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 16)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 16)]
 		public IOptionalItemSet<IfcActorSelect> @TargetUsers 
 		{ 
 			get 
@@ -183,7 +183,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				return _targetUsers;
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 17)]
 		public IfcDateTimeSelect @UpdateDate 
 		{ 
 			get 
@@ -199,7 +199,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				SetValue( v =>  _updateDate = v, _updateDate, value,  "UpdateDate", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 18)]
 		public IfcIdentifier @ID 
 		{ 
 			get 
@@ -213,7 +213,7 @@ namespace Xbim.Ifc2x3.SharedMgmtElements
 				SetValue( v =>  _iD = v, _iD, value,  "ID", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcCostScheduleTypeEnum @PredefinedType 
 		{ 
 			get 

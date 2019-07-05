@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcLabel? @LongName 
 		{ 
 			get 
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatingStructure")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 21)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 21)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainsElements 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedBuildings")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 22)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 22)]
 		public IEnumerable<IfcRelServicesBuildings> @ServicedBySystems 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatingStructure")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 23)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 23)]
 		public IEnumerable<IfcRelReferencedInSpatialStructure> @ReferencesElements 
 		{ 
 			get 

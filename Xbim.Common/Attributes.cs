@@ -78,8 +78,8 @@ namespace Xbim.Common
         private readonly EntityAttributeType _entityType;
         private readonly int _order;
         private readonly int _globalOrder;
-        private readonly int _maxCardinality;
-        private readonly int _minCardinality;
+        private readonly int[] _maxCardinality;
+        private readonly int[] _minCardinality;
         private readonly EntityAttributeType _memberType;
 
         public EntityAttributeState State
@@ -97,12 +97,18 @@ namespace Xbim.Common
             get { return _order; }
         }
 
-        public int MinCardinality
+        /// <summary>
+        /// Minimal cardinality is an array to represent constraints for nested lists
+        /// </summary>
+        public int[] MinCardinality
         {
             get { return _minCardinality; }
         }
 
-        public int MaxCardinality
+        /// <summary>
+        /// Maximal cardinality is an array to represent constraints for nested lists
+        /// </summary>
+        public int[] MaxCardinality
         {
             get { return _maxCardinality; }
         }
@@ -113,7 +119,7 @@ namespace Xbim.Common
         }
 
         public EntityAttributeAttribute(int order, EntityAttributeState state, EntityAttributeType entityType, EntityAttributeType memberType,
-                            int minCardinality, int maxCardinality, int globalOrder)
+                            int[] minCardinality, int[] maxCardinality, int globalOrder)
         {
             _state = state;
             _order = order;

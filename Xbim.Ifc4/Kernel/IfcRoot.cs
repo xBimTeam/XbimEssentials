@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcGloballyUniqueId @GlobalId 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _globalId = v, _globalId, value,  "GlobalId", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcOwnerHistory @OwnerHistory 
 		{ 
 			get 
@@ -111,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _ownerHistory = v, _ownerHistory, value,  "OwnerHistory", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _name = v, _name, value,  "Name", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcText? @Description 
 		{ 
 			get 

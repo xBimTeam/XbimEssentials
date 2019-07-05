@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace Xbim.Ifc4.PropertyResource
 						retVal = Functions.SIZEOF(this.EnumerationValues.Where(temp => !(Functions.TYPEOF(this.EnumerationValues.ItemAt(0)) == Functions.TYPEOF(temp)))) == 0;
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.PropertyResource.IfcPropertyEnumeration");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcPropertyEnumeration.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.PropertyResource.IfcPropertyEnumeration>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcPropertyEnumeration.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

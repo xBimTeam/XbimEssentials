@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthX 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _translationalStiffnessByLengthX = v, _translationalStiffnessByLengthX, value,  "TranslationalStiffnessByLengthX", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthY 
 		{ 
 			get 
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _translationalStiffnessByLengthY = v, _translationalStiffnessByLengthY, value,  "TranslationalStiffnessByLengthY", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcModulusOfTranslationalSubgradeReactionSelect @TranslationalStiffnessByLengthZ 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _translationalStiffnessByLengthZ = v, _translationalStiffnessByLengthZ, value,  "TranslationalStiffnessByLengthZ", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthX 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _rotationalStiffnessByLengthX = v, _rotationalStiffnessByLengthX, value,  "RotationalStiffnessByLengthX", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthY 
 		{ 
 			get 
@@ -166,7 +166,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _rotationalStiffnessByLengthY = v, _rotationalStiffnessByLengthY, value,  "RotationalStiffnessByLengthY", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcModulusOfRotationalSubgradeReactionSelect @RotationalStiffnessByLengthZ 
 		{ 
 			get 

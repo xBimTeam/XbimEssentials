@@ -59,7 +59,7 @@ namespace Xbim.Ifc4.ProductExtension
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 12)]
 		public IfcRelSpaceBoundary2ndLevel @CorrespondingBoundary 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("CorrespondingBoundary")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 13)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 13)]
 		public IEnumerable<IfcRelSpaceBoundary2ndLevel> @Corresponds 
 		{ 
 			get 

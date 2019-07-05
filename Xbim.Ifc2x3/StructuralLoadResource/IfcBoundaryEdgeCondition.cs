@@ -91,7 +91,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthX 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				SetValue( v =>  _linearStiffnessByLengthX = v, _linearStiffnessByLengthX, value,  "LinearStiffnessByLengthX", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthY 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				SetValue( v =>  _linearStiffnessByLengthY = v, _linearStiffnessByLengthY, value,  "LinearStiffnessByLengthY", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcModulusOfLinearSubgradeReactionMeasure? @LinearStiffnessByLengthZ 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				SetValue( v =>  _linearStiffnessByLengthZ = v, _linearStiffnessByLengthZ, value,  "LinearStiffnessByLengthZ", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthX 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				SetValue( v =>  _rotationalStiffnessByLengthX = v, _rotationalStiffnessByLengthX, value,  "RotationalStiffnessByLengthX", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthY 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.Ifc2x3.StructuralLoadResource
 				SetValue( v =>  _rotationalStiffnessByLengthY = v, _rotationalStiffnessByLengthY, value,  "RotationalStiffnessByLengthY", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcModulusOfRotationalSubgradeReactionMeasure? @RotationalStiffnessByLengthZ 
 		{ 
 			get 

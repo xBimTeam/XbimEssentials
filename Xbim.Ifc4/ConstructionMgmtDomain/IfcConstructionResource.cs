@@ -74,7 +74,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcResourceTime @Usage 
 		{ 
 			get 
@@ -90,7 +90,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 				SetValue( v =>  _usage = v, _usage, value,  "Usage", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 21)]
 		public IOptionalItemSet<IfcAppliedValue> @BaseCosts 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.ConstructionMgmtDomain
 				return _baseCosts;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 22)]
 		public IfcPhysicalQuantity @BaseQuantity 
 		{ 
 			get 

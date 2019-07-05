@@ -64,7 +64,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcVirtualGridIntersection @PlacementLocation 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcGridPlacementDirectionSelect @PlacementRefDirection 
 		{ 
 			get 

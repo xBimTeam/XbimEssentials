@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.CostResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcAppliedValue @ComponentOfTotal 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.Ifc2x3.CostResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 2)]
 		public IItemSet<IfcAppliedValue> @Components 
 		{ 
 			get 
@@ -114,7 +114,7 @@ namespace Xbim.Ifc2x3.CostResource
 				return _components;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 3)]
 		public IfcArithmeticOperatorEnum @ArithmeticOperator 
 		{ 
 			get 
@@ -128,7 +128,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _arithmeticOperator = v, _arithmeticOperator, value,  "ArithmeticOperator", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -142,7 +142,7 @@ namespace Xbim.Ifc2x3.CostResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcText? @Description 
 		{ 
 			get 

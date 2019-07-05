@@ -91,7 +91,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcIdentifier @SpaceProgramIdentifier 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _spaceProgramIdentifier = v, _spaceProgramIdentifier, value,  "SpaceProgramIdentifier", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcAreaMeasure? @MaxRequiredArea 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _maxRequiredArea = v, _maxRequiredArea, value,  "MaxRequiredArea", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public IfcAreaMeasure? @MinRequiredArea 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _minRequiredArea = v, _minRequiredArea, value,  "MinRequiredArea", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 15)]
 		public IfcSpatialStructureElement @RequestedLocation 
 		{ 
 			get 
@@ -149,7 +149,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _requestedLocation = v, _requestedLocation, value,  "RequestedLocation", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 16)]
 		public IfcAreaMeasure @StandardRequiredArea 
 		{ 
 			get 
@@ -169,7 +169,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 
 		#region Inverse attributes
 		[InverseProperty("RelatedSpaceProgram")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 17)]
 		public IEnumerable<IfcRelInteractionRequirements> @HasInteractionReqsFrom 
 		{ 
 			get 
@@ -178,7 +178,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 			} 
 		}
 		[InverseProperty("RelatingSpaceProgram")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 18)]
 		public IEnumerable<IfcRelInteractionRequirements> @HasInteractionReqsTo 
 		{ 
 			get 

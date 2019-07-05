@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.UtilityResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcIdentifier? @Identifier 
 		{ 
 			get 
@@ -103,7 +103,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcUnit @Unit 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.UtilityResource
 				SetValue( v =>  _unit = v, _unit, value,  "Unit", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcReference @ReferencePath 
 		{ 
 			get 

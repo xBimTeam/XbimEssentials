@@ -54,7 +54,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 		#region Inverse attributes
 		[InverseProperty("Representation")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, 1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 1 }, 4)]
 		public IEnumerable<IfcProduct> @ShapeOfProduct 
 		{ 
 			get 
@@ -63,7 +63,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 			} 
 		}
 		[InverseProperty("PartOfProductDefinitionShape")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 5)]
 		public IEnumerable<IfcShapeAspect> @HasShapeAspects 
 		{ 
 			get 

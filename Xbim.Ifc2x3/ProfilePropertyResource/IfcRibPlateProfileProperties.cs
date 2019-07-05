@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcPositiveLengthMeasure? @Thickness 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _thickness = v, _thickness, value,  "Thickness", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcPositiveLengthMeasure? @RibHeight 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _ribHeight = v, _ribHeight, value,  "RibHeight", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcPositiveLengthMeasure? @RibWidth 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _ribWidth = v, _ribWidth, value,  "RibWidth", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPositiveLengthMeasure? @RibSpacing 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc2x3.ProfilePropertyResource
 				SetValue( v =>  _ribSpacing = v, _ribSpacing, value,  "RibSpacing", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 7)]
 		public IfcRibPlateDirectionEnum @Direction 
 		{ 
 			get 

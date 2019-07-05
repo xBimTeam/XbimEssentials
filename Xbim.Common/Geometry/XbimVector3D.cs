@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace Xbim.Common.Geometry
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct XbimVector3D : IVector3D
     {
         public static readonly XbimVector3D Zero;
@@ -239,7 +241,7 @@ namespace Xbim.Common.Geometry
         }
 
         /// <summary>
-        /// Makes the vector point in the opposite direction
+        /// Returns a new vector pointing in the opposite direction
         /// </summary>
         public XbimVector3D Negated()
         {

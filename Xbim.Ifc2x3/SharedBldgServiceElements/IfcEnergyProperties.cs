@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 8)]
 		public IfcEnergySequenceEnum? @EnergySequence 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.SharedBldgServiceElements
 				SetValue( v =>  _energySequence = v, _energySequence, value,  "EnergySequence", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcLabel? @UserDefinedEnergySequence 
 		{ 
 			get 

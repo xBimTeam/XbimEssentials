@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcWindowTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 20)]
 		public IfcWindowTypePartitioningEnum @PartitioningType 
 		{ 
 			get 
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _partitioningType = v, _partitioningType, value,  "PartitioningType", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcBoolean? @ParameterTakesPrecedence 
 		{ 
 			get 
@@ -120,7 +120,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _parameterTakesPrecedence = v, _parameterTakesPrecedence, value,  "ParameterTakesPrecedence", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 22)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcLabel? @UserDefinedPartitioningType 
 		{ 
 			get 

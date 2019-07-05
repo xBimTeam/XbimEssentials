@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.HvacDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 35)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcCooledBeamTypeEnum? @PredefinedType 
 		{ 
 			get 

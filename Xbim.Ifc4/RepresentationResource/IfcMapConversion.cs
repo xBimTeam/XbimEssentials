@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.RepresentationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLengthMeasure @Eastings 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _eastings = v, _eastings, value,  "Eastings", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLengthMeasure @Northings 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _northings = v, _northings, value,  "Northings", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLengthMeasure @OrthogonalHeight 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _orthogonalHeight = v, _orthogonalHeight, value,  "OrthogonalHeight", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcReal? @XAxisAbscissa 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _xAxisAbscissa = v, _xAxisAbscissa, value,  "XAxisAbscissa", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcReal? @XAxisOrdinate 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _xAxisOrdinate = v, _xAxisOrdinate, value,  "XAxisOrdinate", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcReal? @Scale 
 		{ 
 			get 

@@ -71,7 +71,7 @@ namespace Xbim.Ifc4.MeasureResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 1)]
 		public IItemSet<IfcDerivedUnitElement> @Elements 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4.MeasureResource
 				return _elements;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 2)]
 		public IfcDerivedUnitEnum @UnitType 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.MeasureResource
 				SetValue( v =>  _unitType = v, _unitType, value,  "UnitType", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel? @UserDefinedType 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.MeasureResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, null, null, 0)]
 		public Common.Geometry.XbimDimensionalExponents @Dimensions 
 		{
 			get 
@@ -130,20 +130,31 @@ namespace Xbim.Ifc4.MeasureResource
                 var result = new Common.Geometry.XbimDimensionalExponents(0, 0, 0, 0, 0, 0, 0);
                 foreach (var unitElement in elements)
                 {
+                    var unitDimensions = unitElement.Unit.Dimensions;
+                    if (unitDimensions == null && unitElement.Unit is IfcConversionBasedUnit)
+                    {
+                        var cbu = unitElement.Unit as IfcConversionBasedUnit;
+                        var nu = cbu.ConversionFactor.UnitComponent as IfcNamedUnit;
+                        if (nu != null)
+                            unitDimensions = nu.Dimensions;
+                    }
+                    if (unitDimensions == null)
+                        continue;
+
                     result.LengthExponent = result.LengthExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.LengthExponent);
+                          (unitElement.Exponent * unitDimensions.LengthExponent);
                     result.MassExponent = +result.MassExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.MassExponent);
+                          (unitElement.Exponent * unitDimensions.MassExponent);
                     result.TimeExponent = result.TimeExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.TimeExponent);
+                          (unitElement.Exponent * unitDimensions.TimeExponent);
                     result.ElectricCurrentExponent = result.ElectricCurrentExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.ElectricCurrentExponent);
+                          (unitElement.Exponent * unitDimensions.ElectricCurrentExponent);
                     result.ThermodynamicTemperatureExponent = result.ThermodynamicTemperatureExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.ThermodynamicTemperatureExponent);
+                          (unitElement.Exponent * unitDimensions.ThermodynamicTemperatureExponent);
                     result.AmountOfSubstanceExponent = result.AmountOfSubstanceExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.AmountOfSubstanceExponent);
+                          (unitElement.Exponent * unitDimensions.AmountOfSubstanceExponent);
                     result.LuminousIntensityExponent = result.LuminousIntensityExponent +
-                          (unitElement.Exponent * unitElement.Unit.Dimensions.LuminousIntensityExponent);
+                          (unitElement.Exponent * unitDimensions.LuminousIntensityExponent);
                 }
                 return result;
                 #endregion Strict Implementation

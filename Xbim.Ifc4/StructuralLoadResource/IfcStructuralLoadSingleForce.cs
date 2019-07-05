@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcForceMeasure? @ForceX 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _forceX = v, _forceX, value,  "ForceX", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcForceMeasure? @ForceY 
 		{ 
 			get 
@@ -119,7 +119,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _forceY = v, _forceY, value,  "ForceY", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcForceMeasure? @ForceZ 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _forceZ = v, _forceZ, value,  "ForceZ", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcTorqueMeasure? @MomentX 
 		{ 
 			get 
@@ -147,7 +147,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _momentX = v, _momentX, value,  "MomentX", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcTorqueMeasure? @MomentY 
 		{ 
 			get 
@@ -161,7 +161,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _momentY = v, _momentY, value,  "MomentY", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcTorqueMeasure? @MomentZ 
 		{ 
 			get 

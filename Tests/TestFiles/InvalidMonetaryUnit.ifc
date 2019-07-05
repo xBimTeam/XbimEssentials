@@ -1,0 +1,13 @@
+ISO-10303-21;
+HEADER;
+FILE_SCHEMA(('IFC2X3'));
+ENDSEC;
+
+DATA;
+/*
+ * Monetary unit should be an enum in IFC2x3. It was changed to string in IFC4
+ */
+#206019 = IFCMONETARYUNIT('.AUD.');
+ENDSEC;
+
+END-ISO-10303-21;

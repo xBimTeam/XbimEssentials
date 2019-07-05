@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLengthMeasure @SizeInX 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc2x3.PresentationResource
 				SetValue( v =>  _sizeInX = v, _sizeInX, value,  "SizeInX", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLengthMeasure @SizeInY 
 		{ 
 			get 

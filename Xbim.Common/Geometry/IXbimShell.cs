@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace Xbim.Common.Geometry
 {
@@ -19,13 +20,13 @@ namespace Xbim.Common.Geometry
         bool IsClosed { get; }
         bool CanCreateSolid();
         IXbimSolid CreateSolid();
-        IXbimGeometryObjectSet Cut(IXbimSolidSet toCut, double tolerance);
-        IXbimGeometryObjectSet Cut(IXbimSolid toCut, double tolerance);
-        IXbimGeometryObjectSet Union(IXbimSolidSet toCut, double tolerance);
-        IXbimGeometryObjectSet Union(IXbimSolid toCut, double tolerance);
-        IXbimGeometryObjectSet Intersection(IXbimSolidSet toCut, double tolerance);
-        IXbimGeometryObjectSet Intersection(IXbimSolid toCut, double tolerance);
-        IXbimFaceSet Section(IXbimFace toSection, double tolerance);
+        IXbimGeometryObjectSet Cut(IXbimSolidSet toCut, double tolerance, ILogger logger = null);
+        IXbimGeometryObjectSet Cut(IXbimSolid toCut, double tolerance, ILogger logger = null);
+        IXbimGeometryObjectSet Union(IXbimSolidSet toCut, double tolerance, ILogger logger = null);
+        IXbimGeometryObjectSet Union(IXbimSolid toCut, double tolerance, ILogger logger = null);
+        IXbimGeometryObjectSet Intersection(IXbimSolidSet toCut, double tolerance, ILogger logger = null);
+        IXbimGeometryObjectSet Intersection(IXbimSolid toCut, double tolerance, ILogger logger = null);
+        IXbimFaceSet Section(IXbimFace toSection, double tolerance, ILogger logger = null);
         void SaveAsBrep(string fileName);
         /// <summary>
         /// Converts the object to a string in BRep format

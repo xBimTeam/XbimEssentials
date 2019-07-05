@@ -26,9 +26,9 @@ namespace Xbim.Ifc4
     {
         #region "Implementation hacks"
 
-        internal static ValuesArray<T> NewArray<T>(params T[] args) where T : class 
+        internal static TypesArray NewTypesArray(params string[] args)
         {
-            return new ValuesArray<T>(args);
+            return new TypesArray(args);
         }
         
         internal static IfcEdgeLoop AsIfcEdgeLoop(this IfcLoop toCast)
@@ -40,7 +40,7 @@ namespace Xbim.Ifc4
         {
             var val = (bool?)toCast.Value;
             if (!val.HasValue)
-                throw new InvalidEnumArgumentException("IfcLogical value not defined attempting bool conversion.");
+                throw new Exception("IfcLogical value not defined attempting bool conversion.");
             return val.Value;
         }
         internal static Direction IfcDirection(double x, double y, double z)
@@ -60,7 +60,7 @@ namespace Xbim.Ifc4
         {
             var val = (bool?)toCast.Value;
             if (!val.HasValue)
-                throw new InvalidEnumArgumentException("IfcLogical value not defined attempting bool conversion.");
+                throw new Exception("IfcLogical value not defined attempting bool conversion.");
             return val.Value;
         }
 
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4
         }
         
         
-        internal static int SIZEOF<T>(ValuesArray<T> array) where T: class 
+        internal static int SIZEOF(TypesArray array)
         {
             return array.Count();
         }
@@ -166,9 +166,9 @@ namespace Xbim.Ifc4
             throw new NotImplementedException();
         }
 
-        internal static ValuesArray<string> TYPEOF(IPersist instance)
+        internal static TypesArray TYPEOF(IPersist instance)
         {
-            return new ValuesArray<string>(instance);
+            return new TypesArray(instance);
         }
 
         internal static int HIINDEX<T>(IEnumerable<T> source)
@@ -582,7 +582,10 @@ namespace Xbim.Ifc4
 
         internal static bool IfcCorrectObjectAssignment(IfcObjectTypeEnum? Constraint, IItemSet<IfcObjectDefinition> Objects)
         {
-            var val = IfcCorrectObjectAssignment((IfcObjectTypeEnum)Constraint, Objects.ToArray());
+            if (!Constraint.HasValue)
+                return true;
+
+            var val = IfcCorrectObjectAssignment(Constraint.Value, Objects.ToArray());
             if (!val.HasValue)
             {
                 throw new ArgumentException("Undetermined value in where clause.");

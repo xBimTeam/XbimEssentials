@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcInternalOrExternalEnum @InteriorOrExteriorSpace 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 				SetValue( v =>  _interiorOrExteriorSpace = v, _interiorOrExteriorSpace, value,  "InteriorOrExteriorSpace", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
 		public IfcLengthMeasure? @ElevationWithFlooring 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatedSpace")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 21)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 21)]
 		public IEnumerable<IfcRelCoversSpaces> @HasCoverings 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatingSpace")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 22)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 22)]
 		public IEnumerable<IfcRelSpaceBoundary> @BoundedBy 
 		{ 
 			get 

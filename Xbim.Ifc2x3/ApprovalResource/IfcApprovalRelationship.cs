@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcApproval @RelatedApproval 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcApproval @RelatingApproval 
 		{ 
 			get 
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				SetValue( v =>  _relatingApproval = v, _relatingApproval, value,  "RelatingApproval", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.ApprovalResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLabel @Name 
 		{ 
 			get 

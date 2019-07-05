@@ -16,7 +16,7 @@ namespace Xbim.Common
         T GetAt(int index);
 
         /// <summary>
-        /// Convenient feature taken from List<T> implementation which allows to add more items in one go.
+        /// Convenient feature taken from List implementation which allows to add more items in one go.
         /// </summary>
         /// <param name="values">Values to be added</param>
         void AddRange(IEnumerable<T> values);

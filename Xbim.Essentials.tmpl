@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+	<metadata>
+		<id>Xbim.Essentials</id>
+		<version>{{version}}</version>
+		<title>xBIM Essentials</title>
+		<authors>xBIM Team</authors>
+		<owners>Steve Lockley, Martin Cerny and XBIM Contributors</owners>
+		<licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</licenseUrl>
+		<projectUrl>https://github.com/xBimTeam/</projectUrl>
+		<iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=240</iconUrl>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<description>
+			xBIM Essentials 5 provides support for IFC2x2, IFC2x3, IFC4 Addendum 2 and IFC Alignment (IFC4x1).
+			xBIM can open, create or modify any IFC file format, including XML, STEP21 and IFCZIP formats.
+			All programmatic access to IFC Entities is through a single interface, allowing one code base to work with all IFC formats and schemas.
+			Ifc4 is the default interface future proofing your development work.
+		</description>
+		<summary>Meta package for xBIM toolkit base libraries for work with IFC data.</summary>
+		<releaseNotes>
+			This release is now a 'meta-package' which replaces Xbim Essentials v4. For more granular control you can include the individual Nuget packages in the dependencies.
+			This release is the first to target netstandard2, in addition to netfx. Only minor code refactoring might be required.
+			V5 of Essentials now targets .net47 as a minimum.
+		</releaseNotes>
+		<language>en-GB</language>
+		<tags>BIM IFC IfcXml IfcZip Ifc4  COBie .Net XBIM WexBIM BuildingSmart</tags>
+		<dependencies>
+			<group targetFramework="net47">
+				<dependency id="Xbim.Common" version="{{version}}" />
+				<dependency id="Xbim.Ifc4" version="{{version}}" />
+				<dependency id="Xbim.Ifc2x3" version="{{version}}" />
+				<dependency id="Xbim.IO.MemoryModel" version="{{version}}" />
+				<dependency id="Xbim.IO.Esent" version="{{version}}" />
+				<dependency id="Xbim.Ifc" version="{{version}}" />
+				<dependency id="Xbim.Tessellator" version="{{version}}" />
+			</group>
+			<group targetFramework="netstandard2.0">
+				<dependency id="Xbim.Common" version="{{version}}" />
+				<dependency id="Xbim.Ifc4" version="{{version}}" />
+				<dependency id="Xbim.Ifc2x3" version="{{version}}" />
+				<dependency id="Xbim.IO.MemoryModel" version="{{version}}" />
+				<dependency id="Xbim.Ifc" version="{{version}}" />
+				<dependency id="Xbim.Tessellator" version="{{version}}" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+	</files>
+</package>

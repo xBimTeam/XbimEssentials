@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 
 namespace Xbim.Common.Geometry
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct XbimRect3D
     {
         private static readonly XbimRect3D _empty;
@@ -41,7 +42,7 @@ namespace Xbim.Common.Geometry
             set { _sizeZ = value; }
         }
 
-        [IgnoreDataMember]
+       
         public XbimPoint3D Location
         {
             get
@@ -91,7 +92,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+       
         public bool IsEmpty
         {
             get
@@ -162,7 +163,7 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Minimum vertex
         /// </summary>
-        [IgnoreDataMember]
+        
         public XbimPoint3D Min //This was returning maximum instead of minimum. Fixed by Martin Cerny 6/1/2014
         {
             get
@@ -173,7 +174,7 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Maximum vertex
         /// </summary>
-        [IgnoreDataMember]
+       
         public XbimPoint3D Max  //This was returning minimum instead of maximum. Fixed by Martin Cerny 6/1/2014
         {
             get
@@ -182,7 +183,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public double Volume
         {
             get
@@ -196,7 +197,6 @@ namespace Xbim.Common.Geometry
         /// <summary>
         /// Reinitialises the rectangle 3D from the byte array
         /// </summary>
-        /// <param name="rect"></param>
         /// <param name="array">6 doubles, definine, min and max values of the boudning box</param>
         public static XbimRect3D FromArray(byte[] array)
         {
@@ -242,16 +242,19 @@ namespace Xbim.Common.Geometry
         /// <returns>An array of doubles (Position followed by Size).</returns>
         public byte[] ToDoublesArray()
         {
-            MemoryStream ms = new MemoryStream();
-            BinaryWriter bw = new BinaryWriter(ms);
-            bw.Write(_x);
-            bw.Write(_y);
-            bw.Write(_z);
-            bw.Write(_sizeX);
-            bw.Write(_sizeY);
-            bw.Write(_sizeZ);
-            bw.Close();
-            return ms.ToArray();
+            using (var ms = new MemoryStream())
+            {
+                using (var bw = new BinaryWriter(ms))
+                {
+                    bw.Write(_x);
+                    bw.Write(_y);
+                    bw.Write(_z);
+                    bw.Write(_sizeX);
+                    bw.Write(_sizeY);
+                    bw.Write(_sizeZ);
+                    return ms.ToArray();
+                }                    
+            }
         }
 
         /// <summary>
@@ -260,16 +263,19 @@ namespace Xbim.Common.Geometry
         /// <returns>An array of floats (Position followed by Size).</returns>
         public byte[] ToFloatArray()
         {
-            MemoryStream ms = new MemoryStream();
-            BinaryWriter bw = new BinaryWriter(ms);
-            bw.Write((float)_x);
-            bw.Write((float)_y);
-            bw.Write((float)_z);
-            bw.Write((float)_sizeX);
-            bw.Write((float)_sizeY);
-            bw.Write((float)_sizeZ);
-            bw.Close();
-            return ms.ToArray();
+            using (var ms = new MemoryStream())
+            {
+                using (var bw =new BinaryWriter(ms))
+                {
+                    bw.Write((float)_x);
+                    bw.Write((float)_y);
+                    bw.Write((float)_z);
+                    bw.Write((float)_sizeX);
+                    bw.Write((float)_sizeY);
+                    bw.Write((float)_sizeZ);
+                    return ms.ToArray();
+                }
+            }
         }
 
         public override string ToString()
@@ -541,9 +547,7 @@ namespace Xbim.Common.Geometry
 
         /// <summary>
         /// true if the rect fits inside thsi rectangle when it is either inflated or defalted by the tolerance
-        /// </summary>
-        /// <param name="xbimRect3D"></param>
-        /// <param name="tolerance"></param>
+        /// </summary>            
         /// <returns></returns>
         public bool IsSimilar(XbimRect3D rect, double tolerance)
         {

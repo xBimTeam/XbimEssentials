@@ -24,9 +24,8 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcOffsetCurve3D
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOffsetCurve3D : IIfcCurve
+	public partial interface @IIfcOffsetCurve3D : IIfcOffsetCurve
 	{
-		IIfcCurve @BasisCurve { get;  set; }
 		IfcLengthMeasure @Distance { get;  set; }
 		IfcLogical @SelfIntersect { get;  set; }
 		IIfcDirection @RefDirection { get;  set; }
@@ -38,15 +37,9 @@ namespace Xbim.Ifc4.GeometryResource
 {
 	[ExpressType("IfcOffsetCurve3D", 67)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOffsetCurve3D : IfcCurve, IInstantiableEntity, IIfcOffsetCurve3D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve3D>
+	public  partial class @IfcOffsetCurve3D : IfcOffsetCurve, IInstantiableEntity, IIfcOffsetCurve3D, IContainsEntityReferences, IEquatable<@IfcOffsetCurve3D>
 	{
 		#region IIfcOffsetCurve3D explicit implementation
-		IIfcCurve IIfcOffsetCurve3D.BasisCurve { 
- 
- 
-			get { return @BasisCurve; } 
-			set { BasisCurve = value as IfcCurve;}
-		}	
 		IfcLengthMeasure IIfcOffsetCurve3D.Distance { 
  
 			get { return @Distance; } 
@@ -72,30 +65,13 @@ namespace Xbim.Ifc4.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private IfcCurve _basisCurve;
 		private IfcLengthMeasure _distance;
 		private IfcLogical _selfIntersect;
 		private IfcDirection _refDirection;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
-		public IfcCurve @BasisCurve 
-		{ 
-			get 
-			{
-				if(_activated) return _basisCurve;
-				Activate();
-				return _basisCurve;
-			} 
-			set
-			{
-				if (value != null && !(ReferenceEquals(Model, value.Model)))
-					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
-			} 
-		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLengthMeasure @Distance 
 		{ 
 			get 
@@ -109,7 +85,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _distance = v, _distance, value,  "Distance", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLogical @SelfIntersect 
 		{ 
 			get 
@@ -123,7 +99,7 @@ namespace Xbim.Ifc4.GeometryResource
 				SetValue( v =>  _selfIntersect = v, _selfIntersect, value,  "SelfIntersect", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcDirection @RefDirection 
 		{ 
 			get 
@@ -150,7 +126,7 @@ namespace Xbim.Ifc4.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_basisCurve = (IfcCurve)(value.EntityVal);
+					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
 					_distance = value.RealVal;

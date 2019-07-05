@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Xbim.Common.Geometry
 {
     /// <summary>
     /// Encodes a normal in just two bytes.
     /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct XbimPackedNormal
     {
         private ushort _packedData;

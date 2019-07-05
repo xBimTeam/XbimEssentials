@@ -55,7 +55,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 7)]
 		public IfcDimensionExtentUsage @Role 
 		{ 
 			get 

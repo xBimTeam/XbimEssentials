@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcPositiveLengthMeasure @OverallWidth 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcPositiveLengthMeasure @OverallDepth 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				SetValue( v =>  _overallDepth = v, _overallDepth, value,  "OverallDepth", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcPositiveLengthMeasure @WebThickness 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				SetValue( v =>  _webThickness = v, _webThickness, value,  "WebThickness", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcPositiveLengthMeasure @FlangeThickness 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc2x3.ProfileResource
 				SetValue( v =>  _flangeThickness = v, _flangeThickness, value,  "FlangeThickness", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcPositiveLengthMeasure? @FilletRadius 
 		{ 
 			get 

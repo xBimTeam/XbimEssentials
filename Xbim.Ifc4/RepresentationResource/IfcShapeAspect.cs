@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4.ExternalReferenceResource;
 using Xbim.Ifc4.MeasureResource;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Xbim.Ifc4.Interfaces
     /// Readonly interface for IfcShapeAspect
     /// </summary>
 	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcShapeAspect : IPersistEntity
+	public partial interface @IIfcShapeAspect : IPersistEntity, IfcResourceObjectSelect
 	{
 		IItemSet<IIfcShapeModel> @ShapeRepresentations { get; }
 		IfcLabel? @Name { get;  set; }
@@ -87,7 +88,7 @@ namespace Xbim.Ifc4.RepresentationResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 1)]
 		public IItemSet<IfcShapeModel> @ShapeRepresentations 
 		{ 
 			get 
@@ -97,7 +98,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				return _shapeRepresentations;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -111,7 +112,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -125,7 +126,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLogical @ProductDefinitional 
 		{ 
 			get 
@@ -140,7 +141,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcProductRepresentationSelect @PartOfProductDefinitionShape 
 		{ 
 			get 

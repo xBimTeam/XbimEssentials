@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLabel @Name 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -105,7 +105,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcLabel? @Category 
 		{ 
 			get 
@@ -125,7 +125,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 		#region Inverse attributes
 		[InverseProperty("RepresentedMaterial")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 7)]
 		public IEnumerable<IfcMaterialDefinitionRepresentation> @HasRepresentation 
 		{ 
 			get 
@@ -134,7 +134,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}
 		[InverseProperty("RelatedMaterials")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IEnumerable<IfcMaterialRelationship> @IsRelatedWith 
 		{ 
 			get 
@@ -143,7 +143,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}
 		[InverseProperty("RelatingMaterial")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 9)]
 		public IEnumerable<IfcMaterialRelationship> @RelatesTo 
 		{ 
 			get 

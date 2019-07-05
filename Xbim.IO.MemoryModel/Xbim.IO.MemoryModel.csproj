@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
+    <Title>Xbim IO for in-Memory Models</Title>
+    <Description>Manages IFC or STEP Model backed by an in-memory representation</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
+  </ItemGroup>
+    <ItemGroup>
+    <EmbeddedResource Include="Xml\BsConf\*.xml" />
+  </ItemGroup>
+</Project>

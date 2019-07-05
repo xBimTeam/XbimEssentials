@@ -6,7 +6,7 @@ using Xbim.Ifc4.PresentationAppearanceResource;
 
 namespace Xbim.Ifc4
 {
-    [Serializable]
+   
     public class SurfaceStyle :  IPhongMaterial
     {
         public static SurfaceStyle NullSurfaceStyle { get; private set; }
@@ -18,7 +18,7 @@ namespace Xbim.Ifc4
         }
 
 
-        [NonSerialized]
+      
         private readonly IIfcSurfaceStyle _surfaceStyle;
         public string Name { get; set; }
 
@@ -39,11 +39,11 @@ namespace Xbim.Ifc4
         public RgbaColour SpecularColour { get;  set; }
         public double SpecularShininess { get;  set; }
 
-        [NonSerialized]
+       
         public IIfcPixelTexture DiffuseMap;
-        [NonSerialized]
+       
         public IIfcPixelTexture DisplacementMap;
-        [NonSerialized]
+       
         public IIfcPixelTexture NormalMap;
 
         public SurfaceStyle(IIfcSurfaceStyle surfaceStyle)

@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace Xbim.Ifc4.Kernel
 						retVal = Functions.EXISTS(this/* as IfcRoot*/.Name);
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.Kernel.IfcProxy");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcProxy.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.Kernel.IfcProxy>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcProxy.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

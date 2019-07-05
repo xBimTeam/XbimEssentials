@@ -89,7 +89,7 @@ namespace Xbim.Ifc2x3.MaterialPropertyResource
 			                .FirstOrDefault(
 			                    t => t.IsValueType &&
 			                        string.Compare(t.Name, sourceType.Name,
-			                            System.StringComparison.InvariantCultureIgnoreCase) == 0);
+			                            System.StringComparison.OrdinalIgnoreCase) == 0);
 			        if (targetType == null) continue;
 			        var targetValue = System.Activator.CreateInstance(targetType, value) as Ifc4.MeasureResource.IfcValue;
                     yield return new Interfaces.Conversions.IfcPropertySingleValueTransient(name, targetValue);

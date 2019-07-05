@@ -87,7 +87,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcHourInDay @HourComponent 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _hourComponent = v, _hourComponent, value,  "HourComponent", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcMinuteInHour? @MinuteComponent 
 		{ 
 			get 
@@ -115,7 +115,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _minuteComponent = v, _minuteComponent, value,  "MinuteComponent", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcSecondInMinute? @SecondComponent 
 		{ 
 			get 
@@ -129,7 +129,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _secondComponent = v, _secondComponent, value,  "SecondComponent", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcCoordinatedUniversalTimeOffset @Zone 
 		{ 
 			get 
@@ -145,7 +145,7 @@ namespace Xbim.Ifc2x3.DateTimeResource
 				SetValue( v =>  _zone = v, _zone, value,  "Zone", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcDaylightSavingHour? @DaylightSavingOffset 
 		{ 
 			get 

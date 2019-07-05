@@ -20,13 +20,12 @@ namespace Xbim.Common.XbimExtensions
 
             for (var i = 0; i < numVertices; i++)
             {
-                vertices.Add(br.ReadPoint3D());
+                vertices.Add(br.ReadPointFloat3D());
             }
             var numFaces = br.ReadInt32();
             var faces = new List<XbimFaceTriangulation>(numFaces);
             for (var i = 0; i < numFaces; i++)
-            {
-                
+            {                
                 var numTrianglesInFace = br.ReadInt32();
                 if (numTrianglesInFace == 0) continue;
                 var isPlanar = numTrianglesInFace > 0;
@@ -77,14 +76,6 @@ namespace Xbim.Common.XbimExtensions
             double y = br.ReadSingle();
             double z = br.ReadSingle();
             return new XbimPoint3D(x,y,z);
-        }
-
-        public static XbimPoint3D ReadPoint3D(this BinaryReader br)
-        {
-            double x = br.ReadDouble();
-            double y = br.ReadDouble();
-            double z = br.ReadDouble();
-            return new XbimPoint3D(x, y, z);
         }
 
         public static XbimPackedNormal ReadPackedNormal(this BinaryReader br)

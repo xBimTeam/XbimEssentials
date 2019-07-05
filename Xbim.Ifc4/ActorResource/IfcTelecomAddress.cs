@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.ActorResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 6)]
 		public IOptionalItemSet<IfcLabel> @TelephoneNumbers 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.ActorResource
 				return _telephoneNumbers;
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 7)]
 		public IOptionalItemSet<IfcLabel> @FacsimileNumbers 
 		{ 
 			get 
@@ -108,7 +108,7 @@ namespace Xbim.Ifc4.ActorResource
 				return _facsimileNumbers;
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcLabel? @PagerNumber 
 		{ 
 			get 
@@ -122,7 +122,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _pagerNumber = v, _pagerNumber, value,  "PagerNumber", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 9)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 9)]
 		public IOptionalItemSet<IfcLabel> @ElectronicMailAddresses 
 		{ 
 			get 
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.ActorResource
 				return _electronicMailAddresses;
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcURIReference? @WWWHomePageURL 
 		{ 
 			get 
@@ -146,7 +146,7 @@ namespace Xbim.Ifc4.ActorResource
 				SetValue( v =>  _wWWHomePageURL = v, _wWWHomePageURL, value,  "WWWHomePageURL", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, 1, -1, 11)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 11)]
 		public IOptionalItemSet<IfcURIReference> @MessagingIDs 
 		{ 
 			get 

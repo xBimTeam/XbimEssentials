@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
 		public IfcTranslationalStiffnessSelect @TranslationalStiffnessX 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _translationalStiffnessX = v, _translationalStiffnessX, value,  "TranslationalStiffnessX", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcTranslationalStiffnessSelect @TranslationalStiffnessY 
 		{ 
 			get 
@@ -124,7 +124,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _translationalStiffnessY = v, _translationalStiffnessY, value,  "TranslationalStiffnessY", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcTranslationalStiffnessSelect @TranslationalStiffnessZ 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _translationalStiffnessZ = v, _translationalStiffnessZ, value,  "TranslationalStiffnessZ", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcRotationalStiffnessSelect @RotationalStiffnessX 
 		{ 
 			get 
@@ -152,7 +152,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _rotationalStiffnessX = v, _rotationalStiffnessX, value,  "RotationalStiffnessX", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcRotationalStiffnessSelect @RotationalStiffnessY 
 		{ 
 			get 
@@ -166,7 +166,7 @@ namespace Xbim.Ifc4.StructuralLoadResource
 				SetValue( v =>  _rotationalStiffnessY = v, _rotationalStiffnessY, value,  "RotationalStiffnessY", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcRotationalStiffnessSelect @RotationalStiffnessZ 
 		{ 
 			get 

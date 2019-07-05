@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.Kernel
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcLabel? @UsageName 
 		{ 
 			get 
@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.Kernel
 				SetValue( v =>  _usageName = v, _usageName, value,  "UsageName", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 10)]
 		public IfcComplexPropertyTemplateTypeEnum? @TemplateType 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4.Kernel
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 11)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 11)]
 		public IOptionalItemSet<IfcPropertyTemplate> @HasPropertyTemplates 
 		{ 
 			get 

@@ -100,7 +100,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcStructuralMember @RelatingStructuralMember 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcStructuralConnection @RelatedStructuralConnection 
 		{ 
 			get 
@@ -133,7 +133,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _relatedStructuralConnection = v, _relatedStructuralConnection, value,  "RelatedStructuralConnection", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcBoundaryCondition @AppliedCondition 
 		{ 
 			get 
@@ -149,7 +149,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _appliedCondition = v, _appliedCondition, value,  "AppliedCondition", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
 		public IfcStructuralConnectionCondition @AdditionalConditions 
 		{ 
 			get 
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _additionalConditions = v, _additionalConditions, value,  "AdditionalConditions", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcLengthMeasure? @SupportedLength 
 		{ 
 			get 
@@ -179,7 +179,7 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 				SetValue( v =>  _supportedLength = v, _supportedLength, value,  "SupportedLength", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 10)]
 		public IfcAxis2Placement3D @ConditionCoordinateSystem 
 		{ 
 			get 

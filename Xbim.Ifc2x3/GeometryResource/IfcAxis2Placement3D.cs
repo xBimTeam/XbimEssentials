@@ -64,7 +64,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcDirection @Axis 
 		{ 
 			get 
@@ -80,7 +80,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 				SetValue( v =>  _axis = v, _axis, value,  "Axis", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcDirection @RefDirection 
 		{ 
 			get 
@@ -100,7 +100,7 @@ namespace Xbim.Ifc2x3.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, 3, 3, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 3 }, new int [] { 3 }, 0)]
 		public List<Common.Geometry.XbimVector3D> @P 
 		{
 			get 

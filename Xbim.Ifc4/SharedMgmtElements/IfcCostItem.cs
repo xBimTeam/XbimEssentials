@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcCostItemTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 20)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 20)]
 		public IOptionalItemSet<IfcCostValue> @CostValues 
 		{ 
 			get 
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4.SharedMgmtElements
 				return _costValues;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 21)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 21)]
 		public IOptionalItemSet<IfcPhysicalQuantity> @CostQuantities 
 		{ 
 			get 

@@ -51,7 +51,7 @@ namespace Xbim.Ifc2x3.RepresentationResource
 
 		#region Inverse attributes
 		[InverseProperty("ShapeRepresentations")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 8)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 8)]
 		public IEnumerable<IfcShapeAspect> @OfShapeAspect 
 		{ 
 			get 

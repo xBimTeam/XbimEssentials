@@ -87,7 +87,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -115,7 +115,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcMaterial @Material 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _material = v, _material, value,  "Material", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcNormalisedRatioMeasure? @Fraction 
 		{ 
 			get 
@@ -145,7 +145,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _fraction = v, _fraction, value,  "Fraction", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcLabel? @Category 
 		{ 
 			get 
@@ -165,7 +165,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 		#region Inverse attributes
 		[InverseProperty("MaterialConstituents")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, -1, -1, 9)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, null, null, 9)]
 		public IfcMaterialConstituentSet @ToMaterialConstituentSet 
 		{ 
 			get 

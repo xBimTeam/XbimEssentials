@@ -65,7 +65,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcPoint @FillStyleTarget 
 		{ 
 			get 
@@ -81,7 +81,7 @@ namespace Xbim.Ifc2x3.PresentationDefinitionResource
 				SetValue( v =>  _fillStyleTarget = v, _fillStyleTarget, value,  "FillStyleTarget", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 7)]
 		public IfcGlobalOrLocalEnum? @GlobalOrLocal 
 		{ 
 			get 

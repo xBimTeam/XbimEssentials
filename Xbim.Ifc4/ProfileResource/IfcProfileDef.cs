@@ -70,7 +70,7 @@ namespace Xbim.Ifc4.ProfileResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 1)]
 		public IfcProfileTypeEnum @ProfileType 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4.ProfileResource
 				SetValue( v =>  _profileType = v, _profileType, value,  "ProfileType", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel? @ProfileName 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.ProfileResource
 
 		#region Inverse attributes
 		[InverseProperty("RelatedResourceObjects")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 3)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReference 
 		{ 
 			get 
@@ -113,7 +113,7 @@ namespace Xbim.Ifc4.ProfileResource
 			} 
 		}
 		[InverseProperty("ProfileDefinition")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 4)]
 		public IEnumerable<IfcProfileProperties> @HasProperties 
 		{ 
 			get 

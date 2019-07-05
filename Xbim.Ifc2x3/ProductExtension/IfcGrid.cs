@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 14)]
 		public IItemSet<IfcGridAxis> @UAxes 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 15)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 15)]
 		public IItemSet<IfcGridAxis> @VAxes 
 		{ 
 			get 
@@ -93,7 +93,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, 1, -1, 16)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.ListUnique, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 16)]
 		public IOptionalItemSet<IfcGridAxis> @WAxes 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc2x3.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatedElements")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 17)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 17)]
 		public IEnumerable<IfcRelContainedInSpatialStructure> @ContainedInStructure 
 		{ 
 			get 

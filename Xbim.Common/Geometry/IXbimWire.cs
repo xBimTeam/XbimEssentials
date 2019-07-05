@@ -1,5 +1,6 @@
 ﻿#region Directives
 
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 
@@ -66,8 +67,9 @@ namespace Xbim.Common.Geometry
         /// <param name="start">The distanceto trim from the start of the wire</param>
         /// <param name="end">The distance to trim to, from the start of the wire</param>
         /// <param name="tolerance">The distance at which two points are considered to be the same</param>
+        /// <param name="logger">An optional logger</param>
         /// <returns></returns>
-        IXbimWire Trim(double start, double end, double tolerance);
+        IXbimWire Trim(double start, double end, double tolerance, ILogger logger=null);
         /// <summary>
         /// Converts the object to a string in BRep format
         /// </summary>

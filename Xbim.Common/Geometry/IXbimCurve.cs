@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace Xbim.Common.Geometry
@@ -8,7 +9,7 @@ namespace Xbim.Common.Geometry
     /// </summary>
     public interface IXbimCurve : IXbimGeometryObject
     {
-        IEnumerable<XbimPoint3D> Intersections(IXbimCurve intersector, double tolerance);     
+        IEnumerable<XbimPoint3D> Intersections(IXbimCurve intersector, double tolerance,ILogger logger=null);     
         double Length { get; }
         XbimPoint3D Start { get; }
         XbimPoint3D End { get; }

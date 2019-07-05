@@ -71,7 +71,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 14)]
 		public IfcBenchmarkEnum @Benchmark 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				SetValue( v =>  _benchmark = v, _benchmark, value,  "Benchmark", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcLabel? @ValueSource 
 		{ 
 			get 
@@ -99,7 +99,7 @@ namespace Xbim.Ifc2x3.ConstraintResource
 				SetValue( v =>  _valueSource = v, _valueSource, value,  "ValueSource", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 16)]
 		public IfcMetricValueSelect @DataValue 
 		{ 
 			get 

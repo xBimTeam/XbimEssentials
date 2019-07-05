@@ -66,7 +66,7 @@ namespace Xbim.Ifc2x3.Kernel
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcProcess @RelatingProcess 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc2x3.Kernel
 				SetValue( v =>  _relatingProcess = v, _relatingProcess, value,  "RelatingProcess", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
 		public IfcMeasureWithUnit @QuantityInProcess 
 		{ 
 			get 

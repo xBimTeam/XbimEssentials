@@ -59,7 +59,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 3)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 3)]
 		public IItemSet<IfcDraughtingCalloutElement> @Contents 
 		{ 
 			get 
@@ -75,7 +75,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 
 		#region Inverse attributes
 		[InverseProperty("RelatedDraughtingCallout")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 4)]
 		public IEnumerable<IfcDraughtingCalloutRelationship> @IsRelatedFromCallout 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 			} 
 		}
 		[InverseProperty("RelatingDraughtingCallout")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 5)]
 		public IEnumerable<IfcDraughtingCalloutRelationship> @IsRelatedToCallout 
 		{ 
 			get 

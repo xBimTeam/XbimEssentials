@@ -66,7 +66,7 @@ namespace Xbim.Ifc4.TopologyResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcCurve @EdgeGeometry 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4.TopologyResource
 				SetValue( v =>  _edgeGeometry = v, _edgeGeometry, value,  "EdgeGeometry", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcBoolean @SameSense 
 		{ 
 			get 

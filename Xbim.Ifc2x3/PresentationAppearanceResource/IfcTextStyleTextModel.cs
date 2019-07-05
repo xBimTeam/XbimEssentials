@@ -103,7 +103,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcSizeSelect @TextIndent 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _textIndent = v, _textIndent, value,  "TextIndent", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcTextAlignment? @TextAlign 
 		{ 
 			get 
@@ -131,7 +131,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _textAlign = v, _textAlign, value,  "TextAlign", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcTextDecoration? @TextDecoration 
 		{ 
 			get 
@@ -145,7 +145,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _textDecoration = v, _textDecoration, value,  "TextDecoration", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcSizeSelect @LetterSpacing 
 		{ 
 			get 
@@ -159,7 +159,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _letterSpacing = v, _letterSpacing, value,  "LetterSpacing", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcSizeSelect @WordSpacing 
 		{ 
 			get 
@@ -173,7 +173,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _wordSpacing = v, _wordSpacing, value,  "WordSpacing", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcTextTransformation? @TextTransform 
 		{ 
 			get 
@@ -187,7 +187,7 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 				SetValue( v =>  _textTransform = v, _textTransform, value,  "TextTransform", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcSizeSelect @LineHeight 
 		{ 
 			get 

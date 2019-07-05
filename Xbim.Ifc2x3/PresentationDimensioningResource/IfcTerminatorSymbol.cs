@@ -58,7 +58,7 @@ namespace Xbim.Ifc2x3.PresentationDimensioningResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 6)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcAnnotationCurveOccurrence @AnnotatedCurve 
 		{ 
 			get 

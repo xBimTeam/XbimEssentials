@@ -60,7 +60,7 @@ namespace Xbim.Ifc4.MaterialResource
 
 		#region Inverse attributes
 		[InverseProperty("RelatingMaterial")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 1)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 1)]
 		public IEnumerable<IfcRelAssociatesMaterial> @AssociatedTo 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}
 		[InverseProperty("RelatedResourceObjects")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 2)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 2)]
 		public IEnumerable<IfcExternalReferenceRelationship> @HasExternalReferences 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}
 		[InverseProperty("Material")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 3)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 3)]
 		public IEnumerable<IfcMaterialProperties> @HasProperties 
 		{ 
 			get 

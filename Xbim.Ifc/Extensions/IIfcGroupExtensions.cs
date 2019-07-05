@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xbim.Ifc4.Interfaces;
 
-namespace Xbim.Ifc.Extensions
+namespace Xbim.Ifc
 {
     public static class IIfcGroupExtensions
     {

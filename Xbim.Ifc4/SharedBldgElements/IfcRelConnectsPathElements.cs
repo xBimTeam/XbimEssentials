@@ -76,7 +76,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 8)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 0 }, new int [] { -1 }, 8)]
 		public IItemSet<IfcInteger> @RelatingPriorities 
 		{ 
 			get 
@@ -86,7 +86,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				return _relatingPriorities;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, 0, -1, 9)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 0 }, new int [] { -1 }, 9)]
 		public IItemSet<IfcInteger> @RelatedPriorities 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				return _relatedPriorities;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 10)]
 		public IfcConnectionTypeEnum @RelatedConnectionType 
 		{ 
 			get 
@@ -110,7 +110,7 @@ namespace Xbim.Ifc4.SharedBldgElements
 				SetValue( v =>  _relatedConnectionType = v, _relatedConnectionType, value,  "RelatedConnectionType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 11)]
 		public IfcConnectionTypeEnum @RelatingConnectionType 
 		{ 
 			get 

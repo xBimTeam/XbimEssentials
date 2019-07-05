@@ -78,7 +78,7 @@ namespace Xbim.Ifc4.MaterialResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 4)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLabel? @Name 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4.MaterialResource
 				SetValue( v =>  _name = v, _name, value,  "Name", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 5)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcText? @Description 
 		{ 
 			get 
@@ -107,7 +107,7 @@ namespace Xbim.Ifc4.MaterialResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, 1, -1, 6)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 6)]
 		public IItemSet<IfcMaterialProfile> @MaterialProfiles 
 		{ 
 			get 
@@ -117,7 +117,7 @@ namespace Xbim.Ifc4.MaterialResource
 				return _materialProfiles;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 7)]
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcCompositeProfileDef @CompositeProfile 
 		{ 
 			get 

@@ -1,5 +1,6 @@
 using System;
-using log4net;
+using Microsoft.Extensions.Logging;
+using Xbim.Common;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = Functions.TYPEOF(this/* as IfcRepresentation*/.ContextOfItems).Contains("IFC4.IFCGEOMETRICREPRESENTATIONCONTEXT");
 						break;
 					case IfcShapeRepresentationClause.NoTopologicalItem:
-						retVal = Functions.SIZEOF(Items.Where(temp => (Functions.TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(Functions.SIZEOF(Functions.NewArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * Functions.TYPEOF(temp)) == 1)))) == 0;
+						retVal = Functions.SIZEOF(Items.Where(temp => (Functions.TYPEOF(temp).Contains("IFC4.IFCTOPOLOGICALREPRESENTATIONITEM")) && (!(Functions.SIZEOF(Functions.NewTypesArray("IFC4.IFCVERTEXPOINT", "IFC4.IFCEDGECURVE", "IFC4.IFCFACESURFACE") * Functions.TYPEOF(temp)) == 1)))) == 0;
 						break;
 					case IfcShapeRepresentationClause.HasRepresentationType:
 						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationType);
@@ -48,9 +49,9 @@ namespace Xbim.Ifc4.RepresentationResource
 						retVal = Functions.EXISTS(this/* as IfcRepresentation*/.RepresentationIdentifier);
 						break;
 				}
-			} catch (Exception ex) {
-				var Log = LogManager.GetLogger("Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation");
-				Log.Error(string.Format("Exception thrown evaluating where-clause 'IfcShapeRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
+			} catch (Exception  ex) {
+				var log = Validation.ValidationLogging.CreateLogger<Xbim.Ifc4.RepresentationResource.IfcShapeRepresentation>();
+				log?.LogError(string.Format("Exception thrown evaluating where-clause 'IfcShapeRepresentation.{0}' for #{1}.", clause,EntityLabel), ex);
 			}
 			return retVal;
 		}

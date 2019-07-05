@@ -15,6 +15,6 @@ namespace Xbim.Ifc4.Interfaces
 		@EXTERNAL_WATER ,
 		@EXTERNAL_FIRE ,
 		@USERDEFINED ,
-		@NOTDEFIEND 
+		@NOTDEFINED 
 	}
 }

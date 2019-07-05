@@ -69,7 +69,7 @@ namespace Xbim.Ifc4.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 19)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 19)]
 		public IOptionalItemSet<IfcWorkTime> @WorkingTimes 
 		{ 
 			get 
@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				return _workingTimes;
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 20)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 20)]
 		public IOptionalItemSet<IfcWorkTime> @ExceptionTimes 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.Ifc4.ProcessExtension
 				return _exceptionTimes;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 21)]
 		public IfcWorkCalendarTypeEnum? @PredefinedType 
 		{ 
 			get 

@@ -124,7 +124,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
 		public IfcIdentifier @Identifier 
 		{ 
 			get 
@@ -138,7 +138,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _identifier = v, _identifier, value,  "Identifier", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 13)]
 		public IfcDateTimeSelect @CreationDate 
 		{ 
 			get 
@@ -154,7 +154,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _creationDate = v, _creationDate, value,  "CreationDate", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 14)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 14)]
 		public IOptionalItemSet<IfcPerson> @Creators 
 		{ 
 			get 
@@ -164,7 +164,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				return _creators;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcLabel? @Purpose 
 		{ 
 			get 
@@ -178,7 +178,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _purpose = v, _purpose, value,  "Purpose", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 16)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 16)]
 		public IfcTimeMeasure? @Duration 
 		{ 
 			get 
@@ -192,7 +192,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _duration = v, _duration, value,  "Duration", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 17)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 17)]
 		public IfcTimeMeasure? @TotalFloat 
 		{ 
 			get 
@@ -206,7 +206,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _totalFloat = v, _totalFloat, value,  "TotalFloat", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 18)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 18)]
 		public IfcDateTimeSelect @StartTime 
 		{ 
 			get 
@@ -222,7 +222,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _startTime = v, _startTime, value,  "StartTime", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 19)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 19)]
 		public IfcDateTimeSelect @FinishTime 
 		{ 
 			get 
@@ -238,7 +238,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _finishTime = v, _finishTime, value,  "FinishTime", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 20)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 20)]
 		public IfcWorkControlTypeEnum? @WorkControlType 
 		{ 
 			get 
@@ -252,7 +252,7 @@ namespace Xbim.Ifc2x3.ProcessExtension
 				SetValue( v =>  _workControlType = v, _workControlType, value,  "WorkControlType", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 21)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcLabel? @UserDefinedControlType 
 		{ 
 			get 

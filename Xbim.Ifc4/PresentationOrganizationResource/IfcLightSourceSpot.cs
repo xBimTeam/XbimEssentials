@@ -79,7 +79,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 12)]
 		public IfcDirection @Orientation 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 13)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 13)]
 		public IfcReal? @ConcentrationExponent 
 		{ 
 			get 
@@ -109,7 +109,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _concentrationExponent = v, _concentrationExponent, value,  "ConcentrationExponent", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 14)]
+		[EntityAttribute(12, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 14)]
 		public IfcPositivePlaneAngleMeasure @SpreadAngle 
 		{ 
 			get 
@@ -123,7 +123,7 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 				SetValue( v =>  _spreadAngle = v, _spreadAngle, value,  "SpreadAngle", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 15)]
+		[EntityAttribute(13, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 15)]
 		public IfcPositivePlaneAngleMeasure @BeamWidthAngle 
 		{ 
 			get 

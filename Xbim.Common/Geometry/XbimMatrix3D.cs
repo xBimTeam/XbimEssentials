@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Geometry
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct XbimMatrix3D
     {
         #region members
@@ -243,7 +244,7 @@ namespace Xbim.Common.Geometry
             };
         }
 
-        [IgnoreDataMember]
+        
         public bool IsAffine
         {
             get
@@ -259,7 +260,7 @@ namespace Xbim.Common.Geometry
                 return _identity;
             }
         }
-        [IgnoreDataMember]
+        
         public bool IsIdentity 
         {
             get
@@ -448,7 +449,7 @@ namespace Xbim.Common.Geometry
         #endregion
 
         #region Accessors
-        [IgnoreDataMember]
+        
         public XbimVector3D Up
         {
             get
@@ -457,7 +458,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Down
         {
             get
@@ -466,7 +467,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Right
         {
             get
@@ -475,7 +476,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Left
         {
             get
@@ -484,7 +485,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Forward
         {
             get
@@ -493,7 +494,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Backward
         {
             get
@@ -502,7 +503,7 @@ namespace Xbim.Common.Geometry
             }
         }
 
-        [IgnoreDataMember]
+        
         public XbimVector3D Translation
         {
             get
@@ -741,24 +742,18 @@ namespace Xbim.Common.Geometry
                 M33 = M33/scale.Z,
                 M44 = 1
             };
-
-
-
-
+            
             XbimQuaternion.RotationMatrix(ref rotationmatrix, out rotation);
             return true;
         }
-
-
-
+        
         public XbimVector3D Transform(XbimVector3D xbimVector3D)
         {
             return XbimVector3D.Multiply(xbimVector3D, this);
         }
 
         public void Invert()
-        {
-            
+        {  
             // Cache the matrix values (makes for huge speed increases!)
             double a00 = M11, a01 = M12, a02 = M13, a03 = M14,
                 a10 = M21, a11 = M22, a12 = M23, a13 = M24,
@@ -800,6 +795,58 @@ namespace Xbim.Common.Geometry
             OffsetY = (a00 * b09 - a01 * b07 + a02 * b06) * invDet;
             OffsetZ = (-a30 * b03 + a31 * b01 - a32 * b00) * invDet;
             M44 = (a20 * b03 - a21 * b01 + a22 * b00) * invDet;
+        }
+
+        /// <summary>
+        /// This function can be useful to transfer the matrix value in the c++/clr environment
+        /// </summary>
+        /// <returns>a 16-long float array where translation values are at poistions 12, 13 and 14</returns>
+        public float[] ToFloatArray()
+        {
+            float[] ret = new float[16];
+            ret[00] = (float)M11;
+            ret[01] = (float)M12;
+            ret[02] = (float)M13;
+            ret[03] = (float)M14;
+            ret[04] = (float)M21;
+            ret[05] = (float)M22;
+            ret[06] = (float)M23;
+            ret[07] = (float)M24;
+            ret[08] = (float)M31;
+            ret[09] = (float)M32;
+            ret[10] = (float)M33;
+            ret[11] = (float)M34;
+            ret[12] = (float)OffsetX;
+            ret[13] = (float)OffsetY;
+            ret[14] = (float)OffsetZ;
+            ret[15] = (float)M44;
+            return ret;
+        }
+
+        /// <summary>
+        /// This function can be useful to transfer the matrix value in the c++/clr environment
+        /// </summary>
+        /// <returns>a 16-long double array where translation values are at poistions 12, 13 and 14</returns>
+        public double[] ToDoubleArray()
+        {
+            double[] ret = new double[16];
+            ret[00] = M11;
+            ret[01] = M12;
+            ret[02] = M13;
+            ret[03] = M14;
+            ret[04] = M21;
+            ret[05] = M22;
+            ret[06] = M23;
+            ret[07] = M24;
+            ret[08] = M31;
+            ret[09] = M32;
+            ret[10] = M33;
+            ret[11] = M34;
+            ret[12] = OffsetX;
+            ret[13] = OffsetY;
+            ret[14] = OffsetZ;
+            ret[15] = M44;
+            return ret;
         }
 
 
@@ -854,8 +901,7 @@ namespace Xbim.Common.Geometry
         }
        
         public void Scale(double s)
-        {
-            
+        {  
             M11 *= s;
             M12 *= s;
             M13 *= s;

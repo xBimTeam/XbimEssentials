@@ -63,7 +63,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcIdentifier @RasterFormat 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 				SetValue( v =>  _rasterFormat = v, _rasterFormat, value,  "RasterFormat", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
 		public IfcBinary @RasterCode 
 		{ 
 			get 

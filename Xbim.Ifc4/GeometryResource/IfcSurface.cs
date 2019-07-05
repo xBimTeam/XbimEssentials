@@ -49,25 +49,13 @@ namespace Xbim.Ifc4.GeometryResource
 
 
 		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 0)]
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcDimensionCount @Dim 
 		{
 			get 
 			{
 				//## Getter for Dim
-                var es = this as IfcElementarySurface;
-                if (es != null)
-                    return es.Dim;
-                var sws = this as IfcSweptSurface;
-                if (sws != null)
-                    return sws.Dim;
-                var cbd = this as IfcCurveBoundedPlane;
-                if (cbd != null)
-                    return cbd.Dim;
-                var rts = this as IfcRectangularTrimmedSurface;
-                if (rts != null)
-                    return rts.Dim;
-                return 0;
+                return 3;
 				//##
 			}
 		}

@@ -88,7 +88,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 8)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 8)]
 		public IfcPermeableCoveringOperationEnum @OperationType 
 		{ 
 			get 
@@ -102,7 +102,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, -1, -1, 9)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 9)]
 		public IfcWindowPanelPositionEnum @PanelPosition 
 		{ 
 			get 
@@ -116,7 +116,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _panelPosition = v, _panelPosition, value,  "PanelPosition", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 10)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcPositiveLengthMeasure? @FrameDepth 
 		{ 
 			get 
@@ -130,7 +130,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _frameDepth = v, _frameDepth, value,  "FrameDepth", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 11)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcPositiveLengthMeasure? @FrameThickness 
 		{ 
 			get 
@@ -144,7 +144,7 @@ namespace Xbim.Ifc2x3.ArchitectureDomain
 				SetValue( v =>  _frameThickness = v, _frameThickness, value,  "FrameThickness", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 12)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 12)]
 		public IfcShapeAspect @ShapeAspectStyle 
 		{ 
 			get 

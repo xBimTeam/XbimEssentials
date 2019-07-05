@@ -88,7 +88,7 @@ namespace Xbim.Ifc4.RepresentationResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, -1, -1, 1)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcRepresentationContext @ContextOfItems 
 		{ 
 			get 
@@ -104,7 +104,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _contextOfItems = v, _contextOfItems, value,  "ContextOfItems", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 2)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel? @RepresentationIdentifier 
 		{ 
 			get 
@@ -118,7 +118,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _representationIdentifier = v, _representationIdentifier, value,  "RepresentationIdentifier", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, -1, -1, 3)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcLabel? @RepresentationType 
 		{ 
 			get 
@@ -132,7 +132,7 @@ namespace Xbim.Ifc4.RepresentationResource
 				SetValue( v =>  _representationType = v, _representationType, value,  "RepresentationType", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 1, -1, 4)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcRepresentationItem> @Items 
 		{ 
 			get 
@@ -148,7 +148,7 @@ namespace Xbim.Ifc4.RepresentationResource
 
 		#region Inverse attributes
 		[InverseProperty("MappedRepresentation")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, 1, 5)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 5)]
 		public IEnumerable<IfcRepresentationMap> @RepresentationMap 
 		{ 
 			get 
@@ -157,7 +157,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 		}
 		[InverseProperty("AssignedItems")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 6)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 6)]
 		public IEnumerable<IfcPresentationLayerAssignment> @LayerAssignments 
 		{ 
 			get 
@@ -166,7 +166,7 @@ namespace Xbim.Ifc4.RepresentationResource
 			} 
 		}
 		[InverseProperty("Representations")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, 0, -1, 7)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 7)]
 		public IEnumerable<IfcProductRepresentation> @OfProductRepresentation 
 		{ 
 			get 

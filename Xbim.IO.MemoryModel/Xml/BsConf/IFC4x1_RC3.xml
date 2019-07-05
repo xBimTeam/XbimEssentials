@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cnf:configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="IFC4x1" xsi:schemaLocation="urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language http://www.buildingsmart-tech.org/ifcXML/IFC4/P28/cnf.xsd" xmlns:cnf="urn:iso:std:iso:10303:-28:ed-2:tech:XMLschema:configuration_language">
+  <cnf:option inheritance="true" concrete-attribute="attribute-content" naming-convention="preserve-case" generate-keys="false"/>
+  <cnf:schema targetNamespace="http://www.buildingsmart-tech.org/ifcXML/IFC4/final" elementFormDefault="qualified" attributeFormDefault="unqualified" embed-schema-items="true">
+    <cnf:namespace prefix="ifc" alias="http://www.buildingsmart-tech.org/ifcXML/IFC4/final"/>
+  </cnf:schema>
+  <cnf:uosElement name="ifcXML"/>
+  <cnf:type select="NUMBER" map="xs:double"/>
+  <cnf:type select="BINARY" map="xs:hexBinary"/>
+  <cnf:type select="IfcStrippedOptional" keep="false"/>
+  <cnf:entity select="IfcAnnotationFillArea">
+    <cnf:attribute select="OuterBoundary" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcApplication">
+    <cnf:attribute select="ApplicationDeveloper" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcAppliedValue">
+    <cnf:attribute select="UnitBasis" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcApprovalRelationship">
+    <cnf:attribute select="RelatingApproval" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcArbitraryClosedProfileDef">
+    <cnf:attribute select="OuterCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcArbitraryOpenProfileDef">
+    <cnf:attribute select="Curve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcAsset">
+    <cnf:attribute select="OriginalValue" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="CurrentValue" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="TotalReplacementCost" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ResponsiblePerson" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="DepreciatedValue" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcAxis1Placement">
+    <cnf:attribute select="Axis" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcAxis2Placement2D">
+    <cnf:attribute select="RefDirection" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcAxis2Placement3D">
+    <cnf:attribute select="Axis" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RefDirection" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcBlobTexture">
+    <cnf:attribute select="RasterCode" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcBoundingBox">
+    <cnf:attribute select="Corner" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcBoxedHalfSpace">
+    <cnf:attribute select="Enclosure" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcBSplineSurface">
+    <cnf:attribute select="ControlPointsList" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcBuilding">
+    <cnf:attribute select="BuildingAddress" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCartesianPointList3D">
+    <cnf:attribute select="CoordList" exp-attribute="attribute-content" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCartesianTransformationOperator">
+    <cnf:attribute select="Axis1" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Axis2" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="LocalOrigin" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCartesianTransformationOperator3D">
+    <cnf:attribute select="Axis3" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcClassification">
+    <cnf:attribute select="ReferenceTokens" exp-attribute="double-tag"/>
+    <cnf:inverse select="HasReferences" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcClassificationReference">
+    <cnf:attribute select="ReferencedSource" keep="false"/>
+    <cnf:inverse select="HasReferences" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcColourRgbList">
+    <cnf:attribute select="ColourList" exp-attribute="attribute-content" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCompositeCurveSegment">
+    <cnf:attribute select="ParentCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcConstructionResource">
+    <cnf:attribute select="Usage" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="BaseQuantity" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcConstructionResourceType">
+    <cnf:attribute select="BaseQuantity" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcContext">
+    <cnf:attribute select="UnitsInContext" exp-attribute="attribute-tag"/>
+    <cnf:inverse select="IsDefinedBy" exp-attribute="double-tag"/>
+    <cnf:inverse select="Declares" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcConversionBasedUnit">
+    <cnf:attribute select="ConversionFactor" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCoordinateOperation">
+    <cnf:attribute select="SourceCRS" keep="false"/>
+    <cnf:attribute select="TargetCRS" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCsgPrimitive3D">
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCurrencyRelationship">
+    <cnf:attribute select="RelatingMonetaryUnit" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatedMonetaryUnit" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RateSource" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCurveBoundedPlane">
+    <cnf:attribute select="BasisSurface" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="OuterBoundary" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcCurveBoundedSurface">
+    <cnf:attribute select="BasisSurface" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcDerivedProfileDef">
+    <cnf:attribute select="ParentProfile" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Operator" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcDerivedUnitElement">
+    <cnf:attribute select="Unit" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcDocumentInformationRelationship">
+    <cnf:attribute select="RelatingDocument" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcDocumentReference">
+    <cnf:attribute select="ReferencedDocument" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcDoorLiningProperties">
+    <cnf:attribute select="ShapeAspectStyle" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcDoorPanelProperties">
+    <cnf:attribute select="ShapeAspectStyle" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcEdge">
+    <cnf:attribute select="EdgeStart" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="EdgeEnd" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcEdgeCurve">
+    <cnf:attribute select="EdgeGeometry" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcElement">
+    <cnf:inverse select="HasProjections" exp-attribute="attribute-tag"/>
+    <cnf:inverse select="HasOpenings" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcElementarySurface">
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcEvent">
+    <cnf:attribute select="EventOccurenceTime" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcExternalReferenceRelationship">
+    <cnf:attribute select="RelatingReference" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcExtrudedAreaSolid">
+    <cnf:attribute select="ExtrudedDirection" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcExtrudedAreaSolidTapered">
+    <cnf:attribute select="EndSweptArea" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcFaceBound">
+    <cnf:attribute select="Bound" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcFaceSurface">
+    <cnf:attribute select="FaceSurface" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcFillAreaStyleHatching">
+    <cnf:attribute select="HatchLineAppearance" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="PointOfReferenceHatchLine" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="PatternStart" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcFixedReferenceSweptAreaSolid">
+    <cnf:attribute select="Directrix" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="FixedReference" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcGeometricRepresentationContext">
+    <cnf:attribute select="WorldCoordinateSystem" exp-attribute="double-tag"/>
+    <cnf:attribute select="TrueNorth" exp-attribute="attribute-tag"/>
+    <cnf:inverse select="HasSubContexts" exp-attribute="double-tag"/>
+    <cnf:inverse select="HasCoordinateOperation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcGeometricRepresentationSubContext">
+    <cnf:attribute select="ParentContext" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcGridAxis">
+    <cnf:attribute select="AxisCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcGridPlacement">
+    <cnf:attribute select="PlacementLocation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcHalfSpaceSolid">
+    <cnf:attribute select="BaseSurface" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcIndexedColourMap">
+    <cnf:attribute select="MappedTo" keep="false"/>
+    <cnf:attribute select="Opacity" exp-attribute="attribute-content"/>
+    <cnf:attribute select="Colours" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcIndexedPolyCurve">
+    <cnf:attribute select="Points" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcIndexedPolygonalFaceWithVoids">
+    <cnf:attribute select="InnerCoordIndices" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcIndexedTextureMap">
+    <cnf:attribute select="MappedTo" keep="false"/>
+    <cnf:attribute select="TexCoords" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcIndexedTriangleTextureMap">
+    <cnf:attribute select="TexCoordIndex" exp-attribute="attribute-content" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcInventory">
+    <cnf:attribute select="CurrentValue" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="OriginalValue" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLibraryReference">
+    <cnf:attribute select="ReferencedLibrary" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLightSource">
+    <cnf:attribute select="LightColour" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLightSourceDirectional">
+    <cnf:attribute select="Orientation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLightSourceGoniometric">
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ColourAppearance" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLightSourcePositional">
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLightSourceSpot">
+    <cnf:attribute select="Orientation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLine">
+    <cnf:attribute select="Pnt" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Dir" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcLocalPlacement">
+    <cnf:attribute select="PlacementRelTo" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcManifoldSolidBrep">
+    <cnf:attribute select="Outer" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMappedItem">
+    <cnf:attribute select="MappingSource" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="MappingTarget" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterial">
+    <cnf:inverse select="HasRepresentation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialClassificationRelationship">
+    <cnf:attribute select="ClassifiedMaterial" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialConstituent">
+    <cnf:attribute select="Material" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialDefinition">
+    <cnf:inverse select="HasProperties" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialDefinitionRepresentation">
+    <cnf:attribute select="RepresentedMaterial" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialLayer">
+    <cnf:attribute select="Material" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialLayerSetUsage">
+    <cnf:attribute select="ForLayerSet" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialProfile">
+    <cnf:attribute select="Material" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Profile" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialProfileSet">
+    <cnf:attribute select="CompositeProfile" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialProfileSetUsage">
+    <cnf:attribute select="ForProfileSet" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialProfileSetUsageTapering">
+    <cnf:attribute select="ForProfileEndSet" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialProperties">
+    <cnf:attribute select="Material" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMaterialRelationship">
+    <cnf:attribute select="RelatingMaterial" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcMetric">
+    <cnf:attribute select="ReferencePath" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcNamedUnit">
+    <cnf:attribute select="Dimensions" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcObject">
+    <cnf:inverse select="IsDeclaredBy" exp-attribute="attribute-tag"/>
+    <cnf:inverse select="IsTypedBy" exp-attribute="attribute-tag"/>
+    <cnf:inverse select="IsDefinedBy" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcObjectDefinition">
+    <cnf:inverse select="Nests"/>
+    <cnf:inverse select="IsNestedBy" exp-attribute="double-tag"/>
+    <cnf:inverse select="IsDecomposedBy" exp-attribute="double-tag"/>
+    <cnf:inverse select="Decomposes"/>
+  </cnf:entity>
+  <cnf:entity select="IfcOffsetCurve">
+    <cnf:attribute select="BasisCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcOffsetCurve3D">
+    <cnf:attribute select="RefDirection" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcOpeningElement">
+    <cnf:inverse select="HasFillings" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcOrganizationRelationship">
+    <cnf:attribute select="RelatingOrganization" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcOrientedEdge">
+    <cnf:attribute select="EdgeElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcOwnerHistory">
+    <cnf:attribute select="OwningUser" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="OwningApplication" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="LastModifyingUser" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="LastModifyingApplication" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcParameterizedProfileDef">
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPcurve">
+    <cnf:attribute select="BasisSurface" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ReferenceCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPermeableCoveringProperties">
+    <cnf:attribute select="ShapeAspectStyle" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPerson">
+    <cnf:attribute select="MiddleNames" tagless="true"/>
+    <cnf:attribute select="PrefixTitles" tagless="true"/>
+    <cnf:attribute select="SuffixTitles" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPersonAndOrganization">
+    <cnf:attribute select="ThePerson" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="TheOrganization" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPhysicalSimpleQuantity">
+    <cnf:attribute select="Unit" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPixelTexture">
+    <cnf:attribute select="Pixel" exp-attribute="attribute-content" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPlacement">
+    <cnf:attribute select="Location" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPointOnCurve">
+    <cnf:attribute select="BasisCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPointOnSurface">
+    <cnf:attribute select="BasisSurface" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPolygonalBoundedHalfSpace">
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="PolygonalBoundary" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPostalAddress">
+    <cnf:attribute select="AddressLines" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcProduct">
+    <cnf:attribute select="ObjectPlacement" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Representation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcProductDefinitionShape">
+    <cnf:inverse select="HasShapeAspects" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcProfileDef">
+    <cnf:inverse select="HasProperties" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcProfileProperties">
+    <cnf:attribute select="ProfileDefinition" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcProjectedCRS">
+    <cnf:attribute select="MapUnit" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPropertyDependencyRelationship">
+    <cnf:attribute select="DependingProperty" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="DependantProperty" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcPropertyEnumeratedValue">
+    <cnf:attribute select="EnumerationReference" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRationalBSplineSurfaceWithKnots">
+    <cnf:attribute select="WeightsData" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRectangularTrimmedSurface">
+    <cnf:attribute select="BasisSurface" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcReference">
+    <cnf:attribute select="InnerReference" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelAggregates">
+    <cnf:attribute select="RelatingObject" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelAssignsToActor">
+    <cnf:attribute select="RelatingActor" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ActingRole" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelAssignsToControl">
+    <cnf:attribute select="RelatingControl" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelAssignsToGroup">
+    <cnf:attribute select="RelatingGroup" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelAssignsToProcess">
+    <cnf:attribute select="QuantityInProcess" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelAssociatesApproval">
+    <cnf:attribute select="RelatingApproval" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelAssociatesConstraint">
+    <cnf:attribute select="RelatingConstraint" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelConnectsElements">
+    <cnf:attribute select="ConnectionGeometry" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatingElement" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatedElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelConnectsPorts">
+    <cnf:attribute select="RelatingPort" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatedPort" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RealizingElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelConnectsPortToElement">
+    <cnf:attribute select="RelatingPort" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatedElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelConnectsStructuralActivity">
+    <cnf:attribute select="RelatedStructuralActivity" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelConnectsStructuralMember">
+    <cnf:attribute select="RelatingStructuralMember" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatedStructuralConnection" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="AppliedCondition" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="AdditionalConditions" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ConditionCoordinateSystem" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelConnectsWithEccentricity">
+    <cnf:attribute select="ConnectionConstraint" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelContainedInSpatialStructure">
+    <cnf:attribute select="RelatingStructure" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelCoversBldgElements">
+    <cnf:attribute select="RelatingBuildingElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelCoversSpaces">
+    <cnf:attribute select="RelatingSpace" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelDeclares">
+    <cnf:attribute select="RelatingContext" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelDefinesByObject">
+    <cnf:attribute select="RelatingObject" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelDefinesByProperties">
+    <cnf:attribute select="RelatedObjects" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelDefinesByTemplate">
+    <cnf:attribute select="RelatingTemplate" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelDefinesByType">
+    <cnf:attribute select="RelatedObjects" keep="false"/>
+    <cnf:attribute select="RelatingType" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelFillsElement">
+    <cnf:attribute select="RelatingOpeningElement" keep="false"/>
+    <cnf:attribute select="RelatedBuildingElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelFlowControlElements">
+    <cnf:attribute select="RelatingFlowElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelInterferesElements">
+    <cnf:attribute select="RelatingElement" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatedElement" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="InterferenceGeometry" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelNests">
+    <cnf:attribute select="RelatingObject" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelProjectsElement">
+    <cnf:attribute select="RelatingElement" keep="false"/>
+    <cnf:attribute select="RelatedFeatureElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelReferencedInSpatialStructure">
+    <cnf:attribute select="RelatingStructure" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelSequence">
+    <cnf:attribute select="RelatingProcess" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="RelatedProcess" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="TimeLag" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelServicesBuildings">
+    <cnf:attribute select="RelatingSystem" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelSpaceBoundary">
+    <cnf:attribute select="RelatedBuildingElement" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ConnectionGeometry" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelSpaceBoundary1stLevel">
+    <cnf:attribute select="ParentBoundary" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelSpaceBoundary2ndLevel">
+    <cnf:attribute select="CorrespondingBoundary" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRelVoidsElement">
+    <cnf:attribute select="RelatingBuildingElement" keep="false"/>
+    <cnf:attribute select="RelatedOpeningElement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRepresentation">
+    <cnf:attribute select="ContextOfItems" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRepresentationItem">
+    <cnf:inverse select="StyledByItem" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRepresentationMap">
+    <cnf:attribute select="MappedRepresentation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcResourceApprovalRelationship">
+    <cnf:attribute select="RelatingApproval" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcResourceConstraintRelationship">
+    <cnf:attribute select="RelatingConstraint" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRevolvedAreaSolid">
+    <cnf:attribute select="Axis" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRevolvedAreaSolidTapered">
+    <cnf:attribute select="EndSweptArea" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcRoot">
+    <cnf:attribute select="OwnerHistory" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSectionedSpine">
+    <cnf:attribute select="SpineCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSectionProperties">
+    <cnf:attribute select="StartProfile" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="EndProfile" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSectionReinforcementProperties">
+    <cnf:attribute select="SectionDefinition" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcShapeAspect">
+    <cnf:attribute select="PartOfProductDefinitionShape" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSimplePropertyTemplate">
+    <cnf:attribute select="Enumerators" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSite">
+    <cnf:attribute select="SiteAddress" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSpatialElement">
+    <cnf:inverse select="ContainsElements" exp-attribute="double-tag"/>
+    <cnf:inverse select="ReferencesElements" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralActivity">
+    <cnf:attribute select="AppliedLoad" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralAnalysisModel">
+    <cnf:attribute select="OrientationOf2DPlane" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="SharedPlacement" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralConnection">
+    <cnf:attribute select="AppliedCondition" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralCurveConnection">
+    <cnf:attribute select="Axis" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralCurveMember">
+    <cnf:attribute select="Axis" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralLoadConfiguration">
+    <cnf:attribute select="Locations" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralPointConnection">
+    <cnf:attribute select="ConditionCoordinateSystem" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStructuralResultGroup">
+    <cnf:attribute select="ResultForLoadGroup" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcStyledItem">
+    <cnf:attribute select="Item" keep="false"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSubedge">
+    <cnf:attribute select="ParentEdge" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSurfaceCurveSweptAreaSolid">
+    <cnf:attribute select="Directrix" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ReferenceSurface" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSurfaceOfLinearExtrusion">
+    <cnf:attribute select="ExtrudedDirection" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSurfaceOfRevolution">
+    <cnf:attribute select="AxisPosition" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSurfaceStyleLighting">
+    <cnf:attribute select="DiffuseTransmissionColour" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="DiffuseReflectionColour" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="TransmissionColour" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="ReflectanceColour" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSurfaceStyleShading">
+    <cnf:attribute select="SurfaceColour" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSurfaceTexture">
+    <cnf:attribute select="TextureTransform" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Parameter" exp-attribute="attribute-content" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSweptAreaSolid">
+    <cnf:attribute select="SweptArea" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSweptDiskSolid">
+    <cnf:attribute select="Directrix" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcSweptSurface">
+    <cnf:attribute select="SweptCurve" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="Position" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTableColumn">
+    <cnf:attribute select="ReferencePath" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTask">
+    <cnf:attribute select="TaskTime" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTaskTimeRecurring">
+    <cnf:attribute select="Recurrence" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTelecomAddress">
+    <cnf:attribute select="TelephoneNumbers" tagless="true"/>
+    <cnf:attribute select="FacsimileNumbers" tagless="true"/>
+    <cnf:attribute select="ElectronicMailAddresses" tagless="true"/>
+    <cnf:attribute select="MessagingIDs" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTessellatedFaceSet">
+    <cnf:attribute select="Coordinates" exp-attribute="attribute-tag"/>
+    <cnf:inverse select="HasColours" exp-attribute="attribute-tag"/>
+    <cnf:inverse select="HasTextures" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTextLiteralWithExtent">
+    <cnf:attribute select="Extent" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTextStyle">
+    <cnf:attribute select="TextCharacterAppearance" exp-attribute="attribute-tag"/>
+    <cnf:attribute select="TextStyle" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTextStyleFontModel">
+    <cnf:attribute select="FontFamily" exp-attribute="double-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTextureMap">
+    <cnf:attribute select="MappedTo" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTextureVertexList">
+    <cnf:attribute select="TexCoordsList" exp-attribute="attribute-content" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTriangulatedFaceSet">
+    <cnf:attribute select="CoordIndex" exp-attribute="attribute-content" tagless="true"/>
+    <cnf:attribute select="PnIndex" exp-attribute="attribute-content" tagless="true"/>
+  </cnf:entity>
+  <cnf:entity select="IfcTrimmedCurve">
+    <cnf:attribute select="BasisCurve" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcVector">
+    <cnf:attribute select="Orientation" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcVertexLoop">
+    <cnf:attribute select="LoopVertex" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcVertexPoint">
+    <cnf:attribute select="VertexGeometry" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcWindowLiningProperties">
+    <cnf:attribute select="ShapeAspectStyle" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcWindowPanelProperties">
+    <cnf:attribute select="ShapeAspectStyle" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+  <cnf:entity select="IfcWorkTime">
+    <cnf:attribute select="RecurrencePattern" exp-attribute="attribute-tag"/>
+  </cnf:entity>
+</cnf:configuration>

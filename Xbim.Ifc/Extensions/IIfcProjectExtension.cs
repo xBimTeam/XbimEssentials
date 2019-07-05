@@ -2,7 +2,7 @@
 using System.Linq;
 using Xbim.Ifc4.Interfaces;
 
-namespace Xbim.Ifc.Extensions
+namespace Xbim.Ifc
 {
     public static class IIfcProjectExtension
     {
