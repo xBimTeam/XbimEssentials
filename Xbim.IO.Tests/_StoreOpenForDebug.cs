@@ -17,8 +17,9 @@ namespace Xbim.MemoryModel.Tests
         [TestMethod]
         public void NotAnUsefulTestJustDirtyWork()
         {
-
-            var filename = ""; // "C:\\Users\\Claudio\\OneDrive\\IfcArchive\\Andre\\HaifaBridgeFixed_Classified_WithAxes_WithSystems_WithSpaces.ifc";
+            string filename = "";
+            filename = @"C:\Users\Claudio\Downloads\01_GARDENS_ARCH.ifc";
+            //filename = @"C:\Users\Claudio\Downloads\pilastri.ifc";
             if (!File.Exists(filename))
                 return;
 

@@ -416,7 +416,17 @@ namespace Xbim.IO.Esent
             else
             {
                 _binaryWriter.Write((byte)P21ParseAction.SetFloatValue);
-                _binaryWriter.Write(Convert.ToDouble(value, CultureInfo.InvariantCulture));
+                double dVal = double.NaN;
+                try
+                {
+                     dVal = Convert.ToDouble(value, CultureInfo.InvariantCulture);
+                    
+                }
+                catch (Exception ex)
+                {
+                    EsentModel.Logger.ErrorFormat($"Error converting {value} on entity #{_currentLabel}.");
+                }
+                _binaryWriter.Write(dVal);
             }
             if (_listNestLevel == 0) _currentInstance.CurrentParamIndex++;
         }

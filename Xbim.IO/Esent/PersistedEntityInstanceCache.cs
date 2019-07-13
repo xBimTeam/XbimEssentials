@@ -762,7 +762,7 @@ namespace Xbim.IO.Esent
                 FreeTable(table);
                 if (!keepOpen) Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 FreeTable(table);
                 Close();
