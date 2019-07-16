@@ -17,6 +17,7 @@ namespace Xbim.Essentials.Tests
     {
         private static readonly NetworkConnection Network = new NetworkConnection();
 
+        [TestCategory("IfcXml")]
         [TestMethod]
         public void Ifc2X3XMLSerialization()
         {
@@ -65,6 +66,8 @@ namespace Xbim.Essentials.Tests
             var dom = new XmlDocument();
             dom.Load(path);
             var schemas = new XmlSchemaSet();
+
+            // TODO: This redirects to buildingsmart-tech.org which is now down. Need to review this test, or keep the XSDs in source.
             schemas.Add("http://www.iai-tech.org/ifcXML/IFC2x3/FINAL", "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL/IFC2X3.xsd");
             schemas.Add("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common","http://www.iai-tech.org/ifcXML/IFC2x3/FINAL/ex.xsd");
             dom.Schemas = schemas;
