@@ -21,9 +21,9 @@ namespace Xbim.IO.Xml
                 {
                     Namespace = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final",
                     NamespacePrefix = "ifc",
-                    NamespaceLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final/ifcXML4.xsd",
-                    ExpressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/final/IFC4.exp",
-                    ConfigurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final/config/ifcXML4_config.xml",
+                    NamespaceLocation = "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/FINAL/XML/ifcXML4.xsd",
+                    ExpressUri = "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/FINAL/EXPRESS/IFC4.exp",
+                    // ConfigurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/final/config/ifcXML4_config.xml",
                     RootName = "ifcXML",
                     Indent = true,
                     Configuration = configuration.IFC4
@@ -39,9 +39,9 @@ namespace Xbim.IO.Xml
                 {
                     Namespace = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1", //"http://www.buildingsmart-tech.org/ifcXML/MVD4/IFC4",
                     NamespacePrefix = "ifc",
-                    NamespaceLocation = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1.xsd",
-                    ExpressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add1/IFC4_ADD1.exp",
-                    ConfigurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml",
+                    NamespaceLocation = "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD1/XML/IFC4_ADD1.xsd",
+                    ExpressUri = "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD1/EXPRESS/IFC4_ADD1.exp",
+                    // ConfigurationUri = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add1/IFC4_ADD1_config.xml",
                     RootName = "ifcXML",
                     Indent = true,
                     Configuration = configuration.IFC4Add1
@@ -57,9 +57,9 @@ namespace Xbim.IO.Xml
                 {
                     Namespace = "http://www.buildingsmart-tech.org/ifcXML/IFC4/Add2", 
                     NamespacePrefix = "ifc",
-                    NamespaceLocation = "http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2.xsd",
-                    ExpressUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2.exp",
-                    ConfigurationUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2_config.xml",
+                    NamespaceLocation = "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD2/XML/IFC4_ADD2.xsd",
+                    ExpressUri = "https://standards.buildingsmart.org/IFC/RELEASE/IFC4/ADD2/EXPRESS/IFC4_ADD2.exp",
+                    // ConfigurationUri = "http://www.buildingsmart-tech.org/ifc/IFC4/Add2/IFC4_ADD2_config.xml",
                     RootName = "ifcXML",
                     Indent = true,
                     Configuration = configuration.IFC4Add2
