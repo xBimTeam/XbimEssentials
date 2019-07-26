@@ -16,17 +16,9 @@ namespace Xbim.Essentials.Tests
     [DeploymentItem("XsdSchemas")]
     public class XmlTests2X3
     {
-        private static readonly NetworkConnection Network = new NetworkConnection();
-
         [TestMethod]
         public void Ifc2X3XMLSerialization()
         {
-            // if there's no network a message is asserted, but then this test passes 
-            // to prevent concerns when testing the solution offline (which would appear to fail)
-            //
-            if (!Network.Available)
-                return;
-
             const string output = "..\\..\\4walls1floorSite.ifcxml";
             using (var esent = new IO.Esent.EsentModel(new EntityFactoryIfc2x3()))
             {

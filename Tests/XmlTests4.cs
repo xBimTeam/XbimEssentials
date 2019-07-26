@@ -539,20 +539,12 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        private static NetworkConnection Network = new NetworkConnection();
-
         /// <summary>
         /// </summary>
         /// <param name="path">Path of the file to be validated</param>
         /// <returns>Number of errors</returns>
         private static int ValidateIfc4(string path)
         {
-            // if there's no network a message is asserted, but then related tests passe
-            // to prevent concerns when testing the solution offline (which would appear to fail)
-            //
-            if (!Network.Available)
-                return 0;
-
             var logPath = Path.ChangeExtension(path, ".log");
             var errCount = 0;
 
@@ -560,6 +552,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var logFile = File.CreateText(logPath))
                 {
+                    // custom resolver loads local versions of XSDs
                     var settings = new XmlReaderSettings { ValidationType = ValidationType.Schema, XmlResolver = new XmlResolver() };
                     settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
                     settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
