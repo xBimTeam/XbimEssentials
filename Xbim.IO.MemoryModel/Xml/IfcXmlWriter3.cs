@@ -20,7 +20,7 @@ namespace Xbim.IO.Xml
         private const string Xsi = "http://www.w3.org/2001/XMLSchema-instance";
         private const string Xlink = "http://www.w3.org/1999/xlink";
         private const string Namespace = "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL";
-        private const string IfcXsd = "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL/IFC2X3.xsd";
+        private const string IfcXsd = "https://standards.buildingsmart.org/IFC/RELEASE/IFC2x3/TC1/XML/IFC2X3.xsd";
         private const string Iso10303Urn = "urn:iso.org:standard:10303:part(28):version(2):xmlschema:common";
         private const string ExXsd = "http://www.iai-tech.org/ifcXML/IFC2x3/FINAL/ex.xsd";
         private HashSet<long> _written;

@@ -7,11 +7,7 @@ using System.Xml;
 using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
-using Xbim.Common.Step21;
-using Xbim.Ifc;
-using Xbim.Ifc.Validation;
 using Xbim.Ifc4;
-using Xbim.Ifc4.ActorResource;
 using Xbim.Ifc4.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.Kernel;
@@ -26,6 +22,7 @@ namespace Xbim.Essentials.Tests
 {
     [TestClass]
     [DeploymentItem("TestFiles")]
+    [DeploymentItem("XsdSchemas")]
     public class XmlTests4
     {
         private static readonly IEntityFactory ef4 = new EntityFactoryIfc4();
@@ -35,12 +32,15 @@ namespace Xbim.Essentials.Tests
         {
             var path = @"ImplicitPropertyTyping.ifcxml";
 
-            ValidateIfc4(path);
+            var errs = ValidateIfc4(path);
+            // input file should be valid XML at first
+            Assert.AreEqual(0, errs);
 
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 model.LoadXml(path);
             }
+
         }
 
         [TestMethod]
@@ -102,10 +102,10 @@ namespace Xbim.Essentials.Tests
                 model.Header.FileDescription.Description.Add("xBIM Team Model View Definition");
                 model.Header.FileDescription.ImplementationLevel = "1.0";
 
-                using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings{Indent = true}))
+                using (var xml = XmlWriter.Create(outPath, new XmlWriterSettings { Indent = true }))
                 {
                     var writer = new XbimXmlWriter4(XbimXmlSettings.IFC4Add2);
-                    writer.Write(model, xml);   
+                    writer.Write(model, xml);
                     xml.Close();
                 }
 
@@ -169,7 +169,7 @@ namespace Xbim.Essentials.Tests
 
                     txn.Commit();
                 }
-                
+
                 WriteXml(model, outPath);
 
                 var errs = ValidateIfc4(outPath);
@@ -215,7 +215,7 @@ namespace Xbim.Essentials.Tests
                 Assert.AreEqual(0, errs);
                 w.Stop();
                 Console.WriteLine("{0}ms to validate XML.", w.ElapsedMilliseconds);
-                
+
                 using (var model2 = new IO.Memory.MemoryModel(ef4))
                 {
                     w.Restart();
@@ -225,7 +225,7 @@ namespace Xbim.Essentials.Tests
 
                     var instances = model.Instances as IEntityCollection;
                     var instances2 = model2.Instances as IEntityCollection;
-                    if(instances == null || instances2 == null)
+                    if (instances == null || instances2 == null)
                         throw new Exception();
 
                     var roots1 = model.Instances.OfType<IfcRoot>();
@@ -250,7 +250,7 @@ namespace Xbim.Essentials.Tests
                 }
             }
 
-            
+
         }
 
         [TestCategory("IfcXml")]
@@ -274,10 +274,10 @@ namespace Xbim.Essentials.Tests
                     wall.Name = "Sample wall";
                     wall.GlobalId = Guid.NewGuid();
                     wall.PredefinedType = IfcWallTypeEnum.PARTITIONING;
-                    
+
                     txn.Commit();
                 }
-                
+
 
                 WriteXml(model, outPath);
 
@@ -384,7 +384,7 @@ namespace Xbim.Essentials.Tests
                         p.HasProperties.Add(model.Instances.New<IfcPropertySingleValue>(s => s.Name = "Property"));
                     });
 
-                    var set = new IfcPropertySetDefinitionSet(new List<IfcPropertySetDefinition>{pSet1, pSet2, pSet3});
+                    var set = new IfcPropertySetDefinitionSet(new List<IfcPropertySetDefinition> { pSet1, pSet2, pSet3 });
                     var wall = model.Instances.New<IfcWall>(w =>
                     {
                         w.Name = "Sample wall";
@@ -413,7 +413,7 @@ namespace Xbim.Essentials.Tests
 
                     Assert.IsNotNull(wall.IsDefinedBy.FirstOrDefault());
                     var pSetSet =
-                        (IfcPropertySetDefinitionSet) wall.IsDefinedBy.FirstOrDefault().RelatingPropertyDefinition;
+                        (IfcPropertySetDefinitionSet)wall.IsDefinedBy.FirstOrDefault().RelatingPropertyDefinition;
                     var vals = pSetSet.Value as List<IfcPropertySetDefinition>;
                     Assert.IsNotNull(vals);
                     Assert.IsTrue(vals.Count == 3);
@@ -451,7 +451,7 @@ namespace Xbim.Essentials.Tests
 
                 WriteXml(model, outPath);
                 var errs = ValidateIfc4(outPath);
-                
+
                 Assert.AreEqual(0, errs);
 
                 var xmlString = File.ReadAllText(outPath);
@@ -524,7 +524,7 @@ namespace Xbim.Essentials.Tests
                 var relations = model.Instances.OfType<IfcRelationship>();
 
                 var all =
-                    new IPersistEntity[] {}
+                    new IPersistEntity[] { }
                         //start from root
                         .Concat(project)
                         //add all products not referenced in the project tree
@@ -533,26 +533,18 @@ namespace Xbim.Essentials.Tests
                         .Concat(relations)
                         //make sure all other objects will get written
                         .Concat(model.Instances);
-                
+
                 writer.Write(model, xml, all);
                 xml.Close();
             }
         }
 
-        private static NetworkConnection Network = new NetworkConnection();
-        
         /// <summary>
         /// </summary>
         /// <param name="path">Path of the file to be validated</param>
         /// <returns>Number of errors</returns>
         private static int ValidateIfc4(string path)
         {
-            // if there's no network a message is asserted, but then related tests passe
-            // to prevent concerns when testing the solution offline (which would appear to fail)
-            //
-            if (!Network.Available)
-                return 0;
-            
             var logPath = Path.ChangeExtension(path, ".log");
             var errCount = 0;
 
@@ -560,7 +552,8 @@ namespace Xbim.Essentials.Tests
             {
                 using (var logFile = File.CreateText(logPath))
                 {
-                    var settings = new XmlReaderSettings { ValidationType = ValidationType.Schema };
+                    // custom resolver loads local versions of XSDs
+                    var settings = new XmlReaderSettings { ValidationType = ValidationType.Schema, XmlResolver = new XmlResolver() };
                     settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
                     settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
                     settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
@@ -572,10 +565,8 @@ namespace Xbim.Essentials.Tests
                     };
                     var reader = XmlReader.Create(file, settings);
 
-                    while (reader.Read())
-                    {
-
-                    }   
+                    // parse the complete file to validate it
+                    while (reader.Read()) { }
 
                     logFile.Close();
                     file.Close();
@@ -583,6 +574,20 @@ namespace Xbim.Essentials.Tests
             }
 
             return errCount;
+        }
+
+        private class XmlResolver : XmlUrlResolver
+        {
+            public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
+            {
+                var xsd = Path.GetFileName(absoluteUri.LocalPath);
+                // if the XSD file is available locally, use it
+                if (File.Exists(xsd))
+                    return File.OpenRead(xsd);
+
+
+                return base.GetEntity(absoluteUri, role, ofObjectToReturn);
+            }
         }
     }
 }

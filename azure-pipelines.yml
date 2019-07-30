@@ -76,7 +76,7 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --filter TestCategory!=IfcXml'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
 # So we can pick up packages we build
 - script: nuget sources add -Name local -Source $(Build.BinariesDirectory)
