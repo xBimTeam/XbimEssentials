@@ -15,6 +15,21 @@ namespace Xbim.IO.Tests
     public class TessellatorTests
     {
         [TestMethod]
+        [DeploymentItem("TestFiles\\LargeTriangulatedCoordinates.ifc")]
+        public void Test_Large_Coordinates_Reduction()
+        {
+            XbimGeometryType tp = Xbim.Common.Geometry.XbimGeometryType.PolyhedronBinary;
+            using (var model = IfcStore.Open("LargeTriangulatedCoordinates.ifc"))
+            {
+                var xbimTessellator = new XbimTessellator(model, tp);
+                var shape = model.Instances.FirstOrDefault<IIfcFacetedBrep>();
+                var shapeGeom = xbimTessellator.Mesh(shape);
+
+                Assert.IsTrue(shapeGeom.LocalShapeDisplacement.HasValue);
+            }
+        }
+
+        [TestMethod]
         [DeploymentItem("TestFiles\\polygonal-face-tessellation.ifc")]
         public void Test_PolygonalFaceSet_Tessellation()
         {

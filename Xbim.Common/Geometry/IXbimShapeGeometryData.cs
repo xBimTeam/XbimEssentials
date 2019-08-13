@@ -42,5 +42,13 @@
         /// The geometry data defining the shape in  uncompressed format
         /// </summary>
         byte[] ShapeData { get; set; }
+
+        /// <summary>
+        /// If the shape coordinates are large the actual serialised geometry should be
+        /// reduced to local origin to avoid problems with floating point precission
+        /// of float coordinates. This displacement should be presented in 
+        /// LocalShapeDisplacement and should be added to placement of the shape in the product.
+        /// </summary>
+        IVector3D LocalShapeDisplacement { get; }
     }
 }

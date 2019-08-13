@@ -321,8 +321,16 @@ namespace Xbim.Common.Geometry
             return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", _shapeLabel, _ifcShapeLabel, _geometryHash, _shapeLabel, _referenceCount, LOD, _format, _boundingBox.ToString(), _shapeData);
         }
 
-       
-     
+
+        /// <summary>
+        /// If the shape coordinates are large the actual serialised geometry should be
+        /// reduced to local origin to avoid problems with floating point precission
+        /// of float coordinates. This displacement should be presented in 
+        /// LocalShapeDisplacement and should be added to placement of the shape in the product.
+        /// </summary>
+        IVector3D IXbimShapeGeometryData.LocalShapeDisplacement => LocalShapeDisplacement;
+        public XbimVector3D? LocalShapeDisplacement { get; set; }
+
 
     }
 }

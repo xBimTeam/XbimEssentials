@@ -280,5 +280,7 @@ namespace Xbim.Common.Geometry
                 FillFromArray(value);
             }
         }
+
+        IVector3D IXbimShapeGeometryData.LocalShapeDisplacement => null;
     }
 }

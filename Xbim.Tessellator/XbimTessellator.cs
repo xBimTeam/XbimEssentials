@@ -199,12 +199,24 @@ namespace Xbim.Tessellator
                     binaryWriter.Write(triangleCount); //number of triangles
 
                     XbimRect3D bb = XbimRect3D.Empty;
-                    foreach (var coordList in triangulation.Coordinates.CoordList)
+                    // use first point as a local origin for large coordinates. It doesn't matter if
+                    // we use min, max or centroid for this.
+                    var origin = triangulation.Coordinates?.CoordList.FirstOrDefault()?.AsTriplet() ?? new XbimTriplet<IfcLengthMeasure>();
+                    var isLarge = IsLarge(origin.A) || IsLarge(origin.B) || IsLarge(origin.C);
+                    if (isLarge)
                     {
-                        var pt = coordList.AsTriplet();
+                        shapeGeometry.LocalShapeDisplacement = new XbimVector3D(origin.A, origin.B, origin.C);
+                    }
+
+                    var points = isLarge ?
+                        triangulation.Coordinates.CoordList.Select(c => c.AsTriplet()).Select(t => new XbimTriplet<IfcLengthMeasure> { A = t.A - origin.A, B = t.B - origin.B, C = t.C - origin.C }) :
+                        triangulation.Coordinates.CoordList.Select(c => c.AsTriplet());
+                    foreach (var pt in points)
+                    {
                         binaryWriter.Write((float)pt.A);
                         binaryWriter.Write((float)pt.B);
                         binaryWriter.Write((float)pt.C);
+
                         var rect = new XbimRect3D(pt.A, pt.B, pt.C, 0, 0, 0);
                         bb.Union(rect);
                     }
@@ -254,12 +266,27 @@ namespace Xbim.Tessellator
                     binaryWriter.Write(verticesCount); //number of vertices
                     binaryWriter.Write(triangleCount); //number of triangles
 
-                    foreach (var vert in triangulatedMesh.Vertices)
+                    // use minimum bbox as a local origin
+                    var origin = triangulatedMesh.BoundingBox.Min;
+                    var isLarge = IsLarge(origin.X) || IsLarge(origin.Y) || IsLarge(origin.Z);
+
+                    var vertices = isLarge ?
+                        triangulatedMesh.Vertices.Select(v => new Vec3(v.X - origin.X, v.Y - origin.Y, v.Z - origin.Z)) :
+                        triangulatedMesh.Vertices;
+                    foreach (var vert in vertices)
                     {
                         binaryWriter.Write((float)vert.X);
                         binaryWriter.Write((float)vert.Y);
                         binaryWriter.Write((float)vert.Z);
                     }
+
+                    if (isLarge)
+                    {
+                        var bb = triangulatedMesh.BoundingBox;
+                        shapeGeometry.BoundingBox = new XbimRect3D(bb.X - origin.X, bb.Y = origin.Y, bb.Z - origin.Z, bb.SizeX, bb.SizeY, bb.SizeZ);
+                        shapeGeometry.LocalShapeDisplacement = new XbimVector3D(origin.X, origin.Y, origin.Z);
+                    }
+
                     facesCount = (uint)triangulatedMesh.Faces.Count;
                     binaryWriter.Write((UInt32)facesCount);
                     foreach (var faceGroup in triangulatedMesh.Faces)
@@ -298,6 +325,10 @@ namespace Xbim.Tessellator
 
         }
 
+        private bool IsLarge(double coordinate)
+        {
+            return coordinate > _model.ModelFactors.OneMilliMeter * 999999;
+        }
 
         private XbimShapeGeometry MeshPolyhedronText(IEnumerable<IList<IIfcFace>> facesList, int entityLabel, float precision)
         {
@@ -417,13 +448,31 @@ namespace Xbim.Tessellator
                 binaryWriter.Write((UInt32)verticesCount); //number of vertices
                 binaryWriter.Write(triangleCount); //number of triangles
 
-                foreach (var v in triangulatedMeshes.SelectMany(t => t.Vertices))
+                // use minimum bbox as a local origin
+                var origin = boundingBox.Min;
+                var isLarge = IsLarge(origin.X) || IsLarge(origin.Y) || IsLarge(origin.Z);
+
+                var vertices = isLarge ?
+                    triangulatedMeshes.SelectMany(t => t.Vertices).Select(v => new Vec3(v.X - origin.X, v.Y - origin.Y, v.Z - origin.Z)):
+                    triangulatedMeshes.SelectMany(t => t.Vertices);
+                foreach (var v in vertices)
                 {
                     binaryWriter.Write((float)v.X);
                     binaryWriter.Write((float)v.Y);
                     binaryWriter.Write((float)v.Z);
                 }
-                shapeGeometry.BoundingBox = boundingBox;
+                if (isLarge)
+                {
+                    var bb = boundingBox;
+                    shapeGeometry.BoundingBox = new XbimRect3D(bb.X - origin.X, bb.Y = origin.Y, bb.Z - origin.Z, bb.SizeX, bb.SizeY, bb.SizeZ);
+                    shapeGeometry.LocalShapeDisplacement = new XbimVector3D(origin.X, origin.Y, origin.Z);
+                }
+                else
+                {
+                    shapeGeometry.BoundingBox = boundingBox;
+                }
+
+
                 //now write out the faces
 
                 binaryWriter.Write(facesCount);
