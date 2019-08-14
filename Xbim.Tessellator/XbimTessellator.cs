@@ -259,7 +259,6 @@ namespace Xbim.Tessellator
                 else //we need to calculate normals to get a better surface fit
                 {
                     var triangulatedMesh = Triangulate(triangulation);
-                    shapeGeometry.BoundingBox = triangulatedMesh.BoundingBox;
                     verticesCount = triangulatedMesh.VertexCount;
                     triangleCount = triangulatedMesh.TriangleCount;
 
@@ -283,8 +282,12 @@ namespace Xbim.Tessellator
                     if (isLarge)
                     {
                         var bb = triangulatedMesh.BoundingBox;
-                        shapeGeometry.BoundingBox = new XbimRect3D(bb.X - origin.X, bb.Y = origin.Y, bb.Z - origin.Z, bb.SizeX, bb.SizeY, bb.SizeZ);
+                        shapeGeometry.BoundingBox = new XbimRect3D(bb.X - origin.X, bb.Y - origin.Y, bb.Z - origin.Z, bb.SizeX, bb.SizeY, bb.SizeZ);
                         shapeGeometry.LocalShapeDisplacement = new XbimVector3D(origin.X, origin.Y, origin.Z);
+                    }
+                    else
+                    {
+                        shapeGeometry.BoundingBox = triangulatedMesh.BoundingBox;
                     }
 
                     facesCount = (uint)triangulatedMesh.Faces.Count;
@@ -464,7 +467,7 @@ namespace Xbim.Tessellator
                 if (isLarge)
                 {
                     var bb = boundingBox;
-                    shapeGeometry.BoundingBox = new XbimRect3D(bb.X - origin.X, bb.Y = origin.Y, bb.Z - origin.Z, bb.SizeX, bb.SizeY, bb.SizeZ);
+                    shapeGeometry.BoundingBox = new XbimRect3D(bb.X - origin.X, bb.Y - origin.Y, bb.Z - origin.Z, bb.SizeX, bb.SizeY, bb.SizeZ);
                     shapeGeometry.LocalShapeDisplacement = new XbimVector3D(origin.X, origin.Y, origin.Z);
                 }
                 else
