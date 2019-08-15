@@ -62,7 +62,7 @@ namespace Xbim.Tessellator
         double _maxY = double.NegativeInfinity;
         double _maxZ = double.NegativeInfinity;
        
-        public XbimTriangulatedMesh(int faceCount, float precision)
+        public XbimTriangulatedMesh(int faceCount, double precision)
         {
             var edgeCount = (int)(faceCount * 1.5);
             _lookupList = new Dictionary<long, XbimTriangleEdge[]>(edgeCount);

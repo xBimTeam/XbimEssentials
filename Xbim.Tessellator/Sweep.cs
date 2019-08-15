@@ -80,15 +80,15 @@ namespace Xbim.Tessellator
                     // Sort them by slope.
                     if (Geom.VertLeq(e1._Org, e2._Org))
                     {
-                        return Geom.EdgeSign(e2.Dst, e1._Org, e2._Org) <= 0.0f;
+                        return Geom.EdgeSign(e2.Dst, e1._Org, e2._Org) <= 0.0;
                     }
-                    return Geom.EdgeSign(e1.Dst, e2._Org, e1._Org) >= 0.0f;
+                    return Geom.EdgeSign(e1.Dst, e2._Org, e1._Org) >= 0.0;
                 }
-                return Geom.EdgeSign(e2.Dst, _event, e2._Org) <= 0.0f;
+                return Geom.EdgeSign(e2.Dst, _event, e2._Org) <= 0.0;
             }
             if (e2.Dst == _event)
             {
-                return Geom.EdgeSign(e1.Dst, _event, e1._Org) >= 0.0f;
+                return Geom.EdgeSign(e1.Dst, _event, e1._Org) >= 0.0;
             }
 
             // General case - compute signed distance *from* e1, e2 to event
@@ -344,8 +344,8 @@ namespace Xbim.Tessellator
             var t1 = Geom.VertL1Dist(org, isect);
             var t2 = Geom.VertL1Dist(dst, isect);
 
-            w0 = 0.5f * t2 / (t1 + t2);
-            w1 = 0.5f * t1 / (t1 + t2);
+            w0 = 0.5 * t2 / (t1 + t2);
+            w1 = 0.5 * t1 / (t1 + t2);
 
             isect._coords.X += w0 * org._coords.X + w1 * dst._coords.X;
             isect._coords.Y += w0 * org._coords.Y + w1 * dst._coords.Y;
@@ -407,7 +407,7 @@ namespace Xbim.Tessellator
 
             if (Geom.VertLeq(eUp._Org, eLo._Org))
             {
-                if (Geom.EdgeSign(eLo.Dst, eUp._Org, eLo._Org) > 0.0f)
+                if (Geom.EdgeSign(eLo.Dst, eUp._Org, eLo._Org) > 0.0)
                 {
                     return false;
                 }
@@ -429,7 +429,7 @@ namespace Xbim.Tessellator
             }
             else
             {
-                if (Geom.EdgeSign(eUp.Dst, eLo._Org, eUp._Org) < 0.0f)
+                if (Geom.EdgeSign(eUp.Dst, eLo._Org, eUp._Org) < 0.0)
                 {
                     return false;
                 }
@@ -470,7 +470,7 @@ namespace Xbim.Tessellator
 
             if (Geom.VertLeq(eUp.Dst, eLo.Dst))
             {
-                if (Geom.EdgeSign(eUp.Dst, eLo.Dst, eUp._Org) < 0.0f)
+                if (Geom.EdgeSign(eUp.Dst, eLo.Dst, eUp._Org) < 0.0)
                 {
                     return false;
                 }
@@ -483,7 +483,7 @@ namespace Xbim.Tessellator
             }
             else
             {
-                if (Geom.EdgeSign(eLo.Dst, eUp.Dst, eLo._Org) > 0.0f)
+                if (Geom.EdgeSign(eLo.Dst, eUp.Dst, eLo._Org) > 0.0)
                 {
                     return false;
                 }
@@ -517,8 +517,8 @@ namespace Xbim.Tessellator
             var dstLo = eLo.Dst;
 
             Debug.Assert(!Geom.VertEq(dstLo, dstUp));
-            Debug.Assert(Geom.EdgeSign(dstUp, _event, orgUp) <= 0.0f);
-            Debug.Assert(Geom.EdgeSign(dstLo, _event, orgLo) >= 0.0f);
+            Debug.Assert(Geom.EdgeSign(dstUp, _event, orgUp) <= 0.0);
+            Debug.Assert(Geom.EdgeSign(dstLo, _event, orgLo) >= 0.0);
             Debug.Assert(orgUp != _event && orgLo != _event);
             Debug.Assert(!regUp.FixUpperEdge && !regLo.FixUpperEdge);
 
@@ -538,14 +538,14 @@ namespace Xbim.Tessellator
 
             if (Geom.VertLeq(orgUp, orgLo))
             {
-                if (Geom.EdgeSign( dstLo, orgUp, orgLo ) > 0.0f)
+                if (Geom.EdgeSign( dstLo, orgUp, orgLo ) > 0.0)
                 {
                     return false;
                 }
             }
             else
             {
-                if (Geom.EdgeSign( dstUp, orgLo, orgUp ) < 0.0f)
+                if (Geom.EdgeSign( dstUp, orgLo, orgUp ) < 0.0)
                 {
                     return false;
                 }
@@ -591,9 +591,9 @@ namespace Xbim.Tessellator
             }
 
             if (   (! Geom.VertEq(dstUp, _event)
-                && Geom.EdgeSign(dstUp, _event, isect) >= 0.0f)
+                && Geom.EdgeSign(dstUp, _event, isect) >= 0.0)
                 || (! Geom.VertEq(dstLo, _event)
-                && Geom.EdgeSign(dstLo, _event, isect) <= 0.0f ))
+                && Geom.EdgeSign(dstLo, _event, isect) <= 0.0 ))
             {
                 // Very unusual -- the new upper or lower edge would pass on the
                 // wrong side of the sweep event, or through it. This can happen
@@ -624,14 +624,14 @@ namespace Xbim.Tessellator
                 // Special case: called from ConnectRightVertex. If either
                 // edge passes on the wrong side of tess._event, split it
                 // (and wait for ConnectRightVertex to splice it appropriately).
-                if (Geom.EdgeSign( dstUp, _event, isect ) >= 0.0f)
+                if (Geom.EdgeSign( dstUp, _event, isect ) >= 0.0)
                 {
                     RegionAbove(regUp).Dirty = regUp.Dirty = true;
                     _mesh.SplitEdge(eUp._Sym);
                     eUp._Org._s = _event._s;
                     eUp._Org._t = _event._t;
                 }
-                if (Geom.EdgeSign(dstLo, _event, isect) <= 0.0f)
+                if (Geom.EdgeSign(dstLo, _event, isect) <= 0.0)
                 {
                     regUp.Dirty = regLo.Dirty = true;
                     _mesh.SplitEdge(eLo._Sym);
@@ -916,7 +916,7 @@ namespace Xbim.Tessellator
 
             // Try merging with U or L first
 // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (Geom.EdgeSign(eUp.Dst, vEvent, eUp._Org) == 0.0f)
+            if (Geom.EdgeSign(eUp.Dst, vEvent, eUp._Org) == 0.0)
             {
                 ConnectLeftDegenerate(regUp, vEvent);
                 return;

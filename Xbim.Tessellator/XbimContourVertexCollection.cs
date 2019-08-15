@@ -5,7 +5,7 @@ namespace Xbim.Tessellator
     class XbimContourVertexCollection : KeyedCollection<Vec3, ContourVertex>
     {
      
-        public XbimContourVertexCollection(float precision)
+        public XbimContourVertexCollection(double precision)
             : base(new Vec3EqualityComparer(precision))
         {
           

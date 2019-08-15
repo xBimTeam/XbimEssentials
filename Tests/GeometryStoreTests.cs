@@ -59,7 +59,7 @@ namespace Xbim.IO.Tests
                     using (var br = new BinaryReader(ms))
                     {
                         var v = br.ReadShapeTriangulation();
-                        List<float[]> pts;
+                        List<double[]> pts;
                         List<int> idxs;
                         v.ToPointsWithNormalsAndIndices(out pts, out idxs);
                     }

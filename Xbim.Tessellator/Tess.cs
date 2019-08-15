@@ -116,7 +116,7 @@ namespace Xbim.Tessellator
         public Tess()
         {
             _normal = Vec3.Zero;
-            _bminX = _bminY = _bmaxX = _bmaxY = 0.0f;
+            _bminX = _bminY = _bmaxX = _bmaxY = 0.0;
 
             _windingRule = WindingRule.EvenOdd;
             _mesh = null;
@@ -154,13 +154,13 @@ namespace Xbim.Tessellator
             if (minVal[i] >= maxVal[i])
             {
                 // All vertices are the same -- normal doesn't matter
-                norm = new Vec3 { X = 0.0f, Y = 0.0f, Z = 1.0f };
+                norm = new Vec3 { X = 0.0, Y = 0.0, Z = 1.0 };
                 return;
             }
 
             // Look for a third vertex which forms the triangle with maximum area
             // (Length of normal == twice the triangle area)
-            double maxLen2 = 0.0f, tLen2;
+            double maxLen2 = 0.0, tLen2;
             var v1 = minVert[i];
             var v2 = maxVert[i];
             Vec3 d1, d2, tNorm;
@@ -179,7 +179,7 @@ namespace Xbim.Tessellator
                 }
             }
 
-            if (maxLen2 <= 0.0f)
+            if (maxLen2 <= 0.0)
             {
                 // All points lie on a single line -- any decent normal will do
                 norm = Vec3.Zero;
@@ -226,7 +226,7 @@ namespace Xbim.Tessellator
         {
             // When we compute the normal automatically, we choose the orientation
             // so that the the sum of the signed areas of all contours is non-negative.
-            double area = 0.0f;
+            double area = 0.0;
             for (var f = _mesh._fHead._next; f != _mesh._fHead; f = f._next)
             {
                 var e = f._anEdge;
@@ -239,7 +239,7 @@ namespace Xbim.Tessellator
                     e = e._Lnext;
                 } while (e != f._anEdge);
             }
-            if (area < 0.0f)
+            if (area < 0.0)
             {
                 // Reverse the orientation by flipping all the t-coordinates
                 for (var v = _mesh._vHead._next; v != _mesh._vHead; v = v._next)
@@ -256,7 +256,7 @@ namespace Xbim.Tessellator
 
             bool computedNormal = false;
 // ReSharper disable CompareOfFloatsByEqualityOperator
-            if (norm.X == 0.0f && norm.Y == 0.0f && norm.Z == 0.0f)
+            if (norm.X == 0.0 && norm.Y == 0.0 && norm.Z == 0.0)
 // ReSharper restore CompareOfFloatsByEqualityOperator
             {
                 ComputeNormal(ref norm);
@@ -358,7 +358,7 @@ namespace Xbim.Tessellator
                     // The EdgeGoesLeft test guarantees progress even when some triangles
                     // are CW, given that the upper and lower chains are truly monotone.
                     while (lo._Lnext != up && (Geom.EdgeGoesLeft(lo._Lnext)
-                        || Geom.EdgeSign(lo._Org, lo.Dst, lo._Lnext.Dst) <= 0.0f))
+                        || Geom.EdgeSign(lo._Org, lo.Dst, lo._Lnext.Dst) <= 0.0))
                     {
                         lo = _mesh.Connect(lo._Lnext, lo)._Sym;
                     }
@@ -368,7 +368,7 @@ namespace Xbim.Tessellator
                 {
                     // lo.Org is on the left.  We can make CCW triangles from up.Dst.
                     while (lo._Lnext != up && (Geom.EdgeGoesRight(up.Lprev)
-                        || Geom.EdgeSign(up.Dst, up._Org, up.Lprev._Org) >= 0.0f))
+                        || Geom.EdgeSign(up.Dst, up._Org, up.Lprev._Org) >= 0.0))
                     {
                         up = _mesh.Connect(up, up.Lprev)._Sym;
                     }
@@ -638,7 +638,7 @@ namespace Xbim.Tessellator
 
         private double SignedArea(ContourVertex[] vertices)
         {
-            double area = 0.0f;
+            double area = 0.0;
 
             for (int i = 0; i < vertices.Length; i++)
             {
@@ -649,7 +649,7 @@ namespace Xbim.Tessellator
                 area -= v0.Position.Y * v1.Position.X;
             }
 
-            return area * 0.5f;
+            return area * 0.5;
         }
 
         /// <summary>
@@ -700,7 +700,7 @@ namespace Xbim.Tessellator
             if (forceOrientation != ContourOrientation.Original)
             {
                 double area = SignedArea(vertices);
-                reverse = (forceOrientation == ContourOrientation.Clockwise && area < 0.0f) || (forceOrientation == ContourOrientation.CounterClockwise && area > 0.0f);
+                reverse = (forceOrientation == ContourOrientation.Clockwise && area < 0.0) || (forceOrientation == ContourOrientation.CounterClockwise && area > 0.0);
             }
 
             MeshUtils.Edge e = null;
