@@ -6,7 +6,7 @@ namespace Xbim.IO.Step21
 {
     public static class StepText
     {
-        internal static readonly CultureInfo DoubleCulture = new CultureInfo("en-US");
+        internal static readonly CultureInfo DoubleCulture = new CultureInfo("en-US", false); // false - because we shouldn't use overriden settings
         public static double ToDouble(this string val)
         {
             switch (val)
