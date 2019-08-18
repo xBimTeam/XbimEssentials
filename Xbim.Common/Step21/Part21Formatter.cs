@@ -32,13 +32,13 @@ namespace Xbim.IO.Step21
         {
             // Convert argument to a string           
 
-            if (!string.IsNullOrEmpty(fmt) && fmt.ToUpper() == "G" && arg is double)
+            if (!string.IsNullOrEmpty(fmt) && fmt.ToUpper() == "R" && arg is double)
             {
                 var dArg = (double)arg;
-                return dArg.ToString("G", StepText.DoubleCulture);
+                var result = dArg.ToString("R", StepText.DoubleCulture);
 
                 // if compiler flag, only then do the following 3 lines
-          
+
                 //var rDoubleStr = dArg.ToString("R", StepText.DoubleCulture);
                 //var fixedDbl = double.Parse(rDoubleStr, StepText.DoubleCulture);
                 //var result = fixedDbl.ToString("R", StepText.DoubleCulture);
@@ -47,14 +47,14 @@ namespace Xbim.IO.Step21
                 // string result = decArg.ToString().ToUpper();
                 // string result = string.Format("{0:e22}", arg);
                 //string result = dArg.ToString("R", CultureInfo.CreateSpecificCulture("en-US"));
-                //if (result.Contains(".")) return result;
+                if (result.Contains(".")) return result;
 
-                //if (result.Contains("E"))
-                //    result = result.Replace("E", ".E");
-                //else
-                //    result += ".";
+                if (result.Contains("E"))
+                    result = result.Replace("E", ".E");
+                else
+                    result += ".";
 
-                //return result;
+                return result;
             }
             if (!string.IsNullOrEmpty(fmt) && fmt.ToUpper() == "T") //TimeStamp
             {
