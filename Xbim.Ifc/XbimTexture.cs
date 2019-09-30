@@ -1,4 +1,6 @@
-﻿using Xbim.Ifc4.Interfaces;
+﻿using System.Diagnostics;
+using Xbim.Common.Logging;
+using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Parser;
 
 // ReSharper disable NonReadonlyMemberInGetHashCode
@@ -56,11 +58,11 @@ namespace Xbim.Ifc
         {
 
             int hash = ColourMap.GetHashCode() ^ (_renderBothFaces ? 1 : 0) ^ (_switchFrontAndRearFaces ? 1 : 0);
-            if(DiffuseTransmissionColour!=null) hash^=DiffuseTransmissionColour.GetHashCode();
-            if(TransmissionColour!=null) hash^=TransmissionColour.GetHashCode();
+            if (DiffuseTransmissionColour != null) hash ^= DiffuseTransmissionColour.GetHashCode();
+            if (TransmissionColour != null) hash ^= TransmissionColour.GetHashCode();
             if (DiffuseReflectionColour != null) hash ^= DiffuseReflectionColour.GetHashCode();
             if (ReflectanceColour != null) hash ^= ReflectanceColour.GetHashCode();
-            return hash;    
+            return hash;
         }
 
         public override bool Equals(object obj)
@@ -77,53 +79,59 @@ namespace Xbim.Ifc
         private void AddColour(IIfcSurfaceStyleShading shading)
         {
             var alpha = 1.0;
-            if (shading.Transparency.HasValue) alpha = 1.0 - (double)(shading.Transparency);
+            if (shading.Transparency.HasValue)
+                alpha = 1.0 - (double)(shading.Transparency);
             ColourMap.Add(new XbimColour(shading.SurfaceColour,alpha));
         }
 
         private void AddColour(IIfcSurfaceStyleRendering rendering)
         {
-            var alpha = 1.0;
-            if (rendering.Transparency.HasValue) alpha =  1.0 - (double)(rendering.Transparency);
-            if (rendering.DiffuseColour is Ifc4.MeasureResource.IfcNormalisedRatioMeasure)
+            try
             {
-                ColourMap.Add(new XbimColour(
-                    rendering.SurfaceColour,
-                    alpha,
-                    (Ifc4.MeasureResource.IfcNormalisedRatioMeasure)rendering.DiffuseColour
-                    ));
+                var alpha = 1.0;
+                if (rendering.Transparency.HasValue)
+                    alpha = 1.0 - (double)(rendering.Transparency);
+                if (rendering.DiffuseColour is Ifc4.MeasureResource.IfcNormalisedRatioMeasure)
+                {
+                    ColourMap.Add(new XbimColour(
+                        rendering.SurfaceColour,
+                        alpha,
+                        (Ifc4.MeasureResource.IfcNormalisedRatioMeasure)rendering.DiffuseColour
+                        ));
 
-            }
-            else if (rendering.DiffuseColour is IIfcColourRgb)
-            {
-                ColourMap.Add(new XbimColour(
-                    (IIfcColourRgb)rendering.DiffuseColour,
-                    alpha
-                    ));
+                }
+                else if (rendering.DiffuseColour is IIfcColourRgb)
+                {
+                    ColourMap.Add(new XbimColour(
+                        (IIfcColourRgb)rendering.DiffuseColour,
+                        alpha
+                        ));
 
+                }
+                else if (rendering.DiffuseColour == null)
+                {
+                    var newCol = new XbimColour(rendering.SurfaceColour, alpha);
+                    ColourMap.Add(newCol);
+                }
+                else if (rendering.SpecularColour is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) //getting key duplication on some ifc models so add else if
+                {
+                    ColourMap.Add(new XbimColour(
+                        rendering.SurfaceColour,
+                       alpha,
+                        (Ifc4.MeasureResource.IfcNormalisedRatioMeasure)(rendering.SpecularColour)
+                        ));
+                }
+                else if (rendering.SpecularColour is IIfcColourRgb)
+                {
+                    ColourMap.Add(new XbimColour(
+                        (IIfcColourRgb)rendering.SpecularColour,
+                        alpha
+                        ));
+                }
             }
-            else if (rendering.DiffuseColour == null)
+            catch (System.Exception ex)
             {
-                ColourMap.Add(new XbimColour(
-                    rendering.SurfaceColour,
-                    alpha
-                    ));
-            }
-            else if (rendering.SpecularColour is Ifc4.MeasureResource.IfcNormalisedRatioMeasure) //getting key duplication on some ifc models so add else if
-            {
-                ColourMap.Add(new XbimColour(
-                    rendering.SurfaceColour,
-                   alpha,
-                    (Ifc4.MeasureResource.IfcNormalisedRatioMeasure)(rendering.SpecularColour)
-                    ));
-            }
-            else if (rendering.SpecularColour is IIfcColourRgb)
-            {
-                ColourMap.Add(new XbimColour(
-                    (IIfcColourRgb)rendering.SpecularColour,
-                    alpha
-                    ));
-
+                LoggerFactory.GetLogger().Debug($"#{DefinedObjectId} attempted to add a duplicate colour (same name).", ex);
             }
         }
 

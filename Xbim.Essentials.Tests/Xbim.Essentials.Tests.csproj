@@ -81,6 +81,7 @@
     <Compile Include="Ifc4DateTimeTests.cs" />
     <Compile Include="SearchTests.cs" />
     <Compile Include="TessellatorTests.cs" />
+    <Compile Include="TolerateBadModels\TolerateSurface.cs" />
     <Compile Include="TransactionalChanges.cs" />
     <Compile Include="InverseCacheTests.cs" />
     <Compile Include="CrossAccessTests.cs" />
@@ -131,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="BadModels\SomeBadIFCSURFACESTYLE.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="FederationTestFiles\RelativePathFederation.ifc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

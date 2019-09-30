@@ -26,10 +26,10 @@ namespace Xbim.Ifc
 
         public override bool Equals(object obj)
         {
-           
             XbimColour col = obj as XbimColour;
-            float tolerance = (float) 1e-5;
-            if (col == null) return false;
+            float tolerance = (float)1e-5;
+            if (col == null)
+                return false;
             return Math.Abs(col.Red - Red) < tolerance &&
                     Math.Abs(col.Green - Green) < tolerance &&
                     Math.Abs(col.Blue - Blue) < tolerance &&
@@ -43,9 +43,15 @@ namespace Xbim.Ifc
 
         public override int GetHashCode()
         {
-           
-            return Red.GetHashCode() ^ Green.GetHashCode() ^ Blue.GetHashCode() ^ Alpha.GetHashCode() ^ DiffuseFactor.GetHashCode() ^
-                TransmissionFactor.GetHashCode() ^ DiffuseTransmissionFactor.GetHashCode() ^ ReflectionFactor.GetHashCode() ^ SpecularFactor.GetHashCode();
+            return Red.GetHashCode() 
+                ^ Green.GetHashCode() 
+                ^ Blue.GetHashCode() 
+                ^ Alpha.GetHashCode() 
+                ^ DiffuseFactor.GetHashCode() 
+                ^ TransmissionFactor.GetHashCode() 
+                ^ DiffuseTransmissionFactor.GetHashCode() 
+                ^ ReflectionFactor.GetHashCode() 
+                ^ SpecularFactor.GetHashCode();
         }
 
         /// <summary>
