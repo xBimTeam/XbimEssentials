@@ -54,6 +54,7 @@
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SubmittedFiles\" />
     <Folder Include="XsdSchemas\" />
     <Folder Include="Properties\" />
   </ItemGroup>
@@ -81,6 +82,9 @@
     </None>
     <None Update="GeometryCacheTestFiles\Monolith_v20.xBIM">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SubmittedFiles\SomeBadIFCSURFACESTYLE.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="TestFiles\2016-02-29-Dormitory-COBie.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
