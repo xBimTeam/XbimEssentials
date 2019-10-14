@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace Xbim.Common.Geometry
 {
-
     public class XbimShapeInstanceStyleGrouping : IGrouping<int, XbimShapeInstance>
     {
         private readonly IEnumerable<XbimShapeInstance> _shapeInstances;
@@ -15,8 +14,6 @@ namespace Xbim.Common.Geometry
             _key = key;
         }
 
-       
-
         public IEnumerator<XbimShapeInstance> GetEnumerator()
         {
             return _shapeInstances.GetEnumerator();
@@ -27,9 +24,8 @@ namespace Xbim.Common.Geometry
             return _shapeInstances.GetEnumerator();
         }
 
-
         /// <summary>
-        /// This is the lable of the surface style
+        /// This is the label of the surface style
         /// </summary>
         int IGrouping<int, XbimShapeInstance>.Key
         {
@@ -44,44 +40,17 @@ namespace Xbim.Common.Geometry
     /// </summary>
     public class XbimShapeInstance : IXbimShapeInstanceData
     {
-        /// <summary>
-        /// The unique label of this shape instance
-        /// </summary>
         int _instanceLabel;
-        /// <summary>
-        /// The IFC type of the product this instance represents
-        /// </summary>
         short _expressTypeId;
-        /// <summary>
-        /// The label of the IFC Product object that  this instance fully or partly defines
-        /// </summary>
         int _ifcProductLabel;
-        /// <summary>
-        /// The style that this shape is presented in when it overrides the shape style
-        /// </summary>
         int _styleLabel;
-        /// <summary>
-        /// The id of the shape  that this is an instance of
-        /// </summary>
         int _shapeLabel;
-        /// <summary>
-        /// The label of the IFC representation context of this instance
-        /// </summary>
         int _representationContext;
-        /// <summary>
-        /// What type of representation, typically this is how the shape has been generated, i.e. openings have been applied or not applied
-        /// </summary>
         XbimGeometryRepresentationType _representationType;
-        /// <summary>
-        /// The transformation to be applied to shape to place it in the world coordinates
-        /// </summary>
         XbimMatrix3D _transformation;
-        /// <summary>
-        /// The bounding box of this instance, requires tranformation to place in world coordinates
-        /// </summary>
         XbimRect3D _boundingBox;
 
-        public XbimShapeInstance(int id=-1)
+        public XbimShapeInstance(int id = -1)
         {
             _instanceLabel = id;
             _expressTypeId = 0;
@@ -93,6 +62,10 @@ namespace Xbim.Common.Geometry
             _transformation = XbimMatrix3D.Identity;
             _boundingBox = XbimRect3D.Empty;
         }
+
+        /// <summary>
+        /// The unique label of this shape instance
+        /// </summary>
         public int InstanceLabel
         {
             get
@@ -105,6 +78,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        /// <summary>
+        /// The IFC type (as short) of the product this instance represents
+        /// </summary>
         public short IfcTypeId
         {
             get
@@ -117,6 +93,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        /// <summary>
+        /// The label of the IFC Product that this instance defines (either partially or completely)
+        /// </summary>
         public int IfcProductLabel
         {
             get
@@ -129,6 +108,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        /// <summary>
+        /// The style that this shape is presented in when it overrides the shape style
+        /// </summary>
         public int StyleLabel
         {
             get
@@ -141,6 +123,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        /// <summary>
+        /// The pointer to the shape that this is an instance of
+        /// </summary>
         public int ShapeGeometryLabel
         {
             get
@@ -153,6 +138,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        /// <summary>
+        /// The label of the IFC representation context of this instance
+        /// </summary>
         public int RepresentationContext
         {
             get
@@ -165,6 +153,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        /// <summary>
+        /// What type of representation, typically this is how the shape has been generated, i.e. openings have been applied or not applied
+        /// </summary>
         public XbimGeometryRepresentationType RepresentationType
         {
             get
@@ -177,6 +168,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
+        /// <summary>
+        /// What type of representation, typically this is how the shape has been generated, i.e. openings have been applied or not applied
+        /// </summary>
         byte IXbimShapeInstanceData.RepresentationType
         {
             get
@@ -189,7 +183,9 @@ namespace Xbim.Common.Geometry
             }
         }
 
-
+        /// <summary>
+        /// The transformation matrix to be applied to the shape so that the instance is placed relatively to the rest of the model
+        /// </summary>
         public XbimMatrix3D Transformation
         {
             get
@@ -242,6 +238,7 @@ namespace Xbim.Common.Geometry
                 _boundingBox = XbimRect3D.FromArray(value);
             }
         }
+
         /// <summary>
         /// returns true if the shape instance has a defined style
         /// </summary>
@@ -255,7 +252,6 @@ namespace Xbim.Common.Geometry
 
         public override string ToString()
         {
-
             return string.Format("{0},{1},TypeId: {2},{3},{4},{5},{6},{7}",  _instanceLabel,_styleLabel, _expressTypeId, _shapeLabel,_ifcProductLabel,  _representationContext, _representationType, _transformation.ToString());
         }
     }
