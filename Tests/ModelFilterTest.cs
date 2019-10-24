@@ -18,16 +18,15 @@ using Xbim.IO.Memory;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem(@"TestSourceFiles\")]
     public class ModelFilterTest
     {
 
         [TestMethod]
         public void MergeProductsTest()
         {
-            const string model1File = "4walls1floorSite.ifc";
+            const string model1File = "TestSourceFiles\\4walls1floorSite.ifc";
             const string copyFile = "copy.ifc";
-            const string model2File = "House.ifc";
+            const string model2File = "TestSourceFiles\\House.ifc";
             var newModel = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
             using (var model1 = MemoryModel.OpenRead(model1File))
             {
@@ -76,7 +75,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CopyAllEntitiesTest()
         {
-            const string sourceFile = "4walls1floorSite.ifc";
+            const string sourceFile = "TestSourceFiles\\4walls1floorSite.ifc";
             var copyFile = "copy.ifc";
             using (var source = MemoryModel.OpenRead(sourceFile))
             {
@@ -204,6 +203,5 @@ namespace Xbim.Essentials.Tests
                 return line.Replace(" ", "");
             }
         }
-
     }
 }

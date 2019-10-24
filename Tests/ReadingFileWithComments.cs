@@ -10,10 +10,9 @@ namespace Xbim.Essentials.Tests
     public class ReadingFileWithComments
     {
         [TestMethod]
-        [DeploymentItem("TestFiles\\mapped-shape-with-transformation.ifc")]
         public void ScanningTheFile()
         {
-            const string file = "mapped-shape-with-transformation.ifc";
+            const string file = "TestFiles\\mapped-shape-with-transformation.ifc";
             using (var stream = File.OpenRead(file) )
             {
                 var s = new Scanner(stream);

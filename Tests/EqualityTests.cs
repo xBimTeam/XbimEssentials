@@ -71,11 +71,10 @@ namespace Xbim.Essentials.Tests
         /// This method tests the opening and retrival of an esent model from a dictionary
         /// </summary>
         [TestMethod]
-        [DeploymentItem(@"TestSourceFiles\P1.xbim")]
         public void StoreEqualityTest()
         {
             Dictionary<IModel, int> d = new Dictionary<IModel, int>();
-            var model = IfcStore.Open(@"P1.xbim");
+            var model = IfcStore.Open(@"TestSourceFiles\P1.xbim");
             d.Add(model, 1);
 
             int restored;
@@ -89,11 +88,10 @@ namespace Xbim.Essentials.Tests
         /// This method tests the opening and retrival of an XbimInstanceHandle from a dictionary
         /// </summary>
         [TestMethod]
-        [DeploymentItem(@"TestSourceFiles\P1.xbim")]
         public void XbimInstanceHandleSupportsDictionary()
         {
             Dictionary<XbimInstanceHandle, int> d = new Dictionary<XbimInstanceHandle, int>();
-            using (var model = IfcStore.Open(@"P1.xbim"))
+            using (var model = IfcStore.Open(@"TestSourceFiles\P1.xbim"))
             {
                 var ent = model.Instances.FirstOrDefault();
 
@@ -114,11 +112,10 @@ namespace Xbim.Essentials.Tests
         /// this method tests the opening and retrival of an memory model from a dictionary
         /// </summary>
         [TestMethod]
-        [DeploymentItem(@"TestSourceFiles\email.ifc")]
         public void IfcStoreEqualityTest()
         {
             Dictionary<IModel, int> d = new Dictionary<IModel, int>();
-            var model = IfcStore.Open(@"email.ifc");
+            var model = IfcStore.Open(@"TestSourceFiles\email.ifc");
             d.Add(model, 1);
 
             var hasInstances = model.Instances.Any();

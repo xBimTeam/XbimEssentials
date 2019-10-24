@@ -12,11 +12,10 @@ namespace Xbim.Essentials.Tests
     [TestClass]
     public class LinqTest
     {
-        [DeploymentItem(@"TestSourceFiles\email.ifc")]
         [TestMethod]
         public void TestingLinqWhere2()
         {
-            using (var model1 = MemoryModel.OpenRead("email.ifc"))
+            using (var model1 = MemoryModel.OpenRead("TestSourceFiles\\email.ifc"))
             {
                 
                 var telecom = model1.Instances[28] as IIfcTelecomAddress;

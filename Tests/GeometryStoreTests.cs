@@ -24,11 +24,10 @@ namespace Xbim.IO.Tests
         private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void EsentGeometryStoreIsEmptyAfterReopen()
         {
             var db = Guid.NewGuid().ToString() + ".xbim";
-            var ifc = "4walls1floorSite.ifc";
+            var ifc = "TestFiles\\4walls1floorSite.ifc";
             var p = new EsentModelProvider { DatabaseFileName = db };
             var s = p.GetXbimSchemaVersion(ifc);
             using (p.Open(ifc, s)) { }
@@ -40,11 +39,9 @@ namespace Xbim.IO.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\OneWall.xBIM")]
-        [DeploymentItem("TestFiles\\ShortRebar.xBIM")]
         public void GeometryBinaryRead()
         {
-            ParseGeometry("ShortRebar.xBIM");
+            ParseGeometry("TestFiles\\ShortRebar.xBIM");
             // ParseGeometry("OneWall.xBIM");
         }
 
@@ -108,11 +105,10 @@ namespace Xbim.IO.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void EsentGeometryStoreReopenAddTest()
         {
             var db = Guid.NewGuid().ToString() + ".xbim";
-            var ifc = "4walls1floorSite.ifc";
+            var ifc = "TestFiles\\4walls1floorSite.ifc";
             var p = new EsentModelProvider { DatabaseFileName = db };
             var s = p.GetXbimSchemaVersion(ifc);
             using (var m = p.Open(ifc, s)) { p.Close(m); }
@@ -164,10 +160,9 @@ namespace Xbim.IO.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreGeometryStoreAddTest()
         {
-            using (var model = IfcStore.Open("SampleHouse4.ifc"))
+            using (var model = IfcStore.Open("TestFiles\\SampleHouse4.ifc"))
             {
                 var geomStore = model.GeometryStore;
                 using (var txn = geomStore.BeginInit())
@@ -225,17 +220,13 @@ namespace Xbim.IO.Tests
             }
         }
 
-
-
-
         [TestMethod]
-        [DeploymentItem("TestFiles")]
+        [Ignore]
         public void ResourceReleaseTest()
         {
-            using (var model = IfcStore.Open("SampleHouse4.ifc", null, 0))
+            using (var model = IfcStore.Open("TestFiles\\SampleHouse4.ifc", null, 0))
             {
-                var geomStore = model.GeometryStore;
-                using (var txn = geomStore.BeginInit())
+                using (var txn = model.GeometryStore.BeginInit())
                 {
                     //ADD A GEOMETRY SHAPE
                     var geomData = new XbimShapeGeometry()
@@ -274,17 +265,18 @@ namespace Xbim.IO.Tests
                 model.Close();
             }
             Thread.SpinWait(200);
-            Assert.IsTrue(IO.Esent.EsentModel.ModelOpenCount == 0);
 
+            // TODO:: ISSUE HERE... when the whole suite of tests is run then the count could be greater than, 
+            // even if they are reduced correctly
+            Assert.IsTrue(IO.Esent.EsentModel.ModelOpenCount == 0);
         }
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void EsentGeometryStoreBatchTest()
         {
             using (var model = new IO.Esent.EsentModel(ef4))
             {
-                model.CreateFrom("SampleHouse4.ifc", null, null, true);
+                model.CreateFrom("TestFiles\\SampleHouse4.ifc", null, null, true);
                 var store = model.GeometryStore;
                 using (var txn = store.BeginInit())
                 {
@@ -347,7 +339,6 @@ namespace Xbim.IO.Tests
             }
         }
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void EsentGeometryStoreMultiThreadTest()
         {
@@ -402,7 +393,6 @@ namespace Xbim.IO.Tests
             }
         }
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void InMemoryGeometryStoreMultiThreadTest()
         {
@@ -453,13 +443,12 @@ namespace Xbim.IO.Tests
         }
 
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcStoreGeometryGeometryClearTest()
         {
             using (var model = new IO.Esent.EsentModel(ef4))
             {
-                model.CreateFrom("SampleHouse4.ifc", null, null, true);
+                model.CreateFrom("TestFiles\\SampleHouse4.ifc", null, null, true);
                 var store = model.GeometryStore;
                 using (var txn = store.BeginInit())
                 {
@@ -529,7 +518,6 @@ namespace Xbim.IO.Tests
             }
         }
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void EsentGeometryStoreReadTest()
         {

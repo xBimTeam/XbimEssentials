@@ -15,11 +15,10 @@ namespace Xbim.IO.Tests
     public class TessellatorTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles\\LargeTriangulatedCoordinates.ifc")]
         public void Test_Large_Coordinates_Reduction()
         {
             XbimGeometryType tp = Xbim.Common.Geometry.XbimGeometryType.PolyhedronBinary;
-            using (var model = IfcStore.Open("LargeTriangulatedCoordinates.ifc"))
+            using (var model = IfcStore.Open("TestFiles\\LargeTriangulatedCoordinates.ifc"))
             {
                 var xbimTessellator = new XbimTessellator(model, tp);
                 var shape = model.Instances.FirstOrDefault<IIfcFacetedBrep>();
@@ -30,11 +29,10 @@ namespace Xbim.IO.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\polygonal-face-tessellation.ifc")]
         public void Test_PolygonalFaceSet_Tessellation()
         {
             XbimGeometryType tp = Xbim.Common.Geometry.XbimGeometryType.PolyhedronBinary;
-            using (var model = IfcStore.Open("polygonal-face-tessellation.ifc"))
+            using (var model = IfcStore.Open("TestFiles\\polygonal-face-tessellation.ifc"))
             {
                 var xbimTessellator = new XbimTessellator(model, tp);
                 XbimShapeGeometry shapeGeom = null;
@@ -46,11 +44,10 @@ namespace Xbim.IO.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\Roof-01_BCAD.ifc")]
         public void TestBoundingBoxSize()
         {
             XbimGeometryType tp = Xbim.Common.Geometry.XbimGeometryType.PolyhedronBinary;
-            using (var model = IfcStore.Open("Roof-01_BCAD.ifc"))
+            using (var model = IfcStore.Open("TestFiles\\Roof-01_BCAD.ifc"))
             {
                 var xbimTessellator = new XbimTessellator(model, tp);
                 XbimShapeGeometry shapeGeom = null;
@@ -62,11 +59,10 @@ namespace Xbim.IO.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\IfcTriangulatedFaceSet.ifc")]
         public void TestPnSize_Add2_Support()
         {
             XbimGeometryType tp = Xbim.Common.Geometry.XbimGeometryType.PolyhedronBinary;
-            using (var model = IfcStore.Open("IfcTriangulatedFaceSet.ifc"))
+            using (var model = IfcStore.Open("TestFiles\\IfcTriangulatedFaceSet.ifc"))
             {
                 var xbimTessellator = new XbimTessellator(model, tp);
                 XbimShapeGeometry shapeGeom = null;

@@ -8,13 +8,12 @@ using Xbim.IO;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem(@"TestSourceFiles")]
     public class BasicModelTests
     {
         [TestMethod]
         public void OpenIfcFile()
         {
-            using (var models = new ModelFactory("4walls1floorSite.ifc"))
+            using (var models = new ModelFactory("TestSourceFiles\\4walls1floorSite.ifc"))
             {
                 models.Do(m => 
                     Assert.IsTrue(m.Instances.Count > 0)
@@ -25,7 +24,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void OpenIfcZipFile()
         {
-            using (var models = new ModelFactory("TestZip.ifczip"))
+            using (var models = new ModelFactory("TestSourceFiles\\TestZip.ifczip"))
             {
                 models.Do(m =>
                     Assert.IsTrue(m.Instances.Count > 0)
@@ -36,7 +35,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void OpenIfcZipXmlFile()
         {
-            using (var models = new ModelFactory("HelloWallXml.ifczip"))
+            using (var models = new ModelFactory("TestSourceFiles\\HelloWallXml.ifczip"))
             {
                 models.Do(m =>
                     Assert.IsTrue(m.Instances.Count > 0)
@@ -50,7 +49,7 @@ namespace Xbim.Essentials.Tests
             // Opening Zipped IfcXml was crashing when updating progress, since the DeflateStream does not implement Position
             void progress(int percent, object o) { };
 
-            var model = Ifc.IfcStore.Open("HelloWallXml.ifczip", null, null, progress, XbimDBAccess.Read);
+            var model = Ifc.IfcStore.Open("TestSourceFiles\\HelloWallXml.ifczip", null, null, progress, XbimDBAccess.Read);
 
             Assert.IsTrue(model.Instances.Count > 0);
   
@@ -59,7 +58,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void OpenIfcXmlFile()
         {
-            using (var models = new ModelFactory("4walls1floorSite.ifcxml"))
+            using (var models = new ModelFactory("TestSourceFiles\\4walls1floorSite.ifcxml"))
             {
                 models.Do(m =>
                     Assert.IsTrue(m.Instances.Count > 0)

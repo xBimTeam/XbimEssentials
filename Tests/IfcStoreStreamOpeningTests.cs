@@ -10,13 +10,12 @@ namespace Xbim.Essentials.Tests
     public class IfcStoreStreamOpeningTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void OpenStreamTest()
         {
-            const string ifcPath = "4walls1floorSite.ifc";
-            const string xmlPath = "OpenStreamTest.ifcxml";
-            const string zipPath = "OpenStreamTest.ifczip";
-            const string xbimPath = "OpenStreamTest.xbim";
+            const string ifcPath =  "TestFiles\\4walls1floorSite.ifc";
+            const string xmlPath =  "TestFiles\\OpenStreamTest.ifcxml";
+            const string zipPath =  "TestFiles\\OpenStreamTest.ifczip";
+            const string xbimPath = "TestFiles\\OpenStreamTest.xbim";
 
             var instCount = 0L;
             //create file types

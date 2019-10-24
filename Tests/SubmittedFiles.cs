@@ -14,10 +14,9 @@ namespace Xbim.Essentials.Tests
     public class SubmittedFiles
     {
         [TestMethod]
-        [DeploymentItem(@"SubmittedFiles\\SomeBadIFCSURFACESTYLE.ifc")]
         public void TolerateSurfaceStyleWithMultipleColors()
         {
-            using (var model = new ModelFactory("SomeBadIFCSURFACESTYLE.ifc").FirstOrDefault())
+            using (var model = new ModelFactory("SubmittedFiles\\SomeBadIFCSURFACESTYLE.ifc").FirstOrDefault())
             {
                 var bad = model.Instances[7946] as IIfcSurfaceStyle;
                 var created = XbimTexture.Create(bad);

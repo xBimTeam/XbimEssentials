@@ -9,7 +9,6 @@ using Xbim.IO.Memory;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem("TestFiles")]
     public class ReadIfc4InterfacesTest
     {
         private static readonly IEntityFactory ef4 = new EntityFactoryIfc4();
@@ -18,7 +17,7 @@ namespace Xbim.Essentials.Tests
         public void LoadIfc4IntoMemoryTest()
         {
             var model = new IO.Memory.MemoryModel(ef4);
-            model.LoadStep21("SampleHouse4.ifc");
+            model.LoadStep21("TestFiles\\SampleHouse4.ifc");
 
             var project = model.Instances.FirstOrDefault<IIfcProject>();
             Assert.IsNotNull(project);
@@ -35,7 +34,7 @@ namespace Xbim.Essentials.Tests
         {
             using (var model = new IO.Esent.EsentModel(ef4))
             {
-                model.CreateFrom("SampleHouse4.ifc", null, null, true, true);
+                model.CreateFrom("TestFiles\\SampleHouse4.ifc", null, null, true, true);
                 var project = model.Instances.FirstOrDefault<IIfcProject>();
                 Assert.IsNotNull(project);
                 Assert.IsNotNull(project.Name);

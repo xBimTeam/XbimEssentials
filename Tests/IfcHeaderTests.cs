@@ -40,12 +40,14 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        [DeploymentItem("TestSourceFiles")]
         [TestMethod]
         public void ReadPreProcessorTest()
         {
             string revitPattern = @"- Exporter\s(\d*.\d*.\d*.\d*)";
-            string[] files = new[] { @"Axis2PlacementError.ifc", "4walls1floorSite.ifc", "SampleHouse4.ifc" };
+            string[] files = new[] { 
+                @"TestSourceFiles\Axis2PlacementError.ifc", 
+                @"TestSourceFiles\4walls1floorSite.ifc",
+                @"TestSourceFiles\SampleHouse4.ifc" };
             var surfaceOfLinearExtrusionVersion = new Version(17, 0, 416, 0);
           
             foreach (var file in files)

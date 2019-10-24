@@ -12,10 +12,9 @@ namespace Xbim.Essentials.Tests
     [TestClass]
     public class InverseCacheTests
     {
-        private const string _file = "SampleHouse4.ifc";
+        private const string _file = "TestSourceFiles\\SampleHouse4.ifc";
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles\\" + _file)]
         public void CacheCreation()
         {
             using (var models = new ModelFactory(_file))

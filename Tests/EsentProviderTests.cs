@@ -13,10 +13,9 @@ namespace Xbim.Essentials.Tests
     public class EsentProviderTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void PersistedEsentTest()
         {
-            var file = "4walls1floorSite.ifc";
+            var file = "TestFiles\\4walls1floorSite.ifc";
             var db = Guid.NewGuid().ToString() + ".xbim";
             var provider = new EsentModelProvider { DatabaseFileName = db };
             var schema = provider.GetXbimSchemaVersion(file);

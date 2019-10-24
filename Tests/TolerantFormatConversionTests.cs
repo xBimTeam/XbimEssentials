@@ -17,7 +17,6 @@ namespace Xbim.IO.Tests
         // for the time being I've improved the error message so that the problem in the file is easier to resolve.
         // 
         [TestMethod]
-        [DeploymentItem("TestFiles\\BackSpaceInFileName.ifc")]
         public void ForConsideration_SaveTroublesomeFile()
         {
             long count;
@@ -31,7 +30,7 @@ namespace Xbim.IO.Tests
 
 
             var files = new List<FileInfo>();
-            files.Add(new FileInfo("BackSpaceInFileName.ifc"));
+            files.Add(new FileInfo("TestFiles\\BackSpaceInFileName.ifc"));
 
             foreach (var file in files)
             {            

@@ -11,16 +11,14 @@ using Xbim.IO.Memory;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem("TestSourceFiles")]
     public class InterfacesDataRetrieval
     {
-
         [TestMethod]
         public void EsentDataRetrieval()
         {
             using (var model = new EsentModel(new EntityFactoryIfc2x3()))
             {
-                model.CreateFrom("4walls1floorSite.ifc", null, null, true);
+                model.CreateFrom("TestSourceFiles\\4walls1floorSite.ifc", null, null, true);
 
                 var walls = model.Instances.Where<IIfcWall>(w => w.Name != null);
                 Assert.AreEqual(4, walls.Count());
@@ -38,12 +36,10 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles\\4walls1floorSite.ifc")]
-        [DeploymentItem("TestSourceFiles\\AlmostEmptyIFC4.ifc")]
         public void ShouldBeAbleToReadUnitDimensions()
         {
             // this can throw an exception if the model is not inside a transaction
-            using (var model = IfcStore.Open(@"AlmostEmptyIFC4.ifc"))
+            using (var model = IfcStore.Open(@"TestSourceFiles\\AlmostEmptyIFC4.ifc"))
             {
                 var instance = model.Instances[53] as Ifc4.MeasureResource.IfcSIUnit;
                 var dimensions = instance.Dimensions;
@@ -51,7 +47,7 @@ namespace Xbim.Essentials.Tests
             }
 
             // this can throw an exception if the model is not inside a transaction
-            using (var model = MemoryModel.OpenRead(@"4walls1floorSite.ifc"))
+            using (var model = MemoryModel.OpenRead(@"TestSourceFiles\\4walls1floorSite.ifc"))
             {
                 var instance = model.Instances[51] as Ifc2x3.MeasureResource.IfcSIUnit;
                 var dimensions = instance.Dimensions;
@@ -64,7 +60,7 @@ namespace Xbim.Essentials.Tests
         public void Ifc4InterfacesToIfc2X3()
         {
             var model = new MemoryModel(new EntityFactoryIfc2x3());
-            model.LoadStep21("4walls1floorSite.ifc",null);
+            model.LoadStep21("TestSourceFiles\\4walls1floorSite.ifc", null);
 
             var walls = model.Instances.OfType<IIfcWall>().ToList();
             Assert.AreEqual(4, walls.Count);

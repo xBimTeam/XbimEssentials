@@ -13,10 +13,9 @@ namespace Xbim.Essentials.Tests
     public class HeaderReadingTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void Step21HeaderTest()
         {
-            using (var s = File.OpenRead("4walls1floorSite.ifc"))
+            using (var s = File.OpenRead("TestFiles\\4walls1floorSite.ifc"))
             {
                 var header = StepModel.LoadStep21Header(s);
                 var schema = header.FileSchema.Schemas.FirstOrDefault();

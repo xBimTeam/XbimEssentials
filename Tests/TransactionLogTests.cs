@@ -16,12 +16,11 @@ namespace Xbim.Essentials.Tests
     public class TransactionLogTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void LogTest()
         {
             using (var model = new IO.Memory.MemoryModel(new EntityFactoryIfc2x3()))
             {
-                model.LoadStep21("4walls1floorSite.ifc");
+                model.LoadStep21("TestFiles\\4walls1floorSite.ifc");
                 using (var txn = model.BeginTransaction("Log test"))
                 {
                     using (var log = new TransactionLog(txn))
@@ -66,10 +65,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void LogCreation()
         {
-            using (var model = IfcStore.Open("4walls1floorSite.ifc"))
+            using (var model = IfcStore.Open("TestFiles\\4walls1floorSite.ifc"))
             {
                 using (var txn = model.BeginTransaction("Modification"))
                 {

@@ -14,7 +14,6 @@ using Xbim.IO.Memory;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem("TestFiles")]
     public class ReadIfc4Test
     {
         private static readonly IEntityFactory ef4 = new EntityFactoryIfc4();
@@ -24,7 +23,7 @@ namespace Xbim.Essentials.Tests
         {
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
-                model.LoadStep21("SampleHouse4.ifc");
+                model.LoadStep21("TestFiles\\SampleHouse4.ifc");
                 var project = model.Instances.FirstOrDefault<IfcProject>();
                 Assert.IsNotNull(project);
                 Assert.IsNotNull(project.Name);
@@ -40,7 +39,7 @@ namespace Xbim.Essentials.Tests
         public void ReadingOfNestedLists()
         {
             var model = new IO.Memory.MemoryModel(ef4);
-            model.LoadStep21("IfcCartesianPointList3D.ifc");
+            model.LoadStep21("TestFiles\\IfcCartesianPointList3D.ifc");
             var pl = model.Instances.FirstOrDefault<IfcCartesianPointList3D>();
             Assert.IsNotNull(pl);
             Assert.AreEqual(3, pl.CoordList.Count);
@@ -64,9 +63,6 @@ namespace Xbim.Essentials.Tests
                 Assert.IsNotNull(nested);
                 txn.RollBack();
             }
-            
         }
-
-
     }
 }

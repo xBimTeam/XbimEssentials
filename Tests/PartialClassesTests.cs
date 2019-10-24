@@ -13,8 +13,6 @@ namespace Xbim.Essentials.Tests
     public class PartialClassesTests
     {
         [TestMethod]
-        [DeploymentItem("TestSourceFiles\\4walls1floorSite.ifc")]
-        [DeploymentItem("TestSourceFiles\\AlmostEmptyIFC4.ifc")]
         public void PartialMultiSchemaOk()
         {
             //// this can throw an exception if the model is not inside a transaction
@@ -26,7 +24,7 @@ namespace Xbim.Essentials.Tests
             //}
 
             // this can throw an exception if the model is not inside a transaction
-            using (var model = IfcStore.Open(@"4walls1floorSite.ifc"))
+            using (var model = IfcStore.Open(@"TestSourceFiles\4walls1floorSite.ifc"))
             {
                 var instance = model.Instances[142] as IIfcWall;
                 var v = instance.IsContainedIn;

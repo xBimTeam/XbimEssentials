@@ -26,10 +26,9 @@ namespace Xbim.Essentials.Tests
     public class EditableInterfaces
     {
         [TestMethod]
-        [DeploymentItem("TestSourceFiles\\4walls1floorSite.ifc")]
         public void SingleFieldTest()
         {
-            const string file = "4walls1floorSite.ifc";
+            const string file = "TestSourceFiles\\4walls1floorSite.ifc";
             using (var model = MemoryModel.OpenRead(file))
             {
                 var extendedChanges = 0;
@@ -111,10 +110,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles\\4walls1floorSite.ifc")]
         public void ItemSetTest()
         {
-            const string file = "4walls1floorSite.ifc";
+            const string file = "TestSourceFiles\\4walls1floorSite.ifc";
             using (var model = MemoryModel.OpenRead(file))
             {
                 var extendedChanges = 0;

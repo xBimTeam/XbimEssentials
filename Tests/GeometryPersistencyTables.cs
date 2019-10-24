@@ -11,12 +11,11 @@ namespace Xbim.Essentials.Tests
     public class GeometryPersistencyTables
     {
         [TestMethod]
-        [DeploymentItem(@"GeometryCacheTestFiles\", @"Persistency\")]
         public void CanUpgradeDbStucture()
         {
             using (var m = new EsentModel(new EntityFactoryIfc4()))
             {
-                m.Open(@"Persistency\Monolith_v10.xBIM", XbimDBAccess.Exclusive);
+                m.Open(@"GeometryCacheTestFiles\Monolith_v10.xBIM", XbimDBAccess.Exclusive);
                 Assert.AreEqual(1, m.GeometrySupportLevel, "GeometrySupportLevel for Monolith_v10 should be 1");
 
                 var updated = m.EnsureGeometryTables();
@@ -29,7 +28,7 @@ namespace Xbim.Essentials.Tests
                 m.Close();
             }
 
-            using (var store = IfcStore.Open(@"Persistency\Monolith_v10.xBIM"))
+            using (var store = IfcStore.Open(@"GeometryCacheTestFiles\Monolith_v10.xBIM"))
             {
                 var geometryStore = store.GeometryStore;
 
@@ -45,11 +44,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem(@"GeometryCacheTestFiles\", @"Persistency\")]
-        // [DeploymentItem("TestFiles")]
         public void ResourceReleaseOnOldModel()
         {
-            using (var model = IfcStore.Open(@"Persistency\Monolith_v10.xBIM"))
+            using (var model = IfcStore.Open(@"GeometryCacheTestFiles\Monolith_v10.xBIM"))
             {
                 var geomStore = model.GeometryStore;
                 var tp = geomStore.GetType().ToString();

@@ -48,10 +48,9 @@ namespace Xbim.Essentials.Tests
 
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles/4walls1floorSite.ifc")]
         public void CanSearchSite()
         {
-            using (var model = MemoryModel.OpenRead("4walls1floorSite.ifc"))
+            using (var model = MemoryModel.OpenRead("TestSourceFiles\\4walls1floorSite.ifc"))
             {
                 var sites = model.Instances.OfType<IIfcSite>().ToList();
                 Assert.IsTrue(sites.Any());

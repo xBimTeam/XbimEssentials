@@ -59,10 +59,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\4walls1floorSite.ifc")]
         public void Can_skip_entities_while_parsing()
         {
-            using (var strm = File.OpenRead(@"4walls1floorSite.ifc"))
+            using (var strm = File.OpenRead(@"TestFiles\4walls1floorSite.ifc"))
             {
 
                 var ifc2x3MetaData = ExpressMetaData.GetMetadata((new Xbim.Ifc2x3.EntityFactoryIfc2x3()).GetType().GetTypeInfo().Module);

@@ -9,10 +9,9 @@ namespace Xbim.Essentials.Tests
     public class DerivedUnitTests
     {
         [TestMethod]
-        [DeploymentItem("TestSourceFiles\\IfcDerivedUnit.ifcxml")]
         public void CheckIfcDerivedUnit()
         {
-            var path = @"IfcDerivedUnit.ifcxml";
+            var path = @"TestSourceFiles\\IfcDerivedUnit.ifcxml";
             var store = IfcStore.Open(path);
             var derivedUnit = store.Instances.FirstOrDefault<IfcDerivedUnit>(u => u.UnitType == IfcDerivedUnitEnum.USERDEFINED);
             var conversionBasedUnit = store.Instances.FirstOrDefault<IIfcConversionBasedUnit>();

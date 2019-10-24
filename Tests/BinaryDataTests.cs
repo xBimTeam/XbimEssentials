@@ -22,10 +22,9 @@ namespace Xbim.Essentials.Tests
     {
         [TestCategory("IfcXml")]
         [TestMethod]
-        [DeploymentItem("TestSourceFiles\\xbim.png")]
         public void BinaryBlobTextureTest()
         {
-            var data = File.ReadAllBytes("xbim.png");
+            var data = File.ReadAllBytes("TestSourceFiles\\xbim.png");
             using (var model = new MemoryModel(new EntityFactoryIfc4()))
             {
                 using (var txn = model.BeginTransaction(""))

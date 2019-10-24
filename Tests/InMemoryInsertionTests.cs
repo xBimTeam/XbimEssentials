@@ -22,11 +22,10 @@ namespace Xbim.Essentials.Tests
         private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
         private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void Ifc4InsertCopyTest()
         {
-            using (var model = IfcStore.Open(@"Ifc4WithNestedLists.ifcZip"))
+            using (var model = IfcStore.Open(@"TestFiles\\Ifc4WithNestedLists.ifcZip"))
             {
                                
                 using (var iModel = new IO.Memory.MemoryModel(ef4))
@@ -53,11 +52,10 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void CopyWallsOver()
         {
-            const string original = "4walls1floorSite.ifc";
+            const string original = "TestFiles\\4walls1floorSite.ifc";
             const string inserted = "..\\..\\Inserted.ifc";
 
             PropertyTranformDelegate semanticFilter = (property, parentObject) =>
@@ -158,10 +156,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void ExtractSemanticModel()
         {
-            const string original = "SampleHouse4.ifc";
+            const string original = "TestFiles\\SampleHouse4.ifc";
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 model.LoadStep21(original);

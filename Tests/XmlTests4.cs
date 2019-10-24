@@ -21,8 +21,6 @@ using Xbim.IO.Xml;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem("TestFiles")]
-    [DeploymentItem("XsdSchemas")]
     public class XmlTests4
     {
         private static readonly IEntityFactory ef4 = new EntityFactoryIfc4();
@@ -30,8 +28,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void ReadIFC4Xml()
         {
-            var path = @"ImplicitPropertyTyping.ifcxml";
-
+            var path = @"TestFiles\ImplicitPropertyTyping.ifcxml";
             var errs = ValidateIfc4(path);
             // input file should be valid XML at first
             Assert.AreEqual(0, errs);
@@ -40,13 +37,12 @@ namespace Xbim.Essentials.Tests
             {
                 model.LoadXml(path);
             }
-
         }
 
         [TestMethod]
         public void ComplexPropertyCheck()
         {
-            var path = @"Dimensions.ifcxml";
+            var path = @"TestFiles\\Dimensions.ifcxml";
             using (var store = Xbim.Ifc.IfcStore.Open(path))
             {
 
@@ -56,7 +52,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void IkeaKitchenKabinetOpen()
         {
-            var path = @"IkeaKitchenCabinets.ifcXML";
+            var path = @"TestFiles\\IkeaKitchenCabinets.ifcXML";
             using (var store = Xbim.Ifc.IfcStore.Open(path))
             {
 
@@ -66,7 +62,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void RefWithContent()
         {
-            var path = @"RefWithContent.ifcXML";
+            var path = @"TestFiles\\RefWithContent.ifcXML";
             using (var store = Xbim.Ifc.IfcStore.Open(path))
             {
 
@@ -76,7 +72,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CheckQuantity()
         {
-            var path = @"QuantityTest.ifcxml";
+            var path = @"TestFiles\QuantityTest.ifcxml";
             var store = Xbim.Ifc.IfcStore.Open(path);
             var site = store.Instances.FirstOrDefault<IIfcSite>(r => r.Name == "Testsite");
             var rel = site.IsDefinedBy
@@ -84,6 +80,7 @@ namespace Xbim.Essentials.Tests
                     .FirstOrDefault();
             Assert.IsNotNull(rel);
         }
+
         [TestCategory("IfcXml")]
         [TestMethod]
         public void Ifc4HeaderSerialization()
@@ -195,12 +192,12 @@ namespace Xbim.Essentials.Tests
         public void SampleHouseXmlSerialization()
         {
             var w = new Stopwatch();
-            const string outPath = "..\\..\\SampleHouse4.xml";
+            const string outPath = "SampleHouse4.xml";
 
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 w.Start();
-                model.LoadStep21("SampleHouse4.ifc");
+                model.LoadStep21("TestFiles\\SampleHouse4.ifc");
                 w.Stop();
                 Console.WriteLine("{0}ms to read STEP.", w.ElapsedMilliseconds);
                 var instCount = model.Instances.Count;
@@ -257,7 +254,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void AttributesSerialization()
         {
-            const string outPath = "..\\..\\StandaloneSite.xml";
+            const string outPath = "StandaloneSite.xml";
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 IfcSite site;
@@ -306,7 +303,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void SelectTypeSerialization()
         {
-            const string outPath = "..\\..\\SelectTypeSerialization.xml";
+            const string outPath = "SelectTypeSerialization.xml";
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 using (var txn = model.BeginTransaction("Test"))
@@ -360,7 +357,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void PropertySetDefinitionSetSerialization()
         {
-            const string outPath = "..\\..\\IfcPropertySetDefinitionSet.xml";
+            const string outPath = "IfcPropertySetDefinitionSet.xml";
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 using (var txn = model.BeginTransaction("IfcPropertySetDefinitionSet"))
@@ -425,7 +422,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void RectangularListSerialization()
         {
-            const string outPath = "..\\..\\IfcCartesianPointList3D.xml";
+            const string outPath = "IfcCartesianPointList3D.xml";
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 using (var txn = model.BeginTransaction("Rect"))
@@ -473,7 +470,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NonRectangularListSerialization()
         {
-            const string outPath = "..\\..\\IfcStructuralLoadConfiguration.xml";
+            const string outPath = "IfcStructuralLoadConfiguration.xml";
             using (var model = new IO.Memory.MemoryModel(ef4))
             {
                 using (var txn = model.BeginTransaction("Rect"))
@@ -582,10 +579,10 @@ namespace Xbim.Essentials.Tests
             {
                 var xsd = Path.GetFileName(absoluteUri.LocalPath);
                 // if the XSD file is available locally, use it
-                if (File.Exists(xsd))
-                    return File.OpenRead(xsd);
-
-
+                DirectoryInfo d = new DirectoryInfo(".");
+                var localFound = d.GetFiles(xsd, SearchOption.AllDirectories).FirstOrDefault();
+                if (localFound != null)
+                    return File.OpenRead(localFound.FullName);
                 return base.GetEntity(absoluteUri, role, ofObjectToReturn);
             }
         }

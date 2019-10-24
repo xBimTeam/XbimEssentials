@@ -14,11 +14,10 @@ namespace  Xbim.Essentials.Tests
     [TestClass]
     public class Ifc4GeometryTests
     {
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcTriangulatedFaceSetTest()
         {
-            using (var store = IfcStore.Open("BasinTessellation.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\BasinTessellation.ifc"))
             {
                 var basinTess = store.Instances[501] as IIfcTriangulatedFaceSet;
                 
@@ -32,11 +31,10 @@ namespace  Xbim.Essentials.Tests
         }
 
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcTriangulatedFaceSetWithNormalsTest()
         {
-            using (var store = IfcStore.Open("column-straight-rectangle-tessellation.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\column-straight-rectangle-tessellation.ifc"))
             {
                 var columnTess = store.Instances[288] as IIfcTriangulatedFaceSet;
                
@@ -49,11 +47,10 @@ namespace  Xbim.Essentials.Tests
             }
         }
         
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcTriangulatedFaceSetWithColoursTest()
         {
-            using (var store = IfcStore.Open("tessellation-with-individual-colors.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\tessellation-with-individual-colors.ifc"))
             {
                 var triangulatedFaceSet = store.Instances.OfType<IfcTriangulatedFaceSet>().FirstOrDefault();
                
@@ -62,16 +59,14 @@ namespace  Xbim.Essentials.Tests
                 Assert.IsTrue(tessellator.CanMesh(triangulatedFaceSet));
                 var geom = tessellator.Mesh(triangulatedFaceSet);
                 Assert.IsTrue((int)(geom.BoundingBox.Volume) == 2000000000);
-                
             }
         }
 
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcTriangulatedFaceSetSimpleBinaryTest()
         {
-            using (var store = IfcStore.Open("BasinTessellation.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\BasinTessellation.ifc"))
             {
                 var triangulatedFaceSet = store.Instances.OfType<IfcTriangulatedFaceSet>().FirstOrDefault();
 
@@ -89,11 +84,10 @@ namespace  Xbim.Essentials.Tests
                 }
             }
         }
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void IfcTriangulatedFaceSetComplexBinaryTest()
         {
-            using (var store = IfcStore.Open("IFC4TessellationComplex.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\IFC4TessellationComplex.ifc"))
             {
                 var triangulatedFaceSet = store.Instances[4373] as IIfcTriangulatedFaceSet;
 

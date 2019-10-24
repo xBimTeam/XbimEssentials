@@ -21,12 +21,11 @@ namespace Xbim.Essentials.Tests
         private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\fileWithAbstractClass.ifc")]
         public void ToleratesFileWithAbstractClass()
         {
             // should survive parsing file with abstract class
             // (and use null for offending instances).
-            using (var store = IfcStore.Open(@"fileWithAbstractClass.ifc"))
+            using (var store = IfcStore.Open(@"TestFiles\fileWithAbstractClass.ifc"))
             {
                 var inst = store.Instances[1240086];
                 Assert.IsNotNull(inst, "Instance should exist.");
@@ -38,7 +37,7 @@ namespace Xbim.Essentials.Tests
             }
 
             // try loading it in esent
-            using (var store = IfcStore.Open(@"fileWithAbstractClass.ifc", null, 0.001))
+            using (var store = IfcStore.Open(@"TestFiles\fileWithAbstractClass.ifc", null, 0.001))
             {
                 var inst = store.Instances[1240086];
                 Assert.IsNotNull(inst, "Instance should exist.");
@@ -51,11 +50,10 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem(@"TestFiles\InvalidTriangulatedFaceSet.ifc")]
         public void ToleratesListOfListsOfInts()
         {
             // should survive parsing file with list of lists of ints instead of list of ints
-            using (var store = IfcStore.Open(@"InvalidTriangulatedFaceSet.ifc"))
+            using (var store = IfcStore.Open(@"TestFiles\InvalidTriangulatedFaceSet.ifc"))
             {
                 var faceset = store.Instances.First() as IIfcTriangulatedFaceSet;
                 Assert.IsNotNull(faceset);
@@ -65,7 +63,7 @@ namespace Xbim.Essentials.Tests
             }
 
             // make sure Esent will work in the same way
-            using (var store = IfcStore.Open(@"InvalidTriangulatedFaceSet.ifc", null, 0))
+            using (var store = IfcStore.Open(@"TestFiles\InvalidTriangulatedFaceSet.ifc", null, 0))
             {
                 var faceset = store.Instances.First() as IIfcTriangulatedFaceSet;
                 Assert.IsNotNull(faceset);
@@ -76,11 +74,10 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem(@"TestFiles\InvalidMonetaryUnit.ifc")]
         public void ToleratesStringInsteadOfEnum()
         {
             // should survive parsing file with enum value encoded as a string
-            using (var store = IfcStore.Open(@"InvalidMonetaryUnit.ifc"))
+            using (var store = IfcStore.Open(@"TestFiles\InvalidMonetaryUnit.ifc"))
             {
                 var mUnit = store.Instances.First() as Ifc2x3.MeasureResource.IfcMonetaryUnit;
                 Assert.IsNotNull(mUnit);
@@ -88,7 +85,7 @@ namespace Xbim.Essentials.Tests
             }
 
             // make sure Esent will work in the same way
-            using (var store = IfcStore.Open(@"InvalidMonetaryUnit.ifc", null, 0))
+            using (var store = IfcStore.Open(@"TestFiles\InvalidMonetaryUnit.ifc", null, 0))
             {
                 var mUnit = store.Instances.First() as Ifc2x3.MeasureResource.IfcMonetaryUnit;
                 Assert.IsNotNull(mUnit);
@@ -98,11 +95,10 @@ namespace Xbim.Essentials.Tests
 
 
         [TestMethod]
-        [DeploymentItem(@"TestFiles\InvalidType.ifc")]
         public void ToleratesFileWithInvalidTypeInList()
         {
             // should survive parsing file with invalid type in list
-            using (var store = IfcStore.Open(@"InvalidType.ifc"))
+            using (var store = IfcStore.Open(@"TestFiles\InvalidType.ifc"))
             {
                 var inst = store.Instances[582800] as IIfcBuildingStorey;
                 Assert.IsNotNull(inst);
@@ -112,11 +108,10 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem(@"TestFiles\InvalidType.ifc")]
         public void ToleratesFileWithInvalidEnumString()
         {
             // should survive parsing file with invalid type in list
-            using (var store = IfcStore.Open(@"InvalidType.ifc"))
+            using (var store = IfcStore.Open(@"TestFiles\InvalidType.ifc"))
             {
                 var role = store.Instances[2] as IIfcActorRole;
                 Assert.IsNotNull(role);
@@ -128,11 +123,10 @@ namespace Xbim.Essentials.Tests
         /// This is only provided as a remainder of possible improvements in the tolerance of incorrect files.
         /// </summary>
         [TestMethod]
-        [DeploymentItem("TestFiles\\FormallyIllegalFile.ifc")]
         public void AcceptAFormallyIllegalFile()
         {
             // todo: should some notification when the file is malformed be available?
-            using (var store = IfcStore.Open("FormallyIllegalFile.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\FormallyIllegalFile.ifc"))
             {
                 // The file is formally illegal, 
                 // see inside the file for comments on details.
@@ -158,21 +152,19 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\EmptyMultibyteString.ifc")]
         public void ToleratesEmptyMultibyteStringsTest()
         {
             // I have stumbled across a file containing empty multibyte string sequences '\X2\\X0\'.
-            using (IfcStore store = IfcStore.Open("EmptyMultibyteString.ifc")) {
+            using (IfcStore store = IfcStore.Open(@"TestFiles\EmptyMultibyteString.ifc")) {
                 IIfcProject project = store.Instances.OfType<IIfcProject>().SingleOrDefault();
                 Assert.AreEqual("Test Test Test", (string)project.Name);
             }
         }
         
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreOpenAndCloseMemoryModelTest()
         {
-            using (var store = IfcStore.Open("4walls1floorSite.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc"))
             {
                 var count = store.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances");
@@ -181,11 +173,10 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void DefaultsToIfcFormatOnUnrecognisedExtension()
         {
             const string fname = "4walls1floorSite.Cobie";
-            using (var store = IfcStore.Open("4walls1floorSite.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc"))
             {
                 store.SaveAs(fname);
                 store.Close();
@@ -194,10 +185,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreOpenAndCloseEsentModelTest()
         {
-            using (var store = IfcStore.Open("4walls1floorSite.ifc",null,0))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null,0))
             {
                 var count = store.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances");
@@ -206,26 +196,24 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\Issue107.zip")]
         public void Issue107OnMemoryModel()
         {
             // a merged PR on issue 107 makes the memory model more tolerant of bad files.
             // an equivalent test for esent is available
             using (var model = new IO.Memory.MemoryModel(ef2x3))
             {
-                model.LoadZip("Issue107.zip");
+                model.LoadZip("TestFiles\\Issue107.zip");
                 //Assert.IsTrue(errCount <= 120);
             }
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\DoubleBackSlashName.ifc")]
         public void DoubleBackSlashName()
         {
             // I've come across a file that has an ifclabel specified as 'TextEndingInEscapedBackslash\\'
             // this causes the parser to break.
             // the problem does not occur if there's any text after the double backslash (i.e. 'TextEndingInEscapedBackslash\\MoreText').
-            using (var store = IfcStore.Open("DoubleBackSlashName.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\DoubleBackSlashName.ifc"))
             {
                 var mat1 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[417];
                 Assert.AreEqual(mat1.Name.ToString(), @"TextWithEscapedBackslash\MoreText", "String containing escaped backslash is not parsed correctly");
@@ -248,37 +236,35 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\NewlinesInStrings.ifc")]
         public void CanParseNewlinesInStrings()
         {
             using (var model = new Xbim.IO.Memory.MemoryModel( ef2x3))
             {
-                var errCount = model.LoadStep21("NewlinesInStrings.ifc");
+                var errCount = model.LoadStep21("TestFiles\\NewlinesInStrings.ifc");
                 Assert.AreEqual(0, errCount);
             }
 
             using (var model = new Xbim.IO.Esent.EsentModel( ef2x3))
             {
-                var errCount = model.CreateFrom("NewlinesInStrings.ifc");
+                var errCount = model.CreateFrom("TestFiles\\NewlinesInStrings.ifc");
                 Assert.AreEqual(true, errCount);
             }
         }
 
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcOpenIfcZipTest()
         {
             long count;
             //in memory model
-            using (var store = IfcStore.Open("4walls1floorSite.ifczip"))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifczip"))
             {
                 count = store.Instances.Count;
                 Assert.IsTrue(count>0, "Should have instances");
                 store.Close();
             }
             //esent database
-            using (var store = IfcStore.Open("4walls1floorSite.ifczip", null, 0))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifczip", null, 0))
             {
                 Assert.IsTrue(store.Instances.Count == count, "Should have same number of instances");
                 store.Close();
@@ -286,10 +272,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void ScannerTest()
         {
-            using (var strm = File.OpenRead("Badly formed Ifc file.ifc"))
+            using (var strm = File.OpenRead("TestFiles\\Badly formed Ifc file.ifc"))
             {
                 var scanner = new Scanner(strm);
                 int tok;
@@ -305,34 +290,32 @@ namespace Xbim.Essentials.Tests
 
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void ErrorRecoveryOfParserTest()
         {
             //in memory model
-            using (var store = IfcStore.Open("Badly formed Ifc file.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\Badly formed Ifc file.ifc"))
             {
                 store.Close();
             }
             //esent database
-            using (var store = IfcStore.Open("Badly formed Ifc file.ifc", null, 0))
+            using (var store = IfcStore.Open("TestFiles\\Badly formed Ifc file.ifc", null, 0))
             {
                 store.Close();
             }
         }
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcOpenZipTest()
         {
             long count;
             //in memory model
-            using (var store = IfcStore.Open("4walls1floorSite.zip"))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.zip"))
             {
                 count = store.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have instances");
                 store.Close();
             }
             //esent database
-            using (var store = IfcStore.Open("4walls1floorSite.zip", null, 0))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.zip", null, 0))
             {
                 Assert.IsTrue(store.Instances.Count == count, "Should have same number of instances");
                 store.Close();
@@ -340,12 +323,11 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreSaveAndOpenIfcZipTest()
         {
             long count;
             //create a zip file using esent
-            using (var store = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
                 count = store.Instances.Count;
                 store.SaveAs("4walls1floorSiteA", StorageType.IfcZip | StorageType.Ifc);
@@ -356,7 +338,7 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
                 store.Close();
             }
-            using (var store = IfcStore.Open("4walls1floorSite.ifc")) //now with memory model
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc")) //now with memory model
             {
                 count = store.Instances.Count;
                 store.SaveAs("4walls1floorSiteB", StorageType.IfcZip | StorageType.Ifc);
@@ -370,12 +352,11 @@ namespace Xbim.Essentials.Tests
         }
 
          [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreSaveAndOpenIfcXmlZipTest()
         {
             long count;
             //create a zip file using esent
-            using (var store = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
                 count = store.Instances.Count;
                 store.SaveAs("4walls1floorSiteX", StorageType.IfcZip | StorageType.IfcXml);
@@ -386,7 +367,7 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
                 store.Close();
             }
-            using (var store = IfcStore.Open("4walls1floorSite.ifc")) //now with memory model
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc")) //now with memory model
             {
                 count = store.Instances.Count;
                 store.SaveAs("4walls1floorSiteY", StorageType.IfcZip | StorageType.IfcXml);
@@ -401,7 +382,6 @@ namespace Xbim.Essentials.Tests
 
         [TestCategory("IfcXml")]
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreSaveAndOpenIfcXml4Test()
         {
             int percent = 0;
@@ -411,8 +391,8 @@ namespace Xbim.Essentials.Tests
 
             };
             long count;
-            //create a zip file using esent
-            using (var store = IfcStore.Open("SampleHouse4.ifc",null,-1, progDelegate))
+            
+            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc", null,-1, progDelegate))
             {
                 count = store.Instances.Count;
                 store.SaveAs("SampleHouse4",  StorageType.IfcXml);
@@ -423,7 +403,8 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
                 store.Close();
             }
-            using (var store = IfcStore.Open("SampleHouse4.ifc",null,-1,progDelegate)) //now with memory model
+            //now with memory model
+            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc", null,-1,progDelegate)) 
             {
                 count = store.Instances.Count;
                 store.SaveAs("SampleHouse4",  StorageType.IfcXml);
@@ -438,7 +419,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreCreateStoreTest()
         {
             var credentials = new XbimEditorCredentials
@@ -509,14 +489,13 @@ namespace Xbim.Essentials.Tests
         
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void ReadIfcHeaderTest()
         {
             var modelStore = new HeuristicModelProvider();
 
-            var schemaVersion = modelStore.GetXbimSchemaVersion("SampleHouse4.ifc");
+            var schemaVersion = modelStore.GetXbimSchemaVersion("TestFiles\\SampleHouse4.ifc");
             Assert.IsTrue(schemaVersion==XbimSchemaVersion.Ifc4);
-            schemaVersion = modelStore.GetXbimSchemaVersion("4walls1floorSite.ifc");
+            schemaVersion = modelStore.GetXbimSchemaVersion("TestFiles\\4walls1floorSite.ifc");
             Assert.IsTrue(schemaVersion==XbimSchemaVersion.Ifc2X3);
 
             //first run with a memory model opeing Ifc4 file
@@ -527,28 +506,28 @@ namespace Xbim.Essentials.Tests
                 ApplicationDevelopersName = "Tester",
                 EditorsOrganisationName = "XbimTeam"
             };
-            using (var store = IfcStore.Open("SampleHouse4.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc"))
             {
                 count = store.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances");
                 store.Close();
             }
-            //create xbim files and check them , a size of 1MB will cause Esent to be used       
-            using (var store = IfcStore.Open("SampleHouse4.ifc", credentials, 1.0))
+            //create esent files and check them , a size of 1MB will cause Esent to be used       
+            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc", credentials, 1.0))
             {
                 Assert.IsTrue(count == store.Instances.Count, "Should have the same number of instances as the memory model");
                 store.Close();
             }
             
             //now repeat for Ifc2x3
-            using (var store = IfcStore.Open("4walls1floorSite.ifc"))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc"))
             {
                 count = store.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances");
                 store.Close();
             }
             //create xbim files and check them , a size of 1MB will cause Esent to be used       
-            using (var store = IfcStore.Open("4walls1floorSite.ifc", null, 0.1))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0.1))
             {
                 Assert.IsTrue(count == store.Instances.Count, "Should have the same number of instances as the memory model");
                 store.Close();
@@ -556,14 +535,13 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreTransactionTest()
         {
             var memoryModelFile = "4walls1floorSiteDoorMM.ifc";
             var esentModelFile = "4walls1floorSiteDoorES.ifc";
 
             var doorId = Guid.NewGuid().ToPart21();
-            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc")) //test memory model first
+            using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc")) //test memory model first
             {
                 var count = ifcStore.Instances.Count;
                 var origLabels = ifcStore.Instances.Select(x => x.EntityLabel).ToList();
@@ -597,7 +575,7 @@ namespace Xbim.Essentials.Tests
                 ifcStore.Close();
             }
 
-            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0)) //test esent databases
+            using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0)) //test esent databases
             {
                 var count = ifcStore.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working
@@ -630,11 +608,10 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void IfcStoreSaveAsXbimTest()
         {
             long originalCount;
-            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0)) //test esent databases first
+            using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0)) //test esent databases first
             {
                 var  count = originalCount = ifcStore.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working               
@@ -658,12 +635,11 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void FileBasedStore_Should_TidyUp_OnClose()
         {
             string xbimFile;
             // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
-            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
                 xbimFile = ifcStore.Location;
                 Assert.IsTrue(File.Exists(xbimFile));
@@ -674,13 +650,12 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void Issue206_FileBasedStore_Should_TidyUp_JFM_on_Close()
         {
             string xbimFile;
             string flushmapFile;
             // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
-            using (var ifcStore = IfcStore.Open("Issue206.zip", ifcDatabaseSizeThreshHold: 0))
+            using (var ifcStore = IfcStore.Open("TestFiles\\Issue206.zip", ifcDatabaseSizeThreshHold: 0))
             {
                 xbimFile = ifcStore.Location;
                 flushmapFile = Path.ChangeExtension(xbimFile, ".jfm");
@@ -695,14 +670,13 @@ namespace Xbim.Essentials.Tests
 
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void FileBasedStore_Should_Retain_Saved_XBIM_Files()
         {
             string transientXbimFile;
             string savedXBimFile = Path.ChangeExtension(Guid.NewGuid().ToString(), ".xbim");
 
             // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
-            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
                 transientXbimFile = ifcStore.Location;
                 
@@ -714,7 +688,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles")]
         public void FileBasedStore_Should_Not_retain_Saving_as_Same_file()
         {
             // Tests a special case - saving a transient xbim over itself
@@ -722,7 +695,7 @@ namespace Xbim.Essentials.Tests
             string transientXbimFile;
             
             // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
-            using (var ifcStore = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
                 transientXbimFile = ifcStore.Location;
 
@@ -732,8 +705,7 @@ namespace Xbim.Essentials.Tests
             Assert.IsFalse(File.Exists(transientXbimFile));
         }
 
-        [TestMethod] [DeploymentItem("TestFiles")] 
-        public void IfcStoreInitialisationTest()
+        [TestMethod]        public void IfcStoreInitialisationTest()
         {
             var credentials = new XbimEditorCredentials
             {
@@ -799,18 +771,17 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\ifc2x3_final_wall.ifc")]
         public void Ifc2x3FinalSchemaTest()
         {
             using (var model = new Xbim.IO.Memory.MemoryModel( ef2x3))
             {
-                var errCount = model.LoadStep21("ifc2x3_final_wall.ifc");
+                var errCount = model.LoadStep21("TestFiles\\ifc2x3_final_wall.ifc");
                 Assert.AreEqual(0, errCount);
             }
 
             using (var model = new Xbim.IO.Esent.EsentModel( ef2x3))
             {
-                var errCount = model.CreateFrom("ifc2x3_final_wall.ifc");
+                var errCount = model.CreateFrom("TestFiles\\ifc2x3_final_wall.ifc");
                 Assert.AreEqual(true, errCount);
             }
         }

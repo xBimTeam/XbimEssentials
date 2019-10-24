@@ -14,10 +14,9 @@ namespace Xbim.Essentials.Tests
     public class ValidationTests
     {
         [TestMethod]
-        [DeploymentItem("TestSourceFiles")]
         public void ValidatesFile()
         {
-            const string file = "InvalidContentFC4.ifc";
+            const string file = "TestSourceFiles\\InvalidContentFC4.ifc";
             using (var model = IfcStore.Open(file, null, 0))
             {
                 //var v2 = model.Metadata.Types()
@@ -38,10 +37,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles")]
         public void TableValueCheck()
         {
-            var path = @"properties.ifc";
+            var path = @"TestSourceFiles\\properties.ifc";
             using (var store = Xbim.Ifc.IfcStore.Open(path))
             {
                 var v = new Validator
@@ -55,10 +53,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles")]
         public void ValidatesEntity()
         {
-            using (var model = IfcStore.Open("InvalidContentFC4.ifc", null, 0))
+            using (var model = IfcStore.Open("TestSourceFiles\\InvalidContentFC4.ifc", null, 0))
             {
                 //var v2 = model.Metadata.Types()
                 //    .Where(x => x.Properties.Any(pr => pr.Value.EntityAttribute.State == EntityAttributeState.Mandatory
@@ -79,10 +76,9 @@ namespace Xbim.Essentials.Tests
 
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles")]
         public void ValidatesSpecificElements2X4()
         {
-            using (var model = IfcStore.Open("AlmostEmptyIFC4.ifc", null, 0))
+            using (var model = IfcStore.Open("TestSourceFiles\\AlmostEmptyIFC4.ifc", null, 0))
             {
                 var v = new Validator
                 {
@@ -104,10 +100,9 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [DeploymentItem("TestSourceFiles")]
         public void ValidatesSpecificElements2X3()
         {
-            using (var model = IfcStore.Open("ValidationTests2x3.ifc", null, 0))
+            using (var model = IfcStore.Open("TestSourceFiles\\ValidationTests2x3.ifc", null, 0))
             {
                 var v = new Validator
                 {

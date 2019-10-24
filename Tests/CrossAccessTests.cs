@@ -14,7 +14,6 @@ using Xbim.Essentials.Tests.Utilities;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem("TestSourceFiles/4walls1floorSite.ifc")]
     public class CrossAccessTests
     {
         [TestMethod]
@@ -50,7 +49,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void SettingNamesTest()
         {
-            using (var model = MemoryModel.OpenRead("4walls1floorSite.ifc"))
+            using (var model = MemoryModel.OpenRead("TestSourceFiles\\4walls1floorSite.ifc"))
             {
                 using (var txn = model.BeginTransaction(""))
                 {

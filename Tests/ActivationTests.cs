@@ -11,11 +11,10 @@ namespace Xbim.Essentials.Tests
     public class ActivationTests
     {
         [TestMethod]
-        [DeploymentItem("TestSourceFiles")]
         public void ObjectActivation()
         {
             // This test would only make a sense with a not-in-memory model
-            using (var model = IfcStore.Open("4walls1floorSite.ifc", null, 0))
+            using (var model = IfcStore.Open(@"TestSourceFiles\4walls1floorSite.ifc", null, 0))
             {
                 using (var txn = model.BeginTransaction("TXN"))
                 {

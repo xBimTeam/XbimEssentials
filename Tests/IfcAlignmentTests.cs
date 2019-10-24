@@ -13,18 +13,17 @@ using Xbim.IO.Memory;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem("TestSourceFiles\\Alignment")]
     public class IfcAlignmentTests
     {
         private static readonly IEntityFactory ef = new EntityFactoryIfc4x1();
         private static readonly string[] files = new[] {
-            "bloss-curve.ifc",
-            "horizontal-alignment.ifc",
-            "linear-placement.ifc",
-            "sectioned-solid.ifc",
-            "terrain-and-alignment.ifc",
-            "terrain-surface.ifc",
-            "vertical-alignment.ifc",
+            "TestSourceFiles\\Alignment\\bloss-curve.ifc",
+            "TestSourceFiles\\Alignment\\horizontal-alignment.ifc",
+            "TestSourceFiles\\Alignment\\linear-placement.ifc",
+            "TestSourceFiles\\Alignment\\sectioned-solid.ifc",
+            "TestSourceFiles\\Alignment\\terrain-and-alignment.ifc",
+            "TestSourceFiles\\Alignment\\terrain-surface.ifc",
+            "TestSourceFiles\\Alignment\\vertical-alignment.ifc",
             //"ramp.ifc"
         };
 

@@ -12,18 +12,16 @@ using Xbim.IO.Xml;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    [DeploymentItem("TestFiles")]
-    [DeploymentItem("XsdSchemas")]
     public class XmlTests2X3
     {
         [TestMethod]
         public void Ifc2X3XMLSerialization()
         {
-            const string output = "..\\..\\4walls1floorSite.ifcxml";
+            const string output = "4walls1floorSite.ifcxml";
             using (var esent = new IO.Esent.EsentModel(new EntityFactoryIfc2x3()))
             {
                 string fileName =  Guid.NewGuid() + ".xbim";
-                esent.CreateFrom("4walls1floorSite.ifc", fileName, null, true, true);
+                esent.CreateFrom("TestFiles\\4walls1floorSite.ifc", fileName, null, true, true);
                 esent.SaveAs(output, StorageType.IfcXml);
                 var errs = ValidateIfc2X3(output);
                 Assert.AreEqual(0, errs);
@@ -54,12 +52,19 @@ namespace Xbim.Essentials.Tests
         /// <returns>Number of errors</returns>
         private int ValidateIfc2X3(string path)
         {
+            // this is to remove the DeploymentItem tag, above in order to comply with
+            // new behaviour for netcore as documented, see
+            // https://github.com/microsoft/testfx-docs/blob/master/RFCs/009-DeploymentItem-Attribute.md
+            //            
+            NeedSchemaFile("IFC2X3.xsd");
+            NeedSchemaFile("ex.xsd");
+
             var errCount = 0;
             var dom = new XmlDocument();
             dom.Load(path);
             var schemas = new XmlSchemaSet();
             schemas.Add("http://www.iai-tech.org/ifcXML/IFC2x3/FINAL", "IFC2X3.xsd");
-            schemas.Add("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common","ex.xsd");
+            schemas.Add("urn:iso.org:standard:10303:part(28):version(2):xmlschema:common", "ex.xsd");
             dom.Schemas = schemas;
             dom.Validate((sender, args) =>
             {
@@ -68,6 +73,12 @@ namespace Xbim.Essentials.Tests
             });
 
             return errCount;
+        }
+
+        private static void NeedSchemaFile(string fileNeeded)
+        {
+            if (!File.Exists(fileNeeded))
+                File.Copy("XsdSchemas\\" + fileNeeded, fileNeeded);
         }
     }
 }

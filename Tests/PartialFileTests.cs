@@ -21,10 +21,9 @@ namespace Xbim.IfcCore.UnitTests
     public class PartialFileTests
     {
         [TestMethod]
-        [DeploymentItem("TestFiles/SampleHouse4.ifc")]
         public void SkipEntities()
         {
-            var file = @"SampleHouse4.ifc";
+            var file = @"TestFiles\\SampleHouse4.ifc";
             var readTypes = new[] {
                 typeof(IIfcSite),
                 typeof(IIfcPostalAddress)
@@ -67,12 +66,11 @@ namespace Xbim.IfcCore.UnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles/SmallModelIfc2x3.ifc")]
         public void CreatingPartialFile()
         {
             using (var w = new StringWriter())
             {
-                using (var mm = MemoryModel.OpenRead("SmallModelIfc2x3.ifc"))
+                using (var mm = MemoryModel.OpenRead("TestFiles\\SmallModelIfc2x3.ifc"))
                 {
                     var extrusion = mm.Instances.FirstOrDefault<IfcExtrudedAreaSolid>();
                     ModelHelper.WritePartialFile(mm, extrusion, w, new HashSet<int>());
@@ -103,11 +101,10 @@ namespace Xbim.IfcCore.UnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("TestFiles\\SampleHouse4.ifc")]
         public void CreatingPartialFileWithStore()
         {
             
-            using (var source = IfcStore.Open("SampleHouse4.ifc"))
+            using (var source = IfcStore.Open("TestFiles\\SampleHouse4.ifc"))
             {
                     
                 var products = source.Instances.OfType<IfcBuildingElement>();

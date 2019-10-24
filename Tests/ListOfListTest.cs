@@ -6,14 +6,13 @@ using Xbim.IO.Memory;
 namespace Xbim.Essentials.Tests
 {
 
-    [DeploymentItem(@"TestSourceFiles\")]
     [TestClass]
     public class ListOfListTest
     {
         [TestMethod]
         public void ReadListOfListFromIfcFile()
         {
-            using (var model = MemoryModel.OpenRead(@"IfcBSplineSurfaceWithKnots.ifc"))
+            using (var model = MemoryModel.OpenRead(@"TestSourceFiles\\IfcBSplineSurfaceWithKnots.ifc"))
             {
                 var surface = model.Instances.OfType<IfcBSplineSurfaceWithKnots>().FirstOrDefault();
                 Assert.IsTrue(surface.ControlPointsList.Count==4);

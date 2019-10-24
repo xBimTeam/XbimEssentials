@@ -20,15 +20,16 @@ namespace Xbim.Essentials.Tests
         const string federationFile = @"RelativePathFederation.ifc";
 
         [TestMethod]
-        [DeploymentItem(sourceFolder + federationFile, "moved")]
-        [DeploymentItem(sourceFolder + "P1_cm.ifc", "moved")]
-        [DeploymentItem(sourceFolder + "P2_cm.ifc", "moved")]
         public void CanFindRelativeFiles()
         {
-            FileInfo f = new FileInfo(".");
-            Debug.WriteLine(f.FullName);
+            Directory.Delete("moved", true);
+            Directory.CreateDirectory("moved");
 
-            var store = IfcStore.Open("moved\\" + federationFile);
+            File.Copy("FederationTestFiles\\RelativePathFederation.ifc", "moved\\RelativePathFederation.ifc");
+            File.Copy("FederationTestFiles\\P1_cm.ifc", "moved\\P1_cm.ifc");
+            File.Copy("FederationTestFiles\\P2_cm.ifc", "moved\\P2_cm.ifc");
+
+            var store = IfcStore.Open("moved\\RelativePathFederation.ifc");
             Assert.AreEqual(2, store.ReferencedModels.Count());
         }
     }

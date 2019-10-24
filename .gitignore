@@ -199,3 +199,4 @@ FakesAssemblies/
 *.opt
 
 SharedFileVersionInfo.cs
+*.jfm
