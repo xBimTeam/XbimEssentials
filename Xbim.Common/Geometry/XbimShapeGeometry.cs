@@ -91,6 +91,10 @@ namespace Xbim.Common.Geometry
         /// </summary>
         byte[] _shapeData;
 
+        /// <summary>
+        /// The volume if available
+        /// </summary>
+        double? _volume;
 
 
         /// <summary>
@@ -331,6 +335,14 @@ namespace Xbim.Common.Geometry
         IVector3D IXbimShapeGeometryData.LocalShapeDisplacement => LocalShapeDisplacement;
         public XbimVector3D? LocalShapeDisplacement { get; set; }
 
-
+        public double? Volume
+        {
+            get {
+                return _volume;
+            }
+            set {
+                _volume = value;
+            }
+        }
     }
 }

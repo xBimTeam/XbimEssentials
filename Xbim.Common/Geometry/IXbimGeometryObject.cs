@@ -30,8 +30,9 @@ namespace Xbim.Common.Geometry
         /// Gets or sets an arbitrary object value that can be used to store custom information about this element
         /// </summary>
         object Tag { get; set; }
-
-       
-       
+        /// <summary>
+        /// Returns the volume which is closed and valid, if there's an existing closed shell.
+        /// </summary>
+        double? Volume { get; }
     }
 }
