@@ -192,6 +192,9 @@
     <None Include="TestSourceFiles\IfcDerivedUnit.ifcxml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestSourceFiles\IFCPOLYGONALFACESET_Subtraction2.ifc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestSourceFiles\InvalidContentFC4.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

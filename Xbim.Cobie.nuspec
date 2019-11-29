@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Cobie</id>
-    <version>4.0.30-V057</version>
+    <version>4.0.30-V058</version>
     <title>xBIM Cobie</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
-    <licenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</licenseUrl>
+    <license type="expression">CDDL-1.0</license>
     <projectUrl>https://github.com/xBimTeam/</projectUrl>
     <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=240</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>

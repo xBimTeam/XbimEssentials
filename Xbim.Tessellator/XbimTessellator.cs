@@ -84,67 +84,96 @@ namespace Xbim.Tessellator
             return MeshPolyhedronBinary(triangulatedMeshes, MoveMinToOrigin);
         }
 
-        private List<List<List<Vec3>>> GetContourPoints(IIfcPolygonalFaceSet obj)
+        /// <summary>
+        /// Works through the details of an IfcPolygonalFaceSet and returned its 3D contours resolved from indices to coordinates 
+        /// </summary>
+        /// <param name="pfs">The polygonal face set of interest</param>
+        /// <returns>A nested list of contours, depending on the levels lists represent:
+        /// Level 0: Each face of the mesh 
+        /// Level 1: Each of the profiles in a face, it's more than one because there can be voids.
+        /// Level 2: Each point (Vector3, so that it can be used for tesselation)
+        /// </returns>
+        public static List<List<List<Vec3>>> GetContourPoints(IIfcPolygonalFaceSet pfs)
         {
             List<List<List<Vec3>>> ret = new List<List<List<Vec3>>>();
-            if (obj.PnIndex != null && obj.PnIndex.Any())
+            if (pfs.PnIndex != null && pfs.PnIndex.Any())
             {
                 // todo: implement PnIndex behaviour
                 Log.Error("IIfcPolygonalFaceSet tessellation with PnIndex not supported. Contact the team, this is not hard to implement.");
                 return ret;
             }
-            var pointsArray = obj.Coordinates.CoordList.ToArray();
-            var pointsCount = pointsArray.Count();
-
-            foreach (var face in obj.Faces)
+            var pointsArray = pfs.Coordinates.CoordList.ToArray();
+            
+            foreach (var face in pfs.Faces)
             {
-                // each face of is made of IIfcPolygonalFaceSet is a single contour, 
+                // each face of IIfcPolygonalFaceSet is a single contour, 
                 // but the general function allows multiple (for voids)
                 // so we have to bulid a list
                 //
                 var faceContours = new List<List<Vec3>>();
-                var singleContour = new List<Vec3>();
-                foreach (var oneBasedIndex in face.CoordIndex)
+                var firstContourIndices = face.CoordIndex;
+                var dbgMessageContext = $" for #{pfs.EntityLabel}, face #{face.EntityLabel}";
+                List<Vec3> firstContour = GetVectorsFromContourIndices(pointsArray, firstContourIndices, dbgMessageContext);
+                faceContours.Add(firstContour);
+
+                if (face is IIfcIndexedPolygonalFaceWithVoids withVoid)
                 {
-                    // index is 1 based, so the check is for equality, but it then gets reduced by one.
-                    if (oneBasedIndex > pointsCount || oneBasedIndex < 1)
+                    foreach (var voidIndices in withVoid.InnerCoordIndices)
                     {
-                        Log.Error($"Invalid point in 1-based index ({oneBasedIndex}) for #{obj.EntityLabel}, face #{face.EntityLabel}.");
-                        continue;
+                        var voidContour = GetVectorsFromContourIndices(pointsArray, voidIndices, dbgMessageContext);
+                        faceContours.Add(voidContour); // contours should already be defined in the inverse direction in the models.
                     }
-                    int asZeroBasedInt = (int)oneBasedIndex - 1;
-                    var pt = pointsArray[asZeroBasedInt];
-                    var pointAsArray = pt.ToArray();
-                    if (pointAsArray.Length < 3)
-                    {
-                        Log.Error($"Point identified in 1-based index ({oneBasedIndex}) for #{obj.EntityLabel}, face #{face.EntityLabel} does only has {pointAsArray.Length} coordinates.");
-                        continue;
-                    }
-                    int coordIndex = 0;
-                    try
-                    {
-                       
-                        var coordX = Convert.ToDouble(pointAsArray[coordIndex]);
-                        var coordY = Convert.ToDouble(pointAsArray[++coordIndex]);
-                        var coordZ = Convert.ToDouble(pointAsArray[++coordIndex]);
-                        Vec3 vec3pt = new Vec3(
-                            coordX,
-                            coordY,
-                            coordZ
-                            );
-                        singleContour.Add(vec3pt);
-                    }
-                    catch (Exception ex)
-                    {
-                        string[] coordNames = new string[] { "X", "Y", "Z" };
-                        Log.Error($"Failed identification for coordinate {coordNames[coordIndex]} of 1-based index ({oneBasedIndex}) for #{obj.EntityLabel}, face #{face.EntityLabel}.", ex);
-                        throw;
-                    }                    
                 }
-                faceContours.Add(singleContour);
+
                 ret.Add(faceContours);
             }
             return ret;
+        }
+
+        private static List<Vec3> GetVectorsFromContourIndices(IItemSet<IfcLengthMeasure>[] pointsArray, IItemSet<IfcPositiveInteger> firstContourIndices, string dbgMessageContext)
+        {
+            var singleContour = new List<Vec3>();
+            var pointsCount = pointsArray.Count();
+
+
+            foreach (var oneBasedIndex in firstContourIndices)
+            {
+                // index is 1 based, so the check is for equality, but it then gets reduced by one.
+                if (oneBasedIndex > pointsCount || oneBasedIndex < 1)
+                {
+                    Log.Error($"Invalid point in 1-based index ({oneBasedIndex}){dbgMessageContext}.");
+                    continue;
+                }
+                int asZeroBasedInt = (int)oneBasedIndex - 1;
+                var pt = pointsArray[asZeroBasedInt];
+                var pointAsArray = pt.ToArray();
+                if (pointAsArray.Length < 3)
+                {
+                    Log.Error($"Only {pointAsArray.Length} coordinates found{dbgMessageContext}.");
+                    continue;
+                }
+                int coordIndex = 0;
+                try
+                {
+                    var coordX = Convert.ToDouble(pointAsArray[coordIndex]);
+                    var coordY = Convert.ToDouble(pointAsArray[++coordIndex]);
+                    var coordZ = Convert.ToDouble(pointAsArray[++coordIndex]);
+                    Vec3 vec3pt = new Vec3(
+                        coordX,
+                        coordY,
+                        coordZ
+                        );
+                    singleContour.Add(vec3pt);
+                }
+                catch (Exception ex)
+                {
+                    string[] coordNames = new string[] { "X", "Y", "Z" };
+                    Log.Error($"Failed identification for coordinate {coordNames[coordIndex]} of 1-based index ({oneBasedIndex}){dbgMessageContext}.", ex);
+                    throw;
+                }
+            }
+
+            return singleContour;
         }
 
         public XbimShapeGeometry Mesh(IIfcFaceBasedSurfaceModel faceBasedModel)
