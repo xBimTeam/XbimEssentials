@@ -1,16 +1,25 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Xbim.Common.Geometry;
-using Xbim.Tessellator;
 
 namespace Xbim.Tessellator
 {
-
+    [Flags]
+    public enum XbimTriangulationStatus
+    {
+        NoIssues = 0,
+        IsOpenBody = 1,
+        WasInvertedBody = 2,
+        HasFaultyTriangles = 4
+    }
 
     public class XbimTriangulatedMesh
     {
-        public struct  XbimTriangle
+        public struct XbimTriangle
         {
             readonly XbimContourVertexCollection _vertices;
             readonly XbimTriangleEdge[] _edges;
@@ -28,8 +37,7 @@ namespace Xbim.Tessellator
 
             public XbimVector3D Normal
             {
-                get
-                {
+                get {
                     var p1 = _vertices[_edges[0].StartVertexIndex].Position;
                     var p2 = _vertices[_edges[0].NextEdge.StartVertexIndex].Position;
                     var p3 = _vertices[_edges[0].NextEdge.NextEdge.StartVertexIndex].Position;
@@ -37,14 +45,13 @@ namespace Xbim.Tessellator
                     var b = new XbimPoint3D(p2.X, p2.Y, p2.Z);
                     var c = new XbimPoint3D(p3.X, p3.Y, p3.Z);
                     var cv = XbimVector3D.CrossProduct(b - a, c - a);
-                    cv=cv.Normalized();
+                    cv = cv.Normalized();
                     return cv;
-                } 
+                }
             }
             public XbimPackedNormal PackedNormal
             {
-                get
-                {
+                get {
                     return new XbimPackedNormal(Normal);
                 }
             }
@@ -54,42 +61,44 @@ namespace Xbim.Tessellator
         private readonly List<XbimTriangleEdge[]> _faultyTriangles = new List<XbimTriangleEdge[]>();
         private Dictionary<int, List<XbimTriangleEdge[]>> _faces;
         private readonly XbimContourVertexCollection _vertices;
-        
+
         double _minX = double.PositiveInfinity;
         double _minY = double.PositiveInfinity;
         double _minZ = double.PositiveInfinity;
         double _maxX = double.NegativeInfinity;
         double _maxY = double.NegativeInfinity;
         double _maxZ = double.NegativeInfinity;
-       
+
+        public double? Volume { get; private set; }
+
         public XbimTriangulatedMesh(int faceCount, float precision)
         {
             var edgeCount = (int)(faceCount * 1.5);
             _lookupList = new Dictionary<long, XbimTriangleEdge[]>(edgeCount);
             _faces = new Dictionary<int, List<XbimTriangleEdge[]>>(faceCount);
             _vertices = new XbimContourVertexCollection(precision);
-           
+
         }
 
         public uint TriangleCount
         {
-            get
-            {
+            get {
                 uint triangleCount = 0;
                 foreach (var face in _faces.Values)
                     triangleCount += (uint)face.Count;
                 return triangleCount;
             }
         }
+
         public IEnumerable<XbimTriangle> Triangles
         {
-            get 
-            {
-                return from edgeListList in _faces.Values 
-                       from edges in edgeListList 
+            get {
+                return from edgeListList in _faces.Values
+                       from edges in edgeListList
                        select new XbimTriangle(edges, _vertices);
             }
         }
+
         public List<XbimTriangleEdge[]> FaultyTriangles
         {
             get { return _faultyTriangles; }
@@ -104,27 +113,26 @@ namespace Xbim.Tessellator
         {
             var p1 = _vertices[edge.StartVertexIndex].Position;
             var p2 = _vertices[edge.NextEdge.StartVertexIndex].Position;
-            var p3 = _vertices[edge.NextEdge.NextEdge.StartVertexIndex].Position;    
-            var a = new XbimPoint3D(p1.X,p1.Y,p1.Z); 
-            var b = new XbimPoint3D(p2.X,p2.Y,p2.Z); 
-            var c = new XbimPoint3D(p3.X,p3.Y,p3.Z);
-            var cv = XbimVector3D.CrossProduct(b - a, c - a );
-            cv=cv.Normalized();
+            var p3 = _vertices[edge.NextEdge.NextEdge.StartVertexIndex].Position;
+            var a = new XbimPoint3D(p1.X, p1.Y, p1.Z);
+            var b = new XbimPoint3D(p2.X, p2.Y, p2.Z);
+            var c = new XbimPoint3D(p3.X, p3.Y, p3.Z);
+            var cv = XbimVector3D.CrossProduct(b - a, c - a);
+            cv = cv.Normalized();
             return cv;
         }
 
         public Dictionary<int, List<XbimTriangleEdge[]>> Faces
         {
-            get
-            {
+            get {
                 return _faces;
             }
         }
 
-       
+
         private bool AddEdge(XbimTriangleEdge edge)
         {
-           
+
             var key = edge.Key;
             if (!_lookupList.ContainsKey(key))
             {
@@ -141,97 +149,145 @@ namespace Xbim.Tessellator
                 edges[0].AdjacentEdge = edge;
                 edge.AdjacentEdge = edges[0];
             }
-           
+
             return true;
         }
 
-        delegate bool IsMaxDelegate(ContourVertex p);
+        /// <summary>
+        /// Computes the approximate volume of the shape
+        /// </summary>
+        /// <returns>If less than 0, the mesh is in reverse orientation</returns>
+        private double ComputeTetrahedralVolume()
+        {
+            double total = 0;
+            Vec3 centroid = new Vec3(Centroid);
+
+            foreach (var triangles in _faces.Values)
+            {
+                total += triangles.Select(t =>
+                {
+                    var e = t[0];
+
+                    var p01 = _vertices[e.StartVertexIndex].Position;
+                    Vec3 p1;
+                    Vec3.Sub(ref p01, ref centroid, out p1); // Avoid big number crunching
+
+                    var p02 = _vertices[e.NextEdge.StartVertexIndex].Position;
+                    Vec3 p2;
+                    Vec3.Sub(ref p02, ref centroid, out p2); // Avoid big number crunching
+
+                    var p03 = _vertices[e.NextEdge.NextEdge.StartVertexIndex].Position;
+                    Vec3 p3;
+                    Vec3.Sub(ref p03, ref centroid, out p3); // Avoid big number crunching
+
+                    Vec3 area;
+                    Vec3.Cross(ref p2, ref p3, out area);
+                    double volume;
+                    Vec3.Dot(ref p1, ref area, out volume);
+                    return volume / 6.0;
+                }).Sum();
+            }
+
+            return total;
+        }
+
+        /// <summary>
+        /// Performs a topological validation if not done yet.
+        /// </summary>
+        /// <param name="preStatus">Some initially known status</param>
+        /// <returns>An enhanced status</returns>
+        public XbimTriangulationStatus Validate(XbimTriangulationStatus? preStatus = null)
+        {
+            if (preStatus == null)
+                preStatus = IsTopologicallyClosed ? XbimTriangulationStatus.NoIssues : XbimTriangulationStatus.IsOpenBody;
+
+            if (FaultyTriangles.Count > 0)
+                preStatus |= XbimTriangulationStatus.HasFaultyTriangles;
+
+            return preStatus.Value;
+        }
+
         /// <summary>
         /// Orientates edges to orientate in a uniform direction
         /// </summary>
-        /// <returns></returns>
-        public void UnifyFaceOrientation(int entityLabel)
+        /// <param name="isIntentiallyClosed">Whether the mesh wraps a closed body by intention</param>
+        /// <param name="computeNormals">Compute normals</param>
+        /// <returns>A validation status</returns>
+        public XbimTriangulationStatus UnifyMeshOrientation(bool isIntentiallyClosed, bool computeNormals)
         {
-            XbimTriangleEdge[] extremeTriangle = FindExtremeTriangle();
-            if (extremeTriangle == null) return;
-            if (!IsFacingOutward(extremeTriangle[0]))
-                extremeTriangle[0].Reverse();
-            var triangles = new List<XbimTriangleEdge[]>
-            {
-                extremeTriangle
-            };
-            extremeTriangle[0].Freeze();
-
+            // Do first run for aligning orientation in either direction
+            var candidate = _faces.Values.FirstOrDefault().ToList();
             do
             {
-                triangles = UnifyConnectedTriangles(triangles);
-            } while (triangles.Any());
+                candidate = UnifyConnectedTriangles(candidate);
+            } while (candidate.Any());
 
-            //doing the extreme edge first should do all connected
-
-            foreach (var xbimEdges in _faces.Values.SelectMany(el => el).Where(e => !e[0].Frozen)) //check any rogue elements
+            foreach (var edge in _faces.Values.SelectMany(f => f.Select(e => e.First())).Where(e => !e.Frozen)) //check any rogue elements
             {
-                if (!IsFacingOutward(xbimEdges[0]))
-                    xbimEdges[0].Reverse();
-                triangles = new List<XbimTriangleEdge[]> { new[] { xbimEdges[0], xbimEdges[0].NextEdge, xbimEdges[0].NextEdge.NextEdge } };
-                xbimEdges[0].Freeze();
+                var isolated = new List<XbimTriangleEdge[]> {
+                    new[] { edge, edge.NextEdge, edge.NextEdge.NextEdge }
+                };
+                edge.Freeze();
                 do
                 {
-                    triangles = UnifyConnectedTriangles(triangles);
-                } while (triangles.Any());
-
+                    isolated = UnifyConnectedTriangles(isolated);
+                } while (isolated.Any());
             }
-            BalanceNormals();
-        }
-
-        private XbimTriangleEdge[] FindExtremeTriangle()
-        {
-            //find the biggest
-            var sizeX = _maxX - _minX;
-            var sizeY = _maxY - _minY;
-            var sizeZ = _maxZ - _minZ;
-
-            IsMaxDelegate isMax;
-            if (sizeX >= sizeY && sizeX >= sizeZ) isMax = p => Math.Abs(p.Position.X - _maxX) < 1e-9;
-            else if (sizeY >= sizeX && sizeY >= sizeZ) isMax = p => Math.Abs(p.Position.Y - _maxY) < 1e-9;
-            else isMax = p => Math.Abs(p.Position.Z - _maxZ) < 1e-9;
-           
-            foreach (var face in _faces.Values)
+            
+            XbimTriangulationStatus status = IsTopologicallyClosed ? XbimTriangulationStatus.NoIssues : XbimTriangulationStatus.IsOpenBody;
+            // If intentially closed overrides detected topological gaps and attempts to compute a volume
+            if (isIntentiallyClosed || XbimTriangulationStatus.NoIssues == status)
             {
-                //find the extreme triangle
-                foreach (var t in face)
+                // Compute volume and reverse mesh if less than 0
+                Volume = ComputeTetrahedralVolume();
+                if (Volume < 0)
                 {
-                    foreach (var edge in t)
+                    foreach (var t in _faces.Values.SelectMany(f => f.Select(e => e.First())))
                     {
-                        if (isMax(_vertices[edge.StartVertexIndex])
-                            && !Vec3.Colinear(_vertices[edge.StartVertexIndex].Position, _vertices[edge.NextEdge.StartVertexIndex].Position, _vertices[edge.NextEdge.NextEdge.StartVertexIndex].Position))
-                        {
-                            return t;
-                        }
+                        t.Unfreeze();
+                        t.Reverse();
                     }
-                }                
-            }
-
-            return null;
-        }
-
-        public void BalanceNormals()
-        {
-            const double minAngle = Math.PI / 5;
-           
-            //set up the base normals
-            foreach (var faceGroup in Faces)
-            {
-                foreach (var triangle in faceGroup.Value)
-                {
-                    ComputeTriangleNormal(triangle);
+                    Volume = -Volume;
+                    // Force recalculation of normals since the orientation has been changed
+                    computeNormals = true;
+                    status |= XbimTriangulationStatus.WasInvertedBody;
                 }
             }
 
+            BalanceNormals(computeNormals);
+            return status;
+        }
+
+        /// <summary>
+        /// Whether the mesh is topologically closed. True if each edge has an adjacent edge
+        /// </summary>
+        public bool IsTopologicallyClosed 
+        { 
+            get => !_faces.Values.Any(f => f.Any(t => t.Any(e => e.AdjacentEdge == null))); 
+        }
+        
+        /// <summary>
+        /// Run smoothing of face normals with optionally recomputing normals
+        /// </summary>
+        /// <param name="forceNormalsUpdate">Forces a complete update</param>
+        /// <param name="minAngle">Maximum deflection angle between two faces having a "smooth" seam</param>
+        public void BalanceNormals(bool forceNormalsUpdate, double minAngle = Math.PI / 5)
+        {
+            //set up the base normals
+            if (forceNormalsUpdate)
+            {
+                foreach (var faceGroup in Faces)
+                {
+                    foreach (var triangle in faceGroup.Value)
+                    {
+                        ComputeTriangleNormal(triangle);
+                    }
+                }
+            }
 
             var edgesAtVertex = _faces.Values.SelectMany(el => el).SelectMany(e => e).Where(e => e != null).GroupBy(k => k.StartVertexIndex);
             foreach (var edges in edgesAtVertex)
-            {               
+            {
                 //create a set of faces to divide the point into a set of connected faces               
                 var faceSet = new List<List<XbimTriangleEdge>>();//the first face set at this point
 
@@ -295,8 +351,8 @@ namespace Xbim.Tessellator
                             if (visited.Contains(nextConnectedEdge.EdgeId))
                                 break; //we are looping or at the start                       
                             //if the edge is sharp start a new face
-                            var angle = nextConnectedEdge.Angle;                      
-                            if ( angle > minAngle && nextConnectedEdge.Normal.IsValid)
+                            var angle = nextConnectedEdge.Angle;
+                            if (angle > minAngle && nextConnectedEdge.Normal.IsValid)
                             {
                                 face = new List<XbimTriangleEdge>();
                                 faceSet.Add(face);
@@ -306,7 +362,7 @@ namespace Xbim.Tessellator
                     } while (nextConnectedEdge != null);
                     //move on to next face
 
-                }        
+                }
 
                 //we have our smoothing groups
                 foreach (var vertexEdges in faceSet.Where(f => f.Count > 1))
@@ -317,24 +373,20 @@ namespace Xbim.Tessellator
                         if (edge.Normal.IsValid)
                         {
                             Vec3.AddTo(ref vertexNormal, ref edge.Normal);
-                        }                      
+                        }
                     }
 
                     Vec3.Normalize(ref vertexNormal);
                     foreach (var edge in vertexEdges)
-                         edge.Normal = vertexNormal;                   
+                        edge.Normal = vertexNormal;
                 }
 
 
             }
-           
+
             //now regroup faces
-            _faces = _faces.Values.SelectMany(v => v).GroupBy(t=>ComputeTrianglePackedNormalInt(t)).ToDictionary(k=>k.Key,v=>v.ToList());
-           
+            _faces = _faces.Values.SelectMany(v => v).GroupBy(t => ComputeTrianglePackedNormalInt(t)).ToDictionary(k => k.Key, v => v.ToList());
         }
-
-
-
 
         private List<XbimTriangleEdge[]> UnifyConnectedTriangles(List<XbimTriangleEdge[]> triangles)
         {
@@ -344,32 +396,31 @@ namespace Xbim.Tessellator
                 foreach (var edge in triangle)
                 {
                     var adjacentEdge = edge.AdjacentEdge;
-                    
+
                     if (adjacentEdge != null) //if we just have one it is a boundary
                     {
-                        var adjacentTriangle = new[] {adjacentEdge, adjacentEdge.NextEdge, adjacentEdge.NextEdge.NextEdge};
+                        var adjacentTriangle = new[] { adjacentEdge, adjacentEdge.NextEdge, adjacentEdge.NextEdge.NextEdge };
                         if (adjacentEdge.EdgeId == edge.EdgeId) //they both face the same way
                         {
                             if (!adjacentEdge.Frozen)
                             {
-                                adjacentEdge.Reverse(); //will reverse the entire triangle
+                                adjacentEdge.Reverse(); // will reverse the entire triangle
+                                edge.Freeze(); // freeze current triangle
                             }
                             else //we cannot align the edges correctly so break the connection
                             {
                                 edge.AdjacentEdge = null;
-                                adjacentEdge.AdjacentEdge = null; 
+                                adjacentEdge.AdjacentEdge = null;
                                 //Xbim3DModelContext.Logger.WarnFormat("Invalid triangle orientation has been ignored in entity #{0}", entityLabel);
                             }
-                          
                         }
-                        
+
                         if (!adjacentEdge.Frozen)
                         {
                             adjacentEdge.Freeze();
                             nextCandidates.Add(adjacentTriangle);
-                        } 
+                        }
                     }
-                   
                 }
             }
             return nextCandidates;
@@ -378,20 +429,20 @@ namespace Xbim.Tessellator
         /// <summary>
         /// Adds the triangle using the three ints as inidices into the vertext collection
         /// </summary>
-        /// <param name="p1"></param>
-        /// <param name="p2"></param>
-        /// <param name="p3"></param>
-        /// <param name="faceId"></param>
-        public void AddTriangle(int p1, int p2, int p3, int faceId)
+        /// <param name="p1">First index</param>
+        /// <param name="p2">Second index</param>
+        /// <param name="p3">Third index</param>
+        /// <param name="faceId">The face ID</param>
+        public XbimTriangleEdge[] AddTriangle(int p1, int p2, int p3, int faceId)
         {
-           
+
             var e1 = new XbimTriangleEdge(p1);
             var e2 = new XbimTriangleEdge(p2);
             var e3 = new XbimTriangleEdge(p3);
             e1.NextEdge = e2;
             e2.NextEdge = e3;
             e3.NextEdge = e1;
-     
+
 
             var edgeList = new[] { e1, e2, e3 };
             bool faulty = !AddEdge(e1);
@@ -406,7 +457,7 @@ namespace Xbim.Tessellator
                 RemoveEdge(e2);
                 faulty = true;
             }
-            if (faulty) 
+            if (faulty)
                 FaultyTriangles.Add(edgeList);
             List<XbimTriangleEdge[]> triangleList;
             if (!_faces.TryGetValue(faceId, out triangleList))
@@ -415,7 +466,7 @@ namespace Xbim.Tessellator
                 _faces.Add(faceId, triangleList);
             }
             triangleList.Add(edgeList);
-            
+            return edgeList;
         }
 
         /// <summary>
@@ -449,7 +500,7 @@ namespace Xbim.Tessellator
                             (by - ay) * (cz - az) - (bz - az) * (cy - ay),
                             (bz - az) * (cx - ax) - (bx - ax) * (cz - az),
                             (bx - ax) * (cy - ay) - (by - ay) * (cx - ax)
-                );            
+                );
             if (Vec3.Normalize(ref v))
             {
                 edges[0].Normal = v;
@@ -503,7 +554,7 @@ namespace Xbim.Tessellator
 
         public void AddVertex(Vec3 v, ref ContourVertex contourVertex)
         {
-            if (_vertices.Contains(v)) 
+            if (_vertices.Contains(v))
                 contourVertex = _vertices[v];
             else
             {
@@ -544,126 +595,107 @@ namespace Xbim.Tessellator
             v = v.Normalized();
             return v;
         }
+    }
+
+    /// <summary>
+    /// Edge class for triangular meshes only
+    /// </summary>
+    public class XbimTriangleEdge
+    {
+        public int StartVertexIndex;
+        public XbimTriangleEdge NextEdge;
+        public XbimTriangleEdge AdjacentEdge;
+        public Vec3 Normal;
+        private bool _frozen;
+        public int EndVertexIndex { get { return NextEdge.StartVertexIndex; } }
+
+        public XbimTriangleEdge(int p1)
+        {
+            StartVertexIndex = p1;
+        }
+
+        public bool Frozen
+        {
+            get { return _frozen; }
+        }
+
+        internal void Unfreeze()
+        {
+            _frozen = false;
+        }
 
         /// <summary>
-        /// Returns true if the triangle that contains the edge is facing away from the centroid of the mesh
+        /// Returns the angle of this edge, 0 if the edge has no adjacent edge or the the normals are invalid, returns -1 if invalid
         /// </summary>
-        /// <returns></returns>
-        public bool IsFacingOutward(XbimTriangleEdge edge)
+        public double Angle
         {
-            //find the centroid of the triangle
-            var p1 = _vertices[edge.StartVertexIndex].Position;
-            var p2 = _vertices[edge.NextEdge.StartVertexIndex].Position;
-            var p3 = _vertices[edge.NextEdge.NextEdge.StartVertexIndex].Position;
-            var centroid = new XbimPoint3D((p1.X + p2.X + p3.X) / 3, (p1.Y + p2.Y + p3.Y) / 3, (p1.Z + p2.Z + p3.Z) / 3);
-            var normal = TriangleNormal(edge);            
-            var vecOut = PointingOutwardFrom(centroid);
-            var dot = vecOut.DotProduct(normal);
-            return dot > 0;
+            get {
+
+                if (AdjacentEdge != null && Normal.IsValid && AdjacentEdge.NextEdge.Normal.IsValid)
+                    return Vec3.Angle(ref Normal, ref AdjacentEdge.NextEdge.Normal);
+                return 0;
+            }
+
         }
 
-    }
-
-}
-
-/// <summary>
-/// Edge class for triangular meshes only
-/// </summary>
-public class XbimTriangleEdge
-{
-    public int StartVertexIndex;
-    public XbimTriangleEdge NextEdge;
-    public XbimTriangleEdge AdjacentEdge;
-    public Vec3 Normal;
-    private bool _frozen;
-    public int EndVertexIndex { get { return NextEdge.StartVertexIndex; } }
-    public XbimTriangleEdge(int p1)
-    {
-        StartVertexIndex = p1;
-    }
-
-    public bool Frozen
-    {
-        get { return _frozen; }
-        
-    }
-
-    /// <summary>
-    /// Returns the angle of this edge, 0 if the edge has no adjacent edge or the the normals are invalid, returns -1 if invalid
-    /// </summary>
-    public double Angle
-    {
-        get
+        public void Freeze()
         {
-            
-            if (AdjacentEdge!=null && Normal.IsValid && AdjacentEdge.NextEdge.Normal.IsValid)
-                return Vec3.Angle(ref Normal, ref AdjacentEdge.NextEdge.Normal);
-            return 0;
-        }    
-        
-    }
-
-
-    public void Freeze()
-    {
-        _frozen = true;
-        NextEdge._frozen=true;
-        NextEdge.NextEdge._frozen = true;
-    }
-
-
-    public void Reverse()
-    {
-        if (!_frozen)
-        { 
-            var p1 = StartVertexIndex;
-            var p2 = NextEdge.StartVertexIndex;
-            var p3 = NextEdge.NextEdge.StartVertexIndex;
-            StartVertexIndex = p2;
-            NextEdge.StartVertexIndex = p3;
-            NextEdge.NextEdge.StartVertexIndex = p1;
-            var prevEdge = NextEdge.NextEdge;
-            prevEdge.NextEdge = NextEdge;
-            NextEdge.NextEdge = this;
-            NextEdge = prevEdge;
+            _frozen = true;
+            NextEdge._frozen = true;
+            NextEdge.NextEdge._frozen = true;
         }
-       
-    }
 
-    /// <summary>
-    /// The ID of the edge, unique for all edges between vertices
-    /// </summary>
-    public long EdgeId
-    {
-        get
+        public void Reverse()
         {
-            long a = StartVertexIndex;
-            a <<= 32;
-            return (a | (uint)EndVertexIndex);
+            if (!_frozen)
+            {
+                var p1 = StartVertexIndex;
+                var p2 = NextEdge.StartVertexIndex;
+                var p3 = NextEdge.NextEdge.StartVertexIndex;
+                StartVertexIndex = p2;
+                NextEdge.StartVertexIndex = p3;
+                NextEdge.NextEdge.StartVertexIndex = p1;
+                var prevEdge = NextEdge.NextEdge;
+                prevEdge.NextEdge = NextEdge;
+                NextEdge.NextEdge = this;
+                NextEdge = prevEdge;
+                // Invert normal
+                Vec3.Neg(ref Normal);
+            }
         }
-    }
 
-    public bool IsEmpty { get { return EdgeId == 0; } }
-
-    /// <summary>
-    /// The key for the edge, this is the same for both directions of an  edge
-    /// </summary>
-    public long Key
-    {
-        get
+        /// <summary>
+        /// The ID of the edge, unique for all edges between vertices
+        /// </summary>
+        public long EdgeId
         {
-            long left = Math.Max(StartVertexIndex, EndVertexIndex);
-            left <<= 32;
-            long right = Math.Min(StartVertexIndex, EndVertexIndex);
-            return (left | right);
+            get {
+                long a = StartVertexIndex;
+                a <<= 32;
+                return (a | (uint)EndVertexIndex);
+            }
         }
-    }
 
-    public XbimPackedNormal PackedNormal
-    {
-        get
+        public bool IsEmpty { get { return EdgeId == 0; } }
+
+        /// <summary>
+        /// The key for the edge, this is the same for both directions of an  edge
+        /// </summary>
+        public long Key
         {
-            return new XbimPackedNormal(Normal.X,Normal.Y,Normal.Z);
+            get {
+                long left = Math.Max(StartVertexIndex, EndVertexIndex);
+                left <<= 32;
+                long right = Math.Min(StartVertexIndex, EndVertexIndex);
+                return (left | right);
+            }
+        }
+
+        public XbimPackedNormal PackedNormal
+        {
+            get {
+                return new XbimPackedNormal(Normal.X, Normal.Y, Normal.Z);
+            }
         }
     }
 }
