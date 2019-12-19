@@ -70,7 +70,7 @@ namespace Xbim.Essentials.Tests
         public void JpgTexture()
         {
             EntityFactoryIfc4 factory = new EntityFactoryIfc4();
-            using (var model = new IO.Memory.MemoryModel(factory))
+            using (MemoryModel model = new IO.Memory.MemoryModel(factory))
             {
                 model.LoadStep21(".\\TestFiles\\Example_Surface_Feature.ifc");
                 IEnumerable<IIfcSurfaceStyle> surfaceStyles = model.Instances.OfType<IIfcSurfaceStyle>();

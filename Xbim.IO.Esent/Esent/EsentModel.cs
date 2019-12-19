@@ -67,6 +67,11 @@ namespace Xbim.IO.Esent
             protected set;
         }
 
+        /// <summary>
+        /// Source path of the modell, i.e. Database
+        /// </summary>
+        public Uri SourcePath { get; } = null;
+
 
         public EsentModel(IEntityFactory factory)
         {

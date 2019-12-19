@@ -158,6 +158,11 @@ namespace Xbim.Common
         /// Predefined schemas supported by xBIM
         /// </summary>
         XbimSchemaVersion SchemaVersion { get; }
+
+        /// <summary>
+        /// Path to the model source, i.e. the file location
+        /// </summary>
+        Uri SourcePath { get; }
     }
 
 	public delegate void NewEntityHandler(IPersistEntity entity);

@@ -64,6 +64,11 @@ namespace Xbim.Ifc
         
         private readonly ReferencedModelCollection _referencedModels = new ReferencedModelCollection();
 
+        /// <summary>
+        /// Path to the source of the model, i.e. the file path
+        /// </summary>
+        public Uri SourcePath { get; set; }
+
         // Internal Constructor for reading
         protected IfcStore()
         {
@@ -78,6 +83,7 @@ namespace Xbim.Ifc
         /// <param name="editorDetails"></param>
         protected IfcStore(string filepath, XbimSchemaVersion ifcVersion, XbimEditorCredentials editorDetails) : this()
         {
+            this.SourcePath = new Uri(Path.GetFullPath(filepath));
             var model = ModelProvider.Create(ifcVersion, filepath);
             AssignModel(model, editorDetails, ifcVersion);
         }

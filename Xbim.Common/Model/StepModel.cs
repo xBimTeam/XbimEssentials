@@ -19,6 +19,11 @@ namespace Xbim.Common.Model
     {
         public ILogger Logger { get; set; }
 
+        /// <summary>
+        /// Source path of the model, i.e. the file location
+        /// </summary>
+        public Uri SourcePath { get; set; }
+
         public static List<string> GetStepFileSchemaVersion(Stream stream)
         {
             var scanner = new Scanner(stream);
@@ -546,6 +551,7 @@ namespace Xbim.Common.Model
         /// <returns>Number of errors in parsing. Always check this to be null or the model might be incomplete.</returns>
         public virtual int LoadStep21(string file, ReportProgressDelegate progDelegate = null)
         {
+            this.SourcePath = new Uri(Path.GetFullPath(file));
             using (var stream = File.OpenRead(file))
             {
                 var result = LoadStep21(stream, stream.Length, progDelegate);

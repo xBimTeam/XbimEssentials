@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-
+using Xbim.Common.Model;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Parser;
+using Microsoft.Extensions.Logging;
 
 // ReSharper disable NonReadonlyMemberInGetHashCode
 
@@ -166,15 +167,24 @@ namespace Xbim.Ifc
             if (style.Textures.Any())
             {
                 IIfcSurfaceTexture texture = style.Textures.First();
+                
+                //additional Error checking
                 if (texture is IIfcImageTexture imageTexture)
                 {
-                    string imageFilePath = (string)imageTexture.URLReference.Value;
-                    if (File.Exists(imageFilePath) == false)
+                    //Convert the path
+                    string modelDir = Path.GetDirectoryName(style.Model.SourcePath.LocalPath);
+                    string relTexturePath = (string)imageTexture.URLReference.Value;
+                    Uri directoryUri = new Uri(modelDir + "\\");
+                    Uri fileUri = new Uri(directoryUri, relTexturePath);
+                    string completeTexturePath = fileUri.LocalPath;
+
+                    if (File.Exists(completeTexturePath) == false)
                     {
-                        throw new FileNotFoundException("The file " + imageFilePath + " have not been found."
+                        style.Model.Logger?.LogWarning("The file " + completeTexturePath + " has not been found."
                             + " Please check entity #" + style.EntityLabel);
                     }
                 }
+
                 this.TextureDefinition = texture;
             }   
         }
