@@ -1,4 +1,9 @@
-﻿using Xbim.Ifc4.Interfaces;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+
+using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Parser;
 
 // ReSharper disable NonReadonlyMemberInGetHashCode
@@ -12,6 +17,21 @@ namespace Xbim.Ifc
    
     public class XbimTexture 
     {
+        /// <summary>
+        /// Has this texture an image as texture
+        /// </summary>
+        public bool HasImageTexture
+        {
+            get
+            {
+                return this.TextureDefinition != null;
+            }
+        }
+
+        /// <summary>
+        /// Underlaying texture 
+        /// </summary>
+        public IIfcSurfaceTexture TextureDefinition { get; private set; }
        
         public readonly XbimColourMap ColourMap = new XbimColourMap();
         /// <summary>
@@ -45,7 +65,8 @@ namespace Xbim.Ifc
             ColourMap.Clear();
             foreach (var style in surfaceStyle.Styles)
             {
-                if (style is IIfcSurfaceStyleRendering) AddColour((IIfcSurfaceStyleRendering)style);
+                if (style is IIfcSurfaceStyleWithTextures) AddTexture((IIfcSurfaceStyleWithTextures)style);
+                else if (style is IIfcSurfaceStyleRendering) AddColour((IIfcSurfaceStyleRendering)style);
                 else if (style is IIfcSurfaceStyleShading) AddColour((IIfcSurfaceStyleShading)style);
                 else if (style is IIfcSurfaceStyleLighting) AddLighting((IIfcSurfaceStyleLighting)style);
             }
@@ -133,6 +154,19 @@ namespace Xbim.Ifc
             DiffuseTransmissionColour = new XbimColour(lighting.DiffuseTransmissionColour);
             TransmissionColour = new XbimColour(lighting.TransmissionColour);
             ReflectanceColour = new XbimColour(lighting.ReflectanceColour);
+        }
+
+        /// <summary>
+        /// Take the texture from the entity
+        /// </summary>
+        /// <remarks>The first teture is used only</remarks>
+        /// <param name="style"></param>
+        private void AddTexture(IIfcSurfaceStyleWithTextures style)
+        {
+            if (style.Textures.Any())
+            {
+                this.TextureDefinition = style.Textures.First();
+            }   
         }
 
         public static XbimTexture Create(IIfcColourRgb colour)

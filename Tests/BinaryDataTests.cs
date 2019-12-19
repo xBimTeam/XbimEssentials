@@ -67,6 +67,21 @@ namespace Xbim.Essentials.Tests
 
         [TestCategory("IfcXml")]
         [TestMethod]
+        public void JpgTexture()
+        {
+            EntityFactoryIfc4 factory = new EntityFactoryIfc4();
+            using (var model = new IO.Memory.MemoryModel(factory))
+            {
+                model.LoadStep21(".\\TestFiles\\Example_Surface_Feature.ifc");
+                IEnumerable<IIfcSurfaceStyle> surfaceStyles = model.Instances.OfType<IIfcSurfaceStyle>();
+                IIfcSurfaceStyle style = surfaceStyles.First(x => x.EntityLabel == 9101);
+
+                XbimTexture.Create(style);
+            }
+        }
+
+        [TestCategory("IfcXml")]
+        [TestMethod]
         public void PixelTextureTest()
         {
             PixelTextureTestCode(XbimSchemaVersion.Ifc2X3);
