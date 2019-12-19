@@ -171,22 +171,42 @@ namespace Xbim.Ifc
                 //additional Error checking
                 if (texture is IIfcImageTexture imageTexture)
                 {
-                    //Convert the path
-                    string modelDir = Path.GetDirectoryName(style.Model.SourcePath.LocalPath);
-                    string relTexturePath = (string)imageTexture.URLReference.Value;
-                    Uri directoryUri = new Uri(modelDir + "\\");
-                    Uri fileUri = new Uri(directoryUri, relTexturePath);
-                    string completeTexturePath = fileUri.LocalPath;
-
-                    if (File.Exists(completeTexturePath) == false)
+                    //Generate the path from the relative path of the containing folder
+                    string texturePath = (string)imageTexture.URLReference.Value;
+                    Uri fileUri;
+                    if (style.Model.SourcePath != null)
                     {
-                        style.Model.Logger?.LogWarning("The file " + completeTexturePath + " has not been found."
-                            + " Please check entity #" + style.EntityLabel);
+                        string modelDir = Path.GetDirectoryName(style.Model.SourcePath.LocalPath);
+                        Uri directoryUri = new Uri(modelDir + "\\");
+                        fileUri = new Uri(directoryUri, texturePath);
+                        this.CheckTextureFile(fileUri, style.Model.Logger, texture.EntityLabel);
+                    }
+                    else
+                    {
+                        if (Uri.IsWellFormedUriString(texturePath, UriKind.RelativeOrAbsolute))
+                        {
+                            fileUri = new Uri(texturePath);
+                            this.CheckTextureFile(fileUri, style.Model.Logger, texture.EntityLabel);
+                        }
+                        else
+                        {
+                            style.Model.Logger?.LogWarning("The Uri " + texturePath + " isn't valid."
+                                    + " Please check entity #" + style.EntityLabel);
+                        }
                     }
                 }
 
                 this.TextureDefinition = texture;
             }   
+        }
+
+        private void CheckTextureFile(Uri fileUri, ILogger logger, int entityLabel)
+        {
+            if (File.Exists(fileUri.LocalPath) == false)
+            {
+                logger?.LogWarning("The file " + fileUri.LocalPath + " has not been found."
+                    + " Please check entity #" + entityLabel);
+            }
         }
 
         public static XbimTexture Create(IIfcColourRgb colour)
