@@ -14,7 +14,8 @@ namespace Xbim.Tessellator
         NoIssues = 0,
         IsOpenBody = 1,
         WasInvertedBody = 2,
-        HasFaultyTriangles = 4
+        HasFaultyTriangles = 4,
+        IsEmptyBody = 9
     }
 
     public class XbimTriangulatedMesh
@@ -216,7 +217,10 @@ namespace Xbim.Tessellator
         public XbimTriangulationStatus UnifyMeshOrientation(bool isIntentiallyClosed, bool computeNormals)
         {
             // Do first run for aligning orientation in either direction
-            var candidate = _faces.Values.FirstOrDefault().ToList();
+            var candidate = _faces.Values.FirstOrDefault();
+            if (null == candidate)
+                return XbimTriangulationStatus.IsEmptyBody;
+
             do
             {
                 candidate = UnifyConnectedTriangles(candidate);
