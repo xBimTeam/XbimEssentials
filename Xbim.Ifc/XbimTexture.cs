@@ -165,7 +165,17 @@ namespace Xbim.Ifc
         {
             if (style.Textures.Any())
             {
-                this.TextureDefinition = style.Textures.First();
+                IIfcSurfaceTexture texture = style.Textures.First();
+                if (texture is IIfcImageTexture imageTexture)
+                {
+                    string imageFilePath = (string)imageTexture.URLReference.Value;
+                    if (File.Exists(imageFilePath) == false)
+                    {
+                        throw new FileNotFoundException("The file " + imageFilePath + " have not been found."
+                            + " Please check entity #" + style.EntityLabel);
+                    }
+                }
+                this.TextureDefinition = texture;
             }   
         }
 
