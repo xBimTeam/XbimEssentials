@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net47</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net47</TargetFrameworks>
     <Company>Xbim Ltd.</Company>
     <Title>Xbim IO for ESENT</Title>
     <Description>Manages Ifc or STEP Model backed by the ESENT database. Windows only.</Description>
@@ -17,7 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ManagedEsent" Version="1.9.4" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

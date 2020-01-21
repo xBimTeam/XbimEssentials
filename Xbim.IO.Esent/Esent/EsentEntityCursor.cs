@@ -198,8 +198,6 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Constructs a table and opens it
         /// </summary>
-        /// <param name="instance"></param>
-        /// <param name="database"></param>
         public EsentEntityCursor(EsentModel model, string database, OpenDatabaseGrbit mode)
             : base(model, database, mode)
         {
@@ -220,6 +218,7 @@ namespace Xbim.IO.Esent
         /// <param name="primaryKey">The label of the entity</param>
         /// <param name="type">The index of the type of the entity</param>
         /// <param name="data">The property data</param>
+        /// <param name="index">property data</param>
         internal void SetEntityRowValues(int primaryKey, short type, byte[] data, bool? index)
         {
             //SRL need to upgrade store to uint
@@ -307,6 +306,7 @@ namespace Xbim.IO.Esent
         /// <param name="typeId">Type identifer</param>
         /// <param name="indexKeys">Search keys to use specifiy null if no indices</param>
         /// <param name="data">property data</param>
+        /// <param name="indexed">property data</param>
         internal void UpdateEntity(int currentLabel, short typeId, IEnumerable<int> indexKeys, byte[] data, bool? indexed)
         {
             try
@@ -380,6 +380,8 @@ namespace Xbim.IO.Esent
         /// <param name="typeId">Type identifer</param>
         /// <param name="indexKeys">Search keys to use specifiy null if no indices</param>
         /// <param name="data">property data</param>
+        /// <param name="indexed"></param>
+        /// <param name="trans"></param>
         internal void AddEntity(int currentLabel, short typeId, IEnumerable<int> indexKeys, byte[] data, bool? indexed, EsentLazyDBTransaction? trans = null)
         {
             //Debug.WriteLine(currentLabel);
@@ -465,6 +467,7 @@ namespace Xbim.IO.Esent
         /// The entity label will be as specified, an exception will be raised if the label is already in use
         /// </summary>
         /// <param name="type">Type of entity to create, this must support IPersistIfcEntity</param>
+        /// <param name="entityLabel"></param>
         /// <returns>A handle to the entity</returns>
         internal XbimInstanceHandle AddEntity(Type type, int entityLabel)
         {
@@ -489,8 +492,10 @@ namespace Xbim.IO.Esent
         /// Trys to move to the first entity of the specified type, assumes the current index has been set to order by type (SetOrderByType)
         /// </summary>
         /// <param name="typeId"></param>
+        /// <param name="ih"></param>
         /// <returns></returns>
-        public bool TrySeekEntityType(short typeId, out XbimInstanceHandle ih)
+        public bool TrySeekEntityType(
+            short typeId, out XbimInstanceHandle ih)
         {
             return TrySeekEntityType(typeId, out ih, -1);
 
@@ -516,6 +521,7 @@ namespace Xbim.IO.Esent
         /// Secondary keys are specific to the type and defined as IfcAttributes in the class declaration
         /// </summary>
         /// <param name="typeId">the type of entity to look up</param>
+        /// <param name="ih"></param>
         /// <param name="lookupKey">Secondary key on the search</param>
         /// <returns>Returns an instance handle to the first or an empty handle if not found</returns>
         public bool TrySeekEntityType(short typeId, out XbimInstanceHandle ih, int lookupKey)

@@ -53,7 +53,7 @@ namespace Xbim.Ifc
         /// Creates a new Persistent model store
         /// </summary>
         /// <param name="ifcVersion"></param>
-        /// <param name="storagePath"></param>
+        /// <param name="dbPath"></param>
         /// <returns></returns>
         public override IModel Create(XbimSchemaVersion ifcVersion, string dbPath)
         {

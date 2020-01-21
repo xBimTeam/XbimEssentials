@@ -520,17 +520,17 @@ namespace Xbim.IO.Esent
         {
             //Directories are setup using the following strategy
             //First look in the config file, then try and use windows temporary directory, then the current working directory
-            var tempDirectory = ConfigurationManager.AppSettings["XbimTempDirectory"];
-            if (!IsValidDirectory(ref tempDirectory))
-            {
-                tempDirectory = Path.Combine(Path.GetTempPath(), "Xbim." + Guid.NewGuid().ToString());
+           // var tempDirectory = ConfigurationManager.AppSettings["XbimTempDirectory"];
+           // if (!IsValidDirectory(ref tempDirectory))
+           // {
+                var tempDirectory = Path.Combine(Path.GetTempPath(), "Xbim." + Guid.NewGuid().ToString());
                 if (!IsValidDirectory(ref tempDirectory))
                 {
                     tempDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Xbim." + Guid.NewGuid().ToString());
                     if (!IsValidDirectory(ref tempDirectory))
                         throw new XbimException("Unable to initialise the Xbim database engine, no write access. Please set a location for the XbimTempDirectory in the config file");
                 }
-            }
+           // }
             return tempDirectory;
         }
 
