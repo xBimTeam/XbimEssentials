@@ -66,7 +66,7 @@ To fix this warning, consider calling 'IfcStore.ModelProviderFactory.UseHeuristi
             }
             catch(Exception ex)
             {
-                logger.LogError(ex, @"Failed to resolve Esent.IO's ModelProvider. Defaulting to MemoryModelProvider. 
+                logger.LogError(0, ex, @"Failed to resolve Esent.IO's ModelProvider. Defaulting to MemoryModelProvider. 
 Consider calling 'IfcStore.ModelProviderFactory.UseHeuristicModelProvider();' at application startup'");
             }
             return new MemoryModelProvider();

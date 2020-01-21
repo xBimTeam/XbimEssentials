@@ -13,7 +13,7 @@ namespace Xbim.Essentials.Tests
     /// Summary description for FederationPathTests
     /// </summary>
     [TestClass]
-    
+
     public class FederationPathTests
     {
         const string sourceFolder = @"FederationTestFiles\";
@@ -22,7 +22,8 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CanFindRelativeFiles()
         {
-            Directory.Delete("moved", true);
+            if (Directory.Exists("moved"))
+                Directory.Delete("moved", true);
             Directory.CreateDirectory("moved");
 
             File.Copy("FederationTestFiles\\RelativePathFederation.ifc", "moved\\RelativePathFederation.ifc");
