@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
 using Xbim.Common.Geometry;
+using Xbim.Common.Step21;
+using Xbim.Ifc;
+using Xbim.Ifc2x3.GeometryResource;
+using Xbim.Ifc2x3.Kernel;
+using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
 {
@@ -78,6 +84,33 @@ namespace Xbim.Essentials.Tests
             }
             return points;
         }
+
+        [TestMethod]
+        public void DirectionsWithLessThan3DimsCanBeNormalisedToVector()
+        {
+            using (var model = IfcStore.Create(XbimSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
+            using (var txn = model.BeginTransaction())
+            {
+                var dir = model.Instances.New<IfcDirection>();
+                dir.SetXY(1, double.NaN);
+
+                var vectorised = dir.Normalise();
+                Assert.AreEqual(1, vectorised.X);
+                Assert.AreEqual(0, vectorised.Y);
+                Assert.AreEqual(0, vectorised.Z);
+
+
+                var dir2 = model.Instances.New<IfcDirection>();
+                dir.SetXY(1, 1);
+                vectorised = dir2.Normalise();
+                Assert.AreNotEqual(1, vectorised.X);
+                Assert.AreEqual(vectorised.Y, vectorised.X);
+                Assert.AreEqual(0, vectorised.Z);
+
+                txn.Commit();
+            }
+        }
+
 
         [TestMethod]
         public void MatrixArrayConversion()
