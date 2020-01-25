@@ -84,7 +84,26 @@ namespace Xbim.Ifc4.GeometryResource
                 v3D.Normalized();
                 return v3D;
             }
-            throw new ArgumentException("Only 3D Directions are supported for normalised at present");
+            // Since the return value is not stored in any field or property 
+            // and the function return variable is intrinsically 3D it's reasonable do 
+            // deal with dimensions lower than 3
+            //
+            var compX = X; // each value is nan if the dimension is not specified
+            var compY = Y;
+            var compZ = Z;
+
+            // substitite nan for 0
+            if (double.IsNaN(compX))
+                compX = 0;
+            if (double.IsNaN(compY))
+                compY = 0;
+            if (double.IsNaN(compZ))
+                compZ = 0;
+
+            var otherCases = new XbimVector3D(compX, compY, compZ);
+            // normalied return a 0-len-vector if no significant direction exists
+            otherCases.Normalized();
+            return otherCases;
         }
 
 
