@@ -8,7 +8,9 @@ using Xbim.Common;
 using Xbim.Common.Metadata;
 using Xbim.Ifc;
 using Xbim.Ifc2x3;
+using Xbim.Ifc2x3.GeometryResource;
 using Xbim.Ifc2x3.Kernel;
+using Xbim.Ifc2x3.RepresentationResource;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO.Memory;
 using IfcRelSpaceBoundary = Xbim.Ifc4.ProductExtension.IfcRelSpaceBoundary;
@@ -52,6 +54,73 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestMethod]
+        public void CompleteProductInsert()
+        {
+            const string original = "4walls1floorSite.ifc";
+            using (var model = new IO.Memory.MemoryModel(ef2x3))
+            {
+                var errs = model.LoadStep21(original);
+                Assert.AreEqual(0, errs);
+                using (model.BeginEntityCaching())
+                using (model.BeginInverseCaching())
+                {
+                    var products = model.Instances.OfType<IfcProduct>();
+                    using (var iModel = new IO.Memory.MemoryModel(ef2x3))
+                    {
+                        var map = new XbimInstanceHandleMap(model, iModel);
+                        using (var txn = iModel.BeginTransaction("Insert copy"))
+                        {
+                            var w = new Stopwatch();
+                            w.Start();
+                            iModel.InsertCopy(products, true, false, map);
+                            txn.Commit();
+                            w.Stop();
+
+                            var copies = Path.ChangeExtension(original, ".copy.ifc");
+                            using (var f = File.Create(copies))
+                            {
+                                iModel.SaveAsIfc(f);
+                                f.Close();
+                            }
+                        }
+
+                        // use all caching we can for this
+                        using (iModel.BeginEntityCaching())
+                        using (iModel.BeginInverseCaching())
+                        {
+                            // number of products should be the same
+                            var origProdCount = model.Instances.CountOf<IfcProduct>();
+                            var prodCount = iModel.Instances.CountOf<IfcProduct>();
+                            Assert.AreEqual(origProdCount, prodCount);
+
+                            // number of geometry representations should be the same
+                            var origRepCount = model.Instances.CountOf<IfcProductRepresentation>();
+                            var repCount = model.Instances.CountOf<IfcProductRepresentation>();
+                            Assert.AreEqual(origRepCount, repCount);
+
+                            // number of geometry representations should be the same
+                            var origRepItemCount = model.Instances.CountOf<IfcRepresentationItem>();
+                            var repItemCount = model.Instances.CountOf<IfcRepresentationItem>();
+                            Assert.AreEqual(origRepItemCount, repItemCount);
+
+                            // number of representation items in every product should be the same
+                            foreach (var product in model.Instances.OfType<IfcProduct>())
+                            {
+                                var iProduct = map[new XbimInstanceHandle(product)].GetEntity() as IfcProduct;
+
+                                var count = product.Representation?.Representations.SelectMany(r => r.Items).Count();
+                                var iCount = iProduct.Representation?.Representations.SelectMany(r => r.Items).Count();
+
+                                Assert.AreEqual(count, iCount);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void CopyWallsOver()
         {
