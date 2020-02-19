@@ -57,7 +57,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CompleteProductInsert()
         {
-            const string original = "4walls1floorSite.ifc";
+            const string original = "TestFiles\\4walls1floorSite.ifc";
             using (var model = new IO.Memory.MemoryModel(ef2x3))
             {
                 var errs = model.LoadStep21(original);
@@ -120,7 +120,6 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void CopyWallsOver()
         {

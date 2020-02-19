@@ -59,22 +59,22 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="FederationTestFiles\*.*">
+    <None Update="FederationTestFiles\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="GeometryCacheTestFiles\*.*">
+    <None Update="GeometryCacheTestFiles\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="SubmittedFiles\*.*">
+    <None Update="SubmittedFiles\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestFiles\*.*">
+    <None Update="TestFiles\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestSourceFiles\*.*">
+    <None Update="TestSourceFiles\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="XsdSchemas\*.*">
+    <None Update="XsdSchemas\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
