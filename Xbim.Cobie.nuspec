@@ -2,13 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Cobie</id>
-    <version>4.0.30-V058</version>
+    <!-- Legacy versions bugfixes will have master numbering to ensure diffusion -->
+    <version>4.0.31</version>
     <title>xBIM Cobie</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
-    <license type="expression">CDDL-1.0</license>
+    <license type="expression">CDDL-1.1</license>
     <projectUrl>https://github.com/xBimTeam/</projectUrl>
-    <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=240</iconUrl>
+    <icon>xbim.jpg</icon>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>
       xBIM Cobie provides an object model for handling the Cobie schema used in both the UK and US implementations.
@@ -19,11 +20,14 @@
     <language>en-GB</language>
     <tags>COBie, BIM, IFC, IfcXml, IfcZip, COBie, Ifc4, .Net, C#, BuildingSmart</tags>
     <dependencies>
-      <dependency id="NPOI" version="2.3.0" />
-      <dependency id="Xbim.Essentials" version="4.0.30-V057" />
+      <group targetFramework="net40">
+        <dependency id="NPOI" version="2.3.0" />
+        <dependency id="Xbim.Essentials" version="4.0.31" />
+      </group>
     </dependencies>
   </metadata>
   <files>
+    <file src="xbim.jpg" target="" />
     <file src="Output\Release\Xbim.CobieExpress.IO.dll" target="lib\net40\Xbim.CobieExpress.IO.dll" />
     <file src="Output\Release\Xbim.IO.TableStore.dll"   target="lib\net40\Xbim.IO.TableStore.dll" />
     <file src="Output\Release\Xbim.CobieExpress.IO.pdb" target="lib\net40\Xbim.CobieExpress.IO.pdb" />

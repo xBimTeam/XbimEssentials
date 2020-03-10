@@ -2,13 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>Xbim.Essentials</id>
-    <version>4.0.30-V058</version>
+    <!-- Legacy versions bugfixes will have master numbering to ensure diffusion -->
+    <version>4.0.31</version>
     <title>xBIM Essentials</title>
     <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny, Claudio Benghi</owners>
-    <license type="expression">CDDL-1.0</license>
+    <license type="expression">CDDL-1.1</license>
     <projectUrl>https://github.com/xBimTeam/</projectUrl>
-    <iconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;s=240</iconUrl>
+    <icon>xbim.jpg</icon>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>
       xBIM Essentials 4 provides support for Ifc2x2, Ifc2x3 and Ifc4 Addendum 1. 
@@ -26,12 +27,15 @@
     <language>en-GB</language>
     <tags>BIM, IFC, IfcXml, IfcZip, Ifc4,  COBie, .Net, C#, BuildingSmart</tags>
     <dependencies>
-      <dependency id="log4net" version="2.0.8" />
-      <dependency id="ManagedEsent" version="1.9.4" />
-      <dependency id="SharpZipLib" version="0.86.0" />
+      <group targetFramework="net40">
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="ManagedEsent" version="1.9.4" />
+        <dependency id="SharpZipLib" version="0.86.0" />
+      </group>
     </dependencies>
   </metadata>
   <files>
+    <file src="xbim.jpg" target="" />
     <file src="Output\Release\Xbim.CobieExpress.dll"    target="lib\net40\Xbim.CobieExpress.dll" />
     <file src="Output\Release\Xbim.Common.dll"          target="lib\net40\Xbim.Common.dll" />
     <file src="Output\Release\Xbim.Ifc.Extensions.dll"  target="lib\net40\Xbim.Ifc.Extensions.dll" />

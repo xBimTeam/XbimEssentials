@@ -50,7 +50,16 @@ namespace Xbim.Ifc
             get { return _model.InverseCache; }
         }
 
-        public object Tag { get; set; }
+        private object tag;
+        public object Tag
+        {
+            get => tag; set
+            {
+                if (_model != null)
+                    _model.Tag = value;
+                tag = value;
+            }
+        }
 
         private bool _disposed;
         /// <summary>
@@ -318,7 +327,7 @@ namespace Xbim.Ifc
                                 foreach (ZipEntry zipEntry in zipFile)
                                 {
                                     if (!zipEntry.IsFile || zipEntry.Name.StorageType() == IfcStorageType.Invalid)
-                                        continue; 
+                                        continue;
                                     var streamSize = zipEntry.Size;
                                     using (var reader = zipFile.GetInputStream(zipEntry))
                                     {
@@ -851,7 +860,7 @@ namespace Xbim.Ifc
                     // attempt direct copy?
                     //
                     esentModel.Close();
-                    File.Copy(fullSourcePath, fullTargetPath,true);
+                    File.Copy(fullSourcePath, fullTargetPath, true);
                     esentModel.Open(fullTargetPath);
                     return;
                 }
@@ -1529,6 +1538,7 @@ namespace Xbim.Ifc
         private List<IIfcProduct> _primaryElements = new List<IIfcProduct>();
         private readonly List<IIfcProduct> _decomposition = new List<IIfcProduct>();
         private bool _includeGeometry;
+        
 
         /// <summary>
         /// This is a higher level function which uses InsertCopy function alongside with the knowledge of IFC schema to copy over
