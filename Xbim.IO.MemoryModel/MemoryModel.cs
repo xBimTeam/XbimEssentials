@@ -309,7 +309,7 @@ namespace Xbim.IO.Memory
         }
 
         /// <summary>
-        /// Reads schema version fron the stream on the fly inside the parser so it doesn't need to
+        /// Reads schema version from the stream on the fly inside the parser so it doesn't need to
         /// access the file twice.
         /// </summary>
         /// <param name="stream">Input stream for step21 text file</param>
@@ -317,16 +317,21 @@ namespace Xbim.IO.Memory
         /// <param name="progressDel">Progress delegate</param>
         /// <param name="ignoreTypes">A list of ifc types to skip</param>
         /// <param name="allowMissingReferences">Allow referenced entities that are not in the model, default false</param>
+        /// <param name="keepOrder">When true, serialised file will maintain order of entities from the original file (or order of creation)</param>
         /// <returns>New memory model</returns>
         public static MemoryModel OpenReadStep21(Stream stream, ILogger logger = null, ReportProgressDelegate progressDel = null,
-           IEnumerable<string> ignoreTypes = null, bool allowMissingReferences = false)
+           IEnumerable<string> ignoreTypes = null, bool allowMissingReferences = false, bool keepOrder = true)
         {
             var model = new MemoryModel((IEnumerable<string> schemas) =>
             {
                 var schema = GetStepFileXbimSchemaVersion(schemas);
                 return GetFactory(schema);
-            }, logger);
-            model.AllowMissingReferences = allowMissingReferences;
+            }, logger)
+            {
+                AllowMissingReferences = allowMissingReferences
+            };
+            if (!keepOrder)
+                model.DiscardNaturalOrder();
             model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
             return model;
         }

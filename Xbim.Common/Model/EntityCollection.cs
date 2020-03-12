@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Xbim.Common;
+using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Model
 {
@@ -28,8 +29,13 @@ namespace Xbim.Common.Model
         private readonly XbimMultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int, IPersistEntity> _collection = new Dictionary<int, IPersistEntity>(0x77777);
 
-        private readonly List<int> _naturalOrder = new List<int>(0x77777);
-            //about a default of half a million stops too much growing, and 7 is lucky; 
+        private List<int> _naturalOrder = new List<int>(0x77777);
+        //about a default of half a million stops too much growing, and 7 is lucky; 
+
+        internal void DiscardNaturalOrder()
+        {
+            _naturalOrder = null;
+        }
 
         internal IEntityFactory Factory
         {
@@ -289,17 +295,19 @@ namespace Xbim.Common.Model
             if (_model.IsTransactional && _model.CurrentTransaction == null) throw new Exception("Operation out of transaction");
             var key = entity.GetType();
             bool removed = false;
+            int? index = default;
             Action doAction = () =>
             {
                 _internal.Remove(key,entity);
                 removed =_collection.Remove(entity.EntityLabel);
-                _naturalOrder?.Remove(entity.EntityLabel);
+                index = _naturalOrder?.IndexOf(entity.EntityLabel);
+                _naturalOrder?.RemoveAt(index.Value);
             };
             Action undo = () =>
             {
                 _internal.Add(key,entity);
                 _collection.Add(entity.EntityLabel, entity);
-                _naturalOrder?.Add(entity.EntityLabel);
+                _naturalOrder?.Insert(index.Value, entity.EntityLabel);
             };
 
             if (!_model.IsTransactional)
@@ -309,6 +317,66 @@ namespace Xbim.Common.Model
             }
             _model.CurrentTransaction.DoReversibleAction(doAction, undo, entity, ChangeType.Deleted, 0);
             return removed;
+        }
+
+        internal void RemoveReversible(IPersistEntity[] entities)
+        {
+            if (_model.IsTransactional && _model.CurrentTransaction == null) throw new Exception("Operation out of transaction");
+            var toDelete = new Dictionary<Type, HashSet<IPersistEntity>>();
+            foreach (var entity in entities)
+            {
+                var key = entity.GetType();
+                if (!toDelete.TryGetValue(key, out HashSet<IPersistEntity> hash))
+                {
+                    hash = new HashSet<IPersistEntity>();
+                    toDelete.Add(key, hash);
+                }
+                hash.Add(entity);
+            }
+            List<int> originalOrder = null;
+            void doAction()
+            {
+                foreach (var kvp in toDelete)
+                {
+                    var old = _internal[kvp.Key];
+                    _internal.Remove(kvp.Key);
+                    _internal.AddRange(kvp.Key, old.Where(e => !kvp.Value.Contains(e)));
+                }
+                var labelsToDelete = new HashSet<int>(entities.Select(e => e.EntityLabel));
+                foreach (var label in labelsToDelete)
+                {
+                    _collection.Remove(label);
+                }
+                if (_naturalOrder != null)
+                {
+                    originalOrder = _naturalOrder;
+                    _naturalOrder = new List<int>(originalOrder.Count - entities.Length);
+                    foreach (var label in originalOrder)
+                    {
+                        if (labelsToDelete.Contains(label)) continue;
+                        _naturalOrder.Add(label);
+                    }
+                }
+            }
+            void undo()
+            {
+                foreach (var kvp in toDelete)
+                    _internal.AddRange(kvp.Key, kvp.Value);
+                foreach (var entity in entities)
+                    _collection.Add(entity.EntityLabel, entity);
+                _naturalOrder = originalOrder;
+            }
+
+            if (!_model.IsTransactional)
+            {
+                doAction();
+                return;
+            }
+
+            if (_model.CurrentTransaction is Transaction txn)
+                txn.DoReversibleAction(doAction, undo, entities, ChangeType.Deleted, 0);
+            else
+                throw new XbimException("Batch delete not supported in this transaction type: " + _model.CurrentTransaction.GetType().Name);
         }
 
         public IEnumerator<IPersistEntity> GetEnumerator()

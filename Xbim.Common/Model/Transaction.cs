@@ -16,15 +16,16 @@ namespace Xbim.Common.Model
         {
             public Action DoAction { get; private set; }
             public Action UndoAction { get; private set; }
-            public IPersistEntity Entity { get; private set; }
-            public ChangeType ChangeType { get; private set; }
+            //public IPersistEntity Entity { get; private set; }
+            //public ChangeType ChangeType { get; private set; }
 
-            public Change(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType)
+            public Change(Action doAction, Action undoAction)
+            //public Change(Action doAction, Action undoAction, IPersistEntity entity, ChangeType changeType)
             {
                 DoAction = doAction;
                 UndoAction = undoAction;
-                Entity = entity;
-                ChangeType = changeType;
+                //Entity = entity;
+                //ChangeType = changeType;
             }
         }
 
@@ -55,9 +56,9 @@ namespace Xbim.Common.Model
                 throw new Exception("Transaction is closed already");
 
             //from back to front
-            for (var i = _log.Count -1 ; i >= 0 ; i--)
+            for (var i = _log.Count - 1; i >= 0; i--)
                 _log[i].UndoAction();
-            
+
             Finish();
         }
 
@@ -67,41 +68,59 @@ namespace Xbim.Common.Model
                 throw new Exception("Transaction is closed already");
 
             OnEntityChanging(entity, changeType, propertyOrder);
-            
+
             doAction();
-            _log.Add(new Change(doAction, undoAction, entity, changeType));
-            
+            _log.Add(new Change(doAction, undoAction));
+
             OnEntityChanged(entity, changeType, propertyOrder);
             _model.HandleEntityChange(changeType, entity, propertyOrder);
+        }
+
+        public void DoReversibleAction(Action doAction, Action undoAction, IPersistEntity[] entities, ChangeType changeType, int propertyOrder)
+        {
+            if (_closed)
+                throw new Exception("Transaction is closed already");
+
+            foreach (var entity in entities)
+                OnEntityChanging(entity, changeType, propertyOrder);
+
+            doAction();
+            _log.Add(new Change(doAction, undoAction));
+
+            foreach (var entity in entities)
+            {
+                OnEntityChanged(entity, changeType, propertyOrder);
+                _model.HandleEntityChange(changeType, entity, propertyOrder);
+            }
         }
 
         public event EntityChangedHandler EntityChanged;
         public event EntityChangingHandler EntityChanging;
 
 
-        /// <summary>
-        /// Returns all modified entities which are not added or deleted
-        /// </summary>
-        public IEnumerable<IPersistEntity> Modified
-        {
-            get { return _log.Where(c => c.ChangeType == ChangeType.Modified && !_log.Any(a => Equals(a.Entity, c.Entity) && (a.ChangeType == ChangeType.New || a.ChangeType == ChangeType.Deleted))).Select(c => c.Entity).Distinct(); }
-        }
+        ///// <summary>
+        ///// Returns all modified entities which are not added or deleted
+        ///// </summary>
+        //public IEnumerable<IPersistEntity> Modified
+        //{
+        //    get { return _log.Where(c => c.ChangeType == ChangeType.Modified && !_log.Any(a => Equals(a.Entity, c.Entity) && (a.ChangeType == ChangeType.New || a.ChangeType == ChangeType.Deleted))).Select(c => c.Entity).Distinct(); }
+        //}
 
-        /// <summary>
-        /// All entities added as a new in this transaction
-        /// </summary>
-        public IEnumerable<IPersistEntity> Added
-        {
-            get { return _log.Where(c => c.ChangeType == ChangeType.New).Select(c => c.Entity).Distinct(); }
-        }
+        ///// <summary>
+        ///// All entities added as a new in this transaction
+        ///// </summary>
+        //public IEnumerable<IPersistEntity> Added
+        //{
+        //    get { return _log.Where(c => c.ChangeType == ChangeType.New).Select(c => c.Entity).Distinct(); }
+        //}
 
-        /// <summary>
-        /// All deleted entities in this transaction
-        /// </summary>
-        public IEnumerable<IPersistEntity> Deleted
-        {
-            get { return _log.Where(c => c.ChangeType == ChangeType.Deleted).Select(c => c.Entity).Distinct(); }
-        }
+        ///// <summary>
+        ///// All deleted entities in this transaction
+        ///// </summary>
+        //public IEnumerable<IPersistEntity> Deleted
+        //{
+        //    get { return _log.Where(c => c.ChangeType == ChangeType.Deleted).Select(c => c.Entity).Distinct(); }
+        //}
 
 
         private void Finish()
@@ -150,14 +169,12 @@ namespace Xbim.Common.Model
 
         protected virtual void OnEntityChanged(IPersistEntity entity, ChangeType change, int property)
         {
-            var handler = EntityChanged;
-            if (handler != null) handler(entity, change, property);
+            EntityChanged?.Invoke(entity, change, property);
         }
 
         protected virtual void OnEntityChanging(IPersistEntity entity, ChangeType change, int property)
         {
-            var handler = EntityChanging;
-            if (handler != null) handler(entity, change, property);
+            EntityChanging?.Invoke(entity, change, property);
         }
     }
 }
