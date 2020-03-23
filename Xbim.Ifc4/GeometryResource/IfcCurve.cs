@@ -54,29 +54,27 @@ namespace Xbim.Ifc4.GeometryResource
 			get 
 			{
 				//## Getter for Dim
-			    var line = this as IfcLine;
-			    if (line != null)
-			        return line.Pnt.Dim;
-			    var conic = this as IfcConic;
-			    if (conic != null)
-			        return conic.Position.Dim;
-			    var polyline = this as IfcPolyline;
-			    if (polyline != null)
-			        return polyline.Points[1].Dim;
-			    var trimmed = this as IfcTrimmedCurve;
-			    if (trimmed != null)
-			        return trimmed.BasisCurve.Dim;
-			    var composit = this as IfcCompositeCurve;
-			    if (composit != null)
-			        return composit.Segments[1].Dim;
-			    var bspline = this as IfcBSplineCurve;
-			    if (bspline != null)
-			        return bspline.ControlPointsList[1].Dim;
+				if (this as IfcLine != null)
+			        return (this as IfcLine).Pnt.Dim;
+				if (this as IfcConic != null)
+			        return (this as IfcConic).Position.Dim;
+				if (this as IfcPolyline != null)
+			        return (this as IfcPolyline).Points[1].Dim;
+				if (this as IfcTrimmedCurve != null)
+			        return (this as IfcTrimmedCurve).BasisCurve.Dim;
+				if (this as IfcCompositeCurve != null)
+			        return (this as IfcCompositeCurve).Segments[1].Dim;
+				if (this as IfcBSplineCurve != null)
+			        return (this as IfcBSplineCurve).ControlPointsList[1].Dim;
 			    if (this is IfcOffsetCurve2D)
 			        return 2;
                 if (this is IfcOffsetCurve3D)
 			        return 3;
-			    return new IfcDimensionCount(0);
+				if (this is IfcPcurve)
+			        return 3;
+				if (this is IfcIndexedPolyCurve pc)
+					return pc.Points.Dim;
+				return new IfcDimensionCount(0);
 			    //##
 			}
 		}
