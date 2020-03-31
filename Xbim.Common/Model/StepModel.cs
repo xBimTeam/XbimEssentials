@@ -143,6 +143,38 @@ namespace Xbim.Common.Model
             ModelHelper.Delete(this, entity, e => _instances.RemoveReversible(e));
         }
 
+        /// <summary>
+        /// This will delete the entities from model dictionary and also from any references in the model.
+        /// Be careful as this might take a while to check for all occurrences of the object. Also make sure 
+        /// you don't use this object anymore yourself because it won't get disposed until than. This operation
+        /// doesn't guarantee that model is compliant with any kind of schema but it leaves it consistent. So if you
+        /// serialize the model there won't be any references to the object which wouldn't be there.
+        /// </summary>
+        /// <param name="entities">Entities to be deleted in a batch</param>
+        /// <param name="noTransaction">When true, the operation will run outside of transaction. This will save resources on massive operations.</param>
+        public virtual void Delete(IPersistEntity[] entities, bool noTransaction)
+        {
+            if (noTransaction)
+                IsTransactional = false;
+            try
+            {
+                ModelHelper.Delete(this, entities, e => _instances.RemoveReversible(e));
+            }
+            finally
+            {
+                IsTransactional = true;
+            }
+        }
+
+        /// <summary>
+        /// Normally model respects the order in which entities were created or read from the file.
+        /// However, if you don't care and you are creating or deleting many entities, you might gain
+        /// some performance improvement by not keeping that order.
+        /// </summary>
+        public virtual void DiscardNaturalOrder()
+        {
+            _instances.DiscardNaturalOrder();
+        }
 
         public virtual ITransaction BeginTransaction(string name)
         {
@@ -283,7 +315,7 @@ namespace Xbim.Common.Model
             var c = InverseCache;
             if (c != null)
                 return c;
-            return InverseCache = new MemoryInverseCache(_instances);
+            return InverseCache = new MemoryInverseCache(_instances, this);
         }
 
         public void StopCaching()
@@ -579,9 +611,12 @@ namespace Xbim.Common.Model
         /// <summary>
         /// Extension point for inheriting classes
         /// </summary>
-        protected virtual void Disposing() { }
+        protected virtual void Dispose(bool native)
+        {
 
-        public virtual void Dispose()
+        }
+
+        public void Dispose()
         {
             _instances.Dispose();
             _transactionReference = null;
@@ -596,7 +631,9 @@ namespace Xbim.Common.Model
             _modifiedEntityHandlers.Clear();
             _deletedEntityHandlers.Clear();
 
-            Disposing();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+            return;
         }
 
         /// <summary>

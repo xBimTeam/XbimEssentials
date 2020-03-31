@@ -9,10 +9,12 @@ namespace Xbim.Common.Model
     {
         private Dictionary<Type, Dictionary<int, HashSet<int>>> _index = new Dictionary<Type, Dictionary<int, HashSet<int>>>();
         private EntityCollection _entities;
+        private StepModel _model;
 
-        public MemoryInverseCache(EntityCollection entities)
+        public MemoryInverseCache(EntityCollection entities, StepModel model)
         {
             _entities = entities;
+            _model = model;
         }
 
         internal void Add(int key, IPersistEntity value)
@@ -62,6 +64,9 @@ namespace Xbim.Common.Model
             _index = null;
             _entities = null;
             _disposed = true;
+
+            _model.StopCaching();
+            _model = null;
         }
 
         public bool TryGet<T>(string inverseProperty, IPersistEntity inverseArgument, out IEnumerable<T> entities) where T : IPersistEntity

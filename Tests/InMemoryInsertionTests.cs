@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common;
 using Xbim.Common.Metadata;
+using Xbim.Common.Model;
 using Xbim.Ifc;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.GeometryResource;
@@ -55,9 +56,34 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        public void BatchDelete()
+        {
+            const string file = @"TestFiles\\4walls1floorSite.ifc";
+            using (var model = new StepModel(ef2x3))
+            {
+                model.LoadStep21(file);
+
+                var products = model.Instances.OfType<IfcProduct>().ToArray();
+
+                var w = Stopwatch.StartNew();
+                model.Delete(products, true);
+                w.Stop();
+
+                Console.WriteLine($"Deleted {products.Length} in {w.ElapsedMilliseconds}ms");
+
+                var check = model.Instances.OfType<IfcProduct>().ToArray();
+                Assert.AreEqual(0, check.Length);
+
+                var propRels = model.Instances.OfType<IfcRelDefinesByProperties>();
+                Assert.IsTrue(propRels.All(r => r.RelatedObjects.Count == 0));
+            }
+
+        }
+
+        [TestMethod]
         public void CompleteProductInsert()
         {
-            const string original = "4walls1floorSite.ifc";
+            const string original = "TestFiles\\4walls1floorSite.ifc";
             using (var model = new IO.Memory.MemoryModel(ef2x3))
             {
                 var errs = model.LoadStep21(original);
@@ -120,7 +146,6 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-        [DeploymentItem("TestFiles")]
         [TestMethod]
         public void CopyWallsOver()
         {
