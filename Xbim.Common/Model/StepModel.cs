@@ -495,7 +495,7 @@ namespace Xbim.Common.Model
                 if (sid == null)
                 {
                     //add in a bit of flexibility for old Ifc models with weird schema names
-                    var old2xSchemaNamesThatAreOK = new[] { "IFC2X2_FINAL", "IFC2X2" };
+                    var old2xSchemaNamesThatAreOK = new[] { "IFC2X_FINAL", "IFC2X2_FINAL", "IFC2X2" };
                     if(old2xSchemaNamesThatAreOK.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase))==null)
                         throw new XbimParserException("Mismatch between schema defined in the file and schemas available in the data model.");
                     else
