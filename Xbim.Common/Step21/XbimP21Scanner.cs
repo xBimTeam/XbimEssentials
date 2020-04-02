@@ -162,7 +162,7 @@ namespace Xbim.IO.Step21
                                 BeginData();
                                 break;
                             case Tokens.ENTITY:
-                                NewEntity(_scanner.yylval.strVal);
+                                NewEntity(_scanner.yylval.strVal.AsSpan());
                                 break;
                             case Tokens.TYPE:
                                 var type = _scanner.yylval.strVal;
@@ -195,7 +195,7 @@ namespace Xbim.IO.Step21
                                 SetBooleanValue(_scanner.yylval.strVal);
                                 break;
                             case Tokens.IDENTITY:
-                                SetObjectValue(_scanner.yylval.strVal);
+                                SetObjectValue(_scanner.yylval.strVal.AsSpan());
                                 break;
                             case Tokens.HEXA:
                                 SetHexValue(_scanner.yylval.strVal);
@@ -371,7 +371,7 @@ namespace Xbim.IO.Step21
         /// If it wasn't it should log the error, clear the state and start from local point.
         /// </summary>
         /// <param name="entityLabel">Entity Label to create for the new entity</param>
-        protected void NewEntity(string entityLabel)
+        protected void NewEntity(ReadOnlySpan<char> entityLabel)
         {
             //last entity wasn't properly finished
             if (_processStack.Count > 0)
@@ -539,11 +539,11 @@ namespace Xbim.IO.Step21
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private int GetLabel(string value)
+        private int GetLabel(ReadOnlySpan<char> value)
         {
             var label = 0;
             var order = 0;
-            // iterate from the end, skip thi first character '#'
+            // iterate from the end, skip the first character '#'
             for (int i = value.Length - 1; i > 0; i--)
             {
                 var component = value[i] - '0';
@@ -574,7 +574,7 @@ namespace Xbim.IO.Step21
             1000000000
         };
 
-        protected void SetObjectValue(string value)
+        protected void SetObjectValue(ReadOnlySpan<char> value)
         {
             var label = GetLabel(value);
             SetObjectValue(label);
