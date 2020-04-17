@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
@@ -15,6 +16,7 @@ using Xbim.IO;
 using Xbim.IO.Memory;
 using Xbim.IO.Step21;
 
+[assembly: InternalsVisibleTo("Xbim.Essentials.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010029a3c6da60efcb3ebe48c3ce14a169b5fa08ffbf5f276392ffb2006a9a2d596f5929cf0e68568d14ac7cbe334440ca0b182be7fa6896d2a73036f24bca081b2427a8dec5689a97f3d62547acd5d471ee9f379540f338bbb0ae6a165b44b1ae34405624baa4388404bce6d3e30de128cec379147af363ce9c5845f4f92d405ed0")]
 namespace Xbim.Ifc
 {
     /// <summary>
@@ -350,7 +352,18 @@ namespace Xbim.Ifc
         public T InsertCopy<T>(T toCopy, XbimInstanceHandleMap mappings, PropertyTranformDelegate propTransform, bool includeInverses,
             bool keepLabels) where T : IPersistEntity
         {
-            return Model.InsertCopy(toCopy, mappings, propTransform, includeInverses, keepLabels);
+            try
+            {
+                // don't handle new and modified instances for inserted objects as these should have their own
+                // data or should be handles explicitely
+                ManageOwnerHistory = false;
+                return Model.InsertCopy(toCopy, mappings, propTransform, includeInverses, keepLabels);
+            }
+            finally
+            {
+                // switch back
+                ManageOwnerHistory = true;
+            }
         }
 
         public void ForEach<TSource>(IEnumerable<TSource> source, Action<TSource> body) where TSource : IPersistEntity
@@ -404,10 +417,14 @@ namespace Xbim.Ifc
             if (EntityModified != null) EntityModified.Invoke(entity, property);
         }
 
+        internal bool ManageOwnerHistory = true;
+
         private void IfcRootModified(IPersistEntity entity, int property)
         {
-            var root = entity as IIfcRoot;
-            if (root == null || root.OwnerHistory == _ownerHistoryAddObject)
+            if (!ManageOwnerHistory)
+                return;
+
+            if (!(entity is IIfcRoot root) || root.OwnerHistory == _ownerHistoryAddObject)
                 return;
 
             if (root.OwnerHistory != _ownerHistoryModifyObject)
@@ -419,8 +436,10 @@ namespace Xbim.Ifc
 
         private void IfcRootInit(IPersistEntity entity)
         {
-            var root = entity as IIfcRoot;
-            if (root != null)
+            if (!ManageOwnerHistory)
+                return;
+
+            if (entity is IIfcRoot root)
             {
                 root.OwnerHistory = OwnerHistoryAddObject;
                 root.GlobalId = Guid.NewGuid().ToPart21();
