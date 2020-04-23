@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -204,6 +205,17 @@ namespace Xbim.Essentials.Tests
             {
                 model.LoadZip("TestFiles\\Issue107.zip");
                 //Assert.IsTrue(errCount <= 120);
+            }
+        }
+
+        [TestMethod]
+        public void ZeroLeadingExponentTest()
+        {
+            using (var model = new IO.Memory.MemoryModel(ef2x3))
+            {
+                var errs = model.LoadStep21("TestFiles\\RealWithExponent.ifc");
+                Assert.IsTrue(errs == 0);
+                Assert.IsTrue(model.Instances.Count == 1);
             }
         }
 

@@ -28,7 +28,7 @@
 #[0-9]+		        { SetValue(); return((int)Tokens.IDENTITY);} 
 [\-\+0-9][0-9]*	    { SetValue();  return((int)Tokens.INTEGER); } 
 [\-\+\.0-9][\.0-9]+((#INF)|(#IND))?	{ SetValue(); return((int)Tokens.FLOAT); } 
-[\-\+\.0-9][\.0-9]+E[\-\+0-9][0-9]* { SetValue(); return((int)Tokens.FLOAT); } 
+[\-\+\.0-9][\.0-9]+(E|e)[\-\+0-9][0-9]* { SetValue(); return((int)Tokens.FLOAT); } 
 [\']([\001-\046\050-\377]|(\'\')|(\\S\\.))*[\'] { SetValue();  return((int)Tokens.STRING); } 
 [\"][0-9A-Fa-f]+[\"] 	{SetValue(); return((int)Tokens.HEXA); } 
 [\.][TF][\.]	    {SetValue(); return((int)Tokens.BOOLEAN); } 
