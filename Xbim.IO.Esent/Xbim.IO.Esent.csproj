@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;net46;net47</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
     <Company>Xbim Ltd.</Company>
     <Title>Xbim IO for ESENT</Title>
     <Description>Manages Ifc or STEP Model backed by the ESENT database. Windows only.</Description>
@@ -15,8 +15,11 @@
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
     <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net46' OR '$(TargetFramework)' == 'net47' ">
     <PackageReference Include="ManagedEsent" Version="1.9.4" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="ManagedEsent" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

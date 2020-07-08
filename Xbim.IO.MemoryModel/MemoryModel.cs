@@ -513,8 +513,8 @@ namespace Xbim.IO.Memory
                 {
                     if (Version.TryParse(matches[0].Groups[1].Value, out Version modelVersion))
                     {
-                        //SurfaceOfLinearExtrusion bug found in version 17.2.0 and earlier
-                        var surfaceOfLinearExtrusionVersion = new Version(17, 2, 0, 0);
+                        //SurfaceOfLinearExtrusion bug found in version 21.0.0.383 and earlier
+                        var surfaceOfLinearExtrusionVersion = new Version(21, 0, 0, 383);
                         if (modelVersion <= surfaceOfLinearExtrusionVersion)
                             modelFactors.AddWorkAround("#SurfaceOfLinearExtrusion");
                     }
