@@ -132,7 +132,10 @@ namespace Xbim.IO.Memory
         {
             return GetStepFileXbimSchemaVersion(GetStepFileSchemaVersion(stream));
         }
-
+        public MemoryModel(IEntityFactory entityFactory, IStepFileHeader header) : base(entityFactory, 0) 
+        {
+            Header = header;
+        }
         public MemoryModel(IEntityFactory entityFactory, int labelFrom) : base(entityFactory, labelFrom) { }
 
         public MemoryModel(IEntityFactory entityFactory) : this(entityFactory, 0) { }
