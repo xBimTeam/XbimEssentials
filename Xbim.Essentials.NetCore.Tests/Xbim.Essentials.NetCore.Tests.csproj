@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Xbim.IO.Esent\Xbim.IO.Esent.csproj" />
     <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
   </ItemGroup>
 

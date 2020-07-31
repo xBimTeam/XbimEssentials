@@ -63,7 +63,7 @@ namespace Xbim.IO.Esent
             return table;
         }
 
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Xbim.IO.Esent
             catch (Exception)
             {
             }
-            base.Dispose();
+            base.Dispose(disposing);
         }
 
         internal static void CreateTable(JET_SESID sesid, JET_DBID dbid)
