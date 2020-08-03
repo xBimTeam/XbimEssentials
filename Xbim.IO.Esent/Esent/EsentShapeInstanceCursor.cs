@@ -317,10 +317,10 @@ namespace Xbim.IO.Esent
         /// </summary>
         /// <param name="ctxtId"></param>
         /// <param name="shapeLabel"></param>
+        /// <param name="styleLabel"></param>
         /// <param name="typeId"></param>
         /// <param name="productLabel"></param>
         /// <param name="repType"></param>
-        /// <param name="bounds"></param>
         /// <param name="transform"></param>
         public int AddInstance(int ctxtId, int shapeLabel, int styleLabel, short typeId, int productLabel, XbimGeometryRepresentationType repType, byte[] transform)
         {
@@ -362,7 +362,7 @@ namespace Xbim.IO.Esent
        /// </summary>
        /// <param name="context"></param>
        /// <param name="si"></param>
-       /// <param name="retrieveAll">if false only retrieve the key index data for speed, if true all data is returned</param>
+       
        /// <returns></returns>
         public bool TrySeekShapeInstance(int context, ref IXbimShapeInstanceData si)
         {
@@ -438,12 +438,12 @@ namespace Xbim.IO.Esent
             return false;
         }
 
-      
+
 
         /// <summary>
         /// xbimShapeInstanceData will contain the first shape instanceData of the specified product label
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="shapeGeometryLabel"></param>
         /// <param name="si"></param>
         /// <returns></returns>
         public bool TrySeekShapeInstanceOfGeometry(int shapeGeometryLabel, ref IXbimShapeInstanceData si)
@@ -466,8 +466,9 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Returns the first surface style in the specified context, -1 if no styles exists
         /// </summary>
-        /// <param name="p"></param>
+        /// <param name="context"></param>
         /// <param name="surfaceStyle"></param>
+        /// <param name="productType"></param>
         /// <returns></returns>
         public bool TryMoveFirstSurfaceStyle(int context, out int surfaceStyle, out short productType)
         {
@@ -492,6 +493,7 @@ namespace Xbim.IO.Esent
         /// Returns the next surface style in the specified context, assumes TryMoveFirstSurfaceStyle was the last call on this cursor
         /// </summary>
         /// <param name="surfaceStyle"></param>
+        /// <param name="productType"></param>
         /// <returns></returns>
         public bool TryMoveNextSurfaceStyle(out int surfaceStyle, out short productType)
         {
@@ -509,7 +511,7 @@ namespace Xbim.IO.Esent
         /// Skips all instances of skipstlye and returns in the next SurfaceStyle 
         /// </summary>
         /// <param name="skipStyle"></param>
-        /// <param name="surfaceStyle"></param>
+        
         public int SkipSurfaceStyes( int skipStyle)
         {
            
@@ -529,8 +531,8 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Returns the first product type in the specified context
         /// </summary>
-        /// <param name="p"></param>
-        /// <param name="surfaceStyle"></param>
+        /// <param name="context"></param>
+        /// <param name="productType"></param>
         /// <returns></returns>
         public bool TryMoveFirstProductType(int context, out short productType)
         {
@@ -564,7 +566,7 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// Returns the next product type in the specified context, assumes TryMoveFirstSurfaceStyle was the last call on this cursor
         /// </summary>
-        /// <param name="surfaceStyle"></param>
+        /// <param name="productType"></param>
         /// <returns></returns>
         public bool TryMoveNextProductType(out short productType)
         {
