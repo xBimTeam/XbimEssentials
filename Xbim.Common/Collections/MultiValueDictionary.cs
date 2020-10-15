@@ -660,7 +660,7 @@ namespace System.Collections.Generic
 
         public void Add(TKey key, ICollection<TValue> value)
         {
-            throw new NotImplementedException();
+            AddRange(key, value);
         }
 
         /// <summary>
@@ -688,7 +688,7 @@ namespace System.Collections.Generic
 
         ICollection<TValue> IDictionary<TKey, ICollection<TValue>>.this[TKey key]
         {
-            get { throw new NotImplementedException(); }
+            get { return dictionary[key]; }
             set { throw new NotImplementedException(); }
         }
 
@@ -774,7 +774,15 @@ namespace System.Collections.Generic
 
         public void CopyTo(KeyValuePair<TKey, ICollection<TValue>>[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (array == null)
+                throw new ArgumentNullException("array");
+            if (arrayIndex < 0)
+                throw new ArgumentOutOfRangeException("arrayIndex");
+            if (array.Length - arrayIndex < Count)
+                throw new ArgumentException("Not enough elements after arrayIndex in the destination array.");
+
+            for (int i = 0; i < Count; ++i)
+                array[i + arrayIndex] = this.ElementAt(i);
         }
 
         public bool Remove(KeyValuePair<TKey, ICollection<TValue>> item)
