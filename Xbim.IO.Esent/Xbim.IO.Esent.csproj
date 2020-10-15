@@ -27,6 +27,7 @@
     <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
+	</ItemGroup>
 </Project>
