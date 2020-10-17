@@ -47,8 +47,7 @@ namespace Xbim.IO.Esent
 
        
         private static string ifcHeaderColumnName = "IfcHeader";
-
-
+        private bool disposedValue;
 
         public bool ReadOnly { get; set; }
 
@@ -209,20 +208,43 @@ namespace Xbim.IO.Esent
             Api.MoveBeforeFirst(Sesid, Table); 
         }
 
-
-        virtual public void Dispose()
+        protected virtual void Dispose(bool disposing)
         {
-            try
+            if (!disposedValue)
             {
-                Api.JetCloseTable(Sesid, Table);
-                Api.JetCloseTable(Sesid, GlobalsTable);
-                Api.JetCloseDatabase(Sesid, DbId, CloseDatabaseGrbit.None);
-                Api.JetEndSession(Sesid, EndSessionGrbit.None);
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects)
+                    try
+                    {
+                        Api.JetCloseTable(Sesid, Table);
+                        Api.JetCloseTable(Sesid, GlobalsTable);
+                        Api.JetCloseDatabase(Sesid, DbId, CloseDatabaseGrbit.None);
+                        Api.JetEndSession(Sesid, EndSessionGrbit.None);
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                disposedValue = true;
             }
-            catch (Exception)
-            {
-                // ignored
-            }
+        }
+
+        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
+        // ~EsentCursor()
+        // {
+        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        //     Dispose(disposing: false);
+        // }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,23 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1</TargetFrameworks>
-    <Title>Xbim IFC</Title>
-    <Description>Provides supports semantic loading and saving IFC models and related formats. Commonly used types include
+	<TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
+	<Title>Xbim IFC</Title>
+	<Description>Provides supports semantic loading and saving IFC models and related formats. Commonly used types include
   
-    IfcStore
-    IfcValidator
-    DefaultModelProviderFactory
-    XbimReferencedModel
+	IfcStore
+	IfcValidator
+	DefaultModelProviderFactory
+	XbimReferencedModel
   </Description>
-    <RootNamespace>Xbim.Ifc</RootNamespace>
+	<RootNamespace>Xbim.Ifc</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+	<Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
-    <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
-    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
-    <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
+	<ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+	<ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
+	<ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
+	<ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
   </ItemGroup>
+<ItemGroup>
+	<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
+</ItemGroup>
 </Project>

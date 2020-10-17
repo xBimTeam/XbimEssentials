@@ -18,6 +18,7 @@
 		</description>
 		<summary>Meta package for xBIM toolkit base libraries for work with IFC data.</summary>
 		<releaseNotes>
+			Support for NetCore 3.1 added
 			This release is now a 'meta-package' which replaces Xbim Essentials v4. For more granular control you can include the individual Nuget packages in the dependencies.
 			This release is the first to target netstandard2, in addition to netfx. Only minor code refactoring might be required.
 			V5 of Essentials now targets .net47 as a minimum.
@@ -61,6 +62,14 @@
 				<dependency id="Xbim.Tessellator" version="{{version}}" />
 			</group>
 			<group targetFramework="netstandard2.1">
+				<dependency id="Xbim.Common" version="{{version}}" />
+				<dependency id="Xbim.Ifc4" version="{{version}}" />
+				<dependency id="Xbim.Ifc2x3" version="{{version}}" />
+				<dependency id="Xbim.IO.MemoryModel" version="{{version}}" />
+				<dependency id="Xbim.Ifc" version="{{version}}" />
+				<dependency id="Xbim.Tessellator" version="{{version}}" />
+			</group>
+			<group targetFramework="netcoreapp3.1">
 				<dependency id="Xbim.Common" version="{{version}}" />
 				<dependency id="Xbim.Ifc4" version="{{version}}" />
 				<dependency id="Xbim.Ifc2x3" version="{{version}}" />

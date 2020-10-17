@@ -1,10 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
 
 namespace Xbim.Common.Geometry
 {
+    public delegate int ReadIndex(byte[] array, int offset);
     public struct XbimShapeGeometryHandle
     {
         /// <summary>
@@ -60,7 +63,83 @@ namespace Xbim.Common.Geometry
     /// </summary>
     public class XbimShapeGeometry : IXbimShapeGeometryData
     {
-        
+        const int VersionPos = 0;
+        const int VertexCountPos = VersionPos + sizeof(byte);
+        const int TriangleCountPos = VertexCountPos + sizeof(int);
+        const int VertexPos = TriangleCountPos + sizeof(int);
+        public byte Version => _shapeData?.Length > 0 ? _shapeData[VersionPos] : (byte)0;
+        public int VertexCount => _shapeData?.Length > 0 ? BitConverter.ToInt32(_shapeData, VertexCountPos) : 0;
+        public int TriangleCount => _shapeData?.Length > 0 ? BitConverter.ToInt32(_shapeData, TriangleCountPos) : 0;
+        public int FaceCount
+        {
+            get
+            {
+                var faceCountPos = VertexPos + (VertexCount * 3 * sizeof(float));
+                return _shapeData?.Length > 0 ? BitConverter.ToInt32(_shapeData, faceCountPos) : 0;
+            }
+        }
+        public int Length => _shapeData?.Length > 0 ? _shapeData.Length : 0;
+        public byte[] ToByteArray() => _shapeData;
+        public IEnumerable<XbimPoint3D> Vertices
+        {
+            get
+            {
+                const int offsetY = sizeof(float);
+                const int offsetZ = 2 * sizeof(float);
+                for (int i = 0; i < VertexCount; i++)
+                {
+                    var p = VertexPos + (i * 3 * sizeof(float));
+                    yield return new XbimPoint3D(BitConverter.ToSingle(_shapeData, p), BitConverter.ToSingle(_shapeData, p + offsetY), BitConverter.ToSingle(_shapeData, p + offsetZ));
+                }
+            }
+        }
+        /// <summary>
+        /// Returns the vector at the specified position
+        /// </summary>
+        /// <param name="vectorIndex"></param>
+        /// <returns></returns>
+        public XbimPoint3D this[int vectorIndex]
+        {
+            get
+            {
+                const int offsetY = sizeof(float);
+                const int offsetZ = 2 * sizeof(float);
+
+                var p = VertexPos + (vectorIndex * 3 * sizeof(float));
+                return new XbimPoint3D(BitConverter.ToSingle(_shapeData, p), BitConverter.ToSingle(_shapeData, p + offsetY), BitConverter.ToSingle(_shapeData, p + offsetZ));
+
+            }
+        }
+        public IEnumerable<WexBimMeshFace> Faces
+        {
+            get
+            {
+                var faceOffset = VertexPos + (VertexCount * 3 * sizeof(float)) + sizeof(int);//start of vertices * space taken by vertices + the number of faces
+                ReadIndex readIndex;
+                int sizeofIndex;
+                if (VertexCount <= 0xFF)
+                {
+                    readIndex = (array, offset) => array[offset];
+                    sizeofIndex = sizeof(byte);
+                }
+                else if (VertexCount <= 0xFFFF)
+                {
+                    readIndex = (array, offset) => BitConverter.ToUInt16(array, offset);
+                    sizeofIndex = sizeof(ushort);
+                }
+                else
+                {
+                    readIndex = (array, offset) => BitConverter.ToInt32(array, offset);
+                    sizeofIndex = sizeof(int);
+                }
+                for (int i = 0; i < FaceCount; i++)
+                {
+                    var face = new WexBimMeshFace(readIndex, sizeofIndex, _shapeData, faceOffset);
+                    faceOffset += face.ByteSize;
+                    yield return face;
+                }
+            }
+        }
         /// <summary>
         /// The unique label of this shape geometry
         /// </summary>
@@ -333,4 +412,125 @@ namespace Xbim.Common.Geometry
 
 
     }
+
+    public class WexBimMeshFace
+    {
+        private byte[] _array;
+        private int _offsetStart;
+        private ReadIndex _readIndex;
+        private int _sizeofIndex;
+
+        internal WexBimMeshFace(ReadIndex readIndex, int sizeofIndex, byte[] array, int faceOffset)
+        {
+            _readIndex = readIndex;
+            _array = array;
+            _offsetStart = faceOffset;
+            _sizeofIndex = sizeofIndex;
+        }
+        public int ByteSize
+        {
+            get
+            {
+                if (IsPlanar)
+                    return sizeof(int) + 2 + (TriangleCount * 3 * _sizeofIndex); // trianglecount+ normal in 2 bytes + triangulation with no normals
+                else
+                    return sizeof(int) + (TriangleCount * 3 * (_sizeofIndex + 2)); //trianglecount+ normal  + triangulation with normals in 2 bytes
+            }
+        }
+        public int TriangleCount => Math.Abs(BitConverter.ToInt32(_array, _offsetStart));
+        public bool IsPlanar => BitConverter.ToInt32(_array, _offsetStart) > 0;
+        public IEnumerable<int> Indices
+        {
+            get
+            {
+
+                if (IsPlanar)
+                {
+                    var indexOffset = _offsetStart + sizeof(int) + 2; //offset + trianglecount + packed normal of plane in the 2 bytes
+                    var indexSpan = 3 * _sizeofIndex;
+                    for (int i = 0; i < TriangleCount; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            yield return _readIndex(_array, indexOffset + (j * _sizeofIndex)); //skip the normal in the 2 bytes
+                        }
+                        indexOffset += indexSpan;
+                    }
+                }
+                else
+                {
+                    var indexOffset = _offsetStart + sizeof(int); //offset + trianglecount
+                    var indexSpan = _sizeofIndex + 2; //index  + normal in 2 bytes
+                    var triangleSpan = 3 * indexSpan;
+
+                    for (int i = 0; i < TriangleCount; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            yield return _readIndex(_array, indexOffset + (j * indexSpan));
+                        }
+                        indexOffset += triangleSpan;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// returns the normal for a specific point at a specific index on the face
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public XbimVector3D NormalAt(int index)
+        {
+            var indexOffset = _offsetStart + sizeof(int); //offset + trianglecount
+            if (IsPlanar) //no matter what you send in for the index you will get the same value because it is planar
+            {
+                var u = _array[indexOffset];
+                var v = _array[indexOffset + 1];
+                var pn = new XbimPackedNormal(u, v);
+                return pn.Normal;
+            }
+            else
+            {
+                var indexSpan = _sizeofIndex + 2;
+                int normalOffset = indexOffset + (index * indexSpan) + _sizeofIndex;
+                var u = _array[normalOffset];
+                var v = _array[normalOffset + 1];
+                var pn = new XbimPackedNormal(u, v);
+                return pn.Normal;
+            }
+        }
+        public IEnumerable<XbimVector3D> Normals
+        {
+            get
+            {
+                var indexOffset = _offsetStart + sizeof(int); //offset + trianglecount
+                if (IsPlanar)
+                {
+                    var u = _array[indexOffset];
+                    var v = _array[indexOffset + 1];
+                    var pn = new XbimPackedNormal(u, v);
+                    yield return pn.Normal;
+                }
+                else
+                {
+                    var indexSpan = _sizeofIndex + 2;
+                    var triangleSpan = 3 * indexSpan;
+                    var normalOffset = indexOffset + _sizeofIndex;
+                    for (int i = 0; i < TriangleCount; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            var u = _array[normalOffset + (j * indexSpan)];
+                            var v = _array[normalOffset + (j * indexSpan) + 1];
+                            var pn = new XbimPackedNormal(u,v);                           
+                            yield return pn.Normal;
+                        }
+                        normalOffset += triangleSpan;
+                    }
+                }
+            }
+        }
+    }
+   
 }

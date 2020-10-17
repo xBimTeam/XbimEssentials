@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
     <Title>Xbim IFC2x3</Title>
     <Description>Provides supports the IFC2x3 schema.</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
-  </ItemGroup> 
- 
+  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
+	</ItemGroup>
  
 </Project>

@@ -14,9 +14,9 @@
     <Company>Xbim Ltd.</Company>
     <Authors>Steve Lockley, Martin Cerny and XBIMTeam Contributors</Authors>
     <Product>XBIM Essentials</Product>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/xBimTeam/XbimEssentials/master/LICENCE.md</PackageLicenseUrl>
+	  <PackageLicenseExpression>CDDL-1.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/xBimTeam/XbimEssentials</PackageProjectUrl>
-    <PackageIconUrl>https://avatars1.githubusercontent.com/u/2284875?v=3&amp;amp;s=240</PackageIconUrl>
+	  <PackageIcon>xbim-toolkit-icon.png</PackageIcon>
     <PackageReleaseNotes>Version 5.1 update. See https://github.com/xBimTeam/XbimEssentials/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4, COBie, BuildingSmart</PackageTags>

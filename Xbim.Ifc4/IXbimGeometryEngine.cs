@@ -36,6 +36,18 @@ namespace Xbim.Ifc4.Interfaces
         /// <returns></returns>
         XbimShapeGeometry CreateShapeGeometry(IXbimGeometryObject geometryObject, double precision, double deflection, 
             ILogger logger = null /*, double angle=0.5, XbimGeometryType storageType = XbimGeometryType::Polyhedron*/);
+
+        /// <summary>
+        /// Reads the values for linear and angular deflection from the config variables LinearDeflectionInMM and AngularDeflectionInRadians
+        /// </summary>
+        /// <param name="oneMillimetre">The number of model units that equal one millimeter</param>
+        /// <param name="geometryObject"></param>
+        /// <param name="precision">the distance at which two points are considered to be the same</param>
+        /// <param name="logger"></param>
+        /// <returns></returns>
+        XbimShapeGeometry CreateShapeGeometry(double oneMillimetre, IXbimGeometryObject geometryObject, double precision,
+            ILogger logger = null /*, double angle=0.5, XbimGeometryType storageType = XbimGeometryType::Polyhedron*/);
+
         IXbimGeometryObjectSet CreateGeometryObjectSet();
         IXbimSolid CreateSolid(IIfcSweptAreaSolid ifcSolid, ILogger logger = null);
         IXbimSolid CreateSolid(IIfcExtrudedAreaSolid ifcSolid, ILogger logger = null);

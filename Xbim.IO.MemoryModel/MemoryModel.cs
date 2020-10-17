@@ -132,7 +132,10 @@ namespace Xbim.IO.Memory
         {
             return GetStepFileXbimSchemaVersion(GetStepFileSchemaVersion(stream));
         }
-
+        public MemoryModel(IEntityFactory entityFactory, IStepFileHeader header) : base(entityFactory, 0) 
+        {
+            Header = header;
+        }
         public MemoryModel(IEntityFactory entityFactory, int labelFrom) : base(entityFactory, labelFrom) { }
 
         public MemoryModel(IEntityFactory entityFactory) : this(entityFactory, 0) { }
@@ -513,8 +516,8 @@ namespace Xbim.IO.Memory
                 {
                     if (Version.TryParse(matches[0].Groups[1].Value, out Version modelVersion))
                     {
-                        //SurfaceOfLinearExtrusion bug found in version 17.2.0 and earlier
-                        var surfaceOfLinearExtrusionVersion = new Version(17, 2, 0, 0);
+                        //SurfaceOfLinearExtrusion bug found in version 21.1.0.0 and earlier
+                        var surfaceOfLinearExtrusionVersion = new Version(21, 1, 0, 0);
                         if (modelVersion <= surfaceOfLinearExtrusionVersion)
                             modelFactors.AddWorkAround("#SurfaceOfLinearExtrusion");
                     }

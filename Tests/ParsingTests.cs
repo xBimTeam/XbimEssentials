@@ -209,7 +209,7 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        public void ZeroLeadingExponentTest()
+        public void LowerCaseExponentTest()
         {
             using (var model = new IO.Memory.MemoryModel(ef2x3))
             {
