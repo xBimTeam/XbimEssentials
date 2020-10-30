@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelDefinesByProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelDefinesByProperties : IIfcRelDefines
-	{
-		IIfcPropertySetDefinition @RelatingPropertyDefinition { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelDefinesByProperties", 247)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IIfcRelDefinesByProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByProperties>
+	public  partial class @IfcRelDefinesByProperties : IfcRelDefines, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelDefinesByProperties>
 	{
-		#region IIfcRelDefinesByProperties explicit implementation
-		IIfcPropertySetDefinition IIfcRelDefinesByProperties.RelatingPropertyDefinition { 
- 
- 
-			get { return @RelatingPropertyDefinition; } 
-			set { RelatingPropertyDefinition = value as IfcPropertySetDefinition;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefinesByProperties(IModel model, int label, bool activated) : base(model, label, activated)  

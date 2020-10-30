@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGasTerminalType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGasTerminalType : IIfcFlowTerminalType
-	{
-		IfcGasTerminalTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcGasTerminalType", 701)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcGasTerminalType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGasTerminalType>
+	public  partial class @IfcGasTerminalType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGasTerminalType>
 	{
-		#region IIfcGasTerminalType explicit implementation
-		IfcGasTerminalTypeEnum IIfcGasTerminalType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGasTerminalType(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,56 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralSteelProfileProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralSteelProfileProperties : IIfcStructuralProfileProperties
-	{
-		IfcAreaMeasure? @ShearAreaZ { get;  set; }
-		IfcAreaMeasure? @ShearAreaY { get;  set; }
-		IfcPositiveRatioMeasure? @PlasticShapeFactorY { get;  set; }
-		IfcPositiveRatioMeasure? @PlasticShapeFactorZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcStructuralSteelProfileProperties", 692)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IIfcStructuralSteelProfileProperties, IContainsEntityReferences, IEquatable<@IfcStructuralSteelProfileProperties>
+	public  partial class @IfcStructuralSteelProfileProperties : IfcStructuralProfileProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcStructuralSteelProfileProperties>
 	{
-		#region IIfcStructuralSteelProfileProperties explicit implementation
-		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaZ { 
- 
-			get { return @ShearAreaZ; } 
-			set { ShearAreaZ = value;}
-		}	
-		IfcAreaMeasure? IIfcStructuralSteelProfileProperties.ShearAreaY { 
- 
-			get { return @ShearAreaY; } 
-			set { ShearAreaY = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorY { 
- 
-			get { return @PlasticShapeFactorY; } 
-			set { PlasticShapeFactorY = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcStructuralSteelProfileProperties.PlasticShapeFactorZ { 
- 
-			get { return @PlasticShapeFactorZ; } 
-			set { PlasticShapeFactorZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSteelProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  

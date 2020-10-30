@@ -15,52 +15,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSoundValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSoundValue : IIfcPropertySetDefinition
-	{
-		IIfcTimeSeries @SoundLevelTimeSeries { get;  set; }
-		IfcFrequencyMeasure @Frequency { get;  set; }
-		IIfcDerivedMeasureValue @SoundLevelSingleValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSoundValue", 266)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundValue : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundValue, IContainsEntityReferences, IEquatable<@IfcSoundValue>
+	public  partial class @IfcSoundValue : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSoundValue>
 	{
-		#region IIfcSoundValue explicit implementation
-		IIfcTimeSeries IIfcSoundValue.SoundLevelTimeSeries { 
- 
- 
-			get { return @SoundLevelTimeSeries; } 
-			set { SoundLevelTimeSeries = value as IfcTimeSeries;}
-		}	
-		IfcFrequencyMeasure IIfcSoundValue.Frequency { 
- 
-			get { return @Frequency; } 
-			set { Frequency = value;}
-		}	
-		IIfcDerivedMeasureValue IIfcSoundValue.SoundLevelSingleValue { 
- 
- 
-			get { return @SoundLevelSingleValue; } 
-			set { SoundLevelSingleValue = value as IfcDerivedMeasureValue;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSoundValue(IModel model, int label, bool activated) : base(model, label, activated)  

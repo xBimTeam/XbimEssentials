@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAnnotationOccurrence
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAnnotationOccurrence : IIfcStyledItem
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationOccurrence", 58)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAnnotationOccurrence : IfcStyledItem, IIfcAnnotationOccurrence, IEquatable<@IfcAnnotationOccurrence>
+	public abstract partial class @IfcAnnotationOccurrence : IfcStyledItem, IEquatable<@IfcAnnotationOccurrence>
 	{
-		#region IIfcAnnotationOccurrence explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationOccurrence(IModel model, int label, bool activated) : base(model, label, activated)  

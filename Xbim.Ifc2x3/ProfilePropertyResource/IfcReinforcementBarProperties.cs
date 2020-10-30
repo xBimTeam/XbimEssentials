@@ -15,68 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcReinforcementBarProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcReinforcementBarProperties : IPersistEntity
-	{
-		IfcAreaMeasure @TotalCrossSectionArea { get;  set; }
-		IfcLabel @SteelGrade { get;  set; }
-		IfcReinforcingBarSurfaceEnum? @BarSurface { get;  set; }
-		IfcLengthMeasure? @EffectiveDepth { get;  set; }
-		IfcPositiveLengthMeasure? @NominalBarDiameter { get;  set; }
-		IfcCountMeasure? @BarCount { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcReinforcementBarProperties", 684)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReinforcementBarProperties : PersistEntity, IInstantiableEntity, IIfcReinforcementBarProperties, IEquatable<@IfcReinforcementBarProperties>
+	public  partial class @IfcReinforcementBarProperties : PersistEntity, IInstantiableEntity, IEquatable<@IfcReinforcementBarProperties>
 	{
-		#region IIfcReinforcementBarProperties explicit implementation
-		IfcAreaMeasure IIfcReinforcementBarProperties.TotalCrossSectionArea { 
- 
-			get { return @TotalCrossSectionArea; } 
-			set { TotalCrossSectionArea = value;}
-		}	
-		IfcLabel IIfcReinforcementBarProperties.SteelGrade { 
- 
-			get { return @SteelGrade; } 
-			set { SteelGrade = value;}
-		}	
-		IfcReinforcingBarSurfaceEnum? IIfcReinforcementBarProperties.BarSurface { 
- 
-			get { return @BarSurface; } 
-			set { BarSurface = value;}
-		}	
-		IfcLengthMeasure? IIfcReinforcementBarProperties.EffectiveDepth { 
- 
-			get { return @EffectiveDepth; } 
-			set { EffectiveDepth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcReinforcementBarProperties.NominalBarDiameter { 
- 
-			get { return @NominalBarDiameter; } 
-			set { NominalBarDiameter = value;}
-		}	
-		IfcCountMeasure? IIfcReinforcementBarProperties.BarCount { 
- 
-			get { return @BarCount; } 
-			set { BarCount = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReinforcementBarProperties(IModel model, int label, bool activated) : base(model, label, activated)  

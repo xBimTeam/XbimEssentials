@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDraughtingPreDefinedCurveFont
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDraughtingPreDefinedCurveFont : IIfcPreDefinedCurveFont
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcDraughtingPreDefinedCurveFont", 286)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDraughtingPreDefinedCurveFont : IfcPreDefinedCurveFont, IInstantiableEntity, IIfcDraughtingPreDefinedCurveFont, IEquatable<@IfcDraughtingPreDefinedCurveFont>
+	public  partial class @IfcDraughtingPreDefinedCurveFont : IfcPreDefinedCurveFont, IInstantiableEntity, IEquatable<@IfcDraughtingPreDefinedCurveFont>
 	{
-		#region IIfcDraughtingPreDefinedCurveFont explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDraughtingPreDefinedCurveFont(IModel model, int label, bool activated) : base(model, label, activated)  

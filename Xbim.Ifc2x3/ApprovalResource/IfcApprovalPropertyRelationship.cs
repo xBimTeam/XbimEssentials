@@ -15,43 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ApprovalResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcApprovalPropertyRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcApprovalPropertyRelationship : IPersistEntity
-	{
-		IItemSet<IIfcProperty> @ApprovedProperties { get; }
-		IIfcApproval @Approval { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApprovalPropertyRelationship", 376)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalPropertyRelationship : PersistEntity, IInstantiableEntity, IIfcApprovalPropertyRelationship, IContainsEntityReferences, IEquatable<@IfcApprovalPropertyRelationship>
+	public  partial class @IfcApprovalPropertyRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcApprovalPropertyRelationship>
 	{
-		#region IIfcApprovalPropertyRelationship explicit implementation
-		IItemSet<IIfcProperty> IIfcApprovalPropertyRelationship.ApprovedProperties { 
-			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @ApprovedProperties); } 
-		}	
-		IIfcApproval IIfcApprovalPropertyRelationship.Approval { 
- 
- 
-			get { return @Approval; } 
-			set { Approval = value as IfcApproval;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApprovalPropertyRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,54 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCompositeCurveSegment
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCompositeCurveSegment : IIfcGeometricRepresentationItem
-	{
-		IfcTransitionCode @Transition { get;  set; }
-		bool @SameSense { get;  set; }
-		IIfcCurve @ParentCurve { get;  set; }
-		IEnumerable<IIfcCompositeCurve> @UsingCurves {  get; }
-		IfcDimensionCount @Dim  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCompositeCurveSegment", 460)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcCompositeCurveSegment, IContainsEntityReferences, IEquatable<@IfcCompositeCurveSegment>
+	public  partial class @IfcCompositeCurveSegment : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCompositeCurveSegment>
 	{
-		#region IIfcCompositeCurveSegment explicit implementation
-		IfcTransitionCode IIfcCompositeCurveSegment.Transition { 
- 
-			get { return @Transition; } 
-			set { Transition = value;}
-		}	
-		bool IIfcCompositeCurveSegment.SameSense { 
- 
-			get { return @SameSense; } 
-			set { SameSense = value;}
-		}	
-		IIfcCurve IIfcCompositeCurveSegment.ParentCurve { 
- 
- 
-			get { return @ParentCurve; } 
-			set { ParentCurve = value as IfcCurve;}
-		}	
-		 
-		IEnumerable<IIfcCompositeCurve> IIfcCompositeCurveSegment.UsingCurves {  get { return @UsingCurves; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeCurveSegment(IModel model, int label, bool activated) : base(model, label, activated)  

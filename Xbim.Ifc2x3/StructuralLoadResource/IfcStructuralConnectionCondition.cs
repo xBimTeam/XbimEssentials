@@ -15,38 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralConnectionCondition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralConnectionCondition : IPersistEntity
-	{
-		IfcLabel? @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralConnectionCondition", 639)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralConnectionCondition : PersistEntity, IIfcStructuralConnectionCondition, IEquatable<@IfcStructuralConnectionCondition>
+	public abstract partial class @IfcStructuralConnectionCondition : PersistEntity, IEquatable<@IfcStructuralConnectionCondition>
 	{
-		#region IIfcStructuralConnectionCondition explicit implementation
-		IfcLabel? IIfcStructuralConnectionCondition.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralConnectionCondition(IModel model, int label, bool activated) : base(model, label, activated)  

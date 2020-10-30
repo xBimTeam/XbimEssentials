@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PlumbingFireProtectionDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStackTerminalType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStackTerminalType : IIfcFlowTerminalType
-	{
-		IfcStackTerminalTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcStackTerminalType", 476)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStackTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcStackTerminalType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStackTerminalType>
+	public  partial class @IfcStackTerminalType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStackTerminalType>
 	{
-		#region IIfcStackTerminalType explicit implementation
-		IfcStackTerminalTypeEnum IIfcStackTerminalType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStackTerminalType(IModel model, int label, bool activated) : base(model, label, activated)  

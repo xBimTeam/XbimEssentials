@@ -13,54 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPresentationLayerWithStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPresentationLayerWithStyle : IIfcPresentationLayerAssignment
-	{
-		bool? @LayerOn { get;  set; }
-		bool? @LayerFrozen { get;  set; }
-		bool? @LayerBlocked { get;  set; }
-		IItemSet<IIfcPresentationStyleSelect> @LayerStyles { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerWithStyle", 259)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IIfcPresentationLayerWithStyle, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerWithStyle>
+	public  partial class @IfcPresentationLayerWithStyle : IfcPresentationLayerAssignment, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerWithStyle>
 	{
-		#region IIfcPresentationLayerWithStyle explicit implementation
-		bool? IIfcPresentationLayerWithStyle.LayerOn { 
- 
-			get { return @LayerOn; } 
-			set { LayerOn = value;}
-		}	
-		bool? IIfcPresentationLayerWithStyle.LayerFrozen { 
- 
-			get { return @LayerFrozen; } 
-			set { LayerFrozen = value;}
-		}	
-		bool? IIfcPresentationLayerWithStyle.LayerBlocked { 
- 
-			get { return @LayerBlocked; } 
-			set { LayerBlocked = value;}
-		}	
-		IItemSet<IIfcPresentationStyleSelect> IIfcPresentationLayerWithStyle.LayerStyles { 
-			get { return new Common.Collections.ProxyItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>( @LayerStyles); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationLayerWithStyle(IModel model, int label, bool activated) : base(model, label, activated)  

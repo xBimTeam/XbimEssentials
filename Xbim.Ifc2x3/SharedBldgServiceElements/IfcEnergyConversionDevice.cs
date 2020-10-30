@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcEnergyConversionDevice
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcEnergyConversionDevice : IIfcDistributionFlowElement
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcEnergyConversionDevice", 175)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnergyConversionDevice : IfcDistributionFlowElement, IInstantiableEntity, IIfcEnergyConversionDevice, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEnergyConversionDevice>
+	public  partial class @IfcEnergyConversionDevice : IfcDistributionFlowElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEnergyConversionDevice>
 	{
-		#region IIfcEnergyConversionDevice explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEnergyConversionDevice(IModel model, int label, bool activated) : base(model, label, activated)  

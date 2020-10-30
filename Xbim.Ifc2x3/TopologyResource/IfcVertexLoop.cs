@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVertexLoop
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVertexLoop : IIfcLoop
-	{
-		IIfcVertex @LoopVertex { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertexLoop", 244)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IIfcVertexLoop, IContainsEntityReferences, IEquatable<@IfcVertexLoop>
+	public  partial class @IfcVertexLoop : IfcLoop, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcVertexLoop>
 	{
-		#region IIfcVertexLoop explicit implementation
-		IIfcVertex IIfcVertexLoop.LoopVertex { 
- 
- 
-			get { return @LoopVertex; } 
-			set { LoopVertex = value as IfcVertex;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVertexLoop(IModel model, int label, bool activated) : base(model, label, activated)  

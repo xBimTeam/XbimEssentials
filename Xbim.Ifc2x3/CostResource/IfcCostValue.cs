@@ -14,44 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCostValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCostValue : IIfcAppliedValue, IfcMetricValueSelect
-	{
-		IfcLabel @CostType { get;  set; }
-		IfcText? @Condition { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcCostValue", 658)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IIfcCostValue, IContainsEntityReferences, IEquatable<@IfcCostValue>
+	public  partial class @IfcCostValue : IfcAppliedValue, IInstantiableEntity, IfcMetricValueSelect, IContainsEntityReferences, IEquatable<@IfcCostValue>
 	{
-		#region IIfcCostValue explicit implementation
-		IfcLabel IIfcCostValue.CostType { 
- 
-			get { return @CostType; } 
-			set { CostType = value;}
-		}	
-		IfcText? IIfcCostValue.Condition { 
- 
-			get { return @Condition; } 
-			set { Condition = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostValue(IModel model, int label, bool activated) : base(model, label, activated)  

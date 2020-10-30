@@ -13,72 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMechanicalSteelMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMechanicalSteelMaterialProperties : IIfcMechanicalMaterialProperties
-	{
-		IfcPressureMeasure? @YieldStress { get;  set; }
-		IfcPressureMeasure? @UltimateStress { get;  set; }
-		IfcPositiveRatioMeasure? @UltimateStrain { get;  set; }
-		IfcModulusOfElasticityMeasure? @HardeningModule { get;  set; }
-		IfcPressureMeasure? @ProportionalStress { get;  set; }
-		IfcPositiveRatioMeasure? @PlasticStrain { get;  set; }
-		IItemSet<IIfcRelaxation> @Relaxations { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalSteelMaterialProperties", 510)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalSteelMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalSteelMaterialProperties>
+	public  partial class @IfcMechanicalSteelMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcMechanicalSteelMaterialProperties>
 	{
-		#region IIfcMechanicalSteelMaterialProperties explicit implementation
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.YieldStress { 
- 
-			get { return @YieldStress; } 
-			set { YieldStress = value;}
-		}	
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStress { 
- 
-			get { return @UltimateStress; } 
-			set { UltimateStress = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.UltimateStrain { 
- 
-			get { return @UltimateStrain; } 
-			set { UltimateStrain = value;}
-		}	
-		IfcModulusOfElasticityMeasure? IIfcMechanicalSteelMaterialProperties.HardeningModule { 
- 
-			get { return @HardeningModule; } 
-			set { HardeningModule = value;}
-		}	
-		IfcPressureMeasure? IIfcMechanicalSteelMaterialProperties.ProportionalStress { 
- 
-			get { return @ProportionalStress; } 
-			set { ProportionalStress = value;}
-		}	
-		IfcPositiveRatioMeasure? IIfcMechanicalSteelMaterialProperties.PlasticStrain { 
- 
-			get { return @PlasticStrain; } 
-			set { PlasticStrain = value;}
-		}	
-		IItemSet<IIfcRelaxation> IIfcMechanicalSteelMaterialProperties.Relaxations { 
-			get { return new Common.Collections.ProxyItemSet<IfcRelaxation, IIfcRelaxation>( @Relaxations); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalSteelMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

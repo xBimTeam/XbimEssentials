@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAngularDimension
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAngularDimension : IIfcDimensionCurveDirectedCallout
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcAngularDimension", 738)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAngularDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IIfcAngularDimension, IContainsEntityReferences, IEquatable<@IfcAngularDimension>
+	public  partial class @IfcAngularDimension : IfcDimensionCurveDirectedCallout, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAngularDimension>
 	{
-		#region IIfcAngularDimension explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAngularDimension(IModel model, int label, bool activated) : base(model, label, activated)  

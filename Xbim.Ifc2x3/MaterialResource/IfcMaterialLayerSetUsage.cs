@@ -15,57 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterialLayerSetUsage
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterialLayerSetUsage : IPersistEntity, IfcMaterialSelect
-	{
-		IIfcMaterialLayerSet @ForLayerSet { get;  set; }
-		IfcLayerSetDirectionEnum @LayerSetDirection { get;  set; }
-		IfcDirectionSenseEnum @DirectionSense { get;  set; }
-		IfcLengthMeasure @OffsetFromReferenceLine { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerSetUsage", 165)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSetUsage : PersistEntity, IInstantiableEntity, IIfcMaterialLayerSetUsage, IContainsEntityReferences, IEquatable<@IfcMaterialLayerSetUsage>
+	public  partial class @IfcMaterialLayerSetUsage : PersistEntity, IInstantiableEntity, IfcMaterialSelect, IContainsEntityReferences, IEquatable<@IfcMaterialLayerSetUsage>
 	{
-		#region IIfcMaterialLayerSetUsage explicit implementation
-		IIfcMaterialLayerSet IIfcMaterialLayerSetUsage.ForLayerSet { 
- 
- 
-			get { return @ForLayerSet; } 
-			set { ForLayerSet = value as IfcMaterialLayerSet;}
-		}	
-		IfcLayerSetDirectionEnum IIfcMaterialLayerSetUsage.LayerSetDirection { 
- 
-			get { return @LayerSetDirection; } 
-			set { LayerSetDirection = value;}
-		}	
-		IfcDirectionSenseEnum IIfcMaterialLayerSetUsage.DirectionSense { 
- 
-			get { return @DirectionSense; } 
-			set { DirectionSense = value;}
-		}	
-		IfcLengthMeasure IIfcMaterialLayerSetUsage.OffsetFromReferenceLine { 
- 
-			get { return @OffsetFromReferenceLine; } 
-			set { OffsetFromReferenceLine = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerSetUsage(IModel model, int label, bool activated) : base(model, label, activated)  

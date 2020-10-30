@@ -13,68 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBoundaryNodeCondition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBoundaryNodeCondition : IIfcBoundaryCondition
-	{
-		IfcLinearStiffnessMeasure? @LinearStiffnessX { get;  set; }
-		IfcLinearStiffnessMeasure? @LinearStiffnessY { get;  set; }
-		IfcLinearStiffnessMeasure? @LinearStiffnessZ { get;  set; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessX { get;  set; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessY { get;  set; }
-		IfcRotationalStiffnessMeasure? @RotationalStiffnessZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryNodeCondition", 394)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryNodeCondition, IEquatable<@IfcBoundaryNodeCondition>
+	public  partial class @IfcBoundaryNodeCondition : IfcBoundaryCondition, IInstantiableEntity, IEquatable<@IfcBoundaryNodeCondition>
 	{
-		#region IIfcBoundaryNodeCondition explicit implementation
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessX { 
- 
-			get { return @LinearStiffnessX; } 
-			set { LinearStiffnessX = value;}
-		}	
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessY { 
- 
-			get { return @LinearStiffnessY; } 
-			set { LinearStiffnessY = value;}
-		}	
-		IfcLinearStiffnessMeasure? IIfcBoundaryNodeCondition.LinearStiffnessZ { 
- 
-			get { return @LinearStiffnessZ; } 
-			set { LinearStiffnessZ = value;}
-		}	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessX { 
- 
-			get { return @RotationalStiffnessX; } 
-			set { RotationalStiffnessX = value;}
-		}	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessY { 
- 
-			get { return @RotationalStiffnessY; } 
-			set { RotationalStiffnessY = value;}
-		}	
-		IfcRotationalStiffnessMeasure? IIfcBoundaryNodeCondition.RotationalStiffnessZ { 
- 
-			get { return @RotationalStiffnessZ; } 
-			set { RotationalStiffnessZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryNodeCondition(IModel model, int label, bool activated) : base(model, label, activated)  

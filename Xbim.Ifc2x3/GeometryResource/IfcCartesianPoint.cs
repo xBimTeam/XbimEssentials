@@ -13,36 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCartesianPoint
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCartesianPoint : IIfcPoint, IfcTrimmingSelect
-	{
-		IItemSet<IfcLengthMeasure> @Coordinates { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianPoint", 410)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IIfcCartesianPoint, IEquatable<@IfcCartesianPoint>
+	public  partial class @IfcCartesianPoint : IfcPoint, IInstantiableEntity, IfcTrimmingSelect, IEquatable<@IfcCartesianPoint>
 	{
-		#region IIfcCartesianPoint explicit implementation
-		IItemSet<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { 
-			get { return @Coordinates; } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianPoint(IModel model, int label, bool activated) : base(model, label, activated)  

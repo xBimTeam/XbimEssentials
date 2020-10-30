@@ -15,40 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVertexBasedTextureMap
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVertexBasedTextureMap : IPersistEntity
-	{
-		IItemSet<IIfcTextureVertex> @TextureVertices { get; }
-		IItemSet<IIfcCartesianPoint> @TexturePoints { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcVertexBasedTextureMap", 736)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexBasedTextureMap : PersistEntity, IInstantiableEntity, IIfcVertexBasedTextureMap, IContainsEntityReferences, IEquatable<@IfcVertexBasedTextureMap>
+	public  partial class @IfcVertexBasedTextureMap : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcVertexBasedTextureMap>
 	{
-		#region IIfcVertexBasedTextureMap explicit implementation
-		IItemSet<IIfcTextureVertex> IIfcVertexBasedTextureMap.TextureVertices { 
-			get { return new Common.Collections.ProxyItemSet<IfcTextureVertex, IIfcTextureVertex>( @TextureVertices); } 
-		}	
-		IItemSet<IIfcCartesianPoint> IIfcVertexBasedTextureMap.TexturePoints { 
-			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @TexturePoints); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVertexBasedTextureMap(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCableSegmentType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCableSegmentType : IIfcFlowSegmentType
-	{
-		IfcCableSegmentTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcCableSegmentType", 77)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCableSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcCableSegmentType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCableSegmentType>
+	public  partial class @IfcCableSegmentType : IfcFlowSegmentType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCableSegmentType>
 	{
-		#region IIfcCableSegmentType explicit implementation
-		IfcCableSegmentTypeEnum IIfcCableSegmentType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCableSegmentType(IModel model, int label, bool activated) : base(model, label, activated)  

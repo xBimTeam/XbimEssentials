@@ -13,42 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcComplexProperty
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcComplexProperty : IIfcProperty
-	{
-		IfcIdentifier @UsageName { get;  set; }
-		IItemSet<IIfcProperty> @HasProperties { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcComplexProperty", 379)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IIfcComplexProperty, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcComplexProperty>
+	public  partial class @IfcComplexProperty : IfcProperty, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcComplexProperty>
 	{
-		#region IIfcComplexProperty explicit implementation
-		IfcIdentifier IIfcComplexProperty.UsageName { 
- 
-			get { return @UsageName; } 
-			set { UsageName = value;}
-		}	
-		IItemSet<IIfcProperty> IIfcComplexProperty.HasProperties { 
-			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @HasProperties); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcComplexProperty(IModel model, int label, bool activated) : base(model, label, activated)  

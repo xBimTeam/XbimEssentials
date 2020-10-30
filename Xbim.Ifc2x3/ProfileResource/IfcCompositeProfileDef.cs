@@ -13,42 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCompositeProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCompositeProfileDef : IIfcProfileDef
-	{
-		IItemSet<IIfcProfileDef> @Profiles { get; }
-		IfcLabel? @Label { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCompositeProfileDef", 172)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IIfcCompositeProfileDef, IContainsEntityReferences, IEquatable<@IfcCompositeProfileDef>
+	public  partial class @IfcCompositeProfileDef : IfcProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCompositeProfileDef>
 	{
-		#region IIfcCompositeProfileDef explicit implementation
-		IItemSet<IIfcProfileDef> IIfcCompositeProfileDef.Profiles { 
-			get { return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>( @Profiles); } 
-		}	
-		IfcLabel? IIfcCompositeProfileDef.Label { 
- 
-			get { return @Label; } 
-			set { Label = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

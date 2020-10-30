@@ -17,94 +17,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedFacilitiesElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAsset
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAsset : IIfcGroup
-	{
-		IfcIdentifier @AssetID { get;  set; }
-		IIfcCostValue @OriginalValue { get;  set; }
-		IIfcCostValue @CurrentValue { get;  set; }
-		IIfcCostValue @TotalReplacementCost { get;  set; }
-		IIfcActorSelect @Owner { get;  set; }
-		IIfcActorSelect @User { get;  set; }
-		IIfcPerson @ResponsiblePerson { get;  set; }
-		IIfcCalendarDate @IncorporationDate { get;  set; }
-		IIfcCostValue @DepreciatedValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcAsset", 767)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IIfcAsset, IContainsEntityReferences, IEquatable<@IfcAsset>
+	public  partial class @IfcAsset : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAsset>
 	{
-		#region IIfcAsset explicit implementation
-		IfcIdentifier IIfcAsset.AssetID { 
- 
-			get { return @AssetID; } 
-			set { AssetID = value;}
-		}	
-		IIfcCostValue IIfcAsset.OriginalValue { 
- 
- 
-			get { return @OriginalValue; } 
-			set { OriginalValue = value as IfcCostValue;}
-		}	
-		IIfcCostValue IIfcAsset.CurrentValue { 
- 
- 
-			get { return @CurrentValue; } 
-			set { CurrentValue = value as IfcCostValue;}
-		}	
-		IIfcCostValue IIfcAsset.TotalReplacementCost { 
- 
- 
-			get { return @TotalReplacementCost; } 
-			set { TotalReplacementCost = value as IfcCostValue;}
-		}	
-		IIfcActorSelect IIfcAsset.Owner { 
- 
- 
-			get { return @Owner; } 
-			set { Owner = value as IfcActorSelect;}
-		}	
-		IIfcActorSelect IIfcAsset.User { 
- 
- 
-			get { return @User; } 
-			set { User = value as IfcActorSelect;}
-		}	
-		IIfcPerson IIfcAsset.ResponsiblePerson { 
- 
- 
-			get { return @ResponsiblePerson; } 
-			set { ResponsiblePerson = value as IfcPerson;}
-		}	
-		IIfcCalendarDate IIfcAsset.IncorporationDate { 
- 
- 
-			get { return @IncorporationDate; } 
-			set { IncorporationDate = value as IfcCalendarDate;}
-		}	
-		IIfcCostValue IIfcAsset.DepreciatedValue { 
- 
- 
-			get { return @DepreciatedValue; } 
-			set { DepreciatedValue = value as IfcCostValue;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAsset(IModel model, int label, bool activated) : base(model, label, activated)  

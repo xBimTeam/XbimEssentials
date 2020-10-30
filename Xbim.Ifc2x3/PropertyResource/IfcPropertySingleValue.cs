@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertySingleValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertySingleValue : IIfcSimpleProperty
-	{
-		IIfcValue @NominalValue { get;  set; }
-		IIfcUnit @Unit { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PropertyResource
 {
 	[ExpressType("IfcPropertySingleValue", 628)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySingleValue : IfcSimpleProperty, IInstantiableEntity, IIfcPropertySingleValue, IContainsEntityReferences, IEquatable<@IfcPropertySingleValue>
+	public  partial class @IfcPropertySingleValue : IfcSimpleProperty, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertySingleValue>
 	{
-		#region IIfcPropertySingleValue explicit implementation
-		IIfcValue IIfcPropertySingleValue.NominalValue { 
- 
- 
-			get { return @NominalValue; } 
-			set { NominalValue = value as IfcValue;}
-		}	
-		IIfcUnit IIfcPropertySingleValue.Unit { 
- 
- 
-			get { return @Unit; } 
-			set { Unit = value as IfcUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySingleValue(IModel model, int label, bool activated) : base(model, label, activated)  

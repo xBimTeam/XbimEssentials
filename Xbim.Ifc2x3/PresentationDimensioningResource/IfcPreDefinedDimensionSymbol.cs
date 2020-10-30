@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPreDefinedDimensionSymbol
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPreDefinedDimensionSymbol : IIfcPreDefinedSymbol
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedDimensionSymbol", 747)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedDimensionSymbol, IEquatable<@IfcPreDefinedDimensionSymbol>
+	public  partial class @IfcPreDefinedDimensionSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IEquatable<@IfcPreDefinedDimensionSymbol>
 	{
-		#region IIfcPreDefinedDimensionSymbol explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedDimensionSymbol(IModel model, int label, bool activated) : base(model, label, activated)  

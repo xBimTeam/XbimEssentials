@@ -13,44 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProxy
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProxy : IIfcProduct
-	{
-		IfcObjectTypeEnum @ProxyType { get;  set; }
-		IfcLabel? @Tag { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcProxy", 447)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IIfcProxy, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProxy>
+	public  partial class @IfcProxy : IfcProduct, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProxy>
 	{
-		#region IIfcProxy explicit implementation
-		IfcObjectTypeEnum IIfcProxy.ProxyType { 
- 
-			get { return @ProxyType; } 
-			set { ProxyType = value;}
-		}	
-		IfcLabel? IIfcProxy.Tag { 
- 
-			get { return @Tag; } 
-			set { Tag = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProxy(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,68 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFailureConnectionCondition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFailureConnectionCondition : IIfcStructuralConnectionCondition
-	{
-		IfcForceMeasure? @TensionFailureX { get;  set; }
-		IfcForceMeasure? @TensionFailureY { get;  set; }
-		IfcForceMeasure? @TensionFailureZ { get;  set; }
-		IfcForceMeasure? @CompressionFailureX { get;  set; }
-		IfcForceMeasure? @CompressionFailureY { get;  set; }
-		IfcForceMeasure? @CompressionFailureZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcFailureConnectionCondition", 640)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcFailureConnectionCondition, IEquatable<@IfcFailureConnectionCondition>
+	public  partial class @IfcFailureConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IEquatable<@IfcFailureConnectionCondition>
 	{
-		#region IIfcFailureConnectionCondition explicit implementation
-		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureX { 
- 
-			get { return @TensionFailureX; } 
-			set { TensionFailureX = value;}
-		}	
-		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureY { 
- 
-			get { return @TensionFailureY; } 
-			set { TensionFailureY = value;}
-		}	
-		IfcForceMeasure? IIfcFailureConnectionCondition.TensionFailureZ { 
- 
-			get { return @TensionFailureZ; } 
-			set { TensionFailureZ = value;}
-		}	
-		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureX { 
- 
-			get { return @CompressionFailureX; } 
-			set { CompressionFailureX = value;}
-		}	
-		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureY { 
- 
-			get { return @CompressionFailureY; } 
-			set { CompressionFailureY = value;}
-		}	
-		IfcForceMeasure? IIfcFailureConnectionCondition.CompressionFailureZ { 
- 
-			get { return @CompressionFailureZ; } 
-			set { CompressionFailureZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFailureConnectionCondition(IModel model, int label, bool activated) : base(model, label, activated)  

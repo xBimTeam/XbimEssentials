@@ -15,63 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextStyleWithBoxCharacteristics
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextStyleWithBoxCharacteristics : IPersistEntity, IfcTextStyleSelect
-	{
-		IfcPositiveLengthMeasure? @BoxHeight { get;  set; }
-		IfcPositiveLengthMeasure? @BoxWidth { get;  set; }
-		IfcPlaneAngleMeasure? @BoxSlantAngle { get;  set; }
-		IfcPlaneAngleMeasure? @BoxRotateAngle { get;  set; }
-		IIfcSizeSelect @CharacterSpacing { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcTextStyleWithBoxCharacteristics", 730)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextStyleWithBoxCharacteristics : PersistEntity, IInstantiableEntity, IIfcTextStyleWithBoxCharacteristics, IEquatable<@IfcTextStyleWithBoxCharacteristics>
+	public  partial class @IfcTextStyleWithBoxCharacteristics : PersistEntity, IInstantiableEntity, IfcTextStyleSelect, IEquatable<@IfcTextStyleWithBoxCharacteristics>
 	{
-		#region IIfcTextStyleWithBoxCharacteristics explicit implementation
-		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxHeight { 
- 
-			get { return @BoxHeight; } 
-			set { BoxHeight = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcTextStyleWithBoxCharacteristics.BoxWidth { 
- 
-			get { return @BoxWidth; } 
-			set { BoxWidth = value;}
-		}	
-		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxSlantAngle { 
- 
-			get { return @BoxSlantAngle; } 
-			set { BoxSlantAngle = value;}
-		}	
-		IfcPlaneAngleMeasure? IIfcTextStyleWithBoxCharacteristics.BoxRotateAngle { 
- 
-			get { return @BoxRotateAngle; } 
-			set { BoxRotateAngle = value;}
-		}	
-		IIfcSizeSelect IIfcTextStyleWithBoxCharacteristics.CharacterSpacing { 
- 
- 
-			get { return @CharacterSpacing; } 
-			set { CharacterSpacing = value as IfcSizeSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextStyleWithBoxCharacteristics(IModel model, int label, bool activated) : base(model, label, activated)  

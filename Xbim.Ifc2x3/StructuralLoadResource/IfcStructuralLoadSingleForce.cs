@@ -13,68 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadSingleForce
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadSingleForce : IIfcStructuralLoadStatic
-	{
-		IfcForceMeasure? @ForceX { get;  set; }
-		IfcForceMeasure? @ForceY { get;  set; }
-		IfcForceMeasure? @ForceZ { get;  set; }
-		IfcTorqueMeasure? @MomentX { get;  set; }
-		IfcTorqueMeasure? @MomentY { get;  set; }
-		IfcTorqueMeasure? @MomentZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleForce", 119)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForce : IfcStructuralLoadStatic, IInstantiableEntity, IIfcStructuralLoadSingleForce, IEquatable<@IfcStructuralLoadSingleForce>
+	public  partial class @IfcStructuralLoadSingleForce : IfcStructuralLoadStatic, IInstantiableEntity, IEquatable<@IfcStructuralLoadSingleForce>
 	{
-		#region IIfcStructuralLoadSingleForce explicit implementation
-		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceX { 
- 
-			get { return @ForceX; } 
-			set { ForceX = value;}
-		}	
-		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceY { 
- 
-			get { return @ForceY; } 
-			set { ForceY = value;}
-		}	
-		IfcForceMeasure? IIfcStructuralLoadSingleForce.ForceZ { 
- 
-			get { return @ForceZ; } 
-			set { ForceZ = value;}
-		}	
-		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentX { 
- 
-			get { return @MomentX; } 
-			set { MomentX = value;}
-		}	
-		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentY { 
- 
-			get { return @MomentY; } 
-			set { MomentY = value;}
-		}	
-		IfcTorqueMeasure? IIfcStructuralLoadSingleForce.MomentZ { 
- 
-			get { return @MomentZ; } 
-			set { MomentZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleForce(IModel model, int label, bool activated) : base(model, label, activated)  

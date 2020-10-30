@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFlowFitting
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFlowFitting : IIfcDistributionFlowElement
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowFitting", 467)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowFitting : IfcDistributionFlowElement, IInstantiableEntity, IIfcFlowFitting, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowFitting>
+	public  partial class @IfcFlowFitting : IfcDistributionFlowElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowFitting>
 	{
-		#region IIfcFlowFitting explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowFitting(IModel model, int label, bool activated) : base(model, label, activated)  

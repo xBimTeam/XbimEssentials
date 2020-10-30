@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.BuildingcontrolsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFlowInstrumentType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFlowInstrumentType : IIfcDistributionControlElementType
-	{
-		IfcFlowInstrumentTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	[ExpressType("IfcFlowInstrumentType", 196)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFlowInstrumentType : IfcDistributionControlElementType, IInstantiableEntity, IIfcFlowInstrumentType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowInstrumentType>
+	public  partial class @IfcFlowInstrumentType : IfcDistributionControlElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFlowInstrumentType>
 	{
-		#region IIfcFlowInstrumentType explicit implementation
-		IfcFlowInstrumentTypeEnum IIfcFlowInstrumentType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowInstrumentType(IModel model, int label, bool activated) : base(model, label, activated)  

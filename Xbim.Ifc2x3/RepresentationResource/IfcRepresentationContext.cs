@@ -15,46 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRepresentationContext
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRepresentationContext : IPersistEntity
-	{
-		IfcLabel? @ContextIdentifier { get;  set; }
-		IfcLabel? @ContextType { get;  set; }
-		IEnumerable<IIfcRepresentation> @RepresentationsInContext {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcRepresentationContext", 378)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentationContext : PersistEntity, IInstantiableEntity, IIfcRepresentationContext, IEquatable<@IfcRepresentationContext>
+	public  partial class @IfcRepresentationContext : PersistEntity, IInstantiableEntity, IEquatable<@IfcRepresentationContext>
 	{
-		#region IIfcRepresentationContext explicit implementation
-		IfcLabel? IIfcRepresentationContext.ContextIdentifier { 
- 
-			get { return @ContextIdentifier; } 
-			set { ContextIdentifier = value;}
-		}	
-		IfcLabel? IIfcRepresentationContext.ContextType { 
- 
-			get { return @ContextType; } 
-			set { ContextType = value;}
-		}	
-		 
-		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext {  get { return @RepresentationsInContext; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRepresentationContext(IModel model, int label, bool activated) : base(model, label, activated)  

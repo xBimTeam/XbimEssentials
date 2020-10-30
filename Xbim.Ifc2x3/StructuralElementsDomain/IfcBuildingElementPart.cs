@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralElementsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBuildingElementPart
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBuildingElementPart : IIfcBuildingElementComponent
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcBuildingElementPart", 220)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementPart : IfcBuildingElementComponent, IInstantiableEntity, IIfcBuildingElementPart, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementPart>
+	public  partial class @IfcBuildingElementPart : IfcBuildingElementComponent, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementPart>
 	{
-		#region IIfcBuildingElementPart explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuildingElementPart(IModel model, int label, bool activated) : base(model, label, activated)  

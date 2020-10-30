@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcImageTexture
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcImageTexture : IIfcSurfaceTexture
-	{
-		IfcIdentifier @UrlReference { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcImageTexture", 727)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcImageTexture, IContainsEntityReferences, IEquatable<@IfcImageTexture>
+	public  partial class @IfcImageTexture : IfcSurfaceTexture, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcImageTexture>
 	{
-		#region IIfcImageTexture explicit implementation
-		IfcIdentifier IIfcImageTexture.UrlReference { 
- 
-			get { return @UrlReference; } 
-			set { UrlReference = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcImageTexture(IModel model, int label, bool activated) : base(model, label, activated)  

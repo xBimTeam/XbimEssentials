@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDuctFittingType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDuctFittingType : IIfcFlowFittingType
-	{
-		IfcDuctFittingTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcDuctFittingType", 686)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDuctFittingType : IfcFlowFittingType, IInstantiableEntity, IIfcDuctFittingType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctFittingType>
+	public  partial class @IfcDuctFittingType : IfcFlowFittingType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctFittingType>
 	{
-		#region IIfcDuctFittingType explicit implementation
-		IfcDuctFittingTypeEnum IIfcDuctFittingType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDuctFittingType(IModel model, int label, bool activated) : base(model, label, activated)  

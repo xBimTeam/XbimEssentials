@@ -13,42 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TimeSeriesResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRegularTimeSeries
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRegularTimeSeries : IIfcTimeSeries
-	{
-		IfcTimeMeasure @TimeStep { get;  set; }
-		IItemSet<IIfcTimeSeriesValue> @Values { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcRegularTimeSeries", 417)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcRegularTimeSeries, IContainsEntityReferences, IEquatable<@IfcRegularTimeSeries>
+	public  partial class @IfcRegularTimeSeries : IfcTimeSeries, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRegularTimeSeries>
 	{
-		#region IIfcRegularTimeSeries explicit implementation
-		IfcTimeMeasure IIfcRegularTimeSeries.TimeStep { 
- 
-			get { return @TimeStep; } 
-			set { TimeStep = value;}
-		}	
-		IItemSet<IIfcTimeSeriesValue> IIfcRegularTimeSeries.Values { 
-			get { return new Common.Collections.ProxyItemSet<IfcTimeSeriesValue, IIfcTimeSeriesValue>( @Values); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRegularTimeSeries(IModel model, int label, bool activated) : base(model, label, activated)  

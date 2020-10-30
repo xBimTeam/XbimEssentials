@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCondenserType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCondenserType : IIfcEnergyConversionDeviceType
-	{
-		IfcCondenserTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcCondenserType", 297)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCondenserType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCondenserType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCondenserType>
+	public  partial class @IfcCondenserType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCondenserType>
 	{
-		#region IIfcCondenserType explicit implementation
-		IfcCondenserTypeEnum IIfcCondenserType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCondenserType(IModel model, int label, bool activated) : base(model, label, activated)  

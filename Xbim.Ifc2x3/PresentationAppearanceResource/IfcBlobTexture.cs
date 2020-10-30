@@ -13,44 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBlobTexture
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBlobTexture : IIfcSurfaceTexture
-	{
-		IfcIdentifier @RasterFormat { get;  set; }
-		bool @RasterCode { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcBlobTexture", 723)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcBlobTexture, IContainsEntityReferences, IEquatable<@IfcBlobTexture>
+	public  partial class @IfcBlobTexture : IfcSurfaceTexture, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcBlobTexture>
 	{
-		#region IIfcBlobTexture explicit implementation
-		IfcIdentifier IIfcBlobTexture.RasterFormat { 
- 
-			get { return @RasterFormat; } 
-			set { RasterFormat = value;}
-		}	
-		bool IIfcBlobTexture.RasterCode { 
- 
-			get { return @RasterCode; } 
-			set { RasterCode = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBlobTexture(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -15,39 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceStyleShading
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceStyleShading : IPersistEntity, IfcSurfaceStyleElementSelect
-	{
-		IIfcColourRgb @SurfaceColour { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleShading", 316)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleShading : PersistEntity, IInstantiableEntity, IIfcSurfaceStyleShading, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleShading>
+	public  partial class @IfcSurfaceStyleShading : PersistEntity, IInstantiableEntity, IfcSurfaceStyleElementSelect, IContainsEntityReferences, IEquatable<@IfcSurfaceStyleShading>
 	{
-		#region IIfcSurfaceStyleShading explicit implementation
-		IIfcColourRgb IIfcSurfaceStyleShading.SurfaceColour { 
- 
- 
-			get { return @SurfaceColour; } 
-			set { SurfaceColour = value as IfcColourRgb;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleShading(IModel model, int label, bool activated) : base(model, label, activated)  

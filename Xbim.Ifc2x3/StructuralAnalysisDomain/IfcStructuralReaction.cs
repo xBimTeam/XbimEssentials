@@ -12,34 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralReaction
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralReaction : IIfcStructuralActivity
-	{
-		IEnumerable<IIfcStructuralAction> @Causes {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralReaction", 355)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralReaction : IfcStructuralActivity, IIfcStructuralReaction, IEquatable<@IfcStructuralReaction>
+	public abstract partial class @IfcStructuralReaction : IfcStructuralActivity, IEquatable<@IfcStructuralReaction>
 	{
-		#region IIfcStructuralReaction explicit implementation
-		 
-		IEnumerable<IIfcStructuralAction> IIfcStructuralReaction.Causes {  get { return @Causes; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralReaction(IModel model, int label, bool activated) : base(model, label, activated)  

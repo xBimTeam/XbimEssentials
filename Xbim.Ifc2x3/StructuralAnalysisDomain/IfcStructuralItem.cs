@@ -13,34 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralItem
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralItem : IIfcProduct, IfcStructuralActivityAssignmentSelect
-	{
-		IEnumerable<IIfcRelConnectsStructuralActivity> @AssignedStructuralActivity {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralItem", 226)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEquatable<@IfcStructuralItem>
+	public abstract partial class @IfcStructuralItem : IfcProduct, IfcStructuralActivityAssignmentSelect, IEquatable<@IfcStructuralItem>
 	{
-		#region IIfcStructuralItem explicit implementation
-		 
-		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralItem.AssignedStructuralActivity {  get { return @AssignedStructuralActivity; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralItem(IModel model, int label, bool activated) : base(model, label, activated)  

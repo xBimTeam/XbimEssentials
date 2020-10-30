@@ -14,39 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesMaterial
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesMaterial : IIfcRelAssociates
-	{
-		IIfcMaterialSelect @RelatingMaterial { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelAssociatesMaterial", 497)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesMaterial, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesMaterial>
+	public  partial class @IfcRelAssociatesMaterial : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesMaterial>
 	{
-		#region IIfcRelAssociatesMaterial explicit implementation
-		IIfcMaterialSelect IIfcRelAssociatesMaterial.RelatingMaterial { 
- 
- 
-			get { return @RelatingMaterial; } 
-			set { RelatingMaterial = value as IfcMaterialSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesMaterial(IModel model, int label, bool activated) : base(model, label, activated)  

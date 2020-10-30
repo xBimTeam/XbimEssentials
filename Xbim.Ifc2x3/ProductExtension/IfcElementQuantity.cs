@@ -15,42 +15,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElementQuantity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElementQuantity : IIfcPropertySetDefinition
-	{
-		IfcLabel? @MethodOfMeasurement { get;  set; }
-		IItemSet<IIfcPhysicalQuantity> @Quantities { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcElementQuantity", 458)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElementQuantity : IfcPropertySetDefinition, IInstantiableEntity, IIfcElementQuantity, IContainsEntityReferences, IEquatable<@IfcElementQuantity>
+	public  partial class @IfcElementQuantity : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcElementQuantity>
 	{
-		#region IIfcElementQuantity explicit implementation
-		IfcLabel? IIfcElementQuantity.MethodOfMeasurement { 
- 
-			get { return @MethodOfMeasurement; } 
-			set { MethodOfMeasurement = value;}
-		}	
-		IItemSet<IIfcPhysicalQuantity> IIfcElementQuantity.Quantities { 
-			get { return new Common.Collections.ProxyItemSet<IfcPhysicalQuantity, IIfcPhysicalQuantity>( @Quantities); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementQuantity(IModel model, int label, bool activated) : base(model, label, activated)  

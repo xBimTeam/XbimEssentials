@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralCurveMemberVarying
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralCurveMemberVarying : IIfcStructuralCurveMember
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralCurveMemberVarying", 227)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralCurveMemberVarying : IfcStructuralCurveMember, IInstantiableEntity, IIfcStructuralCurveMemberVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveMemberVarying>
+	public  partial class @IfcStructuralCurveMemberVarying : IfcStructuralCurveMember, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralCurveMemberVarying>
 	{
-		#region IIfcStructuralCurveMemberVarying explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralCurveMemberVarying(IModel model, int label, bool activated) : base(model, label, activated)  

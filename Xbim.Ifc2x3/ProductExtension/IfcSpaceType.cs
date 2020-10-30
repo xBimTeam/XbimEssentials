@@ -12,38 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSpaceType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSpaceType : IIfcSpatialStructureElementType
-	{
-		IfcSpaceTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcSpaceType", 529)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IIfcSpaceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpaceType>
+	public  partial class @IfcSpaceType : IfcSpatialStructureElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpaceType>
 	{
-		#region IIfcSpaceType explicit implementation
-		IfcSpaceTypeEnum IIfcSpaceType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceType(IModel model, int label, bool activated) : base(model, label, activated)  

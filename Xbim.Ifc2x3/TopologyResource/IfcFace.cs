@@ -12,36 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFace
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFace : IIfcTopologicalRepresentationItem
-	{
-		IItemSet<IIfcFaceBound> @Bounds { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcFace", 83)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcFace, IContainsEntityReferences, IEquatable<@IfcFace>
+	public  partial class @IfcFace : IfcTopologicalRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcFace>
 	{
-		#region IIfcFace explicit implementation
-		IItemSet<IIfcFaceBound> IIfcFace.Bounds { 
-			get { return new Common.Collections.ProxyItemSet<IfcFaceBound, IIfcFaceBound>( @Bounds); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFace(IModel model, int label, bool activated) : base(model, label, activated)  

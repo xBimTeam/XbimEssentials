@@ -15,63 +15,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWindowPanelProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWindowPanelProperties : IIfcPropertySetDefinition
-	{
-		IfcWindowPanelOperationEnum @OperationType { get;  set; }
-		IfcWindowPanelPositionEnum @PanelPosition { get;  set; }
-		IfcPositiveLengthMeasure? @FrameDepth { get;  set; }
-		IfcPositiveLengthMeasure? @FrameThickness { get;  set; }
-		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWindowPanelProperties", 96)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWindowPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcWindowPanelProperties, IContainsEntityReferences, IEquatable<@IfcWindowPanelProperties>
+	public  partial class @IfcWindowPanelProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcWindowPanelProperties>
 	{
-		#region IIfcWindowPanelProperties explicit implementation
-		IfcWindowPanelOperationEnum IIfcWindowPanelProperties.OperationType { 
- 
-			get { return @OperationType; } 
-			set { OperationType = value;}
-		}	
-		IfcWindowPanelPositionEnum IIfcWindowPanelProperties.PanelPosition { 
- 
-			get { return @PanelPosition; } 
-			set { PanelPosition = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameDepth { 
- 
-			get { return @FrameDepth; } 
-			set { FrameDepth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcWindowPanelProperties.FrameThickness { 
- 
-			get { return @FrameThickness; } 
-			set { FrameThickness = value;}
-		}	
-		IIfcShapeAspect IIfcWindowPanelProperties.ShapeAspectStyle { 
- 
- 
-			get { return @ShapeAspectStyle; } 
-			set { ShapeAspectStyle = value as IfcShapeAspect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWindowPanelProperties(IModel model, int label, bool activated) : base(model, label, activated)  

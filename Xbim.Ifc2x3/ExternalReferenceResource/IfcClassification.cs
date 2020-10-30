@@ -16,59 +16,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcClassification
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcClassification : IPersistEntity
-	{
-		IfcLabel @Source { get;  set; }
-		IfcLabel @Edition { get;  set; }
-		IIfcCalendarDate @EditionDate { get;  set; }
-		IfcLabel @Name { get;  set; }
-		IEnumerable<IIfcClassificationItem> @Contains {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassification", 412)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassification : PersistEntity, IInstantiableEntity, IIfcClassification, IContainsEntityReferences, IEquatable<@IfcClassification>
+	public  partial class @IfcClassification : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcClassification>
 	{
-		#region IIfcClassification explicit implementation
-		IfcLabel IIfcClassification.Source { 
- 
-			get { return @Source; } 
-			set { Source = value;}
-		}	
-		IfcLabel IIfcClassification.Edition { 
- 
-			get { return @Edition; } 
-			set { Edition = value;}
-		}	
-		IIfcCalendarDate IIfcClassification.EditionDate { 
- 
- 
-			get { return @EditionDate; } 
-			set { EditionDate = value as IfcCalendarDate;}
-		}	
-		IfcLabel IIfcClassification.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		IEnumerable<IIfcClassificationItem> IIfcClassification.Contains {  get { return @Contains; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassification(IModel model, int label, bool activated) : base(model, label, activated)  

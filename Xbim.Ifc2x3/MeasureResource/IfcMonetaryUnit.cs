@@ -14,38 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMonetaryUnit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMonetaryUnit : IPersistEntity, IfcUnit
-	{
-		IfcCurrencyEnum @Currency { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMonetaryUnit", 545)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMonetaryUnit : PersistEntity, IInstantiableEntity, IIfcMonetaryUnit, IEquatable<@IfcMonetaryUnit>
+	public  partial class @IfcMonetaryUnit : PersistEntity, IInstantiableEntity, IfcUnit, IEquatable<@IfcMonetaryUnit>
 	{
-		#region IIfcMonetaryUnit explicit implementation
-		IfcCurrencyEnum IIfcMonetaryUnit.Currency { 
- 
-			get { return @Currency; } 
-			set { Currency = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMonetaryUnit(IModel model, int label, bool activated) : base(model, label, activated)  

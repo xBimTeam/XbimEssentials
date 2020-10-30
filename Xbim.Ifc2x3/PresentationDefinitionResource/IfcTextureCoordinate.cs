@@ -14,34 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextureCoordinate
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextureCoordinate : IPersistEntity
-	{
-		IEnumerable<IIfcAnnotationSurface> @AnnotatedSurface {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureCoordinate", 732)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTextureCoordinate : PersistEntity, IIfcTextureCoordinate, IEquatable<@IfcTextureCoordinate>
+	public abstract partial class @IfcTextureCoordinate : PersistEntity, IEquatable<@IfcTextureCoordinate>
 	{
-		#region IIfcTextureCoordinate explicit implementation
-		 
-		IEnumerable<IIfcAnnotationSurface> IIfcTextureCoordinate.AnnotatedSurface {  get { return @AnnotatedSurface; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinate(IModel model, int label, bool activated) : base(model, label, activated)  

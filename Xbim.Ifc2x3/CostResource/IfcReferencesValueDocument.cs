@@ -16,55 +16,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcReferencesValueDocument
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcReferencesValueDocument : IPersistEntity
-	{
-		IIfcDocumentSelect @ReferencedDocument { get;  set; }
-		IItemSet<IIfcAppliedValue> @ReferencingValues { get; }
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcReferencesValueDocument", 551)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcReferencesValueDocument : PersistEntity, IInstantiableEntity, IIfcReferencesValueDocument, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReferencesValueDocument>
+	public  partial class @IfcReferencesValueDocument : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcReferencesValueDocument>
 	{
-		#region IIfcReferencesValueDocument explicit implementation
-		IIfcDocumentSelect IIfcReferencesValueDocument.ReferencedDocument { 
- 
- 
-			get { return @ReferencedDocument; } 
-			set { ReferencedDocument = value as IfcDocumentSelect;}
-		}	
-		IItemSet<IIfcAppliedValue> IIfcReferencesValueDocument.ReferencingValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcAppliedValue, IIfcAppliedValue>( @ReferencingValues); } 
-		}	
-		IfcLabel? IIfcReferencesValueDocument.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcReferencesValueDocument.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcReferencesValueDocument(IModel model, int label, bool activated) : base(model, label, activated)  

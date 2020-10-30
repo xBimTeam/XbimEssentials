@@ -13,50 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBlock
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBlock : IIfcCsgPrimitive3D
-	{
-		IfcPositiveLengthMeasure @XLength { get;  set; }
-		IfcPositiveLengthMeasure @YLength { get;  set; }
-		IfcPositiveLengthMeasure @ZLength { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBlock", 702)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IIfcBlock, IContainsEntityReferences, IEquatable<@IfcBlock>
+	public  partial class @IfcBlock : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcBlock>
 	{
-		#region IIfcBlock explicit implementation
-		IfcPositiveLengthMeasure IIfcBlock.XLength { 
- 
-			get { return @XLength; } 
-			set { XLength = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcBlock.YLength { 
- 
-			get { return @YLength; } 
-			set { YLength = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcBlock.ZLength { 
- 
-			get { return @ZLength; } 
-			set { ZLength = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBlock(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWallStandardCase
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWallStandardCase : IIfcWall
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcWallStandardCase", 453)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWallStandardCase : IfcWall, IInstantiableEntity, IIfcWallStandardCase, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWallStandardCase>
+	public  partial class @IfcWallStandardCase : IfcWall, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWallStandardCase>
 	{
-		#region IIfcWallStandardCase explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWallStandardCase(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFlowTerminalType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFlowTerminalType : IIfcDistributionFlowElementType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowTerminalType", 191)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowTerminalType : IfcDistributionFlowElementType, IIfcFlowTerminalType, IEquatable<@IfcFlowTerminalType>
+	public abstract partial class @IfcFlowTerminalType : IfcDistributionFlowElementType, IEquatable<@IfcFlowTerminalType>
 	{
-		#region IIfcFlowTerminalType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowTerminalType(IModel model, int label, bool activated) : base(model, label, activated)  

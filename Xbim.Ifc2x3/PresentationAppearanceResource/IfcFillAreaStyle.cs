@@ -12,36 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFillAreaStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFillAreaStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
-	{
-		IItemSet<IIfcFillStyleSelect> @FillStyles { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyle", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IIfcFillAreaStyle, IContainsEntityReferences, IEquatable<@IfcFillAreaStyle>
+	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IfcPresentationStyleSelect, IContainsEntityReferences, IEquatable<@IfcFillAreaStyle>
 	{
-		#region IIfcFillAreaStyle explicit implementation
-		IItemSet<IIfcFillStyleSelect> IIfcFillAreaStyle.FillStyles { 
-			get { return new Common.Collections.ProxyItemSet<IfcFillStyleSelect, IIfcFillStyleSelect>( @FillStyles); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyle(IModel model, int label, bool activated) : base(model, label, activated)  

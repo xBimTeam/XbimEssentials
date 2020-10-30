@@ -13,44 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedComponentElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMechanicalFastener
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMechanicalFastener : IIfcFastener
-	{
-		IfcPositiveLengthMeasure? @NominalDiameter { get;  set; }
-		IfcPositiveLengthMeasure? @NominalLength { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcMechanicalFastener", 536)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalFastener : IfcFastener, IInstantiableEntity, IIfcMechanicalFastener, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMechanicalFastener>
+	public  partial class @IfcMechanicalFastener : IfcFastener, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMechanicalFastener>
 	{
-		#region IIfcMechanicalFastener explicit implementation
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalDiameter { 
- 
-			get { return @NominalDiameter; } 
-			set { NominalDiameter = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcMechanicalFastener.NominalLength { 
- 
-			get { return @NominalLength; } 
-			set { NominalLength = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalFastener(IModel model, int label, bool activated) : base(model, label, activated)  

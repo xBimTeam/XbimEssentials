@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSweptSurface
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSweptSurface : IIfcSurface
-	{
-		IIfcProfileDef @SweptCurve { get;  set; }
-		IIfcAxis2Placement3D @Position { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSweptSurface", 110)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptSurface : IfcSurface, IIfcSweptSurface, IEquatable<@IfcSweptSurface>
+	public abstract partial class @IfcSweptSurface : IfcSurface, IEquatable<@IfcSweptSurface>
 	{
-		#region IIfcSweptSurface explicit implementation
-		IIfcProfileDef IIfcSweptSurface.SweptCurve { 
- 
- 
-			get { return @SweptCurve; } 
-			set { SweptCurve = value as IfcProfileDef;}
-		}	
-		IIfcAxis2Placement3D IIfcSweptSurface.Position { 
- 
- 
-			get { return @Position; } 
-			set { Position = value as IfcAxis2Placement3D;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptSurface(IModel model, int label, bool activated) : base(model, label, activated)  

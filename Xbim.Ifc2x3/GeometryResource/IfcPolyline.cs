@@ -12,36 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPolyline
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPolyline : IIfcBoundedCurve
-	{
-		IItemSet<IIfcCartesianPoint> @Points { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcPolyline", 500)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IIfcPolyline, IContainsEntityReferences, IEquatable<@IfcPolyline>
+	public  partial class @IfcPolyline : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPolyline>
 	{
-		#region IIfcPolyline explicit implementation
-		IItemSet<IIfcCartesianPoint> IIfcPolyline.Points { 
-			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @Points); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPolyline(IModel model, int label, bool activated) : base(model, label, activated)  

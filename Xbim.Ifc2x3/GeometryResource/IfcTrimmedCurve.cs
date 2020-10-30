@@ -12,59 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTrimmedCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTrimmedCurve : IIfcBoundedCurve
-	{
-		IIfcCurve @BasisCurve { get;  set; }
-		IItemSet<IIfcTrimmingSelect> @Trim1 { get; }
-		IItemSet<IIfcTrimmingSelect> @Trim2 { get; }
-		bool @SenseAgreement { get;  set; }
-		IfcTrimmingPreference @MasterRepresentation { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcTrimmedCurve", 143)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IIfcTrimmedCurve, IContainsEntityReferences, IEquatable<@IfcTrimmedCurve>
+	public  partial class @IfcTrimmedCurve : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTrimmedCurve>
 	{
-		#region IIfcTrimmedCurve explicit implementation
-		IIfcCurve IIfcTrimmedCurve.BasisCurve { 
- 
- 
-			get { return @BasisCurve; } 
-			set { BasisCurve = value as IfcCurve;}
-		}	
-		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim1 { 
-			get { return new Common.Collections.ProxyItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>( @Trim1); } 
-		}	
-		IItemSet<IIfcTrimmingSelect> IIfcTrimmedCurve.Trim2 { 
-			get { return new Common.Collections.ProxyItemSet<IfcTrimmingSelect, IIfcTrimmingSelect>( @Trim2); } 
-		}	
-		bool IIfcTrimmedCurve.SenseAgreement { 
- 
-			get { return @SenseAgreement; } 
-			set { SenseAgreement = value;}
-		}	
-		IfcTrimmingPreference IIfcTrimmedCurve.MasterRepresentation { 
- 
-			get { return @MasterRepresentation; } 
-			set { MasterRepresentation = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTrimmedCurve(IModel model, int label, bool activated) : base(model, label, activated)  

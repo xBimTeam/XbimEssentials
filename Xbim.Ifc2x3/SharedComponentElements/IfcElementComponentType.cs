@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedComponentElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElementComponentType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElementComponentType : IIfcElementType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcElementComponentType", 136)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementComponentType : IfcElementType, IIfcElementComponentType, IEquatable<@IfcElementComponentType>
+	public abstract partial class @IfcElementComponentType : IfcElementType, IEquatable<@IfcElementComponentType>
 	{
-		#region IIfcElementComponentType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementComponentType(IModel model, int label, bool activated) : base(model, label, activated)  

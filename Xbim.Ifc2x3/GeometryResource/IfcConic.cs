@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConic
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConic : IIfcCurve
-	{
-		IIfcAxis2Placement @Position { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcConic", 299)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConic : IfcCurve, IIfcConic, IEquatable<@IfcConic>
+	public abstract partial class @IfcConic : IfcCurve, IEquatable<@IfcConic>
 	{
-		#region IIfcConic explicit implementation
-		IIfcAxis2Placement IIfcConic.Position { 
- 
- 
-			get { return @Position; } 
-			set { Position = value as IfcAxis2Placement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConic(IModel model, int label, bool activated) : base(model, label, activated)  

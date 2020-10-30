@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcQuantityCount
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcQuantityCount : IIfcPhysicalSimpleQuantity
-	{
-		IfcCountMeasure @CountValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityCount", 457)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityCount, IContainsEntityReferences, IEquatable<@IfcQuantityCount>
+	public  partial class @IfcQuantityCount : IfcPhysicalSimpleQuantity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcQuantityCount>
 	{
-		#region IIfcQuantityCount explicit implementation
-		IfcCountMeasure IIfcQuantityCount.CountValue { 
- 
-			get { return @CountValue; } 
-			set { CountValue = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityCount(IModel model, int label, bool activated) : base(model, label, activated)  

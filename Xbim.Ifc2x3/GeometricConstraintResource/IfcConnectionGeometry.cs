@@ -14,32 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConnectionGeometry
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConnectionGeometry : IPersistEntity
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionGeometry", 70)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcConnectionGeometry : PersistEntity, IIfcConnectionGeometry, IEquatable<@IfcConnectionGeometry>
+	public abstract partial class @IfcConnectionGeometry : PersistEntity, IEquatable<@IfcConnectionGeometry>
 	{
-		#region IIfcConnectionGeometry explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionGeometry(IModel model, int label, bool activated) : base(model, label, activated)  

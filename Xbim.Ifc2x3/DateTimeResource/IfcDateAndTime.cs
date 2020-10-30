@@ -15,46 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.DateTimeResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDateAndTime
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDateAndTime : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
-	{
-		IIfcCalendarDate @DateComponent { get;  set; }
-		IIfcLocalTime @TimeComponent { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcDateAndTime", 373)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDateAndTime : PersistEntity, IInstantiableEntity, IIfcDateAndTime, IContainsEntityReferences, IEquatable<@IfcDateAndTime>
+	public  partial class @IfcDateAndTime : PersistEntity, IInstantiableEntity, IfcDateTimeSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IEquatable<@IfcDateAndTime>
 	{
-		#region IIfcDateAndTime explicit implementation
-		IIfcCalendarDate IIfcDateAndTime.DateComponent { 
- 
- 
-			get { return @DateComponent; } 
-			set { DateComponent = value as IfcCalendarDate;}
-		}	
-		IIfcLocalTime IIfcDateAndTime.TimeComponent { 
- 
- 
-			get { return @TimeComponent; } 
-			set { TimeComponent = value as IfcLocalTime;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDateAndTime(IModel model, int label, bool activated) : base(model, label, activated)  

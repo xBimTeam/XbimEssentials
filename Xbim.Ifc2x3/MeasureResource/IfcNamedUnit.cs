@@ -14,45 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcNamedUnit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcNamedUnit : IPersistEntity, IfcUnit
-	{
-		IIfcDimensionalExponents @Dimensions { get;  set; }
-		IfcUnitEnum @UnitType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcNamedUnit", 93)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcNamedUnit : PersistEntity, IIfcNamedUnit, IEquatable<@IfcNamedUnit>
+	public abstract partial class @IfcNamedUnit : PersistEntity, IfcUnit, IEquatable<@IfcNamedUnit>
 	{
-		#region IIfcNamedUnit explicit implementation
-		IIfcDimensionalExponents IIfcNamedUnit.Dimensions { 
- 
- 
-			get { return @Dimensions; } 
-			set { Dimensions = value as IfcDimensionalExponents;}
-		}	
-		IfcUnitEnum IIfcNamedUnit.UnitType { 
- 
-			get { return @UnitType; } 
-			set { UnitType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcNamedUnit(IModel model, int label, bool activated) : base(model, label, activated)  

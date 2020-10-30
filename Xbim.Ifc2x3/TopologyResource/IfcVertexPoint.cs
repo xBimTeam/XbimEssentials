@@ -14,39 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVertexPoint
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVertexPoint : IIfcVertex, IfcPointOrVertexPoint
-	{
-		IIfcPoint @VertexGeometry { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertexPoint", 521)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IIfcVertexPoint, IContainsEntityReferences, IEquatable<@IfcVertexPoint>
+	public  partial class @IfcVertexPoint : IfcVertex, IInstantiableEntity, IfcPointOrVertexPoint, IContainsEntityReferences, IEquatable<@IfcVertexPoint>
 	{
-		#region IIfcVertexPoint explicit implementation
-		IIfcPoint IIfcVertexPoint.VertexGeometry { 
- 
- 
-			get { return @VertexGeometry; } 
-			set { VertexGeometry = value as IfcPoint;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVertexPoint(IModel model, int label, bool activated) : base(model, label, activated)  

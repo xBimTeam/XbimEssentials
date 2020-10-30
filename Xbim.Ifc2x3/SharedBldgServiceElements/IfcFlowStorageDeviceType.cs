@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFlowStorageDeviceType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFlowStorageDeviceType : IIfcDistributionFlowElementType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcFlowStorageDeviceType", 620)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcFlowStorageDeviceType : IfcDistributionFlowElementType, IIfcFlowStorageDeviceType, IEquatable<@IfcFlowStorageDeviceType>
+	public abstract partial class @IfcFlowStorageDeviceType : IfcDistributionFlowElementType, IEquatable<@IfcFlowStorageDeviceType>
 	{
-		#region IIfcFlowStorageDeviceType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFlowStorageDeviceType(IModel model, int label, bool activated) : base(model, label, activated)  

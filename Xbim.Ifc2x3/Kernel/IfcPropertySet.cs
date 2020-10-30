@@ -13,36 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPropertySet
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPropertySet : IIfcPropertySetDefinition
-	{
-		IItemSet<IIfcProperty> @HasProperties { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcPropertySet", 666)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IIfcPropertySet, IContainsEntityReferences, IEquatable<@IfcPropertySet>
+	public  partial class @IfcPropertySet : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPropertySet>
 	{
-		#region IIfcPropertySet explicit implementation
-		IItemSet<IIfcProperty> IIfcPropertySet.HasProperties { 
-			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @HasProperties); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPropertySet(IModel model, int label, bool activated) : base(model, label, activated)  

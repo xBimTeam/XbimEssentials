@@ -14,48 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSoundProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSoundProperties : IIfcPropertySetDefinition
-	{
-		IfcBoolean @IsAttenuating { get;  set; }
-		IfcSoundScaleEnum? @SoundScale { get;  set; }
-		IItemSet<IIfcSoundValue> @SoundValues { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcSoundProperties", 474)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcSoundProperties, IContainsEntityReferences, IEquatable<@IfcSoundProperties>
+	public  partial class @IfcSoundProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSoundProperties>
 	{
-		#region IIfcSoundProperties explicit implementation
-		IfcBoolean IIfcSoundProperties.IsAttenuating { 
- 
-			get { return @IsAttenuating; } 
-			set { IsAttenuating = value;}
-		}	
-		IfcSoundScaleEnum? IIfcSoundProperties.SoundScale { 
- 
-			get { return @SoundScale; } 
-			set { SoundScale = value;}
-		}	
-		IItemSet<IIfcSoundValue> IIfcSoundProperties.SoundValues { 
-			get { return new Common.Collections.ProxyItemSet<IfcSoundValue, IIfcSoundValue>( @SoundValues); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSoundProperties(IModel model, int label, bool activated) : base(model, label, activated)  

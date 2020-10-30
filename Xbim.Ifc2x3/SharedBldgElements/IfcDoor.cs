@@ -14,44 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDoor
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDoor : IIfcBuildingElement
-	{
-		IfcPositiveLengthMeasure? @OverallHeight { get;  set; }
-		IfcPositiveLengthMeasure? @OverallWidth { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcDoor", 213)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IIfcDoor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoor>
+	public  partial class @IfcDoor : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDoor>
 	{
-		#region IIfcDoor explicit implementation
-		IfcPositiveLengthMeasure? IIfcDoor.OverallHeight { 
- 
-			get { return @OverallHeight; } 
-			set { OverallHeight = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcDoor.OverallWidth { 
- 
-			get { return @OverallWidth; } 
-			set { OverallWidth = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDoor(IModel model, int label, bool activated) : base(model, label, activated)  

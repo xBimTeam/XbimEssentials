@@ -13,50 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGeneralMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGeneralMaterialProperties : IIfcMaterialProperties
-	{
-		IfcMolecularWeightMeasure? @MolecularWeight { get;  set; }
-		IfcNormalisedRatioMeasure? @Porosity { get;  set; }
-		IfcMassDensityMeasure? @MassDensity { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcGeneralMaterialProperties", 716)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcGeneralMaterialProperties, IContainsEntityReferences, IEquatable<@IfcGeneralMaterialProperties>
+	public  partial class @IfcGeneralMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGeneralMaterialProperties>
 	{
-		#region IIfcGeneralMaterialProperties explicit implementation
-		IfcMolecularWeightMeasure? IIfcGeneralMaterialProperties.MolecularWeight { 
- 
-			get { return @MolecularWeight; } 
-			set { MolecularWeight = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcGeneralMaterialProperties.Porosity { 
- 
-			get { return @Porosity; } 
-			set { Porosity = value;}
-		}	
-		IfcMassDensityMeasure? IIfcGeneralMaterialProperties.MassDensity { 
- 
-			get { return @MassDensity; } 
-			set { MassDensity = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeneralMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

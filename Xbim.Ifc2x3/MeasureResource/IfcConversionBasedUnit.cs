@@ -12,45 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConversionBasedUnit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConversionBasedUnit : IIfcNamedUnit
-	{
-		IfcLabel @Name { get;  set; }
-		IIfcMeasureWithUnit @ConversionFactor { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcConversionBasedUnit", 92)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IIfcConversionBasedUnit, IContainsEntityReferences, IEquatable<@IfcConversionBasedUnit>
+	public  partial class @IfcConversionBasedUnit : IfcNamedUnit, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConversionBasedUnit>
 	{
-		#region IIfcConversionBasedUnit explicit implementation
-		IfcLabel IIfcConversionBasedUnit.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IIfcMeasureWithUnit IIfcConversionBasedUnit.ConversionFactor { 
- 
- 
-			get { return @ConversionFactor; } 
-			set { ConversionFactor = value as IfcMeasureWithUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConversionBasedUnit(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ExternalReferenceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcClassificationReference
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcClassificationReference : IIfcExternalReference, IfcClassificationNotationSelect
-	{
-		IIfcClassification @ReferencedSource { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ExternalReferenceResource
 {
 	[ExpressType("IfcClassificationReference", 209)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IIfcClassificationReference, IContainsEntityReferences, IEquatable<@IfcClassificationReference>
+	public  partial class @IfcClassificationReference : IfcExternalReference, IInstantiableEntity, IfcClassificationNotationSelect, IContainsEntityReferences, IEquatable<@IfcClassificationReference>
 	{
-		#region IIfcClassificationReference explicit implementation
-		IIfcClassification IIfcClassificationReference.ReferencedSource { 
- 
- 
-			get { return @ReferencedSource; } 
-			set { ReferencedSource = value as IfcClassification;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcClassificationReference(IModel model, int label, bool activated) : base(model, label, activated)  

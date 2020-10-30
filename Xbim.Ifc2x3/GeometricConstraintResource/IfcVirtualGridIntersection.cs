@@ -15,40 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVirtualGridIntersection
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVirtualGridIntersection : IPersistEntity
-	{
-		IItemSet<IIfcGridAxis> @IntersectingAxes { get; }
-		IItemSet<IfcLengthMeasure> @OffsetDistances { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcVirtualGridIntersection", 589)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVirtualGridIntersection : PersistEntity, IInstantiableEntity, IIfcVirtualGridIntersection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualGridIntersection>
+	public  partial class @IfcVirtualGridIntersection : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualGridIntersection>
 	{
-		#region IIfcVirtualGridIntersection explicit implementation
-		IItemSet<IIfcGridAxis> IIfcVirtualGridIntersection.IntersectingAxes { 
-			get { return new Common.Collections.ProxyItemSet<IfcGridAxis, IIfcGridAxis>( @IntersectingAxes); } 
-		}	
-		IItemSet<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { 
-			get { return @OffsetDistances; } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVirtualGridIntersection(IModel model, int label, bool activated) : base(model, label, activated)  

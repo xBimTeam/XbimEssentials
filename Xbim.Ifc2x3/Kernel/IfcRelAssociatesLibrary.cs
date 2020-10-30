@@ -13,39 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesLibrary
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesLibrary : IIfcRelAssociates
-	{
-		IIfcLibrarySelect @RelatingLibrary { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssociatesLibrary", 522)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesLibrary, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesLibrary>
+	public  partial class @IfcRelAssociatesLibrary : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesLibrary>
 	{
-		#region IIfcRelAssociatesLibrary explicit implementation
-		IIfcLibrarySelect IIfcRelAssociatesLibrary.RelatingLibrary { 
- 
- 
-			get { return @RelatingLibrary; } 
-			set { RelatingLibrary = value as IfcLibrarySelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesLibrary(IModel model, int label, bool activated) : base(model, label, activated)  

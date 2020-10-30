@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAirToAirHeatRecoveryType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAirToAirHeatRecoveryType : IIfcEnergyConversionDeviceType
-	{
-		IfcAirToAirHeatRecoveryTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcAirToAirHeatRecoveryType", 588)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAirToAirHeatRecoveryType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcAirToAirHeatRecoveryType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirToAirHeatRecoveryType>
+	public  partial class @IfcAirToAirHeatRecoveryType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirToAirHeatRecoveryType>
 	{
-		#region IIfcAirToAirHeatRecoveryType explicit implementation
-		IfcAirToAirHeatRecoveryTypeEnum IIfcAirToAirHeatRecoveryType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAirToAirHeatRecoveryType(IModel model, int label, bool activated) : base(model, label, activated)  
