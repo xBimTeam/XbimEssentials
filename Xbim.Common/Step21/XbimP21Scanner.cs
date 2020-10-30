@@ -19,6 +19,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
@@ -539,6 +540,7 @@ namespace Xbim.IO.Step21
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private int GetLabel(/*ReadOnlySpan<char>*/string value)
         {
             var label = 0;
