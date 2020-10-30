@@ -381,7 +381,7 @@ namespace Xbim.Essentials.Tests
                         p.HasProperties.Add(model.Instances.New<IfcPropertySingleValue>(s => s.Name = "Property"));
                     });
 
-                    var set = new IfcPropertySetDefinitionSet(new List<IfcPropertySetDefinition> { pSet1, pSet2, pSet3 });
+                    var set = new IfcPropertySetDefinitionSet(new List<IIfcPropertySetDefinition> { pSet1, pSet2, pSet3 });
                     var wall = model.Instances.New<IfcWall>(w =>
                     {
                         w.Name = "Sample wall";
