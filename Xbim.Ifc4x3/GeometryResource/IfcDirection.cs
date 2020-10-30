@@ -57,8 +57,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
+				return DirectionRatios.Count;
 				//##
 			}
 		}

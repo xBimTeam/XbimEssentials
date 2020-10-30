@@ -15,7 +15,9 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4x3.GeometryResource;
+using Xbim.Ifc4x3.ProductExtension;
 //## Custom using statements
+using Xbim.Ifc4x3.GeometricConstraintResource;
 //##
 
 
@@ -40,8 +42,21 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
+				if (this is IfcLine ln) return ln.Pnt.Dim;
+				if (this is IfcConic cn)return cn.Position.Dim;
+				if (this is IfcPolyline pln) return pln.Points[1].Dim;
+				if (this is IfcTrimmedCurve tc) return tc.BasisCurve.Dim;
+				if (this is IfcCompositeCurve cc) return cc.Segments[1].Dim;
+				if (this is IfcBSplineCurve bs) return bs.ControlPointsList[1].Dim;
+				if (this is IfcOffsetCurve2D) return 2;
+				if (this is IfcOffsetCurve3D) return 3;
+				if (this is IfcOffsetCurveByDistances) return 3;
+				if (this is IfcCurveSegment2D) return 2;
+				if (this is IfcAlignmentCurve) return 2;
+				if (this is IfcPcurve) return 3;
+				if (this is IfcIndexedPolyCurve pc) return pc.Points.Dim;
+
+				throw new NotSupportedException();
 				//##
 			}
 		}

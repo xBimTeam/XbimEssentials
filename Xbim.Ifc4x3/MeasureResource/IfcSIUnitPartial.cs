@@ -200,7 +200,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 						case IfcSIPrefix.ATTO:
 							prefix = "a";
 							break;
-						default: //TODO: the other values of IfcSIPrefix
+						default: 
                             prefix = ifcSiPrefix.ToString();
                             break;
                     }
@@ -221,10 +221,10 @@ namespace Xbim.Ifc4x3.MeasureResource
 						value = prefix + "C";
 						break;
 					case IfcSIUnitName.CUBIC_METRE:
-						value = prefix + "m" + '\u00B3'; //((char)0x00B3)
+						value = prefix + "m³";
 						break;
 					case IfcSIUnitName.DEGREE_CELSIUS:
-						value = prefix + '\u00B0' + "C"; //((char)0x00B0)
+						value = prefix + "°C";
 						break;
 					case IfcSIUnitName.FARAD:
 						value = prefix + "F";
@@ -263,7 +263,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 						value = prefix + "N";
 						break;
 					case IfcSIUnitName.OHM:
-						value = prefix + '\u03A9'; //((char)0x03A9)
+						value = prefix + 'Ω';
 						break;
 					case IfcSIUnitName.PASCAL:
 						value = prefix + "Pa";
@@ -281,7 +281,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 						value = prefix + "Sv";
 						break;
 					case IfcSIUnitName.SQUARE_METRE:
-                        value = prefix + "m" + '\u00B2'; //((char)0x00B2)might need to look at this for other cultures
+                        value = prefix + "m²";
                         break;
 					case IfcSIUnitName.STERADIAN:
 						value = prefix + "sr";
@@ -298,7 +298,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 					case IfcSIUnitName.WEBER:
 						value = prefix + "Wb";
 						break;
-					default: //TODO: the other values of IfcSIUnitName
+					default: 
                         value = ToString();
                         break;
                 }

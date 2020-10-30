@@ -131,7 +131,6 @@ namespace Xbim.Ifc4x3.RepresentationResource
 			get 
 			{
 				//## Overriding derived attribute TrueNorth getter
-				//TODO: Implement overriding derived attribute TrueNorth getter
 				if (ParentContext != null && ParentContext.TrueNorth != null)
 					return ParentContext.TrueNorth;
 

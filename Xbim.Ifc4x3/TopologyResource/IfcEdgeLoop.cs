@@ -56,8 +56,7 @@ namespace Xbim.Ifc4x3.TopologyResource
 			get 
 			{
 				//## Getter for Ne
-				//TODO: Implement getter for derived attribute Ne
-				throw new NotImplementedException();
+			    return EdgeList.Count;
 				//##
 			}
 		}

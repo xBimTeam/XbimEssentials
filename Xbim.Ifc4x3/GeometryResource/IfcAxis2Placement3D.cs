@@ -77,8 +77,28 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for P
-				//TODO: Implement getter for derived attribute P
-				throw new NotImplementedException();
+				var p = new List<Common.Geometry.XbimVector3D>(3);
+				if (RefDirection == null && Axis == null)
+				{
+					p.Add(new Common.Geometry.XbimVector3D(1, 0, 0));
+					p.Add(new Common.Geometry.XbimVector3D(0, 1, 0));
+					p.Add(new Common.Geometry.XbimVector3D(0, 0, 1));
+				}
+				else if (RefDirection != null && Axis != null)
+				{
+					var za = _axis.XbimVector3D();
+					za.Normalized();
+					var xa = _refDirection.XbimVector3D();
+					xa.Normalized();
+					var ya = Common.Geometry.XbimVector3D.CrossProduct(za, xa);
+					ya.Normalized();
+					p.Add(xa);
+					p.Add(ya);
+					p.Add(za);
+				}
+				else
+					throw new ArgumentException("RefDirection and Axis must be noth either null or both defined");
+				return p;
 				//##
 			}
 		}

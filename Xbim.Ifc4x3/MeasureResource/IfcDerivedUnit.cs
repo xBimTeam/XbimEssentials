@@ -87,8 +87,45 @@ namespace Xbim.Ifc4x3.MeasureResource
 			get 
 			{
 				//## Getter for Dimensions
-				//TODO: Implement getter for derived attribute Dimensions
-				throw new NotImplementedException();
+				var derivedUnit = this as IfcDerivedUnit;
+				if (derivedUnit == null)
+					throw new NotSupportedException();
+				var elements = derivedUnit.Elements as IList<IfcDerivedUnitElement> ?? derivedUnit.Elements.ToList();
+				if (!elements.Any())
+					throw new ArgumentNullException();
+
+				#region Strict Implementation
+				var result = new Common.Geometry.XbimDimensionalExponents(0, 0, 0, 0, 0, 0, 0);
+				foreach (var unitElement in elements)
+				{
+					var unitDimensions = unitElement.Unit.Dimensions;
+					if (unitDimensions == null && unitElement.Unit is IfcConversionBasedUnit)
+					{
+						var cbu = unitElement.Unit as IfcConversionBasedUnit;
+						var nu = cbu.ConversionFactor.UnitComponent as IfcNamedUnit;
+						if (nu != null)
+							unitDimensions = nu.Dimensions;
+					}
+					if (unitDimensions == null)
+						continue;
+
+					result.LengthExponent = result.LengthExponent +
+						  (unitElement.Exponent * unitDimensions.LengthExponent);
+					result.MassExponent = +result.MassExponent +
+						  (unitElement.Exponent * unitDimensions.MassExponent);
+					result.TimeExponent = result.TimeExponent +
+						  (unitElement.Exponent * unitDimensions.TimeExponent);
+					result.ElectricCurrentExponent = result.ElectricCurrentExponent +
+						  (unitElement.Exponent * unitDimensions.ElectricCurrentExponent);
+					result.ThermodynamicTemperatureExponent = result.ThermodynamicTemperatureExponent +
+						  (unitElement.Exponent * unitDimensions.ThermodynamicTemperatureExponent);
+					result.AmountOfSubstanceExponent = result.AmountOfSubstanceExponent +
+						  (unitElement.Exponent * unitDimensions.AmountOfSubstanceExponent);
+					result.LuminousIntensityExponent = result.LuminousIntensityExponent +
+						  (unitElement.Exponent * unitDimensions.LuminousIntensityExponent);
+				}
+				return result;
+				#endregion Strict Implementation
 				//##
 			}
 		}

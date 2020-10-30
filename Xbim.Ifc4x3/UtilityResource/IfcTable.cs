@@ -87,8 +87,7 @@ namespace Xbim.Ifc4x3.UtilityResource
 			get 
 			{
 				//## Getter for NumberOfCellsInRow
-				//TODO: Implement getter for derived attribute NumberOfCellsInRow
-				throw new NotImplementedException();
+				return Rows.FirstOrDefault()?.RowCells.Count ?? 0;
 				//##
 			}
 		}
@@ -99,8 +98,7 @@ namespace Xbim.Ifc4x3.UtilityResource
 			get 
 			{
 				//## Getter for NumberOfHeadings
-				//TODO: Implement getter for derived attribute NumberOfHeadings
-				throw new NotImplementedException();
+				return Rows.Count(r => r.IsHeading ?? false);
 				//##
 			}
 		}
@@ -111,8 +109,7 @@ namespace Xbim.Ifc4x3.UtilityResource
 			get 
 			{
 				//## Getter for NumberOfDataRows
-				//TODO: Implement getter for derived attribute NumberOfDataRows
-				throw new NotImplementedException();
+				return Rows.Count(r => !(r.IsHeading ?? false));
 				//##
 			}
 		}

@@ -60,8 +60,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for Z
-				//TODO: Implement getter for derived attribute Z
-				throw new NotImplementedException();
+				return _axis != null ? _axis.Normalise() : new Common.Geometry.XbimVector3D(0, 0, 1);
 				//##
 			}
 		}

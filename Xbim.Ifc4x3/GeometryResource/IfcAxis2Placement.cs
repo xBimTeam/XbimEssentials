@@ -19,6 +19,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 	{
 		#region Custom code for a select
 		//## Custom code for a select
+		IfcDimensionCount Dim { get; }
 		//##
 		#endregion
 	}
