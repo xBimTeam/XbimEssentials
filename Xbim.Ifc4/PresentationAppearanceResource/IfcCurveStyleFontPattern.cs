@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			get { return @InvisibleSegmentLength; } 
 			set { InvisibleSegmentLength = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

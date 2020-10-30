@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IIfcConnectedFaceSet> IIfcFaceBasedSurfaceModel.FbsmFaces { 
 			get { return new Common.Collections.ProxyItemSet<IfcConnectedFaceSet, IIfcConnectedFaceSet>( @FbsmFaces); } 
 		}	
-		 
+		IfcDimensionCount IIfcFaceBasedSurfaceModel.@Dim  { get { return @Dim; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

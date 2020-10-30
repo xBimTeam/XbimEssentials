@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			get { return @Orientation; } 
 			set { Orientation = value as IfcDirection;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

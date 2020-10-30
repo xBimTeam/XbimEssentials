@@ -67,7 +67,6 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @AlongHorizontal; } 
 			set { AlongHorizontal = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @ProcessType; } 
 			set { ProcessType = value;}
 		}	
-		 
 		IEnumerable<IIfcRelAssignsToProcess> IIfcTypeProcess.OperatesOn {  get { return @OperatesOn; } }
 		#endregion
 

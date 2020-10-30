@@ -53,7 +53,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @LongDescription; } 
 			set { LongDescription = value;}
 		}	
-		 
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsPredecessorTo {  get { return @IsPredecessorTo; } }
 		IEnumerable<IIfcRelSequence> IIfcProcess.IsSuccessorFrom {  get { return @IsSuccessorFrom; } }
 		IEnumerable<IIfcRelAssignsToProcess> IIfcProcess.OperatesOn {  get { return @OperatesOn; } }

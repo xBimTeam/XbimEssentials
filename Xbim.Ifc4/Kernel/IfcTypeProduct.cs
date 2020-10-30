@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @Tag; } 
 			set { Tag = value;}
 		}	
-		 
 		IEnumerable<IIfcRelAssignsToProduct> IIfcTypeProduct.ReferencedBy {  get { return @ReferencedBy; } }
 		#endregion
 

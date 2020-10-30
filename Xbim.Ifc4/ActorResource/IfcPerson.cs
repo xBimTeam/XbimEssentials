@@ -80,7 +80,6 @@ namespace Xbim.Ifc4.ActorResource
 		IItemSet<IIfcAddress> IIfcPerson.Addresses { 
 			get { return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>( @Addresses); } 
 		}	
-		 
 		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn {  get { return @EngagedIn; } }
 		#endregion
 

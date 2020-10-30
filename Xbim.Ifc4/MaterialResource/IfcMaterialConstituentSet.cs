@@ -53,7 +53,6 @@ namespace Xbim.Ifc4.MaterialResource
 		IItemSet<IIfcMaterialConstituent> IIfcMaterialConstituentSet.MaterialConstituents { 
 			get { return new Common.Collections.ProxyItemSet<IfcMaterialConstituent, IIfcMaterialConstituent>( @MaterialConstituents); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -41,7 +41,6 @@ namespace Xbim.Ifc4.GeometryResource
 		IItemSet<IfcLengthMeasure> IIfcCartesianPoint.Coordinates { 
 			get { return @Coordinates; } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @ObjectType; } 
 			set { ObjectType = value;}
 		}	
-		 
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.IsDeclaredBy {  get { return @IsDeclaredBy; } }
 		IEnumerable<IIfcRelDefinesByObject> IIfcObject.Declares {  get { return @Declares; } }
 		IEnumerable<IIfcRelDefinesByType> IIfcObject.IsTypedBy {  get { return @IsTypedBy; } }

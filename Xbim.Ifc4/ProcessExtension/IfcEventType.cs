@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.ProcessExtension
 			get { return @UserDefinedEventTriggerType; } 
 			set { UserDefinedEventTriggerType = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

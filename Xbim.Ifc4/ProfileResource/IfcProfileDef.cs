@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.ProfileResource
 			get { return @ProfileName; } 
 			set { ProfileName = value;}
 		}	
-		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcProfileDef.HasExternalReference {  get { return @HasExternalReference; } }
 		IEnumerable<IIfcProfileProperties> IIfcProfileDef.HasProperties {  get { return @HasProperties; } }
 		#endregion

@@ -73,7 +73,6 @@ namespace Xbim.Ifc4.RepresentationResource
 			get { return @Scale; } 
 			set { Scale = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

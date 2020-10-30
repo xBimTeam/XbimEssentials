@@ -57,7 +57,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @BuildingAddress; } 
 			set { BuildingAddress = value as IfcPostalAddress;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

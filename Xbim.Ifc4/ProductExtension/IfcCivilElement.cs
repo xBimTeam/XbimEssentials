@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcCivilElement : IfcElement, IInstantiableEntity, IIfcCivilElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCivilElement>
 	{
 		#region IIfcCivilElement explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

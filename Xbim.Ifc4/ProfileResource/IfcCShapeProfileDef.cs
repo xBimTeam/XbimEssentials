@@ -67,7 +67,6 @@ namespace Xbim.Ifc4.ProfileResource
 			get { return @InternalFilletRadius; } 
 			set { InternalFilletRadius = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

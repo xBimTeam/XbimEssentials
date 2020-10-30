@@ -61,7 +61,6 @@ namespace Xbim.Ifc4.MaterialResource
 			get { return @CompositeProfile; } 
 			set { CompositeProfile = value as IfcCompositeProfileDef;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

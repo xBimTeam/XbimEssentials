@@ -59,7 +59,6 @@ namespace Xbim.Ifc4.QuantityResource
 			get { return @Usage; } 
 			set { Usage = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

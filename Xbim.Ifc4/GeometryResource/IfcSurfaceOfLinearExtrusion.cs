@@ -51,7 +51,7 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @Depth; } 
 			set { Depth = value;}
 		}	
-		 
+		Common.Geometry.XbimVector3D IIfcSurfaceOfLinearExtrusion.@ExtrusionAxis  { get { return @ExtrusionAxis; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

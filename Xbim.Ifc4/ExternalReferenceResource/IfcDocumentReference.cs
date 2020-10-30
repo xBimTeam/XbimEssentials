@@ -52,7 +52,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			get { return @ReferencedDocument; } 
 			set { ReferencedDocument = value as IfcDocumentInformation;}
 		}	
-		 
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentReference.DocumentRefForObjects {  get { return @DocumentRefForObjects; } }
 		#endregion
 

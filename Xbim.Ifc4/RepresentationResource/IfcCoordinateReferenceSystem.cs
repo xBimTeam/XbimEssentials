@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.RepresentationResource
 			get { return @VerticalDatum; } 
 			set { VerticalDatum = value;}
 		}	
-		 
 		IEnumerable<IIfcCoordinateOperation> IIfcCoordinateReferenceSystem.HasCoordinateOperation {  get { return @HasCoordinateOperation; } }
 		#endregion
 

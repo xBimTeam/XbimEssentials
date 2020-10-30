@@ -78,7 +78,6 @@ namespace Xbim.Ifc4.StructuralLoadResource
 			get { return @RotationalStiffnessZ; } 
 			set { RotationalStiffnessZ = value as IfcRotationalStiffnessSelect;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

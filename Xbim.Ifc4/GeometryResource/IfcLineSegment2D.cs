@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcLineSegment2D : IfcCurveSegment2D, IInstantiableEntity, IIfcLineSegment2D, IContainsEntityReferences, IEquatable<@IfcLineSegment2D>
 	{
 		#region IIfcLineSegment2D explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

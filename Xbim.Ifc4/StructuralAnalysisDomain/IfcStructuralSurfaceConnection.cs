@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralSurfaceConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralSurfaceConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceConnection>
 	{
 		#region IIfcStructuralSurfaceConnection explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

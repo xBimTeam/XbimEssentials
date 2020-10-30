@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcFeatureElementSubtraction : IfcFeatureElement, IIfcFeatureElementSubtraction, IEquatable<@IfcFeatureElementSubtraction>
 	{
 		#region IIfcFeatureElementSubtraction explicit implementation
-		 
 		IIfcRelVoidsElement IIfcFeatureElementSubtraction.VoidsElements {  get { return @VoidsElements; } }
 		#endregion
 

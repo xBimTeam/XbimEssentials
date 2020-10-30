@@ -42,7 +42,6 @@ namespace Xbim.Ifc4.TopologyResource
 		IItemSet<IIfcFaceBound> IIfcFace.Bounds { 
 			get { return new Common.Collections.ProxyItemSet<IfcFaceBound, IIfcFaceBound>( @Bounds); } 
 		}	
-		 
 		IEnumerable<IIfcTextureMap> IIfcFace.HasTextureMaps {  get { return @HasTextureMaps; } }
 		#endregion
 

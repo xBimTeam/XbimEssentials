@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcBuildingElementType : IfcElementType, IIfcBuildingElementType, IEquatable<@IfcBuildingElementType>
 	{
 		#region IIfcBuildingElementType explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

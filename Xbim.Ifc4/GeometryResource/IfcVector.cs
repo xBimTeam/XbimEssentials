@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @Magnitude; } 
 			set { Magnitude = value;}
 		}	
-		 
+		IfcDimensionCount IIfcVector.@Dim  { get { return @Dim; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

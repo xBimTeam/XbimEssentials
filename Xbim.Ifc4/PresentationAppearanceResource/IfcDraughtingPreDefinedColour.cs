@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	public  partial class @IfcDraughtingPreDefinedColour : IfcPreDefinedColour, IInstantiableEntity, IIfcDraughtingPreDefinedColour, IEquatable<@IfcDraughtingPreDefinedColour>
 	{
 		#region IIfcDraughtingPreDefinedColour explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

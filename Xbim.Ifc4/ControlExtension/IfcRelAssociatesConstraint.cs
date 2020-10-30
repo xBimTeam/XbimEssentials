@@ -52,7 +52,6 @@ namespace Xbim.Ifc4.ControlExtension
 			get { return @RelatingConstraint; } 
 			set { RelatingConstraint = value as IfcConstraint;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

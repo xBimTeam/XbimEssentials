@@ -52,7 +52,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @Position; } 
 			set { Position = value as IfcAxis2Placement3D;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcVirtualElement : IfcElement, IInstantiableEntity, IIfcVirtualElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcVirtualElement>
 	{
 		#region IIfcVirtualElement explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

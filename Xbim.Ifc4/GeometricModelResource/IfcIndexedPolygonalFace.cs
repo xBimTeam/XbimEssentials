@@ -42,7 +42,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IfcPositiveInteger> IIfcIndexedPolygonalFace.CoordIndex { 
 			get { return @CoordIndex; } 
 		}	
-		 
 		IEnumerable<IIfcPolygonalFaceSet> IIfcIndexedPolygonalFace.ToFaceSet {  get { return @ToFaceSet; } }
 		#endregion
 

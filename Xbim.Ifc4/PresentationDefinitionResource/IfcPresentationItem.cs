@@ -38,7 +38,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 	public abstract partial class @IfcPresentationItem : PersistEntity, IIfcPresentationItem, IEquatable<@IfcPresentationItem>
 	{
 		#region IIfcPresentationItem explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

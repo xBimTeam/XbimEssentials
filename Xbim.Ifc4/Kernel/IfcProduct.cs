@@ -53,7 +53,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @Representation; } 
 			set { Representation = value as IfcProductRepresentation;}
 		}	
-		 
 		IEnumerable<IIfcRelAssignsToProduct> IIfcProduct.ReferencedBy {  get { return @ReferencedBy; } }
 		#endregion
 

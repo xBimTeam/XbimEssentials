@@ -38,7 +38,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IIfcSystem, IContainsEntityReferences, IEquatable<@IfcSystem>
 	{
 		#region IIfcSystem explicit implementation
-		 
 		IEnumerable<IIfcRelServicesBuildings> IIfcSystem.ServicesBuildings {  get { return @ServicesBuildings; } }
 		#endregion
 

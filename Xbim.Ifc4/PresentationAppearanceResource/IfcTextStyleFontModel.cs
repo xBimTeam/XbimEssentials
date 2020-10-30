@@ -65,7 +65,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			get { return @FontSize; } 
 			set { FontSize = value as IfcSizeSelect;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

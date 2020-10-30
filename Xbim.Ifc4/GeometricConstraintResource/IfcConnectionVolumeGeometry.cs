@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			get { return @VolumeOnRelatedElement; } 
 			set { VolumeOnRelatedElement = value as IfcSolidOrShell;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

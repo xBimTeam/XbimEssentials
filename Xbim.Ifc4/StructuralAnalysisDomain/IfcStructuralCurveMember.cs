@@ -50,7 +50,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			get { return @Axis; } 
 			set { Axis = value as IfcDirection;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

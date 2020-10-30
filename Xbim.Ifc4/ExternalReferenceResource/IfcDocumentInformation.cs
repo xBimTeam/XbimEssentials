@@ -145,7 +145,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			get { return @Status; } 
 			set { Status = value;}
 		}	
-		 
 		IEnumerable<IIfcRelAssociatesDocument> IIfcDocumentInformation.DocumentInfoForObjects {  get { return @DocumentInfoForObjects; } }
 		IEnumerable<IIfcDocumentReference> IIfcDocumentInformation.HasDocumentReferences {  get { return @HasDocumentReferences; } }
 		IEnumerable<IIfcDocumentInformationRelationship> IIfcDocumentInformation.IsPointedTo {  get { return @IsPointedTo; } }
