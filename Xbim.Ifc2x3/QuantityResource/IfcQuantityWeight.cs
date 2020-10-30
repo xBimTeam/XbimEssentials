@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcQuantityWeight
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcQuantityWeight : IIfcPhysicalSimpleQuantity
-	{
-		IfcMassMeasure @WeightValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityWeight", 603)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityWeight, IContainsEntityReferences, IEquatable<@IfcQuantityWeight>
+	public  partial class @IfcQuantityWeight : IfcPhysicalSimpleQuantity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcQuantityWeight>
 	{
-		#region IIfcQuantityWeight explicit implementation
-		IfcMassMeasure IIfcQuantityWeight.WeightValue { 
- 
-			get { return @WeightValue; } 
-			set { WeightValue = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityWeight(IModel model, int label, bool activated) : base(model, label, activated)  

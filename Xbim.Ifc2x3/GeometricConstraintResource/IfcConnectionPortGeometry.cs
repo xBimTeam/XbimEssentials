@@ -14,53 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConnectionPortGeometry
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConnectionPortGeometry : IIfcConnectionGeometry
-	{
-		IIfcAxis2Placement @LocationAtRelatingElement { get;  set; }
-		IIfcAxis2Placement @LocationAtRelatedElement { get;  set; }
-		IIfcProfileDef @ProfileOfPort { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcConnectionPortGeometry", 713)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IIfcConnectionPortGeometry, IContainsEntityReferences, IEquatable<@IfcConnectionPortGeometry>
+	public  partial class @IfcConnectionPortGeometry : IfcConnectionGeometry, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConnectionPortGeometry>
 	{
-		#region IIfcConnectionPortGeometry explicit implementation
-		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatingElement { 
- 
- 
-			get { return @LocationAtRelatingElement; } 
-			set { LocationAtRelatingElement = value as IfcAxis2Placement;}
-		}	
-		IIfcAxis2Placement IIfcConnectionPortGeometry.LocationAtRelatedElement { 
- 
- 
-			get { return @LocationAtRelatedElement; } 
-			set { LocationAtRelatedElement = value as IfcAxis2Placement;}
-		}	
-		IIfcProfileDef IIfcConnectionPortGeometry.ProfileOfPort { 
- 
- 
-			get { return @ProfileOfPort; } 
-			set { ProfileOfPort = value as IfcProfileDef;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConnectionPortGeometry(IModel model, int label, bool activated) : base(model, label, activated)  

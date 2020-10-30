@@ -14,53 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralAnalysisModel
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralAnalysisModel : IIfcSystem
-	{
-		IfcAnalysisModelTypeEnum @PredefinedType { get;  set; }
-		IIfcAxis2Placement3D @OrientationOf2DPlane { get;  set; }
-		IItemSet<IIfcStructuralLoadGroup> @LoadedBy { get; }
-		IItemSet<IIfcStructuralResultGroup> @HasResults { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralAnalysisModel", 230)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IIfcStructuralAnalysisModel, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralAnalysisModel>
+	public  partial class @IfcStructuralAnalysisModel : IfcSystem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralAnalysisModel>
 	{
-		#region IIfcStructuralAnalysisModel explicit implementation
-		IfcAnalysisModelTypeEnum IIfcStructuralAnalysisModel.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		IIfcAxis2Placement3D IIfcStructuralAnalysisModel.OrientationOf2DPlane { 
- 
- 
-			get { return @OrientationOf2DPlane; } 
-			set { OrientationOf2DPlane = value as IfcAxis2Placement3D;}
-		}	
-		IItemSet<IIfcStructuralLoadGroup> IIfcStructuralAnalysisModel.LoadedBy { 
-			get { return new Common.Collections.ProxyItemSet<IfcStructuralLoadGroup, IIfcStructuralLoadGroup>( @LoadedBy); } 
-		}	
-		IItemSet<IIfcStructuralResultGroup> IIfcStructuralAnalysisModel.HasResults { 
-			get { return new Common.Collections.ProxyItemSet<IfcStructuralResultGroup, IIfcStructuralResultGroup>( @HasResults); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralAnalysisModel(IModel model, int label, bool activated) : base(model, label, activated)  

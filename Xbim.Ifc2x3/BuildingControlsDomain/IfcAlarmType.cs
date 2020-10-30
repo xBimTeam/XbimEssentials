@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.BuildingcontrolsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAlarmType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAlarmType : IIfcDistributionControlElementType
-	{
-		IfcAlarmTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.BuildingcontrolsDomain
 {
 	[ExpressType("IfcAlarmType", 275)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IIfcAlarmType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlarmType>
+	public  partial class @IfcAlarmType : IfcDistributionControlElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlarmType>
 	{
-		#region IIfcAlarmType explicit implementation
-		IfcAlarmTypeEnum IIfcAlarmType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAlarmType(IModel model, int label, bool activated) : base(model, label, activated)  

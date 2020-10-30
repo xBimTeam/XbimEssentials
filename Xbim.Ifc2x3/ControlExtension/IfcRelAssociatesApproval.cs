@@ -14,39 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ControlExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesApproval
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesApproval : IIfcRelAssociates
-	{
-		IIfcApproval @RelatingApproval { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ControlExtension
 {
 	[ExpressType("IfcRelAssociatesApproval", 342)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesApproval, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesApproval>
+	public  partial class @IfcRelAssociatesApproval : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesApproval>
 	{
-		#region IIfcRelAssociatesApproval explicit implementation
-		IIfcApproval IIfcRelAssociatesApproval.RelatingApproval { 
- 
- 
-			get { return @RelatingApproval; } 
-			set { RelatingApproval = value as IfcApproval;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesApproval(IModel model, int label, bool activated) : base(model, label, activated)  

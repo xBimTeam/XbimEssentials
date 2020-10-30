@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for Ifc2DCompositeCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfc2DCompositeCurve : IIfcCompositeCurve
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("Ifc2DCompositeCurve", 524)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @Ifc2DCompositeCurve : IfcCompositeCurve, IInstantiableEntity, IIfc2DCompositeCurve, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@Ifc2DCompositeCurve>
+	public  partial class @Ifc2DCompositeCurve : IfcCompositeCurve, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@Ifc2DCompositeCurve>
 	{
-		#region IIfc2DCompositeCurve explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal Ifc2DCompositeCurve(IModel model, int label, bool activated) : base(model, label, activated)  

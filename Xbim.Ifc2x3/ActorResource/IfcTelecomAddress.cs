@@ -13,56 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ActorResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTelecomAddress
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTelecomAddress : IIfcAddress
-	{
-		IItemSet<IfcLabel> @TelephoneNumbers { get; }
-		IItemSet<IfcLabel> @FacsimileNumbers { get; }
-		IfcLabel? @PagerNumber { get;  set; }
-		IItemSet<IfcLabel> @ElectronicMailAddresses { get; }
-		IfcLabel? @WWWHomePageURL { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcTelecomAddress", 553)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IIfcTelecomAddress, IEquatable<@IfcTelecomAddress>
+	public  partial class @IfcTelecomAddress : IfcAddress, IInstantiableEntity, IEquatable<@IfcTelecomAddress>
 	{
-		#region IIfcTelecomAddress explicit implementation
-		IItemSet<IfcLabel> IIfcTelecomAddress.TelephoneNumbers { 
-			get { return @TelephoneNumbers; } 
-		}	
-		IItemSet<IfcLabel> IIfcTelecomAddress.FacsimileNumbers { 
-			get { return @FacsimileNumbers; } 
-		}	
-		IfcLabel? IIfcTelecomAddress.PagerNumber { 
- 
-			get { return @PagerNumber; } 
-			set { PagerNumber = value;}
-		}	
-		IItemSet<IfcLabel> IIfcTelecomAddress.ElectronicMailAddresses { 
-			get { return @ElectronicMailAddresses; } 
-		}	
-		IfcLabel? IIfcTelecomAddress.WWWHomePageURL { 
- 
-			get { return @WWWHomePageURL; } 
-			set { WWWHomePageURL = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTelecomAddress(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssignsToProcess
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssignsToProcess : IIfcRelAssigns
-	{
-		IIfcProcess @RelatingProcess { get;  set; }
-		IIfcMeasureWithUnit @QuantityInProcess { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToProcess", 249)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProcess, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProcess>
+	public  partial class @IfcRelAssignsToProcess : IfcRelAssigns, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProcess>
 	{
-		#region IIfcRelAssignsToProcess explicit implementation
-		IIfcProcess IIfcRelAssignsToProcess.RelatingProcess { 
- 
- 
-			get { return @RelatingProcess; } 
-			set { RelatingProcess = value as IfcProcess;}
-		}	
-		IIfcMeasureWithUnit IIfcRelAssignsToProcess.QuantityInProcess { 
- 
- 
-			get { return @QuantityInProcess; } 
-			set { QuantityInProcess = value as IfcMeasureWithUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToProcess(IModel model, int label, bool activated) : base(model, label, activated)  

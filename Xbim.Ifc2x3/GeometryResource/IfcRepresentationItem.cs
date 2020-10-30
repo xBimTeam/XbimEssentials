@@ -16,36 +16,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRepresentationItem
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRepresentationItem : IPersistEntity, IfcLayeredItem
-	{
-		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignments {  get; }
-		IEnumerable<IIfcStyledItem> @StyledByItem {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRepresentationItem", 31)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRepresentationItem : PersistEntity, IIfcRepresentationItem, IEquatable<@IfcRepresentationItem>
+	public abstract partial class @IfcRepresentationItem : PersistEntity, IfcLayeredItem, IEquatable<@IfcRepresentationItem>
 	{
-		#region IIfcRepresentationItem explicit implementation
-		 
-		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentationItem.LayerAssignments {  get { return @LayerAssignments; } }
-		IEnumerable<IIfcStyledItem> IIfcRepresentationItem.StyledByItem {  get { return @StyledByItem; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRepresentationItem(IModel model, int label, bool activated) : base(model, label, activated)  

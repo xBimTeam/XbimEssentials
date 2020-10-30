@@ -13,43 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelCoversSpaces
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelCoversSpaces : IIfcRelConnects
-	{
-		IIfcSpace @RelatedSpace { get;  set; }
-		IItemSet<IIfcCovering> @RelatedCoverings { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelCoversSpaces", 17)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IIfcRelCoversSpaces, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversSpaces>
+	public  partial class @IfcRelCoversSpaces : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversSpaces>
 	{
-		#region IIfcRelCoversSpaces explicit implementation
-		IIfcSpace IIfcRelCoversSpaces.RelatedSpace { 
- 
- 
-			get { return @RelatedSpace; } 
-			set { RelatedSpace = value as IfcSpace;}
-		}	
-		IItemSet<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings { 
-			get { return new Common.Collections.ProxyItemSet<IfcCovering, IIfcCovering>( @RelatedCoverings); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelCoversSpaces(IModel model, int label, bool activated) : base(model, label, activated)  

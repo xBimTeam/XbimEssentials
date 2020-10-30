@@ -14,50 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.DateTimeResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCoordinatedUniversalTimeOffset
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCoordinatedUniversalTimeOffset : IPersistEntity
-	{
-		IfcHourInDay @HourOffset { get;  set; }
-		IfcMinuteInHour? @MinuteOffset { get;  set; }
-		IfcAheadOrBehind @Sense { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcCoordinatedUniversalTimeOffset", 690)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoordinatedUniversalTimeOffset : PersistEntity, IInstantiableEntity, IIfcCoordinatedUniversalTimeOffset, IEquatable<@IfcCoordinatedUniversalTimeOffset>
+	public  partial class @IfcCoordinatedUniversalTimeOffset : PersistEntity, IInstantiableEntity, IEquatable<@IfcCoordinatedUniversalTimeOffset>
 	{
-		#region IIfcCoordinatedUniversalTimeOffset explicit implementation
-		IfcHourInDay IIfcCoordinatedUniversalTimeOffset.HourOffset { 
- 
-			get { return @HourOffset; } 
-			set { HourOffset = value;}
-		}	
-		IfcMinuteInHour? IIfcCoordinatedUniversalTimeOffset.MinuteOffset { 
- 
-			get { return @MinuteOffset; } 
-			set { MinuteOffset = value;}
-		}	
-		IfcAheadOrBehind IIfcCoordinatedUniversalTimeOffset.Sense { 
- 
-			get { return @Sense; } 
-			set { Sense = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCoordinatedUniversalTimeOffset(IModel model, int label, bool activated) : base(model, label, activated)  

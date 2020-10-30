@@ -14,52 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDerivedProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDerivedProfileDef : IIfcProfileDef
-	{
-		IIfcProfileDef @ParentProfile { get;  set; }
-		IIfcCartesianTransformationOperator2D @Operator { get;  set; }
-		IfcLabel? @Label { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcDerivedProfileDef", 390)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IIfcDerivedProfileDef, IContainsEntityReferences, IEquatable<@IfcDerivedProfileDef>
+	public  partial class @IfcDerivedProfileDef : IfcProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcDerivedProfileDef>
 	{
-		#region IIfcDerivedProfileDef explicit implementation
-		IIfcProfileDef IIfcDerivedProfileDef.ParentProfile { 
- 
- 
-			get { return @ParentProfile; } 
-			set { ParentProfile = value as IfcProfileDef;}
-		}	
-		IIfcCartesianTransformationOperator2D IIfcDerivedProfileDef.Operator { 
- 
- 
-			get { return @Operator; } 
-			set { Operator = value as IfcCartesianTransformationOperator2D;}
-		}	
-		IfcLabel? IIfcDerivedProfileDef.Label { 
- 
-			get { return @Label; } 
-			set { Label = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDerivedProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelationship : IIfcRoot
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelationship", 11)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelationship : IfcRoot, IIfcRelationship, IEquatable<@IfcRelationship>
+	public abstract partial class @IfcRelationship : IfcRoot, IEquatable<@IfcRelationship>
 	{
-		#region IIfcRelationship explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

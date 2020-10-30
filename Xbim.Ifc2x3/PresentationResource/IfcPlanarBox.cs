@@ -13,39 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPlanarBox
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPlanarBox : IIfcPlanarExtent
-	{
-		IIfcAxis2Placement @Placement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcPlanarBox", 762)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IIfcPlanarBox, IContainsEntityReferences, IEquatable<@IfcPlanarBox>
+	public  partial class @IfcPlanarBox : IfcPlanarExtent, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPlanarBox>
 	{
-		#region IIfcPlanarBox explicit implementation
-		IIfcAxis2Placement IIfcPlanarBox.Placement { 
- 
- 
-			get { return @Placement; } 
-			set { Placement = value as IfcAxis2Placement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlanarBox(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,39 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterialDefinitionRepresentation
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterialDefinitionRepresentation : IIfcProductRepresentation
-	{
-		IIfcMaterial @RepresentedMaterial { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcMaterialDefinitionRepresentation", 2)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IIfcMaterialDefinitionRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialDefinitionRepresentation>
+	public  partial class @IfcMaterialDefinitionRepresentation : IfcProductRepresentation, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialDefinitionRepresentation>
 	{
-		#region IIfcMaterialDefinitionRepresentation explicit implementation
-		IIfcMaterial IIfcMaterialDefinitionRepresentation.RepresentedMaterial { 
- 
- 
-			get { return @RepresentedMaterial; } 
-			set { RepresentedMaterial = value as IfcMaterial;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialDefinitionRepresentation(IModel model, int label, bool activated) : base(model, label, activated)  

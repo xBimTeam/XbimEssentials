@@ -13,50 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcEnvironmentalImpactValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcEnvironmentalImpactValue : IIfcAppliedValue
-	{
-		IfcLabel @ImpactType { get;  set; }
-		IfcEnvironmentalImpactCategoryEnum @Category { get;  set; }
-		IfcLabel? @UserDefinedCategory { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcEnvironmentalImpactValue", 78)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IIfcEnvironmentalImpactValue, IContainsEntityReferences, IEquatable<@IfcEnvironmentalImpactValue>
+	public  partial class @IfcEnvironmentalImpactValue : IfcAppliedValue, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcEnvironmentalImpactValue>
 	{
-		#region IIfcEnvironmentalImpactValue explicit implementation
-		IfcLabel IIfcEnvironmentalImpactValue.ImpactType { 
- 
-			get { return @ImpactType; } 
-			set { ImpactType = value;}
-		}	
-		IfcEnvironmentalImpactCategoryEnum IIfcEnvironmentalImpactValue.Category { 
- 
-			get { return @Category; } 
-			set { Category = value;}
-		}	
-		IfcLabel? IIfcEnvironmentalImpactValue.UserDefinedCategory { 
- 
-			get { return @UserDefinedCategory; } 
-			set { UserDefinedCategory = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEnvironmentalImpactValue(IModel model, int label, bool activated) : base(model, label, activated)  

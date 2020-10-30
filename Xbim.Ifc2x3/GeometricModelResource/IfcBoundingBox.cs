@@ -14,58 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBoundingBox
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBoundingBox : IIfcGeometricRepresentationItem
-	{
-		IIfcCartesianPoint @Corner { get;  set; }
-		IfcPositiveLengthMeasure @XDim { get;  set; }
-		IfcPositiveLengthMeasure @YDim { get;  set; }
-		IfcPositiveLengthMeasure @ZDim { get;  set; }
-		IfcDimensionCount @Dim  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBoundingBox", 151)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcBoundingBox, IContainsEntityReferences, IEquatable<@IfcBoundingBox>
+	public  partial class @IfcBoundingBox : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcBoundingBox>
 	{
-		#region IIfcBoundingBox explicit implementation
-		IIfcCartesianPoint IIfcBoundingBox.Corner { 
- 
- 
-			get { return @Corner; } 
-			set { Corner = value as IfcCartesianPoint;}
-		}	
-		IfcPositiveLengthMeasure IIfcBoundingBox.XDim { 
- 
-			get { return @XDim; } 
-			set { XDim = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcBoundingBox.YDim { 
- 
-			get { return @YDim; } 
-			set { YDim = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcBoundingBox.ZDim { 
- 
-			get { return @ZDim; } 
-			set { ZDim = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundingBox(IModel model, int label, bool activated) : base(model, label, activated)  

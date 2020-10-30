@@ -14,45 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcEdgeCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcEdgeCurve : IIfcEdge, IfcCurveOrEdgeCurve
-	{
-		IIfcCurve @EdgeGeometry { get;  set; }
-		bool @SameSense { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcEdgeCurve", 203)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IIfcEdgeCurve, IContainsEntityReferences, IEquatable<@IfcEdgeCurve>
+	public  partial class @IfcEdgeCurve : IfcEdge, IInstantiableEntity, IfcCurveOrEdgeCurve, IContainsEntityReferences, IEquatable<@IfcEdgeCurve>
 	{
-		#region IIfcEdgeCurve explicit implementation
-		IIfcCurve IIfcEdgeCurve.EdgeGeometry { 
- 
- 
-			get { return @EdgeGeometry; } 
-			set { EdgeGeometry = value as IfcCurve;}
-		}	
-		bool IIfcEdgeCurve.SameSense { 
- 
-			get { return @SameSense; } 
-			set { SameSense = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcEdgeCurve(IModel model, int label, bool activated) : base(model, label, activated)  

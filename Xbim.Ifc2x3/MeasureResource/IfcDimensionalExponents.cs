@@ -14,74 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDimensionalExponents
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDimensionalExponents : IPersistEntity
-	{
-		long @LengthExponent { get;  set; }
-		long @MassExponent { get;  set; }
-		long @TimeExponent { get;  set; }
-		long @ElectricCurrentExponent { get;  set; }
-		long @ThermodynamicTemperatureExponent { get;  set; }
-		long @AmountOfSubstanceExponent { get;  set; }
-		long @LuminousIntensityExponent { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcDimensionalExponents", 303)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionalExponents : PersistEntity, IInstantiableEntity, IIfcDimensionalExponents, IEquatable<@IfcDimensionalExponents>
+	public  partial class @IfcDimensionalExponents : PersistEntity, IInstantiableEntity, IEquatable<@IfcDimensionalExponents>
 	{
-		#region IIfcDimensionalExponents explicit implementation
-		long IIfcDimensionalExponents.LengthExponent { 
- 
-			get { return @LengthExponent; } 
-			set { LengthExponent = value;}
-		}	
-		long IIfcDimensionalExponents.MassExponent { 
- 
-			get { return @MassExponent; } 
-			set { MassExponent = value;}
-		}	
-		long IIfcDimensionalExponents.TimeExponent { 
- 
-			get { return @TimeExponent; } 
-			set { TimeExponent = value;}
-		}	
-		long IIfcDimensionalExponents.ElectricCurrentExponent { 
- 
-			get { return @ElectricCurrentExponent; } 
-			set { ElectricCurrentExponent = value;}
-		}	
-		long IIfcDimensionalExponents.ThermodynamicTemperatureExponent { 
- 
-			get { return @ThermodynamicTemperatureExponent; } 
-			set { ThermodynamicTemperatureExponent = value;}
-		}	
-		long IIfcDimensionalExponents.AmountOfSubstanceExponent { 
- 
-			get { return @AmountOfSubstanceExponent; } 
-			set { AmountOfSubstanceExponent = value;}
-		}	
-		long IIfcDimensionalExponents.LuminousIntensityExponent { 
- 
-			get { return @LuminousIntensityExponent; } 
-			set { LuminousIntensityExponent = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDimensionalExponents(IModel model, int label, bool activated) : base(model, label, activated)  

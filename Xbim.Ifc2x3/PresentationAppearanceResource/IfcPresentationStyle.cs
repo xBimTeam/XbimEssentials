@@ -15,38 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPresentationStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPresentationStyle : IPersistEntity
-	{
-		IfcLabel? @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPresentationStyle", 34)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPresentationStyle : PersistEntity, IIfcPresentationStyle, IEquatable<@IfcPresentationStyle>
+	public abstract partial class @IfcPresentationStyle : PersistEntity, IEquatable<@IfcPresentationStyle>
 	{
-		#region IIfcPresentationStyle explicit implementation
-		IfcLabel? IIfcPresentationStyle.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationStyle(IModel model, int label, bool activated) : base(model, label, activated)  

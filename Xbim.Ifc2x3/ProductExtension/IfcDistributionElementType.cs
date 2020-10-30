@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDistributionElementType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDistributionElementType : IIfcElementType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcDistributionElementType", 47)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IIfcDistributionElementType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionElementType>
+	public  partial class @IfcDistributionElementType : IfcElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionElementType>
 	{
-		#region IIfcDistributionElementType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionElementType(IModel model, int label, bool activated) : base(model, label, activated)  

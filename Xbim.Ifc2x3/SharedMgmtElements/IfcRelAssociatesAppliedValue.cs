@@ -14,39 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedMgmtElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesAppliedValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesAppliedValue : IIfcRelAssociates
-	{
-		IIfcAppliedValue @RelatingAppliedValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelAssociatesAppliedValue", 699)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesAppliedValue, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesAppliedValue>
+	public  partial class @IfcRelAssociatesAppliedValue : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesAppliedValue>
 	{
-		#region IIfcRelAssociatesAppliedValue explicit implementation
-		IIfcAppliedValue IIfcRelAssociatesAppliedValue.RelatingAppliedValue { 
- 
- 
-			get { return @RelatingAppliedValue; } 
-			set { RelatingAppliedValue = value as IfcAppliedValue;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesAppliedValue(IModel model, int label, bool activated) : base(model, label, activated)  

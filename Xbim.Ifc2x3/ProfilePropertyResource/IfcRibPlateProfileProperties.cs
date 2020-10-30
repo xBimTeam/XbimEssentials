@@ -13,62 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRibPlateProfileProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRibPlateProfileProperties : IIfcProfileProperties
-	{
-		IfcPositiveLengthMeasure? @Thickness { get;  set; }
-		IfcPositiveLengthMeasure? @RibHeight { get;  set; }
-		IfcPositiveLengthMeasure? @RibWidth { get;  set; }
-		IfcPositiveLengthMeasure? @RibSpacing { get;  set; }
-		IfcRibPlateDirectionEnum @Direction { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcRibPlateProfileProperties", 763)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcRibPlateProfileProperties, IContainsEntityReferences, IEquatable<@IfcRibPlateProfileProperties>
+	public  partial class @IfcRibPlateProfileProperties : IfcProfileProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRibPlateProfileProperties>
 	{
-		#region IIfcRibPlateProfileProperties explicit implementation
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.Thickness { 
- 
-			get { return @Thickness; } 
-			set { Thickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibHeight { 
- 
-			get { return @RibHeight; } 
-			set { RibHeight = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibWidth { 
- 
-			get { return @RibWidth; } 
-			set { RibWidth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcRibPlateProfileProperties.RibSpacing { 
- 
-			get { return @RibSpacing; } 
-			set { RibSpacing = value;}
-		}	
-		IfcRibPlateDirectionEnum IIfcRibPlateProfileProperties.Direction { 
- 
-			get { return @Direction; } 
-			set { Direction = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRibPlateProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  

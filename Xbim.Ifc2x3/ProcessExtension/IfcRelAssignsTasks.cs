@@ -13,39 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProcessExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssignsTasks
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssignsTasks : IIfcRelAssignsToControl
-	{
-		IIfcScheduleTimeControl @TimeForTask { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcRelAssignsTasks", 618)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsTasks, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsTasks>
+	public  partial class @IfcRelAssignsTasks : IfcRelAssignsToControl, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsTasks>
 	{
-		#region IIfcRelAssignsTasks explicit implementation
-		IIfcScheduleTimeControl IIfcRelAssignsTasks.TimeForTask { 
- 
- 
-			get { return @TimeForTask; } 
-			set { TimeForTask = value as IfcScheduleTimeControl;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsTasks(IModel model, int label, bool activated) : base(model, label, activated)  

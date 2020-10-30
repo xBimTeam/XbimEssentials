@@ -15,46 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightDistributionData
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightDistributionData : IPersistEntity
-	{
-		IfcPlaneAngleMeasure @MainPlaneAngle { get;  set; }
-		IItemSet<IfcPlaneAngleMeasure> @SecondaryPlaneAngle { get; }
-		IItemSet<IfcLuminousIntensityDistributionMeasure> @LuminousIntensity { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightDistributionData", 753)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightDistributionData : PersistEntity, IInstantiableEntity, IIfcLightDistributionData, IEquatable<@IfcLightDistributionData>
+	public  partial class @IfcLightDistributionData : PersistEntity, IInstantiableEntity, IEquatable<@IfcLightDistributionData>
 	{
-		#region IIfcLightDistributionData explicit implementation
-		IfcPlaneAngleMeasure IIfcLightDistributionData.MainPlaneAngle { 
- 
-			get { return @MainPlaneAngle; } 
-			set { MainPlaneAngle = value;}
-		}	
-		IItemSet<IfcPlaneAngleMeasure> IIfcLightDistributionData.SecondaryPlaneAngle { 
-			get { return @SecondaryPlaneAngle; } 
-		}	
-		IItemSet<IfcLuminousIntensityDistributionMeasure> IIfcLightDistributionData.LuminousIntensity { 
-			get { return @LuminousIntensity; } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightDistributionData(IModel model, int label, bool activated) : base(model, label, activated)  

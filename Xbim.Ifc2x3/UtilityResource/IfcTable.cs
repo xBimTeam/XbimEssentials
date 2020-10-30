@@ -15,45 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.UtilityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTable
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTable : IPersistEntity, IfcMetricValueSelect
-	{
-		string @Name { get;  set; }
-		IItemSet<IIfcTableRow> @Rows { get; }
-		long @NumberOfCellsInRow  { get ; }
-		long @NumberOfHeadings  { get ; }
-		long @NumberOfDataRows  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcTable", 377)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTable : PersistEntity, IInstantiableEntity, IIfcTable, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTable>
+	public  partial class @IfcTable : PersistEntity, IInstantiableEntity, IfcMetricValueSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTable>
 	{
-		#region IIfcTable explicit implementation
-		string IIfcTable.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IItemSet<IIfcTableRow> IIfcTable.Rows { 
-			get { return new Common.Collections.ProxyItemSet<IfcTableRow, IIfcTableRow>( @Rows); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTable(IModel model, int label, bool activated) : base(model, label, activated)  

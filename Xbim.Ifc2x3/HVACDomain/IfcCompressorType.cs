@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCompressorType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCompressorType : IIfcFlowMovingDeviceType
-	{
-		IfcCompressorTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcCompressorType", 586)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompressorType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcCompressorType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompressorType>
+	public  partial class @IfcCompressorType : IfcFlowMovingDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCompressorType>
 	{
-		#region IIfcCompressorType explicit implementation
-		IfcCompressorTypeEnum IIfcCompressorType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompressorType(IModel model, int label, bool activated) : base(model, label, activated)  

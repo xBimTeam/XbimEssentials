@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedComponentElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFastenerType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFastenerType : IIfcElementComponentType
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcFastenerType", 642)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFastenerType : IfcElementComponentType, IInstantiableEntity, IIfcFastenerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFastenerType>
+	public  partial class @IfcFastenerType : IfcElementComponentType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFastenerType>
 	{
-		#region IIfcFastenerType explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFastenerType(IModel model, int label, bool activated) : base(model, label, activated)  

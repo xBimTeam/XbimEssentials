@@ -13,60 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGeometricRepresentationContext
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGeometricRepresentationContext : IIfcRepresentationContext
-	{
-		IfcDimensionCount @CoordinateSpaceDimension { get;  set; }
-		double? @Precision { get;  set; }
-		IIfcAxis2Placement @WorldCoordinateSystem { get;  set; }
-		IIfcDirection @TrueNorth { get;  set; }
-		IEnumerable<IIfcGeometricRepresentationSubContext> @HasSubContexts {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcGeometricRepresentationContext", 555)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationContext, IContainsEntityReferences, IEquatable<@IfcGeometricRepresentationContext>
+	public  partial class @IfcGeometricRepresentationContext : IfcRepresentationContext, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGeometricRepresentationContext>
 	{
-		#region IIfcGeometricRepresentationContext explicit implementation
-		IfcDimensionCount IIfcGeometricRepresentationContext.CoordinateSpaceDimension { 
- 
-			get { return @CoordinateSpaceDimension; } 
-			set { CoordinateSpaceDimension = value;}
-		}	
-		double? IIfcGeometricRepresentationContext.Precision { 
- 
-			get { return @Precision; } 
-			set { Precision = value;}
-		}	
-		IIfcAxis2Placement IIfcGeometricRepresentationContext.WorldCoordinateSystem { 
- 
- 
-			get { return @WorldCoordinateSystem; } 
-			set { WorldCoordinateSystem = value as IfcAxis2Placement;}
-		}	
-		IIfcDirection IIfcGeometricRepresentationContext.TrueNorth { 
- 
- 
-			get { return @TrueNorth; } 
-			set { TrueNorth = value as IfcDirection;}
-		}	
-		 
-		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationContext(IModel model, int label, bool activated) : base(model, label, activated)  

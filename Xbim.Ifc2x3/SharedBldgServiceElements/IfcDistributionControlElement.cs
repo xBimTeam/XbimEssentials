@@ -14,40 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDistributionControlElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDistributionControlElement : IIfcDistributionElement
-	{
-		IfcIdentifier? @ControlElementId { get;  set; }
-		IEnumerable<IIfcRelFlowControlElements> @AssignedToFlowElement {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionControlElement", 468)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionControlElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionControlElement>
+	public  partial class @IfcDistributionControlElement : IfcDistributionElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionControlElement>
 	{
-		#region IIfcDistributionControlElement explicit implementation
-		IfcIdentifier? IIfcDistributionControlElement.ControlElementId { 
- 
-			get { return @ControlElementId; } 
-			set { ControlElementId = value;}
-		}	
-		 
-		IEnumerable<IIfcRelFlowControlElements> IIfcDistributionControlElement.AssignedToFlowElement {  get { return @AssignedToFlowElement; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionControlElement(IModel model, int label, bool activated) : base(model, label, activated)  

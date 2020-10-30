@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcUnitaryEquipmentType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcUnitaryEquipmentType : IIfcEnergyConversionDeviceType
-	{
-		IfcUnitaryEquipmentTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcUnitaryEquipmentType", 234)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcUnitaryEquipmentType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcUnitaryEquipmentType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcUnitaryEquipmentType>
+	public  partial class @IfcUnitaryEquipmentType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcUnitaryEquipmentType>
 	{
-		#region IIfcUnitaryEquipmentType explicit implementation
-		IfcUnitaryEquipmentTypeEnum IIfcUnitaryEquipmentType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcUnitaryEquipmentType(IModel model, int label, bool activated) : base(model, label, activated)  

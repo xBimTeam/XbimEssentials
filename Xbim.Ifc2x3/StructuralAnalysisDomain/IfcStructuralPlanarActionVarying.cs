@@ -14,44 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralPlanarActionVarying
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralPlanarActionVarying : IIfcStructuralPlanarAction
-	{
-		IIfcShapeAspect @VaryingAppliedLoadLocation { get;  set; }
-		IItemSet<IIfcStructuralLoad> @SubsequentAppliedLoads { get; }
-		List<IfcStructuralLoad> @VaryingAppliedLoads  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPlanarActionVarying", 357)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IIfcStructuralPlanarActionVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPlanarActionVarying>
+	public  partial class @IfcStructuralPlanarActionVarying : IfcStructuralPlanarAction, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPlanarActionVarying>
 	{
-		#region IIfcStructuralPlanarActionVarying explicit implementation
-		IIfcShapeAspect IIfcStructuralPlanarActionVarying.VaryingAppliedLoadLocation { 
- 
- 
-			get { return @VaryingAppliedLoadLocation; } 
-			set { VaryingAppliedLoadLocation = value as IfcShapeAspect;}
-		}	
-		IItemSet<IIfcStructuralLoad> IIfcStructuralPlanarActionVarying.SubsequentAppliedLoads { 
-			get { return new Common.Collections.ProxyItemSet<IfcStructuralLoad, IIfcStructuralLoad>( @SubsequentAppliedLoads); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPlanarActionVarying(IModel model, int label, bool activated) : base(model, label, activated)  

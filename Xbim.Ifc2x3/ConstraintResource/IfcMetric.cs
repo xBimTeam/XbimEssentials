@@ -13,51 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMetric
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMetric : IIfcConstraint
-	{
-		IfcBenchmarkEnum @Benchmark { get;  set; }
-		IfcLabel? @ValueSource { get;  set; }
-		IIfcMetricValueSelect @DataValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcMetric", 80)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IIfcMetric, IContainsEntityReferences, IEquatable<@IfcMetric>
+	public  partial class @IfcMetric : IfcConstraint, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcMetric>
 	{
-		#region IIfcMetric explicit implementation
-		IfcBenchmarkEnum IIfcMetric.Benchmark { 
- 
-			get { return @Benchmark; } 
-			set { Benchmark = value;}
-		}	
-		IfcLabel? IIfcMetric.ValueSource { 
- 
-			get { return @ValueSource; } 
-			set { ValueSource = value;}
-		}	
-		IIfcMetricValueSelect IIfcMetric.DataValue { 
- 
- 
-			get { return @DataValue; } 
-			set { DataValue = value as IfcMetricValueSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMetric(IModel model, int label, bool activated) : base(model, label, activated)  

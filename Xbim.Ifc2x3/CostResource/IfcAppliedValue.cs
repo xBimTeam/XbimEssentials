@@ -17,78 +17,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.CostResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAppliedValue
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAppliedValue : IPersistEntity, IfcObjectReferenceSelect
-	{
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IIfcAppliedValueSelect @AppliedValue { get;  set; }
-		IIfcMeasureWithUnit @UnitBasis { get;  set; }
-		IIfcDateTimeSelect @ApplicableDate { get;  set; }
-		IIfcDateTimeSelect @FixedUntilDate { get;  set; }
-		IEnumerable<IIfcReferencesValueDocument> @ValuesReferenced {  get; }
-		IEnumerable<IIfcAppliedValueRelationship> @ValueOfComponents {  get; }
-		IEnumerable<IIfcAppliedValueRelationship> @IsComponentIn {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.CostResource
 {
 	[ExpressType("IfcAppliedValue", 79)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAppliedValue : PersistEntity, IIfcAppliedValue, IEquatable<@IfcAppliedValue>
+	public abstract partial class @IfcAppliedValue : PersistEntity, IfcObjectReferenceSelect, IEquatable<@IfcAppliedValue>
 	{
-		#region IIfcAppliedValue explicit implementation
-		IfcLabel? IIfcAppliedValue.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcAppliedValue.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IIfcAppliedValueSelect IIfcAppliedValue.AppliedValue { 
- 
- 
-			get { return @AppliedValue; } 
-			set { AppliedValue = value as IfcAppliedValueSelect;}
-		}	
-		IIfcMeasureWithUnit IIfcAppliedValue.UnitBasis { 
- 
- 
-			get { return @UnitBasis; } 
-			set { UnitBasis = value as IfcMeasureWithUnit;}
-		}	
-		IIfcDateTimeSelect IIfcAppliedValue.ApplicableDate { 
- 
- 
-			get { return @ApplicableDate; } 
-			set { ApplicableDate = value as IfcDateTimeSelect;}
-		}	
-		IIfcDateTimeSelect IIfcAppliedValue.FixedUntilDate { 
- 
- 
-			get { return @FixedUntilDate; } 
-			set { FixedUntilDate = value as IfcDateTimeSelect;}
-		}	
-		 
-		IEnumerable<IIfcReferencesValueDocument> IIfcAppliedValue.ValuesReferenced {  get { return @ValuesReferenced; } }
-		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.ValueOfComponents {  get { return @ValueOfComponents; } }
-		IEnumerable<IIfcAppliedValueRelationship> IIfcAppliedValue.IsComponentIn {  get { return @IsComponentIn; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAppliedValue(IModel model, int label, bool activated) : base(model, label, activated)  

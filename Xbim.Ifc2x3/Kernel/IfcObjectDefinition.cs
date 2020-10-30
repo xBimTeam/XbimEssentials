@@ -12,40 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcObjectDefinition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcObjectDefinition : IIfcRoot
-	{
-		IEnumerable<IIfcRelAssigns> @HasAssignments {  get; }
-		IEnumerable<IIfcRelDecomposes> @IsDecomposedBy {  get; }
-		IEnumerable<IIfcRelDecomposes> @Decomposes {  get; }
-		IEnumerable<IIfcRelAssociates> @HasAssociations {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcObjectDefinition", 22)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcObjectDefinition : IfcRoot, IIfcObjectDefinition, IEquatable<@IfcObjectDefinition>
+	public abstract partial class @IfcObjectDefinition : IfcRoot, IEquatable<@IfcObjectDefinition>
 	{
-		#region IIfcObjectDefinition explicit implementation
-		 
-		IEnumerable<IIfcRelAssigns> IIfcObjectDefinition.HasAssignments {  get { return @HasAssignments; } }
-		IEnumerable<IIfcRelDecomposes> IIfcObjectDefinition.IsDecomposedBy {  get { return @IsDecomposedBy; } }
-		IEnumerable<IIfcRelDecomposes> IIfcObjectDefinition.Decomposes {  get { return @Decomposes; } }
-		IEnumerable<IIfcRelAssociates> IIfcObjectDefinition.HasAssociations {  get { return @HasAssociations; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjectDefinition(IModel model, int label, bool activated) : base(model, label, activated)  

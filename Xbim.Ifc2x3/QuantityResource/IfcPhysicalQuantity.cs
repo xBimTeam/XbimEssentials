@@ -15,46 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPhysicalQuantity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPhysicalQuantity : IPersistEntity
-	{
-		IfcLabel @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IEnumerable<IIfcPhysicalComplexQuantity> @PartOfComplex {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcPhysicalQuantity", 102)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPhysicalQuantity : PersistEntity, IIfcPhysicalQuantity, IEquatable<@IfcPhysicalQuantity>
+	public abstract partial class @IfcPhysicalQuantity : PersistEntity, IEquatable<@IfcPhysicalQuantity>
 	{
-		#region IIfcPhysicalQuantity explicit implementation
-		IfcLabel IIfcPhysicalQuantity.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcPhysicalQuantity.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		 
-		IEnumerable<IIfcPhysicalComplexQuantity> IIfcPhysicalQuantity.PartOfComplex {  get { return @PartOfComplex; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPhysicalQuantity(IModel model, int label, bool activated) : base(model, label, activated)  

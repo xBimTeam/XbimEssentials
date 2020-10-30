@@ -14,46 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSweptAreaSolid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSweptAreaSolid : IIfcSolidModel
-	{
-		IIfcProfileDef @SweptArea { get;  set; }
-		IIfcAxis2Placement3D @Position { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSweptAreaSolid", 239)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IIfcSweptAreaSolid, IEquatable<@IfcSweptAreaSolid>
+	public abstract partial class @IfcSweptAreaSolid : IfcSolidModel, IEquatable<@IfcSweptAreaSolid>
 	{
-		#region IIfcSweptAreaSolid explicit implementation
-		IIfcProfileDef IIfcSweptAreaSolid.SweptArea { 
- 
- 
-			get { return @SweptArea; } 
-			set { SweptArea = value as IfcProfileDef;}
-		}	
-		IIfcAxis2Placement3D IIfcSweptAreaSolid.Position { 
- 
- 
-			get { return @Position; } 
-			set { Position = value as IfcAxis2Placement3D;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSweptAreaSolid(IModel model, int label, bool activated) : base(model, label, activated)  

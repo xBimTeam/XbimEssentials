@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceOfLinearExtrusion
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceOfLinearExtrusion : IIfcSweptSurface
-	{
-		IIfcDirection @ExtrudedDirection { get;  set; }
-		IfcLengthMeasure @Depth { get;  set; }
-		Common.Geometry.XbimVector3D @ExtrusionAxis  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurfaceOfLinearExtrusion", 256)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfLinearExtrusion, IContainsEntityReferences, IEquatable<@IfcSurfaceOfLinearExtrusion>
+	public  partial class @IfcSurfaceOfLinearExtrusion : IfcSweptSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSurfaceOfLinearExtrusion>
 	{
-		#region IIfcSurfaceOfLinearExtrusion explicit implementation
-		IIfcDirection IIfcSurfaceOfLinearExtrusion.ExtrudedDirection { 
- 
- 
-			get { return @ExtrudedDirection; } 
-			set { ExtrudedDirection = value as IfcDirection;}
-		}	
-		IfcLengthMeasure IIfcSurfaceOfLinearExtrusion.Depth { 
- 
-			get { return @Depth; } 
-			set { Depth = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceOfLinearExtrusion(IModel model, int label, bool activated) : base(model, label, activated)  

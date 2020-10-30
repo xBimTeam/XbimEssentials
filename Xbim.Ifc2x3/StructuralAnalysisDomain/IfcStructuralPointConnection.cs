@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralPointConnection
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralPointConnection : IIfcStructuralConnection
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralPointConnection", 533)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IIfcStructuralPointConnection, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPointConnection>
+	public  partial class @IfcStructuralPointConnection : IfcStructuralConnection, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPointConnection>
 	{
-		#region IIfcStructuralPointConnection explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralPointConnection(IModel model, int label, bool activated) : base(model, label, activated)  

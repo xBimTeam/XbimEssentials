@@ -14,51 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBuilding
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBuilding : IIfcSpatialStructureElement
-	{
-		IfcLengthMeasure? @ElevationOfRefHeight { get;  set; }
-		IfcLengthMeasure? @ElevationOfTerrain { get;  set; }
-		IIfcPostalAddress @BuildingAddress { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcBuilding", 169)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IIfcBuilding, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuilding>
+	public  partial class @IfcBuilding : IfcSpatialStructureElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuilding>
 	{
-		#region IIfcBuilding explicit implementation
-		IfcLengthMeasure? IIfcBuilding.ElevationOfRefHeight { 
- 
-			get { return @ElevationOfRefHeight; } 
-			set { ElevationOfRefHeight = value;}
-		}	
-		IfcLengthMeasure? IIfcBuilding.ElevationOfTerrain { 
- 
-			get { return @ElevationOfTerrain; } 
-			set { ElevationOfTerrain = value;}
-		}	
-		IIfcPostalAddress IIfcBuilding.BuildingAddress { 
- 
- 
-			get { return @BuildingAddress; } 
-			set { BuildingAddress = value as IfcPostalAddress;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuilding(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcQuantityArea
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcQuantityArea : IIfcPhysicalSimpleQuantity
-	{
-		IfcAreaMeasure @AreaValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityArea", 495)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityArea, IContainsEntityReferences, IEquatable<@IfcQuantityArea>
+	public  partial class @IfcQuantityArea : IfcPhysicalSimpleQuantity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcQuantityArea>
 	{
-		#region IIfcQuantityArea explicit implementation
-		IfcAreaMeasure IIfcQuantityArea.AreaValue { 
- 
-			get { return @AreaValue; } 
-			set { AreaValue = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityArea(IModel model, int label, bool activated) : base(model, label, activated)  

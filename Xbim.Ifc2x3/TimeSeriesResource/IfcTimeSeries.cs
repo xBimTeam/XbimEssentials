@@ -18,85 +18,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TimeSeriesResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTimeSeries
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTimeSeries : IPersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect
-	{
-		IfcLabel @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IIfcDateTimeSelect @StartTime { get;  set; }
-		IIfcDateTimeSelect @EndTime { get;  set; }
-		IfcTimeSeriesDataTypeEnum @TimeSeriesDataType { get;  set; }
-		IfcDataOriginEnum @DataOrigin { get;  set; }
-		IfcLabel? @UserDefinedDataOrigin { get;  set; }
-		IIfcUnit @Unit { get;  set; }
-		IEnumerable<IIfcTimeSeriesReferenceRelationship> @DocumentedBy {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcTimeSeries", 418)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcTimeSeries : PersistEntity, IIfcTimeSeries, IEquatable<@IfcTimeSeries>
+	public abstract partial class @IfcTimeSeries : PersistEntity, IfcMetricValueSelect, IfcObjectReferenceSelect, IEquatable<@IfcTimeSeries>
 	{
-		#region IIfcTimeSeries explicit implementation
-		IfcLabel IIfcTimeSeries.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcTimeSeries.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IIfcDateTimeSelect IIfcTimeSeries.StartTime { 
- 
- 
-			get { return @StartTime; } 
-			set { StartTime = value as IfcDateTimeSelect;}
-		}	
-		IIfcDateTimeSelect IIfcTimeSeries.EndTime { 
- 
- 
-			get { return @EndTime; } 
-			set { EndTime = value as IfcDateTimeSelect;}
-		}	
-		IfcTimeSeriesDataTypeEnum IIfcTimeSeries.TimeSeriesDataType { 
- 
-			get { return @TimeSeriesDataType; } 
-			set { TimeSeriesDataType = value;}
-		}	
-		IfcDataOriginEnum IIfcTimeSeries.DataOrigin { 
- 
-			get { return @DataOrigin; } 
-			set { DataOrigin = value;}
-		}	
-		IfcLabel? IIfcTimeSeries.UserDefinedDataOrigin { 
- 
-			get { return @UserDefinedDataOrigin; } 
-			set { UserDefinedDataOrigin = value;}
-		}	
-		IIfcUnit IIfcTimeSeries.Unit { 
- 
- 
-			get { return @Unit; } 
-			set { Unit = value as IfcUnit;}
-		}	
-		 
-		IEnumerable<IIfcTimeSeriesReferenceRelationship> IIfcTimeSeries.DocumentedBy {  get { return @DocumentedBy; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTimeSeries(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,80 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLShapeProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLShapeProfileDef : IIfcParameterizedProfileDef
-	{
-		IfcPositiveLengthMeasure @Depth { get;  set; }
-		IfcPositiveLengthMeasure? @Width { get;  set; }
-		IfcPositiveLengthMeasure @Thickness { get;  set; }
-		IfcPositiveLengthMeasure? @FilletRadius { get;  set; }
-		IfcPositiveLengthMeasure? @EdgeRadius { get;  set; }
-		IfcPlaneAngleMeasure? @LegSlope { get;  set; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInX { get;  set; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcLShapeProfileDef", 284)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcLShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcLShapeProfileDef>
+	public  partial class @IfcLShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLShapeProfileDef>
 	{
-		#region IIfcLShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Depth { 
- 
-			get { return @Depth; } 
-			set { Depth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.Width { 
- 
-			get { return @Width; } 
-			set { Width = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcLShapeProfileDef.Thickness { 
- 
-			get { return @Thickness; } 
-			set { Thickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.FilletRadius { 
- 
-			get { return @FilletRadius; } 
-			set { FilletRadius = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.EdgeRadius { 
- 
-			get { return @EdgeRadius; } 
-			set { EdgeRadius = value;}
-		}	
-		IfcPlaneAngleMeasure? IIfcLShapeProfileDef.LegSlope { 
- 
-			get { return @LegSlope; } 
-			set { LegSlope = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.CentreOfGravityInX { 
- 
-			get { return @CentreOfGravityInX; } 
-			set { CentreOfGravityInX = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcLShapeProfileDef.CentreOfGravityInY { 
- 
-			get { return @CentreOfGravityInY; } 
-			set { CentreOfGravityInY = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLShapeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

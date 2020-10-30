@@ -12,42 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCovering
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCovering : IIfcBuildingElement
-	{
-		IfcCoveringTypeEnum? @PredefinedType { get;  set; }
-		IEnumerable<IIfcRelCoversSpaces> @CoversSpaces {  get; }
-		IEnumerable<IIfcRelCoversBldgElements> @Covers {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcCovering", 382)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IIfcCovering, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCovering>
+	public  partial class @IfcCovering : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCovering>
 	{
-		#region IIfcCovering explicit implementation
-		IfcCoveringTypeEnum? IIfcCovering.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		IEnumerable<IIfcRelCoversSpaces> IIfcCovering.CoversSpaces {  get { return @CoversSpaces; } }
-		IEnumerable<IIfcRelCoversBldgElements> IIfcCovering.Covers {  get { return @Covers; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCovering(IModel model, int label, bool activated) : base(model, label, activated)  

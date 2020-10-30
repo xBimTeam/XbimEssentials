@@ -15,57 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceTexture
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceTexture : IPersistEntity
-	{
-		bool @RepeatS { get;  set; }
-		bool @RepeatT { get;  set; }
-		IfcSurfaceTextureEnum @TextureType { get;  set; }
-		IIfcCartesianTransformationOperator2D @TextureTransform { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceTexture", 722)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurfaceTexture : PersistEntity, IIfcSurfaceTexture, IEquatable<@IfcSurfaceTexture>
+	public abstract partial class @IfcSurfaceTexture : PersistEntity, IEquatable<@IfcSurfaceTexture>
 	{
-		#region IIfcSurfaceTexture explicit implementation
-		bool IIfcSurfaceTexture.RepeatS { 
- 
-			get { return @RepeatS; } 
-			set { RepeatS = value;}
-		}	
-		bool IIfcSurfaceTexture.RepeatT { 
- 
-			get { return @RepeatT; } 
-			set { RepeatT = value;}
-		}	
-		IfcSurfaceTextureEnum IIfcSurfaceTexture.TextureType { 
- 
-			get { return @TextureType; } 
-			set { TextureType = value;}
-		}	
-		IIfcCartesianTransformationOperator2D IIfcSurfaceTexture.TextureTransform { 
- 
- 
-			get { return @TextureTransform; } 
-			set { TextureTransform = value as IfcCartesianTransformationOperator2D;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceTexture(IModel model, int label, bool activated) : base(model, label, activated)  

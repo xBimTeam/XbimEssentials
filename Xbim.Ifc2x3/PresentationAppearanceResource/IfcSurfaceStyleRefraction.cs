@@ -15,44 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceStyleRefraction
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceStyleRefraction : IPersistEntity, IfcSurfaceStyleElementSelect
-	{
-		IfcReal? @RefractionIndex { get;  set; }
-		IfcReal? @DispersionFactor { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyleRefraction", 636)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyleRefraction : PersistEntity, IInstantiableEntity, IIfcSurfaceStyleRefraction, IEquatable<@IfcSurfaceStyleRefraction>
+	public  partial class @IfcSurfaceStyleRefraction : PersistEntity, IInstantiableEntity, IfcSurfaceStyleElementSelect, IEquatable<@IfcSurfaceStyleRefraction>
 	{
-		#region IIfcSurfaceStyleRefraction explicit implementation
-		IfcReal? IIfcSurfaceStyleRefraction.RefractionIndex { 
- 
-			get { return @RefractionIndex; } 
-			set { RefractionIndex = value;}
-		}	
-		IfcReal? IIfcSurfaceStyleRefraction.DispersionFactor { 
- 
-			get { return @DispersionFactor; } 
-			set { DispersionFactor = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyleRefraction(IModel model, int label, bool activated) : base(model, label, activated)  

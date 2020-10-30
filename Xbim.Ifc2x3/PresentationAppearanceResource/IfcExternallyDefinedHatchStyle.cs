@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcExternallyDefinedHatchStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcExternallyDefinedHatchStyle : IIfcExternalReference, IfcFillStyleSelect
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedHatchStyle", 724)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedHatchStyle, IEquatable<@IfcExternallyDefinedHatchStyle>
+	public  partial class @IfcExternallyDefinedHatchStyle : IfcExternalReference, IInstantiableEntity, IfcFillStyleSelect, IEquatable<@IfcExternallyDefinedHatchStyle>
 	{
-		#region IIfcExternallyDefinedHatchStyle explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternallyDefinedHatchStyle(IModel model, int label, bool activated) : base(model, label, activated)  

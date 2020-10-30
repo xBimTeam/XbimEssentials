@@ -13,56 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAsymmetricIShapeProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAsymmetricIShapeProfileDef : IIfcIShapeProfileDef
-	{
-		IfcPositiveLengthMeasure @TopFlangeWidth { get;  set; }
-		IfcPositiveLengthMeasure? @TopFlangeThickness { get;  set; }
-		IfcPositiveLengthMeasure? @TopFlangeFilletRadius { get;  set; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInY { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcAsymmetricIShapeProfileDef", 672)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAsymmetricIShapeProfileDef : IfcIShapeProfileDef, IInstantiableEntity, IIfcAsymmetricIShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcAsymmetricIShapeProfileDef>
+	public  partial class @IfcAsymmetricIShapeProfileDef : IfcIShapeProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAsymmetricIShapeProfileDef>
 	{
-		#region IIfcAsymmetricIShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcAsymmetricIShapeProfileDef.TopFlangeWidth { 
- 
-			get { return @TopFlangeWidth; } 
-			set { TopFlangeWidth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeThickness { 
- 
-			get { return @TopFlangeThickness; } 
-			set { TopFlangeThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.TopFlangeFilletRadius { 
- 
-			get { return @TopFlangeFilletRadius; } 
-			set { TopFlangeFilletRadius = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcAsymmetricIShapeProfileDef.CentreOfGravityInY { 
- 
-			get { return @CentreOfGravityInY; } 
-			set { CentreOfGravityInY = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAsymmetricIShapeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

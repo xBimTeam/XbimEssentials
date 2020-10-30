@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsPortToElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsPortToElement : IIfcRelConnects
-	{
-		IIfcPort @RelatingPort { get;  set; }
-		IIfcElement @RelatedElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelConnectsPortToElement", 633)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsPortToElement : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsPortToElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPortToElement>
+	public  partial class @IfcRelConnectsPortToElement : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsPortToElement>
 	{
-		#region IIfcRelConnectsPortToElement explicit implementation
-		IIfcPort IIfcRelConnectsPortToElement.RelatingPort { 
- 
- 
-			get { return @RelatingPort; } 
-			set { RelatingPort = value as IfcPort;}
-		}	
-		IIfcElement IIfcRelConnectsPortToElement.RelatedElement { 
- 
- 
-			get { return @RelatedElement; } 
-			set { RelatedElement = value as IfcElement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsPortToElement(IModel model, int label, bool activated) : base(model, label, activated)  

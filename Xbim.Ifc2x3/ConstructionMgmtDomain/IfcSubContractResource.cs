@@ -14,45 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstructionMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSubContractResource
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSubContractResource : IIfcConstructionResource
-	{
-		IIfcActorSelect @SubContractor { get;  set; }
-		IfcText? @JobDescription { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstructionMgmtDomain
 {
 	[ExpressType("IfcSubContractResource", 594)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IIfcSubContractResource, IContainsEntityReferences, IEquatable<@IfcSubContractResource>
+	public  partial class @IfcSubContractResource : IfcConstructionResource, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSubContractResource>
 	{
-		#region IIfcSubContractResource explicit implementation
-		IIfcActorSelect IIfcSubContractResource.SubContractor { 
- 
- 
-			get { return @SubContractor; } 
-			set { SubContractor = value as IfcActorSelect;}
-		}	
-		IfcText? IIfcSubContractResource.JobDescription { 
- 
-			get { return @JobDescription; } 
-			set { JobDescription = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSubContractResource(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,38 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBuildingElementProxy
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBuildingElementProxy : IIfcBuildingElement
-	{
-		IfcElementCompositionEnum? @CompositionType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcBuildingElementProxy", 560)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IIfcBuildingElementProxy, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementProxy>
+	public  partial class @IfcBuildingElementProxy : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuildingElementProxy>
 	{
-		#region IIfcBuildingElementProxy explicit implementation
-		IfcElementCompositionEnum? IIfcBuildingElementProxy.CompositionType { 
- 
-			get { return @CompositionType; } 
-			set { CompositionType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBuildingElementProxy(IModel model, int label, bool activated) : base(model, label, activated)  

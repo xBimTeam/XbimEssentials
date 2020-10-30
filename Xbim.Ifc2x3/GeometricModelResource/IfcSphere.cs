@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSphere
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSphere : IIfcCsgPrimitive3D
-	{
-		IfcPositiveLengthMeasure @Radius { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcSphere", 706)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IIfcSphere, IContainsEntityReferences, IEquatable<@IfcSphere>
+	public  partial class @IfcSphere : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSphere>
 	{
-		#region IIfcSphere explicit implementation
-		IfcPositiveLengthMeasure IIfcSphere.Radius { 
- 
-			get { return @Radius; } 
-			set { Radius = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSphere(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,44 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSIUnit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSIUnit : IIfcNamedUnit
-	{
-		IfcSIPrefix? @Prefix { get;  set; }
-		IfcSIUnitName @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcSIUnit", 164)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IIfcSIUnit, IEquatable<@IfcSIUnit>
+	public  partial class @IfcSIUnit : IfcNamedUnit, IInstantiableEntity, IEquatable<@IfcSIUnit>
 	{
-		#region IIfcSIUnit explicit implementation
-		IfcSIPrefix? IIfcSIUnit.Prefix { 
- 
-			get { return @Prefix; } 
-			set { Prefix = value;}
-		}	
-		IfcSIUnitName IIfcSIUnit.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSIUnit(IModel model, int label, bool activated) : base(model, label, activated)  

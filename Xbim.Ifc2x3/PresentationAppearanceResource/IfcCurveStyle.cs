@@ -13,53 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCurveStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCurveStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
-	{
-		IIfcCurveFontOrScaledCurveFontSelect @CurveFont { get;  set; }
-		IIfcSizeSelect @CurveWidth { get;  set; }
-		IIfcColour @CurveColour { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyle", 118)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IIfcCurveStyle, IContainsEntityReferences, IEquatable<@IfcCurveStyle>
+	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IfcPresentationStyleSelect, IContainsEntityReferences, IEquatable<@IfcCurveStyle>
 	{
-		#region IIfcCurveStyle explicit implementation
-		IIfcCurveFontOrScaledCurveFontSelect IIfcCurveStyle.CurveFont { 
- 
- 
-			get { return @CurveFont; } 
-			set { CurveFont = value as IfcCurveFontOrScaledCurveFontSelect;}
-		}	
-		IIfcSizeSelect IIfcCurveStyle.CurveWidth { 
- 
- 
-			get { return @CurveWidth; } 
-			set { CurveWidth = value as IfcSizeSelect;}
-		}	
-		IIfcColour IIfcCurveStyle.CurveColour { 
- 
- 
-			get { return @CurveColour; } 
-			set { CurveColour = value as IfcColour;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveStyle(IModel model, int label, bool activated) : base(model, label, activated)  

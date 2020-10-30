@@ -14,38 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcActionRequest
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcActionRequest : IIfcControl
-	{
-		IfcIdentifier @RequestID { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcActionRequest", 516)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IIfcActionRequest, IContainsEntityReferences, IEquatable<@IfcActionRequest>
+	public  partial class @IfcActionRequest : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcActionRequest>
 	{
-		#region IIfcActionRequest explicit implementation
-		IfcIdentifier IIfcActionRequest.RequestID { 
- 
-			get { return @RequestID; } 
-			set { RequestID = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcActionRequest(IModel model, int label, bool activated) : base(model, label, activated)  

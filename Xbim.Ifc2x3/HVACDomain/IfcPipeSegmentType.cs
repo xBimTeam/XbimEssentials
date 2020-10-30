@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPipeSegmentType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPipeSegmentType : IIfcFlowSegmentType
-	{
-		IfcPipeSegmentTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcPipeSegmentType", 62)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPipeSegmentType : IfcFlowSegmentType, IInstantiableEntity, IIfcPipeSegmentType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPipeSegmentType>
+	public  partial class @IfcPipeSegmentType : IfcFlowSegmentType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPipeSegmentType>
 	{
-		#region IIfcPipeSegmentType explicit implementation
-		IfcPipeSegmentTypeEnum IIfcPipeSegmentType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPipeSegmentType(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -15,52 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSectionProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSectionProperties : IPersistEntity
-	{
-		IfcSectionTypeEnum @SectionType { get;  set; }
-		IIfcProfileDef @StartProfile { get;  set; }
-		IIfcProfileDef @EndProfile { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcSectionProperties", 184)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSectionProperties : PersistEntity, IInstantiableEntity, IIfcSectionProperties, IContainsEntityReferences, IEquatable<@IfcSectionProperties>
+	public  partial class @IfcSectionProperties : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSectionProperties>
 	{
-		#region IIfcSectionProperties explicit implementation
-		IfcSectionTypeEnum IIfcSectionProperties.SectionType { 
- 
-			get { return @SectionType; } 
-			set { SectionType = value;}
-		}	
-		IIfcProfileDef IIfcSectionProperties.StartProfile { 
- 
- 
-			get { return @StartProfile; } 
-			set { StartProfile = value as IfcProfileDef;}
-		}	
-		IIfcProfileDef IIfcSectionProperties.EndProfile { 
- 
- 
-			get { return @EndProfile; } 
-			set { EndProfile = value as IfcProfileDef;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionProperties(IModel model, int label, bool activated) : base(model, label, activated)  

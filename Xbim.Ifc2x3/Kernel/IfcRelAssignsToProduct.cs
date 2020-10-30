@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssignsToProduct
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssignsToProduct : IIfcRelAssigns
-	{
-		IIfcProduct @RelatingProduct { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToProduct", 309)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToProduct, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProduct>
+	public  partial class @IfcRelAssignsToProduct : IfcRelAssigns, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProduct>
 	{
-		#region IIfcRelAssignsToProduct explicit implementation
-		IIfcProduct IIfcRelAssignsToProduct.RelatingProduct { 
- 
- 
-			get { return @RelatingProduct; } 
-			set { RelatingProduct = value as IfcProduct;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToProduct(IModel model, int label, bool activated) : base(model, label, activated)  

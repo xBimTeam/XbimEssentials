@@ -14,44 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralSurfaceMemberVarying
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralSurfaceMemberVarying : IIfcStructuralSurfaceMember
-	{
-		IItemSet<IfcPositiveLengthMeasure> @SubsequentThickness { get; }
-		IIfcShapeAspect @VaryingThicknessLocation { get;  set; }
-		List<IfcPositiveLengthMeasure> @VaryingThickness  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralSurfaceMemberVarying", 421)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IIfcStructuralSurfaceMemberVarying, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMemberVarying>
+	public  partial class @IfcStructuralSurfaceMemberVarying : IfcStructuralSurfaceMember, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralSurfaceMemberVarying>
 	{
-		#region IIfcStructuralSurfaceMemberVarying explicit implementation
-		IItemSet<IfcPositiveLengthMeasure> IIfcStructuralSurfaceMemberVarying.SubsequentThickness { 
-			get { return @SubsequentThickness; } 
-		}	
-		IIfcShapeAspect IIfcStructuralSurfaceMemberVarying.VaryingThicknessLocation { 
- 
- 
-			get { return @VaryingThicknessLocation; } 
-			set { VaryingThicknessLocation = value as IfcShapeAspect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralSurfaceMemberVarying(IModel model, int label, bool activated) : base(model, label, activated)  

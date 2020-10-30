@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssignsToActor
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssignsToActor : IIfcRelAssigns
-	{
-		IIfcActor @RelatingActor { get;  set; }
-		IIfcActorRole @ActingRole { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToActor", 323)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToActor, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToActor>
+	public  partial class @IfcRelAssignsToActor : IfcRelAssigns, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToActor>
 	{
-		#region IIfcRelAssignsToActor explicit implementation
-		IIfcActor IIfcRelAssignsToActor.RelatingActor { 
- 
- 
-			get { return @RelatingActor; } 
-			set { RelatingActor = value as IfcActor;}
-		}	
-		IIfcActorRole IIfcRelAssignsToActor.ActingRole { 
- 
- 
-			get { return @ActingRole; } 
-			set { ActingRole = value as IfcActorRole;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToActor(IModel model, int label, bool activated) : base(model, label, activated)  

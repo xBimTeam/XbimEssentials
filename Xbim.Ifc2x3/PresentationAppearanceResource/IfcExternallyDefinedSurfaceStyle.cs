@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcExternallyDefinedSurfaceStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcExternallyDefinedSurfaceStyle : IIfcExternalReference, IfcSurfaceStyleElementSelect
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcExternallyDefinedSurfaceStyle", 318)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IIfcExternallyDefinedSurfaceStyle, IEquatable<@IfcExternallyDefinedSurfaceStyle>
+	public  partial class @IfcExternallyDefinedSurfaceStyle : IfcExternalReference, IInstantiableEntity, IfcSurfaceStyleElementSelect, IEquatable<@IfcExternallyDefinedSurfaceStyle>
 	{
-		#region IIfcExternallyDefinedSurfaceStyle explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExternallyDefinedSurfaceStyle(IModel model, int label, bool activated) : base(model, label, activated)  

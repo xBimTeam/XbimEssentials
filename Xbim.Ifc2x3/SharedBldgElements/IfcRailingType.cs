@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRailingType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRailingType : IIfcBuildingElementType
-	{
-		IfcRailingTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRailingType", 415)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRailingType : IfcBuildingElementType, IInstantiableEntity, IIfcRailingType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRailingType>
+	public  partial class @IfcRailingType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRailingType>
 	{
-		#region IIfcRailingType explicit implementation
-		IfcRailingTypeEnum IIfcRailingType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRailingType(IModel model, int label, bool activated) : base(model, label, activated)  

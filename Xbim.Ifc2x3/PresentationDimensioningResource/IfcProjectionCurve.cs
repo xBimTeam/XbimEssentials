@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProjectionCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProjectionCurve : IIfcAnnotationCurveOccurrence
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcProjectionCurve", 750)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProjectionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcProjectionCurve, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProjectionCurve>
+	public  partial class @IfcProjectionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProjectionCurve>
 	{
-		#region IIfcProjectionCurve explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProjectionCurve(IModel model, int label, bool activated) : base(model, label, activated)  

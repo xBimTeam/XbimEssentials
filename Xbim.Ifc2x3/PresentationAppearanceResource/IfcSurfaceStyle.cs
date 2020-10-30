@@ -12,42 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceStyle
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceStyle : IIfcPresentationStyle, IfcPresentationStyleSelect
-	{
-		IfcSurfaceSide @Side { get;  set; }
-		IItemSet<IIfcSurfaceStyleElementSelect> @Styles { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcSurfaceStyle", 260)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IIfcSurfaceStyle, IContainsEntityReferences, IEquatable<@IfcSurfaceStyle>
+	public  partial class @IfcSurfaceStyle : IfcPresentationStyle, IInstantiableEntity, IfcPresentationStyleSelect, IContainsEntityReferences, IEquatable<@IfcSurfaceStyle>
 	{
-		#region IIfcSurfaceStyle explicit implementation
-		IfcSurfaceSide IIfcSurfaceStyle.Side { 
- 
-			get { return @Side; } 
-			set { Side = value;}
-		}	
-		IItemSet<IIfcSurfaceStyleElementSelect> IIfcSurfaceStyle.Styles { 
-			get { return new Common.Collections.ProxyItemSet<IfcSurfaceStyleElementSelect, IIfcSurfaceStyleElementSelect>( @Styles); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceStyle(IModel model, int label, bool activated) : base(model, label, activated)  

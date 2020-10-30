@@ -13,72 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ActorResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPostalAddress
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPostalAddress : IIfcAddress
-	{
-		IfcLabel? @InternalLocation { get;  set; }
-		IItemSet<IfcLabel> @AddressLines { get; }
-		IfcLabel? @PostalBox { get;  set; }
-		IfcLabel? @Town { get;  set; }
-		IfcLabel? @Region { get;  set; }
-		IfcLabel? @PostalCode { get;  set; }
-		IfcLabel? @Country { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPostalAddress", 662)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IIfcPostalAddress, IEquatable<@IfcPostalAddress>
+	public  partial class @IfcPostalAddress : IfcAddress, IInstantiableEntity, IEquatable<@IfcPostalAddress>
 	{
-		#region IIfcPostalAddress explicit implementation
-		IfcLabel? IIfcPostalAddress.InternalLocation { 
- 
-			get { return @InternalLocation; } 
-			set { InternalLocation = value;}
-		}	
-		IItemSet<IfcLabel> IIfcPostalAddress.AddressLines { 
-			get { return @AddressLines; } 
-		}	
-		IfcLabel? IIfcPostalAddress.PostalBox { 
- 
-			get { return @PostalBox; } 
-			set { PostalBox = value;}
-		}	
-		IfcLabel? IIfcPostalAddress.Town { 
- 
-			get { return @Town; } 
-			set { Town = value;}
-		}	
-		IfcLabel? IIfcPostalAddress.Region { 
- 
-			get { return @Region; } 
-			set { Region = value;}
-		}	
-		IfcLabel? IIfcPostalAddress.PostalCode { 
- 
-			get { return @PostalCode; } 
-			set { PostalCode = value;}
-		}	
-		IfcLabel? IIfcPostalAddress.Country { 
- 
-			get { return @Country; } 
-			set { Country = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPostalAddress(IModel model, int label, bool activated) : base(model, label, activated)  

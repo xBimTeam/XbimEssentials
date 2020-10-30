@@ -13,62 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfilePropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGeneralProfileProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGeneralProfileProperties : IIfcProfileProperties
-	{
-		IfcMassPerLengthMeasure? @PhysicalWeight { get;  set; }
-		IfcPositiveLengthMeasure? @Perimeter { get;  set; }
-		IfcPositiveLengthMeasure? @MinimumPlateThickness { get;  set; }
-		IfcPositiveLengthMeasure? @MaximumPlateThickness { get;  set; }
-		IfcAreaMeasure? @CrossSectionArea { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfilePropertyResource
 {
 	[ExpressType("IfcGeneralProfileProperties", 648)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IIfcGeneralProfileProperties, IContainsEntityReferences, IEquatable<@IfcGeneralProfileProperties>
+	public  partial class @IfcGeneralProfileProperties : IfcProfileProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGeneralProfileProperties>
 	{
-		#region IIfcGeneralProfileProperties explicit implementation
-		IfcMassPerLengthMeasure? IIfcGeneralProfileProperties.PhysicalWeight { 
- 
-			get { return @PhysicalWeight; } 
-			set { PhysicalWeight = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.Perimeter { 
- 
-			get { return @Perimeter; } 
-			set { Perimeter = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MinimumPlateThickness { 
- 
-			get { return @MinimumPlateThickness; } 
-			set { MinimumPlateThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcGeneralProfileProperties.MaximumPlateThickness { 
- 
-			get { return @MaximumPlateThickness; } 
-			set { MaximumPlateThickness = value;}
-		}	
-		IfcAreaMeasure? IIfcGeneralProfileProperties.CrossSectionArea { 
- 
-			get { return @CrossSectionArea; } 
-			set { CrossSectionArea = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeneralProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  

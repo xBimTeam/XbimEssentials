@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadSingleForceWarping
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadSingleForceWarping : IIfcStructuralLoadSingleForce
-	{
-		IfcWarpingMomentMeasure? @WarpingMoment { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcStructuralLoadSingleForceWarping", 393)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IIfcStructuralLoadSingleForceWarping, IEquatable<@IfcStructuralLoadSingleForceWarping>
+	public  partial class @IfcStructuralLoadSingleForceWarping : IfcStructuralLoadSingleForce, IInstantiableEntity, IEquatable<@IfcStructuralLoadSingleForceWarping>
 	{
-		#region IIfcStructuralLoadSingleForceWarping explicit implementation
-		IfcWarpingMomentMeasure? IIfcStructuralLoadSingleForceWarping.WarpingMoment { 
- 
-			get { return @WarpingMoment; } 
-			set { WarpingMoment = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadSingleForceWarping(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -14,42 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcLightIntensityDistribution
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcLightIntensityDistribution : IPersistEntity, IfcLightDistributionDataSourceSelect
-	{
-		IfcLightDistributionCurveEnum @LightDistributionCurve { get;  set; }
-		IItemSet<IIfcLightDistributionData> @DistributionData { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcLightIntensityDistribution", 754)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLightIntensityDistribution : PersistEntity, IInstantiableEntity, IIfcLightIntensityDistribution, IContainsEntityReferences, IEquatable<@IfcLightIntensityDistribution>
+	public  partial class @IfcLightIntensityDistribution : PersistEntity, IInstantiableEntity, IfcLightDistributionDataSourceSelect, IContainsEntityReferences, IEquatable<@IfcLightIntensityDistribution>
 	{
-		#region IIfcLightIntensityDistribution explicit implementation
-		IfcLightDistributionCurveEnum IIfcLightIntensityDistribution.LightDistributionCurve { 
- 
-			get { return @LightDistributionCurve; } 
-			set { LightDistributionCurve = value;}
-		}	
-		IItemSet<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { 
-			get { return new Common.Collections.ProxyItemSet<IfcLightDistributionData, IIfcLightDistributionData>( @DistributionData); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcLightIntensityDistribution(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,44 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralElementsDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPile
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPile : IIfcBuildingElement
-	{
-		IfcPileTypeEnum @PredefinedType { get;  set; }
-		IfcPileConstructionEnum? @ConstructionType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralElementsDomain
 {
 	[ExpressType("IfcPile", 572)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IIfcPile, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPile>
+	public  partial class @IfcPile : IfcBuildingElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPile>
 	{
-		#region IIfcPile explicit implementation
-		IfcPileTypeEnum IIfcPile.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		IfcPileConstructionEnum? IIfcPile.ConstructionType { 
- 
-			get { return @ConstructionType; } 
-			set { ConstructionType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPile(IModel model, int label, bool activated) : base(model, label, activated)  

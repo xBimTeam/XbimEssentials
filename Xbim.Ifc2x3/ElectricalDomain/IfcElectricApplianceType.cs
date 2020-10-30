@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElectricApplianceType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElectricApplianceType : IIfcFlowTerminalType
-	{
-		IfcElectricApplianceTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricApplianceType", 192)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricApplianceType : IfcFlowTerminalType, IInstantiableEntity, IIfcElectricApplianceType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricApplianceType>
+	public  partial class @IfcElectricApplianceType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcElectricApplianceType>
 	{
-		#region IIfcElectricApplianceType explicit implementation
-		IfcElectricApplianceTypeEnum IIfcElectricApplianceType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricApplianceType(IModel model, int label, bool activated) : base(model, label, activated)  

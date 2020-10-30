@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBoxedHalfSpace
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBoxedHalfSpace : IIfcHalfSpaceSolid
-	{
-		IIfcBoundingBox @Enclosure { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcBoxedHalfSpace", 655)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IIfcBoxedHalfSpace, IContainsEntityReferences, IEquatable<@IfcBoxedHalfSpace>
+	public  partial class @IfcBoxedHalfSpace : IfcHalfSpaceSolid, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcBoxedHalfSpace>
 	{
-		#region IIfcBoxedHalfSpace explicit implementation
-		IIfcBoundingBox IIfcBoxedHalfSpace.Enclosure { 
- 
- 
-			get { return @Enclosure; } 
-			set { Enclosure = value as IfcBoundingBox;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoxedHalfSpace(IModel model, int label, bool activated) : base(model, label, activated)  

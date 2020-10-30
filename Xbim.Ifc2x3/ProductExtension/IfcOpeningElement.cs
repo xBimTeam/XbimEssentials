@@ -12,34 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOpeningElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOpeningElement : IIfcFeatureElementSubtraction
-	{
-		IEnumerable<IIfcRelFillsElement> @HasFillings {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcOpeningElement", 498)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IIfcOpeningElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOpeningElement>
+	public  partial class @IfcOpeningElement : IfcFeatureElementSubtraction, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOpeningElement>
 	{
-		#region IIfcOpeningElement explicit implementation
-		 
-		IEnumerable<IIfcRelFillsElement> IIfcOpeningElement.HasFillings {  get { return @HasFillings; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOpeningElement(IModel model, int label, bool activated) : base(model, label, activated)  

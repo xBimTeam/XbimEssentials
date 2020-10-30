@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelProjectsElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelProjectsElement : IIfcRelConnects
-	{
-		IIfcElement @RelatingElement { get;  set; }
-		IIfcFeatureElementAddition @RelatedFeatureElement { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelProjectsElement", 311)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelProjectsElement : IfcRelConnects, IInstantiableEntity, IIfcRelProjectsElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelProjectsElement>
+	public  partial class @IfcRelProjectsElement : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelProjectsElement>
 	{
-		#region IIfcRelProjectsElement explicit implementation
-		IIfcElement IIfcRelProjectsElement.RelatingElement { 
- 
- 
-			get { return @RelatingElement; } 
-			set { RelatingElement = value as IfcElement;}
-		}	
-		IIfcFeatureElementAddition IIfcRelProjectsElement.RelatedFeatureElement { 
- 
- 
-			get { return @RelatedFeatureElement; } 
-			set { RelatedFeatureElement = value as IfcFeatureElementAddition;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelProjectsElement(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -15,50 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.DateTimeResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCalendarDate
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCalendarDate : IPersistEntity, IfcDateTimeSelect, IfcObjectReferenceSelect
-	{
-		IfcDayInMonthNumber @DayComponent { get;  set; }
-		IfcMonthInYearNumber @MonthComponent { get;  set; }
-		IfcYearNumber @YearComponent { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.DateTimeResource
 {
 	[ExpressType("IfcCalendarDate", 407)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCalendarDate : PersistEntity, IInstantiableEntity, IIfcCalendarDate, IEquatable<@IfcCalendarDate>
+	public  partial class @IfcCalendarDate : PersistEntity, IInstantiableEntity, IfcDateTimeSelect, IfcObjectReferenceSelect, IEquatable<@IfcCalendarDate>
 	{
-		#region IIfcCalendarDate explicit implementation
-		IfcDayInMonthNumber IIfcCalendarDate.DayComponent { 
- 
-			get { return @DayComponent; } 
-			set { DayComponent = value;}
-		}	
-		IfcMonthInYearNumber IIfcCalendarDate.MonthComponent { 
- 
-			get { return @MonthComponent; } 
-			set { MonthComponent = value;}
-		}	
-		IfcYearNumber IIfcCalendarDate.YearComponent { 
- 
-			get { return @YearComponent; } 
-			set { YearComponent = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCalendarDate(IModel model, int label, bool activated) : base(model, label, activated)  

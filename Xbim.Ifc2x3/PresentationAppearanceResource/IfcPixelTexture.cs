@@ -13,54 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPixelTexture
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPixelTexture : IIfcSurfaceTexture
-	{
-		IfcInteger @Width { get;  set; }
-		IfcInteger @Height { get;  set; }
-		IfcInteger @ColourComponents { get;  set; }
-		IItemSet<byte[]> @Pixel { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPixelTexture", 728)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IIfcPixelTexture, IContainsEntityReferences, IEquatable<@IfcPixelTexture>
+	public  partial class @IfcPixelTexture : IfcSurfaceTexture, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPixelTexture>
 	{
-		#region IIfcPixelTexture explicit implementation
-		IfcInteger IIfcPixelTexture.Width { 
- 
-			get { return @Width; } 
-			set { Width = value;}
-		}	
-		IfcInteger IIfcPixelTexture.Height { 
- 
-			get { return @Height; } 
-			set { Height = value;}
-		}	
-		IfcInteger IIfcPixelTexture.ColourComponents { 
- 
-			get { return @ColourComponents; } 
-			set { ColourComponents = value;}
-		}	
-		IItemSet<byte[]> IIfcPixelTexture.Pixel { 
-			get { return @Pixel; } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPixelTexture(IModel model, int label, bool activated) : base(model, label, activated)  

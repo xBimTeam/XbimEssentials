@@ -15,54 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationOrganizationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPresentationLayerAssignment
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPresentationLayerAssignment : IPersistEntity
-	{
-		IfcLabel @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IItemSet<IIfcLayeredItem> @AssignedItems { get; }
-		IfcIdentifier? @Identifier { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationOrganizationResource
 {
 	[ExpressType("IfcPresentationLayerAssignment", 258)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationLayerAssignment : PersistEntity, IInstantiableEntity, IIfcPresentationLayerAssignment, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerAssignment>
+	public  partial class @IfcPresentationLayerAssignment : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPresentationLayerAssignment>
 	{
-		#region IIfcPresentationLayerAssignment explicit implementation
-		IfcLabel IIfcPresentationLayerAssignment.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcPresentationLayerAssignment.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IItemSet<IIfcLayeredItem> IIfcPresentationLayerAssignment.AssignedItems { 
-			get { return new Common.Collections.ProxyItemSet<IfcLayeredItem, IIfcLayeredItem>( @AssignedItems); } 
-		}	
-		IfcIdentifier? IIfcPresentationLayerAssignment.Identifier { 
- 
-			get { return @Identifier; } 
-			set { Identifier = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationLayerAssignment(IModel model, int label, bool activated) : base(model, label, activated)  

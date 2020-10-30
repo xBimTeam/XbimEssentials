@@ -16,63 +16,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ArchitectureDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPermeableCoveringProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPermeableCoveringProperties : IIfcPropertySetDefinition
-	{
-		IfcPermeableCoveringOperationEnum @OperationType { get;  set; }
-		IfcWindowPanelPositionEnum @PanelPosition { get;  set; }
-		IfcPositiveLengthMeasure? @FrameDepth { get;  set; }
-		IfcPositiveLengthMeasure? @FrameThickness { get;  set; }
-		IIfcShapeAspect @ShapeAspectStyle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcPermeableCoveringProperties", 707)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermeableCoveringProperties : IfcPropertySetDefinition, IInstantiableEntity, IIfcPermeableCoveringProperties, IContainsEntityReferences, IEquatable<@IfcPermeableCoveringProperties>
+	public  partial class @IfcPermeableCoveringProperties : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPermeableCoveringProperties>
 	{
-		#region IIfcPermeableCoveringProperties explicit implementation
-		IfcPermeableCoveringOperationEnum IIfcPermeableCoveringProperties.OperationType { 
- 
-			get { return @OperationType; } 
-			set { OperationType = value;}
-		}	
-		IfcWindowPanelPositionEnum IIfcPermeableCoveringProperties.PanelPosition { 
- 
-			get { return @PanelPosition; } 
-			set { PanelPosition = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameDepth { 
- 
-			get { return @FrameDepth; } 
-			set { FrameDepth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcPermeableCoveringProperties.FrameThickness { 
- 
-			get { return @FrameThickness; } 
-			set { FrameThickness = value;}
-		}	
-		IIfcShapeAspect IIfcPermeableCoveringProperties.ShapeAspectStyle { 
- 
- 
-			get { return @ShapeAspectStyle; } 
-			set { ShapeAspectStyle = value as IfcShapeAspect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPermeableCoveringProperties(IModel model, int label, bool activated) : base(model, label, activated)  

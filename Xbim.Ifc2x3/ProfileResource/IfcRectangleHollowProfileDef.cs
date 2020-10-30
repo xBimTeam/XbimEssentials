@@ -13,50 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRectangleHollowProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRectangleHollowProfileDef : IIfcRectangleProfileDef
-	{
-		IfcPositiveLengthMeasure @WallThickness { get;  set; }
-		IfcPositiveLengthMeasure? @InnerFilletRadius { get;  set; }
-		IfcPositiveLengthMeasure? @OuterFilletRadius { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcRectangleHollowProfileDef", 562)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRectangleHollowProfileDef, IContainsEntityReferences, IEquatable<@IfcRectangleHollowProfileDef>
+	public  partial class @IfcRectangleHollowProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRectangleHollowProfileDef>
 	{
-		#region IIfcRectangleHollowProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcRectangleHollowProfileDef.WallThickness { 
- 
-			get { return @WallThickness; } 
-			set { WallThickness = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.InnerFilletRadius { 
- 
-			get { return @InnerFilletRadius; } 
-			set { InnerFilletRadius = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcRectangleHollowProfileDef.OuterFilletRadius { 
- 
-			get { return @OuterFilletRadius; } 
-			set { OuterFilletRadius = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangleHollowProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

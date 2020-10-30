@@ -14,59 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedFacilitiesElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcServiceLifeFactor
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcServiceLifeFactor : IIfcPropertySetDefinition
-	{
-		IfcServiceLifeFactorTypeEnum @PredefinedType { get;  set; }
-		IIfcMeasureValue @UpperValue { get;  set; }
-		IIfcMeasureValue @MostUsedValue { get;  set; }
-		IIfcMeasureValue @LowerValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLifeFactor", 770)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IIfcServiceLifeFactor, IContainsEntityReferences, IEquatable<@IfcServiceLifeFactor>
+	public  partial class @IfcServiceLifeFactor : IfcPropertySetDefinition, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcServiceLifeFactor>
 	{
-		#region IIfcServiceLifeFactor explicit implementation
-		IfcServiceLifeFactorTypeEnum IIfcServiceLifeFactor.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		IIfcMeasureValue IIfcServiceLifeFactor.UpperValue { 
- 
- 
-			get { return @UpperValue; } 
-			set { UpperValue = value as IfcMeasureValue;}
-		}	
-		IIfcMeasureValue IIfcServiceLifeFactor.MostUsedValue { 
- 
- 
-			get { return @MostUsedValue; } 
-			set { MostUsedValue = value as IfcMeasureValue;}
-		}	
-		IIfcMeasureValue IIfcServiceLifeFactor.LowerValue { 
- 
- 
-			get { return @LowerValue; } 
-			set { LowerValue = value as IfcMeasureValue;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcServiceLifeFactor(IModel model, int label, bool activated) : base(model, label, activated)  
