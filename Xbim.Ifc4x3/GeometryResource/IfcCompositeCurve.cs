@@ -72,8 +72,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for NSegments
-				//TODO: Implement getter for derived attribute NSegments
-				throw new NotImplementedException();
+			    return Segments.Count;
 				//##
 			}
 		}
@@ -84,8 +83,8 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for ClosedCurve
-				//TODO: Implement getter for derived attribute ClosedCurve
-				throw new NotImplementedException();
+				if (Segments.Count == 0) return null;
+				return Segments.Last().Transition != IfcTransitionCode.DISCONTINUOUS;
 				//##
 			}
 		}

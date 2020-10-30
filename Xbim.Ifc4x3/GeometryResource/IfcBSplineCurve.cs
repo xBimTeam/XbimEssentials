@@ -116,8 +116,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for UpperIndexOnControlPoints
-				//TODO: Implement getter for derived attribute UpperIndexOnControlPoints
-				throw new NotImplementedException();
+				return ControlPointsList.Count - 1;
 				//##
 			}
 		}
@@ -128,8 +127,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for ControlPoints
-				//TODO: Implement getter for derived attribute ControlPoints
-				throw new NotImplementedException();
+			    return ControlPointsList.Select(p => new Common.Geometry.XbimPoint3D(p.X, p.Y, p.Z)).ToList();
 				//##
 			}
 		}

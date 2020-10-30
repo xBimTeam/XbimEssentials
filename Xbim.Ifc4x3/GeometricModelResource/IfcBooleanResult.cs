@@ -93,8 +93,15 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
+				if (FirstOperand == null)
+					return default;
+				if (FirstOperand is IfcSolidModel sm) return sm.Dim;
+				if (FirstOperand is IfcHalfSpaceSolid hss) return hss.Dim;
+				if (FirstOperand is IfcBooleanResult br) return br.Dim;
+				if (FirstOperand is IfcCsgPrimitive3D csg) return csg.Dim;
+				if (FirstOperand is IfcTessellatedFaceSet tfs) return tfs.Dim;
+
+				throw new NotSupportedException();
 				//##
 			}
 		}

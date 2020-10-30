@@ -60,8 +60,18 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for P
-				//TODO: Implement getter for derived attribute P
-				throw new NotImplementedException();
+				var p = new List<Common.Geometry.XbimVector3D>(2);
+				if (RefDirection == null)
+				{
+					p.Add(new Common.Geometry.XbimVector3D(1, 0, 0));
+					p.Add(new Common.Geometry.XbimVector3D(0, 1, 0));
+				}
+				else
+				{
+					p.Add(new Common.Geometry.XbimVector3D(RefDirection.DirectionRatios[0], RefDirection.DirectionRatios[1], 0));
+					p.Add(new Common.Geometry.XbimVector3D(-RefDirection.DirectionRatios[1], RefDirection.DirectionRatios[0], 0));
+				}
+				return p;
 				//##
 			}
 		}

@@ -107,8 +107,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for KnotVUpper
-				//TODO: Implement getter for derived attribute KnotVUpper
-				throw new NotImplementedException();
+				return VKnots.Count;
 				//##
 			}
 		}
@@ -119,8 +118,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for KnotUUpper
-				//TODO: Implement getter for derived attribute KnotUUpper
-				throw new NotImplementedException();
+			    return UKnots.Count;
 				//##
 			}
 		}

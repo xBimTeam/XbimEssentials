@@ -76,8 +76,10 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for ExtrusionAxis
-				//TODO: Implement getter for derived attribute ExtrusionAxis
-				throw new NotImplementedException();
+				return new Common.Geometry.XbimVector3D(
+					_extrudedDirection.X * _depth,
+					_extrudedDirection.Y * _depth,
+					_extrudedDirection.Z * _depth);
 				//##
 			}
 		}

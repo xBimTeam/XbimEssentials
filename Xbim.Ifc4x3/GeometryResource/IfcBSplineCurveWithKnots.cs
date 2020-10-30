@@ -83,8 +83,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for UpperIndexOnKnots
-				//TODO: Implement getter for derived attribute UpperIndexOnKnots
-				throw new NotImplementedException();
+			    return Knots.Count;
 				//##
 			}
 		}

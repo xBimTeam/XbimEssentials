@@ -146,8 +146,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for UUpper
-				//TODO: Implement getter for derived attribute UUpper
-				throw new NotImplementedException();
+			    return ControlPointsList.Count - 1;
 				//##
 			}
 		}
@@ -158,8 +157,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for VUpper
-				//TODO: Implement getter for derived attribute VUpper
-				throw new NotImplementedException();
+                return ControlPointsList[1].Count - 1;
 				//##
 			}
 		}
@@ -170,8 +168,14 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for ControlPoints
-				//TODO: Implement getter for derived attribute ControlPoints
-				throw new NotImplementedException();
+				var result = new List<List<Common.Geometry.XbimPoint3D>>();
+				foreach (var list in ControlPointsList)
+				{
+					var inner = new List<Common.Geometry.XbimPoint3D>();
+					result.Add(inner);
+					inner.AddRange(list.Select(point => new Common.Geometry.XbimPoint3D(point.X, point.Y, point.Z)));
+				}
+				return result;
 				//##
 			}
 		}

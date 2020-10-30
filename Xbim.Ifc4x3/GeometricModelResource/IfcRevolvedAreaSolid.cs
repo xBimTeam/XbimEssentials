@@ -77,8 +77,15 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 			get 
 			{
 				//## Getter for AxisLine
-				//TODO: Implement getter for derived attribute AxisLine
-				throw new NotImplementedException();
+				if (Axis != null)
+				{
+					return new Common.Geometry.XbimLine
+					{
+						Pnt = new Common.Geometry.XbimPoint3D(Axis.Location.X, Axis.Location.Y, Axis.Location.Z),
+						Orientation = Axis.Z,
+					};
+				}
+                return null;
 				//##
 			}
 		}

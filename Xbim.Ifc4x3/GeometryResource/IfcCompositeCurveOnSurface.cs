@@ -38,8 +38,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for BasisSurface
-				//TODO: Implement getter for derived attribute BasisSurface
-				throw new NotImplementedException();
+			    return IfcGetBasisSurface(this).ToList();
 				//##
 			}
 		}
@@ -95,6 +94,29 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+		private static IEnumerable<IfcSurface> IfcGetBasisSurface(IfcCurveOnSurface curveOnSurface)
+		{
+			var pc = curveOnSurface as IfcPcurve;
+			if (pc != null)
+			{
+				yield return pc.BasisSurface;
+				yield break;
+			}
+
+			var ccos = curveOnSurface as IfcCompositeCurveOnSurface;
+			if (ccos == null)
+				yield break;
+
+			foreach (var segment in ccos.Segments)
+			{
+				var curve = segment.ParentCurve as IfcCurveOnSurface;
+				if (curve == null) continue;
+				foreach (var surface in IfcGetBasisSurface(curve))
+				{
+					yield return surface;
+				}
+			}
+		}
 		//##
 		#endregion
 	}

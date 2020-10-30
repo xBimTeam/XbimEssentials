@@ -87,8 +87,7 @@ namespace Xbim.Ifc4x3.MaterialResource
 			get 
 			{
 				//## Getter for TotalThickness
-				//TODO: Implement getter for derived attribute TotalThickness
-				throw new NotImplementedException();
+				return MaterialLayers.Sum(l => l.LayerThickness);
 				//##
 			}
 		}

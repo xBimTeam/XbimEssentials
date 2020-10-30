@@ -56,8 +56,17 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
+				var element = Elements.FirstOrDefault();
+				if (element == null) return default;
+
+				if (element is IfcCartesianPoint p) return p.Dim;
+				if (element is IfcPointOnCurve pc) return pc.Dim;
+				if (element is IfcPointOnSurface ps) return ps.Dim;
+				if (element is IfcCurve c) return c.Dim;
+				if (element is IfcSurface s) return s.Dim;
+
+				throw new NotSupportedException();
+
 				//##
 			}
 		}

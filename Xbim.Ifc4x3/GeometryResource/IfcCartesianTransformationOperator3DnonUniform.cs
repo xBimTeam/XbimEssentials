@@ -74,8 +74,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for Scl2
-				//TODO: Implement getter for derived attribute Scl2
-				throw new NotImplementedException();
+                return Scale2 ?? Scl;
 				//##
 			}
 		}
@@ -86,8 +85,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for Scl3
-				//TODO: Implement getter for derived attribute Scl3
-				throw new NotImplementedException();
+                return Scale3 ?? Scl;
 				//##
 			}
 		}
