@@ -6,12 +6,8 @@ namespace Xbim.Common.Geometry
     [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct XbimVector3D : IVector3D
     {
-        public static readonly XbimVector3D Zero;
+        public static readonly XbimVector3D Zero = new XbimVector3D(0,0,0);
         const double Tolerance = 1e-9;
-        static XbimVector3D()
-        {
-            Zero = new XbimVector3D(0, 0, 0);
-        }
         public readonly double X;
         public readonly double Y;
         public readonly double Z;
