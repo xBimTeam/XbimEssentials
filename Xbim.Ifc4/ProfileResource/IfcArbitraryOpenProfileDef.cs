@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.ProfileResource
 			get { return @Curve; } 
 			set { Curve = value as IfcBoundedCurve;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

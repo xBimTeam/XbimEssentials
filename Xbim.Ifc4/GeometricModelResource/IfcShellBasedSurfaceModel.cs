@@ -43,7 +43,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IIfcShell> IIfcShellBasedSurfaceModel.SbsmBoundary { 
 			get { return new Common.Collections.ProxyItemSet<IfcShell, IIfcShell>( @SbsmBoundary); } 
 		}	
-		 
+		IfcDimensionCount IIfcShellBasedSurfaceModel.@Dim  { get { return @Dim; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

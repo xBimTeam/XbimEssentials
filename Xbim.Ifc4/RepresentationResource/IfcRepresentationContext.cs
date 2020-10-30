@@ -52,7 +52,6 @@ namespace Xbim.Ifc4.RepresentationResource
 			get { return @ContextType; } 
 			set { ContextType = value;}
 		}	
-		 
 		IEnumerable<IIfcRepresentation> IIfcRepresentationContext.RepresentationsInContext {  get { return @RepresentationsInContext; } }
 		#endregion
 

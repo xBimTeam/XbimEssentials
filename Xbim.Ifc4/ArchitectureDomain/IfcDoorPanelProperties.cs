@@ -70,7 +70,6 @@ namespace Xbim.Ifc4.ArchitectureDomain
 			get { return @ShapeAspectStyle; } 
 			set { ShapeAspectStyle = value as IfcShapeAspect;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -40,7 +40,6 @@ namespace Xbim.Ifc4.MaterialResource
 	public abstract partial class @IfcMaterialUsageDefinition : PersistEntity, IIfcMaterialUsageDefinition, IEquatable<@IfcMaterialUsageDefinition>
 	{
 		#region IIfcMaterialUsageDefinition explicit implementation
-		 
 		IEnumerable<IIfcRelAssociatesMaterial> IIfcMaterialUsageDefinition.AssociatedTo {  get { return @AssociatedTo; } }
 		#endregion
 

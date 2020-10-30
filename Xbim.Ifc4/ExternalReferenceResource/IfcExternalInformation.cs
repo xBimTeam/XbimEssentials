@@ -38,7 +38,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 	public abstract partial class @IfcExternalInformation : PersistEntity, IIfcExternalInformation, IEquatable<@IfcExternalInformation>
 	{
 		#region IIfcExternalInformation explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

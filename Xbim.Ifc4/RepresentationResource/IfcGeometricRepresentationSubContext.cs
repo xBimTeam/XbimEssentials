@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.RepresentationResource
 			get { return @UserDefinedTargetView; } 
 			set { UserDefinedTargetView = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

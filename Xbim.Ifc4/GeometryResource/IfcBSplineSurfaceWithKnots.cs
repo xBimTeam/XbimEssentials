@@ -61,7 +61,8 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @KnotSpec; } 
 			set { KnotSpec = value;}
 		}	
-		 
+		IfcInteger IIfcBSplineSurfaceWithKnots.@KnotVUpper  { get { return @KnotVUpper; } }
+		IfcInteger IIfcBSplineSurfaceWithKnots.@KnotUUpper  { get { return @KnotUUpper; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

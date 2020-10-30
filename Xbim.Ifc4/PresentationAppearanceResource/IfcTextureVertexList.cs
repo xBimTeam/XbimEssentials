@@ -42,7 +42,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IItemSet<IItemSet<IfcParameterValue>> IIfcTextureVertexList.TexCoordsList { 
 			get { return @TexCoordsList; } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

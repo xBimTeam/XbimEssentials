@@ -66,7 +66,8 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @Scale; } 
 			set { Scale = value;}
 		}	
-		 
+		IfcReal IIfcCartesianTransformationOperator.@Scl  { get { return @Scl; } }
+		IfcDimensionCount IIfcCartesianTransformationOperator.@Dim  { get { return @Dim; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

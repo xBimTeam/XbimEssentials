@@ -58,7 +58,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			get { return @IsLinear; } 
 			set { IsLinear = value;}
 		}	
-		 
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralResultGroup.ResultGroupFor {  get { return @ResultGroupFor; } }
 		#endregion
 

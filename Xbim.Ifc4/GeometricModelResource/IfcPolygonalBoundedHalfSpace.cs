@@ -51,7 +51,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @PolygonalBoundary; } 
 			set { PolygonalBoundary = value as IfcBoundedCurve;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -62,7 +62,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			get { return @StartGradient; } 
 			set { StartGradient = value;}
 		}	
-		 
 		IEnumerable<IIfcAlignment2DVertical> IIfcAlignment2DVerticalSegment.ToVertical {  get { return @ToVertical; } }
 		#endregion
 

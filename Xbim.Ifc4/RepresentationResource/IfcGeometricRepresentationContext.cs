@@ -66,7 +66,6 @@ namespace Xbim.Ifc4.RepresentationResource
 			get { return @TrueNorth; } 
 			set { TrueNorth = value as IfcDirection;}
 		}	
-		 
 		IEnumerable<IIfcGeometricRepresentationSubContext> IIfcGeometricRepresentationContext.HasSubContexts {  get { return @HasSubContexts; } }
 		IEnumerable<IIfcCoordinateOperation> IIfcGeometricRepresentationContext.HasCoordinateOperation {  get { return @HasCoordinateOperation; } }
 		#endregion

@@ -51,7 +51,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			get { return @Description; } 
 			set { Description = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

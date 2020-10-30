@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.QuantityResource
 			get { return @Description; } 
 			set { Description = value;}
 		}	
-		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcPhysicalQuantity.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcPhysicalComplexQuantity> IIfcPhysicalQuantity.PartOfComplex {  get { return @PartOfComplex; } }
 		#endregion

@@ -40,7 +40,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcPort : IfcProduct, IIfcPort, IEquatable<@IfcPort>
 	{
 		#region IIfcPort explicit implementation
-		 
 		IEnumerable<IIfcRelConnectsPortToElement> IIfcPort.ContainedIn {  get { return @ContainedIn; } }
 		IEnumerable<IIfcRelConnectsPorts> IIfcPort.ConnectedFrom {  get { return @ConnectedFrom; } }
 		IEnumerable<IIfcRelConnectsPorts> IIfcPort.ConnectedTo {  get { return @ConnectedTo; } }

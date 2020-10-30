@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @RelatingType; } 
 			set { RelatingType = value as IfcTypeObject;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

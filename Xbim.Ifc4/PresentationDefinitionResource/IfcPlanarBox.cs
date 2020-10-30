@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 			get { return @Placement; } 
 			set { Placement = value as IfcAxis2Placement;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

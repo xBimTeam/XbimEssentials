@@ -72,7 +72,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			get { return @HatchLineAngle; } 
 			set { HatchLineAngle = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

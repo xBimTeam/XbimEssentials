@@ -56,7 +56,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IfcPositiveInteger> IIfcTriangulatedFaceSet.PnIndex { 
 			get { return @PnIndex; } 
 		}	
-		 
+		IfcInteger IIfcTriangulatedFaceSet.@NumberOfTriangles  { get { return @NumberOfTriangles; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

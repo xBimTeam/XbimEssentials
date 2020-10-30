@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.SharedBldgServiceElements
 	public abstract partial class @IfcFlowFittingType : IfcDistributionFlowElementType, IIfcFlowFittingType, IEquatable<@IfcFlowFittingType>
 	{
 		#region IIfcFlowFittingType explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

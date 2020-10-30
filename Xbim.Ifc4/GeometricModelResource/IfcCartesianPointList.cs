@@ -38,7 +38,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public abstract partial class @IfcCartesianPointList : IfcGeometricRepresentationItem, IIfcCartesianPointList, IEquatable<@IfcCartesianPointList>
 	{
 		#region IIfcCartesianPointList explicit implementation
-		 
+		IfcDimensionCount IIfcCartesianPointList.@Dim  { get { return @Dim; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

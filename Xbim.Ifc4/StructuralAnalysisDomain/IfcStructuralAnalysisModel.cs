@@ -67,7 +67,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			get { return @SharedPlacement; } 
 			set { SharedPlacement = value as IfcObjectPlacement;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

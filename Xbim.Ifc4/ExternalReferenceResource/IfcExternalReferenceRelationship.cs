@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 		IItemSet<IIfcResourceObjectSelect> IIfcExternalReferenceRelationship.RelatedResourceObjects { 
 			get { return new Common.Collections.ProxyItemSet<IfcResourceObjectSelect, IIfcResourceObjectSelect>( @RelatedResourceObjects); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

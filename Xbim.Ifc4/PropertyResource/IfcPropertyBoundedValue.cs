@@ -65,7 +65,6 @@ namespace Xbim.Ifc4.PropertyResource
 			get { return @SetPointValue; } 
 			set { SetPointValue = value as IfcValue;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

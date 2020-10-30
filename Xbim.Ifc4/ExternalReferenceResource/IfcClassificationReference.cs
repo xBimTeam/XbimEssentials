@@ -59,7 +59,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			get { return @Sort; } 
 			set { Sort = value;}
 		}	
-		 
 		IEnumerable<IIfcRelAssociatesClassification> IIfcClassificationReference.ClassificationRefForObjects {  get { return @ClassificationRefForObjects; } }
 		IEnumerable<IIfcClassificationReference> IIfcClassificationReference.HasReferences {  get { return @HasReferences; } }
 		#endregion

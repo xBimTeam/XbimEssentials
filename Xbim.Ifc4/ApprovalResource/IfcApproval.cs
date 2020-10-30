@@ -104,7 +104,6 @@ namespace Xbim.Ifc4.ApprovalResource
 			get { return @GivingApproval; } 
 			set { GivingApproval = value as IfcActorSelect;}
 		}	
-		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcApproval.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcRelAssociatesApproval> IIfcApproval.ApprovedObjects {  get { return @ApprovedObjects; } }
 		IEnumerable<IIfcResourceApprovalRelationship> IIfcApproval.ApprovedResources {  get { return @ApprovedResources; } }

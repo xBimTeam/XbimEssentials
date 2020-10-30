@@ -45,7 +45,6 @@ namespace Xbim.Ifc4.TopologyResource
 			get { return @VertexGeometry; } 
 			set { VertexGeometry = value as IfcPoint;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -55,7 +55,7 @@ namespace Xbim.Ifc4.MeasureResource
 			get { return @UserDefinedType; } 
 			set { UserDefinedType = value;}
 		}	
-		 
+		Common.Geometry.XbimDimensionalExponents IIfcDerivedUnit.@Dimensions  { get { return @Dimensions; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

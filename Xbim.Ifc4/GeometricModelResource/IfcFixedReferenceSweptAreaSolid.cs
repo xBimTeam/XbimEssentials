@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @FixedReference; } 
 			set { FixedReference = value as IfcDirection;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

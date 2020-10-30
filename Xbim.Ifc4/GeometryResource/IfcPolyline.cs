@@ -40,7 +40,6 @@ namespace Xbim.Ifc4.GeometryResource
 		IItemSet<IIfcCartesianPoint> IIfcPolyline.Points { 
 			get { return new Common.Collections.ProxyItemSet<IfcCartesianPoint, IIfcCartesianPoint>( @Points); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

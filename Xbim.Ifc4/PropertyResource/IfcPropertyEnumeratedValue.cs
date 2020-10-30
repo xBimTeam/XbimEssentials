@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.PropertyResource
 			get { return @EnumerationReference; } 
 			set { EnumerationReference = value as IfcPropertyEnumeration;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

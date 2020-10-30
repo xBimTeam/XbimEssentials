@@ -45,7 +45,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @TheActor; } 
 			set { TheActor = value as IfcActorSelect;}
 		}	
-		 
 		IEnumerable<IIfcRelAssignsToActor> IIfcActor.IsActingUpon {  get { return @IsActingUpon; } }
 		#endregion
 

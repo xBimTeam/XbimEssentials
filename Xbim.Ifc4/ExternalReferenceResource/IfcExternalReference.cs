@@ -60,7 +60,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			get { return @Name; } 
 			set { Name = value;}
 		}	
-		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcExternalReference.ExternalReferenceForResources {  get { return @ExternalReferenceForResources; } }
 		#endregion
 

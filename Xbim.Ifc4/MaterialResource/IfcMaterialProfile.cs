@@ -77,7 +77,6 @@ namespace Xbim.Ifc4.MaterialResource
 			get { return @Category; } 
 			set { Category = value;}
 		}	
-		 
 		IIfcMaterialProfileSet IIfcMaterialProfile.ToMaterialProfileSet {  get { return @ToMaterialProfileSet; } }
 		#endregion
 

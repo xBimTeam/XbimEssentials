@@ -77,7 +77,6 @@ namespace Xbim.Ifc4.ActorResource
 			get { return @Country; } 
 			set { Country = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

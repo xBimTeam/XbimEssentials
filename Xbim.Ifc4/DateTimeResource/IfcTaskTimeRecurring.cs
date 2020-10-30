@@ -43,7 +43,6 @@ namespace Xbim.Ifc4.DateTimeResource
 			get { return @Recurrence; } 
 			set { Recurrence = value as IfcRecurrencePattern;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

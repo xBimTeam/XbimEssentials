@@ -65,7 +65,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			get { return @CartesianPosition; } 
 			set { CartesianPosition = value as IfcAxis2Placement3D;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

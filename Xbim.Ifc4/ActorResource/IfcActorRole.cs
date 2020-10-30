@@ -59,7 +59,6 @@ namespace Xbim.Ifc4.ActorResource
 			get { return @Description; } 
 			set { Description = value;}
 		}	
-		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcActorRole.HasExternalReference {  get { return @HasExternalReference; } }
 		#endregion
 

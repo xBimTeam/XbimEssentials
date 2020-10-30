@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			get { return @RelationshipType; } 
 			set { RelationshipType = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

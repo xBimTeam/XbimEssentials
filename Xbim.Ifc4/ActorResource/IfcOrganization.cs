@@ -70,7 +70,6 @@ namespace Xbim.Ifc4.ActorResource
 		IItemSet<IIfcAddress> IIfcOrganization.Addresses { 
 			get { return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>( @Addresses); } 
 		}	
-		 
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.IsRelatedBy {  get { return @IsRelatedBy; } }
 		IEnumerable<IIfcOrganizationRelationship> IIfcOrganization.Relates {  get { return @Relates; } }
 		IEnumerable<IIfcPersonAndOrganization> IIfcOrganization.Engages {  get { return @Engages; } }

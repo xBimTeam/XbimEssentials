@@ -58,7 +58,6 @@ namespace Xbim.Ifc4.ActorResource
 		IItemSet<IIfcActorRole> IIfcPersonAndOrganization.Roles { 
 			get { return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>( @Roles); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

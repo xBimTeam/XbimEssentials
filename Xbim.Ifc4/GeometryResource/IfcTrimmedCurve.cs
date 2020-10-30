@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @MasterRepresentation; } 
 			set { MasterRepresentation = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

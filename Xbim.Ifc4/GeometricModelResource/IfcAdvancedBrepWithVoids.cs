@@ -41,7 +41,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IIfcClosedShell> IIfcAdvancedBrepWithVoids.Voids { 
 			get { return new Common.Collections.ProxyItemSet<IfcClosedShell, IIfcClosedShell>( @Voids); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

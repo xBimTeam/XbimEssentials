@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 	public  partial class @IfcBooleanClippingResult : IfcBooleanResult, IInstantiableEntity, IIfcBooleanClippingResult, IContainsEntityReferences, IEquatable<@IfcBooleanClippingResult>
 	{
 		#region IIfcBooleanClippingResult explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

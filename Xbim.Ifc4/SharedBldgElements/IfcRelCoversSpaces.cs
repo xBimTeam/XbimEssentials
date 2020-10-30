@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 		IItemSet<IIfcCovering> IIfcRelCoversSpaces.RelatedCoverings { 
 			get { return new Common.Collections.ProxyItemSet<IfcCovering, IIfcCovering>( @RelatedCoverings); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

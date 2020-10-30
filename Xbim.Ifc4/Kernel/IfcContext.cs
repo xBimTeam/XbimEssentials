@@ -69,7 +69,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @UnitsInContext; } 
 			set { UnitsInContext = value as IfcUnitAssignment;}
 		}	
-		 
 		IEnumerable<IIfcRelDefinesByProperties> IIfcContext.IsDefinedBy {  get { return @IsDefinedBy; } }
 		IEnumerable<IIfcRelDeclares> IIfcContext.Declares {  get { return @Declares; } }
 		#endregion

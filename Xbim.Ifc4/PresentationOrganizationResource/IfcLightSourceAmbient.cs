@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 	public  partial class @IfcLightSourceAmbient : IfcLightSource, IInstantiableEntity, IIfcLightSourceAmbient, IContainsEntityReferences, IEquatable<@IfcLightSourceAmbient>
 	{
 		#region IIfcLightSourceAmbient explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

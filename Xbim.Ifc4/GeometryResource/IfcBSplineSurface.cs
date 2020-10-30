@@ -80,7 +80,9 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @SelfIntersect; } 
 			set { SelfIntersect = value;}
 		}	
-		 
+		IfcInteger IIfcBSplineSurface.@UUpper  { get { return @UUpper; } }
+		IfcInteger IIfcBSplineSurface.@VUpper  { get { return @VUpper; } }
+		List<List<Common.Geometry.XbimPoint3D>> IIfcBSplineSurface.@ControlPoints  { get { return new List<List<Common.Geometry.XbimPoint3D>>(@ControlPoints); } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 		IItemSet<IfcLengthMeasure> IIfcVirtualGridIntersection.OffsetDistances { 
 			get { return @OffsetDistances; } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

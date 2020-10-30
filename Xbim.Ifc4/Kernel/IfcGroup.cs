@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.Kernel
 	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IIfcGroup, IContainsEntityReferences, IEquatable<@IfcGroup>
 	{
 		#region IIfcGroup explicit implementation
-		 
 		IEnumerable<IIfcRelAssignsToGroup> IIfcGroup.IsGroupedBy {  get { return @IsGroupedBy; } }
 		#endregion
 

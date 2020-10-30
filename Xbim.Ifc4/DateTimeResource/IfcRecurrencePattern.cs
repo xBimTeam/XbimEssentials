@@ -79,7 +79,6 @@ namespace Xbim.Ifc4.DateTimeResource
 		IItemSet<IIfcTimePeriod> IIfcRecurrencePattern.TimePeriods { 
 			get { return new Common.Collections.ProxyItemSet<IfcTimePeriod, IIfcTimePeriod>( @TimePeriods); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

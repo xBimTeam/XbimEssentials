@@ -69,7 +69,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @EndParam; } 
 			set { EndParam = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
