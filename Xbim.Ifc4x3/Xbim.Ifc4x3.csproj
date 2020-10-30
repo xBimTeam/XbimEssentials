@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
+    <Title>Xbim IFC4x3</Title>
+    <Description>Provides support for the IFC4x3 schema.</Description>
+    <Product>Xbim Ifc4x3 Schema</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
+	</ItemGroup>
+</Project>

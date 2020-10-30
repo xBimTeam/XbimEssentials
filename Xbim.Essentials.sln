@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Common", "Xbim.Common\Xbim.Common.csproj", "{55863561-1D9C-441B-BDAB-DF4ADA37D0D4}"
 EndProject
@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc", "Xbim.Ifc\Xbim.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Essentials.Tests", "Tests\Xbim.Essentials.Tests.csproj", "{1257E711-50B6-4278-8563-0AB27A88580C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xbim.Essentials.NetCore.Tests", "Xbim.Essentials.NetCore.Tests\Xbim.Essentials.NetCore.Tests.csproj", "{811CAF14-92CF-47C1-8556-147887BA29E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Essentials.NetCore.Tests", "Xbim.Essentials.NetCore.Tests\Xbim.Essentials.NetCore.Tests.csproj", "{811CAF14-92CF-47C1-8556-147887BA29E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xbim.Ifc4x3", "Xbim.Ifc4x3\Xbim.Ifc4x3.csproj", "{82D24AE7-B4BD-469A-9B89-B5ABD755C82F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{811CAF14-92CF-47C1-8556-147887BA29E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{811CAF14-92CF-47C1-8556-147887BA29E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{811CAF14-92CF-47C1-8556-147887BA29E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82D24AE7-B4BD-469A-9B89-B5ABD755C82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D24AE7-B4BD-469A-9B89-B5ABD755C82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D24AE7-B4BD-469A-9B89-B5ABD755C82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D24AE7-B4BD-469A-9B89-B5ABD755C82F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
