@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
   </ItemGroup>
 	<ItemGroup>
 		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
