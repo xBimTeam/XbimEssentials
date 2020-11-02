@@ -140,7 +140,7 @@ namespace Xbim.Ifc4x3.MeasureResource
         /// Get Symbol string for SIUnit unit
         /// </summary>
         /// <returns>String holding symbol</returns>
-        public string Symbol
+        public override string Symbol
         {
             get
             {
@@ -310,7 +310,7 @@ namespace Xbim.Ifc4x3.MeasureResource
         /// Returns the full name of the unit
         /// </summary>
         /// <returns>string holding name</returns>
-        public string FullName
+        public override string FullName
         {
             get
             {
