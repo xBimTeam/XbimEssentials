@@ -614,11 +614,6 @@ namespace Xbim.Common.Model
         /// </summary>
         protected virtual void Dispose(bool native)
         {
-
-        }
-
-        public void Dispose()
-        {
             _instances.Dispose();
             _transactionReference = null;
             _cacheReference = null;
@@ -631,7 +626,10 @@ namespace Xbim.Common.Model
             _newEntityHandlers.Clear();
             _modifiedEntityHandlers.Clear();
             _deletedEntityHandlers.Clear();
+        }
 
+        public void Dispose()
+        {
             Dispose(true);
             GC.SuppressFinalize(this);
             return;
