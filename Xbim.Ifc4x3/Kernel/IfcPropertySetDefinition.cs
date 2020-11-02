@@ -84,7 +84,7 @@ namespace Xbim.Ifc4x3.Kernel
 	    {
 	        return this == other;
 	    }
-		#endregion
+        #endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
