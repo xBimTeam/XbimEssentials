@@ -122,6 +122,8 @@ namespace Xbim.IO.Memory
                     return XbimSchemaVersion.Ifc4x1;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     return XbimSchemaVersion.Ifc2X3;
+                if (schema.StartsWith("Ifc4x3", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
+                    return XbimSchemaVersion.Ifc4x3;
                 if (schema.StartsWith("Cobie2X4", StringComparison.OrdinalIgnoreCase)) //return this as Cobie
                     return XbimSchemaVersion.Cobie2X4;
             }
