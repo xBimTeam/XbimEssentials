@@ -15,8 +15,8 @@ using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4x3.GeometryResource;
-using Xbim.Ifc4x3.ProductExtension;
 //## Custom using statements
+using Xbim.Ifc4x3.ProductExtension;
 using Xbim.Ifc4x3.GeometricConstraintResource;
 //##
 
