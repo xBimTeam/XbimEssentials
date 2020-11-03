@@ -8,7 +8,7 @@
 // ------------------------------------------------------------------------------
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	public enum IfcTransportElementFixedTypeEnum : byte
+	public enum IfcTransportElementTypeEnum : byte
 	{
 		@ELEVATOR ,
 		@ESCALATOR ,
@@ -16,6 +16,13 @@ namespace Xbim.Ifc4x3.ProductExtension
 		@CRANEWAY ,
 		@LIFTINGGEAR ,
 		@USERDEFINED ,
-		@NOTDEFINED 
+		@NOTDEFINED ,
+		@VEHICLE ,
+		@VEHICLETRACKED ,
+		@ROLLINGSTOCK ,
+		@VEHICLEWHEELED ,
+		@VEHICLEAIR ,
+		@CARGO ,
+		@VEHICLEMARINE 
 	}
 }
