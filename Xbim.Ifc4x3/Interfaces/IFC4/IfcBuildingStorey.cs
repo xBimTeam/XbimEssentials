@@ -11,7 +11,10 @@ using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
+
+//## Custom using statements
 using Xbim.Ifc4.MeasureResource;
+//##
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.ProductExtension
@@ -35,7 +38,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				
 			}
 		}
-		//## Custom code
+	//## Custom code
 		/// <summary>
 		/// Returns the site (if any) that contains this building, null if the building is not decomposing a site
 		/// </summary>

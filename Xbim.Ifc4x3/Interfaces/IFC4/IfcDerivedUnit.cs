@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 
+//## Custom using statements
+//##
+
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.MeasureResource
 {
@@ -346,7 +349,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 			}
 		}
 
-		//## Custom code
+	//## Custom code
 
 		/// <summary>
 		/// Get the full name of the IfcDerivedUnit
@@ -368,11 +371,11 @@ namespace Xbim.Ifc4x3.MeasureResource
 					{
 						if (item.Exponent == 2)
 						{
-							value += '\u00B2'; //add ² ((char)0x00B2)
+							value += '\u00B2'; //add ï¿½ ((char)0x00B2)
 						}
 						else if (item.Exponent == 3)
 						{
-							value += '\u00B3'; //add ³  //((char)0x00B3)
+							value += '\u00B3'; //add ï¿½  //((char)0x00B3)
 						}
 						else
 							value += "Pow:" + item.Exponent.ToString();

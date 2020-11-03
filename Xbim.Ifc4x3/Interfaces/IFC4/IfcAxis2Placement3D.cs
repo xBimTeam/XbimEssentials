@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 
+//## Custom using statements
+//##
+
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.GeometryResource
 {
@@ -53,7 +56,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			}
 		}
 
-		//## Custom code
+	//## Custom code
 		Ifc4.GeometryResource.IfcDimensionCount Ifc4.GeometryResource.IfcAxis2Placement.Dim
 		{
 			get { return (this as IIfcPlacement).Dim; }

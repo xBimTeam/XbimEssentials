@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 
+//## Custom using statements
+//##
+
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.PresentationAppearanceResource
 {
@@ -83,7 +86,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 					throw new System.NotSupportedException();
 			}
 		}
-		//## Custom code
+	//## Custom code
 		public IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get { return Styles.OfType<IfcSurfaceStyle>(); } }
 
 		//##
