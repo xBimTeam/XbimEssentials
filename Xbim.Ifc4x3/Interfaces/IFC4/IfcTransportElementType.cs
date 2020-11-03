@@ -26,17 +26,96 @@ namespace Xbim.Ifc4x3.ProductExtension
 		{ 
 			get
 			{
-				//## Handle return of PredefinedType for which no match was found
-				//TODO: Handle return of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+				//## Custom code to handle enumeration of PredefinedType
 				//##
+				switch (PredefinedType)
+				{
+					case IfcTransportElementTypeEnum.ELEVATOR:
+						return Ifc4.Interfaces.IfcTransportElementTypeEnum.ELEVATOR;
+					case IfcTransportElementTypeEnum.ESCALATOR:
+						return Ifc4.Interfaces.IfcTransportElementTypeEnum.ESCALATOR;
+					case IfcTransportElementTypeEnum.MOVINGWALKWAY:
+						return Ifc4.Interfaces.IfcTransportElementTypeEnum.MOVINGWALKWAY;
+					case IfcTransportElementTypeEnum.CRANEWAY:
+						return Ifc4.Interfaces.IfcTransportElementTypeEnum.CRANEWAY;
+					case IfcTransportElementTypeEnum.LIFTINGGEAR:
+						return Ifc4.Interfaces.IfcTransportElementTypeEnum.LIFTINGGEAR;
+					case IfcTransportElementTypeEnum.USERDEFINED:
+						//## Optional custom handling of PredefinedType == .USERDEFINED. 
+						//##
+						return Ifc4.Interfaces.IfcTransportElementTypeEnum.USERDEFINED;
+					case IfcTransportElementTypeEnum.NOTDEFINED:
+						return Ifc4.Interfaces.IfcTransportElementTypeEnum.NOTDEFINED;
+					case IfcTransportElementTypeEnum.VEHICLE:
+						//## Handle translation of VEHICLE member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of VEHICLE member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcTransportElementTypeEnum.VEHICLETRACKED:
+						//## Handle translation of VEHICLETRACKED member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of VEHICLETRACKED member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcTransportElementTypeEnum.ROLLINGSTOCK:
+						//## Handle translation of ROLLINGSTOCK member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of ROLLINGSTOCK member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcTransportElementTypeEnum.VEHICLEWHEELED:
+						//## Handle translation of VEHICLEWHEELED member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of VEHICLEWHEELED member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcTransportElementTypeEnum.VEHICLEAIR:
+						//## Handle translation of VEHICLEAIR member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of VEHICLEAIR member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcTransportElementTypeEnum.CARGO:
+						//## Handle translation of CARGO member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of CARGO member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcTransportElementTypeEnum.VEHICLEMARINE:
+						//## Handle translation of VEHICLEMARINE member from IfcTransportElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of VEHICLEMARINE member from IfcTransportElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 			} 
 			set
 			{
-				//## Handle setting of PredefinedType for which no match was found
-				//TODO: Handle setting of PredefinedType for which no match was found
-				throw new System.NotImplementedException();
+				//## Custom code to handle setting of enumeration of PredefinedType
 				//##
+				switch (value)
+				{
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.ELEVATOR:
+						PredefinedType = IfcTransportElementTypeEnum.ELEVATOR;
+						return;
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.ESCALATOR:
+						PredefinedType = IfcTransportElementTypeEnum.ESCALATOR;
+						return;
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.MOVINGWALKWAY:
+						PredefinedType = IfcTransportElementTypeEnum.MOVINGWALKWAY;
+						return;
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.CRANEWAY:
+						PredefinedType = IfcTransportElementTypeEnum.CRANEWAY;
+						return;
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.LIFTINGGEAR:
+						PredefinedType = IfcTransportElementTypeEnum.LIFTINGGEAR;
+						return;
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.USERDEFINED:
+						PredefinedType = IfcTransportElementTypeEnum.USERDEFINED;
+						return;
+					case Ifc4.Interfaces.IfcTransportElementTypeEnum.NOTDEFINED:
+						PredefinedType = IfcTransportElementTypeEnum.NOTDEFINED;
+						return;
+					default:
+						throw new System.ArgumentOutOfRangeException();
+				}
 				
 			}
 		}

@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.SharedInfrastructureElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +30,12 @@ namespace Xbim.Ifc4x3.ProductExtension
 		}
 
 		#region Explicit attribute fields
-		private IfcTransportElementTypeSelect _predefinedType;
+		private IfcTransportElementTypeEnum _predefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 19)]
-		public IfcTransportElementTypeSelect @PredefinedType 
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
+		public IfcTransportElementTypeEnum @PredefinedType 
 		{ 
 			get 
 			{
@@ -71,7 +70,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 9: 
-					_predefinedType = (IfcTransportElementTypeSelect)(value.EntityVal);
+                    _predefinedType = (IfcTransportElementTypeEnum) System.Enum.Parse(typeof (IfcTransportElementTypeEnum), value.EnumVal, true);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
