@@ -349,8 +349,6 @@ IfcTrackElementTypeEnum,1387
 IfcTransformerTypeEnum,921
 IfcTransitionCode,922
 IfcTransitionCurveType,1345
-IfcTransportElementFixedTypeEnum,1388
-IfcTransportElementNonFixedTypeEnum,1389
 IfcTrimmingPreference,924
 IfcTubeBundleTypeEnum,925
 IfcUnitEnum,926
@@ -371,6 +369,7 @@ IfcWindowTypePartitioningEnum,1063
 IfcWorkCalendarTypeEnum,1064
 IfcWorkPlanTypeEnum,1065
 IfcWorkScheduleTypeEnum,1066
+IfcTransportElementTypeEnum,1475
 IfcActorSelect,937
 IfcAppliedValueSelect,938
 IfcAxis2Placement,939
@@ -431,7 +430,6 @@ IfcSurfaceStyleElementSelect,975
 IfcTextFontSelect,977
 IfcTimeOrRatioSelect,1088
 IfcTranslationalStiffnessSelect,1089
-IfcTransportElementTypeSelect,1396
 IfcTrimmingSelect,979
 IfcUnit,980
 IfcValue,981

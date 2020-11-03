@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 
+//## Custom using statements
+//##
+
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.ProductExtension
 {
@@ -118,7 +121,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				return Model.Instances.Where<IIfcRelSpaceBoundary>(e => (e.RelatingSpace as IfcSpace) == this, "RelatingSpace", this);
 			} 
 		}
-		//## Custom code
+	//## Custom code
 		/// <summary>
 		/// Returns all spaces that are sub-spaces of this building
 		/// </summary>

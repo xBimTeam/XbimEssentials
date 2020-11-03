@@ -11,16 +11,19 @@ using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
+
+//## Custom using statements
 using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.RepresentationResource;
 using Xbim.Ifc4x3.MeasureResource;
+//##
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.Kernel
 {
 	public partial class @IfcProject : IIfcProject
 	{
-        //## Custom code
+	//## Custom code
         public IEnumerable<IIfcSite> Sites
         {
             get
@@ -185,5 +188,5 @@ namespace Xbim.Ifc4x3.Kernel
             }
         }
         //##
-    }
+	}
 }

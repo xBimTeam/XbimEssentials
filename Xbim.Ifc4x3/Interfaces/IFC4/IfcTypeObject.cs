@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 
+//## Custom using statements
+//##
+
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.Kernel
 {
@@ -51,7 +54,7 @@ namespace Xbim.Ifc4x3.Kernel
 				return Model.Instances.Where<IIfcRelDefinesByType>(e => (e.RelatingType as IfcTypeObject) == this, "RelatingType", this);
 			} 
 		}
-		//## Custom code
+	//## Custom code
 		IEnumerable<IIfcRelDefinesByProperties> IIfcTypeObject.DefinedByProperties
 		{
 			get

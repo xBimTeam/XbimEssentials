@@ -11,7 +11,10 @@ using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
+
+//## Custom using statements
 using Xbim.Ifc4.QuantityResource;
+//##
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4x3.Kernel
@@ -67,7 +70,7 @@ namespace Xbim.Ifc4x3.Kernel
 				return Model.Instances.Where<IIfcRelAssociates>(e => e.RelatedObjects != null &&  e.RelatedObjects.Contains(this), "RelatedObjects", this);
 			} 
 		}
-        //## Custom code
+	//## Custom code
 
         public IIfcMaterialSelect Material
         {
@@ -160,5 +163,5 @@ namespace Xbim.Ifc4x3.Kernel
             return null;
         }
         //##
-    }
+	}
 }
