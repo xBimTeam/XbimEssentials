@@ -411,7 +411,7 @@ namespace Xbim.Essentials.Tests
                     Assert.IsNotNull(wall.IsDefinedBy.FirstOrDefault());
                     var pSetSet =
                         (IfcPropertySetDefinitionSet)wall.IsDefinedBy.FirstOrDefault().RelatingPropertyDefinition;
-                    var vals = pSetSet.Value as List<IfcPropertySetDefinition>;
+                    var vals = pSetSet.Value as List<IIfcPropertySetDefinition>;
                     Assert.IsNotNull(vals);
                     Assert.IsTrue(vals.Count == 3);
                 }
