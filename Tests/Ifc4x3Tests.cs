@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xbim.Common.Model;
 using Xbim.Ifc;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4x3.MeasureResource;
 using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Essentials.Tests
@@ -31,6 +33,15 @@ namespace Xbim.Essentials.Tests
                     model.SaveAsIfc(file);
                 }
             }
+        }
+
+        [TestMethod]
+        public void ConvertLengthTest()
+        {
+            var value = new IfcLengthMeasure(20);
+            var converted = value.ToIfc4();
+            Assert.IsTrue(converted.GetType() == typeof(Ifc4.MeasureResource.IfcLengthMeasure));
+            Assert.IsTrue((Ifc4.MeasureResource.IfcLengthMeasure)converted == new Ifc4.MeasureResource.IfcLengthMeasure(20));
         }
     }
 }
