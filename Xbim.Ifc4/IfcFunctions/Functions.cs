@@ -735,7 +735,7 @@ namespace Xbim.Ifc4
             {
                 throw new ArgumentException("Undetermined value in where clause.");
             }
-            return val.Value;
+            return val ?? true;
         }
 
         private static bool? NullableIfcCorrectDimensions(IfcUnitEnum m, IfcDimensionalExponents Dim)

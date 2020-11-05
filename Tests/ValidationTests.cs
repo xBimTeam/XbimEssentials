@@ -7,6 +7,8 @@ using Xbim.Common.ExpressValidation;
 using Xbim.Ifc;
 using Xbim.Ifc.Validation;
 using Xbim.Ifc2x3.HVACDomain;
+using Xbim.Ifc4.Interfaces;
+using Xbim.IO;
 
 namespace Xbim.Essentials.Tests
 {
@@ -33,6 +35,43 @@ namespace Xbim.Essentials.Tests
                 {
                     Debug.WriteLine(validationResult);
                 }
+            }
+        }
+
+        [TestMethod]
+        public void ContextDependentUnitValidationTest()
+        {
+            using (var model = IfcStore.Create(Common.Step21.XbimSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
+            {
+                using (var txn = model.BeginTransaction())
+                {
+                    var c = new Create(model);
+                    var unit = c.ContextDependentUnit(u =>
+                    {
+                        u.UnitType = IfcUnitEnum.USERDEFINED;
+                        u.Name = "Context Dependent Unit";
+                        u.Dimensions = c.DimensionalExponents(e =>
+                        {
+                            e.LengthExponent = 0;
+                            e.MassExponent = 0;
+                            e.TimeExponent = 0;
+                            e.ElectricCurrentExponent = 0;
+                            e.ThermodynamicTemperatureExponent = 0;
+                            e.AmountOfSubstanceExponent = 0;
+                            e.LuminousIntensityExponent = 0;
+                        });
+                    });
+                    txn.Commit();
+                }
+
+                var v = new Validator
+                {
+                    ValidateLevel = ValidationFlags.All,
+                    CreateEntityHierarchy = true
+                };
+                var errors = v.Validate(model);
+                Assert.IsTrue(!errors.Any());
+
             }
         }
 
@@ -111,7 +150,7 @@ namespace Xbim.Essentials.Tests
                 };
                 var item = model.Instances[100] as IfcCoilType;
                 if (item == null)
-                    throw  new Exception();
+                    throw new Exception();
 
                 var e2 = v.Validate(item);
                 int iCount = 0;
@@ -127,9 +166,9 @@ namespace Xbim.Essentials.Tests
                     Debug.WriteLine(validationResult);
                     iCount++;
                 }
-                
+
                 if (iCount != 0)
-                    throw  new Exception("Unexpected validation error.");
+                    throw new Exception("Unexpected validation error.");
 
                 //bool res;
                 //Debug.WriteLine("fcCoilTypeClause.WR1" + item.ValidateClause(IfcCoilType.IfcCoilTypeClause.WR1));
