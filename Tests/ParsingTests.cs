@@ -797,5 +797,148 @@ namespace Xbim.Essentials.Tests
                 Assert.AreEqual(true, errCount);
             }
         }
+
+        [TestMethod]
+        // this is a meta tast of the large stream mock-up
+        public void LargeStreamTest()
+        {
+            using (var stream = File.OpenRead("TestFiles\\ifc2x3_final_wall.ifc"))
+            using (var data = new LargeStream(stream))
+            {
+                data.Position = LargeStream.offset;
+                var buffer = new byte[stream.Length + 100];
+                var read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(stream.Length, read);
+                Assert.AreEqual((byte)'I', buffer[0]);
+
+                data.Position = LargeStream.offset - 100;
+                buffer = new byte[stream.Length + 100];
+                read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(stream.Length + 100, read);
+                Assert.AreEqual((byte)' ', buffer[99]);
+                Assert.AreEqual((byte)'I', buffer[100]);
+
+                data.Position = data.Length - 1;
+                buffer = new byte[1000000];
+                read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(1, read);
+                read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(0, read);
+            }
+        }
+
+        [TestMethod]
+        public void ParsingLargeFile()
+        {
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
+            {
+                using (var stream = File.OpenRead("TestFiles\\ifc2x3_final_wall.ifc"))
+                using (var data = new LargeStream(stream))
+                {
+                    var errCount = model.LoadStep21(data, data.Length);
+                    Assert.AreEqual(0, errCount);
+                    Assert.AreEqual(1, model.Instances.OfType<Ifc2x3.SharedBldgElements.IfcWallStandardCase>().Count());
+                }
+            }
+        }
+
+        /// <summary>
+        /// This class pretends that it is a large stream but first int.MaxValue bytes are just white spaces
+        /// </summary>
+        private class LargeStream : Stream
+        {
+            internal readonly Stream inner;
+            internal const long offset = int.MaxValue;
+            private const string line = "                                                                                                    \r\n";
+
+            public LargeStream(Stream stream)
+            {
+                inner = stream;
+            }
+
+            public override bool CanRead => true;
+
+            public override bool CanSeek => false;
+
+            public override bool CanWrite => false;
+
+            public override long Length => offset + inner.Length;
+
+            public override long Position { get; set; }
+
+            public override void Flush()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override int Read(byte[] buffer, int bufferOffset, int count)
+            {
+                // adjust count to length
+                count = (int)Math.Min(count, Length - Position);
+                if (count == 0)
+                    return count;
+
+                // all in offset
+                if ((Position + count) < offset)
+                {
+                    for (int i = 0; i < count; i++)
+                        buffer[bufferOffset + i] = (byte)line[(int)((Position + i) % line.Length)];
+
+                    Position += count;
+                    return count;
+                }
+
+                // all in actual data
+                if (Position >= offset)
+                {
+                    var position = Position - offset;
+                    if (position != inner.Position)
+                        inner.Seek(position, SeekOrigin.Begin);
+
+                    Position += count;
+                    return inner.Read(buffer, bufferOffset, count);
+                }
+
+                // overlap
+                { 
+                    var spaceCount = (int)(offset - Position);
+                    int idx = 0;
+                    for (; idx < spaceCount; idx++)
+                        buffer[bufferOffset + idx] = (byte)' ';
+                    var dataCount = count - spaceCount;
+                    
+                    // adjust
+                    var position = Position - offset + spaceCount;
+                    if (position != inner.Position)
+                        inner.Seek(position, SeekOrigin.Begin);
+                    dataCount = inner.Read(buffer, spaceCount, dataCount);
+
+                    Position += count;
+                    return count;
+                }
+            }
+
+            public override long Seek(long offset, SeekOrigin origin)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void SetLength(long value)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                inner.Dispose();
+
+                base.Dispose(disposing);
+            }
+        }
     }
 }
