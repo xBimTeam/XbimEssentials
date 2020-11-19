@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1;netcoreapp3.1;net5</TargetFrameworks>
     <Title>Xbim IFC4</Title>
     <Description>Provides support for the IFC4 schema, including Add1, Add2 + Alignment schemas.</Description>
     <Product>Xbim Ifc4 Schema</Product>
