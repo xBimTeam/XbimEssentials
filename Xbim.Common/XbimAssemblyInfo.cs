@@ -69,7 +69,7 @@ namespace Xbim.Common
         {
             get => _assembly.IsDynamic ?
                 new FileInfo("") :
-                new FileInfo(new Uri(_assembly.CodeBase).LocalPath);
+                new FileInfo(new Uri(_assembly.Location).LocalPath);
         }
 
         /// <summary>
