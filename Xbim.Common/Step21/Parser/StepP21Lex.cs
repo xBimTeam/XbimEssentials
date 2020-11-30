@@ -149,10 +149,10 @@ public static int Pass = 1;
         // The following instance variables are used, among other
         // things, for constructing the yylloc location objects.
         //
-        int tokPos;        // buffer position at start of token
+        long tokPos;        // buffer position at start of token
         int tokCol;        // zero-based column number at start of token
         int tokLin;        // line number at start of token
-        int tokEPos;       // buffer position at end of token
+        long tokEPos;       // buffer position at end of token
         int tokECol;       // column number at end of token
         int tokELin;       // line number at end of token
         string tokTxt;     // lazily constructed text of token
@@ -1592,8 +1592,8 @@ int NextState() {
 
         struct Context // class used for automaton backup.
         {
-            public int bPos;
-            public int rPos; // scanner.readPos saved value
+            public long bPos;
+            public long rPos; // scanner.readPos saved value
             public int cCol;
             public int lNum; // Need this in case of backup over EOL.
             public int state;
@@ -1656,7 +1656,7 @@ int NextState() {
 
      public Scanner() { }
 
-        private int readPos;
+        private long readPos;
 
         void GetCode()
         {
@@ -1707,7 +1707,8 @@ int NextState() {
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         int Peek()
         {
-            int rslt, codeSv = code, cColSv = cCol, lNumSv = lNum, bPosSv = buffer.Pos;
+            int rslt, codeSv = code, cColSv = cCol, lNumSv = lNum;
+            long bPosSv = buffer.Pos;
             GetCode(); rslt = code;
             lNum = lNumSv; cCol = cColSv; code = codeSv; buffer.Pos = bPosSv;
             return rslt;
@@ -1827,7 +1828,7 @@ int NextState() {
         }
         
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        int yypos { get { return tokPos; } }
+        long yypos { get { return tokPos; } }
         
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         int yyline { get { return tokLin; } }
@@ -1855,7 +1856,7 @@ int NextState() {
         /// </summary>
         /// <param name="n">The number of codepoints to consume</param>
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        void yyless(int n)
+        void yyless(long n)
         {
             buffer.Pos = tokPos;
             // Must read at least one char, so set before start.
@@ -1896,7 +1897,7 @@ int NextState() {
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "yyleng")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "yyleng")]
-        public int yyleng
+        public long yyleng
         {
             get {
                 if (tokELin == tokLin)
@@ -2253,11 +2254,11 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
         public bool IsFile { get { return (fileNm != null); } }
         public string FileName { get { return fileNm; } set { fileNm = value; } }
 
-        public abstract int Pos { get; set; }
+        public abstract long Pos { get; set; }
         public abstract int Read();
         public virtual void Mark() { }
 
-        public abstract string GetString(int begin, int limit);
+        public abstract string GetString(long begin, long limit);
 
         public static ScanBuff GetBuffer(string source)
         {
@@ -2299,7 +2300,7 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
     sealed class StringBuffer : ScanBuff
     {
         string str;        // input buffer
-        int bPos;          // current position in buffer
+        long bPos;          // current position in buffer
         int sLen;
 
         public StringBuffer(string source)
@@ -2311,12 +2312,12 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
 
         public override int Read()
         {
-            if (bPos < sLen) return str[bPos++];
+            if (bPos < sLen) return str[(int)bPos++];
             else if (bPos == sLen) { bPos++; return '\n'; }   // one strike, see new line
             else { bPos++; return EndOfFile; }                // two strikes and you're out!
         }
 
-        public override string GetString(int begin, int limit)
+        public override string GetString(long begin, long limit)
         {
             //  "limit" can be greater than sLen with the BABEL
             //  option set.  Read returns a "virtual" EOL if
@@ -2326,10 +2327,10 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
             //  EOL will throw an index exception.
             if (limit > sLen) limit = sLen;
             if (limit <= begin) return "";
-            else return str.Substring(begin, limit - begin);
+            else return str.Substring((int)begin, (int)(limit - begin));
         }
 
-        public override int Pos
+        public override long Pos
         {
             get { return bPos; }
             set { bPos = value; }
@@ -2350,10 +2351,10 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
         string curLine;        // current line in that list
         int cLine;             // index of current line in the list
         int curLen;            // length of current line
-        int curLineStart;      // position of line start in whole file
-        int curLineEnd;        // position of line end in whole file
-        int maxPos;            // max position ever visited in whole file
-        int cPos;              // ordinal number of code in source
+        long curLineStart;      // position of line start in whole file
+        long curLineEnd;        // position of line end in whole file
+        long maxPos;            // max position ever visited in whole file
+        long cPos;              // ordinal number of code in source
 
         // Constructed from a list of strings, one per source line.
         // The lines have had trailing '\n' characters removed.
@@ -2371,7 +2372,7 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
         public override int Read()
         {
             if (cPos < curLineEnd)
-                return curLine[cPos++ - curLineStart];
+                return curLine[(int)(cPos++ - curLineStart)];
             if (cPos++ == curLineEnd)
                 return '\n';
             if (cLine >= numLines)
@@ -2387,14 +2388,14 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
         }
 
         // To speed up searches for the line containing a position
-        private int cachedPosition;
+        private long cachedPosition;
+        private long cachedLineStart;
         private int cachedIxdex;
-        private int cachedLineStart;
 
         // Given a position pos within the entire source, the results are
         //   ix     -- the index of the containing line
         //   lstart -- the position of the first character on that line
-        private void findIndex(int pos, out int ix, out int lstart)
+        private void findIndex(long pos, out int ix, out long lstart)
         {
             if (pos >= cachedPosition)
             {
@@ -2402,7 +2403,8 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
             }
             else
             {
-                ix = lstart = 0;
+                ix = 0; 
+                lstart = 0;
             }
             while (ix < numLines)
             {
@@ -2416,14 +2418,15 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
             cachedLineStart = lstart;
         }
 
-        public override string GetString(int begin, int limit)
+        public override string GetString(long begin, long limit)
         {
             if (begin >= maxPos || limit <= begin) return "";
-            int endIx, begIx, endLineStart, begLineStart;
+            int endIx, begIx;
+            long begLineStart, endLineStart;
             findIndex(begin, out begIx, out begLineStart);
-            int begCol = begin - begLineStart;
+            int begCol = (int)(begin - begLineStart);
             findIndex(limit, out endIx, out endLineStart);
-            int endCol = limit - endLineStart;
+            int endCol = (int)(limit - endLineStart);
             string s = line[begIx];
             if (begIx == endIx)
             {
@@ -2455,7 +2458,7 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
             return sb.ToString();
         }
 
-        public override int Pos
+        public override long Pos
         {
             get { return cPos; }
             set
@@ -2483,26 +2486,26 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
         {
             StringBuilder bldr = new StringBuilder();
             StringBuilder next = new StringBuilder();
-            int minIx;
-            int maxIx;
-            int brkIx;
+            long minIx;
+            long maxIx;
+            long brkIx;
             bool appendToNext;
 
             internal BufferElement() { }
 
-            internal int MaxIndex { get { return maxIx; } }
+            internal long MaxIndex { get { return maxIx; } }
             // internal int MinIndex { get { return minIx; } }
 
-            internal char this[int index]
+            internal char this[long index]
             {
                 get
                 {
                     if (index < minIx || index >= maxIx)
                         throw new BufferException("Index was outside data buffer");
                     else if (index < brkIx)
-                        return bldr[index - minIx];
+                        return bldr[(int)(index - minIx)];
                     else
-                        return next[index - brkIx];
+                        return next[(int)(index - brkIx)];
                 }
             }
 
@@ -2519,24 +2522,24 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
                 }
             }
 
-            internal string GetString(int start, int limit)
+            internal string GetString(long start, long limit)
             {
                 if (limit <= start)
                     return "";
                 if (start >= minIx && limit <= maxIx)
                     if (limit < brkIx) // String entirely in bldr builder
-                        return bldr.ToString(start - minIx, limit - start);
+                        return bldr.ToString((int)(start - minIx), (int)(limit - start));
                     else if (start >= brkIx) // String entirely in next builder
-                        return next.ToString(start - brkIx, limit - start);
+                        return next.ToString((int)(start - brkIx), (int)(limit - start));
                     else // Must do a string-concatenation
                         return
-                            bldr.ToString(start - minIx, brkIx - start) +
-                            next.ToString(0, limit - brkIx);
+                            bldr.ToString((int)(start - minIx), (int)(brkIx - start)) +
+                            next.ToString(0, (int)(limit - brkIx));
                 else
                     throw new BufferException("String was outside data buffer");
             }
 
-            internal void Mark(int limit)
+            internal void Mark(long limit)
             {
                 if (limit > brkIx + 16) // Rotate blocks
                 {
@@ -2552,7 +2555,7 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
 
         BufferElement data = new BufferElement();
 
-        int bPos;            // Postion index in the StringBuilder
+        long bPos;            // Postion index in the StringBuilder
         BlockReader NextBlk; // Delegate that serves char-arrays;
 
         private string EncodingName
@@ -2588,7 +2591,7 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
         /// </summary>
         public override void Mark() { data.Mark(bPos - 2); }
 
-        public override int Pos
+        public override long Pos
         {
             get { return bPos; }
             set { bPos = value; }
@@ -2628,7 +2631,7 @@ yylloc = new LexLocation(tokLin,tokCol,tokELin,tokECol);
             }
         }
 
-        public override string GetString(int begin, int limit)
+        public override string GetString(long begin, long limit)
         {
             return data.GetString(begin, limit);
         }

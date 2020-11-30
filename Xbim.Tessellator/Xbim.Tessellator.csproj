@@ -10,4 +10,7 @@
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
+	</ItemGroup>
 </Project>

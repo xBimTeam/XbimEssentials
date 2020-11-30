@@ -19,4 +19,7 @@
   <ItemGroup>
     <PackageReference Include="System.Memory" Version="4.5.4" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
+  </ItemGroup>
 </Project>

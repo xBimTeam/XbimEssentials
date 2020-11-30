@@ -12,9 +12,9 @@ namespace Xbim.IO.Parser
         private Stream _stream;
         private byte[] _buffer = new byte[0x8000];
         private byte[] _prevBuffer = new byte[0x8000];
-        private int _bufferOffset;
-        private int _bufferPosition;
-        private int _prevBufferPosition;
+        private long _bufferOffset;
+        private long _bufferPosition;
+        private long _prevBufferPosition;
         private Encoding _encoding = Encoding.ASCII;
         private const byte hash = (byte)'#';
         private const byte zero = (byte)'0';
@@ -25,13 +25,13 @@ namespace Xbim.IO.Parser
             _stream = stream;
         }
 
-        public override int Pos
+        public override long Pos
         {
             get => _bufferOffset + _bufferPosition;
             set => _bufferPosition = value - _bufferOffset;
         }
 
-        public override string GetString(int begin, int limit)
+        public override string GetString(long begin, long limit)
         {
             var data = GetSubArray(begin, limit);
             var result = _encoding.GetString(data);
@@ -52,10 +52,10 @@ namespace Xbim.IO.Parser
             return label;
         }
 
-        private byte[] GetSubArray(int begin, int limit)
+        private byte[] GetSubArray(long begin, long limit)
         {
-            var start = begin - _bufferOffset;
-            var length = limit - begin;
+            var start = (int)(begin - _bufferOffset);
+            var length = (int)(limit - begin);
             var result = new byte[length];
 
             if (start > 0)
@@ -64,7 +64,7 @@ namespace Xbim.IO.Parser
                 return result;
             }
 
-            var prevStart = _prevBufferPosition + start;
+            var prevStart = (int)(_prevBufferPosition + start);
             var prevLength = Math.Abs(start);
             Array.ConstrainedCopy(_prevBuffer, prevStart, result, 0, prevLength);
 
