@@ -14,7 +14,7 @@ namespace Xbim.Tessellator
         NoIssues = 0,
         IsOpenBody = 1,
         WasInvertedBody = 2,
-        HasFaultyTriangles = 4,
+        HasFaultyOrUnconnectedTriangles = 4,
         IsEmptyBody = 9
     }
 
@@ -203,7 +203,7 @@ namespace Xbim.Tessellator
                 preStatus = IsTopologicallyClosed ? XbimTriangulationStatus.NoIssues : XbimTriangulationStatus.IsOpenBody;
 
             if (FaultyTriangles.Count > 0)
-                preStatus |= XbimTriangulationStatus.HasFaultyTriangles;
+                preStatus |= XbimTriangulationStatus.HasFaultyOrUnconnectedTriangles;
 
             return preStatus.Value;
         }

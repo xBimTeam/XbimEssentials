@@ -8,7 +8,6 @@ using Xbim.Ifc4.Interfaces;
 using Xbim.Common.XbimExtensions;
 using Xbim.Ifc4.MeasureResource;
 using Microsoft.Extensions.Logging;
-using System.Text;
 
 namespace Xbim.Tessellator
 {
@@ -473,13 +472,13 @@ namespace Xbim.Tessellator
             {
                 List<string> issueText = new List<string>();
 
-                if (XbimTriangulationStatus.IsOpenBody == (XbimTriangulationStatus.IsOpenBody & status))
+                if (status.HasFlag(XbimTriangulationStatus.IsOpenBody))
                     issueText.Add("has open body");
 
-                if (XbimTriangulationStatus.WasInvertedBody == (XbimTriangulationStatus.WasInvertedBody & status))
+                if (status.HasFlag(XbimTriangulationStatus.WasInvertedBody))
                     issueText.Add("has been inverted to reflect a positive volume");
 
-                if (XbimTriangulationStatus.HasFaultyTriangles == (XbimTriangulationStatus.HasFaultyTriangles & status))
+                if (status.HasFlag(XbimTriangulationStatus.HasFaultyOrUnconnectedTriangles))
                     issueText.Add("contains unconnected or faulty triangles not displayed");
 
                 _logger.LogWarning("Shape validation result of #{0}: {1}", entityLabel, string.Join(", ", issueText));
