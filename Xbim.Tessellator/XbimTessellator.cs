@@ -16,10 +16,13 @@ namespace Xbim.Tessellator
     {
         private readonly IModel _model;
         private readonly XbimGeometryType _geometryType;
-        public XbimTessellator(IModel model, XbimGeometryType geometryType)
+        private readonly bool _reduceLargeCoordinates;
+
+        public XbimTessellator(IModel model, XbimGeometryType geometryType, bool reduceLargeCoordinates = true)
         {
             _model = model;
             _geometryType = geometryType;
+            _reduceLargeCoordinates = reduceLargeCoordinates;
         }
 
         public IXbimShapeGeometryData Mesh(IXbimGeometryObject geomObject)
@@ -330,6 +333,9 @@ namespace Xbim.Tessellator
 
         private bool IsLarge(double coordinate)
         {
+            if (!_reduceLargeCoordinates)
+                return false;
+
             return coordinate > _model.ModelFactors.OneMilliMeter * 999999;
         }
 
