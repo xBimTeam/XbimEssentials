@@ -7,54 +7,55 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometryResource;
+using Xbim.Ifc4x3.Kernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.Rail;
+using Xbim.Ifc4x3.ProductExtension;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.Rail
+namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcAxisLateralInclination", 1402)]
+	[ExpressType("IfcLinearElement", 1493)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAxisLateralInclination : IfcGeometricRepresentationItem, IInstantiableEntity, IEquatable<@IfcAxisLateralInclination>
+	public abstract partial class @IfcLinearElement : IfcProduct, IEquatable<@IfcLinearElement>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAxisLateralInclination(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcLinearElement(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Inclinating")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 1 }, 3)]
-		public IEnumerable<IfcLinearAxisWithInclination> @ToLinearAxis 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcLinearAxisWithInclination>(e => Equals(e.Inclinating), "Inclinating", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
 		{
-			//there are no attributes defined for this entity
-            throw new System.IndexOutOfRangeException("There are no attributes defined for this entity");
+			switch (propIndex)
+			{
+				case 0: 
+				case 1: 
+				case 2: 
+				case 3: 
+				case 4: 
+				case 5: 
+				case 6: 
+					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				default:
+					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
+			}
 		}
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAxisLateralInclination other)
+        public bool Equals(@IfcLinearElement other)
 	    {
 	        return this == other;
 	    }

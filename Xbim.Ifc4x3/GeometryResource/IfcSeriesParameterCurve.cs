@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,65 +20,64 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcSurfaceOfRevolution", 109)]
+	[ExpressType("IfcSeriesParameterCurve", 1497)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSurfaceOfRevolution>
+	public  partial class @IfcSeriesParameterCurve : IfcCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSeriesParameterCurve>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcSurfaceOfRevolution(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcSeriesParameterCurve(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
+			_coefficientsX = new ItemSet<IfcReal>( this, 0,  2);
+			_coefficientsY = new ItemSet<IfcReal>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private IfcAxis1Placement _axisPosition;
+		private IfcPlacement _position;
+		private readonly ItemSet<IfcReal> _coefficientsX;
+		private readonly ItemSet<IfcReal> _coefficientsY;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
-		public IfcAxis1Placement @AxisPosition 
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
+		public IfcPlacement @Position 
 		{ 
 			get 
 			{
-				if(_activated) return _axisPosition;
+				if(_activated) return _position;
 				Activate();
-				return _axisPosition;
+				return _position;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _axisPosition = v, _axisPosition, value,  "AxisPosition", 3);
+				SetValue( v =>  _position = v, _position, value,  "Position", 1);
+			} 
+		}	
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 4)]
+		public IItemSet<IfcReal> @CoefficientsX 
+		{ 
+			get 
+			{
+				if(_activated) return _coefficientsX;
+				Activate();
+				return _coefficientsX;
+			} 
+		}	
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 5)]
+		public IItemSet<IfcReal> @CoefficientsY 
+		{ 
+			get 
+			{
+				if(_activated) return _coefficientsY;
+				Activate();
+				return _coefficientsY;
 			} 
 		}	
 		#endregion
 
 
-		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.Class, EntityAttributeType.None, null, null, 0)]
-		public Common.Geometry.XbimLine @AxisLine 
-		{
-			get 
-			{
-				//## Getter for AxisLine
-				if (AxisPosition != null)
-				{
-					// TODO: support other types of points. This is new in IFC4x3 RC2
-					if (!(AxisPosition.Location is IfcCartesianPoint cp))
-						throw new XbimException("Only IfcCartesianPoint is supported as an axis definition");
-
-					return new Common.Geometry.XbimLine
-					{
-						Pnt = new Common.Geometry.XbimPoint3D(cp.X, cp.Y, cp.Z),
-						Orientation = AxisPosition.Z,
-					};
-				}
-				return null;
-				//##
-			}
-		}
-
-		#endregion
 
 
 		#region IPersist implementation
@@ -86,11 +86,13 @@ namespace Xbim.Ifc4x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
+					_position = (IfcPlacement)(value.EntityVal);
+					return;
 				case 1: 
-					base.Parse(propIndex, value, nestedIndex); 
+					_coefficientsX.InternalAdd(value.RealVal);
 					return;
 				case 2: 
-					_axisPosition = (IfcAxis1Placement)(value.EntityVal);
+					_coefficientsY.InternalAdd(value.RealVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -99,7 +101,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcSurfaceOfRevolution other)
+        public bool Equals(@IfcSeriesParameterCurve other)
 	    {
 	        return this == other;
 	    }
@@ -110,12 +112,8 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{
 			get 
 			{
-				if (@SweptCurve != null)
-					yield return @SweptCurve;
 				if (@Position != null)
 					yield return @Position;
-				if (@AxisPosition != null)
-					yield return @AxisPosition;
 			}
 		}
 		#endregion

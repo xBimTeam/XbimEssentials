@@ -109,7 +109,16 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 			foreach (var segment in ccos.Segments)
 			{
-				var curve = segment.ParentCurve as IfcCurveOnSurface;
+				IfcCurve parentCurve;
+				if (segment is IfcCompositeCurveSegment ccs)
+					parentCurve = ccs.ParentCurve;
+				else if (segment is IfcCurveSegment cs)
+					parentCurve = cs.ParentCurve;
+				else
+					throw new XbimException("Unexpected segment type");
+
+
+				var curve = parentCurve as IfcCurveOnSurface;
 				if (curve == null) continue;
 				foreach (var surface in IfcGetBasisSurface(curve))
 				{

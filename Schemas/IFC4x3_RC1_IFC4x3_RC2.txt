@@ -1,0 +1,199 @@
+Number of entities:
+IFC4X3_RC1: 879
+IFC4X3_RC2: 885
+
+Number of non-abstract entities:
+IFC4X3_RC1: 745
+IFC4X3_RC2: 752
+
+Number of types:
+IFC4X3_RC1: 130
+IFC4X3_RC2: 130
+
+Number of enumerations:
+IFC4X3_RC1: 242
+IFC4X3_RC2: 245
+
+Number of select types:
+IFC4X3_RC1: 66
+IFC4X3_RC2: 67
+
+Number of global rules:
+IFC4X3_RC1: 2
+IFC4X3_RC2: 2
+
+Entities added to schema (18):
+Added EntityDefinition: IfcAlignmentCant
+Added EntityDefinition: IfcAlignmentCantSegment
+Added EntityDefinition: IfcAlignmentHorizontal
+Added EntityDefinition: IfcAlignmentHorizontalSegment
+Added EntityDefinition: IfcAlignmentParameterSegment
+Added EntityDefinition: IfcAlignmentSegment
+Added EntityDefinition: IfcAlignmentVertical
+Added EntityDefinition: IfcAlignmentVerticalSegment
+Added EntityDefinition: IfcAxis2PlacementLinear
+Added EntityDefinition: IfcBlossCurve
+Added EntityDefinition: IfcClothoid
+Added EntityDefinition: IfcCurveSegment
+Added EntityDefinition: IfcGradientCurve
+Added EntityDefinition: IfcLinearElement
+Added EntityDefinition: IfcPointByDistanceExpression
+Added EntityDefinition: IfcSegment
+Added EntityDefinition: IfcSegmentedReferenceCurve
+Added EntityDefinition: IfcSeriesParameterCurve
+
+Selects added to schema (1):
+Added SelectType: IfcCurveMeasureSelect
+
+Defined types added to schema (0):
+
+Enumerations added to schema (3):
+Added EnumerationType: IfcAlignmentCantSegmentTypeEnum
+Added EnumerationType: IfcAlignmentHorizontalSegmentTypeEnum
+Added EnumerationType: IfcAlignmentVerticalSegmentTypeEnum
+
+Entities removed from schema (12):
+Removed EntityDefinition: IfcAlignment2DCant
+Removed EntityDefinition: IfcAlignment2DCantSegLine
+Removed EntityDefinition: IfcAlignment2DCantSegTransition
+Removed EntityDefinition: IfcAlignment2DCantSegment
+Removed EntityDefinition: IfcAlignment2DHorizontal
+Removed EntityDefinition: IfcAlignment2DHorizontalSegment
+Removed EntityDefinition: IfcAlignment2DSegment
+Removed EntityDefinition: IfcAlignment2DVerSegTransition
+Removed EntityDefinition: IfcAlignment2DVertical
+Removed EntityDefinition: IfcAlignment2DVerticalSegment
+Removed EntityDefinition: IfcDistanceExpression
+Removed EntityDefinition: IfcOrientationExpression
+
+Selects removed from schema (0):
+
+Defined types removed from schema (0):
+
+Enumerations removed from schema (0):
+
+Changed entity definitions (24):
+Entity: IfcAlignment2DVerSegCircularArc
+Added attribute: EndGradient 
+Added attribute: RadiusOfCurvature 
+Added attribute: PredefinedType 
+Removed attribute: TangentialContinuity 
+Changed attribute index: StartTag (Old index: 1, New index: 0)
+Changed attribute index: EndTag (Old index: 2, New index: 1)
+Changed attribute index: StartDistAlong (Old index: 3, New index: 2)
+Changed attribute index: HorizontalLength (Old index: 4, New index: 3)
+Changed attribute index: StartHeight (Old index: 5, New index: 4)
+Changed attribute index: StartGradient (Old index: 6, New index: 5)
+Changed attribute type: StartGradient (Old type: IfcRatioMeasure, New type: IfcLengthMeasure)
+Changed attribute index: Radius (Old index: 7, New index: 9)
+Changed attribute index: IsConvex (Old index: 8, New index: 10)
+
+Entity: IfcAlignment2DVerSegLine
+Added attribute: EndGradient 
+Added attribute: RadiusOfCurvature 
+Added attribute: PredefinedType 
+Removed attribute: TangentialContinuity 
+Changed attribute index: StartTag (Old index: 1, New index: 0)
+Changed attribute index: EndTag (Old index: 2, New index: 1)
+Changed attribute index: StartDistAlong (Old index: 3, New index: 2)
+Changed attribute index: HorizontalLength (Old index: 4, New index: 3)
+Changed attribute index: StartHeight (Old index: 5, New index: 4)
+Changed attribute index: StartGradient (Old index: 6, New index: 5)
+Changed attribute type: StartGradient (Old type: IfcRatioMeasure, New type: IfcLengthMeasure)
+
+Entity: IfcAlignment2DVerSegParabolicArc
+Added attribute: EndGradient 
+Added attribute: RadiusOfCurvature 
+Added attribute: PredefinedType 
+Removed attribute: TangentialContinuity 
+Changed attribute index: StartTag (Old index: 1, New index: 0)
+Changed attribute index: EndTag (Old index: 2, New index: 1)
+Changed attribute index: StartDistAlong (Old index: 3, New index: 2)
+Changed attribute index: HorizontalLength (Old index: 4, New index: 3)
+Changed attribute index: StartHeight (Old index: 5, New index: 4)
+Changed attribute index: StartGradient (Old index: 6, New index: 5)
+Changed attribute type: StartGradient (Old type: IfcRatioMeasure, New type: IfcLengthMeasure)
+Changed attribute index: ParabolaConstant (Old index: 7, New index: 9)
+Changed attribute index: IsConvex (Old index: 8, New index: 10)
+
+Entity: IfcAlignmentCurve
+Changed attribute type: Horizontal (Old type: IfcAlignment2DHorizontal, New type: IfcAlignmentHorizontal)
+Changed attribute type: Vertical (Old type: IfcAlignment2DVertical, New type: IfcAlignmentVertical)
+
+Entity: IfcAxis1Placement
+Changed attribute type: Location (Old type: IfcCartesianPoint, New type: IfcPoint)
+
+Entity: IfcAxis2Placement2D
+Changed attribute type: Location (Old type: IfcCartesianPoint, New type: IfcPoint)
+
+Entity: IfcAxis2Placement3D
+Changed attribute type: Location (Old type: IfcCartesianPoint, New type: IfcPoint)
+
+Entity: IfcBoundaryCurve
+Changed attribute type: Segments (Old type: ListType<IfcCompositeCurveSegment>, New type: ListType<IfcSegment>)
+
+Entity: IfcCompositeCurve
+Changed attribute type: Segments (Old type: ListType<IfcCompositeCurveSegment>, New type: ListType<IfcSegment>)
+
+Entity: IfcCompositeCurveOnSurface
+Changed attribute type: Segments (Old type: ListType<IfcCompositeCurveSegment>, New type: ListType<IfcSegment>)
+
+Entity: IfcDirectrixCurveSweptAreaSolid
+Changed attribute type: StartParam (Old type: IfcParameterValue, New type: IfcCurveMeasureSelect)
+Changed attribute type: EndParam (Old type: IfcParameterValue, New type: IfcCurveMeasureSelect)
+
+Entity: IfcDirectrixDistanceSweptAreaSolid
+Changed attribute type: StartDistance (Old type: IfcDistanceExpression, New type: IfcPointByDistanceExpression)
+Changed attribute type: EndDistance (Old type: IfcDistanceExpression, New type: IfcPointByDistanceExpression)
+
+Entity: IfcFillAreaStyle
+Added attribute: ModelOrDraughting 
+Removed attribute: ModelorDraughting 
+
+Entity: IfcFixedReferenceSweptAreaSolid
+Changed attribute type: StartParam (Old type: IfcParameterValue, New type: IfcCurveMeasureSelect)
+Changed attribute type: EndParam (Old type: IfcParameterValue, New type: IfcCurveMeasureSelect)
+
+Entity: IfcInclinedReferenceSweptAreaSolid
+Changed attribute type: StartDistance (Old type: IfcDistanceExpression, New type: IfcPointByDistanceExpression)
+Changed attribute type: EndDistance (Old type: IfcDistanceExpression, New type: IfcPointByDistanceExpression)
+
+Entity: IfcLinearPlacement
+Added attribute: RelativePlacement 
+Removed attribute: Orientation 
+Changed attribute type: Distance (Old type: IfcDistanceExpression, New type: IfcPointByDistanceExpression)
+
+Entity: IfcLinearPlacementWithInclination
+Added attribute: RelativePlacement 
+Removed attribute: Orientation 
+Changed attribute type: Distance (Old type: IfcDistanceExpression, New type: IfcPointByDistanceExpression)
+
+Entity: IfcLinearSpanPlacement
+Added attribute: RelativePlacement 
+Removed attribute: Orientation 
+Changed attribute type: Distance (Old type: IfcDistanceExpression, New type: IfcPointByDistanceExpression)
+
+Entity: IfcOffsetCurveByDistances
+Changed attribute type: OffsetValues (Old type: ListType<IfcDistanceExpression>, New type: ListType<IfcPointByDistanceExpression>)
+
+Entity: IfcOuterBoundaryCurve
+Changed attribute type: Segments (Old type: ListType<IfcCompositeCurveSegment>, New type: ListType<IfcSegment>)
+
+Entity: IfcPlacement
+Changed attribute type: Location (Old type: IfcCartesianPoint, New type: IfcPoint)
+
+Entity: IfcSectionedSolidHorizontal
+Changed attribute type: CrossSectionPositions (Old type: ListType<IfcDistanceExpression>, New type: ListType<IfcPointByDistanceExpression>)
+
+Entity: IfcSectionedSurface
+Changed attribute type: CrossSectionPositions (Old type: ListType<IfcDistanceExpression>, New type: ListType<IfcPointByDistanceExpression>)
+
+Entity: IfcSurfaceCurveSweptAreaSolid
+Changed attribute type: StartParam (Old type: IfcParameterValue, New type: IfcCurveMeasureSelect)
+Changed attribute type: EndParam (Old type: IfcParameterValue, New type: IfcCurveMeasureSelect)
+
+
+Changed selects (0):
+
+Changed enumerations (0):
+

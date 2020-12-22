@@ -46,11 +46,17 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return Distance;
+				//## Handle return of Distance for which no match was found
+				//TODO: Handle return of Distance for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				Distance = value as GeometryResource.IfcDistanceExpression;
+				//## Handle setting of Distance for which no match was found
+				//TODO: Handle setting of Distance for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -60,12 +66,17 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return Orientation;
+				//## Handle return of Orientation for which no match was found
+				//TODO: Handle return of Orientation for which no match was found
+				return default;
+				//##
 			} 
 			set
 			{
-				Orientation = value as GeometryResource.IfcOrientationExpression;
-				
+				//## Handle setting of Orientation for which no match was found
+				//TODO: Handle setting of Orientation for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			}
 		}
 

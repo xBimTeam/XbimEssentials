@@ -94,8 +94,8 @@ namespace Xbim.Ifc4x3.Road
 					yield return @PlacementMeasuredAlong;
 				if (@Distance != null)
 					yield return @Distance;
-				if (@Orientation != null)
-					yield return @Orientation;
+				if (@RelativePlacement != null)
+					yield return @RelativePlacement;
 				if (@CartesianPosition != null)
 					yield return @CartesianPosition;
 			}

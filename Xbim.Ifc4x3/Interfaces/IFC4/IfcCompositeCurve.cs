@@ -26,8 +26,10 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{ 
 			get
 			{
-			
-				return new Common.Collections.ProxyItemSet<IfcCompositeCurveSegment, IIfcCompositeCurveSegment>(Segments);
+				//## Handle return of Segments for which no match was found
+				//TODO: Handle return of Segments for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 

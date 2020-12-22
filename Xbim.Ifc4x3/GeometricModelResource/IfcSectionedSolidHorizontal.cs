@@ -29,17 +29,17 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionedSolidHorizontal(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_crossSectionPositions = new ItemSet<IfcDistanceExpression>( this, 0,  3);
+			_crossSectionPositions = new ItemSet<IfcPointByDistanceExpression>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcDistanceExpression> _crossSectionPositions;
+		private readonly ItemSet<IfcPointByDistanceExpression> _crossSectionPositions;
 		private IfcBoolean _fixedAxisVertical;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 5)]
-		public IItemSet<IfcDistanceExpression> @CrossSectionPositions 
+		public IItemSet<IfcPointByDistanceExpression> @CrossSectionPositions 
 		{ 
 			get 
 			{
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					_crossSectionPositions.InternalAdd((IfcDistanceExpression)value.EntityVal);
+					_crossSectionPositions.InternalAdd((IfcPointByDistanceExpression)value.EntityVal);
 					return;
 				case 3: 
 					_fixedAxisVertical = value.BooleanVal;

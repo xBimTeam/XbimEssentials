@@ -7,7 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometryResource;
+using Xbim.Ifc4x3.ProductExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,48 +20,41 @@ using Xbim.Ifc4x3.GeometricConstraintResource;
 
 namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignment2DVertical", 1338)]
+	[ExpressType("IfcAlignmentSegment", 1485)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DVertical : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DVertical>
+	public  partial class @IfcAlignmentSegment : IfcLinearElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignmentSegment>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment2DVertical(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcAlignmentSegment(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_segments = new ItemSet<IfcAlignment2DVerticalSegment>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcAlignment2DVerticalSegment> _segments;
+		private IfcAlignmentParameterSegment _geometricParameters;
 		#endregion
 	
 		#region Explicit attribute properties
-		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 3)]
-		public IItemSet<IfcAlignment2DVerticalSegment> @Segments 
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 22)]
+		public IfcAlignmentParameterSegment @GeometricParameters 
 		{ 
 			get 
 			{
-				if(_activated) return _segments;
+				if(_activated) return _geometricParameters;
 				Activate();
-				return _segments;
+				return _geometricParameters;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _geometricParameters = v, _geometricParameters, value,  "GeometricParameters", 8);
 			} 
 		}	
 		#endregion
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Vertical")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 1 }, 4)]
-		public IEnumerable<IfcAlignmentCurve> @ToAlignmentCurve 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcAlignmentCurve>(e => Equals(e.Vertical), "Vertical", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
@@ -69,7 +62,16 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			switch (propIndex)
 			{
 				case 0: 
-					_segments.InternalAdd((IfcAlignment2DVerticalSegment)value.EntityVal);
+				case 1: 
+				case 2: 
+				case 3: 
+				case 4: 
+				case 5: 
+				case 6: 
+					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 7: 
+					_geometricParameters = (IfcAlignmentParameterSegment)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -78,7 +80,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment2DVertical other)
+        public bool Equals(@IfcAlignmentSegment other)
 	    {
 	        return this == other;
 	    }
@@ -89,8 +91,14 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{
 			get 
 			{
-				foreach(var entity in @Segments)
-					yield return entity;
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				if (@GeometricParameters != null)
+					yield return @GeometricParameters;
 			}
 		}
 		#endregion
@@ -101,8 +109,10 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				foreach(var entity in @Segments)
-					yield return entity;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
 				
 			} 
 		}

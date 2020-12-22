@@ -37,7 +37,7 @@ namespace Xbim.IO
                 case XbimSchemaVersion.Ifc4x1:
                     return new Ifc4.EntityFactoryIfc4x1();
                 case XbimSchemaVersion.Ifc4x3:
-                    return new Ifc4x3.EntityFactoryIfc4x3Rc1();
+                    return new Ifc4x3.EntityFactoryIfc4x3Rc2();
                 case XbimSchemaVersion.Ifc2X3:
                     return new Ifc2x3.EntityFactoryIfc2x3();
                 case XbimSchemaVersion.Cobie2X4:

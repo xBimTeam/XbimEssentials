@@ -32,8 +32,8 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 
 		#region Explicit attribute fields
 		private IfcCurve _placementMeasuredAlong;
-		private IfcDistanceExpression _distance;
-		private IfcOrientationExpression _orientation;
+		private IfcPointByDistanceExpression _distance;
+		private IfcAxis2PlacementLinear _relativePlacement;
 		private IfcAxis2Placement3D _cartesianPosition;
 		#endregion
 	
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
-		public IfcDistanceExpression @Distance 
+		public IfcPointByDistanceExpression @Distance 
 		{ 
 			get 
 			{
@@ -70,20 +70,20 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				SetValue( v =>  _distance = v, _distance, value,  "Distance", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
-		public IfcOrientationExpression @Orientation 
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
+		public IfcAxis2PlacementLinear @RelativePlacement 
 		{ 
 			get 
 			{
-				if(_activated) return _orientation;
+				if(_activated) return _relativePlacement;
 				Activate();
-				return _orientation;
+				return _relativePlacement;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _orientation = v, _orientation, value,  "Orientation", 4);
+				SetValue( v =>  _relativePlacement = v, _relativePlacement, value,  "RelativePlacement", 4);
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
@@ -119,10 +119,10 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 					_placementMeasuredAlong = (IfcCurve)(value.EntityVal);
 					return;
 				case 2: 
-					_distance = (IfcDistanceExpression)(value.EntityVal);
+					_distance = (IfcPointByDistanceExpression)(value.EntityVal);
 					return;
 				case 3: 
-					_orientation = (IfcOrientationExpression)(value.EntityVal);
+					_relativePlacement = (IfcAxis2PlacementLinear)(value.EntityVal);
 					return;
 				case 4: 
 					_cartesianPosition = (IfcAxis2Placement3D)(value.EntityVal);
@@ -151,8 +151,8 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 					yield return @PlacementMeasuredAlong;
 				if (@Distance != null)
 					yield return @Distance;
-				if (@Orientation != null)
-					yield return @Orientation;
+				if (@RelativePlacement != null)
+					yield return @RelativePlacement;
 				if (@CartesianPosition != null)
 					yield return @CartesianPosition;
 			}

@@ -26,11 +26,17 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{ 
 			get
 			{
-				return Location;
+				//## Handle return of Location for which no match was found
+				//TODO: Handle return of Location for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				Location = value as IfcCartesianPoint;
+				//## Handle setting of Location for which no match was found
+				//TODO: Handle setting of Location for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

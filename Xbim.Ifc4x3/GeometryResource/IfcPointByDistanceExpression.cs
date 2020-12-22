@@ -20,27 +20,27 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcDistanceExpression", 1348)]
+	[ExpressType("IfcPointByDistanceExpression", 1494)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistanceExpression : IfcGeometricRepresentationItem, IInstantiableEntity, IEquatable<@IfcDistanceExpression>
+	public  partial class @IfcPointByDistanceExpression : IfcPoint, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPointByDistanceExpression>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDistanceExpression(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcPointByDistanceExpression(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 		#region Explicit attribute fields
-		private IfcLengthMeasure _distanceAlong;
+		private IfcCurveMeasureSelect _distanceAlong;
 		private IfcLengthMeasure? _offsetLateral;
 		private IfcLengthMeasure? _offsetVertical;
 		private IfcLengthMeasure? _offsetLongitudinal;
-		private IfcBoolean? _alongHorizontal;
+		private IfcCurve _basisCurve;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
-		public IfcLengthMeasure @DistanceAlong 
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
+		public IfcCurveMeasureSelect @DistanceAlong 
 		{ 
 			get 
 			{
@@ -95,23 +95,38 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _offsetLongitudinal = v, _offsetLongitudinal, value,  "OffsetLongitudinal", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
-		public IfcBoolean? @AlongHorizontal 
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
+		public IfcCurve @BasisCurve 
 		{ 
 			get 
 			{
-				if(_activated) return _alongHorizontal;
+				if(_activated) return _basisCurve;
 				Activate();
-				return _alongHorizontal;
+				return _basisCurve;
 			} 
 			set
 			{
-				SetValue( v =>  _alongHorizontal = v, _alongHorizontal, value,  "AlongHorizontal", 5);
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 5);
 			} 
 		}	
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+				return BasisCurve.Dim;
+				//##
+			}
+		}
+
+		#endregion
 
 
 		#region IPersist implementation
@@ -120,7 +135,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_distanceAlong = value.RealVal;
+					_distanceAlong = (IfcCurveMeasureSelect)(value.EntityVal);
 					return;
 				case 1: 
 					_offsetLateral = value.RealVal;
@@ -132,7 +147,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 					_offsetLongitudinal = value.RealVal;
 					return;
 				case 4: 
-					_alongHorizontal = value.BooleanVal;
+					_basisCurve = (IfcCurve)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -141,11 +156,22 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcDistanceExpression other)
+        public bool Equals(@IfcPointByDistanceExpression other)
 	    {
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@BasisCurve != null)
+					yield return @BasisCurve;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

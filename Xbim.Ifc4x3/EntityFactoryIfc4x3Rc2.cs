@@ -17,8 +17,9 @@ using Xbim.Ifc4x3.GeometricModelResource;
 using Xbim.Ifc4x3.TopologyResource;
 using Xbim.Ifc4x3.HvacDomain;
 using Xbim.Ifc4x3.ProductExtension;
-using Xbim.Ifc4x3.Rail;
 using Xbim.Ifc4x3.GeometricConstraintResource;
+using Xbim.Ifc4x3.Rail;
+using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.PresentationDefinitionResource;
 using Xbim.Ifc4x3.UtilityResource;
 using Xbim.Ifc4x3.CostResource;
@@ -26,7 +27,6 @@ using Xbim.Ifc4x3.ApprovalResource;
 using Xbim.Ifc4x3.ProfileResource;
 using Xbim.Ifc4x3.SharedFacilitiesElements;
 using Xbim.Ifc4x3.ElectricalDomain;
-using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.SharedBldgElements;
 using Xbim.Ifc4x3.PresentationAppearanceResource;
 using Xbim.Ifc4x3.SharedInfrastructureElements;
@@ -55,13 +55,13 @@ using Xbim.Common;
 
 namespace Xbim.Ifc4x3
 {
-	public sealed class EntityFactoryIfc4x3Rc1 : IEntityFactory
+	public sealed class EntityFactoryIfc4x3Rc2 : IEntityFactory
 	{
 		private static readonly System.Reflection.Assembly _assembly;
 		
-		static EntityFactoryIfc4x3Rc1()
+		static EntityFactoryIfc4x3Rc2()
 		{
-			_assembly = typeof(EntityFactoryIfc4x3Rc1).Assembly;
+			_assembly = typeof(EntityFactoryIfc4x3Rc2).Assembly;
 		}
 
 		public T New<T>(IModel model, int entityLabel, bool activated) where T: IInstantiableEntity
@@ -111,17 +111,17 @@ namespace Xbim.Ifc4x3
 				case "IFCALARM": return new IfcAlarm ( model, entityLabel, activated );
 				case "IFCALARMTYPE": return new IfcAlarmType ( model, entityLabel, activated );
 				case "IFCALIGNMENT": return new IfcAlignment ( model, entityLabel, activated );
-				case "IFCALIGNMENT2DCANT": return new IfcAlignment2DCant ( model, entityLabel, activated );
-				case "IFCALIGNMENT2DCANTSEGLINE": return new IfcAlignment2DCantSegLine ( model, entityLabel, activated );
-				case "IFCALIGNMENT2DCANTSEGTRANSITION": return new IfcAlignment2DCantSegTransition ( model, entityLabel, activated );
-				case "IFCALIGNMENT2DHORIZONTAL": return new IfcAlignment2DHorizontal ( model, entityLabel, activated );
-				case "IFCALIGNMENT2DHORIZONTALSEGMENT": return new IfcAlignment2DHorizontalSegment ( model, entityLabel, activated );
 				case "IFCALIGNMENT2DVERSEGCIRCULARARC": return new IfcAlignment2DVerSegCircularArc ( model, entityLabel, activated );
 				case "IFCALIGNMENT2DVERSEGLINE": return new IfcAlignment2DVerSegLine ( model, entityLabel, activated );
 				case "IFCALIGNMENT2DVERSEGPARABOLICARC": return new IfcAlignment2DVerSegParabolicArc ( model, entityLabel, activated );
-				case "IFCALIGNMENT2DVERSEGTRANSITION": return new IfcAlignment2DVerSegTransition ( model, entityLabel, activated );
-				case "IFCALIGNMENT2DVERTICAL": return new IfcAlignment2DVertical ( model, entityLabel, activated );
+				case "IFCALIGNMENTCANT": return new IfcAlignmentCant ( model, entityLabel, activated );
+				case "IFCALIGNMENTCANTSEGMENT": return new IfcAlignmentCantSegment ( model, entityLabel, activated );
 				case "IFCALIGNMENTCURVE": return new IfcAlignmentCurve ( model, entityLabel, activated );
+				case "IFCALIGNMENTHORIZONTAL": return new IfcAlignmentHorizontal ( model, entityLabel, activated );
+				case "IFCALIGNMENTHORIZONTALSEGMENT": return new IfcAlignmentHorizontalSegment ( model, entityLabel, activated );
+				case "IFCALIGNMENTSEGMENT": return new IfcAlignmentSegment ( model, entityLabel, activated );
+				case "IFCALIGNMENTVERTICAL": return new IfcAlignmentVertical ( model, entityLabel, activated );
+				case "IFCALIGNMENTVERTICALSEGMENT": return new IfcAlignmentVerticalSegment ( model, entityLabel, activated );
 				case "IFCANNOTATION": return new IfcAnnotation ( model, entityLabel, activated );
 				case "IFCANNOTATIONFILLAREA": return new IfcAnnotationFillArea ( model, entityLabel, activated );
 				case "IFCAPPLICATION": return new IfcApplication ( model, entityLabel, activated );
@@ -138,6 +138,8 @@ namespace Xbim.Ifc4x3
 				case "IFCAXIS1PLACEMENT": return new IfcAxis1Placement ( model, entityLabel, activated );
 				case "IFCAXIS2PLACEMENT2D": return new IfcAxis2Placement2D ( model, entityLabel, activated );
 				case "IFCAXIS2PLACEMENT3D": return new IfcAxis2Placement3D ( model, entityLabel, activated );
+				case "IFCAXIS2PLACEMENTLINEAR": return new IfcAxis2PlacementLinear ( model, entityLabel, activated );
+				case "IFCAXISLATERALINCLINATION": return new IfcAxisLateralInclination ( model, entityLabel, activated );
 				case "IFCBSPLINECURVEWITHKNOTS": return new IfcBSplineCurveWithKnots ( model, entityLabel, activated );
 				case "IFCBSPLINESURFACEWITHKNOTS": return new IfcBSplineSurfaceWithKnots ( model, entityLabel, activated );
 				case "IFCBEAM": return new IfcBeam ( model, entityLabel, activated );
@@ -147,6 +149,7 @@ namespace Xbim.Ifc4x3
 				case "IFCBEARINGTYPE": return new IfcBearingType ( model, entityLabel, activated );
 				case "IFCBLOBTEXTURE": return new IfcBlobTexture ( model, entityLabel, activated );
 				case "IFCBLOCK": return new IfcBlock ( model, entityLabel, activated );
+				case "IFCBLOSSCURVE": return new IfcBlossCurve ( model, entityLabel, activated );
 				case "IFCBOILER": return new IfcBoiler ( model, entityLabel, activated );
 				case "IFCBOILERTYPE": return new IfcBoilerType ( model, entityLabel, activated );
 				case "IFCBOOLEANCLIPPINGRESULT": return new IfcBooleanClippingResult ( model, entityLabel, activated );
@@ -205,6 +208,7 @@ namespace Xbim.Ifc4x3
 				case "IFCCLASSIFICATION": return new IfcClassification ( model, entityLabel, activated );
 				case "IFCCLASSIFICATIONREFERENCE": return new IfcClassificationReference ( model, entityLabel, activated );
 				case "IFCCLOSEDSHELL": return new IfcClosedShell ( model, entityLabel, activated );
+				case "IFCCLOTHOID": return new IfcClothoid ( model, entityLabel, activated );
 				case "IFCCOIL": return new IfcCoil ( model, entityLabel, activated );
 				case "IFCCOILTYPE": return new IfcCoilType ( model, entityLabel, activated );
 				case "IFCCOLOURRGB": return new IfcColourRgb ( model, entityLabel, activated );
@@ -262,6 +266,7 @@ namespace Xbim.Ifc4x3
 				case "IFCCURTAINWALLTYPE": return new IfcCurtainWallType ( model, entityLabel, activated );
 				case "IFCCURVEBOUNDEDPLANE": return new IfcCurveBoundedPlane ( model, entityLabel, activated );
 				case "IFCCURVEBOUNDEDSURFACE": return new IfcCurveBoundedSurface ( model, entityLabel, activated );
+				case "IFCCURVESEGMENT": return new IfcCurveSegment ( model, entityLabel, activated );
 				case "IFCCURVESTYLE": return new IfcCurveStyle ( model, entityLabel, activated );
 				case "IFCCURVESTYLEFONT": return new IfcCurveStyleFont ( model, entityLabel, activated );
 				case "IFCCURVESTYLEFONTANDSCALING": return new IfcCurveStyleFontAndScaling ( model, entityLabel, activated );
@@ -278,7 +283,6 @@ namespace Xbim.Ifc4x3
 				case "IFCDIRECTION": return new IfcDirection ( model, entityLabel, activated );
 				case "IFCDISCRETEACCESSORY": return new IfcDiscreteAccessory ( model, entityLabel, activated );
 				case "IFCDISCRETEACCESSORYTYPE": return new IfcDiscreteAccessoryType ( model, entityLabel, activated );
-				case "IFCDISTANCEEXPRESSION": return new IfcDistanceExpression ( model, entityLabel, activated );
 				case "IFCDISTRIBUTIONBOARD": return new IfcDistributionBoard ( model, entityLabel, activated );
 				case "IFCDISTRIBUTIONBOARDTYPE": return new IfcDistributionBoardType ( model, entityLabel, activated );
 				case "IFCDISTRIBUTIONCHAMBERELEMENT": return new IfcDistributionChamberElement ( model, entityLabel, activated );
@@ -396,6 +400,7 @@ namespace Xbim.Ifc4x3
 				case "IFCGEOMETRICSET": return new IfcGeometricSet ( model, entityLabel, activated );
 				case "IFCGEOMODEL": return new IfcGeomodel ( model, entityLabel, activated );
 				case "IFCGEOSLICE": return new IfcGeoslice ( model, entityLabel, activated );
+				case "IFCGRADIENTCURVE": return new IfcGradientCurve ( model, entityLabel, activated );
 				case "IFCGRID": return new IfcGrid ( model, entityLabel, activated );
 				case "IFCGRIDAXIS": return new IfcGridAxis ( model, entityLabel, activated );
 				case "IFCGRIDPLACEMENT": return new IfcGridPlacement ( model, entityLabel, activated );
@@ -503,7 +508,6 @@ namespace Xbim.Ifc4x3
 				case "IFCOPENINGSTANDARDCASE": return new IfcOpeningStandardCase ( model, entityLabel, activated );
 				case "IFCORGANIZATION": return new IfcOrganization ( model, entityLabel, activated );
 				case "IFCORGANIZATIONRELATIONSHIP": return new IfcOrganizationRelationship ( model, entityLabel, activated );
-				case "IFCORIENTATIONEXPRESSION": return new IfcOrientationExpression ( model, entityLabel, activated );
 				case "IFCORIENTEDEDGE": return new IfcOrientedEdge ( model, entityLabel, activated );
 				case "IFCOUTERBOUNDARYCURVE": return new IfcOuterBoundaryCurve ( model, entityLabel, activated );
 				case "IFCOUTLET": return new IfcOutlet ( model, entityLabel, activated );
@@ -533,6 +537,7 @@ namespace Xbim.Ifc4x3
 				case "IFCPLATE": return new IfcPlate ( model, entityLabel, activated );
 				case "IFCPLATESTANDARDCASE": return new IfcPlateStandardCase ( model, entityLabel, activated );
 				case "IFCPLATETYPE": return new IfcPlateType ( model, entityLabel, activated );
+				case "IFCPOINTBYDISTANCEEXPRESSION": return new IfcPointByDistanceExpression ( model, entityLabel, activated );
 				case "IFCPOINTONCURVE": return new IfcPointOnCurve ( model, entityLabel, activated );
 				case "IFCPOINTONSURFACE": return new IfcPointOnSurface ( model, entityLabel, activated );
 				case "IFCPOLYLOOP": return new IfcPolyLoop ( model, entityLabel, activated );
@@ -668,8 +673,10 @@ namespace Xbim.Ifc4x3
 				case "IFCSECTIONEDSOLIDHORIZONTAL": return new IfcSectionedSolidHorizontal ( model, entityLabel, activated );
 				case "IFCSECTIONEDSPINE": return new IfcSectionedSpine ( model, entityLabel, activated );
 				case "IFCSECTIONEDSURFACE": return new IfcSectionedSurface ( model, entityLabel, activated );
+				case "IFCSEGMENTEDREFERENCECURVE": return new IfcSegmentedReferenceCurve ( model, entityLabel, activated );
 				case "IFCSENSOR": return new IfcSensor ( model, entityLabel, activated );
 				case "IFCSENSORTYPE": return new IfcSensorType ( model, entityLabel, activated );
+				case "IFCSERIESPARAMETERCURVE": return new IfcSeriesParameterCurve ( model, entityLabel, activated );
 				case "IFCSHADINGDEVICE": return new IfcShadingDevice ( model, entityLabel, activated );
 				case "IFCSHADINGDEVICETYPE": return new IfcShadingDeviceType ( model, entityLabel, activated );
 				case "IFCSHAPEASPECT": return new IfcShapeAspect ( model, entityLabel, activated );
@@ -868,17 +875,17 @@ namespace Xbim.Ifc4x3
 				case 1098: return new IfcAlarm ( model, entityLabel, activated );
 				case 275: return new IfcAlarmType ( model, entityLabel, activated );
 				case 1330: return new IfcAlignment ( model, entityLabel, activated );
-				case 1397: return new IfcAlignment2DCant ( model, entityLabel, activated );
-				case 1398: return new IfcAlignment2DCantSegLine ( model, entityLabel, activated );
-				case 1399: return new IfcAlignment2DCantSegTransition ( model, entityLabel, activated );
-				case 1332: return new IfcAlignment2DHorizontal ( model, entityLabel, activated );
-				case 1333: return new IfcAlignment2DHorizontalSegment ( model, entityLabel, activated );
 				case 1335: return new IfcAlignment2DVerSegCircularArc ( model, entityLabel, activated );
 				case 1336: return new IfcAlignment2DVerSegLine ( model, entityLabel, activated );
 				case 1337: return new IfcAlignment2DVerSegParabolicArc ( model, entityLabel, activated );
-				case 1401: return new IfcAlignment2DVerSegTransition ( model, entityLabel, activated );
-				case 1338: return new IfcAlignment2DVertical ( model, entityLabel, activated );
+				case 1480: return new IfcAlignmentCant ( model, entityLabel, activated );
+				case 1481: return new IfcAlignmentCantSegment ( model, entityLabel, activated );
 				case 1347: return new IfcAlignmentCurve ( model, entityLabel, activated );
+				case 1482: return new IfcAlignmentHorizontal ( model, entityLabel, activated );
+				case 1483: return new IfcAlignmentHorizontalSegment ( model, entityLabel, activated );
+				case 1485: return new IfcAlignmentSegment ( model, entityLabel, activated );
+				case 1486: return new IfcAlignmentVertical ( model, entityLabel, activated );
+				case 1487: return new IfcAlignmentVerticalSegment ( model, entityLabel, activated );
 				case 634: return new IfcAnnotation ( model, entityLabel, activated );
 				case 173: return new IfcAnnotationFillArea ( model, entityLabel, activated );
 				case 627: return new IfcApplication ( model, entityLabel, activated );
@@ -895,6 +902,8 @@ namespace Xbim.Ifc4x3
 				case 280: return new IfcAxis1Placement ( model, entityLabel, activated );
 				case 411: return new IfcAxis2Placement2D ( model, entityLabel, activated );
 				case 448: return new IfcAxis2Placement3D ( model, entityLabel, activated );
+				case 1488: return new IfcAxis2PlacementLinear ( model, entityLabel, activated );
+				case 1402: return new IfcAxisLateralInclination ( model, entityLabel, activated );
 				case 1101: return new IfcBSplineCurveWithKnots ( model, entityLabel, activated );
 				case 1103: return new IfcBSplineSurfaceWithKnots ( model, entityLabel, activated );
 				case 171: return new IfcBeam ( model, entityLabel, activated );
@@ -904,6 +913,7 @@ namespace Xbim.Ifc4x3
 				case 1404: return new IfcBearingType ( model, entityLabel, activated );
 				case 723: return new IfcBlobTexture ( model, entityLabel, activated );
 				case 702: return new IfcBlock ( model, entityLabel, activated );
+				case 1489: return new IfcBlossCurve ( model, entityLabel, activated );
 				case 1105: return new IfcBoiler ( model, entityLabel, activated );
 				case 142: return new IfcBoilerType ( model, entityLabel, activated );
 				case 340: return new IfcBooleanClippingResult ( model, entityLabel, activated );
@@ -962,6 +972,7 @@ namespace Xbim.Ifc4x3
 				case 412: return new IfcClassification ( model, entityLabel, activated );
 				case 209: return new IfcClassificationReference ( model, entityLabel, activated );
 				case 161: return new IfcClosedShell ( model, entityLabel, activated );
+				case 1490: return new IfcClothoid ( model, entityLabel, activated );
 				case 1124: return new IfcCoil ( model, entityLabel, activated );
 				case 622: return new IfcCoilType ( model, entityLabel, activated );
 				case 27: return new IfcColourRgb ( model, entityLabel, activated );
@@ -1019,6 +1030,7 @@ namespace Xbim.Ifc4x3
 				case 494: return new IfcCurtainWallType ( model, entityLabel, activated );
 				case 334: return new IfcCurveBoundedPlane ( model, entityLabel, activated );
 				case 1146: return new IfcCurveBoundedSurface ( model, entityLabel, activated );
+				case 1491: return new IfcCurveSegment ( model, entityLabel, activated );
 				case 118: return new IfcCurveStyle ( model, entityLabel, activated );
 				case 223: return new IfcCurveStyleFont ( model, entityLabel, activated );
 				case 569: return new IfcCurveStyleFontAndScaling ( model, entityLabel, activated );
@@ -1035,7 +1047,6 @@ namespace Xbim.Ifc4x3
 				case 344: return new IfcDirection ( model, entityLabel, activated );
 				case 423: return new IfcDiscreteAccessory ( model, entityLabel, activated );
 				case 135: return new IfcDiscreteAccessoryType ( model, entityLabel, activated );
-				case 1348: return new IfcDistanceExpression ( model, entityLabel, activated );
 				case 1419: return new IfcDistributionBoard ( model, entityLabel, activated );
 				case 1420: return new IfcDistributionBoardType ( model, entityLabel, activated );
 				case 180: return new IfcDistributionChamberElement ( model, entityLabel, activated );
@@ -1153,6 +1164,7 @@ namespace Xbim.Ifc4x3
 				case 236: return new IfcGeometricSet ( model, entityLabel, activated );
 				case 1428: return new IfcGeomodel ( model, entityLabel, activated );
 				case 1429: return new IfcGeoslice ( model, entityLabel, activated );
+				case 1492: return new IfcGradientCurve ( model, entityLabel, activated );
 				case 564: return new IfcGrid ( model, entityLabel, activated );
 				case 441: return new IfcGridAxis ( model, entityLabel, activated );
 				case 439: return new IfcGridPlacement ( model, entityLabel, activated );
@@ -1260,7 +1272,6 @@ namespace Xbim.Ifc4x3
 				case 1217: return new IfcOpeningStandardCase ( model, entityLabel, activated );
 				case 276: return new IfcOrganization ( model, entityLabel, activated );
 				case 486: return new IfcOrganizationRelationship ( model, entityLabel, activated );
-				case 1352: return new IfcOrientationExpression ( model, entityLabel, activated );
 				case 596: return new IfcOrientedEdge ( model, entityLabel, activated );
 				case 1218: return new IfcOuterBoundaryCurve ( model, entityLabel, activated );
 				case 1219: return new IfcOutlet ( model, entityLabel, activated );
@@ -1290,6 +1301,7 @@ namespace Xbim.Ifc4x3
 				case 351: return new IfcPlate ( model, entityLabel, activated );
 				case 1224: return new IfcPlateStandardCase ( model, entityLabel, activated );
 				case 526: return new IfcPlateType ( model, entityLabel, activated );
+				case 1494: return new IfcPointByDistanceExpression ( model, entityLabel, activated );
 				case 654: return new IfcPointOnCurve ( model, entityLabel, activated );
 				case 65: return new IfcPointOnSurface ( model, entityLabel, activated );
 				case 200: return new IfcPolyLoop ( model, entityLabel, activated );
@@ -1425,8 +1437,10 @@ namespace Xbim.Ifc4x3
 				case 1355: return new IfcSectionedSolidHorizontal ( model, entityLabel, activated );
 				case 300: return new IfcSectionedSpine ( model, entityLabel, activated );
 				case 1461: return new IfcSectionedSurface ( model, entityLabel, activated );
+				case 1496: return new IfcSegmentedReferenceCurve ( model, entityLabel, activated );
 				case 1264: return new IfcSensor ( model, entityLabel, activated );
 				case 375: return new IfcSensorType ( model, entityLabel, activated );
+				case 1497: return new IfcSeriesParameterCurve ( model, entityLabel, activated );
 				case 1265: return new IfcShadingDevice ( model, entityLabel, activated );
 				case 1266: return new IfcShadingDeviceType ( model, entityLabel, activated );
 				case 665: return new IfcShapeAspect ( model, entityLabel, activated );
@@ -1745,7 +1759,7 @@ namespace Xbim.Ifc4x3
 			}
 		}
 
-		private static readonly List<string> _schemasIds = new List<string> { "IFC4X3_RC1" };
+		private static readonly List<string> _schemasIds = new List<string> { "IFC4X3_RC2" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
 		/// <summary>
@@ -1754,7 +1768,7 @@ namespace Xbim.Ifc4x3
 		public XbimSchemaVersion SchemaVersion { 
 			get
 			{
-				return XbimSchemaVersion.Ifc4x3;
+				return XbimSchemaVersion.Unsupported;
 			}
 		}
 

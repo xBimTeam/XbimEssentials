@@ -20,50 +20,64 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcCompositeCurveSegment", 460)]
+	[ExpressType("IfcGradientCurve", 1492)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCompositeCurveSegment : IfcSegment, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCompositeCurveSegment>
+	public  partial class @IfcGradientCurve : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGradientCurve>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcCompositeCurveSegment(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcGradientCurve(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
+			_segments = new ItemSet<IfcCurveSegment>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private IfcBoolean _sameSense;
-		private IfcCurve _parentCurve;
+		private IfcBoundedCurve _baseCurve;
+		private readonly ItemSet<IfcCurveSegment> _segments;
+		private IfcCartesianPoint _endPoint;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
-		public IfcBoolean @SameSense 
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
+		public IfcBoundedCurve @BaseCurve 
 		{ 
 			get 
 			{
-				if(_activated) return _sameSense;
+				if(_activated) return _baseCurve;
 				Activate();
-				return _sameSense;
-			} 
-			set
-			{
-				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense", 2);
-			} 
-		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
-		public IfcCurve @ParentCurve 
-		{ 
-			get 
-			{
-				if(_activated) return _parentCurve;
-				Activate();
-				return _parentCurve;
+				return _baseCurve;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _parentCurve = v, _parentCurve, value,  "ParentCurve", 3);
+				SetValue( v =>  _baseCurve = v, _baseCurve, value,  "BaseCurve", 1);
+			} 
+		}	
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 5)]
+		public IItemSet<IfcCurveSegment> @Segments 
+		{ 
+			get 
+			{
+				if(_activated) return _segments;
+				Activate();
+				return _segments;
+			} 
+		}	
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
+		public IfcCartesianPoint @EndPoint 
+		{ 
+			get 
+			{
+				if(_activated) return _endPoint;
+				Activate();
+				return _endPoint;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _endPoint = v, _endPoint, value,  "EndPoint", 3);
 			} 
 		}	
 		#endregion
@@ -71,29 +85,19 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-		public IfcDimensionCount @Dim 
+		public IfcLengthMeasure @Height 
 		{
 			get 
 			{
-				//## Getter for Dim
-				return ParentCurve?.Dim ?? 0;
+				//## Getter for Height
+				//TODO: Implement getter for derived attribute Height
+				throw new NotImplementedException();
 				//##
 			}
 		}
 
 		#endregion
 
-		#region Inverse attributes
-		[InverseProperty("Segments")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 6)]
-		public IEnumerable<IfcCompositeCurve> @UsingCurves 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
@@ -101,13 +105,13 @@ namespace Xbim.Ifc4x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					base.Parse(propIndex, value, nestedIndex); 
+					_baseCurve = (IfcBoundedCurve)(value.EntityVal);
 					return;
 				case 1: 
-					_sameSense = value.BooleanVal;
+					_segments.InternalAdd((IfcCurveSegment)value.EntityVal);
 					return;
 				case 2: 
-					_parentCurve = (IfcCurve)(value.EntityVal);
+					_endPoint = (IfcCartesianPoint)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -116,7 +120,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcCompositeCurveSegment other)
+        public bool Equals(@IfcGradientCurve other)
 	    {
 	        return this == other;
 	    }
@@ -127,8 +131,12 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{
 			get 
 			{
-				if (@ParentCurve != null)
-					yield return @ParentCurve;
+				if (@BaseCurve != null)
+					yield return @BaseCurve;
+				foreach(var entity in @Segments)
+					yield return entity;
+				if (@EndPoint != null)
+					yield return @EndPoint;
 			}
 		}
 		#endregion

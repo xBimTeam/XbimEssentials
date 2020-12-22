@@ -36,12 +36,12 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				if (!ModelorDraughting.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcBoolean(ModelorDraughting.Value);
+				if (!ModelOrDraughting.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcBoolean(ModelOrDraughting.Value);
 			} 
 			set
 			{
-				ModelorDraughting = value.HasValue ? 
+				ModelOrDraughting = value.HasValue ? 
 					new MeasureResource.IfcBoolean(value.Value) :  
 					 new MeasureResource.IfcBoolean?() ;
 				

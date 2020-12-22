@@ -48,6 +48,136 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				
 			}
 		}
+
+		[CrossSchemaAttribute(typeof(IIfcAlignment2DVerSegParabolicArc), 4)]
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcAlignment2DVerticalSegment.StartDistAlong 
+		{ 
+			get
+			{
+				return new Ifc4.MeasureResource.IfcLengthMeasure(StartDistAlong);
+			} 
+			set
+			{
+				StartDistAlong = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
+		}
+
+		[CrossSchemaAttribute(typeof(IIfcAlignment2DVerSegParabolicArc), 5)]
+		Ifc4.MeasureResource.IfcPositiveLengthMeasure IIfcAlignment2DVerticalSegment.HorizontalLength 
+		{ 
+			get
+			{
+				return new Ifc4.MeasureResource.IfcPositiveLengthMeasure(HorizontalLength);
+			} 
+			set
+			{
+				HorizontalLength = new MeasureResource.IfcPositiveLengthMeasure(value);
+				
+			}
+		}
+
+		[CrossSchemaAttribute(typeof(IIfcAlignment2DVerSegParabolicArc), 6)]
+		Ifc4.MeasureResource.IfcLengthMeasure IIfcAlignment2DVerticalSegment.StartHeight 
+		{ 
+			get
+			{
+				return new Ifc4.MeasureResource.IfcLengthMeasure(StartHeight);
+			} 
+			set
+			{
+				StartHeight = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
+		}
+
+		[CrossSchemaAttribute(typeof(IIfcAlignment2DVerSegParabolicArc), 7)]
+		Ifc4.MeasureResource.IfcRatioMeasure IIfcAlignment2DVerticalSegment.StartGradient 
+		{ 
+			get
+			{
+				return new Ifc4.MeasureResource.IfcRatioMeasure(StartGradient);
+			} 
+			set
+			{
+				StartGradient = new MeasureResource.IfcLengthMeasure(value);
+				
+			}
+		}
+
+		[CrossSchemaAttribute(typeof(IIfcAlignment2DVerSegParabolicArc), 1)]
+		Ifc4.MeasureResource.IfcBoolean? IIfcAlignment2DSegment.TangentialContinuity 
+		{ 
+			get
+			{
+				//## Handle return of TangentialContinuity for which no match was found
+				//TODO: Handle return of TangentialContinuity for which no match was found
+				return default;
+				//##
+			} 
+			set
+			{
+				//## Handle setting of TangentialContinuity for which no match was found
+				//TODO: Handle setting of TangentialContinuity for which no match was found
+				throw new System.NotImplementedException();
+				//##
+			}
+		}
+
+		[CrossSchemaAttribute(typeof(IIfcAlignment2DVerSegParabolicArc), 2)]
+		Ifc4.MeasureResource.IfcLabel? IIfcAlignment2DSegment.StartTag 
+		{ 
+			get
+			{
+				if (!StartTag.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(StartTag.Value);
+			} 
+			set
+			{
+				StartTag = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
+		}
+
+		[CrossSchemaAttribute(typeof(IIfcAlignment2DVerSegParabolicArc), 3)]
+		Ifc4.MeasureResource.IfcLabel? IIfcAlignment2DSegment.EndTag 
+		{ 
+			get
+			{
+				if (!EndTag.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(EndTag.Value);
+			} 
+			set
+			{
+				EndTag = value.HasValue ? 
+					new MeasureResource.IfcLabel(value.Value) :  
+					 new MeasureResource.IfcLabel?() ;
+				
+			}
+		}
+		IEnumerable<IIfcAlignment2DVertical> IIfcAlignment2DVerticalSegment.ToVertical 
+		{ 
+			get
+			{
+				return Model.Instances.Where<IIfcAlignment2DVertical>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
+			} 
+		}
+		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentationItem.LayerAssignment 
+		{ 
+			get
+			{
+				return Model.Instances.Where<IIfcPresentationLayerAssignment>(e => e.AssignedItems != null &&  e.AssignedItems.Contains(this), "AssignedItems", this);
+			} 
+		}
+		IEnumerable<IIfcStyledItem> IIfcRepresentationItem.StyledByItem 
+		{ 
+			get
+			{
+				return Model.Instances.Where<IIfcStyledItem>(e => (e.Item as IfcAlignment2DVerSegParabolicArc) == this, "Item", this);
+			} 
+		}
 	//## Custom code
 	//##
 	}

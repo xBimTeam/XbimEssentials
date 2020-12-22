@@ -28,18 +28,18 @@ namespace Xbim.Ifc4x3.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCompositeCurve(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_segments = new ItemSet<IfcCompositeCurveSegment>( this, 0,  1);
+			_segments = new ItemSet<IfcSegment>( this, 0,  1);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcCompositeCurveSegment> _segments;
+		private readonly ItemSet<IfcSegment> _segments;
 		private IfcLogical _selfIntersect;
 		#endregion
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
-		public IItemSet<IfcCompositeCurveSegment> @Segments 
+		public IItemSet<IfcSegment> @Segments 
 		{ 
 			get 
 			{
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_segments.InternalAdd((IfcCompositeCurveSegment)value.EntityVal);
+					_segments.InternalAdd((IfcSegment)value.EntityVal);
 					return;
 				case 1: 
 					_selfIntersect = value.BooleanVal;

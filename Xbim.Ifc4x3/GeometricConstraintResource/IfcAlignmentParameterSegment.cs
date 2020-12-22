@@ -7,11 +7,12 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
+using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4x3.GeometricConstraintResource;
@@ -21,38 +22,23 @@ using Xbim.Ifc4x3.GeometricConstraintResource;
 
 namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignment2DSegment", 1334)]
+	[ExpressType("IfcAlignmentParameterSegment", 1484)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAlignment2DSegment : IfcGeometricRepresentationItem, IEquatable<@IfcAlignment2DSegment>
+	public abstract partial class @IfcAlignmentParameterSegment : PersistEntity, IEquatable<@IfcAlignmentParameterSegment>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment2DSegment(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcAlignmentParameterSegment(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 		#region Explicit attribute fields
-		private IfcBoolean? _tangentialContinuity;
 		private IfcLabel? _startTag;
 		private IfcLabel? _endTag;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
-		public IfcBoolean? @TangentialContinuity 
-		{ 
-			get 
-			{
-				if(_activated) return _tangentialContinuity;
-				Activate();
-				return _tangentialContinuity;
-			} 
-			set
-			{
-				SetValue( v =>  _tangentialContinuity = v, _tangentialContinuity, value,  "TangentialContinuity", 1);
-			} 
-		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
+		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 1)]
 		public IfcLabel? @StartTag 
 		{ 
 			get 
@@ -63,10 +49,10 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _startTag = v, _startTag, value,  "StartTag", 2);
+				SetValue( v =>  _startTag = v, _startTag, value,  "StartTag", 1);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 2)]
 		public IfcLabel? @EndTag 
 		{ 
 			get 
@@ -77,7 +63,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _endTag = v, _endTag, value,  "EndTag", 3);
+				SetValue( v =>  _endTag = v, _endTag, value,  "EndTag", 2);
 			} 
 		}	
 		#endregion
@@ -91,12 +77,9 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			switch (propIndex)
 			{
 				case 0: 
-					_tangentialContinuity = value.BooleanVal;
-					return;
-				case 1: 
 					_startTag = value.StringVal;
 					return;
-				case 2: 
+				case 1: 
 					_endTag = value.StringVal;
 					return;
 				default:
@@ -106,7 +89,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment2DSegment other)
+        public bool Equals(@IfcAlignmentParameterSegment other)
 	    {
 	        return this == other;
 	    }
