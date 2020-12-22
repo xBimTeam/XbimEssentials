@@ -28,17 +28,17 @@ namespace Xbim.Ifc4x3.GeometryResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOffsetCurveByDistances(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_offsetValues = new ItemSet<IfcDistanceExpression>( this, 0,  2);
+			_offsetValues = new ItemSet<IfcPointByDistanceExpression>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcDistanceExpression> _offsetValues;
+		private readonly ItemSet<IfcPointByDistanceExpression> _offsetValues;
 		private IfcLabel? _tag;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
-		public IItemSet<IfcDistanceExpression> @OffsetValues 
+		public IItemSet<IfcPointByDistanceExpression> @OffsetValues 
 		{ 
 			get 
 			{
@@ -75,7 +75,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					_offsetValues.InternalAdd((IfcDistanceExpression)value.EntityVal);
+					_offsetValues.InternalAdd((IfcPointByDistanceExpression)value.EntityVal);
 					return;
 				case 2: 
 					_tag = value.StringVal;

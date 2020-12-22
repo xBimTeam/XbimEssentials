@@ -7,54 +7,54 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometryResource;
+using Xbim.Ifc4x3.ProductExtension;
 using Xbim.Ifc4x3.MeasureResource;
+using Xbim.Ifc4x3.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.GeometricConstraintResource;
+using Xbim.Ifc4x3.Rail;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.GeometricConstraintResource
+namespace Xbim.Ifc4x3.Rail
 {
-	[ExpressType("IfcAlignment2DHorizontal", 1332)]
+	[ExpressType("IfcAlignmentCant", 1480)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DHorizontal : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DHorizontal>
+	public  partial class @IfcAlignmentCant : IfcLinearElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignmentCant>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment2DHorizontal(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcAlignmentCant(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_segments = new ItemSet<IfcAlignment2DHorizontalSegment>( this, 0,  2);
+			_segments = new ItemSet<IfcAlignmentCantSegment>( this, 0,  9);
 		}
 
 		#region Explicit attribute fields
-		private IfcLengthMeasure? _startDistAlong;
-		private readonly ItemSet<IfcAlignment2DHorizontalSegment> _segments;
+		private IfcPositiveLengthMeasure _railHeadDistance;
+		private readonly ItemSet<IfcAlignmentCantSegment> _segments;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
-		public IfcLengthMeasure? @StartDistAlong 
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
+		public IfcPositiveLengthMeasure @RailHeadDistance 
 		{ 
 			get 
 			{
-				if(_activated) return _startDistAlong;
+				if(_activated) return _railHeadDistance;
 				Activate();
-				return _startDistAlong;
+				return _railHeadDistance;
 			} 
 			set
 			{
-				SetValue( v =>  _startDistAlong = v, _startDistAlong, value,  "StartDistAlong", 1);
+				SetValue( v =>  _railHeadDistance = v, _railHeadDistance, value,  "RailHeadDistance", 8);
 			} 
 		}	
-		[IndexedProperty]
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
-		public IItemSet<IfcAlignment2DHorizontalSegment> @Segments 
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 23)]
+		public IItemSet<IfcAlignmentCantSegment> @Segments 
 		{ 
 			get 
 			{
@@ -67,17 +67,6 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Horizontal")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 5)]
-		public IEnumerable<IfcAlignmentCurve> @ToAlignmentCurve 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcAlignmentCurve>(e => Equals(e.Horizontal), "Horizontal", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
@@ -85,10 +74,19 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			switch (propIndex)
 			{
 				case 0: 
-					_startDistAlong = value.RealVal;
-					return;
 				case 1: 
-					_segments.InternalAdd((IfcAlignment2DHorizontalSegment)value.EntityVal);
+				case 2: 
+				case 3: 
+				case 4: 
+				case 5: 
+				case 6: 
+					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 7: 
+					_railHeadDistance = value.RealVal;
+					return;
+				case 8: 
+					_segments.InternalAdd((IfcAlignmentCantSegment)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -97,7 +95,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment2DHorizontal other)
+        public bool Equals(@IfcAlignmentCant other)
 	    {
 	        return this == other;
 	    }
@@ -108,6 +106,12 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{
 			get 
 			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
 				foreach(var entity in @Segments)
 					yield return entity;
 			}
@@ -120,8 +124,10 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				foreach(var entity in @Segments)
-					yield return entity;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
 				
 			} 
 		}

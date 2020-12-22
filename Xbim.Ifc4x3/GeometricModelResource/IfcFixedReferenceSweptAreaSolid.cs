@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.Rail;
 using Xbim.Ifc4x3.GeometryResource;
 using System;
 using System.Collections.Generic;

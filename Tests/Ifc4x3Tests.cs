@@ -19,7 +19,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CreateSimpleIfc4x3File()
         {
-            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Rc1()))
+            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Rc2()))
             {
                 var i = model.Instances;
                 using (var txn = model.BeginTransaction("Sample creation"))

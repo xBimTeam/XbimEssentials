@@ -33,8 +33,8 @@ namespace Xbim.Ifc4x3.Rail
 
 		#region Explicit attribute fields
 		private IfcCurve _directrix;
-		private IfcDistanceExpression _startDistance;
-		private IfcDistanceExpression _endDistance;
+		private IfcPointByDistanceExpression _startDistance;
+		private IfcPointByDistanceExpression _endDistance;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
-		public IfcDistanceExpression @StartDistance 
+		public IfcPointByDistanceExpression @StartDistance 
 		{ 
 			get 
 			{
@@ -71,7 +71,7 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
-		public IfcDistanceExpression @EndDistance 
+		public IfcPointByDistanceExpression @EndDistance 
 		{ 
 			get 
 			{
@@ -104,10 +104,10 @@ namespace Xbim.Ifc4x3.Rail
 					_directrix = (IfcCurve)(value.EntityVal);
 					return;
 				case 3: 
-					_startDistance = (IfcDistanceExpression)(value.EntityVal);
+					_startDistance = (IfcPointByDistanceExpression)(value.EntityVal);
 					return;
 				case 4: 
-					_endDistance = (IfcDistanceExpression)(value.EntityVal);
+					_endDistance = (IfcPointByDistanceExpression)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

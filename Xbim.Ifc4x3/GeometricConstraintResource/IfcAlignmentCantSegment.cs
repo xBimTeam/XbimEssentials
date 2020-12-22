@@ -7,42 +7,43 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometricConstraintResource;
 using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.Rail;
+using Xbim.Ifc4x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.Rail
+namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignment2DCantSegment", 1400)]
+	[ExpressType("IfcAlignmentCantSegment", 1481)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcAlignment2DCantSegment : IfcAlignment2DSegment, IEquatable<@IfcAlignment2DCantSegment>
+	public  partial class @IfcAlignmentCantSegment : IfcAlignmentParameterSegment, IInstantiableEntity, IEquatable<@IfcAlignmentCantSegment>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment2DCantSegment(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcAlignmentCantSegment(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 		#region Explicit attribute fields
-		private IfcPositiveLengthMeasure _startDistAlong;
+		private IfcLengthMeasure _startDistAlong;
 		private IfcPositiveLengthMeasure _horizontalLength;
 		private IfcLengthMeasure _startCantLeft;
 		private IfcLengthMeasure? _endCantLeft;
 		private IfcLengthMeasure _startCantRight;
 		private IfcLengthMeasure? _endCantRight;
+		private IfcPositiveLengthMeasure? _smoothingLength;
+		private IfcAlignmentCantSegmentTypeEnum _predefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
-		public IfcPositiveLengthMeasure @StartDistAlong 
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
+		public IfcLengthMeasure @StartDistAlong 
 		{ 
 			get 
 			{
@@ -52,10 +53,10 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 			set
 			{
-				SetValue( v =>  _startDistAlong = v, _startDistAlong, value,  "StartDistAlong", 4);
+				SetValue( v =>  _startDistAlong = v, _startDistAlong, value,  "StartDistAlong", 3);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcPositiveLengthMeasure @HorizontalLength 
 		{ 
 			get 
@@ -66,10 +67,10 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 			set
 			{
-				SetValue( v =>  _horizontalLength = v, _horizontalLength, value,  "HorizontalLength", 5);
+				SetValue( v =>  _horizontalLength = v, _horizontalLength, value,  "HorizontalLength", 4);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcLengthMeasure @StartCantLeft 
 		{ 
 			get 
@@ -80,10 +81,10 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 			set
 			{
-				SetValue( v =>  _startCantLeft = v, _startCantLeft, value,  "StartCantLeft", 6);
+				SetValue( v =>  _startCantLeft = v, _startCantLeft, value,  "StartCantLeft", 5);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcLengthMeasure? @EndCantLeft 
 		{ 
 			get 
@@ -94,10 +95,10 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 			set
 			{
-				SetValue( v =>  _endCantLeft = v, _endCantLeft, value,  "EndCantLeft", 7);
+				SetValue( v =>  _endCantLeft = v, _endCantLeft, value,  "EndCantLeft", 6);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
+		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcLengthMeasure @StartCantRight 
 		{ 
 			get 
@@ -108,10 +109,10 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 			set
 			{
-				SetValue( v =>  _startCantRight = v, _startCantRight, value,  "StartCantRight", 8);
+				SetValue( v =>  _startCantRight = v, _startCantRight, value,  "StartCantRight", 7);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcLengthMeasure? @EndCantRight 
 		{ 
 			get 
@@ -122,24 +123,41 @@ namespace Xbim.Ifc4x3.Rail
 			} 
 			set
 			{
-				SetValue( v =>  _endCantRight = v, _endCantRight, value,  "EndCantRight", 9);
+				SetValue( v =>  _endCantRight = v, _endCantRight, value,  "EndCantRight", 8);
+			} 
+		}	
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
+		public IfcPositiveLengthMeasure? @SmoothingLength 
+		{ 
+			get 
+			{
+				if(_activated) return _smoothingLength;
+				Activate();
+				return _smoothingLength;
+			} 
+			set
+			{
+				SetValue( v =>  _smoothingLength = v, _smoothingLength, value,  "SmoothingLength", 9);
+			} 
+		}	
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 10)]
+		public IfcAlignmentCantSegmentTypeEnum @PredefinedType 
+		{ 
+			get 
+			{
+				if(_activated) return _predefinedType;
+				Activate();
+				return _predefinedType;
+			} 
+			set
+			{
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
 		#endregion
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Segments")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 1 }, 12)]
-		public IEnumerable<IfcAlignment2DCant> @ToCant 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcAlignment2DCant>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
@@ -148,26 +166,31 @@ namespace Xbim.Ifc4x3.Rail
 			{
 				case 0: 
 				case 1: 
-				case 2: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 3: 
+				case 2: 
 					_startDistAlong = value.RealVal;
 					return;
-				case 4: 
+				case 3: 
 					_horizontalLength = value.RealVal;
 					return;
-				case 5: 
+				case 4: 
 					_startCantLeft = value.RealVal;
 					return;
-				case 6: 
+				case 5: 
 					_endCantLeft = value.RealVal;
 					return;
-				case 7: 
+				case 6: 
 					_startCantRight = value.RealVal;
 					return;
-				case 8: 
+				case 7: 
 					_endCantRight = value.RealVal;
+					return;
+				case 8: 
+					_smoothingLength = value.RealVal;
+					return;
+				case 9: 
+                    _predefinedType = (IfcAlignmentCantSegmentTypeEnum) System.Enum.Parse(typeof (IfcAlignmentCantSegmentTypeEnum), value.EnumVal, true);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -176,7 +199,7 @@ namespace Xbim.Ifc4x3.Rail
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment2DCantSegment other)
+        public bool Equals(@IfcAlignmentCantSegment other)
 	    {
 	        return this == other;
 	    }

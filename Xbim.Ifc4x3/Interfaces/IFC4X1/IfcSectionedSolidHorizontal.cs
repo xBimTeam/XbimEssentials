@@ -26,8 +26,10 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 		{ 
 			get
 			{
-			
-				return new Common.Collections.ProxyItemSet<GeometryResource.IfcDistanceExpression, IIfcDistanceExpression>(CrossSectionPositions);
+				//## Handle return of CrossSectionPositions for which no match was found
+				//TODO: Handle return of CrossSectionPositions for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 

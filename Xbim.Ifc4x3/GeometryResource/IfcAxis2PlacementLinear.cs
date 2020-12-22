@@ -7,65 +7,70 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.GeometricConstraintResource;
+using Xbim.Ifc4x3.GeometryResource;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.GeometricConstraintResource
+namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcAlignment2DHorizontalSegment", 1333)]
+	[ExpressType("IfcAxis2PlacementLinear", 1488)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DHorizontalSegment : IfcAlignment2DSegment, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAlignment2DHorizontalSegment>
+	public  partial class @IfcAxis2PlacementLinear : IfcPlacement, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAxis2PlacementLinear>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment2DHorizontalSegment(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcAxis2PlacementLinear(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 		#region Explicit attribute fields
-		private IfcCurveSegment2D _curveGeometry;
+		private IfcDirection _axis;
+		private IfcDirection _refDirection;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
-		public IfcCurveSegment2D @CurveGeometry 
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
+		public IfcDirection @Axis 
 		{ 
 			get 
 			{
-				if(_activated) return _curveGeometry;
+				if(_activated) return _axis;
 				Activate();
-				return _curveGeometry;
+				return _axis;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _curveGeometry = v, _curveGeometry, value,  "CurveGeometry", 4);
+				SetValue( v =>  _axis = v, _axis, value,  "Axis", 2);
+			} 
+		}	
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
+		public IfcDirection @RefDirection 
+		{ 
+			get 
+			{
+				if(_activated) return _refDirection;
+				Activate();
+				return _refDirection;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _refDirection = v, _refDirection, value,  "RefDirection", 3);
 			} 
 		}	
 		#endregion
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Segments")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 1 }, 7)]
-		public IEnumerable<IfcAlignment2DHorizontal> @ToHorizontal 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcAlignment2DHorizontal>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)
@@ -73,12 +78,13 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			switch (propIndex)
 			{
 				case 0: 
-				case 1: 
-				case 2: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 3: 
-					_curveGeometry = (IfcCurveSegment2D)(value.EntityVal);
+				case 1: 
+					_axis = (IfcDirection)(value.EntityVal);
+					return;
+				case 2: 
+					_refDirection = (IfcDirection)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -87,7 +93,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment2DHorizontalSegment other)
+        public bool Equals(@IfcAxis2PlacementLinear other)
 	    {
 	        return this == other;
 	    }
@@ -98,8 +104,12 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{
 			get 
 			{
-				if (@CurveGeometry != null)
-					yield return @CurveGeometry;
+				if (@Location != null)
+					yield return @Location;
+				if (@Axis != null)
+					yield return @Axis;
+				if (@RefDirection != null)
+					yield return @RefDirection;
 			}
 		}
 		#endregion

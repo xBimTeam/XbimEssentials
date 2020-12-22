@@ -12,23 +12,43 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.Rail;
+using Xbim.Ifc4x3.GeometryResource;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.Rail
+namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcAlignment2DCantSegLine", 1398)]
+	[ExpressType("IfcSegment", 1495)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DCantSegLine : IfcAlignment2DCantSegment, IInstantiableEntity, IEquatable<@IfcAlignment2DCantSegLine>
+	public abstract partial class @IfcSegment : IfcGeometricRepresentationItem, IEquatable<@IfcSegment>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment2DCantSegLine(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcSegment(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
+		#region Explicit attribute fields
+		private IfcTransitionCode _transition;
+		#endregion
+	
+		#region Explicit attribute properties
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 3)]
+		public IfcTransitionCode @Transition 
+		{ 
+			get 
+			{
+				if(_activated) return _transition;
+				Activate();
+				return _transition;
+			} 
+			set
+			{
+				SetValue( v =>  _transition = v, _transition, value,  "Transition", 1);
+			} 
+		}	
+		#endregion
 
 
 
@@ -39,15 +59,7 @@ namespace Xbim.Ifc4x3.Rail
 			switch (propIndex)
 			{
 				case 0: 
-				case 1: 
-				case 2: 
-				case 3: 
-				case 4: 
-				case 5: 
-				case 6: 
-				case 7: 
-				case 8: 
-					base.Parse(propIndex, value, nestedIndex); 
+                    _transition = (IfcTransitionCode) System.Enum.Parse(typeof (IfcTransitionCode), value.EnumVal, true);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -56,7 +68,7 @@ namespace Xbim.Ifc4x3.Rail
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment2DCantSegLine other)
+        public bool Equals(@IfcSegment other)
 	    {
 	        return this == other;
 	    }

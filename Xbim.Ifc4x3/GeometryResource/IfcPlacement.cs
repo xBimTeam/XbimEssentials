@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private IfcCartesianPoint _location;
+		private IfcPoint _location;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
-		public IfcCartesianPoint @Location 
+		public IfcPoint @Location 
 		{ 
 			get 
 			{
@@ -60,7 +60,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get 
 			{
 				//## Getter for Dim
-				return Location?.Dim ?? 0;
+				return Location?.Dimension ?? 0;
 				//##
 			}
 		}
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_location = (IfcCartesianPoint)(value.EntityVal);
+					_location = (IfcPoint)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

@@ -79,9 +79,12 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 				//## Getter for AxisLine
 				if (Axis != null)
 				{
+					// TODO: support other types of points. This is new in IFC4x3 RC2
+					if (!(Axis.Location is IfcCartesianPoint cp))
+						throw new XbimException("Only IfcCartesianPoint is supported as an axis definition");
 					return new Common.Geometry.XbimLine
 					{
-						Pnt = new Common.Geometry.XbimPoint3D(Axis.Location.X, Axis.Location.Y, Axis.Location.Z),
+						Pnt = new Common.Geometry.XbimPoint3D(cp.X, cp.Y, cp.Z),
 						Orientation = Axis.Z,
 					};
 				}

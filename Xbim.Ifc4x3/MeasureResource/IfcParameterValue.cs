@@ -16,7 +16,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 	[ExpressType("IfcParameterValue", 52)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcParameterValue : IfcMeasureValue, IfcTrimmingSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>
+	public partial struct IfcParameterValue : IfcCurveMeasureSelect, IfcMeasureValue, IfcTrimmingSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         

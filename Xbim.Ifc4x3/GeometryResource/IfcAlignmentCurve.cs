@@ -7,23 +7,23 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometryResource;
+using Xbim.Ifc4x3.ProductExtension;
 using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.GeometricConstraintResource;
+using Xbim.Ifc4x3.GeometryResource;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.GeometricConstraintResource
+namespace Xbim.Ifc4x3.GeometryResource
 {
 	[ExpressType("IfcAlignmentCurve", 1347)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignmentCurve : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignmentCurve>
+	public  partial class @IfcAlignmentCurve : IfcBoundedCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAlignmentCurve>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -32,15 +32,14 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		}
 
 		#region Explicit attribute fields
-		private IfcAlignment2DHorizontal _horizontal;
-		private IfcAlignment2DVertical _vertical;
+		private IfcAlignmentHorizontal _horizontal;
+		private IfcAlignmentVertical _vertical;
 		private IfcLabel? _tag;
 		#endregion
 	
 		#region Explicit attribute properties
-		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
-		public IfcAlignment2DHorizontal @Horizontal 
+		public IfcAlignmentHorizontal @Horizontal 
 		{ 
 			get 
 			{
@@ -55,9 +54,8 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				SetValue( v =>  _horizontal = v, _horizontal, value,  "Horizontal", 1);
 			} 
 		}	
-		[IndexedProperty]
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
-		public IfcAlignment2DVertical @Vertical 
+		public IfcAlignmentVertical @Vertical 
 		{ 
 			get 
 			{
@@ -97,10 +95,10 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			switch (propIndex)
 			{
 				case 0: 
-					_horizontal = (IfcAlignment2DHorizontal)(value.EntityVal);
+					_horizontal = (IfcAlignmentHorizontal)(value.EntityVal);
 					return;
 				case 1: 
-					_vertical = (IfcAlignment2DVertical)(value.EntityVal);
+					_vertical = (IfcAlignmentVertical)(value.EntityVal);
 					return;
 				case 2: 
 					_tag = value.StringVal;
@@ -128,21 +126,6 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				if (@Vertical != null)
 					yield return @Vertical;
 			}
-		}
-		#endregion
-
-
-		#region IContainsIndexedReferences
-        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
-		{ 
-			get
-			{
-				if (@Horizontal != null)
-					yield return @Horizontal;
-				if (@Vertical != null)
-					yield return @Vertical;
-				
-			} 
 		}
 		#endregion
 

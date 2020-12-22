@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,52 +20,50 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcOrientationExpression", 1352)]
+	[ExpressType("IfcClothoid", 1490)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrientationExpression : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOrientationExpression>
+	public  partial class @IfcClothoid : IfcCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcClothoid>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcOrientationExpression(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcClothoid(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 		#region Explicit attribute fields
-		private IfcDirection _lateralAxisDirection;
-		private IfcDirection _verticalAxisDirection;
+		private IfcAxis2Placement _position;
+		private IfcLengthMeasure _clothoidConstant;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
-		public IfcDirection @LateralAxisDirection 
+		public IfcAxis2Placement @Position 
 		{ 
 			get 
 			{
-				if(_activated) return _lateralAxisDirection;
+				if(_activated) return _position;
 				Activate();
-				return _lateralAxisDirection;
+				return _position;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _lateralAxisDirection = v, _lateralAxisDirection, value,  "LateralAxisDirection", 1);
+				SetValue( v =>  _position = v, _position, value,  "Position", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
-		public IfcDirection @VerticalAxisDirection 
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
+		public IfcLengthMeasure @ClothoidConstant 
 		{ 
 			get 
 			{
-				if(_activated) return _verticalAxisDirection;
+				if(_activated) return _clothoidConstant;
 				Activate();
-				return _verticalAxisDirection;
+				return _clothoidConstant;
 			} 
 			set
 			{
-				if (value != null && !(ReferenceEquals(Model, value.Model)))
-					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _verticalAxisDirection = v, _verticalAxisDirection, value,  "VerticalAxisDirection", 2);
+				SetValue( v =>  _clothoidConstant = v, _clothoidConstant, value,  "ClothoidConstant", 2);
 			} 
 		}	
 		#endregion
@@ -78,10 +77,10 @@ namespace Xbim.Ifc4x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_lateralAxisDirection = (IfcDirection)(value.EntityVal);
+					_position = (IfcAxis2Placement)(value.EntityVal);
 					return;
 				case 1: 
-					_verticalAxisDirection = (IfcDirection)(value.EntityVal);
+					_clothoidConstant = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -90,7 +89,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcOrientationExpression other)
+        public bool Equals(@IfcClothoid other)
 	    {
 	        return this == other;
 	    }
@@ -101,10 +100,8 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{
 			get 
 			{
-				if (@LateralAxisDirection != null)
-					yield return @LateralAxisDirection;
-				if (@VerticalAxisDirection != null)
-					yield return @VerticalAxisDirection;
+				if (@Position != null)
+					yield return @Position;
 			}
 		}
 		#endregion

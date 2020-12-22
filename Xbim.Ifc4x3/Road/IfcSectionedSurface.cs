@@ -30,13 +30,13 @@ namespace Xbim.Ifc4x3.Road
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionedSurface(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_crossSectionPositions = new ItemSet<IfcDistanceExpression>( this, 0,  2);
+			_crossSectionPositions = new ItemSet<IfcPointByDistanceExpression>( this, 0,  2);
 			_crossSections = new ItemSet<IfcProfileDef>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
 		private IfcCurve _directrix;
-		private readonly ItemSet<IfcDistanceExpression> _crossSectionPositions;
+		private readonly ItemSet<IfcPointByDistanceExpression> _crossSectionPositions;
 		private readonly ItemSet<IfcProfileDef> _crossSections;
 		private IfcBoolean _fixedAxisVertical;
 		#endregion
@@ -59,7 +59,7 @@ namespace Xbim.Ifc4x3.Road
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 4)]
-		public IItemSet<IfcDistanceExpression> @CrossSectionPositions 
+		public IItemSet<IfcPointByDistanceExpression> @CrossSectionPositions 
 		{ 
 			get 
 			{
@@ -106,7 +106,7 @@ namespace Xbim.Ifc4x3.Road
 					_directrix = (IfcCurve)(value.EntityVal);
 					return;
 				case 1: 
-					_crossSectionPositions.InternalAdd((IfcDistanceExpression)value.EntityVal);
+					_crossSectionPositions.InternalAdd((IfcPointByDistanceExpression)value.EntityVal);
 					return;
 				case 2: 
 					_crossSections.InternalAdd((IfcProfileDef)value.EntityVal);

@@ -33,7 +33,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 
 		#region Explicit attribute fields
 		private readonly ItemSet<IfcFillStyleSelect> _fillStyles;
-		private IfcBoolean? _modelorDraughting;
+		private IfcBoolean? _modelOrDraughting;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -48,17 +48,17 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
-		public IfcBoolean? @ModelorDraughting 
+		public IfcBoolean? @ModelOrDraughting 
 		{ 
 			get 
 			{
-				if(_activated) return _modelorDraughting;
+				if(_activated) return _modelOrDraughting;
 				Activate();
-				return _modelorDraughting;
+				return _modelOrDraughting;
 			} 
 			set
 			{
-				SetValue( v =>  _modelorDraughting = v, _modelorDraughting, value,  "ModelorDraughting", 3);
+				SetValue( v =>  _modelOrDraughting = v, _modelOrDraughting, value,  "ModelOrDraughting", 3);
 			} 
 		}	
 		#endregion
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 					_fillStyles.InternalAdd((IfcFillStyleSelect)value.EntityVal);
 					return;
 				case 2: 
-					_modelorDraughting = value.BooleanVal;
+					_modelOrDraughting = value.BooleanVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

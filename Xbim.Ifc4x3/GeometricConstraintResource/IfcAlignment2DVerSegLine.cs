@@ -21,7 +21,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	[ExpressType("IfcAlignment2DVerSegLine", 1336)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DVerSegLine : IfcAlignment2DVerticalSegment, IInstantiableEntity, IEquatable<@IfcAlignment2DVerSegLine>
+	public  partial class @IfcAlignment2DVerSegLine : IfcAlignmentVerticalSegment, IInstantiableEntity, IEquatable<@IfcAlignment2DVerSegLine>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -45,6 +45,8 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				case 4: 
 				case 5: 
 				case 6: 
+				case 7: 
+				case 8: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				default:

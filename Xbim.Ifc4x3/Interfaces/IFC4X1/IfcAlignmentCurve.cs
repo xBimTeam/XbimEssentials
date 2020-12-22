@@ -16,7 +16,7 @@ using Xbim.Common;
 //##
 
 // ReSharper disable once CheckNamespace
-namespace Xbim.Ifc4x3.GeometricConstraintResource
+namespace Xbim.Ifc4x3.GeometryResource
 {
 	public partial class @IfcAlignmentCurve : IIfcAlignmentCurve
 	{
@@ -26,11 +26,17 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return Horizontal;
+				//## Handle return of Horizontal for which no match was found
+				//TODO: Handle return of Horizontal for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				Horizontal = value as IfcAlignment2DHorizontal;
+				//## Handle setting of Horizontal for which no match was found
+				//TODO: Handle setting of Horizontal for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}
@@ -40,11 +46,17 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		{ 
 			get
 			{
-				return Vertical;
+				//## Handle return of Vertical for which no match was found
+				//TODO: Handle return of Vertical for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				Vertical = value as IfcAlignment2DVertical;
+				//## Handle setting of Vertical for which no match was found
+				//TODO: Handle setting of Vertical for which no match was found
+				throw new System.NotImplementedException();
+				//##
 				
 			}
 		}

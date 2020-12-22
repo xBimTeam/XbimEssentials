@@ -22,7 +22,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	[ExpressType("IfcAlignment2DVerSegParabolicArc", 1337)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DVerSegParabolicArc : IfcAlignment2DVerticalSegment, IInstantiableEntity, IEquatable<@IfcAlignment2DVerSegParabolicArc>
+	public  partial class @IfcAlignment2DVerSegParabolicArc : IfcAlignmentVerticalSegment, IInstantiableEntity, IEquatable<@IfcAlignment2DVerSegParabolicArc>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -36,7 +36,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
 		public IfcPositiveLengthMeasure @ParabolaConstant 
 		{ 
 			get 
@@ -47,10 +47,10 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _parabolaConstant = v, _parabolaConstant, value,  "ParabolaConstant", 8);
+				SetValue( v =>  _parabolaConstant = v, _parabolaConstant, value,  "ParabolaConstant", 10);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 12)]
+		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
 		public IfcBoolean @IsConvex 
 		{ 
 			get 
@@ -61,7 +61,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _isConvex = v, _isConvex, value,  "IsConvex", 9);
+				SetValue( v =>  _isConvex = v, _isConvex, value,  "IsConvex", 11);
 			} 
 		}	
 		#endregion
@@ -81,12 +81,14 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				case 4: 
 				case 5: 
 				case 6: 
+				case 7: 
+				case 8: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 7: 
+				case 9: 
 					_parabolaConstant = value.RealVal;
 					return;
-				case 8: 
+				case 10: 
 					_isConvex = value.BooleanVal;
 					return;
 				default:

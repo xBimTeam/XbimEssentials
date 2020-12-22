@@ -7,80 +7,78 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometricModelResource;
-using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.Rail;
+using Xbim.Ifc4x3.GeometryResource;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.Rail
+namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcDirectrixCurveSweptAreaSolid", 1417)]
+	[ExpressType("IfcBlossCurve", 1489)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcDirectrixCurveSweptAreaSolid : IfcSweptAreaSolid, IEquatable<@IfcDirectrixCurveSweptAreaSolid>
+	public  partial class @IfcBlossCurve : IfcCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcBlossCurve>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcDirectrixCurveSweptAreaSolid(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcBlossCurve(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 		}
 
 		#region Explicit attribute fields
-		private IfcCurve _directrix;
-		private IfcParameterValue? _startParam;
-		private IfcParameterValue? _endParam;
+		private IfcAxis2Placement _position;
+		private IfcPositiveLengthMeasure _curveLength;
+		private IfcPositiveLengthMeasure _radius;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
-		public IfcCurve @Directrix 
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
+		public IfcAxis2Placement @Position 
 		{ 
 			get 
 			{
-				if(_activated) return _directrix;
+				if(_activated) return _position;
 				Activate();
-				return _directrix;
+				return _position;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _directrix = v, _directrix, value,  "Directrix", 3);
+				SetValue( v =>  _position = v, _position, value,  "Position", 1);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
-		public IfcParameterValue? @StartParam 
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
+		public IfcPositiveLengthMeasure @CurveLength 
 		{ 
 			get 
 			{
-				if(_activated) return _startParam;
+				if(_activated) return _curveLength;
 				Activate();
-				return _startParam;
+				return _curveLength;
 			} 
 			set
 			{
-				SetValue( v =>  _startParam = v, _startParam, value,  "StartParam", 4);
+				SetValue( v =>  _curveLength = v, _curveLength, value,  "CurveLength", 2);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
-		public IfcParameterValue? @EndParam 
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
+		public IfcPositiveLengthMeasure @Radius 
 		{ 
 			get 
 			{
-				if(_activated) return _endParam;
+				if(_activated) return _radius;
 				Activate();
-				return _endParam;
+				return _radius;
 			} 
 			set
 			{
-				SetValue( v =>  _endParam = v, _endParam, value,  "EndParam", 5);
+				SetValue( v =>  _radius = v, _radius, value,  "Radius", 3);
 			} 
 		}	
 		#endregion
@@ -94,17 +92,13 @@ namespace Xbim.Ifc4x3.Rail
 			switch (propIndex)
 			{
 				case 0: 
+					_position = (IfcAxis2Placement)(value.EntityVal);
+					return;
 				case 1: 
-					base.Parse(propIndex, value, nestedIndex); 
+					_curveLength = value.RealVal;
 					return;
 				case 2: 
-					_directrix = (IfcCurve)(value.EntityVal);
-					return;
-				case 3: 
-					_startParam = value.RealVal;
-					return;
-				case 4: 
-					_endParam = value.RealVal;
+					_radius = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -113,11 +107,22 @@ namespace Xbim.Ifc4x3.Rail
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcDirectrixCurveSweptAreaSolid other)
+        public bool Equals(@IfcBlossCurve other)
 	    {
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@Position != null)
+					yield return @Position;
+			}
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

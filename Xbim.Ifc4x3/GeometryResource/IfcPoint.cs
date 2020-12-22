@@ -52,6 +52,21 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
+		public IfcDimensionCount Dimension
+        {
+			get
+            {
+				if (this is IfcCartesianPoint cp)
+					return cp.Dim;
+				else if (this is IfcPointByDistanceExpression pbde)
+					return pbde.Dim;
+				else if (this is IfcPointOnCurve poc)
+					return poc.Dim;
+				else if (this is IfcPointOnSurface pos)
+					return pos.Dim;
+				else throw new XbimException("Unexpected point type");
+            }
+        }
 		//##
 		#endregion
 	}

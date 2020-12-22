@@ -7,59 +7,43 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.MeasureResource;
+using Xbim.Ifc4x3.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.Rail;
+using Xbim.Ifc4x3.ProductExtension;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.Rail
+namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcAlignment2DCant", 1397)]
+	[ExpressType("IfcAlignmentVertical", 1486)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAlignment2DCant : IfcAxisLateralInclination, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignment2DCant>
+	public  partial class @IfcAlignmentVertical : IfcLinearElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignmentVertical>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
-		internal IfcAlignment2DCant(IModel model, int label, bool activated) : base(model, label, activated)  
+		internal IfcAlignmentVertical(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_segments = new ItemSet<IfcAlignment2DCantSegment>( this, 0,  1);
+			_segments = new ItemSet<IfcAlignmentVerticalSegment>( this, 0,  8);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcAlignment2DCantSegment> _segments;
-		private IfcPositiveLengthMeasure _railHeadDistance;
+		private readonly ItemSet<IfcAlignmentVerticalSegment> _segments;
 		#endregion
 	
 		#region Explicit attribute properties
-		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
-		public IItemSet<IfcAlignment2DCantSegment> @Segments 
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 22)]
+		public IItemSet<IfcAlignmentVerticalSegment> @Segments 
 		{ 
 			get 
 			{
 				if(_activated) return _segments;
 				Activate();
 				return _segments;
-			} 
-		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
-		public IfcPositiveLengthMeasure @RailHeadDistance 
-		{ 
-			get 
-			{
-				if(_activated) return _railHeadDistance;
-				Activate();
-				return _railHeadDistance;
-			} 
-			set
-			{
-				SetValue( v =>  _railHeadDistance = v, _railHeadDistance, value,  "RailHeadDistance", 2);
 			} 
 		}	
 		#endregion
@@ -73,10 +57,16 @@ namespace Xbim.Ifc4x3.Rail
 			switch (propIndex)
 			{
 				case 0: 
-					_segments.InternalAdd((IfcAlignment2DCantSegment)value.EntityVal);
-					return;
 				case 1: 
-					_railHeadDistance = value.RealVal;
+				case 2: 
+				case 3: 
+				case 4: 
+				case 5: 
+				case 6: 
+					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 7: 
+					_segments.InternalAdd((IfcAlignmentVerticalSegment)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -85,7 +75,7 @@ namespace Xbim.Ifc4x3.Rail
 		#endregion
 
 		#region Equality comparers and operators
-        public bool Equals(@IfcAlignment2DCant other)
+        public bool Equals(@IfcAlignmentVertical other)
 	    {
 	        return this == other;
 	    }
@@ -96,6 +86,12 @@ namespace Xbim.Ifc4x3.Rail
 		{
 			get 
 			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
 				foreach(var entity in @Segments)
 					yield return entity;
 			}
@@ -108,8 +104,10 @@ namespace Xbim.Ifc4x3.Rail
 		{ 
 			get
 			{
-				foreach(var entity in @Segments)
-					yield return entity;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
 				
 			} 
 		}

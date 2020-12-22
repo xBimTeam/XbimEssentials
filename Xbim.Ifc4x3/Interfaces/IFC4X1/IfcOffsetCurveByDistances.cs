@@ -26,8 +26,10 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{ 
 			get
 			{
-			
-				return new Common.Collections.ProxyItemSet<IfcDistanceExpression, IIfcDistanceExpression>(OffsetValues);
+				//## Handle return of OffsetValues for which no match was found
+				//TODO: Handle return of OffsetValues for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 		}
 
