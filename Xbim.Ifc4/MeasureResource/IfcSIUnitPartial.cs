@@ -17,7 +17,7 @@ namespace Xbim.Ifc4.MeasureResource
     // ReSharper disable once InconsistentNaming
     public partial class IfcSIUnit
     {
-        private static readonly Dictionary<IfcSIUnitName, IfcDimensionalExponents> ExponentsCache = new Dictionary<IfcSIUnitName, IfcDimensionalExponents>(); 
+        private readonly Dictionary<IfcSIUnitName, IfcDimensionalExponents> ExponentsCache = new Dictionary<IfcSIUnitName, IfcDimensionalExponents>(); 
         internal IfcDimensionalExponents IfcDimensionsForSiUnit(IfcSIUnitName name)
         {
             IfcDimensionalExponents result;
