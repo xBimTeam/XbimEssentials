@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using Xbim.Common;
 using Xbim.Common.Step21;
-using Xbim.Ifc2x3.PropertyResource;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
     // ReSharper disable once InconsistentNaming
     public partial class IfcSIUnit
     {
-        private static readonly Dictionary<IfcSIUnitName, IfcDimensionalExponents> ExponentsCache = new Dictionary<IfcSIUnitName, IfcDimensionalExponents>(); 
+        private readonly Dictionary<IfcSIUnitName, IfcDimensionalExponents> ExponentsCache = new Dictionary<IfcSIUnitName, IfcDimensionalExponents>(); 
         internal IfcDimensionalExponents IfcDimensionsForSiUnit(IfcSIUnitName name)
         {
             IfcDimensionalExponents result;
