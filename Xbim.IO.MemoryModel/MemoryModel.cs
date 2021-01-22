@@ -335,7 +335,7 @@ namespace Xbim.IO.Memory
             };
             if (!keepOrder)
                 model.DiscardNaturalOrder();
-            model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
+            model.LoadStep21(stream, -1, progressDel, ignoreTypes);
             return model;
         }
 
