@@ -31,6 +31,8 @@ namespace Xbim.IO.Esent
         /// </summary>
         public long Count { get { return Cache.Count;  } }
 
+        public int LastLabel => Cache.HighestLabel;
+
         /// <summary>
         /// Returns the count of the number of instances of the specified type
         /// </summary>

@@ -31,7 +31,7 @@ namespace Xbim.Common.Model
 
         private List<int> _naturalOrder = new List<int>(0x77777);
         //about a default of half a million stops too much growing, and 7 is lucky; 
-
+        public int LastLabel => CurrentLabel;
         internal void DiscardNaturalOrder()
         {
             _naturalOrder = null;
@@ -58,8 +58,8 @@ namespace Xbim.Common.Model
             var expType = _model.Metadata.ExpressType(type);
             if (expType != null)
                 return expType.NonAbstractSubTypes.Select(t => t.Type);
-            
-            if(!type.GetTypeInfo().IsInterface) return new List<Type>();
+
+            if (!type.GetTypeInfo().IsInterface) return new List<Type>();
 
             var implementations = _model.Metadata.ExpressTypesImplementing(type).Where(i => !i.Type.GetTypeInfo().IsAbstract);
             return implementations.Select(e => e.Type);
@@ -110,8 +110,8 @@ namespace Xbim.Common.Model
                 foreach (var type in resultTypes)
                 {
                     if (!_internal.TryGetValue(type, out ICollection<IPersistEntity> entities)) continue;
-                    foreach (var candidate in entities.Where(c => condition((T) c)))
-                        yield return (T) candidate;
+                    foreach (var candidate in entities.Where(c => condition((T)c)))
+                        yield return (T)candidate;
                 }
             }
             else
@@ -120,7 +120,7 @@ namespace Xbim.Common.Model
                 {
                     if (!_internal.TryGetValue(type, out ICollection<IPersistEntity> entities)) continue;
                     foreach (var candidate in entities)
-                        yield return (T) candidate;
+                        yield return (T)candidate;
                 }
             }
         }
@@ -265,7 +265,7 @@ namespace Xbim.Common.Model
             var key = entity.GetType();
             Action undo = () =>
             {
-                _internal.Remove(key,entity);
+                _internal.Remove(key, entity);
                 _collection.Remove(entity.EntityLabel);
                 if (_naturalOrder != null) _naturalOrder.Remove(entity.EntityLabel);
             };
@@ -281,7 +281,7 @@ namespace Xbim.Common.Model
                 doAction();
                 return;
             }
-            
+
             _model.CurrentTransaction.DoReversibleAction(doAction, undo, entity, ChangeType.New, 0);
         }
 
@@ -298,14 +298,14 @@ namespace Xbim.Common.Model
             int? index = default;
             Action doAction = () =>
             {
-                _internal.Remove(key,entity);
-                removed =_collection.Remove(entity.EntityLabel);
+                _internal.Remove(key, entity);
+                removed = _collection.Remove(entity.EntityLabel);
                 index = _naturalOrder?.IndexOf(entity.EntityLabel);
                 _naturalOrder?.RemoveAt(index.Value);
             };
             Action undo = () =>
             {
-                _internal.Add(key,entity);
+                _internal.Add(key, entity);
                 _collection.Add(entity.EntityLabel, entity);
                 _naturalOrder?.Insert(index.Value, entity.EntityLabel);
             };
@@ -381,8 +381,8 @@ namespace Xbim.Common.Model
 
         public IEnumerator<IPersistEntity> GetEnumerator()
         {
-            if(_naturalOrder!=null)
-                return new NaturalOrderEnumerator(_naturalOrder,_collection);
+            if (_naturalOrder != null)
+                return new NaturalOrderEnumerator(_naturalOrder, _collection);
             return _collection.Values.GetEnumerator();
         }
 
@@ -400,7 +400,7 @@ namespace Xbim.Common.Model
                 _naturalOrder.Clear();
             }
         }
-              
+
 
         private class NaturalOrderEnumerator : IEnumerator<IPersistEntity>
         {
@@ -408,7 +408,7 @@ namespace Xbim.Common.Model
             private readonly List<int> _naturalOrder;
             private int _current;
             private IPersistEntity _currentEntity;
-            public NaturalOrderEnumerator(List<int> naturalOrder, Dictionary<int,IPersistEntity> entities)
+            public NaturalOrderEnumerator(List<int> naturalOrder, Dictionary<int, IPersistEntity> entities)
             {
                 _naturalOrder = naturalOrder;
                 _entities = entities;
@@ -417,12 +417,12 @@ namespace Xbim.Common.Model
 
             public void Dispose()
             {
-                
+
             }
 
             public bool MoveNext()
-            {               
-                while (++_current < _naturalOrder.Count )
+            {
+                while (++_current < _naturalOrder.Count)
                 {
                     if (_entities.TryGetValue(_naturalOrder[_current], out _currentEntity))
                         return true;
@@ -440,7 +440,7 @@ namespace Xbim.Common.Model
             public IPersistEntity Current
             {
                 get { return _currentEntity; }
-            } 
+            }
 
             object IEnumerator.Current
             {

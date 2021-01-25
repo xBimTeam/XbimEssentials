@@ -10,6 +10,7 @@ namespace Xbim.Common
         T New<T>(Action<T> initPropertiesFunc) where T : IInstantiableEntity;
         T New<T>() where T : IInstantiableEntity;
         IPersistEntity this[int label] { get; }
+        int LastLabel { get; }
         
 	}
 
