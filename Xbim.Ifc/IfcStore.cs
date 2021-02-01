@@ -264,7 +264,7 @@ namespace Xbim.Ifc
 
         #region IModel
 
-        public object Tag { get; set; }
+        public object Tag { get => Model.Tag; set => Model.Tag = value; }
         public ILogger Logger { get => Model.Logger; set => Model.Logger = value; }
         public IInverseCache InverseCache
         {
