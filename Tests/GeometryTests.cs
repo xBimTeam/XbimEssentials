@@ -113,6 +113,79 @@ namespace Xbim.Essentials.Tests
 
 
         [TestMethod]
+        public void TransformationOfRegion()
+        {
+            XbimRect3D r = new XbimRect3D(
+                100, 100, 0,
+                200, 200, 0
+                );
+            XbimMatrix3D m = XbimMatrix3D.CreateRotation( // 90 ccw
+                new XbimPoint3D(1, 0, 0),
+                new XbimPoint3D(0, 1, 0)
+                );
+            var rotated = r.Transform(m);
+
+            Assert.AreEqual(-300, rotated.Min.X);
+            Assert.AreEqual(100, rotated.Min.Y);
+            Assert.AreEqual(0, rotated.Min.Z);
+
+            Assert.AreEqual(-100, rotated.Max.X);
+            Assert.AreEqual(300, rotated.Max.Y);
+            Assert.AreEqual(0, rotated.Max.Z);
+
+        }
+
+        [TestMethod]
+        public void RotationMatrixFromVectorsTests()
+        {
+            // y to x
+            XbimPoint3D from = new XbimPoint3D(0, 1, 0);
+            XbimPoint3D to = new XbimPoint3D(1, 0, 0);
+            TestRotationCreation(from, to);
+
+            TestRotationCreation(from, from);
+            TestRotationCreation(to, to);
+
+
+            to = new XbimPoint3D(0.4, 0.4, 0);
+            TestRotationCreation(from, to);
+
+            to = new XbimPoint3D(-0.4, 0.4, 0);
+            TestRotationCreation(from, to);
+        }
+
+        private void TestRotationCreation(XbimPoint3D from, XbimPoint3D to)
+        {
+            var m = XbimMatrix3D.CreateRotation(from, to);
+            var toForTest = m.Transform(from);
+            var toNormalised = (to - new XbimPoint3D(0, 0, 0)).Normalized();
+            var toNormP = new XbimPoint3D(
+                toNormalised.X,
+                toNormalised.Y,
+                toNormalised.Z
+                );
+            Assert.IsTrue(IsTolerableDifference(toNormP, toForTest));
+        }
+
+        private bool IsTolerableDifference(XbimPoint3D expectedValue, XbimPoint3D resultingValue)
+        {
+            return
+                IsTolerableDifference(expectedValue.X, resultingValue.X)
+                &&
+                IsTolerableDifference(expectedValue.Y, resultingValue.Y)
+                &&
+                IsTolerableDifference(expectedValue.Z, resultingValue.Z)
+                ;
+        }
+
+        private bool IsTolerableDifference(double expectedValue, double resultingValue)
+        {
+            var diff = resultingValue - expectedValue;
+            return (diff < 1E-15);
+        }
+
+
+        [TestMethod]
         public void MatrixArrayConversion()
         {
             var m = XbimMatrix3D.CreateTranslation(10, 20, 30);

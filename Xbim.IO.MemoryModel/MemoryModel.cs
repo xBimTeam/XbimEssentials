@@ -335,7 +335,17 @@ namespace Xbim.IO.Memory
             };
             if (!keepOrder)
                 model.DiscardNaturalOrder();
-            model.LoadStep21(stream, stream.Length, progressDel, ignoreTypes);
+            long len = -1;
+            try
+            {
+                len = stream.Length;
+            }
+            catch (Exception)
+            {
+                // if lenght is not supported use len as previously set;
+            }
+                
+            model.LoadStep21(stream, len, progressDel, ignoreTypes);
             return model;
         }
 
