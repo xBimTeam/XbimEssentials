@@ -3,7 +3,7 @@
   <metadata>
     <id>Xbim.Essentials</id>
     <!-- Legacy versions bugfixes will have master numbering to ensure diffusion -->
-    <version>4.0.31</version>
+    <version>4.0.32</version>
     <title>xBIM Essentials</title>
     <authors>xBIM Team</authors>
     <owners>Steve Lockley, Martin Cerny, Claudio Benghi</owners>

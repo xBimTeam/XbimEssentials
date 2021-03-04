@@ -3,7 +3,7 @@
   <metadata>
     <id>Xbim.Cobie</id>
     <!-- Legacy versions bugfixes will have master numbering to ensure diffusion -->
-    <version>4.0.31</version>
+    <version>4.0.32</version>
     <title>xBIM Cobie</title>
     <authors>xBIM team</authors>
     <owners>Steve Lockley, Martin Cerny</owners>
@@ -22,7 +22,7 @@
     <dependencies>
       <group targetFramework="net40">
         <dependency id="NPOI" version="2.3.0" />
-        <dependency id="Xbim.Essentials" version="4.0.31" />
+        <dependency id="Xbim.Essentials" version="4.0.32" />
       </group>
     </dependencies>
   </metadata>
