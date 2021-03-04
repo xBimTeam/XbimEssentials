@@ -587,8 +587,9 @@ namespace Xbim.IO.Esent
             jetInstance.Parameters.CheckpointDepthMax = cacheSizeInBytes;
             jetInstance.Parameters.LogFileSize = 1024;    // 1MB logs
             jetInstance.Parameters.LogBuffers = 1024;     // buffers = 1/2 of logfile
-            if (!createTemporaryTables) jetInstance.Parameters.MaxTemporaryTables = 0; //ensures no temporary files are created
-            jetInstance.Parameters.MaxVerPages = 4096*2;
+            if (!createTemporaryTables)
+				jetInstance.Parameters.MaxTemporaryTables = 0; //ensures no temporary files are created
+            jetInstance.Parameters.MaxVerPages = 32768;
             jetInstance.Parameters.NoInformationEvent = true;
             jetInstance.Parameters.WaypointLatency = 1;
             jetInstance.Parameters.MaxSessions = 512;
