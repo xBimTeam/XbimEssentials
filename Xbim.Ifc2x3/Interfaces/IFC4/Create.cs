@@ -25,7 +25,8 @@ namespace Xbim.Ifc4.Interfaces
             var stepSchema = model.Header.FileSchema;
             foreach (var schema in stepSchema.Schemas)
             {
-                if (string.Equals(schema, "Ifc4", StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) ||
+                    schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                     _version = XbimSchemaVersion.Ifc4;
                 else if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     _version = XbimSchemaVersion.Ifc2X3;

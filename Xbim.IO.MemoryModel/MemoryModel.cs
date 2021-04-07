@@ -63,6 +63,7 @@ namespace Xbim.IO.Memory
                                 {
                                     case XmlSchemaVersion.Ifc2x3:
                                         return XbimSchemaVersion.Ifc2X3;
+                                    case XmlSchemaVersion.Ifc4Add2:
                                     case XmlSchemaVersion.Ifc4Add1:
                                     case XmlSchemaVersion.Ifc4:
                                         return XbimSchemaVersion.Ifc4;
@@ -95,12 +96,10 @@ namespace Xbim.IO.Memory
                     {
                         case XmlSchemaVersion.Ifc2x3:
                             return XbimSchemaVersion.Ifc2X3;
-
                         case XmlSchemaVersion.Ifc4Add1:
                         case XmlSchemaVersion.Ifc4Add2:
                         case XmlSchemaVersion.Ifc4:
                             return XbimSchemaVersion.Ifc4;
-
                         case XmlSchemaVersion.Unknown:
                         default:
                             return XbimSchemaVersion.Unsupported;
@@ -116,10 +115,11 @@ namespace Xbim.IO.Memory
         {
             foreach (var schema in schemas)
             {
-                if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0 ||
+                    schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                     return XbimSchemaVersion.Ifc4;
                 if (string.Equals(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase))
-                    return XbimSchemaVersion.Ifc4x1;
+                    return XbimSchemaVersion.Ifc4x1; 
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     return XbimSchemaVersion.Ifc2X3;
                 if (schema.StartsWith("Cobie2X4", StringComparison.OrdinalIgnoreCase)) //return this as Cobie
@@ -399,14 +399,15 @@ namespace Xbim.IO.Memory
                         var mu = cbUnit.ConversionFactor;
                         if (mu.UnitComponent is IIfcSIUnit component)
                             siUnit = component;
-                        var et = ((IExpressValueType)mu.ValueComponent);
-
-                        if (et.UnderlyingSystemType == typeof(double))
-                            value *= (double)et.Value;
-                        else if (et.UnderlyingSystemType == typeof(int))
-                            value *= (int)et.Value;
-                        else if (et.UnderlyingSystemType == typeof(long))
-                            value *= (long)et.Value;
+                        if (mu.ValueComponent is IExpressValueType et)
+                        {
+                            if (et.UnderlyingSystemType == typeof(double))
+                                value *= (double) et.Value;
+                            else if (et.UnderlyingSystemType == typeof(int))
+                                value *= (int) et.Value;
+                            else if (et.UnderlyingSystemType == typeof(long))
+                                value *= (long) et.Value;
+                        }
                     }
                     if (siUnit == null) continue;
                     value *= siUnit.Power;
