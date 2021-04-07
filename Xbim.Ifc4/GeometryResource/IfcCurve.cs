@@ -62,10 +62,10 @@ namespace Xbim.Ifc4.GeometryResource
 			        return (this as IfcPolyline).Points[1].Dim;
 				if (this as IfcTrimmedCurve != null)
 			        return (this as IfcTrimmedCurve).BasisCurve.Dim;
-				if (this as IfcCompositeCurve != null)
-			        return (this as IfcCompositeCurve).Segments[1].Dim;
-				if (this as IfcBSplineCurve != null)
-			        return (this as IfcBSplineCurve).ControlPointsList[1].Dim;
+				if (this is IfcCompositeCurve composive && composive.Segments.Count > 0)
+			        return composive.Segments.Count == 1 ? composive.Segments[0].Dim : composive.Segments[1].Dim;
+				if (this is IfcBSplineCurve bSplitted && bSplitted.ControlPointsList.Count > 0)
+			        return bSplitted.ControlPointsList.Count == 1 ? bSplitted.ControlPointsList[0].Dim : bSplitted.ControlPointsList[1].Dim;
 			    if (this is IfcOffsetCurve2D)
 			        return 2;
                 if (this is IfcOffsetCurve3D)

@@ -67,11 +67,11 @@ namespace Xbim.Ifc2x3.GeometryResource
 			    if (trimmed != null)
 			        return trimmed.BasisCurve.Dim;
 			    var composit = this as IfcCompositeCurve;
-			    if (composit != null)
-			        return composit.Segments[1].Dim;
+			    if (composit != null && composit.Segments.Count > 0)
+			        return composit.Segments.Count == 1 ? composit.Segments[0].Dim : composit.Segments[1].Dim;
 			    var bspline = this as IfcBSplineCurve;
-			    if (bspline != null)
-			        return bspline.ControlPointsList[1].Dim;
+			    if (bspline != null && bspline.ControlPointsList.Count > 0)
+			        return bspline.ControlPointsList.Count == 1 ? bspline.ControlPointsList[0].Dim : bspline.ControlPointsList[1].Dim;
 			    if (this is IfcOffsetCurve2D)
 			        return 2;
                 if (this is IfcOffsetCurve3D)
