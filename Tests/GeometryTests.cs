@@ -42,7 +42,7 @@ namespace Xbim.Essentials.Tests
                 var x = Math.Abs(a.Length);
                 var y = v.DotProduct(v2);
                 var angle = Math.Atan2(x, y);
-                if (angle > 0.1) 
+                if (angle > 0.1)
                     Debug.WriteLine("vector: {0}, angle: {1:F3}", v, angle);
                 Assert.IsTrue(angle < 0.13);
             }
@@ -50,11 +50,11 @@ namespace Xbim.Essentials.Tests
             //text axis aligned normals (this should be much more precise)
             var vArray = new[]
             {
-                new XbimVector3D(0, 0, 1), 
-                new XbimVector3D(0, 0, -1), 
-                new XbimVector3D(0, 1, 0), 
-                new XbimVector3D(0, -1, 0), 
-                new XbimVector3D(1, 0, 0), 
+                new XbimVector3D(0, 0, 1),
+                new XbimVector3D(0, 0, -1),
+                new XbimVector3D(0, 1, 0),
+                new XbimVector3D(0, -1, 0),
+                new XbimVector3D(1, 0, 0),
                 new XbimVector3D(-1, 0, 0)
             };
             foreach (var v in vArray)
@@ -79,7 +79,7 @@ namespace Xbim.Essentials.Tests
                 var y = k * o - 1 + (o / 2);
                 var r = Math.Sqrt(1 - y * y);
                 var phi = k * i;
-                var v = new XbimVector3D(Math.Cos(phi)*r, y, Math.Sin(phi)*r);
+                var v = new XbimVector3D(Math.Cos(phi) * r, y, Math.Sin(phi) * r);
                 points.Add(v);
             }
             return points;
@@ -214,6 +214,75 @@ namespace Xbim.Essentials.Tests
             Assert.AreEqual(rback.OffsetY, m.OffsetY);
             Assert.AreEqual(rback.OffsetZ, m.OffsetZ);
             Assert.AreEqual(rback.M44, m.M44);
+
+        }
+
+        [TestMethod]
+        public void NormalEvaluation()
+        {
+            // the following numbers are coming from an issue raised in Xbim.Geometry
+            NewellNormalEvaluator normEval = new NewellNormalEvaluator();
+            normEval.AddVertex(0, 3.705, 0);
+            normEval.AddVertex(0, 0, 0);
+            normEval.AddVertex(7.03, 0, 0);
+            normEval.AddVertex(7.03, 3.505, 0);
+            normEval.AddVertex(3.15, 3.505, 0);
+            normEval.AddVertex(3.15, 2.825, 0);
+            normEval.AddVertex(3, 2.825, 0);
+            normEval.AddVertex(3, 5.605, 0);
+            var tnormal = normEval.GetNormal(false);
+            Assert.AreEqual(0, tnormal.X);
+            Assert.AreEqual(0, tnormal.Y);
+            Assert.AreEqual(1, tnormal.Z);
+
+            normEval.AddVertex(0, 5.605, 0);
+            normEval.AddVertex(0, 5.255, 0);
+            normEval.AddVertex(0.03, 5.255, 0);
+            normEval.AddVertex(0.23, 5.255, 0);
+            normEval.AddVertex(0.23, 4.905, 0);
+            normEval.AddVertex(0.15, 4.905, 0);
+            normEval.AddVertex(0.15, 3.705, 0);
+            normEval.AddVertex(0.03, 3.705, 0);
+            normEval.AddVertex(0, 3.705, 0);
+            tnormal = normEval.GetNormal();
+            Assert.AreEqual(0, tnormal.X);
+            Assert.AreEqual(0, tnormal.Y);
+            Assert.AreEqual(1, tnormal.Z);
+
+            // start a new one:
+            bool enough = false;
+            normEval.Precision = 0.001;
+            normEval.AddVertex(0, 0, 0);
+            normEval.AddVertex(10, 0, 0);
+            enough = normEval.AddVertex(20, 0.0000001, 0);
+            Assert.IsFalse(enough);
+
+            normEval = new NewellNormalEvaluator();
+            normEval.Precision = 0.001;
+            normEval.AddVertex(0, 0, 0);
+            normEval.AddVertex(10, 0, 0);
+            enough = normEval.AddVertex(10, 10, 0);
+            // Assert.IsTrue(enough);
+            tnormal = normEval.GetNormal();
+            Assert.AreEqual(0, tnormal.X);
+            Assert.AreEqual(0, tnormal.Y);
+            Assert.AreEqual(1, tnormal.Z);
+
+
+            normEval.Precision = 0.001;
+            enough = normEval.AddVertex(0, 0, 0);
+            enough = normEval.AddVertex(10, 0, 0);
+            enough = normEval.AddVertex(10, 10, 0);
+            enough = normEval.AddVertex(0, 10, 0);
+            // Assert.IsTrue(enough);
+            tnormal = normEval.GetNormal();
+            Assert.AreEqual(0, tnormal.X);
+            Assert.AreEqual(0, tnormal.Y);
+            Assert.AreEqual(1, tnormal.Z);
+
+
+
+
 
         }
     }
