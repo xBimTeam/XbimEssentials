@@ -119,17 +119,21 @@ namespace Xbim.Common
                 if (!ReferingTypesCache.TryGetValue(type.Type, out ReferingType rt))
                 {
                     var singleReferences = type.Properties.Values.Where(p =>
-                    p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                    p.PropertyInfo.PropertyType.GetTypeInfo().IsAssignableFrom(entityType)).ToList();
-                    var listReferences =
-                        type.Properties.Values.Where(p =>
-                            p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                            p.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
-                            p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
-                    if (!singleReferences.Any() && !listReferences.Any())
+                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                        p.PropertyInfo.PropertyType.GetTypeInfo().IsAssignableFrom(entityType)).ToList();
+                    var listReferences = type.Properties.Values.Where(p =>
+                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                        p.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
+                        p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
+                    var nestedListReferences = type.Properties.Values.Where(p =>
+                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                        p.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
+                        p.PropertyInfo.PropertyType.GetItemTypeFromGenericType().IsGenericType &&
+                        p.PropertyInfo.PropertyType.GetItemTypeFromGenericType().GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
+                    if (!singleReferences.Any() && !listReferences.Any() && !nestedListReferences.Any())
                         continue;
 
-                    rt = new ReferingType { Type = type, SingleReferences = singleReferences, ListReferences = listReferences };
+                    rt = new ReferingType { Type = type, SingleReferences = singleReferences, ListReferences = listReferences, NestedListReferences = nestedListReferences };
                     ReferingTypesCache.TryAdd(type.Type, rt);
                 }
                 referingTypes.Add(rt);
@@ -286,6 +290,38 @@ namespace Xbim.Common
                             i--; // keep in sync
                     }
                 }
+
+                foreach (var pInfo in referingType.NestedListReferences.Select(p => p.PropertyInfo))
+                {
+                    var pVal = pInfo.GetValue(toCheck);
+                    if (pVal == null) continue;
+
+                    //it might be uninitialized optional item set
+                    if (pVal is IOptionalItemSet optSet && !optSet.Initialized)
+                        continue;
+
+                    //or it is non-optional item set implementing IList
+                    if (!(pVal is IList nestedItemSet))
+                        throw new XbimException($"Unable to remove items from {referingType.Type.Name}.{pInfo.Name}. No IList implementation.");
+
+                    for (int i = 0; i < nestedItemSet.Count; i++)
+                    {
+                        if (!(nestedItemSet[i] is IList itemSet))
+                            throw new XbimException($"Unable to remove items from {referingType.Type.Name}.{pInfo.Name}. No IList implementation.");
+
+                        for (int j = 0; j < itemSet.Count; j++)
+                        {
+                            var item = itemSet[j];
+                            if (!hash.Contains(item))
+                                continue;
+                            itemSet.RemoveAt(j);
+                            if (replacement != null)
+                                itemSet.Insert(j, replacement);
+                            else
+                                j--; // keep in sync
+                        }
+                    }
+                }
             }
 
         }
@@ -299,6 +335,7 @@ namespace Xbim.Common
             public ExpressType Type;
             public List<ExpressMetaProperty> SingleReferences;
             public List<ExpressMetaProperty> ListReferences;
+            public List<ExpressMetaProperty> NestedListReferences;
         }
         #endregion
 
