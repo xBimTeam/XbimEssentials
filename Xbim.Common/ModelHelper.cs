@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Xbim.IO;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
-using Xbim.IO.Step21;
+using Xbim.IO;
 using Xbim.IO.Parser;
+using Xbim.IO.Step21;
 
 namespace Xbim.Common
 {
@@ -191,45 +191,82 @@ namespace Xbim.Common
                         continue;
                     }
 
-                    //fall back operating on common list functions using reflection (this is slow)
-                    var contMethod = pInfo.PropertyType.GetTypeInfo().GetMethod("Contains");
-                    if (contMethod == null)
-                    {
-                        var msg =
-                            string.Format(
-                                "It wasn't possible to check containment of entity {0} in property {1} of {2}. No suitable method found.",
-                                entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
-                        throw new XbimException(msg);
-                    }
-                    var contains = (bool)contMethod.Invoke(pVal, new object[] { entity });
-                    if (!contains) continue;
-                    var removeMethod = pInfo.PropertyType.GetTypeInfo().GetMethod("Remove");
-                    if (removeMethod == null)
-                    {
-                        var msg =
-                            string.Format(
-                                "It wasn't possible to remove reference to entity {0} in property {1} of {2}. No suitable method found.",
-                                entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
-                        throw new XbimException(msg);
-                    }
-                    removeMethod.Invoke(pVal, new object[] { entity });
+                    FallBackOperation(toCheck, pInfo);
+                }
 
-                    if (replacement == null)
+                foreach (var pInfo in referingType.NestedListReferences.Select(p => p.PropertyInfo))
+                {
+                    var pVal = pInfo.GetValue(toCheck);
+                    if (pVal == null) continue;
+
+                    //it might be uninitialized optional item set
+                    if (pVal is IOptionalItemSet optSet && !optSet.Initialized)
                         continue;
 
-                    var addMethod = pInfo.PropertyType.GetTypeInfo().GetMethod("Add");
-                    if (addMethod == null)
+                    //or it is non-optional item set implementing IList
+                    if (pVal is IList nestedItemSet && nestedItemSet != null)
                     {
-                        var msg =
-                            string.Format(
-                                "It wasn't possible to add reference to entity {0} in property {1} of {2}. No suitable method found.",
-                                entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
-                        throw new XbimException(msg);
+                        for (int i = 0; i < nestedItemSet.Count; i++)
+                        {
+                            if (nestedItemSet[i] is IList itemSet && itemSet != null)
+                            {
+                                for (int j = 0; j < itemSet.Count; j++)
+                                {
+                                    if (!itemSet.Contains(entity))
+                                        continue;
+                                    itemSet.RemoveAt(j);
+                                    if (replacement != null)
+                                        itemSet.Insert(j, replacement);
+                                    else
+                                        j--; // keep in sync
+                                }
+                            }
+                            // ? not sure if it needs a FallBackOperation here.
+                        }
                     }
-                    addMethod.Invoke(pVal, new object[] { replacement });
                 }
             }
 
+            void FallBackOperation(IPersistEntity toCheck, PropertyInfo pInfo)
+            {
+                //fall back operating on common list functions using reflection (this is slow)
+                var contMethod = pInfo.PropertyType.GetTypeInfo().GetMethod("Contains");
+                var pVal = pInfo.GetValue(toCheck);
+                if (contMethod == null)
+                {
+                    var msg =
+                        string.Format(
+                            "It wasn't possible to check containment of entity {0} in property {1} of {2}. No suitable method found.",
+                            entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
+                    throw new XbimException(msg);
+                }
+                var contains = (bool)contMethod.Invoke(pVal, new object[] { entity });
+                if (!contains) return;
+                var removeMethod = pInfo.PropertyType.GetTypeInfo().GetMethod("Remove");
+                if (removeMethod == null)
+                {
+                    var msg =
+                        string.Format(
+                            "It wasn't possible to remove reference to entity {0} in property {1} of {2}. No suitable method found.",
+                            entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
+                    throw new XbimException(msg);
+                }
+                removeMethod.Invoke(pVal, new object[] { entity });
+
+                if (replacement == null)
+                    return;
+
+                var addMethod = pInfo.PropertyType.GetTypeInfo().GetMethod("Add");
+                if (addMethod == null)
+                {
+                    var msg =
+                        string.Format(
+                            "It wasn't possible to add reference to entity {0} in property {1} of {2}. No suitable method found.",
+                            entity.GetType().Name, pInfo.Name, toCheck.GetType().Name);
+                    throw new XbimException(msg);
+                }
+                addMethod.Invoke(pVal, new object[] { replacement });
+            }
         }
 
         /// <summary>
