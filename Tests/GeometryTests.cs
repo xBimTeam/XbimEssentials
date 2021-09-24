@@ -85,6 +85,24 @@ namespace Xbim.Essentials.Tests
             return points;
         }
 
+
+        [TestMethod]
+        public void CameraLookAtWorks()
+        {
+            var eye = new XbimVector3D(1, 0, 1);
+            var target = new XbimVector3D(0, 0, 0);
+            var up = new XbimVector3D(-1, 0, 1).Normalized();
+            var la = XbimMatrix3D.CreateLookAt(eye, target, up);
+
+
+            var pnt = new XbimPoint3D(-1, 0, 1);
+            var trsf = la.Transform(pnt);
+
+            Assert.AreEqual(0, trsf.X);
+            Assert.AreEqual(1.4142135623730949, trsf.Y);
+            Assert.AreEqual(-1.4142135623730949, trsf.Z);
+        }
+
         [TestMethod]
         public void DirectionsWithLessThan3DimsCanBeNormalisedToVector()
         {

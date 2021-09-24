@@ -770,14 +770,16 @@ namespace Xbim.Common.Geometry
             return result;
         }
 
-        // Microsoft.Xna.Framework.Matrix
+        /// <summary>
+        /// Creates a matrix projecting points onto a plane by passing a camera position, target and up vector.
+        /// </summary>
         public static XbimMatrix3D CreateLookAt(XbimVector3D cameraPosition, XbimVector3D cameraTarget, XbimVector3D cameraUpVector)
         {
             // prepare vectors
             XbimVector3D vector = cameraPosition - cameraTarget;
-            vector.Normalized();
+            vector = vector.Normalized();
             XbimVector3D vector2 = XbimVector3D.CrossProduct(cameraUpVector, vector);
-            vector2.Normalized();
+            vector2 = vector2.Normalized();
             XbimVector3D vector3 = XbimVector3D.CrossProduct(vector, vector2);
 
             // prepare matrix
