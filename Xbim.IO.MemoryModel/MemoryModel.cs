@@ -336,15 +336,9 @@ namespace Xbim.IO.Memory
             if (!keepOrder)
                 model.DiscardNaturalOrder();
             long len = -1;
-            try
-            {
+            if(stream.CanSeek)
                 len = stream.Length;
-            }
-            catch (Exception)
-            {
-                // if lenght is not supported use len as previously set;
-            }
-                
+              
             model.LoadStep21(stream, len, progressDel, ignoreTypes);
             return model;
         }
