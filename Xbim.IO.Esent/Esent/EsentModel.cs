@@ -794,8 +794,10 @@ namespace Xbim.IO.Esent
                         Close();
                     }
                     //unmanaged, mostly esent related
-                    if (_geometryStore != null) _geometryStore.Dispose();
-                    InstanceCache.Dispose();
+                    if (_geometryStore != null) 
+                        _geometryStore.Dispose();
+                    if (InstanceCache != null)
+                        InstanceCache.Dispose();
                 }
                 catch
                 {
