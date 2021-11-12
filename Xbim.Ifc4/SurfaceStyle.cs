@@ -126,7 +126,8 @@ namespace Xbim.Ifc4
                     }
                     else if (shading != null)
                     {
-                        AmbientColour = new RgbaColour(shading.SurfaceColour, shading.Transparency);
+                        //srl set diffuse and ambient as the same value to avoid null diffuse colours, in 3D rendering Ambient and diffuse material colours are usually identical.
+                        AmbientColour = DiffuseColour = new RgbaColour(shading.SurfaceColour, shading.Transparency);
                     }
                     else if (surfaceStyle is IIfcSurfaceStyleLighting)
                     {
