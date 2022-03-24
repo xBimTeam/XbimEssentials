@@ -234,14 +234,14 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(mat2.Name.ToString().EndsWith(@"\"), "String ending in escaped backslash is not parsed correctly");
 
                 var acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[419];
-                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "String with \\X escaping is not parsed correctly");
                 acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[420];
-                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "String with \\X2 escaping is not parsed correctly");
                 acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[421];
-                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "String with \\X4 escaping is not parsed correctly");
 
                 var beam = (IfcBeam)store.Instances[432];
-                Assert.IsNotNull(beam, "element after double backslash is not read correctly");
+                Assert.IsNotNull(beam, "element after escaped strings is not read correctly");
 
                 store.Close();
             }
@@ -762,6 +762,7 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        [Ignore("We removed the ability to read illegal step files in order to read legal files with the \"\\S\\'\" sequence, that would otherwise be parsed by the normal backslash,S,backslash sequence, causing an early closure of the string when hitting the \"'\".")]
         public void EncodeBackslash()
         {
             const string path = "C:\\Data\\Martin\\document.txt";
