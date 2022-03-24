@@ -263,6 +263,16 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestMethod]
+        public void CanParseSpecicalSolidusEscape()
+        {
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
+            {
+                var errCount = model.LoadStep21("TestFiles\\SpecicalSolidusEscape.ifc");
+                Assert.AreEqual(0, errCount);
+            }
+        }
+
 
         [TestMethod]
         public void IfcOpenIfcZipTest()
