@@ -16,14 +16,14 @@
     <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net60'">
     <!-- New Microsoft.Database.ManagedEsent is not signed -->
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net47' ">
     <PackageReference Include="ManagedEsent" Version="1.9.4" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net60'">
     <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.1" />
   </ItemGroup>
 
