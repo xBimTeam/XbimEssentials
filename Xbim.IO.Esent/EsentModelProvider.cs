@@ -189,12 +189,10 @@ namespace Xbim.IO.Esent
                 var fullTargetPath = Path.GetFullPath(fileName);
                 if (string.Compare(fullSourcePath, fullTargetPath, StringComparison.OrdinalIgnoreCase) == 0)
                     return; // do nothing - don't save on top of self
+                // esent to esent copy
+                esentModel.SaveAs(fileName);
+                return;
             }
-            else
-            {
-                throw new ArgumentOutOfRangeException("EsentModelProvider only supports EsentModel");
-            }
-
             // Create a new Esent model for this Model => Model copy
             var factory = GetFactory(model.SchemaVersion);
             using (var esentDb = new EsentModel(factory))
