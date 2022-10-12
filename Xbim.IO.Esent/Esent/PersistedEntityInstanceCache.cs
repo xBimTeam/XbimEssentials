@@ -952,6 +952,7 @@ namespace Xbim.IO.Esent
             return CountOf(typeof(TIfcType));
 
         }
+
         /// <summary>
         /// returns the number of instances of the specified type and its sub types
         /// </summary>
@@ -962,48 +963,55 @@ namespace Xbim.IO.Esent
             var entityLabels = new HashSet<int>();
             var expressType = Model.Metadata.ExpressType(theType);
             var entityTable = GetEntityTable();
-            var typeIds = new HashSet<short>();
-            //get all the type ids we are going to check for
-            foreach (var t in expressType.NonAbstractSubTypes)
-                typeIds.Add(t.TypeId);
+            var unindexedTypeIds = new HashSet<short>();
+
+            var typesToSearch = expressType != null ?
+                                expressType.NonAbstractSubTypes :
+                                Model.Metadata.TypesImplementing(theType);
             try
             {
-
                 XbimInstanceHandle ih;
-                if (expressType.IndexedClass)
+
+                foreach (var type in typesToSearch)
                 {
-                    foreach (var typeId in typeIds)
+                    if (!type.IndexedClass)
                     {
-                        if (entityTable.TrySeekEntityType(typeId, out ih))
+                        unindexedTypeIds.Add(type.TypeId);
+                        continue;
+                    }
+
+                    if (entityTable.TrySeekEntityType(type.TypeId, out ih))
+                    {
+                        do
                         {
-                            do
-                            {
-                                entityLabels.Add(ih.EntityLabel);
-                            } while (entityTable.TryMoveNextEntityType(out ih));
-                        }
+                            entityLabels.Add(ih.EntityLabel);
+                        } while (entityTable.TryMoveNextEntityType(out ih));
                     }
                 }
-                else
+
+                //unindexed types
+                entityTable.MoveBeforeFirst();
+                while (entityTable.TryMoveNext())
                 {
-                    entityTable.MoveBeforeFirst();
-                    while (entityTable.TryMoveNext())
-                    {
-                        ih = entityTable.GetInstanceHandle();
-                        if (typeIds.Contains(ih.EntityTypeId))
-                            entityLabels.Add(ih.EntityLabel);
-                    }
+                    ih = entityTable.GetInstanceHandle();
+                    if (unindexedTypeIds.Contains(ih.EntityTypeId))
+                        entityLabels.Add(ih.EntityLabel);
+                }
+
+                if (_caching) //look in the createdNew cache and find the new ones only
+                {
+                    //IsAssignableFrom is used instead of type equality checking to collect newly created instances 
+                    //of the child types of the type under counting.
+                    foreach (var entity in CreatedNew.Where(m => theType.IsAssignableFrom(m.Value.GetType())))
+                        entityLabels.Add(entity.Key);
+
                 }
             }
             finally
             {
                 FreeTable(entityTable);
             }
-            if (_caching) //look in the createdNew cache and find the new ones only
-            {
-                foreach (var entity in CreatedNew.Where(m => m.Value.GetType() == theType))
-                    entityLabels.Add(entity.Key);
 
-            }
             return entityLabels.Count;
         }
 
