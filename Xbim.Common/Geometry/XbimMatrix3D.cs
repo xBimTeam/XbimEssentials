@@ -454,7 +454,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(_m21, _m22, _m23);
+                return new XbimVector3D(M21, M22, M23);
             }
         }
 
@@ -463,7 +463,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(-_m21, -_m22,-_m23);
+                return new XbimVector3D(-M21, -M22,-M23);
             }
         }
 
@@ -472,7 +472,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(_m11, _m12, _m13);
+                return new XbimVector3D(M11, M12, M13);
             }
         }
 
@@ -481,7 +481,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(-_m11, -_m12, -_m13);
+                return new XbimVector3D(-M11, -M12, -M13);
             }
         }
 
@@ -490,7 +490,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(-_m31, -_m32, -_m33);
+                return new XbimVector3D(-M31, -M32, -M33);
             }
         }
 
@@ -499,7 +499,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(_m31, _m32, _m33);
+                return new XbimVector3D(M31, M32, M33);
             }
         }
 

@@ -30,6 +30,38 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        public void MatrixTests()
+        {
+            var m = new XbimMatrix3D();
+
+            Assert.AreEqual(XbimMatrix3D.Identity.Up, m.Up, "Uninitialised matrix Up vector is equal to identity's.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Right, m.Right, "Uninitialised matrix Right vector is equal to identity's.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Forward, m.Forward, "Uninitialised matrix Forward vector is equal to identity's.");
+
+            var _ = m.M21; // randomly accessing on of matrix' elements
+
+            // Vectors assertions should pass
+            Assert.AreEqual(XbimMatrix3D.Identity.Up, m.Up, "Up vector is equal to identity's after matrix' cell access.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Right, m.Right, "Right vector is equal to identity's after matrix' cell access.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Forward, m.Forward, "Forward vector is equal to identity's after matrix' cell access.");
+
+
+            m = new XbimMatrix3D(XbimVector3D.Zero);
+
+            Assert.AreEqual(XbimMatrix3D.Identity.Up, m.Up, "Matrix initialized with Zero vector - Up vector is equal to identity's.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Right, m.Right, "Matrix initialized with Zero vector - Right vector is equal to identity's.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Forward, m.Forward, "Matrix initialized with Zero vector - Forward vector is equal to identity's.");
+
+            _ = m.M21;
+
+            Assert.AreEqual(XbimMatrix3D.Identity.Up, m.Up, "Up vector is equal to identity's after matrix' cell access.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Right, m.Right, "Right vector is equal to identity's after matrix' cell access.");
+            Assert.AreEqual(XbimMatrix3D.Identity.Forward, m.Forward, "Forward vector is equal to identity's after matrix' cell access.");
+
+
+        }
+
+        [TestMethod]
         public void PackedNormalTests()
         {
             var vectors = (List<XbimVector3D>)UniformPointsOnSphere(100);
