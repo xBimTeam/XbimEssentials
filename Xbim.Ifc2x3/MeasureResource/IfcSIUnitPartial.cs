@@ -186,7 +186,7 @@ namespace Xbim.Ifc2x3.MeasureResource
                             prefix = "m";
                             break;
 						case IfcSIPrefix.MICRO:
-							prefix = "µ";
+							prefix = "\u00B5";
 							break;
 						case IfcSIPrefix.NANO:
 							prefix = "n";

@@ -860,7 +860,8 @@ namespace Xbim.Essentials.Tests
         {
             internal readonly Stream inner;
             internal const long offset = int.MaxValue;
-            private const string line = "                                                                                                    \r\n";
+            private static readonly byte[] line = "                                                                                                    \r\n"
+                .Select(c => Convert.ToByte(c)).ToArray();
 
             public LargeStream(Stream stream)
             {
@@ -893,7 +894,7 @@ namespace Xbim.Essentials.Tests
                 if ((Position + count) < offset)
                 {
                     for (int i = 0; i < count; i++)
-                        buffer[bufferOffset + i] = (byte)line[(int)((Position + i) % line.Length)];
+                        buffer[bufferOffset + i] = line[((Position + i) % line.Length)];
 
                     Position += count;
                     return count;
