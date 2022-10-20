@@ -187,3 +187,34 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts'
     
+  # generate docs 
+
+- powershell: |
+    choco install docfx -y
+    docfx docs/docfx.json
+    if ($lastexitcode -ne 0){
+      throw ("Error generating document")
+    }
+  displayName: "Documentation"
+
+- powershell: |
+    git clone https://github.com/xBimTeam/XbimDocs --branch gh-pages
+    git -C XbimDocs rm -r *
+  displayName: "Clone Documentation Repo"
+
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)\\docs\\_build'
+    Contents: |
+      **
+    TargetFolder: '$(System.DefaultWorkingDirectory)\\XbimDocs'
+    flattenFolders: false
+    OverWrite: true
+
+    
+- powershell: | 
+    git -C XbimDocs add .
+    git -C XbimDocs commit -m 'docs for version $(packageversion)'
+    git push
+  displayName: "Update Documentation"
