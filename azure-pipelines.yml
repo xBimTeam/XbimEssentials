@@ -15,7 +15,7 @@ trigger:
     - CONTRIBUTING.md
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'windows-2022'
 
 variables:
   buildConfiguration: 'Release'
@@ -53,7 +53,7 @@ steps:
   displayName: 'Setting Prerelease FileVersion'
   condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
 
-- task: NuGetToolInstaller@0
+- task: NuGetToolInstaller@1
   displayName: 'Install Nuget'
 
 # Version .NET Core project files

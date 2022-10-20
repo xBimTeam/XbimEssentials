@@ -1,0 +1,44 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition [CoordinationView_V2.0]'),'2;1');
+FILE_NAME('SpecicalSolidusEscape.ifc','2022-03-08T16:27:07',('Undefined'),('Undefined'),'BricsCAD BIM 22.1.07','BricsCAD BIM 22.1.07','Undefined');
+FILE_SCHEMA(('IFC2X3'));
+ENDSEC;
+DATA;
+/*
+Parsing examples taken from http://www.steptools.com/stds/step/IS_final_p21e3.html#table-1 
+*/
+#1001= IFCGROUP('1dRtMiqobDPxJ8$qkzVL8Y',#2,'Don''t',$,$);
+#1002= IFCGROUP('1dRtMiqobDPxJ8$qkzVL8Y',#2,'''',$,$);
+#1003= IFCGROUP('1dRtMiqobDPxJ8$qkzVL8Y',#2,'',$,$);
+#1004= IFCGROUP('1dRtMiqobDPxJ8$qkzVL8Y',#2,'\S\Drger',$,$);
+#1005= IFCGROUP('1dRtMiqobDPxJ8$qkzVL8Y',#2,'h\S\ttel',$,$);
+/*
+The following string is valid and should end with character ascii decimal 167 or &ordm; (apostrophe is 39 + 128 = 167)
+*/
+#1006= IFCGROUP('1dRtMiqobDPxJ8$qkzVL8Y',#2002,'This string ends with as special case of solidus escape \S\'',$,$);
+#1= IFCPROJECT('1jGbPpJ1n4Cu8Ys_62_fVU',#2,'NL210601MF-01',$,$,$,$,(#7),#13);
+#2= IFCOWNERHISTORY(#3,#6,$,.NOCHANGE.,$,$,$,0);
+#2002= IFCOWNERHISTORY(#3,#6,$,.NOCHANGE.,$,$,$,0);
+#7= IFCGEOMETRICREPRESENTATIONCONTEXT($,'Model',3,1.000000000000000E-05,#8,#12);
+#13= IFCUNITASSIGNMENT((#14,#18,#19,#20,#21,#22));
+#3= IFCPERSONANDORGANIZATION(#4,#5,$);
+#6= IFCAPPLICATION(#5,'V22','BricsCAD BIM','Bcad');
+#8= IFCAXIS2PLACEMENT3D(#9,#10,#11);
+#12= IFCDIRECTION((1.,0.));
+#14= IFCCONVERSIONBASEDUNIT(#15,.LENGTHUNIT.,'unknown',#16);
+#18= IFCSIUNIT(*,.AREAUNIT.,$,.SQUARE_METRE.);
+#19= IFCSIUNIT(*,.VOLUMEUNIT.,$,.CUBIC_METRE.);
+#20= IFCSIUNIT(*,.PLANEANGLEUNIT.,$,.RADIAN.);
+#21= IFCSIUNIT(*,.TIMEUNIT.,$,.SECOND.);
+#22= IFCSIUNIT(*,.MASSUNIT.,$,.GRAM.);
+#4= IFCPERSON($,$,'Bricsys',$,$,$,$,$);
+#5= IFCORGANIZATION($,'Bricsys',$,$,$);
+#9= IFCCARTESIANPOINT((0.,0.,0.));
+#10= IFCDIRECTION((0.,0.,1.));
+#11= IFCDIRECTION((1.,0.,0.));
+#15= IFCDIMENSIONALEXPONENTS(1,0,0,0,0,0,0);
+#16= IFCMEASUREWITHUNIT(IFCLENGTHMEASURE(1.),#17);
+#17= IFCSIUNIT(*,.LENGTHUNIT.,$,.METRE.);
+ENDSEC;
+END-ISO-10303-21;

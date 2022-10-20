@@ -117,14 +117,17 @@ namespace Xbim.Ifc4
                             else
                                 SpecularColour = AmbientColour*(IfcNormalisedRatioMeasure) rendering.SpecularColour;
                         }
-                        if (rendering.SpecularHighlight is IfcSpecularExponent)
-                            SpecularShininess = (IfcSpecularExponent) rendering.SpecularHighlight;
-                        else
+                        if(rendering.SpecularHighlight == null)
                             SpecularShininess = 0;
+                        else if (rendering.SpecularHighlight.GetType().Name == "IfcSpecularExponent")
+                            SpecularShininess = (float)(double)(rendering.SpecularHighlight.Value) / 255;//correction for Revit using SpecularExponent
+                        else
+                            SpecularShininess = (float)(double)(rendering.SpecularHighlight.Value);
                     }
                     else if (shading != null)
                     {
-                        AmbientColour = new RgbaColour(shading.SurfaceColour, shading.Transparency);
+                        //srl set diffuse and ambient as the same value to avoid null diffuse colours, in 3D rendering Ambient and diffuse material colours are usually identical.
+                        AmbientColour = DiffuseColour = new RgbaColour(shading.SurfaceColour, shading.Transparency);
                     }
                     else if (surfaceStyle is IIfcSurfaceStyleLighting)
                     {

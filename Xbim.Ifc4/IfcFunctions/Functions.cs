@@ -731,11 +731,11 @@ namespace Xbim.Ifc4
         internal static bool IfcCorrectDimensions(IfcUnitEnum unitType, IfcDimensionalExponents dimensions)
         {
             var val = NullableIfcCorrectDimensions(unitType, dimensions);
-            if (!val.HasValue)
+            if (!val.HasValue && unitType != IfcUnitEnum.USERDEFINED)
             {
                 throw new ArgumentException("Undetermined value in where clause.");
             }
-            return val.Value;
+            return val ?? true;
         }
 
         private static bool? NullableIfcCorrectDimensions(IfcUnitEnum m, IfcDimensionalExponents Dim)

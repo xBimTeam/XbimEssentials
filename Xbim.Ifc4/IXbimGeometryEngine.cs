@@ -160,5 +160,7 @@ namespace Xbim.Ifc4.Interfaces
 
         IXbimGeometryObject FromBrep(string brepStr);
         string ToBrep(IXbimGeometryObject geometryObject);
+        void WriteBrep(string filename, IXbimGeometryObject geomObj);
+        IXbimGeometryObject ReadBrep(string filename);
     }
 }

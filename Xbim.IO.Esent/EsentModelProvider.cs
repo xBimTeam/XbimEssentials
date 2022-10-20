@@ -61,7 +61,8 @@ namespace Xbim.IO.Esent
             var schemaIdentifier = string.Join(", ", schemas);
             foreach (var schema in schemas)
             {
-                if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0 ||
+                    schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                     return XbimSchemaVersion.Ifc4;
                 if (string.Compare(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase) == 0)
                     return XbimSchemaVersion.Ifc4x1;
@@ -188,12 +189,10 @@ namespace Xbim.IO.Esent
                 var fullTargetPath = Path.GetFullPath(fileName);
                 if (string.Compare(fullSourcePath, fullTargetPath, StringComparison.OrdinalIgnoreCase) == 0)
                     return; // do nothing - don't save on top of self
+                // esent to esent copy
+                esentModel.SaveAs(fileName);
+                return;
             }
-            else
-            {
-                throw new ArgumentOutOfRangeException("EsentModelProvider only supports EsentModel");
-            }
-
             // Create a new Esent model for this Model => Model copy
             var factory = GetFactory(model.SchemaVersion);
             using (var esentDb = new EsentModel(factory))

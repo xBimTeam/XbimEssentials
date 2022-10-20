@@ -21,7 +21,7 @@ namespace Xbim.Ifc4
             Red = colour.Red;
             Green = colour.Green;
             Blue = colour.Blue;
-            Alpha = 1.0 - transparency??0; //ifc use 0 for opaqu and 1 for transparent
+            Alpha = 1.0 - (transparency ?? 0.0); //ifc use 0 for opaqu and 1 for transparent
         }
 
         public double Red { get; set; }
@@ -32,7 +32,7 @@ namespace Xbim.Ifc4
         static RgbaColour() { Empty=new RgbaColour();}
         public static RgbaColour operator *(RgbaColour rgba, double ratio)
         {
-            return new RgbaColour(rgba.Red*ratio, rgba.Green * ratio, rgba.Blue * ratio,rgba.Alpha);
+            return new RgbaColour(rgba.Red*ratio, rgba.Green * ratio, rgba.Blue * ratio, rgba.Alpha);
         }
     }
 }

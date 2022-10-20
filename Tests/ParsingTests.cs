@@ -234,14 +234,14 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(mat2.Name.ToString().EndsWith(@"\"), "String ending in escaped backslash is not parsed correctly");
 
                 var acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[419];
-                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "String with \\X escaping is not parsed correctly");
                 acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[420];
-                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "String with \\X2 escaping is not parsed correctly");
                 acc = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[421];
-                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "Text with accented character is not parsed correctly");
+                Assert.IsTrue(acc.Name.ToString().EndsWith("à"), "String with \\X4 escaping is not parsed correctly");
 
                 var beam = (IfcBeam)store.Instances[432];
-                Assert.IsNotNull(beam, "element after double backslash is not read correctly");
+                Assert.IsNotNull(beam, "element after escaped strings is not read correctly");
 
                 store.Close();
             }
@@ -260,6 +260,16 @@ namespace Xbim.Essentials.Tests
             {
                 var errCount = model.CreateFrom("TestFiles\\NewlinesInStrings.ifc");
                 Assert.AreEqual(true, errCount);
+            }
+        }
+
+        [TestMethod]
+        public void CanParseSpecicalSolidusEscape()
+        {
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
+            {
+                var errCount = model.LoadStep21("TestFiles\\SpecicalSolidusEscape.ifc");
+                Assert.AreEqual(0, errCount);
             }
         }
 
@@ -752,6 +762,7 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        [Ignore("We removed the ability to read illegal step files in order to read legal files with the \"\\S\\'\" sequence, that would otherwise be parsed by the normal backslash,S,backslash sequence, causing an early closure of the string when hitting the \"'\".")]
         public void EncodeBackslash()
         {
             const string path = "C:\\Data\\Martin\\document.txt";
@@ -795,6 +806,150 @@ namespace Xbim.Essentials.Tests
             {
                 var errCount = model.CreateFrom("TestFiles\\ifc2x3_final_wall.ifc");
                 Assert.AreEqual(true, errCount);
+            }
+        }
+
+        [TestMethod]
+        // this is a meta tast of the large stream mock-up
+        public void LargeStreamTest()
+        {
+            using (var stream = File.OpenRead("TestFiles\\ifc2x3_final_wall.ifc"))
+            using (var data = new LargeStream(stream))
+            {
+                data.Position = LargeStream.offset;
+                var buffer = new byte[stream.Length + 100];
+                var read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(stream.Length, read);
+                Assert.AreEqual((byte)'I', buffer[0]);
+
+                data.Position = LargeStream.offset - 100;
+                buffer = new byte[stream.Length + 100];
+                read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(stream.Length + 100, read);
+                Assert.AreEqual((byte)' ', buffer[99]);
+                Assert.AreEqual((byte)'I', buffer[100]);
+
+                data.Position = data.Length - 1;
+                buffer = new byte[1000000];
+                read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(1, read);
+                read = data.Read(buffer, 0, buffer.Length);
+                Assert.AreEqual(0, read);
+            }
+        }
+
+        [TestMethod]
+        public void ParsingLargeFile()
+        {
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
+            {
+                using (var stream = File.OpenRead("TestFiles\\ifc2x3_final_wall.ifc"))
+                using (var data = new LargeStream(stream))
+                {
+                    var errCount = model.LoadStep21(data, data.Length);
+                    Assert.AreEqual(0, errCount);
+                    Assert.AreEqual(1, model.Instances.OfType<Ifc2x3.SharedBldgElements.IfcWallStandardCase>().Count());
+                }
+            }
+        }
+
+        /// <summary>
+        /// This class pretends that it is a large stream but first int.MaxValue bytes are just white spaces
+        /// </summary>
+        private class LargeStream : Stream
+        {
+            internal readonly Stream inner;
+            internal const long offset = int.MaxValue;
+            private static readonly byte[] line = "                                                                                                    \r\n"
+                .Select(c => Convert.ToByte(c)).ToArray();
+
+            public LargeStream(Stream stream)
+            {
+                inner = stream;
+            }
+
+            public override bool CanRead => true;
+
+            public override bool CanSeek => false;
+
+            public override bool CanWrite => false;
+
+            public override long Length => offset + inner.Length;
+
+            public override long Position { get; set; }
+
+            public override void Flush()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override int Read(byte[] buffer, int bufferOffset, int count)
+            {
+                // adjust count to length
+                count = (int)Math.Min(count, Length - Position);
+                if (count == 0)
+                    return count;
+
+                // all in offset
+                if ((Position + count) < offset)
+                {
+                    for (int i = 0; i < count; i++)
+                        buffer[bufferOffset + i] = line[((Position + i) % line.Length)];
+
+                    Position += count;
+                    return count;
+                }
+
+                // all in actual data
+                if (Position >= offset)
+                {
+                    var position = Position - offset;
+                    if (position != inner.Position)
+                        inner.Seek(position, SeekOrigin.Begin);
+
+                    Position += count;
+                    return inner.Read(buffer, bufferOffset, count);
+                }
+
+                // overlap
+                { 
+                    var spaceCount = (int)(offset - Position);
+                    int idx = 0;
+                    for (; idx < spaceCount; idx++)
+                        buffer[bufferOffset + idx] = (byte)' ';
+                    var dataCount = count - spaceCount;
+                    
+                    // adjust
+                    var position = Position - offset + spaceCount;
+                    if (position != inner.Position)
+                        inner.Seek(position, SeekOrigin.Begin);
+                    dataCount = inner.Read(buffer, spaceCount, dataCount);
+
+                    Position += count;
+                    return count;
+                }
+            }
+
+            public override long Seek(long offset, SeekOrigin origin)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void SetLength(long value)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                inner.Dispose();
+
+                base.Dispose(disposing);
             }
         }
     }

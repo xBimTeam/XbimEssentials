@@ -477,10 +477,11 @@ namespace Xbim.Common.Model
                 else
                 {
                     var msg = $"Error in file at label {label} for type {name}.";
-                    if (Metadata.ExpressType(name).Type.GetTypeInfo().IsAbstract)
-                    {
+                    var expressType = Metadata.ExpressType(name);
+                    if (expressType == null)
+                        msg = string.Format("Illegal element in file; cannot find type {0} at label {1}.", name, label);
+                    else if (expressType.Type.GetTypeInfo().IsAbstract)
                         msg = string.Format("Illegal element in file; cannot instantiate the abstract type {0} at label {1}.", name, label);
-                    }
                     Logger?.LogError(msg);
                 }
 
@@ -527,7 +528,7 @@ namespace Xbim.Common.Model
                 if (sid == null)
                 {
                     //add in a bit of flexibility for old Ifc models with weird schema names
-                    var old2xSchemaNamesThatAreOK = new[] { "IFC2X_FINAL", "IFC2X2_FINAL", "IFC2X2" };
+                    var old2xSchemaNamesThatAreOK = new[] { "IFC2X_FINAL", "IFC2X2_FINAL", "IFC2X2", "IFC2X4_RC3" };
                     if(old2xSchemaNamesThatAreOK.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase))==null)
                         throw new XbimParserException("Mismatch between schema defined in the file and schemas available in the data model.");
                     else

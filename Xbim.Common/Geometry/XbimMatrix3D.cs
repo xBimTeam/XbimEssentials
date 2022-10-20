@@ -454,7 +454,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(_m21, _m22, _m23);
+                return new XbimVector3D(M21, M22, M23);
             }
         }
 
@@ -463,7 +463,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(-_m21, -_m22,-_m23);
+                return new XbimVector3D(-M21, -M22,-M23);
             }
         }
 
@@ -472,7 +472,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(_m11, _m12, _m13);
+                return new XbimVector3D(M11, M12, M13);
             }
         }
 
@@ -481,7 +481,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(-_m11, -_m12, -_m13);
+                return new XbimVector3D(-M11, -M12, -M13);
             }
         }
 
@@ -490,7 +490,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(-_m31, -_m32, -_m33);
+                return new XbimVector3D(-M31, -M32, -M33);
             }
         }
 
@@ -499,7 +499,7 @@ namespace Xbim.Common.Geometry
         {
             get
             {
-                return new XbimVector3D(_m31, _m32, _m33);
+                return new XbimVector3D(M31, M32, M33);
             }
         }
 
@@ -589,6 +589,141 @@ namespace Xbim.Common.Geometry
                   m.OffsetX , m.OffsetY , m.OffsetZ , m.M44);
         }
 
+        // Two CreateRotation functions below are adapted from the implementation of getRotation in
+        // the VisualizationLibrary SDK (sources at http://visualizationlibrary.org/ )
+
+        /// <summary>
+        /// Creates a rotation matrix converting from a starting direction to a desired direction.
+        /// </summary>
+        /// <param name="fromDirection">Starting direction</param>
+        /// <param name="toDirection">Desired direction</param>
+        /// <returns>the matrix that applied to <see paramref="fromDirection"/> results in <see paramref="toDirection"/></returns>
+        public static XbimMatrix3D CreateRotation(XbimPoint3D fromDirection, XbimPoint3D toDirection)
+        {
+            var a = new XbimVector3D(toDirection.X, toDirection.Y, toDirection.Z);
+            var b = new XbimVector3D(fromDirection.X, fromDirection.Y, fromDirection.Z);
+            a = a.Normalized();
+            b = b.Normalized();
+
+            double cosa = a.DotProduct(b);
+            cosa = clamp(cosa, -1, +1);
+
+            var axis = XbimVector3D.CrossProduct(a, b).Normalized();
+            double alpha = Math.Acos(cosa);
+            return CreateRotation(alpha, axis);
+        }
+
+        static double clamp(double x, double minval, double maxval)
+        {
+            return Math.Min(Math.Max(x, minval), maxval);
+        }
+
+        private static XbimMatrix3D CreateRotation(double angle, XbimVector3D axis)
+        {
+            XbimMatrix3D ret = XbimMatrix3D.Identity;
+
+            if (angle == 0 || (axis.X == 0 && axis.Y == 0 && axis.Z == 0))
+                return ret;
+            double xx, yy, zz, xy, yz, zx, xs, ys, zs, one_c, s, c;
+
+            s = Math.Sin(angle);
+            c = Math.Cos(angle);
+
+            double x = axis.X;
+            double y = axis.Y;
+            double z = axis.Z;
+
+            // simple cases
+            if (x == 0)
+            {
+                if (y == 0)
+                {
+                    if (z != 0)
+                    {
+                        // rotate only around z-axis
+                        ret.M11 = c;
+                        ret.M22 = c;
+                        if (z < 0)
+                        {
+                            ret.M21 = -s;
+                            ret.M12 = s;
+                        }
+                        else
+                        {
+                            ret.M21 = s;
+                            ret.M12 = -s;
+                        }
+                        return ret;
+                    }
+                }
+                else if (z == 0)
+                {
+                    // rotate only around y-axis
+                    ret.M11 = c;
+                    ret.M33 = c;
+                    if (y < 0)
+                    {
+                        ret.M31 = s;
+                        ret.M13 = -s;
+                    }
+                    else
+                    {
+                        ret.M31 = -s;
+                        ret.M13 = s;
+                    }
+                    return ret;
+                }
+            }
+            else if (y == 0)
+            {
+                if (z == 0)
+                {
+                    // rotate only around x-axis
+                    ret.M22 = c;
+                    ret.M33 = c;
+                    if (x < 0)
+                    {
+                        ret.M32 = -s;
+                        ret.M23 = s;
+                    }
+                    else
+                    {
+                        ret.M32 = s;
+                        ret.M23 = -s;
+                    }
+                    return ret;
+                }
+            }
+
+            // Beginning of general axisa to matrix conversion
+            var dot = x * x + y * y + z * z;
+
+            if (dot > 1.0001 || dot < 0.99999)
+            {
+                var mag = Math.Sqrt(dot);
+                x /= mag;
+                y /= mag;
+                z /= mag;
+            }
+
+            xx = x * x;
+            yy = y * y;
+            zz = z * z;
+            xy = x * y;
+            yz = y * z;
+            zx = z * x;
+            xs = x * s;
+            ys = y * s;
+            zs = z * s;
+            one_c = 1 - c;
+
+            ret.M11 = ((one_c * xx) + c); ret.M21 = ((one_c * xy) + zs); ret.M31 = ((one_c * zx) - ys);
+            ret.M12 = ((one_c * xy) - zs); ret.M22 = ((one_c * yy) + c); ret.M32 = ((one_c * yz) + xs);
+            ret.M13 = ((one_c * zx) + ys); ret.M23 = ((one_c * yz) - xs); ret.M33 = ((one_c * zz) + c);
+            return ret;
+        }
+
+
 
         /// <summary>
         /// Creates a 3D scaling matrix.
@@ -635,14 +770,16 @@ namespace Xbim.Common.Geometry
             return result;
         }
 
-        // Microsoft.Xna.Framework.Matrix
+        /// <summary>
+        /// Creates a matrix projecting points onto a plane by passing a camera position, target and up vector.
+        /// </summary>
         public static XbimMatrix3D CreateLookAt(XbimVector3D cameraPosition, XbimVector3D cameraTarget, XbimVector3D cameraUpVector)
         {
             // prepare vectors
             XbimVector3D vector = cameraPosition - cameraTarget;
-            vector.Normalized();
+            vector = vector.Normalized();
             XbimVector3D vector2 = XbimVector3D.CrossProduct(cameraUpVector, vector);
-            vector2.Normalized();
+            vector2 = vector2.Normalized();
             XbimVector3D vector3 = XbimVector3D.CrossProduct(vector, vector2);
 
             // prepare matrix

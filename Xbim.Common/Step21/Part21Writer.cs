@@ -167,12 +167,15 @@ namespace Xbim.IO.Step21
         /// <param name="entity">The entity to write</param>
         /// <param name="metadata"></param>
         /// <param name="map"></param>
-        public static void WriteEntity(IPersistEntity entity, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null)
+        /// <param name="writeEntityLabelAndType">Onits the #EntityLabel=IfcType part of the declaration</param>
+        public static void WriteEntity(IPersistEntity entity, TextWriter output, ExpressMetaData metadata, IDictionary<int, int> map = null, bool writeEntityLabelAndType = true)
         {
             var expressType = metadata.ExpressType(entity);
             if (map != null && map.Keys.Contains(entity.EntityLabel)) return; //if the entity is replaced in the map do not write it
-            output.Write("#{0}={1}(", entity.EntityLabel, expressType.ExpressNameUpper);
-
+            if(writeEntityLabelAndType)
+                output.Write("#{0}={1}(", entity.EntityLabel, expressType.ExpressNameUpper);
+            else
+                output.Write("(");
             var first = true;
 
             foreach (var ifcProperty in expressType.Properties.Values)
