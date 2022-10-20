@@ -3,21 +3,21 @@ using System.Linq;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
+using Xbim.IO.Esent;
 
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
     public class IfcStoreTests
     {
-
         [TestMethod]
         public void UseEsentModelProvider_DifferentCounts_ShouldBeConsistent()
         {
             var file = "TestFiles\\CountTestsModel.ifc";
-
-            IfcStore.ModelProviderFactory.UseEsentModelProvider();
-            var model = IfcStore.Open(file);
+            EsentModelProvider provider = new EsentModelProvider();
+            var model = provider.Open(file, Common.Step21.XbimSchemaVersion.Ifc2X3); ;
             long countInsideTransactionAfterNewWall;
+
             using (var t = model.BeginTransaction("Hello Test"))
             {
 
@@ -34,9 +34,6 @@ namespace Xbim.Essentials.Tests
 
             Assert.AreEqual(countOfAfterCommiting, countInsideTransactionAfterNewWall, "Count after creation should be count after commiting using CountOf.");
             Assert.AreEqual(countOfAfterCommiting, ofTypeCountAfterCommiting, "Count after creation should be count after commiting counting the result of OfType.");
-
-
         }
-
     }
 }
