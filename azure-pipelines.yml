@@ -196,18 +196,18 @@ steps:
       throw ("Error generating document")
     }
   displayName: 'Generate Documentation'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 - powershell: |
     git clone https://github.com/xBimTeam/XbimDocs --branch gh-pages
     git -C XbimDocs rm -r *
   displayName: 'Clone Documentation Repository'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 
 - task: CopyFiles@2
   displayName: 'Copy generated docs to repo'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)\\docs\\_build'
     Contents: |
@@ -224,4 +224,4 @@ steps:
     git -C XbimDocs commit -m 'new docs generated'
     git push origin gh-pages
   displayName: 'Puplish new docs'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
