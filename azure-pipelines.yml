@@ -187,7 +187,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts'
     
-  # generate docs 
+  # Generate docs and push them to the documentation repo
 
 - powershell: |
     choco install docfx -y
@@ -195,15 +195,19 @@ steps:
     if ($lastexitcode -ne 0){
       throw ("Error generating document")
     }
-  displayName: "Documentation"
+  displayName: 'Generate Documentation'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 - powershell: |
     git clone https://github.com/xBimTeam/XbimDocs --branch gh-pages
     git -C XbimDocs rm -r *
-  displayName: "Clone Documentation Repo"
+  displayName: 'Clone Documentation Repository'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
 
 - task: CopyFiles@2
+  displayName: 'Copy generated docs to repo'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)\\docs\\_build'
     Contents: |
@@ -214,7 +218,10 @@ steps:
 
     
 - powershell: | 
+    Remove-Item XbimDocs/favicon.ico
+    Remove-Item XbimDocs/logo.svg
     git -C XbimDocs add .
-    git -C XbimDocs commit -m 'docs for version $(packageversion)'
-    git push
-  displayName: "Update Documentation"
+    git -C XbimDocs commit -m 'new docs generated'
+    git push origin gh-pages
+  displayName: 'Puplish new docs'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
