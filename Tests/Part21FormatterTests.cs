@@ -14,7 +14,7 @@ namespace Xbim.Essentials.Tests
     {
         public static string fmt = "R";
         //public static string fmt = "G";
-        //public static string fmt = "G17";
+        public static string g17Fmt = "G17";
 
         [TestMethod]
         public void FormatDoubleScientificNotation()
@@ -68,7 +68,7 @@ namespace Xbim.Essentials.Tests
             // https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?view=netframework-4.8#the-general-g-format-specifier
             double arg = 0.84551240822557006;
 
-            string result = formatter.Format(fmt, arg, null);
+            string result = formatter.Format(g17Fmt, arg, null);
             string expected = "0.84551240822557006";
             Assert.AreEqual(expected, result, "Wrong conversion!");
         }
@@ -81,7 +81,7 @@ namespace Xbim.Essentials.Tests
             // https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?view=netframework-4.8#the-general-g-format-specifier
             double arg = 0.84551240822557006;
 
-            string result = formatter.Format(fmt, arg, null);
+            string result = formatter.Format(g17Fmt, arg, null);
             var roundTripDbl = double.Parse(result, new CultureInfo("en-US", false));
             Assert.AreEqual(arg, roundTripDbl, "Wrong conversion!");
         }
