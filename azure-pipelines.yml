@@ -201,6 +201,8 @@ steps:
 - powershell: |
     git clone https://github.com/xBimTeam/XbimDocs --branch gh-pages
     git -C XbimDocs rm -r *
+    git config --global user.email ""
+    git config --global user.name "$(Build.RequestedFor)"
   displayName: 'Clone Documentation Repository'
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
@@ -222,6 +224,6 @@ steps:
     Remove-Item XbimDocs/logo.svg
     git -C XbimDocs add .
     git -C XbimDocs commit -m 'new docs generated'
-    git push origin gh-pages
+    git -C XbimDocs push -u origin gh-pages
   displayName: 'Puplish new docs'
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
