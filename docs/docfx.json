@@ -119,6 +119,7 @@
           "toc.yml",
           "*.md",
           "documentation/**.md",
+          "geo-documentation/**.md",
           "documentation/**/toc.yml"
         ]
       }
