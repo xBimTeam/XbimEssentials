@@ -26,204 +26,203 @@ variables:
   
 
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(major).$(minor).$(buildNo)
+jobs:
+  - job: 'Build and Publish Essentials'
+    displayName: Web API Build and Artifact
+    steps:
 
-steps:
-# Windows script setting up  $(packageversion) of the nuget package based on branch
-# Master branch
-- script: |
-    echo ##vso[task.setvariable variable=packageversion]$(major).$(minor).$(buildNo)
-  displayName: 'Setting Master Nuget PackageVersion'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-- script: | 
-    echo ##vso[task.setvariable variable=packageversion]$(major).$(minor).$(buildNo)-$(Build.SourceBranchName)
-  displayName: 'Setting Prerelease Nuget PackageVersion'
-  condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+      - checkout: self
+        persistCredentials: true
+
+      # Windows script setting up  $(packageversion) of the nuget package based on branch
+      # Master branch
+      - script: |
+          echo ##vso[task.setvariable variable=packageversion]$(major).$(minor).$(buildNo)
+        displayName: 'Setting Master Nuget PackageVersion'
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+      - script: | 
+          echo ##vso[task.setvariable variable=packageversion]$(major).$(minor).$(buildNo)-$(Build.SourceBranchName)
+        displayName: 'Setting Prerelease Nuget PackageVersion'
+        condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
 
 
-# Windows script setting up $(fileversion) used to stamp AssemblyFileVersions. 
-# By convention we use 'Major.Minor.BuildNo.0' on Master and 'Major.Minor.0.BuildNo' on other branches
-# Master branch
-- script: | 
-    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).$(buildNo).0
-  displayName: 'Setting FileVersion'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-# Any other branch
-- script: | 
-    echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).0.$(buildNo)
-  displayName: 'Setting Prerelease FileVersion'
-  condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+      # Windows script setting up $(fileversion) used to stamp AssemblyFileVersions. 
+      # By convention we use 'Major.Minor.BuildNo.0' on Master and 'Major.Minor.0.BuildNo' on other branches
+      # Master branch
+      - script: | 
+          echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).$(buildNo).0
+        displayName: 'Setting FileVersion'
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+      # Any other branch
+      - script: | 
+          echo ##vso[task.setvariable variable=fileversion]$(major).$(minor).0.$(buildNo)
+        displayName: 'Setting Prerelease FileVersion'
+        condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
 
-- task: NuGetToolInstaller@1
-  displayName: 'Install Nuget'
+      - task: NuGetToolInstaller@1
+        displayName: 'Install Nuget'
 
-# Version .NET Core project files
-# Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
-# Based on https://github.com/rfennell/AzurePipelines/wiki/Version-Assemblies-and-Packages-Tasks-YAML#versiondotnetcoreassembliestask
-- task: VersionDotNetCoreAssemblies@2
-  displayName: 'Versioning netcore projects $(fileversion)'
-  inputs: 
-    # Required arguments
-    Path: $(Build.SourcesDirectory)
-    VersionNumber: $(fileversion)
-    VersionRegex: \d+\.\d+\.\d+\.\d+
-    FilenamePattern: .csproj
-    Field: FileVersion
-    OutputVersion: OutputedVersion
+      # Version .NET Core project files
+      # Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
+      # Based on https://github.com/rfennell/AzurePipelines/wiki/Version-Assemblies-and-Packages-Tasks-YAML#versiondotnetcoreassembliestask
+      - task: VersionDotNetCoreAssemblies@2
+        displayName: 'Versioning netcore projects $(fileversion)'
+        inputs: 
+          # Required arguments
+          Path: $(Build.SourcesDirectory)
+          VersionNumber: $(fileversion)
+          VersionRegex: \d+\.\d+\.\d+\.\d+
+          FilenamePattern: .csproj
+          Field: FileVersion
+          OutputVersion: OutputedVersion
 
-# Unit tests
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test $(buildConfiguration)'
-  inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+      # Unit tests
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet test $(buildConfiguration)'
+        inputs:
+          command: test
+          projects: '**/*Tests/*.csproj'
+          arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-# So we can pick up packages we build
-- script: nuget sources add -Name local -Source $(Build.BinariesDirectory)
-  displayName: 'Setting local nuget source'
+      # So we can pick up packages we build
+      - script: nuget sources add -Name local -Source $(Build.BinariesDirectory)
+        displayName: 'Setting local nuget source'
 
-# xBIM Common
-- script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
-  displayName: 'Xbim.Common - packing'
+      # xBIM Common
+      - script: dotnet pack Xbim.Common/Xbim.Common.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+        displayName: 'Xbim.Common - packing'
 
-# xBIM Ifc4
-- script: dotnet remove Xbim.Ifc4\Xbim.Ifc4.csproj reference ..\Xbim.Common\Xbim.Common.csproj
-  displayName: 'Xbim.IFC4 - remove project references'
+      # xBIM Ifc4
+      - script: dotnet remove Xbim.Ifc4\Xbim.Ifc4.csproj reference ..\Xbim.Common\Xbim.Common.csproj
+        displayName: 'Xbim.IFC4 - remove project references'
 
-- script: dotnet add Xbim.Ifc4\Xbim.Ifc4.csproj package Xbim.Common -s $(Build.BinariesDirectory) -v $(packageversion)
-  displayName: 'Xbim.IFC4 - adding package references'
+      - script: dotnet add Xbim.Ifc4\Xbim.Ifc4.csproj package Xbim.Common -s $(Build.BinariesDirectory) -v $(packageversion)
+        displayName: 'Xbim.IFC4 - adding package references'
 
-- script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
-  displayName: 'Xbim.IFC4 - packing'
+      - script: dotnet pack Xbim.Ifc4/Xbim.Ifc4.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+        displayName: 'Xbim.IFC4 - packing'
 
-# Ifc2x3
-- script: dotnet remove Xbim.Ifc2x3\Xbim.Ifc2x3.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
-  displayName: 'Xbim.IFC2x3 - remove project references'
+      # Ifc2x3
+      - script: dotnet remove Xbim.Ifc2x3\Xbim.Ifc2x3.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+        displayName: 'Xbim.IFC2x3 - remove project references'
 
-- script: dotnet add Xbim.Ifc2x3\Xbim.Ifc2x3.csproj package Xbim.Ifc4 -s $(Build.BinariesDirectory) -v $(packageversion)
-  displayName: 'Xbim.IFC2x3 - adding package references'
+      - script: dotnet add Xbim.Ifc2x3\Xbim.Ifc2x3.csproj package Xbim.Ifc4 -s $(Build.BinariesDirectory) -v $(packageversion)
+        displayName: 'Xbim.IFC2x3 - adding package references'
 
-- script: dotnet pack Xbim.Ifc2x3/Xbim.Ifc2x3.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
-  displayName: 'Xbim.IFC2x3 - packing'
+      - script: dotnet pack Xbim.Ifc2x3/Xbim.Ifc2x3.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+        displayName: 'Xbim.IFC2x3 - packing'
 
-# Memory Model
-- script: dotnet remove Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
-  displayName: 'Xbim.IO.MemoryModel - remove project references'
+      # Memory Model
+      - script: dotnet remove Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+        displayName: 'Xbim.IO.MemoryModel - remove project references'
 
-- script: dotnet add Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(packageversion)
-  displayName: 'Xbim.IO.MemoryModel - add package references'
+      - script: dotnet add Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(packageversion)
+        displayName: 'Xbim.IO.MemoryModel - add package references'
 
-- script: dotnet pack Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
-  displayName: 'Xbim.IO.MemoryModel - packing'
+      - script: dotnet pack Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+        displayName: 'Xbim.IO.MemoryModel - packing'
 
-# Esent Model
-- script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj
-  displayName: 'Xbim.IO.Esent - remove project references'
+      # Esent Model
+      - script: dotnet remove Xbim.IO.Esent\Xbim.IO.Esent.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj
+        displayName: 'Xbim.IO.Esent - remove project references'
 
-- script: dotnet add Xbim.IO.Esent\Xbim.IO.Esent.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(packageversion)
-  displayName: 'Xbim.IO.Esent - add package references'
+      - script: dotnet add Xbim.IO.Esent\Xbim.IO.Esent.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(packageversion)
+        displayName: 'Xbim.IO.Esent - add package references'
 
-- script: dotnet pack Xbim.IO.Esent\Xbim.IO.Esent.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
-  displayName: 'Xbim.IO.Esent - packing'
+      - script: dotnet pack Xbim.IO.Esent\Xbim.IO.Esent.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+        displayName: 'Xbim.IO.Esent - packing'
 
-# Ifc
-- script: dotnet remove Xbim.Ifc\Xbim.Ifc.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj ..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj
-  displayName: 'Xbim.IFC - remove project references'
+      # Ifc
+      - script: dotnet remove Xbim.Ifc\Xbim.Ifc.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj ..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj
+        displayName: 'Xbim.IFC - remove project references'
 
-- script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(packageversion)
-  displayName: 'Xbim.IFC - add project reference'
+      - script: dotnet add Xbim.Ifc\Xbim.Ifc.csproj package Xbim.IO.MemoryModel -s $(Build.BinariesDirectory) -v $(packageversion)
+        displayName: 'Xbim.IFC - add project reference'
 
-- script: dotnet pack Xbim.Ifc\Xbim.Ifc.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
-  displayName: 'Xbim.IFC - packing'
+      - script: dotnet pack Xbim.Ifc\Xbim.Ifc.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+        displayName: 'Xbim.IFC - packing'
 
-#  Tessellator
-- script: dotnet remove Xbim.Tessellator\Xbim.Tessellator.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
-  displayName: 'Xbim.Tessellator - remove project references'
+      #  Tessellator
+      - script: dotnet remove Xbim.Tessellator\Xbim.Tessellator.csproj reference ..\Xbim.Common\Xbim.Common.csproj ..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj ..\Xbim.Ifc4\Xbim.Ifc4.csproj
+        displayName: 'Xbim.Tessellator - remove project references'
 
-- script: dotnet add Xbim.Tessellator\Xbim.Tessellator.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(packageversion)
-  displayName: 'Xbim.Tessellator - add package references'
+      - script: dotnet add Xbim.Tessellator\Xbim.Tessellator.csproj package Xbim.Ifc2x3 -s $(Build.BinariesDirectory) -v $(packageversion)
+        displayName: 'Xbim.Tessellator - add package references'
 
-- script: dotnet pack Xbim.Tessellator\Xbim.Tessellator.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
-  displayName: 'Xbim.Tessellator - packing'
+      - script: dotnet pack Xbim.Tessellator\Xbim.Tessellator.csproj -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
+        displayName: 'Xbim.Tessellator - packing'
   
-# Essentials meta package
-- powershell: |
-    ((Get-Content -path Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(packageversion)') | Set-Content -Path Xbim.Essentials.nuspec
-  displayName: 'Xbim.Essentials - Setting packageversion $(packageversion)'
+      # Essentials meta package
+      - powershell: |
+          ((Get-Content -path Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(packageversion)') | Set-Content -Path Xbim.Essentials.nuspec
+        displayName: 'Xbim.Essentials - Setting packageversion $(packageversion)'
 
-- script: nuget pack Xbim.Essentials.nuspec -OutputDirectory $(Build.BinariesDirectory)
-  displayName: 'Xbim.Essentials - packing'
+      - script: nuget pack Xbim.Essentials.nuspec -OutputDirectory $(Build.BinariesDirectory)
+        displayName: 'Xbim.Essentials - packing'
   
-# Copy artifacts and Publish
-- task: CopyFiles@2
-  displayName: 'Copy to artifacts'
-  inputs:
-    sourceFolder: '$(Build.BinariesDirectory)'
-    contents: '**\*.nupkg' 
-    targetFolder: '$(build.artifactstagingdirectory)'
-    cleanTargetFolder: true
+      # Copy artifacts and Publish
+      - task: CopyFiles@2
+        displayName: 'Copy to artifacts'
+        inputs:
+          sourceFolder: '$(Build.BinariesDirectory)'
+          contents: '**\*.nupkg' 
+          targetFolder: '$(build.artifactstagingdirectory)'
+          cleanTargetFolder: true
     
-# Publish to master or develop MyGet feed based on the source branch
-- task: NuGetCommand@2
-  displayName: 'Publish to MyGet Master'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-  inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: 'MyGetMaster'
-    versioningScheme: byEnvVar
-    versionEnvVar: packageversion
+      # Publish to master or develop MyGet feed based on the source branch
+      - task: NuGetCommand@2
+        displayName: 'Publish to MyGet Master'
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        inputs:
+          command: push
+          nuGetFeedType: external
+          publishFeedCredentials: 'MyGetMaster'
+          versioningScheme: byEnvVar
+          versionEnvVar: packageversion
 
-- task: NuGetCommand@2
-  displayName: 'Publish to MyGet Develop'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
-  inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: 'MyGetDev'
-    versioningScheme: byEnvVar
-    versionEnvVar: packageversion
+      - task: NuGetCommand@2
+        displayName: 'Publish to MyGet Develop'
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+        inputs:
+          command: push
+          nuGetFeedType: external
+          publishFeedCredentials: 'MyGetDev'
+          versioningScheme: byEnvVar
+          versionEnvVar: packageversion
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish artifacts'
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish artifacts'
     
   # Generate docs and push them to the documentation repo
 
-- powershell: |
-    choco install docfx -y
-    docfx docs/docfx.json
-    if ($lastexitcode -ne 0){
-      throw ("Error generating document")
-    }
-  displayName: 'Generate Documentation'
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  - job:
+    displayName: 'Generate Docs'
+    steps:
+      - powershell: |
+        choco install docfx -y
+        docfx docs/docfx.json
+        if ($lastexitcode -ne 0){
+          throw ("Error generating document")
+        }
+        displayName: 'Generate Documentation'
+        #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+   
 
-- powershell: |
-    git clone https://github.com/xBimTeam/XbimDocs --branch gh-pages
-    git -C XbimDocs rm -r *
-    git config --global user.email ""
-    git config --global user.name "$(Build.RequestedFor)"
-  displayName: 'Clone Documentation Repository'
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+      - task: CopyFiles@2
+        displayName: 'Copy generated docs to repo'
+        #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)\\docs\\_build'
+          Contents: |
+            **
+          TargetFolder: '$(Build.ArtifactStagingDirectory)\\docs'
+          flattenFolders: false
+          OverWrite: true
+ 
 
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish artifacts: docs'
+        inputs:
+           pathtoPublish: '$(Build.ArtifactStagingDirectory)/docs' 
+           artifactName: docs
 
-- task: CopyFiles@2
-  displayName: 'Copy generated docs to repo'
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)\\docs\\_build'
-    Contents: |
-      **
-    TargetFolder: '$(System.DefaultWorkingDirectory)\\XbimDocs'
-    flattenFolders: false
-    OverWrite: true
-
-    
-- powershell: | 
-    Remove-Item XbimDocs/favicon.ico
-    Remove-Item XbimDocs/logo.svg
-    git -C XbimDocs add .
-    git -C XbimDocs commit -m 'new docs generated'
-    git -C XbimDocs push -u origin gh-pages
-  displayName: 'Puplish new docs'
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
