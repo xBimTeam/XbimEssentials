@@ -41,7 +41,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcCurve @BasisCurve 
 		{ 
 			get 
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _basisCurve = v, _basisCurve, value,  "BasisCurve", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 2 }, 5)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 2 }, 4)]
 		public IItemSet<IfcTrimmingSelect> @Trim1 
 		{ 
 			get 
@@ -67,7 +67,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				return _trim1;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 2 }, 6)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { 2 }, 5)]
 		public IItemSet<IfcTrimmingSelect> @Trim2 
 		{ 
 			get 
@@ -77,7 +77,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				return _trim2;
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcBoolean @SenseAgreement 
 		{ 
 			get 
@@ -91,7 +91,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _senseAgreement = v, _senseAgreement, value,  "SenseAgreement", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 8)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 7)]
 		public IfcTrimmingPreference @MasterRepresentation 
 		{ 
 			get 

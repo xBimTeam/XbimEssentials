@@ -19,7 +19,7 @@ namespace Xbim.Ifc4x3.ConstructionMgmtDomain
 		@METAL ,
 		@PLASTIC ,
 		@WOOD ,
-		@NOTDEFINED ,
-		@USERDEFINED 
+		@USERDEFINED ,
+		@NOTDEFINED 
 	}
 }

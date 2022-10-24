@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.PropertyResource
 
 		#region Explicit attribute fields
 		private IfcIdentifier _name;
-		private IfcText? _description;
+		private IfcText? _specification;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -54,17 +54,17 @@ namespace Xbim.Ifc4x3.PropertyResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
-		public IfcText? @Description 
+		public IfcText? @Specification 
 		{ 
 			get 
 			{
-				if(_activated) return _description;
+				if(_activated) return _specification;
 				Activate();
-				return _description;
+				return _specification;
 			} 
 			set
 			{
-				SetValue( v =>  _description = v, _description, value,  "Description", 2);
+				SetValue( v =>  _specification = v, _specification, value,  "Specification", 2);
 			} 
 		}	
 		#endregion
@@ -137,7 +137,7 @@ namespace Xbim.Ifc4x3.PropertyResource
 					_name = value.StringVal;
 					return;
 				case 1: 
-					_description = value.StringVal;
+					_specification = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

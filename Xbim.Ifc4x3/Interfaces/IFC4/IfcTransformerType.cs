@@ -30,16 +30,6 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcTransformerTypeEnum.CURRENT:
-						return Ifc4.Interfaces.IfcTransformerTypeEnum.CURRENT;
-					case IfcTransformerTypeEnum.FREQUENCY:
-						return Ifc4.Interfaces.IfcTransformerTypeEnum.FREQUENCY;
-					case IfcTransformerTypeEnum.INVERTER:
-						return Ifc4.Interfaces.IfcTransformerTypeEnum.INVERTER;
-					case IfcTransformerTypeEnum.RECTIFIER:
-						return Ifc4.Interfaces.IfcTransformerTypeEnum.RECTIFIER;
-					case IfcTransformerTypeEnum.VOLTAGE:
-						return Ifc4.Interfaces.IfcTransformerTypeEnum.VOLTAGE;
 					case IfcTransformerTypeEnum.CHOPPER:
 						//## Handle translation of CHOPPER member from IfcTransformerTypeEnum in property PredefinedType
 						//TODO: Handle translation of CHOPPER member from IfcTransformerTypeEnum in property PredefinedType
@@ -50,6 +40,16 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						//TODO: Handle translation of COMBINED member from IfcTransformerTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcTransformerTypeEnum.CURRENT:
+						return Ifc4.Interfaces.IfcTransformerTypeEnum.CURRENT;
+					case IfcTransformerTypeEnum.FREQUENCY:
+						return Ifc4.Interfaces.IfcTransformerTypeEnum.FREQUENCY;
+					case IfcTransformerTypeEnum.INVERTER:
+						return Ifc4.Interfaces.IfcTransformerTypeEnum.INVERTER;
+					case IfcTransformerTypeEnum.RECTIFIER:
+						return Ifc4.Interfaces.IfcTransformerTypeEnum.RECTIFIER;
+					case IfcTransformerTypeEnum.VOLTAGE:
+						return Ifc4.Interfaces.IfcTransformerTypeEnum.VOLTAGE;
 					case IfcTransformerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

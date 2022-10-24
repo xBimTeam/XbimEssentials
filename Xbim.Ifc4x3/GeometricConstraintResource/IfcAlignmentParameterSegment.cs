@@ -22,7 +22,7 @@ using Xbim.Ifc4x3.GeometricConstraintResource;
 
 namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignmentParameterSegment", 1484)]
+	[ExpressType("IfcAlignmentParameterSegment", 1406)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcAlignmentParameterSegment : PersistEntity, IEquatable<@IfcAlignmentParameterSegment>
 	{

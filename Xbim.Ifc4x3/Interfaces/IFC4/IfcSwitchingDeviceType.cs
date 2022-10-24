@@ -40,24 +40,24 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.KEYPAD;
 					case IfcSwitchingDeviceTypeEnum.MOMENTARYSWITCH:
 						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.MOMENTARYSWITCH;
-					case IfcSwitchingDeviceTypeEnum.SELECTORSWITCH:
-						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SELECTORSWITCH;
-					case IfcSwitchingDeviceTypeEnum.STARTER:
-						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.STARTER;
-					case IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
-						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
-					case IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
-						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
 					case IfcSwitchingDeviceTypeEnum.RELAY:
 						//## Handle translation of RELAY member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						//TODO: Handle translation of RELAY member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcSwitchingDeviceTypeEnum.SELECTORSWITCH:
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SELECTORSWITCH;
+					case IfcSwitchingDeviceTypeEnum.STARTER:
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.STARTER;
 					case IfcSwitchingDeviceTypeEnum.START_AND_STOP_EQUIPMENT:
 						//## Handle translation of START_AND_STOP_EQUIPMENT member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						//TODO: Handle translation of START_AND_STOP_EQUIPMENT member from IfcSwitchingDeviceTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR:
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.SWITCHDISCONNECTOR;
+					case IfcSwitchingDeviceTypeEnum.TOGGLESWITCH:
+						return Ifc4.Interfaces.IfcSwitchingDeviceTypeEnum.TOGGLESWITCH;
 					case IfcSwitchingDeviceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

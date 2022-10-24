@@ -22,7 +22,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	[ExpressType("IfcLinearPlacement", 1349)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLinearPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLinearPlacement>
+	public  partial class @IfcLinearPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLinearPlacement>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -31,46 +31,12 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		}
 
 		#region Explicit attribute fields
-		private IfcCurve _placementMeasuredAlong;
-		private IfcPointByDistanceExpression _distance;
 		private IfcAxis2PlacementLinear _relativePlacement;
 		private IfcAxis2Placement3D _cartesianPosition;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
-		public IfcCurve @PlacementMeasuredAlong 
-		{ 
-			get 
-			{
-				if(_activated) return _placementMeasuredAlong;
-				Activate();
-				return _placementMeasuredAlong;
-			} 
-			set
-			{
-				if (value != null && !(ReferenceEquals(Model, value.Model)))
-					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _placementMeasuredAlong = v, _placementMeasuredAlong, value,  "PlacementMeasuredAlong", 2);
-			} 
-		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
-		public IfcPointByDistanceExpression @Distance 
-		{ 
-			get 
-			{
-				if(_activated) return _distance;
-				Activate();
-				return _distance;
-			} 
-			set
-			{
-				if (value != null && !(ReferenceEquals(Model, value.Model)))
-					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _distance = v, _distance, value,  "Distance", 3);
-			} 
-		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcAxis2PlacementLinear @RelativePlacement 
 		{ 
 			get 
@@ -83,10 +49,10 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _relativePlacement = v, _relativePlacement, value,  "RelativePlacement", 4);
+				SetValue( v =>  _relativePlacement = v, _relativePlacement, value,  "RelativePlacement", 2);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcAxis2Placement3D @CartesianPosition 
 		{ 
 			get 
@@ -99,7 +65,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _cartesianPosition = v, _cartesianPosition, value,  "CartesianPosition", 5);
+				SetValue( v =>  _cartesianPosition = v, _cartesianPosition, value,  "CartesianPosition", 3);
 			} 
 		}	
 		#endregion
@@ -116,15 +82,9 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					_placementMeasuredAlong = (IfcCurve)(value.EntityVal);
-					return;
-				case 2: 
-					_distance = (IfcPointByDistanceExpression)(value.EntityVal);
-					return;
-				case 3: 
 					_relativePlacement = (IfcAxis2PlacementLinear)(value.EntityVal);
 					return;
-				case 4: 
+				case 2: 
 					_cartesianPosition = (IfcAxis2Placement3D)(value.EntityVal);
 					return;
 				default:
@@ -147,15 +107,24 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			{
 				if (@PlacementRelTo != null)
 					yield return @PlacementRelTo;
-				if (@PlacementMeasuredAlong != null)
-					yield return @PlacementMeasuredAlong;
-				if (@Distance != null)
-					yield return @Distance;
 				if (@RelativePlacement != null)
 					yield return @RelativePlacement;
 				if (@CartesianPosition != null)
 					yield return @CartesianPosition;
 			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@PlacementRelTo != null)
+					yield return @PlacementRelTo;
+				
+			} 
 		}
 		#endregion
 

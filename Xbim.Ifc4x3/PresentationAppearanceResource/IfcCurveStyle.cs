@@ -22,7 +22,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcCurveStyle", 118)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IfcPresentationStyleSelect, IContainsEntityReferences, IEquatable<@IfcCurveStyle>
+	public  partial class @IfcCurveStyle : IfcPresentationStyle, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCurveStyle>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -36,12 +36,12 @@ namespace Xbim.Ifc4x3.PlumbingFireProtectionDomain
 						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.BIDET;
 					case IfcSanitaryTerminalTypeEnum.CISTERN:
 						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.CISTERN;
+					case IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN:
+						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN;
 					case IfcSanitaryTerminalTypeEnum.SHOWER:
 						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SHOWER;
 					case IfcSanitaryTerminalTypeEnum.SINK:
 						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SINK;
-					case IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN:
-						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.SANITARYFOUNTAIN;
 					case IfcSanitaryTerminalTypeEnum.TOILETPAN:
 						return Ifc4.Interfaces.IfcSanitaryTerminalTypeEnum.TOILETPAN;
 					case IfcSanitaryTerminalTypeEnum.URINAL:

@@ -10,8 +10,8 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 {
 	public enum IfcSurfaceSide : byte
 	{
-		@POSITIVE ,
+		@BOTH ,
 		@NEGATIVE ,
-		@BOTH 
+		@POSITIVE 
 	}
 }

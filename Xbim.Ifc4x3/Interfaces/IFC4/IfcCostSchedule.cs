@@ -36,14 +36,14 @@ namespace Xbim.Ifc4x3.SharedMgmtElements
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.COSTPLAN;
 					case IfcCostScheduleTypeEnum.ESTIMATE:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.ESTIMATE;
-					case IfcCostScheduleTypeEnum.TENDER:
-						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.TENDER;
 					case IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.PRICEDBILLOFQUANTITIES;
-					case IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
-						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
 					case IfcCostScheduleTypeEnum.SCHEDULEOFRATES:
 						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.SCHEDULEOFRATES;
+					case IfcCostScheduleTypeEnum.TENDER:
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.TENDER;
+					case IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES:
+						return Ifc4.Interfaces.IfcCostScheduleTypeEnum.UNPRICEDBILLOFQUANTITIES;
 					case IfcCostScheduleTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

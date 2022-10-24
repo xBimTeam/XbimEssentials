@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xbim.Common;
 using Xbim.Common.Model;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
@@ -17,9 +16,19 @@ namespace Xbim.Essentials.Tests
     public class Ifc4x3Tests
     {
         [TestMethod]
+        public void Entity_types_should_be_unique()
+        {
+            var unique = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var types = typeof(Ifc4x3.EntityFactoryIfc4x3Add1).Assembly.GetTypes().Where(t => typeof(IPersist).IsAssignableFrom(t)).Select(t => t.Name);
+            var duplicates = types.Where(t => !unique.Add(t)).ToList();
+
+            Assert.AreEqual(0, duplicates.Count, $"Duplicated types: {string.Join(", ", duplicates)}");
+        }
+
+        [TestMethod]
         public void CreateSimpleIfc4x3File()
         {
-            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Rc2()))
+            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
             {
                 var i = model.Instances;
                 using (var txn = model.BeginTransaction("Sample creation"))

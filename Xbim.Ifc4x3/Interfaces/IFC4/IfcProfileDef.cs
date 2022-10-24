@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.ProfileResource
 				//##
 				switch (ProfileType)
 				{
-					case IfcProfileTypeEnum.CURVE:
-						return Ifc4.Interfaces.IfcProfileTypeEnum.CURVE;
 					case IfcProfileTypeEnum.AREA:
 						return Ifc4.Interfaces.IfcProfileTypeEnum.AREA;
+					case IfcProfileTypeEnum.CURVE:
+						return Ifc4.Interfaces.IfcProfileTypeEnum.CURVE;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();

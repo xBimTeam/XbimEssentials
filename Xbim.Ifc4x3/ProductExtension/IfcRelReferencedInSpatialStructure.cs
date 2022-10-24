@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4x3.Kernel;
-using Xbim.Ifc4x3.SharedInfrastructureElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.StructuralElementsDomain;
 
 namespace Xbim.Ifc4x3.StructuralElementsDomain
 {
-	[ExpressType("IfcTendonConduitType", 1468)]
+	[ExpressType("IfcTendonConduitType", 1495)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcTendonConduitType : IfcReinforcingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTendonConduitType>
 	{

@@ -30,10 +30,6 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcBuildingElementPartTypeEnum.INSULATION:
-						return Ifc4.Interfaces.IfcBuildingElementPartTypeEnum.INSULATION;
-					case IfcBuildingElementPartTypeEnum.PRECASTPANEL:
-						return Ifc4.Interfaces.IfcBuildingElementPartTypeEnum.PRECASTPANEL;
 					case IfcBuildingElementPartTypeEnum.APRON:
 						//## Handle translation of APRON member from IfcBuildingElementPartTypeEnum in property PredefinedType
 						//TODO: Handle translation of APRON member from IfcBuildingElementPartTypeEnum in property PredefinedType
@@ -44,6 +40,10 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 						//TODO: Handle translation of ARMOURUNIT member from IfcBuildingElementPartTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcBuildingElementPartTypeEnum.INSULATION:
+						return Ifc4.Interfaces.IfcBuildingElementPartTypeEnum.INSULATION;
+					case IfcBuildingElementPartTypeEnum.PRECASTPANEL:
+						return Ifc4.Interfaces.IfcBuildingElementPartTypeEnum.PRECASTPANEL;
 					case IfcBuildingElementPartTypeEnum.SAFETYCAGE:
 						//## Handle translation of SAFETYCAGE member from IfcBuildingElementPartTypeEnum in property PredefinedType
 						//TODO: Handle translation of SAFETYCAGE member from IfcBuildingElementPartTypeEnum in property PredefinedType

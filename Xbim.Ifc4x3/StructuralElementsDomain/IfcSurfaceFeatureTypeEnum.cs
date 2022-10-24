@@ -10,17 +10,17 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 {
 	public enum IfcSurfaceFeatureTypeEnum : byte
 	{
-		@MARK ,
-		@TAG ,
-		@TREATMENT ,
 		@DEFECT ,
 		@HATCHMARKING ,
 		@LINEMARKING ,
-		@PAVEMENTSURFACEMARKING ,
-		@SYMBOLMARKING ,
+		@MARK ,
 		@NONSKIDSURFACING ,
+		@PAVEMENTSURFACEMARKING ,
 		@RUMBLESTRIP ,
+		@SYMBOLMARKING ,
+		@TAG ,
 		@TRANSVERSERUMBLESTRIP ,
+		@TREATMENT ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

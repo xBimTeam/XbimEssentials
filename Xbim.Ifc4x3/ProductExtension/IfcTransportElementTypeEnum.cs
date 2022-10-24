@@ -10,19 +10,13 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	public enum IfcTransportElementTypeEnum : byte
 	{
+		@CRANEWAY ,
 		@ELEVATOR ,
 		@ESCALATOR ,
-		@MOVINGWALKWAY ,
-		@CRANEWAY ,
+		@HAULINGGEAR ,
 		@LIFTINGGEAR ,
+		@MOVINGWALKWAY ,
 		@USERDEFINED ,
-		@NOTDEFINED ,
-		@VEHICLE ,
-		@VEHICLETRACKED ,
-		@ROLLINGSTOCK ,
-		@VEHICLEWHEELED ,
-		@VEHICLEAIR ,
-		@CARGO ,
-		@VEHICLEMARINE 
+		@NOTDEFINED 
 	}
 }

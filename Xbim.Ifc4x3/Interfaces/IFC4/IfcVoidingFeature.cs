@@ -30,18 +30,18 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				//##
 				switch (PredefinedType)
 				{
+					case IfcVoidingFeatureTypeEnum.CHAMFER:
+						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.CHAMFER;
 					case IfcVoidingFeatureTypeEnum.CUTOUT:
 						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.CUTOUT;
-					case IfcVoidingFeatureTypeEnum.NOTCH:
-						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.NOTCH;
+					case IfcVoidingFeatureTypeEnum.EDGE:
+						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.EDGE;
 					case IfcVoidingFeatureTypeEnum.HOLE:
 						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.HOLE;
 					case IfcVoidingFeatureTypeEnum.MITER:
 						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.MITER;
-					case IfcVoidingFeatureTypeEnum.CHAMFER:
-						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.CHAMFER;
-					case IfcVoidingFeatureTypeEnum.EDGE:
-						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.EDGE;
+					case IfcVoidingFeatureTypeEnum.NOTCH:
+						return Ifc4.Interfaces.IfcVoidingFeatureTypeEnum.NOTCH;
 					case IfcVoidingFeatureTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

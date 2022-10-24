@@ -31,13 +31,43 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		}
 
 		#region Explicit attribute fields
+		private IfcIdentifier? _geodeticDatum;
+		private IfcIdentifier? _verticalDatum;
 		private IfcIdentifier? _mapProjection;
 		private IfcIdentifier? _mapZone;
 		private IfcNamedUnit _mapUnit;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
+		public IfcIdentifier? @GeodeticDatum 
+		{ 
+			get 
+			{
+				if(_activated) return _geodeticDatum;
+				Activate();
+				return _geodeticDatum;
+			} 
+			set
+			{
+				SetValue( v =>  _geodeticDatum = v, _geodeticDatum, value,  "GeodeticDatum", 3);
+			} 
+		}	
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
+		public IfcIdentifier? @VerticalDatum 
+		{ 
+			get 
+			{
+				if(_activated) return _verticalDatum;
+				Activate();
+				return _verticalDatum;
+			} 
+			set
+			{
+				SetValue( v =>  _verticalDatum = v, _verticalDatum, value,  "VerticalDatum", 4);
+			} 
+		}	
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcIdentifier? @MapProjection 
 		{ 
 			get 
@@ -51,7 +81,7 @@ namespace Xbim.Ifc4x3.RepresentationResource
 				SetValue( v =>  _mapProjection = v, _mapProjection, value,  "MapProjection", 5);
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
 		public IfcIdentifier? @MapZone 
 		{ 
 			get 
@@ -65,7 +95,7 @@ namespace Xbim.Ifc4x3.RepresentationResource
 				SetValue( v =>  _mapZone = v, _mapZone, value,  "MapZone", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 9)]
 		public IfcNamedUnit @MapUnit 
 		{ 
 			get 
@@ -93,9 +123,13 @@ namespace Xbim.Ifc4x3.RepresentationResource
 			{
 				case 0: 
 				case 1: 
-				case 2: 
-				case 3: 
 					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 2: 
+					_geodeticDatum = value.StringVal;
+					return;
+				case 3: 
+					_verticalDatum = value.StringVal;
 					return;
 				case 4: 
 					_mapProjection = value.StringVal;

@@ -32,8 +32,6 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				{
 					case IfcColumnTypeEnum.COLUMN:
 						return Ifc4.Interfaces.IfcColumnTypeEnum.COLUMN;
-					case IfcColumnTypeEnum.PILASTER:
-						return Ifc4.Interfaces.IfcColumnTypeEnum.PILASTER;
 					case IfcColumnTypeEnum.PIERSTEM:
 						//## Handle translation of PIERSTEM member from IfcColumnTypeEnum in property PredefinedType
 						//TODO: Handle translation of PIERSTEM member from IfcColumnTypeEnum in property PredefinedType
@@ -44,6 +42,8 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						//TODO: Handle translation of PIERSTEM_SEGMENT member from IfcColumnTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcColumnTypeEnum.PILASTER:
+						return Ifc4.Interfaces.IfcColumnTypeEnum.PILASTER;
 					case IfcColumnTypeEnum.STANDCOLUMN:
 						//## Handle translation of STANDCOLUMN member from IfcColumnTypeEnum in property PredefinedType
 						//TODO: Handle translation of STANDCOLUMN member from IfcColumnTypeEnum in property PredefinedType

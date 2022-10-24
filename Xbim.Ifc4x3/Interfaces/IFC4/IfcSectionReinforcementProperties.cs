@@ -75,22 +75,22 @@ namespace Xbim.Ifc4x3.ProfileResource
 				//##
 				switch (ReinforcementRole)
 				{
-					case IfcReinforcingBarRoleEnum.MAIN:
-						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.MAIN;
-					case IfcReinforcingBarRoleEnum.SHEAR:
-						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.SHEAR;
-					case IfcReinforcingBarRoleEnum.LIGATURE:
-						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.LIGATURE;
-					case IfcReinforcingBarRoleEnum.STUD:
-						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.STUD;
-					case IfcReinforcingBarRoleEnum.PUNCHING:
-						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.PUNCHING;
-					case IfcReinforcingBarRoleEnum.EDGE:
-						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.EDGE;
-					case IfcReinforcingBarRoleEnum.RING:
-						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.RING;
 					case IfcReinforcingBarRoleEnum.ANCHORING:
 						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.ANCHORING;
+					case IfcReinforcingBarRoleEnum.EDGE:
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.EDGE;
+					case IfcReinforcingBarRoleEnum.LIGATURE:
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.LIGATURE;
+					case IfcReinforcingBarRoleEnum.MAIN:
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.MAIN;
+					case IfcReinforcingBarRoleEnum.PUNCHING:
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.PUNCHING;
+					case IfcReinforcingBarRoleEnum.RING:
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.RING;
+					case IfcReinforcingBarRoleEnum.SHEAR:
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.SHEAR;
+					case IfcReinforcingBarRoleEnum.STUD:
+						return Ifc4.Interfaces.IfcReinforcingBarRoleEnum.STUD;
 					case IfcReinforcingBarRoleEnum.USERDEFINED:
 						//## Optional custom handling of ReinforcementRole == .USERDEFINED. 
 						//##

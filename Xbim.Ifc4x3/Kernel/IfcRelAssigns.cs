@@ -32,7 +32,7 @@ namespace Xbim.Ifc4x3.Kernel
 
 		#region Explicit attribute fields
 		private readonly ItemSet<IfcObjectDefinition> _relatedObjects;
-		private IfcObjectTypeEnum? _relatedObjectsType;
+		private IfcStrippedOptional? _relatedObjectsType;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -47,8 +47,8 @@ namespace Xbim.Ifc4x3.Kernel
 				return _relatedObjects;
 			} 
 		}	
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 6)]
-		public IfcObjectTypeEnum? @RelatedObjectsType 
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
+		public IfcStrippedOptional? @RelatedObjectsType 
 		{ 
 			get 
 			{
@@ -81,7 +81,7 @@ namespace Xbim.Ifc4x3.Kernel
 					_relatedObjects.InternalAdd((IfcObjectDefinition)value.EntityVal);
 					return;
 				case 5: 
-                    _relatedObjectsType = (IfcObjectTypeEnum) System.Enum.Parse(typeof (IfcObjectTypeEnum), value.EnumVal, true);
+					_relatedObjectsType = value.BooleanVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

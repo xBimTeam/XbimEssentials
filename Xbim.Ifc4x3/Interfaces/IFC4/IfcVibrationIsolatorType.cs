@@ -30,15 +30,15 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcVibrationIsolatorTypeEnum.COMPRESSION:
-						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.COMPRESSION;
-					case IfcVibrationIsolatorTypeEnum.SPRING:
-						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.SPRING;
 					case IfcVibrationIsolatorTypeEnum.BASE:
 						//## Handle translation of BASE member from IfcVibrationIsolatorTypeEnum in property PredefinedType
 						//TODO: Handle translation of BASE member from IfcVibrationIsolatorTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcVibrationIsolatorTypeEnum.COMPRESSION:
+						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.COMPRESSION;
+					case IfcVibrationIsolatorTypeEnum.SPRING:
+						return Ifc4.Interfaces.IfcVibrationIsolatorTypeEnum.SPRING;
 					case IfcVibrationIsolatorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

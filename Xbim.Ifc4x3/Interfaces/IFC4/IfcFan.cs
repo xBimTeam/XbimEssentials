@@ -30,20 +30,20 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
+					case IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
+						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
+					case IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
+						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
 					case IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED:
 						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALFORWARDCURVED;
 					case IfcFanTypeEnum.CENTRIFUGALRADIAL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALRADIAL;
-					case IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED:
-						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALBACKWARDINCLINEDCURVED;
-					case IfcFanTypeEnum.CENTRIFUGALAIRFOIL:
-						return Ifc4.Interfaces.IfcFanTypeEnum.CENTRIFUGALAIRFOIL;
+					case IfcFanTypeEnum.PROPELLORAXIAL:
+						return Ifc4.Interfaces.IfcFanTypeEnum.PROPELLORAXIAL;
 					case IfcFanTypeEnum.TUBEAXIAL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.TUBEAXIAL;
 					case IfcFanTypeEnum.VANEAXIAL:
 						return Ifc4.Interfaces.IfcFanTypeEnum.VANEAXIAL;
-					case IfcFanTypeEnum.PROPELLORAXIAL:
-						return Ifc4.Interfaces.IfcFanTypeEnum.PROPELLORAXIAL;
 					case IfcFanTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

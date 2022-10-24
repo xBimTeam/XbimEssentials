@@ -13,6 +13,7 @@ using System.Linq;
 using Xbim.Common;
 
 //## Custom using statements
+#pragma warning disable CS0162 // Unreachable code detected
 //##
 
 // ReSharper disable once CheckNamespace
@@ -49,7 +50,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				//## Handle return of Distance for which no match was found
 				//TODO: Handle return of Distance for which no match was found
 				throw new System.NotImplementedException();
-				//##
+                //##
 			} 
 			set
 			{
@@ -57,6 +58,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				//TODO: Handle setting of Distance for which no match was found
 				throw new System.NotImplementedException();
 				//##
+				NotifyPropertyChanged("Distance");
 				
 			}
 		}
@@ -77,6 +79,8 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				//TODO: Handle setting of Orientation for which no match was found
 				throw new System.NotImplementedException();
 				//##
+				NotifyPropertyChanged("Orientation");
+				
 			}
 		}
 
@@ -94,6 +98,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			}
 		}
 	//## Custom code
-	//##
+#pragma warning restore CS0162 // Unreachable code detected
+        //##
 	}
 }

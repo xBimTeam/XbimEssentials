@@ -71,7 +71,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 		{
 			get 
 			{
-				return IfcDimensionsForSiUnit(Name);
+				return IfcDimensionsForSIUnit(Name);
 			}
 			set 
 			{ 

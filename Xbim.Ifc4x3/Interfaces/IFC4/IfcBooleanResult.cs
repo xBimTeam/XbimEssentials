@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 				//##
 				switch (Operator)
 				{
-					case IfcBooleanOperator.UNION:
-						return Ifc4.Interfaces.IfcBooleanOperator.UNION;
-					case IfcBooleanOperator.INTERSECTION:
-						return Ifc4.Interfaces.IfcBooleanOperator.INTERSECTION;
 					case IfcBooleanOperator.DIFFERENCE:
 						return Ifc4.Interfaces.IfcBooleanOperator.DIFFERENCE;
+					case IfcBooleanOperator.INTERSECTION:
+						return Ifc4.Interfaces.IfcBooleanOperator.INTERSECTION;
+					case IfcBooleanOperator.UNION:
+						return Ifc4.Interfaces.IfcBooleanOperator.UNION;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();

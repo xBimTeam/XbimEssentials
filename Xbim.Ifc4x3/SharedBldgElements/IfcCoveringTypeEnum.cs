@@ -11,16 +11,17 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 	public enum IfcCoveringTypeEnum : byte
 	{
 		@CEILING ,
-		@FLOORING ,
 		@CLADDING ,
-		@ROOFING ,
-		@MOLDING ,
-		@SKIRTINGBOARD ,
+		@COPING ,
+		@FLOORING ,
 		@INSULATION ,
 		@MEMBRANE ,
+		@MOLDING ,
+		@ROOFING ,
+		@SKIRTINGBOARD ,
 		@SLEEVING ,
+		@TOPPING ,
 		@WRAPPING ,
-		@COPING ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

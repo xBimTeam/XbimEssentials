@@ -13,6 +13,7 @@ using System.Linq;
 using Xbim.Common;
 
 //## Custom using statements
+#pragma warning disable CS0162 // Unreachable code detected
 //##
 
 // ReSharper disable once CheckNamespace
@@ -30,17 +31,37 @@ namespace Xbim.Ifc4x3.ProductExtension
 				//##
 				switch (PredefinedType)
 				{
+					case IfcReferentTypeEnum.BOUNDARY:
+						//## Handle translation of BOUNDARY member from IfcReferentTypeEnum in property PredefinedType
+						//TODO: Handle translation of BOUNDARY member from IfcReferentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcReferentTypeEnum.INTERSECTION:
+						//## Handle translation of INTERSECTION member from IfcReferentTypeEnum in property PredefinedType
+						//TODO: Handle translation of INTERSECTION member from IfcReferentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcReferentTypeEnum.KILOPOINT:
 						return Ifc4.Interfaces.IfcReferentTypeEnum.KILOPOINT;
+					case IfcReferentTypeEnum.LANDMARK:
+						//## Handle translation of LANDMARK member from IfcReferentTypeEnum in property PredefinedType
+						//TODO: Handle translation of LANDMARK member from IfcReferentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcReferentTypeEnum.MILEPOINT:
 						return Ifc4.Interfaces.IfcReferentTypeEnum.MILEPOINT;
-					case IfcReferentTypeEnum.STATION:
-						return Ifc4.Interfaces.IfcReferentTypeEnum.STATION;
+					case IfcReferentTypeEnum.POSITION:
+						//## Handle translation of POSITION member from IfcReferentTypeEnum in property PredefinedType
+						//TODO: Handle translation of POSITION member from IfcReferentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcReferentTypeEnum.REFERENCEMARKER:
 						//## Handle translation of REFERENCEMARKER member from IfcReferentTypeEnum in property PredefinedType
 						//TODO: Handle translation of REFERENCEMARKER member from IfcReferentTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcReferentTypeEnum.STATION:
+						return Ifc4.Interfaces.IfcReferentTypeEnum.STATION;
 					case IfcReferentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
@@ -91,14 +112,18 @@ namespace Xbim.Ifc4x3.ProductExtension
 		{ 
 			get
 			{
-				if (!RestartDistance.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcLengthMeasure(RestartDistance.Value);
+				//## Handle return of RestartDistance for which no match was found
+				//TODO: Handle return of RestartDistance for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				RestartDistance = value.HasValue ? 
-					new MeasureResource.IfcLengthMeasure(value.Value) :  
-					 new MeasureResource.IfcLengthMeasure?() ;
+				//## Handle setting of RestartDistance for which no match was found
+				//TODO: Handle setting of RestartDistance for which no match was found
+				throw new System.NotImplementedException();
+				//##
+				NotifyPropertyChanged("RestartDistance");
 				
 			}
 		}

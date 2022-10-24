@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcDuctSegmentTypeEnum.RIGIDSEGMENT:
-						return Ifc4.Interfaces.IfcDuctSegmentTypeEnum.RIGIDSEGMENT;
 					case IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT:
 						return Ifc4.Interfaces.IfcDuctSegmentTypeEnum.FLEXIBLESEGMENT;
+					case IfcDuctSegmentTypeEnum.RIGIDSEGMENT:
+						return Ifc4.Interfaces.IfcDuctSegmentTypeEnum.RIGIDSEGMENT;
 					case IfcDuctSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

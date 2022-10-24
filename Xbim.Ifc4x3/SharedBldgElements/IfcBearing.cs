@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedBldgElements;
 
 namespace Xbim.Ifc4x3.SharedBldgElements
 {
-	[ExpressType("IfcBearing", 1403)]
+	[ExpressType("IfcBearing", 1411)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBearing : IfcBuiltElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBearing>
 	{
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcBearingTypeEnum? @PredefinedType 
 		{ 
 			get 

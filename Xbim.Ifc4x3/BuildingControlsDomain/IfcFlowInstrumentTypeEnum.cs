@@ -10,16 +10,16 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 {
 	public enum IfcFlowInstrumentTypeEnum : byte
 	{
+		@AMMETER ,
+		@COMBINED ,
+		@FREQUENCYMETER ,
+		@PHASEANGLEMETER ,
+		@POWERFACTORMETER ,
 		@PRESSUREGAUGE ,
 		@THERMOMETER ,
-		@AMMETER ,
-		@FREQUENCYMETER ,
-		@POWERFACTORMETER ,
-		@PHASEANGLEMETER ,
+		@VOLTMETER ,
 		@VOLTMETER_PEAK ,
 		@VOLTMETER_RMS ,
-		@COMBINED ,
-		@VOLTMETER ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

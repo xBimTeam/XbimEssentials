@@ -10,15 +10,15 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
 	public enum IfcEarthworksCutTypeEnum : byte
 	{
-		@TRENCH ,
+		@BASE_EXCAVATION ,
+		@CUT ,
 		@DREDGING ,
 		@EXCAVATION ,
 		@OVEREXCAVATION ,
-		@TOPSOILREMOVAL ,
-		@STEPEXCAVATION ,
 		@PAVEMENTMILLING ,
-		@CUT ,
-		@BASE_EXCAVATION ,
+		@STEPEXCAVATION ,
+		@TOPSOILREMOVAL ,
+		@TRENCH ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

@@ -11,9 +11,9 @@ namespace Xbim.Ifc4x3.ConstraintResource
 	public enum IfcLogicalOperatorEnum : byte
 	{
 		@LOGICALAND ,
-		@LOGICALOR ,
-		@LOGICALXOR ,
 		@LOGICALNOTAND ,
-		@LOGICALNOTOR 
+		@LOGICALNOTOR ,
+		@LOGICALOR ,
+		@LOGICALXOR 
 	}
 }

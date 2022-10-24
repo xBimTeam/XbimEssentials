@@ -43,11 +43,11 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 		{ 
 			get
 			{
-				if (CurveFont == null) return null;
-				var ifccurvestylefont = CurveFont as IfcCurveStyleFont;
+				if (CurveStyleFont == null) return null;
+				var ifccurvestylefont = CurveStyleFont as IfcCurveStyleFont;
 				if (ifccurvestylefont != null) 
 					return ifccurvestylefont;
-				var ifcpredefinedcurvefont = CurveFont as IfcPreDefinedCurveFont;
+				var ifcpredefinedcurvefont = CurveStyleFont as IfcPreDefinedCurveFont;
 				if (ifcpredefinedcurvefont != null) 
 					return ifcpredefinedcurvefont;
 				return null;
@@ -56,19 +56,19 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 			{
 				if (value == null)
 				{
-					CurveFont = null;
+					CurveStyleFont = null;
 					return;
 				}	
 				var ifccurvestylefont = value as IfcCurveStyleFont;
 				if (ifccurvestylefont != null) 
 				{
-					CurveFont = ifccurvestylefont;
+					CurveStyleFont = ifccurvestylefont;
 					return;
 				}
 				var ifcpredefinedcurvefont = value as IfcPreDefinedCurveFont;
 				if (ifcpredefinedcurvefont != null) 
 				{
-					CurveFont = ifcpredefinedcurvefont;
+					CurveStyleFont = ifcpredefinedcurvefont;
 					return;
 				}
 				

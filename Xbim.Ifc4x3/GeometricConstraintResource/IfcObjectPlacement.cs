@@ -37,6 +37,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
+		[IndexedProperty]
 		[EntityAttribute(1, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 1)]
 		public IfcObjectPlacement @PlacementRelTo 
 		{ 
@@ -65,6 +66,15 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			get 
 			{
 				return Model.Instances.Where<IfcProduct>(e => Equals(e.ObjectPlacement), "ObjectPlacement", this);
+			} 
+		}
+		[InverseProperty("PlacementRelTo")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 3)]
+		public IEnumerable<IfcObjectPlacement> @ReferencedByPlacements 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcObjectPlacement>(e => Equals(e.PlacementRelTo), "PlacementRelTo", this);
 			} 
 		}
 		#endregion

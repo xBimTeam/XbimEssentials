@@ -30,6 +30,11 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
+					case IfcMemberTypeEnum.ARCH_SEGMENT:
+						//## Handle translation of ARCH_SEGMENT member from IfcMemberTypeEnum in property PredefinedType
+						//TODO: Handle translation of ARCH_SEGMENT member from IfcMemberTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcMemberTypeEnum.BRACE:
 						return Ifc4.Interfaces.IfcMemberTypeEnum.BRACE;
 					case IfcMemberTypeEnum.CHORD:
@@ -48,40 +53,35 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcMemberTypeEnum.PURLIN;
 					case IfcMemberTypeEnum.RAFTER:
 						return Ifc4.Interfaces.IfcMemberTypeEnum.RAFTER;
-					case IfcMemberTypeEnum.STRINGER:
-						return Ifc4.Interfaces.IfcMemberTypeEnum.STRINGER;
-					case IfcMemberTypeEnum.STRUT:
-						return Ifc4.Interfaces.IfcMemberTypeEnum.STRUT;
-					case IfcMemberTypeEnum.STUD:
-						return Ifc4.Interfaces.IfcMemberTypeEnum.STUD;
-					case IfcMemberTypeEnum.STIFFENING_RIB:
-						//## Handle translation of STIFFENING_RIB member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of STIFFENING_RIB member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcMemberTypeEnum.ARCH_SEGMENT:
-						//## Handle translation of ARCH_SEGMENT member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of ARCH_SEGMENT member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcMemberTypeEnum.SUSPENSION_CABLE:
-						//## Handle translation of SUSPENSION_CABLE member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of SUSPENSION_CABLE member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcMemberTypeEnum.SUSPENDER:
-						//## Handle translation of SUSPENDER member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of SUSPENDER member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcMemberTypeEnum.STAY_CABLE:
 						//## Handle translation of STAY_CABLE member from IfcMemberTypeEnum in property PredefinedType
 						//TODO: Handle translation of STAY_CABLE member from IfcMemberTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcMemberTypeEnum.STIFFENING_RIB:
+						//## Handle translation of STIFFENING_RIB member from IfcMemberTypeEnum in property PredefinedType
+						//TODO: Handle translation of STIFFENING_RIB member from IfcMemberTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcMemberTypeEnum.STRINGER:
+						return Ifc4.Interfaces.IfcMemberTypeEnum.STRINGER;
 					case IfcMemberTypeEnum.STRUCTURALCABLE:
 						//## Handle translation of STRUCTURALCABLE member from IfcMemberTypeEnum in property PredefinedType
 						//TODO: Handle translation of STRUCTURALCABLE member from IfcMemberTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcMemberTypeEnum.STRUT:
+						return Ifc4.Interfaces.IfcMemberTypeEnum.STRUT;
+					case IfcMemberTypeEnum.STUD:
+						return Ifc4.Interfaces.IfcMemberTypeEnum.STUD;
+					case IfcMemberTypeEnum.SUSPENDER:
+						//## Handle translation of SUSPENDER member from IfcMemberTypeEnum in property PredefinedType
+						//TODO: Handle translation of SUSPENDER member from IfcMemberTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcMemberTypeEnum.SUSPENSION_CABLE:
+						//## Handle translation of SUSPENSION_CABLE member from IfcMemberTypeEnum in property PredefinedType
+						//TODO: Handle translation of SUSPENSION_CABLE member from IfcMemberTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcMemberTypeEnum.TIEBAR:

@@ -11,8 +11,8 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 	public enum IfcDocumentStatusEnum : byte
 	{
 		@DRAFT ,
-		@FINALDRAFT ,
 		@FINAL ,
+		@FINALDRAFT ,
 		@REVISION ,
 		@NOTDEFINED 
 	}

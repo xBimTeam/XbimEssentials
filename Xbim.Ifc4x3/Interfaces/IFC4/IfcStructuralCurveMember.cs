@@ -30,16 +30,16 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER:
-						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
-					case IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER:
-						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
 					case IfcStructuralCurveMemberTypeEnum.CABLE:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.CABLE;
-					case IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER:
-						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
 					case IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER:
 						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.COMPRESSION_MEMBER;
+					case IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.PIN_JOINED_MEMBER;
+					case IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.RIGID_JOINED_MEMBER;
+					case IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER:
+						return Ifc4.Interfaces.IfcStructuralCurveMemberTypeEnum.TENSION_MEMBER;
 					case IfcStructuralCurveMemberTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

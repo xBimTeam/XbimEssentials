@@ -252,6 +252,11 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.MIRROR;
 					case IfcReflectanceMethodEnum.PHONG:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.PHONG;
+					case IfcReflectanceMethodEnum.PHYSICAL:
+						//## Handle translation of PHYSICAL member from IfcReflectanceMethodEnum in property ReflectanceMethod
+						//TODO: Handle translation of PHYSICAL member from IfcReflectanceMethodEnum in property ReflectanceMethod
+						throw new System.NotImplementedException();
+						//##
 					case IfcReflectanceMethodEnum.PLASTIC:
 						return Ifc4.Interfaces.IfcReflectanceMethodEnum.PLASTIC;
 					case IfcReflectanceMethodEnum.STRAUSS:

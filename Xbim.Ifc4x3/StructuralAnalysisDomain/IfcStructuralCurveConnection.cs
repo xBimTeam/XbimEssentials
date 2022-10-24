@@ -31,24 +31,24 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 		}
 
 		#region Explicit attribute fields
-		private IfcDirection _axis;
+		private IfcDirection _axisDirection;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 25)]
-		public IfcDirection @Axis 
+		public IfcDirection @AxisDirection 
 		{ 
 			get 
 			{
-				if(_activated) return _axis;
+				if(_activated) return _axisDirection;
 				Activate();
-				return _axis;
+				return _axisDirection;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _axis = v, _axis, value,  "Axis", 9);
+				SetValue( v =>  _axisDirection = v, _axisDirection, value,  "AxisDirection", 9);
 			} 
 		}	
 		#endregion
@@ -72,7 +72,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					_axis = (IfcDirection)(value.EntityVal);
+					_axisDirection = (IfcDirection)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -100,8 +100,8 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 					yield return @Representation;
 				if (@AppliedCondition != null)
 					yield return @AppliedCondition;
-				if (@Axis != null)
-					yield return @Axis;
+				if (@AxisDirection != null)
+					yield return @AxisDirection;
 			}
 		}
 		#endregion

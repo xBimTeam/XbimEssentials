@@ -10,10 +10,14 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	public enum IfcReferentTypeEnum : byte
 	{
+		@BOUNDARY ,
+		@INTERSECTION ,
 		@KILOPOINT ,
+		@LANDMARK ,
 		@MILEPOINT ,
-		@STATION ,
+		@POSITION ,
 		@REFERENCEMARKER ,
+		@STATION ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

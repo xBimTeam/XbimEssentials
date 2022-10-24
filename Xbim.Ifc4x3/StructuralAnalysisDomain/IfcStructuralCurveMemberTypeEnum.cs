@@ -10,11 +10,11 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 {
 	public enum IfcStructuralCurveMemberTypeEnum : byte
 	{
-		@RIGID_JOINED_MEMBER ,
-		@PIN_JOINED_MEMBER ,
 		@CABLE ,
-		@TENSION_MEMBER ,
 		@COMPRESSION_MEMBER ,
+		@PIN_JOINED_MEMBER ,
+		@RIGID_JOINED_MEMBER ,
+		@TENSION_MEMBER ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

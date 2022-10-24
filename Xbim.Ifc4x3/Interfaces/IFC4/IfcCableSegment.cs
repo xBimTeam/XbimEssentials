@@ -36,13 +36,13 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CABLESEGMENT;
 					case IfcCableSegmentTypeEnum.CONDUCTORSEGMENT:
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
-					case IfcCableSegmentTypeEnum.CORESEGMENT:
-						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CORESEGMENT;
 					case IfcCableSegmentTypeEnum.CONTACTWIRESEGMENT:
 						//## Handle translation of CONTACTWIRESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
 						//TODO: Handle translation of CONTACTWIRESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcCableSegmentTypeEnum.CORESEGMENT:
+						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CORESEGMENT;
 					case IfcCableSegmentTypeEnum.FIBERSEGMENT:
 						//## Handle translation of FIBERSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
 						//TODO: Handle translation of FIBERSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType

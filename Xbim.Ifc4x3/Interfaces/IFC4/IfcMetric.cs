@@ -30,26 +30,26 @@ namespace Xbim.Ifc4x3.ConstraintResource
 				//##
 				switch (Benchmark)
 				{
+					case IfcBenchmarkEnum.EQUALTO:
+						return Ifc4.Interfaces.IfcBenchmarkEnum.EQUALTO;
 					case IfcBenchmarkEnum.GREATERTHAN:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHAN;
 					case IfcBenchmarkEnum.GREATERTHANOREQUALTO:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.GREATERTHANOREQUALTO;
+					case IfcBenchmarkEnum.INCLUDEDIN:
+						return Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDEDIN;
+					case IfcBenchmarkEnum.INCLUDES:
+						return Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES;
 					case IfcBenchmarkEnum.LESSTHAN:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHAN;
 					case IfcBenchmarkEnum.LESSTHANOREQUALTO:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.LESSTHANOREQUALTO;
-					case IfcBenchmarkEnum.EQUALTO:
-						return Ifc4.Interfaces.IfcBenchmarkEnum.EQUALTO;
 					case IfcBenchmarkEnum.NOTEQUALTO:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.NOTEQUALTO;
-					case IfcBenchmarkEnum.INCLUDES:
-						return Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDES;
-					case IfcBenchmarkEnum.NOTINCLUDES:
-						return Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDES;
-					case IfcBenchmarkEnum.INCLUDEDIN:
-						return Ifc4.Interfaces.IfcBenchmarkEnum.INCLUDEDIN;
 					case IfcBenchmarkEnum.NOTINCLUDEDIN:
 						return Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDEDIN;
+					case IfcBenchmarkEnum.NOTINCLUDES:
+						return Ifc4.Interfaces.IfcBenchmarkEnum.NOTINCLUDES;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();

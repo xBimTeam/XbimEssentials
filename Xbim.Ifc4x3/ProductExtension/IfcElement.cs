@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.SharedInfrastructureElements;
 using Xbim.Ifc4x3.StructuralAnalysisDomain;
 using Xbim.Ifc4x3.Kernel;
 using Xbim.Ifc4x3.MeasureResource;
@@ -155,6 +154,15 @@ namespace Xbim.Ifc4x3.ProductExtension
 			get 
 			{
 				return Model.Instances.Where<IfcRelCoversBldgElements>(e => Equals(e.RelatingBuildingElement), "RelatingBuildingElement", this);
+			} 
+		}
+		[InverseProperty("RelatingElement")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 34)]
+		public IEnumerable<IfcRelAdheresToElement> @HasSurfaceFeatures 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcRelAdheresToElement>(e => Equals(e.RelatingElement), "RelatingElement", this);
 			} 
 		}
 		#endregion

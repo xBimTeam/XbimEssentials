@@ -32,19 +32,9 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				{
 					case IfcBeamTypeEnum.BEAM:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.BEAM;
-					case IfcBeamTypeEnum.JOIST:
-						return Ifc4.Interfaces.IfcBeamTypeEnum.JOIST;
-					case IfcBeamTypeEnum.HOLLOWCORE:
-						return Ifc4.Interfaces.IfcBeamTypeEnum.HOLLOWCORE;
-					case IfcBeamTypeEnum.LINTEL:
-						return Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL;
-					case IfcBeamTypeEnum.SPANDREL:
-						return Ifc4.Interfaces.IfcBeamTypeEnum.SPANDREL;
-					case IfcBeamTypeEnum.T_BEAM:
-						return Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM;
-					case IfcBeamTypeEnum.GIRDER_SEGMENT:
-						//## Handle translation of GIRDER_SEGMENT member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of GIRDER_SEGMENT member from IfcBeamTypeEnum in property PredefinedType
+					case IfcBeamTypeEnum.CORNICE:
+						//## Handle translation of CORNICE member from IfcBeamTypeEnum in property PredefinedType
+						//TODO: Handle translation of CORNICE member from IfcBeamTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcBeamTypeEnum.DIAPHRAGM:
@@ -52,9 +42,14 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						//TODO: Handle translation of DIAPHRAGM member from IfcBeamTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcBeamTypeEnum.PIERCAP:
-						//## Handle translation of PIERCAP member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of PIERCAP member from IfcBeamTypeEnum in property PredefinedType
+					case IfcBeamTypeEnum.EDGEBEAM:
+						//## Handle translation of EDGEBEAM member from IfcBeamTypeEnum in property PredefinedType
+						//TODO: Handle translation of EDGEBEAM member from IfcBeamTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcBeamTypeEnum.GIRDER_SEGMENT:
+						//## Handle translation of GIRDER_SEGMENT member from IfcBeamTypeEnum in property PredefinedType
+						//TODO: Handle translation of GIRDER_SEGMENT member from IfcBeamTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcBeamTypeEnum.HATSTONE:
@@ -62,16 +57,21 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						//TODO: Handle translation of HATSTONE member from IfcBeamTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcBeamTypeEnum.CORNICE:
-						//## Handle translation of CORNICE member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of CORNICE member from IfcBeamTypeEnum in property PredefinedType
+					case IfcBeamTypeEnum.HOLLOWCORE:
+						return Ifc4.Interfaces.IfcBeamTypeEnum.HOLLOWCORE;
+					case IfcBeamTypeEnum.JOIST:
+						return Ifc4.Interfaces.IfcBeamTypeEnum.JOIST;
+					case IfcBeamTypeEnum.LINTEL:
+						return Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL;
+					case IfcBeamTypeEnum.PIERCAP:
+						//## Handle translation of PIERCAP member from IfcBeamTypeEnum in property PredefinedType
+						//TODO: Handle translation of PIERCAP member from IfcBeamTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcBeamTypeEnum.EDGEBEAM:
-						//## Handle translation of EDGEBEAM member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of EDGEBEAM member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
+					case IfcBeamTypeEnum.SPANDREL:
+						return Ifc4.Interfaces.IfcBeamTypeEnum.SPANDREL;
+					case IfcBeamTypeEnum.T_BEAM:
+						return Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM;
 					case IfcBeamTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

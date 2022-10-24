@@ -11,17 +11,17 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 	public enum IfcBeamTypeEnum : byte
 	{
 		@BEAM ,
-		@JOIST ,
+		@CORNICE ,
+		@DIAPHRAGM ,
+		@EDGEBEAM ,
+		@GIRDER_SEGMENT ,
+		@HATSTONE ,
 		@HOLLOWCORE ,
+		@JOIST ,
 		@LINTEL ,
+		@PIERCAP ,
 		@SPANDREL ,
 		@T_BEAM ,
-		@GIRDER_SEGMENT ,
-		@DIAPHRAGM ,
-		@PIERCAP ,
-		@HATSTONE ,
-		@CORNICE ,
-		@EDGEBEAM ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

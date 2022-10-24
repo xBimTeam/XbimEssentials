@@ -41,8 +41,25 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 			get
 			{
 			
-				return new Common.Collections.ProxyItemSet<IfcStyleAssignmentSelect, IIfcStyleAssignmentSelect>(Styles);
+				return _stylesIfc4 ?? (_stylesIfc4 = new Common.Collections.ExtendedItemSet<IfcPresentationStyle, IIfcStyleAssignmentSelect>(
+                    Styles, 
+                    new ItemSet<IIfcStyleAssignmentSelect>(this, 0, -2), 
+					StylesToIfc4, 
+                    StylesToIfc2X3));
 			} 
+		}
+
+		//private field to hold any extended data
+		private IItemSet<IIfcStyleAssignmentSelect> _stylesIfc4;
+		//transformation function to convert/cast IFC2x3 data to appear as IFC4
+		private static IIfcStyleAssignmentSelect StylesToIfc4 (IfcPresentationStyle member)
+		{
+			return member;
+		}
+
+		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
+		private static IfcPresentationStyle StylesToIfc2X3 (IIfcStyleAssignmentSelect member){
+			return member as IfcPresentationStyle;
 		}
 
 		[CrossSchemaAttribute(typeof(IIfcStyledItem), 3)]

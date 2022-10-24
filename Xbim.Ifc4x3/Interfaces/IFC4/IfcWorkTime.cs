@@ -40,12 +40,12 @@ namespace Xbim.Ifc4x3.DateTimeResource
 		{ 
 			get
 			{
-				if (!Start.HasValue) return null;
-				return new Ifc4.DateTimeResource.IfcDate(Start.Value);
+				if (!StartDate.HasValue) return null;
+				return new Ifc4.DateTimeResource.IfcDate(StartDate.Value);
 			} 
 			set
 			{
-				Start = value.HasValue ? 
+				StartDate = value.HasValue ? 
 					new IfcDate(value.Value) :  
 					 new IfcDate?() ;
 				
@@ -57,12 +57,12 @@ namespace Xbim.Ifc4x3.DateTimeResource
 		{ 
 			get
 			{
-				if (!Finish.HasValue) return null;
-				return new Ifc4.DateTimeResource.IfcDate(Finish.Value);
+				if (!FinishDate.HasValue) return null;
+				return new Ifc4.DateTimeResource.IfcDate(FinishDate.Value);
 			} 
 			set
 			{
-				Finish = value.HasValue ? 
+				FinishDate = value.HasValue ? 
 					new IfcDate(value.Value) :  
 					 new IfcDate?() ;
 				

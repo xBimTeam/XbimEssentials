@@ -10,6 +10,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 {
 	public enum IfcMemberTypeEnum : byte
 	{
+		@ARCH_SEGMENT ,
 		@BRACE ,
 		@CHORD ,
 		@COLLAR ,
@@ -19,15 +20,14 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 		@POST ,
 		@PURLIN ,
 		@RAFTER ,
+		@STAY_CABLE ,
+		@STIFFENING_RIB ,
 		@STRINGER ,
+		@STRUCTURALCABLE ,
 		@STRUT ,
 		@STUD ,
-		@STIFFENING_RIB ,
-		@ARCH_SEGMENT ,
-		@SUSPENSION_CABLE ,
 		@SUSPENDER ,
-		@STAY_CABLE ,
-		@STRUCTURALCABLE ,
+		@SUSPENSION_CABLE ,
 		@TIEBAR ,
 		@USERDEFINED ,
 		@NOTDEFINED 

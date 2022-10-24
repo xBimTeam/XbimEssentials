@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcProtectiveDeviceTrippingUnitTypeEnum.ELECTRONIC:
-						return Ifc4.Interfaces.IfcProtectiveDeviceTrippingUnitTypeEnum.ELECTRONIC;
 					case IfcProtectiveDeviceTrippingUnitTypeEnum.ELECTROMAGNETIC:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTrippingUnitTypeEnum.ELECTROMAGNETIC;
+					case IfcProtectiveDeviceTrippingUnitTypeEnum.ELECTRONIC:
+						return Ifc4.Interfaces.IfcProtectiveDeviceTrippingUnitTypeEnum.ELECTRONIC;
 					case IfcProtectiveDeviceTrippingUnitTypeEnum.RESIDUALCURRENT:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTrippingUnitTypeEnum.RESIDUALCURRENT;
 					case IfcProtectiveDeviceTrippingUnitTypeEnum.THERMAL:

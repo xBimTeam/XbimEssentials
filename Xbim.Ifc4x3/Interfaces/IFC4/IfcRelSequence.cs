@@ -72,14 +72,14 @@ namespace Xbim.Ifc4x3.ProcessExtension
 				//##
 				switch (SequenceType)
 				{
-					case IfcSequenceEnum.START_START:
-						return Ifc4.Interfaces.IfcSequenceEnum.START_START;
-					case IfcSequenceEnum.START_FINISH:
-						return Ifc4.Interfaces.IfcSequenceEnum.START_FINISH;
-					case IfcSequenceEnum.FINISH_START:
-						return Ifc4.Interfaces.IfcSequenceEnum.FINISH_START;
 					case IfcSequenceEnum.FINISH_FINISH:
 						return Ifc4.Interfaces.IfcSequenceEnum.FINISH_FINISH;
+					case IfcSequenceEnum.FINISH_START:
+						return Ifc4.Interfaces.IfcSequenceEnum.FINISH_START;
+					case IfcSequenceEnum.START_FINISH:
+						return Ifc4.Interfaces.IfcSequenceEnum.START_FINISH;
+					case IfcSequenceEnum.START_START:
+						return Ifc4.Interfaces.IfcSequenceEnum.START_START;
 					case IfcSequenceEnum.USERDEFINED:
 						//## Optional custom handling of SequenceType == .USERDEFINED. 
 						//##

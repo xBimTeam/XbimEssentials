@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,29 +29,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 		{
 		}
 
-		#region Explicit attribute fields
-		private IfcCurve _axis;
-		#endregion
-	
-		#region Explicit attribute properties
-		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 24)]
-		public IfcCurve @Axis 
-		{ 
-			get 
-			{
-				if(_activated) return _axis;
-				Activate();
-				return _axis;
-			} 
-			set
-			{
-				if (value != null && !(ReferenceEquals(Model, value.Model)))
-					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _axis = v, _axis, value,  "Axis", 8);
-			} 
-		}	
-		#endregion
 
 
 
@@ -70,9 +46,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 				case 5: 
 				case 6: 
 					base.Parse(propIndex, value, nestedIndex); 
-					return;
-				case 7: 
-					_axis = (IfcCurve)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -98,8 +71,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 					yield return @ObjectPlacement;
 				if (@Representation != null)
 					yield return @Representation;
-				if (@Axis != null)
-					yield return @Axis;
 			}
 		}
 		#endregion
@@ -114,8 +85,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 					yield return @ObjectPlacement;
 				if (@Representation != null)
 					yield return @Representation;
-				if (@Axis != null)
-					yield return @Axis;
 				
 			} 
 		}

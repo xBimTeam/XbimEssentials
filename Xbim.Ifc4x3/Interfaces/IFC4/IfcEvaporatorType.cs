@@ -32,12 +32,12 @@ namespace Xbim.Ifc4x3.HvacDomain
 				{
 					case IfcEvaporatorTypeEnum.DIRECTEXPANSION:
 						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSION;
+					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE:
+						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
 					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE:
 						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONSHELLANDTUBE;
 					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE:
 						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONTUBEINTUBE;
-					case IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE:
-						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.DIRECTEXPANSIONBRAZEDPLATE;
 					case IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE:
 						return Ifc4.Interfaces.IfcEvaporatorTypeEnum.FLOODEDSHELLANDTUBE;
 					case IfcEvaporatorTypeEnum.SHELLANDCOIL:

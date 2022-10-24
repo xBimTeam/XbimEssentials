@@ -36,7 +36,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 3 }, new int [] { 3 }, 25)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 3 }, new int [] { 3 }, 26)]
 		public IOptionalItemSet<IfcRatioMeasure> @SelfWeightCoefficients 
 		{ 
 			get 

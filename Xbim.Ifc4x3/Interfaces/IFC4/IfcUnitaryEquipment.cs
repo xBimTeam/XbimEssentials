@@ -30,16 +30,16 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
-						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
 					case IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRCONDITIONINGUNIT;
+					case IfcUnitaryEquipmentTypeEnum.AIRHANDLER:
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.AIRHANDLER;
 					case IfcUnitaryEquipmentTypeEnum.DEHUMIDIFIER:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.DEHUMIDIFIER;
-					case IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
-						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
 					case IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT:
 						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.ROOFTOPUNIT;
+					case IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM:
+						return Ifc4.Interfaces.IfcUnitaryEquipmentTypeEnum.SPLITSYSTEM;
 					case IfcUnitaryEquipmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

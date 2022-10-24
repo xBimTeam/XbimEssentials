@@ -24,7 +24,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPresentationStyle", 34)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcPresentationStyle : PersistEntity, IfcStyleAssignmentSelect, IEquatable<@IfcPresentationStyle>
+	public abstract partial class @IfcPresentationStyle : PersistEntity, IEquatable<@IfcPresentationStyle>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

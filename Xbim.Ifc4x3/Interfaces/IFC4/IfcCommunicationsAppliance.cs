@@ -32,12 +32,32 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				{
 					case IfcCommunicationsApplianceTypeEnum.ANTENNA:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.ANTENNA;
+					case IfcCommunicationsApplianceTypeEnum.AUTOMATON:
+						//## Handle translation of AUTOMATON member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of AUTOMATON member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcCommunicationsApplianceTypeEnum.COMPUTER:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.COMPUTER;
 					case IfcCommunicationsApplianceTypeEnum.FAX:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.FAX;
 					case IfcCommunicationsApplianceTypeEnum.GATEWAY:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.GATEWAY;
+					case IfcCommunicationsApplianceTypeEnum.INTELLIGENTPERIPHERAL:
+						//## Handle translation of INTELLIGENTPERIPHERAL member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of INTELLIGENTPERIPHERAL member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcCommunicationsApplianceTypeEnum.IPNETWORKEQUIPMENT:
+						//## Handle translation of IPNETWORKEQUIPMENT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of IPNETWORKEQUIPMENT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcCommunicationsApplianceTypeEnum.LINESIDEELECTRONICUNIT:
+						//## Handle translation of LINESIDEELECTRONICUNIT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of LINESIDEELECTRONICUNIT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcCommunicationsApplianceTypeEnum.MODEM:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.MODEM;
 					case IfcCommunicationsApplianceTypeEnum.NETWORKAPPLIANCE:
@@ -46,34 +66,29 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.NETWORKBRIDGE;
 					case IfcCommunicationsApplianceTypeEnum.NETWORKHUB:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.NETWORKHUB;
+					case IfcCommunicationsApplianceTypeEnum.OPTICALLINETERMINAL:
+						//## Handle translation of OPTICALLINETERMINAL member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of OPTICALLINETERMINAL member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcCommunicationsApplianceTypeEnum.OPTICALNETWORKUNIT:
+						//## Handle translation of OPTICALNETWORKUNIT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of OPTICALNETWORKUNIT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcCommunicationsApplianceTypeEnum.PRINTER:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.PRINTER;
+					case IfcCommunicationsApplianceTypeEnum.RADIOBLOCKCENTER:
+						//## Handle translation of RADIOBLOCKCENTER member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of RADIOBLOCKCENTER member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcCommunicationsApplianceTypeEnum.REPEATER:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.REPEATER;
 					case IfcCommunicationsApplianceTypeEnum.ROUTER:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.ROUTER;
 					case IfcCommunicationsApplianceTypeEnum.SCANNER:
 						return Ifc4.Interfaces.IfcCommunicationsApplianceTypeEnum.SCANNER;
-					case IfcCommunicationsApplianceTypeEnum.AUTOMATON:
-						//## Handle translation of AUTOMATON member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						//TODO: Handle translation of AUTOMATON member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCommunicationsApplianceTypeEnum.INTELLIGENT_PERIPHERAL:
-						//## Handle translation of INTELLIGENT_PERIPHERAL member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						//TODO: Handle translation of INTELLIGENT_PERIPHERAL member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCommunicationsApplianceTypeEnum.IP_NETWORK_EQUIPMENT:
-						//## Handle translation of IP_NETWORK_EQUIPMENT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						//TODO: Handle translation of IP_NETWORK_EQUIPMENT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCommunicationsApplianceTypeEnum.OPTICAL_NETWORK_UNIT:
-						//## Handle translation of OPTICAL_NETWORK_UNIT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						//TODO: Handle translation of OPTICAL_NETWORK_UNIT member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcCommunicationsApplianceTypeEnum.TELECOMMAND:
 						//## Handle translation of TELECOMMAND member from IfcCommunicationsApplianceTypeEnum in property PredefinedType
 						//TODO: Handle translation of TELECOMMAND member from IfcCommunicationsApplianceTypeEnum in property PredefinedType

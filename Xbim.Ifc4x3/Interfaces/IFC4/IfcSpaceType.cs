@@ -30,16 +30,21 @@ namespace Xbim.Ifc4x3.ProductExtension
 				//##
 				switch (PredefinedType)
 				{
-					case IfcSpaceTypeEnum.SPACE:
-						return Ifc4.Interfaces.IfcSpaceTypeEnum.SPACE;
-					case IfcSpaceTypeEnum.PARKING:
-						return Ifc4.Interfaces.IfcSpaceTypeEnum.PARKING;
+					case IfcSpaceTypeEnum.BERTH:
+						//## Handle translation of BERTH member from IfcSpaceTypeEnum in property PredefinedType
+						//TODO: Handle translation of BERTH member from IfcSpaceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcSpaceTypeEnum.EXTERNAL:
+						return Ifc4.Interfaces.IfcSpaceTypeEnum.EXTERNAL;
 					case IfcSpaceTypeEnum.GFA:
 						return Ifc4.Interfaces.IfcSpaceTypeEnum.GFA;
 					case IfcSpaceTypeEnum.INTERNAL:
 						return Ifc4.Interfaces.IfcSpaceTypeEnum.INTERNAL;
-					case IfcSpaceTypeEnum.EXTERNAL:
-						return Ifc4.Interfaces.IfcSpaceTypeEnum.EXTERNAL;
+					case IfcSpaceTypeEnum.PARKING:
+						return Ifc4.Interfaces.IfcSpaceTypeEnum.PARKING;
+					case IfcSpaceTypeEnum.SPACE:
+						return Ifc4.Interfaces.IfcSpaceTypeEnum.SPACE;
 					case IfcSpaceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

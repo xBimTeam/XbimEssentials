@@ -10,8 +10,8 @@ namespace Xbim.Ifc4x3.HvacDomain
 {
 	public enum IfcDuctSegmentTypeEnum : byte
 	{
-		@RIGIDSEGMENT ,
 		@FLEXIBLESEGMENT ,
+		@RIGIDSEGMENT ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

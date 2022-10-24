@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.SharedInfrastructureElements;
 using Xbim.Ifc4x3.Kernel;
 using Xbim.Ifc4x3.MeasureResource;
 using System;
@@ -81,6 +80,24 @@ namespace Xbim.Ifc4x3.ProductExtension
 			get 
 			{
 				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => Equals(e.RelatingStructure), "RelatingStructure", this);
+			} 
+		}
+		[InverseProperty("RelatedElement")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 26)]
+		public IEnumerable<IfcRelInterferesElements> @IsInterferedByElements 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcRelInterferesElements>(e => Equals(e.RelatedElement), "RelatedElement", this);
+			} 
+		}
+		[InverseProperty("RelatingElement")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 27)]
+		public IEnumerable<IfcRelInterferesElements> @InterferesElements 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcRelInterferesElements>(e => Equals(e.RelatingElement), "RelatingElement", this);
 			} 
 		}
 		#endregion

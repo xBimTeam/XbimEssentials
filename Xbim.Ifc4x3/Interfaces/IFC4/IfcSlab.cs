@@ -30,29 +30,24 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcSlabTypeEnum.FLOOR:
-						return Ifc4.Interfaces.IfcSlabTypeEnum.FLOOR;
-					case IfcSlabTypeEnum.ROOF:
-						return Ifc4.Interfaces.IfcSlabTypeEnum.ROOF;
-					case IfcSlabTypeEnum.LANDING:
-						return Ifc4.Interfaces.IfcSlabTypeEnum.LANDING;
-					case IfcSlabTypeEnum.BASESLAB:
-						return Ifc4.Interfaces.IfcSlabTypeEnum.BASESLAB;
 					case IfcSlabTypeEnum.APPROACH_SLAB:
 						//## Handle translation of APPROACH_SLAB member from IfcSlabTypeEnum in property PredefinedType
 						//TODO: Handle translation of APPROACH_SLAB member from IfcSlabTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcSlabTypeEnum.BASESLAB:
+						return Ifc4.Interfaces.IfcSlabTypeEnum.BASESLAB;
+					case IfcSlabTypeEnum.FLOOR:
+						return Ifc4.Interfaces.IfcSlabTypeEnum.FLOOR;
+					case IfcSlabTypeEnum.LANDING:
+						return Ifc4.Interfaces.IfcSlabTypeEnum.LANDING;
 					case IfcSlabTypeEnum.PAVING:
 						//## Handle translation of PAVING member from IfcSlabTypeEnum in property PredefinedType
 						//TODO: Handle translation of PAVING member from IfcSlabTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcSlabTypeEnum.WEARING:
-						//## Handle translation of WEARING member from IfcSlabTypeEnum in property PredefinedType
-						//TODO: Handle translation of WEARING member from IfcSlabTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
+					case IfcSlabTypeEnum.ROOF:
+						return Ifc4.Interfaces.IfcSlabTypeEnum.ROOF;
 					case IfcSlabTypeEnum.SIDEWALK:
 						//## Handle translation of SIDEWALK member from IfcSlabTypeEnum in property PredefinedType
 						//TODO: Handle translation of SIDEWALK member from IfcSlabTypeEnum in property PredefinedType
@@ -61,6 +56,11 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 					case IfcSlabTypeEnum.TRACKSLAB:
 						//## Handle translation of TRACKSLAB member from IfcSlabTypeEnum in property PredefinedType
 						//TODO: Handle translation of TRACKSLAB member from IfcSlabTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcSlabTypeEnum.WEARING:
+						//## Handle translation of WEARING member from IfcSlabTypeEnum in property PredefinedType
+						//TODO: Handle translation of WEARING member from IfcSlabTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcSlabTypeEnum.USERDEFINED:

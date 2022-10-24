@@ -30,32 +30,32 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcFlowInstrumentTypeEnum.PRESSUREGAUGE:
-						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PRESSUREGAUGE;
-					case IfcFlowInstrumentTypeEnum.THERMOMETER:
-						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.THERMOMETER;
 					case IfcFlowInstrumentTypeEnum.AMMETER:
 						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.AMMETER;
-					case IfcFlowInstrumentTypeEnum.FREQUENCYMETER:
-						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.FREQUENCYMETER;
-					case IfcFlowInstrumentTypeEnum.POWERFACTORMETER:
-						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.POWERFACTORMETER;
-					case IfcFlowInstrumentTypeEnum.PHASEANGLEMETER:
-						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PHASEANGLEMETER;
-					case IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK:
-						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK;
-					case IfcFlowInstrumentTypeEnum.VOLTMETER_RMS:
-						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS;
 					case IfcFlowInstrumentTypeEnum.COMBINED:
 						//## Handle translation of COMBINED member from IfcFlowInstrumentTypeEnum in property PredefinedType
 						//TODO: Handle translation of COMBINED member from IfcFlowInstrumentTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcFlowInstrumentTypeEnum.FREQUENCYMETER:
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.FREQUENCYMETER;
+					case IfcFlowInstrumentTypeEnum.PHASEANGLEMETER:
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PHASEANGLEMETER;
+					case IfcFlowInstrumentTypeEnum.POWERFACTORMETER:
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.POWERFACTORMETER;
+					case IfcFlowInstrumentTypeEnum.PRESSUREGAUGE:
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.PRESSUREGAUGE;
+					case IfcFlowInstrumentTypeEnum.THERMOMETER:
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.THERMOMETER;
 					case IfcFlowInstrumentTypeEnum.VOLTMETER:
 						//## Handle translation of VOLTMETER member from IfcFlowInstrumentTypeEnum in property PredefinedType
 						//TODO: Handle translation of VOLTMETER member from IfcFlowInstrumentTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK:
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK;
+					case IfcFlowInstrumentTypeEnum.VOLTMETER_RMS:
+						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_RMS;
 					case IfcFlowInstrumentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

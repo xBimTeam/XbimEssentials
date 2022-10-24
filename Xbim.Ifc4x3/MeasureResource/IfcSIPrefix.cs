@@ -10,21 +10,21 @@ namespace Xbim.Ifc4x3.MeasureResource
 {
 	public enum IfcSIPrefix : byte
 	{
-		@EXA ,
-		@PETA ,
-		@TERA ,
-		@GIGA ,
-		@MEGA ,
-		@KILO ,
-		@HECTO ,
+		@ATTO ,
+		@CENTI ,
 		@DECA ,
 		@DECI ,
-		@CENTI ,
-		@MILLI ,
-		@MICRO ,
-		@NANO ,
-		@PICO ,
+		@EXA ,
 		@FEMTO ,
-		@ATTO 
+		@GIGA ,
+		@HECTO ,
+		@KILO ,
+		@MEGA ,
+		@MICRO ,
+		@MILLI ,
+		@NANO ,
+		@PETA ,
+		@PICO ,
+		@TERA 
 	}
 }

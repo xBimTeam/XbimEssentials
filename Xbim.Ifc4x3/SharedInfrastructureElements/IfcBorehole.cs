@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcBorehole", 1405)]
+	[ExpressType("IfcBorehole", 1413)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBorehole : IfcGeotechnicalAssembly, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBorehole>
 	{

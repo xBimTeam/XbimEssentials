@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcCoolingTowerTypeEnum.NATURALDRAFT:
-						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.NATURALDRAFT;
-					case IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT:
-						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT;
 					case IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT:
 						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALFORCEDDRAFT;
+					case IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT:
+						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.MECHANICALINDUCEDDRAFT;
+					case IfcCoolingTowerTypeEnum.NATURALDRAFT:
+						return Ifc4.Interfaces.IfcCoolingTowerTypeEnum.NATURALDRAFT;
 					case IfcCoolingTowerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

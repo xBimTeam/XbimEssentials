@@ -10,11 +10,11 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 {
 	public enum IfcStairFlightTypeEnum : byte
 	{
-		@STRAIGHT ,
-		@WINDER ,
-		@SPIRAL ,
 		@CURVED ,
 		@FREEFORM ,
+		@SPIRAL ,
+		@STRAIGHT ,
+		@WINDER ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

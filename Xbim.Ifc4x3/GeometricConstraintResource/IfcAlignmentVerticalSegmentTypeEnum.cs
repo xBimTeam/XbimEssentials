@@ -10,9 +10,9 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	public enum IfcAlignmentVerticalSegmentTypeEnum : byte
 	{
-		@CONSTANTGRADIENT ,
 		@CIRCULARARC ,
-		@PARABOLICARC ,
-		@CLOTHOID 
+		@CLOTHOID ,
+		@CONSTANTGRADIENT ,
+		@PARABOLICARC 
 	}
 }

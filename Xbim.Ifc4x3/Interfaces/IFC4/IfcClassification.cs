@@ -108,12 +108,12 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 		{ 
 			get
 			{
-				if (!Location.HasValue) return null;
-				return new Ifc4.ExternalReferenceResource.IfcURIReference(Location.Value);
+				if (!Specification.HasValue) return null;
+				return new Ifc4.ExternalReferenceResource.IfcURIReference(Specification.Value);
 			} 
 			set
 			{
-				Location = value.HasValue ? 
+				Specification = value.HasValue ? 
 					new IfcURIReference(value.Value) :  
 					 new IfcURIReference?() ;
 				

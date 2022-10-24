@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				//##
 				switch (AssemblyPlace)
 				{
-					case ProductExtension.IfcAssemblyPlaceEnum.SITE:
-						return Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE;
 					case ProductExtension.IfcAssemblyPlaceEnum.FACTORY:
 						return Ifc4.Interfaces.IfcAssemblyPlaceEnum.FACTORY;
+					case ProductExtension.IfcAssemblyPlaceEnum.SITE:
+						return Ifc4.Interfaces.IfcAssemblyPlaceEnum.SITE;
 					case ProductExtension.IfcAssemblyPlaceEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcAssemblyPlaceEnum.NOTDEFINED;
 					
@@ -72,20 +72,20 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcFurnitureTypeEnum.CHAIR:
-						return Ifc4.Interfaces.IfcFurnitureTypeEnum.CHAIR;
-					case IfcFurnitureTypeEnum.TABLE:
-						return Ifc4.Interfaces.IfcFurnitureTypeEnum.TABLE;
-					case IfcFurnitureTypeEnum.DESK:
-						return Ifc4.Interfaces.IfcFurnitureTypeEnum.DESK;
 					case IfcFurnitureTypeEnum.BED:
 						return Ifc4.Interfaces.IfcFurnitureTypeEnum.BED;
+					case IfcFurnitureTypeEnum.CHAIR:
+						return Ifc4.Interfaces.IfcFurnitureTypeEnum.CHAIR;
+					case IfcFurnitureTypeEnum.DESK:
+						return Ifc4.Interfaces.IfcFurnitureTypeEnum.DESK;
 					case IfcFurnitureTypeEnum.FILECABINET:
 						return Ifc4.Interfaces.IfcFurnitureTypeEnum.FILECABINET;
 					case IfcFurnitureTypeEnum.SHELF:
 						return Ifc4.Interfaces.IfcFurnitureTypeEnum.SHELF;
 					case IfcFurnitureTypeEnum.SOFA:
 						return Ifc4.Interfaces.IfcFurnitureTypeEnum.SOFA;
+					case IfcFurnitureTypeEnum.TABLE:
+						return Ifc4.Interfaces.IfcFurnitureTypeEnum.TABLE;
 					case IfcFurnitureTypeEnum.TECHNICALCABINET:
 						//## Handle translation of TECHNICALCABINET member from IfcFurnitureTypeEnum in property PredefinedType
 						//TODO: Handle translation of TECHNICALCABINET member from IfcFurnitureTypeEnum in property PredefinedType

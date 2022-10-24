@@ -11,8 +11,8 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 	public enum IfcSystemFurnitureElementTypeEnum : byte
 	{
 		@PANEL ,
-		@WORKSURFACE ,
 		@SUBRACK ,
+		@WORKSURFACE ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

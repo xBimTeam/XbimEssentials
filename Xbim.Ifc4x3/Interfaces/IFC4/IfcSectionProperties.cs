@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.ProfileResource
 				//##
 				switch (SectionType)
 				{
-					case IfcSectionTypeEnum.UNIFORM:
-						return Ifc4.Interfaces.IfcSectionTypeEnum.UNIFORM;
 					case IfcSectionTypeEnum.TAPERED:
 						return Ifc4.Interfaces.IfcSectionTypeEnum.TAPERED;
+					case IfcSectionTypeEnum.UNIFORM:
+						return Ifc4.Interfaces.IfcSectionTypeEnum.UNIFORM;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();

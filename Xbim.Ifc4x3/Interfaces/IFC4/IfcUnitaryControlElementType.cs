@@ -32,25 +32,30 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 				{
 					case IfcUnitaryControlElementTypeEnum.ALARMPANEL:
 						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.ALARMPANEL;
-					case IfcUnitaryControlElementTypeEnum.CONTROLPANEL:
-						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.CONTROLPANEL;
-					case IfcUnitaryControlElementTypeEnum.GASDETECTIONPANEL:
-						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.GASDETECTIONPANEL;
-					case IfcUnitaryControlElementTypeEnum.INDICATORPANEL:
-						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.INDICATORPANEL;
-					case IfcUnitaryControlElementTypeEnum.MIMICPANEL:
-						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.MIMICPANEL;
-					case IfcUnitaryControlElementTypeEnum.HUMIDISTAT:
-						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.HUMIDISTAT;
-					case IfcUnitaryControlElementTypeEnum.THERMOSTAT:
-						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.THERMOSTAT;
-					case IfcUnitaryControlElementTypeEnum.WEATHERSTATION:
-						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.WEATHERSTATION;
+					case IfcUnitaryControlElementTypeEnum.BASESTATIONCONTROLLER:
+						//## Handle translation of BASESTATIONCONTROLLER member from IfcUnitaryControlElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of BASESTATIONCONTROLLER member from IfcUnitaryControlElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcUnitaryControlElementTypeEnum.COMBINED:
 						//## Handle translation of COMBINED member from IfcUnitaryControlElementTypeEnum in property PredefinedType
 						//TODO: Handle translation of COMBINED member from IfcUnitaryControlElementTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcUnitaryControlElementTypeEnum.CONTROLPANEL:
+						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.CONTROLPANEL;
+					case IfcUnitaryControlElementTypeEnum.GASDETECTIONPANEL:
+						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.GASDETECTIONPANEL;
+					case IfcUnitaryControlElementTypeEnum.HUMIDISTAT:
+						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.HUMIDISTAT;
+					case IfcUnitaryControlElementTypeEnum.INDICATORPANEL:
+						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.INDICATORPANEL;
+					case IfcUnitaryControlElementTypeEnum.MIMICPANEL:
+						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.MIMICPANEL;
+					case IfcUnitaryControlElementTypeEnum.THERMOSTAT:
+						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.THERMOSTAT;
+					case IfcUnitaryControlElementTypeEnum.WEATHERSTATION:
+						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.WEATHERSTATION;
 					case IfcUnitaryControlElementTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

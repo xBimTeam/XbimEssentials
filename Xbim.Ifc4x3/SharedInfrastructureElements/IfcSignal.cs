@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcSignal", 1464)]
+	[ExpressType("IfcSignal", 1490)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSignal : IfcFlowTerminal, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSignal>
 	{
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 37)]
 		public IfcSignalTypeEnum? @PredefinedType 
 		{ 
 			get 

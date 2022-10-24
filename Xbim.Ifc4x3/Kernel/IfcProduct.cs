@@ -7,10 +7,9 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.SharedInfrastructureElements;
+using Xbim.Ifc4x3.ProductExtension;
 using Xbim.Ifc4x3.GeometricConstraintResource;
 using Xbim.Ifc4x3.RepresentationResource;
-using Xbim.Ifc4x3.ProductExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,7 +87,7 @@ namespace Xbim.Ifc4x3.Kernel
 			} 
 		}
 		[InverseProperty("RelatedProducts")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 20)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 20)]
 		public IEnumerable<IfcRelPositions> @PositionedRelativeTo 
 		{ 
 			get 

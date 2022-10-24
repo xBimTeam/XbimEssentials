@@ -30,18 +30,28 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcSensorTypeEnum.COSENSOR:
-						return Ifc4.Interfaces.IfcSensorTypeEnum.COSENSOR;
 					case IfcSensorTypeEnum.CO2SENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.CO2SENSOR;
 					case IfcSensorTypeEnum.CONDUCTANCESENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.CONDUCTANCESENSOR;
 					case IfcSensorTypeEnum.CONTACTSENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.CONTACTSENSOR;
+					case IfcSensorTypeEnum.COSENSOR:
+						return Ifc4.Interfaces.IfcSensorTypeEnum.COSENSOR;
+					case IfcSensorTypeEnum.EARTHQUAKESENSOR:
+						//## Handle translation of EARTHQUAKESENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle translation of EARTHQUAKESENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcSensorTypeEnum.FIRESENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.FIRESENSOR;
 					case IfcSensorTypeEnum.FLOWSENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.FLOWSENSOR;
+					case IfcSensorTypeEnum.FOREIGNOBJECTDETECTIONSENSOR:
+						//## Handle translation of FOREIGNOBJECTDETECTIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle translation of FOREIGNOBJECTDETECTIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcSensorTypeEnum.FROSTSENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.FROSTSENSOR;
 					case IfcSensorTypeEnum.GASSENSOR:
@@ -62,6 +72,11 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						return Ifc4.Interfaces.IfcSensorTypeEnum.MOISTURESENSOR;
 					case IfcSensorTypeEnum.MOVEMENTSENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.MOVEMENTSENSOR;
+					case IfcSensorTypeEnum.OBSTACLESENSOR:
+						//## Handle translation of OBSTACLESENSOR member from IfcSensorTypeEnum in property PredefinedType
+						//TODO: Handle translation of OBSTACLESENSOR member from IfcSensorTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcSensorTypeEnum.PHSENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.PHSENSOR;
 					case IfcSensorTypeEnum.PRESSURESENSOR:
@@ -70,39 +85,22 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						return Ifc4.Interfaces.IfcSensorTypeEnum.RADIATIONSENSOR;
 					case IfcSensorTypeEnum.RADIOACTIVITYSENSOR:
 						return Ifc4.Interfaces.IfcSensorTypeEnum.RADIOACTIVITYSENSOR;
-					case IfcSensorTypeEnum.SMOKESENSOR:
-						return Ifc4.Interfaces.IfcSensorTypeEnum.SMOKESENSOR;
-					case IfcSensorTypeEnum.SOUNDSENSOR:
-						return Ifc4.Interfaces.IfcSensorTypeEnum.SOUNDSENSOR;
-					case IfcSensorTypeEnum.TEMPERATURESENSOR:
-						return Ifc4.Interfaces.IfcSensorTypeEnum.TEMPERATURESENSOR;
-					case IfcSensorTypeEnum.WINDSENSOR:
-						return Ifc4.Interfaces.IfcSensorTypeEnum.WINDSENSOR;
-					case IfcSensorTypeEnum.EARTHQUAKESENSOR:
-						//## Handle translation of EARTHQUAKESENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle translation of EARTHQUAKESENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcSensorTypeEnum.FOREIGNOBJECTDETECTIONSENSOR:
-						//## Handle translation of FOREIGNOBJECTDETECTIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle translation of FOREIGNOBJECTDETECTIONSENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcSensorTypeEnum.OBSTACLESENSOR:
-						//## Handle translation of OBSTACLESENSOR member from IfcSensorTypeEnum in property PredefinedType
-						//TODO: Handle translation of OBSTACLESENSOR member from IfcSensorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcSensorTypeEnum.RAINSENSOR:
 						//## Handle translation of RAINSENSOR member from IfcSensorTypeEnum in property PredefinedType
 						//TODO: Handle translation of RAINSENSOR member from IfcSensorTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcSensorTypeEnum.SMOKESENSOR:
+						return Ifc4.Interfaces.IfcSensorTypeEnum.SMOKESENSOR;
 					case IfcSensorTypeEnum.SNOWDEPTHSENSOR:
 						//## Handle translation of SNOWDEPTHSENSOR member from IfcSensorTypeEnum in property PredefinedType
 						//TODO: Handle translation of SNOWDEPTHSENSOR member from IfcSensorTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcSensorTypeEnum.SOUNDSENSOR:
+						return Ifc4.Interfaces.IfcSensorTypeEnum.SOUNDSENSOR;
+					case IfcSensorTypeEnum.TEMPERATURESENSOR:
+						return Ifc4.Interfaces.IfcSensorTypeEnum.TEMPERATURESENSOR;
 					case IfcSensorTypeEnum.TRAINSENSOR:
 						//## Handle translation of TRAINSENSOR member from IfcSensorTypeEnum in property PredefinedType
 						//TODO: Handle translation of TRAINSENSOR member from IfcSensorTypeEnum in property PredefinedType
@@ -118,6 +116,8 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						//TODO: Handle translation of WHEELSENSOR member from IfcSensorTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcSensorTypeEnum.WINDSENSOR:
+						return Ifc4.Interfaces.IfcSensorTypeEnum.WINDSENSOR;
 					case IfcSensorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

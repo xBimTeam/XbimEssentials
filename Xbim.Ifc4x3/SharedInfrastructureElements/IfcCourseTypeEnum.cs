@@ -11,9 +11,9 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 	public enum IfcCourseTypeEnum : byte
 	{
 		@ARMOUR ,
-		@FILTER ,
 		@BALLASTBED ,
 		@CORE ,
+		@FILTER ,
 		@PAVEMENT ,
 		@PROTECTION ,
 		@USERDEFINED ,

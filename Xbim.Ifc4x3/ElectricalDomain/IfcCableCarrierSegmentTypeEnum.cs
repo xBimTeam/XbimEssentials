@@ -10,12 +10,12 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 {
 	public enum IfcCableCarrierSegmentTypeEnum : byte
 	{
+		@CABLEBRACKET ,
 		@CABLELADDERSEGMENT ,
 		@CABLETRAYSEGMENT ,
 		@CABLETRUNKINGSEGMENT ,
-		@CONDUITSEGMENT ,
-		@CABLEBRACKET ,
 		@CATENARYWIRE ,
+		@CONDUITSEGMENT ,
 		@DROPPER ,
 		@USERDEFINED ,
 		@NOTDEFINED 

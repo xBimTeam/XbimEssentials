@@ -10,8 +10,8 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 {
 	public enum IfcLightFixtureTypeEnum : byte
 	{
-		@POINTSOURCE ,
 		@DIRECTIONSOURCE ,
+		@POINTSOURCE ,
 		@SECURITYLIGHTING ,
 		@USERDEFINED ,
 		@NOTDEFINED 

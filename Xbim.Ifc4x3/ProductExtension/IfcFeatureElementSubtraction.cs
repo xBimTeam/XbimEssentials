@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatedOpeningElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, null, null, 34)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, null, null, 35)]
 		public IfcRelVoidsElement @VoidsElements 
 		{ 
 			get 

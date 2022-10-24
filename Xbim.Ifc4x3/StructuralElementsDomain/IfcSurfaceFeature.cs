@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcSurfaceFeatureTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -53,6 +53,17 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 
 
 
+		#region Inverse attributes
+		[InverseProperty("RelatedSurfaceFeatures")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, null, null, 36)]
+		public IfcRelAdheresToElement @AdheresToElement 
+		{ 
+			get 
+			{
+				return Model.Instances.FirstOrDefault<IfcRelAdheresToElement>(e => e.RelatedSurfaceFeatures != null &&  e.RelatedSurfaceFeatures.Contains(this), "RelatedSurfaceFeatures", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)

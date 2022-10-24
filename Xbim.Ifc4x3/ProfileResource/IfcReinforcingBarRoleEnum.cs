@@ -10,14 +10,14 @@ namespace Xbim.Ifc4x3.ProfileResource
 {
 	public enum IfcReinforcingBarRoleEnum : byte
 	{
-		@MAIN ,
-		@SHEAR ,
-		@LIGATURE ,
-		@STUD ,
-		@PUNCHING ,
-		@EDGE ,
-		@RING ,
 		@ANCHORING ,
+		@EDGE ,
+		@LIGATURE ,
+		@MAIN ,
+		@PUNCHING ,
+		@RING ,
+		@SHEAR ,
+		@STUD ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

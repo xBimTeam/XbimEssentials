@@ -30,30 +30,35 @@ namespace Xbim.Ifc4x3.Kernel
 				//##
 				switch (TemplateType)
 				{
-					case IfcSimplePropertyTemplateTypeEnum.P_SINGLEVALUE:
-						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_SINGLEVALUE;
-					case IfcSimplePropertyTemplateTypeEnum.P_ENUMERATEDVALUE:
-						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_ENUMERATEDVALUE;
 					case IfcSimplePropertyTemplateTypeEnum.P_BOUNDEDVALUE:
 						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_BOUNDEDVALUE;
+					case IfcSimplePropertyTemplateTypeEnum.P_ENUMERATEDVALUE:
+						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_ENUMERATEDVALUE;
 					case IfcSimplePropertyTemplateTypeEnum.P_LISTVALUE:
 						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_LISTVALUE;
-					case IfcSimplePropertyTemplateTypeEnum.P_TABLEVALUE:
-						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_TABLEVALUE;
 					case IfcSimplePropertyTemplateTypeEnum.P_REFERENCEVALUE:
 						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_REFERENCEVALUE;
-					case IfcSimplePropertyTemplateTypeEnum.Q_LENGTH:
-						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_LENGTH;
+					case IfcSimplePropertyTemplateTypeEnum.P_SINGLEVALUE:
+						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_SINGLEVALUE;
+					case IfcSimplePropertyTemplateTypeEnum.P_TABLEVALUE:
+						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.P_TABLEVALUE;
 					case IfcSimplePropertyTemplateTypeEnum.Q_AREA:
 						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_AREA;
-					case IfcSimplePropertyTemplateTypeEnum.Q_VOLUME:
-						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_VOLUME;
 					case IfcSimplePropertyTemplateTypeEnum.Q_COUNT:
 						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_COUNT;
-					case IfcSimplePropertyTemplateTypeEnum.Q_WEIGHT:
-						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_WEIGHT;
+					case IfcSimplePropertyTemplateTypeEnum.Q_LENGTH:
+						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_LENGTH;
+					case IfcSimplePropertyTemplateTypeEnum.Q_NUMBER:
+						//## Handle translation of Q_NUMBER member from IfcSimplePropertyTemplateTypeEnum in property TemplateType
+						//TODO: Handle translation of Q_NUMBER member from IfcSimplePropertyTemplateTypeEnum in property TemplateType
+						throw new System.NotImplementedException();
+						//##
 					case IfcSimplePropertyTemplateTypeEnum.Q_TIME:
 						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_TIME;
+					case IfcSimplePropertyTemplateTypeEnum.Q_VOLUME:
+						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_VOLUME;
+					case IfcSimplePropertyTemplateTypeEnum.Q_WEIGHT:
+						return Ifc4.Interfaces.IfcSimplePropertyTemplateTypeEnum.Q_WEIGHT;
 					case null: 
 						return null;
 					
@@ -280,16 +285,16 @@ namespace Xbim.Ifc4x3.Kernel
 				//##
 				switch (AccessState)
 				{
-					case UtilityResource.IfcStateEnum.READWRITE:
-						return Ifc4.Interfaces.IfcStateEnum.READWRITE;
-					case UtilityResource.IfcStateEnum.READONLY:
-						return Ifc4.Interfaces.IfcStateEnum.READONLY;
 					case UtilityResource.IfcStateEnum.LOCKED:
 						return Ifc4.Interfaces.IfcStateEnum.LOCKED;
-					case UtilityResource.IfcStateEnum.READWRITELOCKED:
-						return Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED;
+					case UtilityResource.IfcStateEnum.READONLY:
+						return Ifc4.Interfaces.IfcStateEnum.READONLY;
 					case UtilityResource.IfcStateEnum.READONLYLOCKED:
 						return Ifc4.Interfaces.IfcStateEnum.READONLYLOCKED;
+					case UtilityResource.IfcStateEnum.READWRITE:
+						return Ifc4.Interfaces.IfcStateEnum.READWRITE;
+					case UtilityResource.IfcStateEnum.READWRITELOCKED:
+						return Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED;
 					case null: 
 						return null;
 					

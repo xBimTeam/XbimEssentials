@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.GeometricConstraintResource;
 
 namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignmentVerticalSegment", 1487)]
+	[ExpressType("IfcAlignmentVerticalSegment", 1409)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignmentVerticalSegment : IfcAlignmentParameterSegment, IInstantiableEntity, IEquatable<@IfcAlignmentVerticalSegment>
 	{
@@ -32,11 +32,11 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 
 		#region Explicit attribute fields
 		private IfcLengthMeasure _startDistAlong;
-		private IfcPositiveLengthMeasure _horizontalLength;
+		private IfcNonNegativeLengthMeasure _horizontalLength;
 		private IfcLengthMeasure _startHeight;
-		private IfcLengthMeasure _startGradient;
-		private IfcLengthMeasure _endGradient;
-		private IfcPositiveLengthMeasure? _radiusOfCurvature;
+		private IfcRatioMeasure _startGradient;
+		private IfcRatioMeasure _endGradient;
+		private IfcLengthMeasure? _radiusOfCurvature;
 		private IfcAlignmentVerticalSegmentTypeEnum _predefinedType;
 		#endregion
 	
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
-		public IfcPositiveLengthMeasure @HorizontalLength 
+		public IfcNonNegativeLengthMeasure @HorizontalLength 
 		{ 
 			get 
 			{
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
-		public IfcLengthMeasure @StartGradient 
+		public IfcRatioMeasure @StartGradient 
 		{ 
 			get 
 			{
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
-		public IfcLengthMeasure @EndGradient 
+		public IfcRatioMeasure @EndGradient 
 		{ 
 			get 
 			{
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
-		public IfcPositiveLengthMeasure? @RadiusOfCurvature 
+		public IfcLengthMeasure? @RadiusOfCurvature 
 		{ 
 			get 
 			{

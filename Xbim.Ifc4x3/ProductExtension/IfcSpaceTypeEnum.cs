@@ -10,11 +10,12 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	public enum IfcSpaceTypeEnum : byte
 	{
-		@SPACE ,
-		@PARKING ,
+		@BERTH ,
+		@EXTERNAL ,
 		@GFA ,
 		@INTERNAL ,
-		@EXTERNAL ,
+		@PARKING ,
+		@SPACE ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

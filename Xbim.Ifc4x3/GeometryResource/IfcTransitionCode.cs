@@ -10,9 +10,9 @@ namespace Xbim.Ifc4x3.GeometryResource
 {
 	public enum IfcTransitionCode : byte
 	{
-		@DISCONTINUOUS ,
 		@CONTINUOUS ,
 		@CONTSAMEGRADIENT ,
-		@CONTSAMEGRADIENTSAMECURVATURE 
+		@CONTSAMEGRADIENTSAMECURVATURE ,
+		@DISCONTINUOUS 
 	}
 }

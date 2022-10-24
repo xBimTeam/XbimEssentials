@@ -30,20 +30,30 @@ namespace Xbim.Ifc4x3.Kernel
 				//##
 				switch (TemplateType)
 				{
-					case IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENONLY:
-						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENONLY;
-					case IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENOVERRIDE:
-						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENOVERRIDE;
+					case IfcPropertySetTemplateTypeEnum.PSET_MATERIALDRIVEN:
+						//## Handle translation of PSET_MATERIALDRIVEN member from IfcPropertySetTemplateTypeEnum in property TemplateType
+						//TODO: Handle translation of PSET_MATERIALDRIVEN member from IfcPropertySetTemplateTypeEnum in property TemplateType
+						throw new System.NotImplementedException();
+						//##
 					case IfcPropertySetTemplateTypeEnum.PSET_OCCURRENCEDRIVEN:
 						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.PSET_OCCURRENCEDRIVEN;
 					case IfcPropertySetTemplateTypeEnum.PSET_PERFORMANCEDRIVEN:
 						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.PSET_PERFORMANCEDRIVEN;
+					case IfcPropertySetTemplateTypeEnum.PSET_PROFILEDRIVEN:
+						//## Handle translation of PSET_PROFILEDRIVEN member from IfcPropertySetTemplateTypeEnum in property TemplateType
+						//TODO: Handle translation of PSET_PROFILEDRIVEN member from IfcPropertySetTemplateTypeEnum in property TemplateType
+						throw new System.NotImplementedException();
+						//##
+					case IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENONLY:
+						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENONLY;
+					case IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENOVERRIDE:
+						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.PSET_TYPEDRIVENOVERRIDE;
+					case IfcPropertySetTemplateTypeEnum.QTO_OCCURRENCEDRIVEN:
+						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.QTO_OCCURRENCEDRIVEN;
 					case IfcPropertySetTemplateTypeEnum.QTO_TYPEDRIVENONLY:
 						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.QTO_TYPEDRIVENONLY;
 					case IfcPropertySetTemplateTypeEnum.QTO_TYPEDRIVENOVERRIDE:
 						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.QTO_TYPEDRIVENOVERRIDE;
-					case IfcPropertySetTemplateTypeEnum.QTO_OCCURRENCEDRIVEN:
-						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.QTO_OCCURRENCEDRIVEN;
 					case IfcPropertySetTemplateTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcPropertySetTemplateTypeEnum.NOTDEFINED;
 					case null: 

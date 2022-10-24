@@ -10,13 +10,13 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	public enum IfcAlignmentHorizontalSegmentTypeEnum : byte
 	{
-		@LINE ,
+		@BLOSSCURVE ,
 		@CIRCULARARC ,
 		@CLOTHOID ,
-		@CUBICSPIRAL ,
-		@BIQUADRATICPARABOLA ,
-		@BLOSSCURVE ,
 		@COSINECURVE ,
+		@CUBIC ,
+		@HELMERTCURVE ,
+		@LINE ,
 		@SINECURVE ,
 		@VIENNESEBEND 
 	}

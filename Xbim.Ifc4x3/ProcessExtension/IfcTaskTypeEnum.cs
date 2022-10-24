@@ -10,11 +10,15 @@ namespace Xbim.Ifc4x3.ProcessExtension
 {
 	public enum IfcTaskTypeEnum : byte
 	{
+		@ADJUSTMENT ,
 		@ATTENDANCE ,
+		@CALIBRATION ,
 		@CONSTRUCTION ,
 		@DEMOLITION ,
 		@DISMANTLE ,
 		@DISPOSAL ,
+		@EMERGENCY ,
+		@INSPECTION ,
 		@INSTALLATION ,
 		@LOGISTIC ,
 		@MAINTENANCE ,
@@ -22,6 +26,11 @@ namespace Xbim.Ifc4x3.ProcessExtension
 		@OPERATION ,
 		@REMOVAL ,
 		@RENOVATION ,
+		@SAFETY ,
+		@SHUTDOWN ,
+		@STARTUP ,
+		@TESTING ,
+		@TROUBLESHOOTING ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

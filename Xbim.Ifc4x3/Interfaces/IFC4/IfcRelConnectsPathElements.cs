@@ -54,12 +54,12 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (RelatedConnectionType)
 				{
+					case IfcConnectionTypeEnum.ATEND:
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
 					case IfcConnectionTypeEnum.ATPATH:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH;
 					case IfcConnectionTypeEnum.ATSTART:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART;
-					case IfcConnectionTypeEnum.ATEND:
-						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
 					case IfcConnectionTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED;
 					
@@ -101,12 +101,12 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (RelatingConnectionType)
 				{
+					case IfcConnectionTypeEnum.ATEND:
+						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
 					case IfcConnectionTypeEnum.ATPATH:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATPATH;
 					case IfcConnectionTypeEnum.ATSTART:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATSTART;
-					case IfcConnectionTypeEnum.ATEND:
-						return Ifc4.Interfaces.IfcConnectionTypeEnum.ATEND;
 					case IfcConnectionTypeEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcConnectionTypeEnum.NOTDEFINED;
 					

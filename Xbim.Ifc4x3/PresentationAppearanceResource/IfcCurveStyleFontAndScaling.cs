@@ -33,7 +33,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 
 		#region Explicit attribute fields
 		private IfcLabel? _name;
-		private IfcCurveStyleFontSelect _curveFont;
+		private IfcCurveStyleFontSelect _curveStyleFont;
 		private IfcPositiveRatioMeasure _curveFontScaling;
 		#endregion
 	
@@ -53,19 +53,19 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 2)]
-		public IfcCurveStyleFontSelect @CurveFont 
+		public IfcCurveStyleFontSelect @CurveStyleFont 
 		{ 
 			get 
 			{
-				if(_activated) return _curveFont;
+				if(_activated) return _curveStyleFont;
 				Activate();
-				return _curveFont;
+				return _curveStyleFont;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _curveFont = v, _curveFont, value,  "CurveFont", 2);
+				SetValue( v =>  _curveStyleFont = v, _curveStyleFont, value,  "CurveStyleFont", 2);
 			} 
 		}	
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 					_name = value.StringVal;
 					return;
 				case 1: 
-					_curveFont = (IfcCurveStyleFontSelect)(value.EntityVal);
+					_curveStyleFont = (IfcCurveStyleFontSelect)(value.EntityVal);
 					return;
 				case 2: 
 					_curveFontScaling = value.RealVal;
@@ -119,8 +119,8 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 		{
 			get 
 			{
-				if (@CurveFont != null)
-					yield return @CurveFont;
+				if (@CurveStyleFont != null)
+					yield return @CurveStyleFont;
 			}
 		}
 		#endregion

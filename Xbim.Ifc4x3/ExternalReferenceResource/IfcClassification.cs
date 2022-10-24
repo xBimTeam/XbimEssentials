@@ -39,7 +39,7 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 		private IfcDate? _editionDate;
 		private IfcLabel _name;
 		private IfcText? _description;
-		private IfcURIReference? _location;
+		private IfcURIReference? _specification;
 		private readonly OptionalItemSet<IfcIdentifier> _referenceTokens;
 		#endregion
 	
@@ -115,17 +115,17 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
-		public IfcURIReference? @Location 
+		public IfcURIReference? @Specification 
 		{ 
 			get 
 			{
-				if(_activated) return _location;
+				if(_activated) return _specification;
 				Activate();
-				return _location;
+				return _specification;
 			} 
 			set
 			{
-				SetValue( v =>  _location = v, _location, value,  "Location", 6);
+				SetValue( v =>  _specification = v, _specification, value,  "Specification", 6);
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 7)]
@@ -184,7 +184,7 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 					_description = value.StringVal;
 					return;
 				case 5: 
-					_location = value.StringVal;
+					_specification = value.StringVal;
 					return;
 				case 6: 
 					_referenceTokens.InternalAdd(value.StringVal);

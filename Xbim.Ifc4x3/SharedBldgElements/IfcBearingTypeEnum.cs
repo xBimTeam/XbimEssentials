@@ -11,13 +11,13 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 	public enum IfcBearingTypeEnum : byte
 	{
 		@CYLINDRICAL ,
-		@SPHERICAL ,
+		@DISK ,
 		@ELASTOMERIC ,
-		@POT ,
 		@GUIDE ,
+		@POT ,
 		@ROCKER ,
 		@ROLLER ,
-		@DISK ,
+		@SPHERICAL ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

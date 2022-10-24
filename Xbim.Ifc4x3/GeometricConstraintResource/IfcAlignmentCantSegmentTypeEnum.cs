@@ -10,11 +10,11 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	public enum IfcAlignmentCantSegmentTypeEnum : byte
 	{
-		@CONSTANTCANT ,
-		@LINEARTRANSITION ,
-		@BIQUADRATICPARABOLA ,
 		@BLOSSCURVE ,
+		@CONSTANTCANT ,
 		@COSINECURVE ,
+		@HELMERTCURVE ,
+		@LINEARTRANSITION ,
 		@SINECURVE ,
 		@VIENNESEBEND 
 	}

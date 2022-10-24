@@ -30,6 +30,11 @@ namespace Xbim.Ifc4x3.ProductExtension
 				//##
 				switch (PredefinedType)
 				{
+					case IfcElementAssemblyTypeEnum.ABUTMENT:
+						//## Handle translation of ABUTMENT member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of ABUTMENT member from IfcElementAssemblyTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY:
 						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.ACCESSORY_ASSEMBLY;
 					case IfcElementAssemblyTypeEnum.ARCH:
@@ -38,19 +43,36 @@ namespace Xbim.Ifc4x3.ProductExtension
 						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.BEAM_GRID;
 					case IfcElementAssemblyTypeEnum.BRACED_FRAME:
 						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.BRACED_FRAME;
+					case IfcElementAssemblyTypeEnum.CROSS_BRACING:
+						//## Handle translation of CROSS_BRACING member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of CROSS_BRACING member from IfcElementAssemblyTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcElementAssemblyTypeEnum.DECK:
+						//## Handle translation of DECK member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of DECK member from IfcElementAssemblyTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcElementAssemblyTypeEnum.DILATATIONPANEL:
+						//## Handle translation of DILATATIONPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of DILATATIONPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcElementAssemblyTypeEnum.ENTRANCEWORKS:
+						//## Handle translation of ENTRANCEWORKS member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of ENTRANCEWORKS member from IfcElementAssemblyTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcElementAssemblyTypeEnum.GIRDER:
 						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.GIRDER;
-					case IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT:
-						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT;
-					case IfcElementAssemblyTypeEnum.RIGID_FRAME:
-						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.RIGID_FRAME;
-					case IfcElementAssemblyTypeEnum.SLAB_FIELD:
-						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.SLAB_FIELD;
-					case IfcElementAssemblyTypeEnum.TRUSS:
-						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.TRUSS;
-					case IfcElementAssemblyTypeEnum.ABUTMENT:
-						//## Handle translation of ABUTMENT member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of ABUTMENT member from IfcElementAssemblyTypeEnum in property PredefinedType
+					case IfcElementAssemblyTypeEnum.GRID:
+						//## Handle translation of GRID member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of GRID member from IfcElementAssemblyTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcElementAssemblyTypeEnum.MAST:
+						//## Handle translation of MAST member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of MAST member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcElementAssemblyTypeEnum.PIER:
@@ -63,19 +85,18 @@ namespace Xbim.Ifc4x3.ProductExtension
 						//TODO: Handle translation of PYLON member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcElementAssemblyTypeEnum.CROSS_BRACING:
-						//## Handle translation of CROSS_BRACING member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of CROSS_BRACING member from IfcElementAssemblyTypeEnum in property PredefinedType
+					case IfcElementAssemblyTypeEnum.RAIL_MECHANICAL_EQUIPMENT_ASSEMBLY:
+						//## Handle translation of RAIL_MECHANICAL_EQUIPMENT_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of RAIL_MECHANICAL_EQUIPMENT_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcElementAssemblyTypeEnum.DECK:
-						//## Handle translation of DECK member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of DECK member from IfcElementAssemblyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcElementAssemblyTypeEnum.MAST:
-						//## Handle translation of MAST member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of MAST member from IfcElementAssemblyTypeEnum in property PredefinedType
+					case IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT:
+						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.REINFORCEMENT_UNIT;
+					case IfcElementAssemblyTypeEnum.RIGID_FRAME:
+						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.RIGID_FRAME;
+					case IfcElementAssemblyTypeEnum.SHELTER:
+						//## Handle translation of SHELTER member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of SHELTER member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcElementAssemblyTypeEnum.SIGNALASSEMBLY:
@@ -83,14 +104,11 @@ namespace Xbim.Ifc4x3.ProductExtension
 						//TODO: Handle translation of SIGNALASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcElementAssemblyTypeEnum.GRID:
-						//## Handle translation of GRID member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of GRID member from IfcElementAssemblyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcElementAssemblyTypeEnum.SHELTER:
-						//## Handle translation of SHELTER member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of SHELTER member from IfcElementAssemblyTypeEnum in property PredefinedType
+					case IfcElementAssemblyTypeEnum.SLAB_FIELD:
+						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.SLAB_FIELD;
+					case IfcElementAssemblyTypeEnum.SUMPBUSTER:
+						//## Handle translation of SUMPBUSTER member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of SUMPBUSTER member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcElementAssemblyTypeEnum.SUPPORTINGASSEMBLY:
@@ -103,44 +121,26 @@ namespace Xbim.Ifc4x3.ProductExtension
 						//TODO: Handle translation of SUSPENSIONASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcElementAssemblyTypeEnum.TRACTION_SWITCHING_ASSEMBLY:
-						//## Handle translation of TRACTION_SWITCHING_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of TRACTION_SWITCHING_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcElementAssemblyTypeEnum.TRACKPANEL:
 						//## Handle translation of TRACKPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
 						//TODO: Handle translation of TRACKPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcElementAssemblyTypeEnum.TURNOUTPANEL:
-						//## Handle translation of TURNOUTPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of TURNOUTPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcElementAssemblyTypeEnum.DILATATIONPANEL:
-						//## Handle translation of DILATATIONPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of DILATATIONPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcElementAssemblyTypeEnum.RAIL_MECHANICAL_EQUIPMENT_ASSEMBLY:
-						//## Handle translation of RAIL_MECHANICAL_EQUIPMENT_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of RAIL_MECHANICAL_EQUIPMENT_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcElementAssemblyTypeEnum.ENTRANCEWORKS:
-						//## Handle translation of ENTRANCEWORKS member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of ENTRANCEWORKS member from IfcElementAssemblyTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcElementAssemblyTypeEnum.SUMPBUSTER:
-						//## Handle translation of SUMPBUSTER member from IfcElementAssemblyTypeEnum in property PredefinedType
-						//TODO: Handle translation of SUMPBUSTER member from IfcElementAssemblyTypeEnum in property PredefinedType
+					case IfcElementAssemblyTypeEnum.TRACTION_SWITCHING_ASSEMBLY:
+						//## Handle translation of TRACTION_SWITCHING_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of TRACTION_SWITCHING_ASSEMBLY member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcElementAssemblyTypeEnum.TRAFFIC_CALMING_DEVICE:
 						//## Handle translation of TRAFFIC_CALMING_DEVICE member from IfcElementAssemblyTypeEnum in property PredefinedType
 						//TODO: Handle translation of TRAFFIC_CALMING_DEVICE member from IfcElementAssemblyTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcElementAssemblyTypeEnum.TRUSS:
+						return Ifc4.Interfaces.IfcElementAssemblyTypeEnum.TRUSS;
+					case IfcElementAssemblyTypeEnum.TURNOUTPANEL:
+						//## Handle translation of TURNOUTPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
+						//TODO: Handle translation of TURNOUTPANEL member from IfcElementAssemblyTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcElementAssemblyTypeEnum.USERDEFINED:

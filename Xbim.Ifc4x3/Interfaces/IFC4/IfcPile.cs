@@ -32,14 +32,14 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				{
 					case IfcPileTypeEnum.BORED:
 						return Ifc4.Interfaces.IfcPileTypeEnum.BORED;
-					case IfcPileTypeEnum.DRIVEN:
-						return Ifc4.Interfaces.IfcPileTypeEnum.DRIVEN;
-					case IfcPileTypeEnum.JETGROUTING:
-						return Ifc4.Interfaces.IfcPileTypeEnum.JETGROUTING;
 					case IfcPileTypeEnum.COHESION:
 						return Ifc4.Interfaces.IfcPileTypeEnum.COHESION;
+					case IfcPileTypeEnum.DRIVEN:
+						return Ifc4.Interfaces.IfcPileTypeEnum.DRIVEN;
 					case IfcPileTypeEnum.FRICTION:
 						return Ifc4.Interfaces.IfcPileTypeEnum.FRICTION;
+					case IfcPileTypeEnum.JETGROUTING:
+						return Ifc4.Interfaces.IfcPileTypeEnum.JETGROUTING;
 					case IfcPileTypeEnum.SUPPORT:
 						return Ifc4.Interfaces.IfcPileTypeEnum.SUPPORT;
 					case IfcPileTypeEnum.USERDEFINED:

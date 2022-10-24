@@ -86,10 +86,10 @@ namespace Xbim.Ifc4x3.MaterialResource
 				//##
 				switch (DirectionSense)
 				{
-					case IfcDirectionSenseEnum.POSITIVE:
-						return Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE;
 					case IfcDirectionSenseEnum.NEGATIVE:
 						return Ifc4.Interfaces.IfcDirectionSenseEnum.NEGATIVE;
+					case IfcDirectionSenseEnum.POSITIVE:
+						return Ifc4.Interfaces.IfcDirectionSenseEnum.POSITIVE;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();

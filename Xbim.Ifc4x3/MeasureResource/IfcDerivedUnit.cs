@@ -36,6 +36,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 		private readonly ItemSet<IfcDerivedUnitElement> _elements;
 		private IfcDerivedUnitEnum _unitType;
 		private IfcLabel? _userDefinedType;
+		private IfcLabel? _name;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -75,6 +76,20 @@ namespace Xbim.Ifc4x3.MeasureResource
 			set
 			{
 				SetValue( v =>  _userDefinedType = v, _userDefinedType, value,  "UserDefinedType", 3);
+			} 
+		}	
+		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
+		public IfcLabel? @Name 
+		{ 
+			get 
+			{
+				if(_activated) return _name;
+				Activate();
+				return _name;
+			} 
+			set
+			{
+				SetValue( v =>  _name = v, _name, value,  "Name", 4);
 			} 
 		}	
 		#endregion
@@ -146,6 +161,9 @@ namespace Xbim.Ifc4x3.MeasureResource
 					return;
 				case 2: 
 					_userDefinedType = value.StringVal;
+					return;
+				case 3: 
+					_name = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

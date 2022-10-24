@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 
 		#region Explicit attribute fields
 		private IfcReferentTypeEnum? _predefinedType;
-		private IfcLengthMeasure? _restartDistance;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -48,20 +46,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 			set
 			{
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
-			} 
-		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 25)]
-		public IfcLengthMeasure? @RestartDistance 
-		{ 
-			get 
-			{
-				if(_activated) return _restartDistance;
-				Activate();
-				return _restartDistance;
-			} 
-			set
-			{
-				SetValue( v =>  _restartDistance = v, _restartDistance, value,  "RestartDistance", 9);
 			} 
 		}	
 		#endregion
@@ -85,9 +69,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 					return;
 				case 7: 
                     _predefinedType = (IfcReferentTypeEnum) System.Enum.Parse(typeof (IfcReferentTypeEnum), value.EnumVal, true);
-					return;
-				case 8: 
-					_restartDistance = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

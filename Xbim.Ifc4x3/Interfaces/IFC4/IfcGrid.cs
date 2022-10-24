@@ -60,14 +60,14 @@ namespace Xbim.Ifc4x3.ProductExtension
 				//##
 				switch (PredefinedType)
 				{
-					case IfcGridTypeEnum.RECTANGULAR:
-						return Ifc4.Interfaces.IfcGridTypeEnum.RECTANGULAR;
-					case IfcGridTypeEnum.RADIAL:
-						return Ifc4.Interfaces.IfcGridTypeEnum.RADIAL;
-					case IfcGridTypeEnum.TRIANGULAR:
-						return Ifc4.Interfaces.IfcGridTypeEnum.TRIANGULAR;
 					case IfcGridTypeEnum.IRREGULAR:
 						return Ifc4.Interfaces.IfcGridTypeEnum.IRREGULAR;
+					case IfcGridTypeEnum.RADIAL:
+						return Ifc4.Interfaces.IfcGridTypeEnum.RADIAL;
+					case IfcGridTypeEnum.RECTANGULAR:
+						return Ifc4.Interfaces.IfcGridTypeEnum.RECTANGULAR;
+					case IfcGridTypeEnum.TRIANGULAR:
+						return Ifc4.Interfaces.IfcGridTypeEnum.TRIANGULAR;
 					case IfcGridTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

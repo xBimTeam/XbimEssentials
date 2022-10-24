@@ -30,14 +30,14 @@ namespace Xbim.Ifc4x3.ActorResource
 				//##
 				switch (Purpose)
 				{
+					case IfcAddressTypeEnum.DISTRIBUTIONPOINT:
+						return Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
+					case IfcAddressTypeEnum.HOME:
+						return Ifc4.Interfaces.IfcAddressTypeEnum.HOME;
 					case IfcAddressTypeEnum.OFFICE:
 						return Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE;
 					case IfcAddressTypeEnum.SITE:
 						return Ifc4.Interfaces.IfcAddressTypeEnum.SITE;
-					case IfcAddressTypeEnum.HOME:
-						return Ifc4.Interfaces.IfcAddressTypeEnum.HOME;
-					case IfcAddressTypeEnum.DISTRIBUTIONPOINT:
-						return Ifc4.Interfaces.IfcAddressTypeEnum.DISTRIBUTIONPOINT;
 					case IfcAddressTypeEnum.USERDEFINED:
 						//## Optional custom handling of Purpose == .USERDEFINED. 
 						//##

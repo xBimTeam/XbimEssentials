@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcFacility", 1426)]
+	[ExpressType("IfcFacility", 1439)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcFacility : IfcSpatialStructureElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFacility>
 	{

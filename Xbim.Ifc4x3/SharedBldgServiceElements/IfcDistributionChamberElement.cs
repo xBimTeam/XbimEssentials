@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.SharedBldgServiceElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 37)]
 		public IfcDistributionChamberElementTypeEnum? @PredefinedType 
 		{ 
 			get 

@@ -42,21 +42,6 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcBuildingSystemTypeEnum.SHADING;
 					case IfcBuildingSystemTypeEnum.TRANSPORT:
 						return Ifc4.Interfaces.IfcBuildingSystemTypeEnum.TRANSPORT;
-					case IfcBuildingSystemTypeEnum.REINFORCING:
-						//## Handle translation of REINFORCING member from IfcBuildingSystemTypeEnum in property PredefinedType
-						//TODO: Handle translation of REINFORCING member from IfcBuildingSystemTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBuildingSystemTypeEnum.PRESTRESSING:
-						//## Handle translation of PRESTRESSING member from IfcBuildingSystemTypeEnum in property PredefinedType
-						//TODO: Handle translation of PRESTRESSING member from IfcBuildingSystemTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBuildingSystemTypeEnum.EROSIONPREVENTION:
-						//## Handle translation of EROSIONPREVENTION member from IfcBuildingSystemTypeEnum in property PredefinedType
-						//TODO: Handle translation of EROSIONPREVENTION member from IfcBuildingSystemTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcBuildingSystemTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

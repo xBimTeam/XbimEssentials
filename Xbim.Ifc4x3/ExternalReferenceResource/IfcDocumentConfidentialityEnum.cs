@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 {
 	public enum IfcDocumentConfidentialityEnum : byte
 	{
-		@PUBLIC ,
-		@RESTRICTED ,
 		@CONFIDENTIAL ,
 		@PERSONAL ,
+		@PUBLIC ,
+		@RESTRICTED ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

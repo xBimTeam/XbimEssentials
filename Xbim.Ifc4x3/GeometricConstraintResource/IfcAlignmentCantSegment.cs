@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.GeometricConstraintResource;
 
 namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignmentCantSegment", 1481)]
+	[ExpressType("IfcAlignmentCantSegment", 1403)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignmentCantSegment : IfcAlignmentParameterSegment, IInstantiableEntity, IEquatable<@IfcAlignmentCantSegment>
 	{
@@ -32,12 +32,11 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 
 		#region Explicit attribute fields
 		private IfcLengthMeasure _startDistAlong;
-		private IfcPositiveLengthMeasure _horizontalLength;
+		private IfcNonNegativeLengthMeasure _horizontalLength;
 		private IfcLengthMeasure _startCantLeft;
 		private IfcLengthMeasure? _endCantLeft;
 		private IfcLengthMeasure _startCantRight;
 		private IfcLengthMeasure? _endCantRight;
-		private IfcPositiveLengthMeasure? _smoothingLength;
 		private IfcAlignmentCantSegmentTypeEnum _predefinedType;
 		#endregion
 	
@@ -57,7 +56,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
-		public IfcPositiveLengthMeasure @HorizontalLength 
+		public IfcNonNegativeLengthMeasure @HorizontalLength 
 		{ 
 			get 
 			{
@@ -126,21 +125,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				SetValue( v =>  _endCantRight = v, _endCantRight, value,  "EndCantRight", 8);
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
-		public IfcPositiveLengthMeasure? @SmoothingLength 
-		{ 
-			get 
-			{
-				if(_activated) return _smoothingLength;
-				Activate();
-				return _smoothingLength;
-			} 
-			set
-			{
-				SetValue( v =>  _smoothingLength = v, _smoothingLength, value,  "SmoothingLength", 9);
-			} 
-		}	
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 10)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 9)]
 		public IfcAlignmentCantSegmentTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -151,7 +136,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
 			} 
 		}	
 		#endregion
@@ -187,9 +172,6 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 					_endCantRight = value.RealVal;
 					return;
 				case 8: 
-					_smoothingLength = value.RealVal;
-					return;
-				case 9: 
                     _predefinedType = (IfcAlignmentCantSegmentTypeEnum) System.Enum.Parse(typeof (IfcAlignmentCantSegmentTypeEnum), value.EnumVal, true);
 					return;
 				default:

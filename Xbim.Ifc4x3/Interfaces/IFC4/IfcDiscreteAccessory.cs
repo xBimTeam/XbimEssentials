@@ -32,23 +32,36 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 				{
 					case IfcDiscreteAccessoryTypeEnum.ANCHORPLATE:
 						return Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum.ANCHORPLATE;
-					case IfcDiscreteAccessoryTypeEnum.BRACKET:
-						return Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum.BRACKET;
-					case IfcDiscreteAccessoryTypeEnum.SHOE:
-						return Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum.SHOE;
-					case IfcDiscreteAccessoryTypeEnum.EXPANSION_JOINT_DEVICE:
-						//## Handle translation of EXPANSION_JOINT_DEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						//TODO: Handle translation of EXPANSION_JOINT_DEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcDiscreteAccessoryTypeEnum.BIRDPROTECTION:
 						//## Handle translation of BIRDPROTECTION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						//TODO: Handle translation of BIRDPROTECTION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcDiscreteAccessoryTypeEnum.BRACKET:
+						return Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum.BRACKET;
 					case IfcDiscreteAccessoryTypeEnum.CABLEARRANGER:
 						//## Handle translation of CABLEARRANGER member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						//TODO: Handle translation of CABLEARRANGER member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.ELASTIC_CUSHION:
+						//## Handle translation of ELASTIC_CUSHION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of ELASTIC_CUSHION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.EXPANSION_JOINT_DEVICE:
+						//## Handle translation of EXPANSION_JOINT_DEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of EXPANSION_JOINT_DEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.FILLER:
+						//## Handle translation of FILLER member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of FILLER member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.FLASHING:
+						//## Handle translation of FLASHING member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of FLASHING member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcDiscreteAccessoryTypeEnum.INSULATOR:
@@ -61,24 +74,19 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 						//TODO: Handle translation of LOCK member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcDiscreteAccessoryTypeEnum.TENSIONINGEQUIPMENT:
-						//## Handle translation of TENSIONINGEQUIPMENT member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						//TODO: Handle translation of TENSIONINGEQUIPMENT member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDiscreteAccessoryTypeEnum.RAILPAD:
-						//## Handle translation of RAILPAD member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						//TODO: Handle translation of RAILPAD member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDiscreteAccessoryTypeEnum.SLIDINGCHAIR:
-						//## Handle translation of SLIDINGCHAIR member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						//TODO: Handle translation of SLIDINGCHAIR member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcDiscreteAccessoryTypeEnum.PANEL_STRENGTHENING:
 						//## Handle translation of PANEL_STRENGTHENING member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						//TODO: Handle translation of PANEL_STRENGTHENING member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.POINTMACHINEMOUNTINGDEVICE:
+						//## Handle translation of POINTMACHINEMOUNTINGDEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of POINTMACHINEMOUNTINGDEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.POINT_MACHINE_LOCKING_DEVICE:
+						//## Handle translation of POINT_MACHINE_LOCKING_DEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of POINT_MACHINE_LOCKING_DEVICE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcDiscreteAccessoryTypeEnum.RAILBRACE:
@@ -86,14 +94,9 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 						//TODO: Handle translation of RAILBRACE member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcDiscreteAccessoryTypeEnum.ELASTIC_CUSHION:
-						//## Handle translation of ELASTIC_CUSHION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						//TODO: Handle translation of ELASTIC_CUSHION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDiscreteAccessoryTypeEnum.SOUNDABSORPTION:
-						//## Handle translation of SOUNDABSORPTION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
-						//TODO: Handle translation of SOUNDABSORPTION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+					case IfcDiscreteAccessoryTypeEnum.RAILPAD:
+						//## Handle translation of RAILPAD member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of RAILPAD member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcDiscreteAccessoryTypeEnum.RAIL_LUBRICATION:
@@ -104,6 +107,23 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 					case IfcDiscreteAccessoryTypeEnum.RAIL_MECHANICAL_EQUIPMENT:
 						//## Handle translation of RAIL_MECHANICAL_EQUIPMENT member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						//TODO: Handle translation of RAIL_MECHANICAL_EQUIPMENT member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.SHOE:
+						return Ifc4.Interfaces.IfcDiscreteAccessoryTypeEnum.SHOE;
+					case IfcDiscreteAccessoryTypeEnum.SLIDINGCHAIR:
+						//## Handle translation of SLIDINGCHAIR member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of SLIDINGCHAIR member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.SOUNDABSORPTION:
+						//## Handle translation of SOUNDABSORPTION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of SOUNDABSORPTION member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcDiscreteAccessoryTypeEnum.TENSIONINGEQUIPMENT:
+						//## Handle translation of TENSIONINGEQUIPMENT member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
+						//TODO: Handle translation of TENSIONINGEQUIPMENT member from IfcDiscreteAccessoryTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcDiscreteAccessoryTypeEnum.USERDEFINED:

@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.UtilityResource
 {
 	public enum IfcStateEnum : byte
 	{
-		@READWRITE ,
-		@READONLY ,
 		@LOCKED ,
-		@READWRITELOCKED ,
-		@READONLYLOCKED 
+		@READONLY ,
+		@READONLYLOCKED ,
+		@READWRITE ,
+		@READWRITELOCKED 
 	}
 }

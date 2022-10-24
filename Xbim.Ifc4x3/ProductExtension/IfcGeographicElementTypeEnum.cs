@@ -10,8 +10,9 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	public enum IfcGeographicElementTypeEnum : byte
 	{
-		@TERRAIN ,
 		@SOIL_BORING_POINT ,
+		@TERRAIN ,
+		@VEGETATION ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

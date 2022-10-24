@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.SharedInfrastructureElements;
 using Xbim.Ifc4x3.Kernel;
 using System;
 using System.Collections.Generic;
@@ -23,7 +22,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	[ExpressType("IfcSystem", 229)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IfcSpatialReferenceSelect, IContainsEntityReferences, IEquatable<@IfcSystem>
+	public  partial class @IfcSystem : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSystem>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -36,7 +35,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatingSystem")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 18)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 19)]
 		public IEnumerable<IfcRelServicesBuildings> @ServicesBuildings 
 		{ 
 			get 
@@ -45,7 +44,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 			} 
 		}
 		[InverseProperty("RelatedElements")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 19)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 20)]
 		public IEnumerable<IfcRelReferencedInSpatialStructure> @ServicesFacilities 
 		{ 
 			get 

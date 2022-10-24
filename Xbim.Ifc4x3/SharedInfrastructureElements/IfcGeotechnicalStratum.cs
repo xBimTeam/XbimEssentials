@@ -19,9 +19,9 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcGeotechnicalStratum", 1432)]
+	[ExpressType("IfcGeotechnicalStratum", 1447)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcGeotechnicalStratum : IfcGeotechnicalElement, IEquatable<@IfcGeotechnicalStratum>
+	public  partial class @IfcGeotechnicalStratum : IfcGeotechnicalElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeotechnicalStratum>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -29,6 +29,26 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 		{
 		}
 
+		#region Explicit attribute fields
+		private IfcGeotechnicalStratumTypeEnum? _predefinedType;
+		#endregion
+	
+		#region Explicit attribute properties
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		public IfcGeotechnicalStratumTypeEnum? @PredefinedType 
+		{ 
+			get 
+			{
+				if(_activated) return _predefinedType;
+				Activate();
+				return _predefinedType;
+			} 
+			set
+			{
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
+			} 
+		}	
+		#endregion
 
 
 
@@ -48,6 +68,9 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 				case 7: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
+				case 8: 
+                    _predefinedType = (IfcGeotechnicalStratumTypeEnum) System.Enum.Parse(typeof (IfcGeotechnicalStratumTypeEnum), value.EnumVal, true);
+					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
@@ -60,6 +83,36 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 	        return this == other;
 	    }
         #endregion
+
+		#region IContainsEntityReferences
+		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
+		{
+			get 
+			{
+				if (@OwnerHistory != null)
+					yield return @OwnerHistory;
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@ObjectPlacement != null)
+					yield return @ObjectPlacement;
+				if (@Representation != null)
+					yield return @Representation;
+				
+			} 
+		}
+		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

@@ -39,7 +39,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
 		public IfcCartesianPointList @Points 
 		{ 
 			get 
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _points = v, _points, value,  "Points", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 5)]
+		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
 		public IOptionalItemSet<IfcSegmentIndexSelect> @Segments 
 		{ 
 			get 
@@ -65,7 +65,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				return _segments;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcBoolean? @SelfIntersect 
 		{ 
 			get 

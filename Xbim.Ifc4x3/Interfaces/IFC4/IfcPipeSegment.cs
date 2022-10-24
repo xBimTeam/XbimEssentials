@@ -34,10 +34,10 @@ namespace Xbim.Ifc4x3.HvacDomain
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.CULVERT;
 					case IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.FLEXIBLESEGMENT;
-					case IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
-						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
 					case IfcPipeSegmentTypeEnum.GUTTER:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.GUTTER;
+					case IfcPipeSegmentTypeEnum.RIGIDSEGMENT:
+						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.RIGIDSEGMENT;
 					case IfcPipeSegmentTypeEnum.SPOOL:
 						return Ifc4.Interfaces.IfcPipeSegmentTypeEnum.SPOOL;
 					case IfcPipeSegmentTypeEnum.USERDEFINED:

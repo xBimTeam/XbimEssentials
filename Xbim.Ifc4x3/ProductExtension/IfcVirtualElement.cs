@@ -29,6 +29,26 @@ namespace Xbim.Ifc4x3.ProductExtension
 		{
 		}
 
+		#region Explicit attribute fields
+		private IfcVirtualElementTypeEnum? _predefinedType;
+		#endregion
+	
+		#region Explicit attribute properties
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		public IfcVirtualElementTypeEnum? @PredefinedType 
+		{ 
+			get 
+			{
+				if(_activated) return _predefinedType;
+				Activate();
+				return _predefinedType;
+			} 
+			set
+			{
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
+			} 
+		}	
+		#endregion
 
 
 
@@ -47,6 +67,9 @@ namespace Xbim.Ifc4x3.ProductExtension
 				case 6: 
 				case 7: 
 					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 8: 
+                    _predefinedType = (IfcVirtualElementTypeEnum) System.Enum.Parse(typeof (IfcVirtualElementTypeEnum), value.EnumVal, true);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

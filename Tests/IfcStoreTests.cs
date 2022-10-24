@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Xbim.Ifc;
-using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.IO.Esent;
 

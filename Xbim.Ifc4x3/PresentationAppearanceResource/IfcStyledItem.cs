@@ -29,12 +29,12 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStyledItem(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_styles = new ItemSet<IfcStyleAssignmentSelect>( this, 0,  2);
+			_styles = new ItemSet<IfcPresentationStyle>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private IfcRepresentationItem _item;
-		private readonly ItemSet<IfcStyleAssignmentSelect> _styles;
+		private readonly ItemSet<IfcPresentationStyle> _styles;
 		private IfcLabel? _name;
 		#endregion
 	
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 			} 
 		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
-		public IItemSet<IfcStyleAssignmentSelect> @Styles 
+		public IItemSet<IfcPresentationStyle> @Styles 
 		{ 
 			get 
 			{
@@ -94,7 +94,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 					_item = (IfcRepresentationItem)(value.EntityVal);
 					return;
 				case 1: 
-					_styles.InternalAdd((IfcStyleAssignmentSelect)value.EntityVal);
+					_styles.InternalAdd((IfcPresentationStyle)value.EntityVal);
 					return;
 				case 2: 
 					_name = value.StringVal;

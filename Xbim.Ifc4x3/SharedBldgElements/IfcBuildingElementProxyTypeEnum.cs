@@ -13,8 +13,8 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 		@COMPLEX ,
 		@ELEMENT ,
 		@PARTIAL ,
-		@PROVISIONFORVOID ,
 		@PROVISIONFORSPACE ,
+		@PROVISIONFORVOID ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

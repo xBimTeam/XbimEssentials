@@ -42,12 +42,12 @@ namespace Xbim.Ifc4x3.HvacDomain
 						return Ifc4.Interfaces.IfcValveTypeEnum.COMMISSIONING;
 					case IfcValveTypeEnum.DIVERTING:
 						return Ifc4.Interfaces.IfcValveTypeEnum.DIVERTING;
-					case IfcValveTypeEnum.DRAWOFFCOCK:
-						return Ifc4.Interfaces.IfcValveTypeEnum.DRAWOFFCOCK;
 					case IfcValveTypeEnum.DOUBLECHECK:
 						return Ifc4.Interfaces.IfcValveTypeEnum.DOUBLECHECK;
 					case IfcValveTypeEnum.DOUBLEREGULATING:
 						return Ifc4.Interfaces.IfcValveTypeEnum.DOUBLEREGULATING;
+					case IfcValveTypeEnum.DRAWOFFCOCK:
+						return Ifc4.Interfaces.IfcValveTypeEnum.DRAWOFFCOCK;
 					case IfcValveTypeEnum.FAUCET:
 						return Ifc4.Interfaces.IfcValveTypeEnum.FAUCET;
 					case IfcValveTypeEnum.FLUSHING:

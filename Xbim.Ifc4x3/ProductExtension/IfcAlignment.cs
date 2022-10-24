@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 25)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 24)]
 		public IfcAlignmentTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -45,7 +45,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 8);
 			} 
 		}	
 		#endregion
@@ -65,10 +65,9 @@ namespace Xbim.Ifc4x3.ProductExtension
 				case 4: 
 				case 5: 
 				case 6: 
-				case 7: 
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
-				case 8: 
+				case 7: 
                     _predefinedType = (IfcAlignmentTypeEnum) System.Enum.Parse(typeof (IfcAlignmentTypeEnum), value.EnumVal, true);
 					return;
 				default:
@@ -95,8 +94,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 					yield return @ObjectPlacement;
 				if (@Representation != null)
 					yield return @Representation;
-				if (@Axis != null)
-					yield return @Axis;
 			}
 		}
 		#endregion
@@ -111,8 +108,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 					yield return @ObjectPlacement;
 				if (@Representation != null)
 					yield return @Representation;
-				if (@Axis != null)
-					yield return @Axis;
 				
 			} 
 		}

@@ -44,7 +44,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 18)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcInventoryTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -58,7 +58,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 19)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcActorSelect @Jurisdiction 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				SetValue( v =>  _jurisdiction = v, _jurisdiction, value,  "Jurisdiction", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 20)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 21)]
 		public IOptionalItemSet<IfcPerson> @ResponsiblePersons 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				return _responsiblePersons;
 			} 
 		}	
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcDate? @LastUpdateDate 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				SetValue( v =>  _lastUpdateDate = v, _lastUpdateDate, value,  "LastUpdateDate", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 22)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 23)]
 		public IfcCostValue @CurrentValue 
 		{ 
 			get 
@@ -114,7 +114,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				SetValue( v =>  _currentValue = v, _currentValue, value,  "CurrentValue", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 23)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 24)]
 		public IfcCostValue @OriginalValue 
 		{ 
 			get 

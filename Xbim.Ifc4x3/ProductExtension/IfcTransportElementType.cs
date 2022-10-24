@@ -21,7 +21,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	[ExpressType("IfcTransportElementType", 475)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransportElementType : IfcElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElementType>
+	public  partial class @IfcTransportElementType : IfcTransportationDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElementType>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

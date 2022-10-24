@@ -30,39 +30,39 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcStairTypeEnum.STRAIGHT_RUN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.STRAIGHT_RUN_STAIR;
-					case IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR;
-					case IfcStairTypeEnum.QUARTER_WINDING_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.QUARTER_WINDING_STAIR;
-					case IfcStairTypeEnum.QUARTER_TURN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.QUARTER_TURN_STAIR;
-					case IfcStairTypeEnum.HALF_WINDING_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.HALF_WINDING_STAIR;
-					case IfcStairTypeEnum.HALF_TURN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.HALF_TURN_STAIR;
-					case IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR;
-					case IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR;
-					case IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR;
-					case IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR;
-					case IfcStairTypeEnum.SPIRAL_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.SPIRAL_STAIR;
-					case IfcStairTypeEnum.DOUBLE_RETURN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.DOUBLE_RETURN_STAIR;
 					case IfcStairTypeEnum.CURVED_RUN_STAIR:
 						return Ifc4.Interfaces.IfcStairTypeEnum.CURVED_RUN_STAIR;
-					case IfcStairTypeEnum.TWO_CURVED_RUN_STAIR:
-						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_CURVED_RUN_STAIR;
+					case IfcStairTypeEnum.DOUBLE_RETURN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.DOUBLE_RETURN_STAIR;
+					case IfcStairTypeEnum.HALF_TURN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.HALF_TURN_STAIR;
+					case IfcStairTypeEnum.HALF_WINDING_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.HALF_WINDING_STAIR;
 					case IfcStairTypeEnum.LADDER:
 						//## Handle translation of LADDER member from IfcStairTypeEnum in property PredefinedType
 						//TODO: Handle translation of LADDER member from IfcStairTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcStairTypeEnum.QUARTER_TURN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.QUARTER_TURN_STAIR;
+					case IfcStairTypeEnum.QUARTER_WINDING_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.QUARTER_WINDING_STAIR;
+					case IfcStairTypeEnum.SPIRAL_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.SPIRAL_STAIR;
+					case IfcStairTypeEnum.STRAIGHT_RUN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.STRAIGHT_RUN_STAIR;
+					case IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.THREE_QUARTER_TURN_STAIR;
+					case IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.THREE_QUARTER_WINDING_STAIR;
+					case IfcStairTypeEnum.TWO_CURVED_RUN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_CURVED_RUN_STAIR;
+					case IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_QUARTER_TURN_STAIR;
+					case IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_QUARTER_WINDING_STAIR;
+					case IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR:
+						return Ifc4.Interfaces.IfcStairTypeEnum.TWO_STRAIGHT_RUN_STAIR;
 					case IfcStairTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

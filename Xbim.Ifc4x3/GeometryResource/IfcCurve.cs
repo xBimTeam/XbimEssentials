@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4x3.GeometricModelResource;
-using Xbim.Ifc4x3.Rail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +24,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 {
 	[ExpressType("IfcCurve", 68)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcCurve : IfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcLinearAxisSelect, IEquatable<@IfcCurve>
+	public abstract partial class @IfcCurve : IfcGeometricRepresentationItem, IfcGeometricSetSelect, IEquatable<@IfcCurve>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -50,8 +49,6 @@ namespace Xbim.Ifc4x3.GeometryResource
 				if (this is IfcOffsetCurve2D) return 2;
 				if (this is IfcOffsetCurve3D) return 3;
 				if (this is IfcOffsetCurveByDistances) return 3;
-				if (this is IfcCurveSegment2D) return 2;
-				if (this is IfcAlignmentCurve) return 2;
 				if (this is IfcPcurve) return 3;
 				if (this is IfcIndexedPolyCurve pc) return pc.Points.Dim;
 				if (this is IfcCompositeCurve cc) 
@@ -63,6 +60,9 @@ namespace Xbim.Ifc4x3.GeometryResource
 						return cs.ParentCurve.Dim;
 					else return 0;
 				}
+				if (this is IfcPolynomialCurve polynomialCurve)  return polynomialCurve.Dim;
+				if (this is IfcSpiral spiral) return spiral.Dim;
+				if (this is IfcSurfaceCurve surfaceCurve) return surfaceCurve.Dim;
 
 				throw new NotSupportedException();
 				//##

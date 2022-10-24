@@ -10,12 +10,12 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 {
 	public enum IfcVoidingFeatureTypeEnum : byte
 	{
+		@CHAMFER ,
 		@CUTOUT ,
-		@NOTCH ,
+		@EDGE ,
 		@HOLE ,
 		@MITER ,
-		@CHAMFER ,
-		@EDGE ,
+		@NOTCH ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

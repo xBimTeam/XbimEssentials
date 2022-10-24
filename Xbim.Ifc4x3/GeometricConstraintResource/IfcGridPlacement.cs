@@ -21,7 +21,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	[ExpressType("IfcGridPlacement", 439)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGridPlacement>
+	public  partial class @IfcGridPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGridPlacement>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcVirtualGridIntersection @PlacementLocation 
 		{ 
 			get 
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				SetValue( v =>  _placementLocation = v, _placementLocation, value,  "PlacementLocation", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
 		public IfcGridPlacementDirectionSelect @PlacementRefDirection 
 		{ 
 			get 
@@ -111,6 +111,19 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				if (@PlacementRefDirection != null)
 					yield return @PlacementRefDirection;
 			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@PlacementRelTo != null)
+					yield return @PlacementRelTo;
+				
+			} 
 		}
 		#endregion
 

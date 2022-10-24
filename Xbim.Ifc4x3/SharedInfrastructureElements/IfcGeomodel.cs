@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcGeomodel", 1428)]
+	[ExpressType("IfcGeomodel", 1443)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcGeomodel : IfcGeotechnicalAssembly, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeomodel>
 	{

@@ -10,8 +10,8 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 {
 	public enum IfcBooleanOperator : byte
 	{
-		@UNION ,
+		@DIFFERENCE ,
 		@INTERSECTION ,
-		@DIFFERENCE 
+		@UNION 
 	}
 }

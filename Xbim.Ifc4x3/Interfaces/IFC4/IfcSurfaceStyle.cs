@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 				//##
 				switch (Side)
 				{
-					case IfcSurfaceSide.POSITIVE:
-						return Ifc4.Interfaces.IfcSurfaceSide.POSITIVE;
-					case IfcSurfaceSide.NEGATIVE:
-						return Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE;
 					case IfcSurfaceSide.BOTH:
 						return Ifc4.Interfaces.IfcSurfaceSide.BOTH;
+					case IfcSurfaceSide.NEGATIVE:
+						return Ifc4.Interfaces.IfcSurfaceSide.NEGATIVE;
+					case IfcSurfaceSide.POSITIVE:
+						return Ifc4.Interfaces.IfcSurfaceSide.POSITIVE;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();

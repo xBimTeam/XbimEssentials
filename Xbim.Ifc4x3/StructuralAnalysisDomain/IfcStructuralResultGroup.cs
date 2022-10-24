@@ -38,7 +38,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 18)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 19)]
 		public IfcAnalysisTheoryTypeEnum @TheoryType 
 		{ 
 			get 
@@ -53,7 +53,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 19)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 20)]
 		public IfcStructuralLoadGroup @ResultForLoadGroup 
 		{ 
 			get 
@@ -69,7 +69,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				SetValue( v =>  _resultForLoadGroup = v, _resultForLoadGroup, value,  "ResultForLoadGroup", 7);
 			} 
 		}	
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 20)]
+		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
 		public IfcBoolean @IsLinear 
 		{ 
 			get 
@@ -89,7 +89,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 
 		#region Inverse attributes
 		[InverseProperty("HasResults")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 21)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 22)]
 		public IEnumerable<IfcStructuralAnalysisModel> @ResultGroupFor 
 		{ 
 			get 

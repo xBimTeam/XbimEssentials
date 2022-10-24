@@ -78,12 +78,12 @@ namespace Xbim.Ifc4x3.GeometryResource
 				//##
 				switch (KnotSpec)
 				{
-					case IfcKnotType.UNIFORM_KNOTS:
-						return Ifc4.Interfaces.IfcKnotType.UNIFORM_KNOTS;
-					case IfcKnotType.QUASI_UNIFORM_KNOTS:
-						return Ifc4.Interfaces.IfcKnotType.QUASI_UNIFORM_KNOTS;
 					case IfcKnotType.PIECEWISE_BEZIER_KNOTS:
 						return Ifc4.Interfaces.IfcKnotType.PIECEWISE_BEZIER_KNOTS;
+					case IfcKnotType.QUASI_UNIFORM_KNOTS:
+						return Ifc4.Interfaces.IfcKnotType.QUASI_UNIFORM_KNOTS;
+					case IfcKnotType.UNIFORM_KNOTS:
+						return Ifc4.Interfaces.IfcKnotType.UNIFORM_KNOTS;
 					case IfcKnotType.UNSPECIFIED:
 						return Ifc4.Interfaces.IfcKnotType.UNSPECIFIED;
 					

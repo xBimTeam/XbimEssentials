@@ -13,6 +13,7 @@ using System.Linq;
 using Xbim.Common;
 
 //## Custom using statements
+#pragma warning disable CS0162 // Unreachable code detected
 //##
 
 // ReSharper disable once CheckNamespace
@@ -26,7 +27,8 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		{ 
 			get
 			{
-				return new Ifc4.MeasureResource.IfcLabel(Name);
+				if (!Name.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(Name.Value);
 			} 
 			set
 			{
@@ -57,14 +59,18 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		{ 
 			get
 			{
-				if (!GeodeticDatum.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcIdentifier(GeodeticDatum.Value);
+				//## Handle return of GeodeticDatum for which no match was found
+				//TODO: Handle return of GeodeticDatum for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				GeodeticDatum = value.HasValue ? 
-					new MeasureResource.IfcIdentifier(value.Value) :  
-					 new MeasureResource.IfcIdentifier?() ;
+				//## Handle setting of GeodeticDatum for which no match was found
+				//TODO: Handle setting of GeodeticDatum for which no match was found
+				throw new System.NotImplementedException();
+				//##
+				NotifyPropertyChanged("GeodeticDatum");
 				
 			}
 		}
@@ -74,14 +80,18 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		{ 
 			get
 			{
-				if (!VerticalDatum.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcIdentifier(VerticalDatum.Value);
+				//## Handle return of VerticalDatum for which no match was found
+				//TODO: Handle return of VerticalDatum for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				VerticalDatum = value.HasValue ? 
-					new MeasureResource.IfcIdentifier(value.Value) :  
-					 new MeasureResource.IfcIdentifier?() ;
+				//## Handle setting of VerticalDatum for which no match was found
+				//TODO: Handle setting of VerticalDatum for which no match was found
+				throw new System.NotImplementedException();
+				//##
+				NotifyPropertyChanged("VerticalDatum");
 				
 			}
 		}

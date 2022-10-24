@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcAxis2PlacementLinear", 1488)]
+	[ExpressType("IfcAxis2PlacementLinear", 1410)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAxis2PlacementLinear : IfcPlacement, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAxis2PlacementLinear>
 	{

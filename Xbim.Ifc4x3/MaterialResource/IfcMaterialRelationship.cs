@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.MaterialResource
 		#region Explicit attribute fields
 		private IfcMaterial _relatingMaterial;
 		private readonly ItemSet<IfcMaterial> _relatedMaterials;
-		private IfcLabel? _expression;
+		private IfcLabel? _materialExpression;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -68,17 +68,17 @@ namespace Xbim.Ifc4x3.MaterialResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
-		public IfcLabel? @Expression 
+		public IfcLabel? @MaterialExpression 
 		{ 
 			get 
 			{
-				if(_activated) return _expression;
+				if(_activated) return _materialExpression;
 				Activate();
-				return _expression;
+				return _materialExpression;
 			} 
 			set
 			{
-				SetValue( v =>  _expression = v, _expression, value,  "Expression", 5);
+				SetValue( v =>  _materialExpression = v, _materialExpression, value,  "MaterialExpression", 5);
 			} 
 		}	
 		#endregion
@@ -102,7 +102,7 @@ namespace Xbim.Ifc4x3.MaterialResource
 					_relatedMaterials.InternalAdd((IfcMaterial)value.EntityVal);
 					return;
 				case 4: 
-					_expression = value.StringVal;
+					_materialExpression = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

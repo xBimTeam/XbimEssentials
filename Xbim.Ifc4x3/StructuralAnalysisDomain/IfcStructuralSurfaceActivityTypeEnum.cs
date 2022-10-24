@@ -10,8 +10,8 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 {
 	public enum IfcStructuralSurfaceActivityTypeEnum : byte
 	{
-		@CONST ,
 		@BILINEAR ,
+		@CONST ,
 		@DISCRETE ,
 		@ISOCONTOUR ,
 		@USERDEFINED ,

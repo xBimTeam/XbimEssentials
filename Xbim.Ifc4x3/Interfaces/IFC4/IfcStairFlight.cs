@@ -98,16 +98,16 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcStairFlightTypeEnum.STRAIGHT:
-						return Ifc4.Interfaces.IfcStairFlightTypeEnum.STRAIGHT;
-					case IfcStairFlightTypeEnum.WINDER:
-						return Ifc4.Interfaces.IfcStairFlightTypeEnum.WINDER;
-					case IfcStairFlightTypeEnum.SPIRAL:
-						return Ifc4.Interfaces.IfcStairFlightTypeEnum.SPIRAL;
 					case IfcStairFlightTypeEnum.CURVED:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.CURVED;
 					case IfcStairFlightTypeEnum.FREEFORM:
 						return Ifc4.Interfaces.IfcStairFlightTypeEnum.FREEFORM;
+					case IfcStairFlightTypeEnum.SPIRAL:
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.SPIRAL;
+					case IfcStairFlightTypeEnum.STRAIGHT:
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.STRAIGHT;
+					case IfcStairFlightTypeEnum.WINDER:
+						return Ifc4.Interfaces.IfcStairFlightTypeEnum.WINDER;
 					case IfcStairFlightTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

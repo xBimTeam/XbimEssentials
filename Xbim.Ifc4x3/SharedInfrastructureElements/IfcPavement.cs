@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4x3.ProductExtension;
-using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcPavement", 1451)]
+	[ExpressType("IfcPavement", 1467)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPavement : IfcBuiltElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPavement>
 	{
@@ -32,22 +31,22 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 		}
 
 		#region Explicit attribute fields
-		private IfcBoolean? _flexible;
+		private IfcPavementTypeEnum? _predefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 34)]
-		public IfcBoolean? @Flexible 
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		public IfcPavementTypeEnum? @PredefinedType 
 		{ 
 			get 
 			{
-				if(_activated) return _flexible;
+				if(_activated) return _predefinedType;
 				Activate();
-				return _flexible;
+				return _predefinedType;
 			} 
 			set
 			{
-				SetValue( v =>  _flexible = v, _flexible, value,  "Flexible", 9);
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 9);
 			} 
 		}	
 		#endregion
@@ -71,7 +70,7 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					_flexible = value.BooleanVal;
+                    _predefinedType = (IfcPavementTypeEnum) System.Enum.Parse(typeof (IfcPavementTypeEnum), value.EnumVal, true);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

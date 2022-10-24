@@ -10,15 +10,15 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 {
 	public enum IfcSlabTypeEnum : byte
 	{
-		@FLOOR ,
-		@ROOF ,
-		@LANDING ,
-		@BASESLAB ,
 		@APPROACH_SLAB ,
+		@BASESLAB ,
+		@FLOOR ,
+		@LANDING ,
 		@PAVING ,
-		@WEARING ,
+		@ROOF ,
 		@SIDEWALK ,
 		@TRACKSLAB ,
+		@WEARING ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
+					case IfcShadingDeviceTypeEnum.AWNING:
+						return Ifc4.Interfaces.IfcShadingDeviceTypeEnum.AWNING;
 					case IfcShadingDeviceTypeEnum.JALOUSIE:
 						return Ifc4.Interfaces.IfcShadingDeviceTypeEnum.JALOUSIE;
 					case IfcShadingDeviceTypeEnum.SHUTTER:
 						return Ifc4.Interfaces.IfcShadingDeviceTypeEnum.SHUTTER;
-					case IfcShadingDeviceTypeEnum.AWNING:
-						return Ifc4.Interfaces.IfcShadingDeviceTypeEnum.AWNING;
 					case IfcShadingDeviceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometricConstraintResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +19,7 @@ using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcAlignmentVertical", 1486)]
+	[ExpressType("IfcAlignmentVertical", 1408)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignmentVertical : IfcLinearElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAlignmentVertical>
 	{
@@ -28,25 +27,8 @@ namespace Xbim.Ifc4x3.ProductExtension
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAlignmentVertical(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_segments = new ItemSet<IfcAlignmentVerticalSegment>( this, 0,  8);
 		}
 
-		#region Explicit attribute fields
-		private readonly ItemSet<IfcAlignmentVerticalSegment> _segments;
-		#endregion
-	
-		#region Explicit attribute properties
-		[EntityAttribute(8, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 22)]
-		public IItemSet<IfcAlignmentVerticalSegment> @Segments 
-		{ 
-			get 
-			{
-				if(_activated) return _segments;
-				Activate();
-				return _segments;
-			} 
-		}	
-		#endregion
 
 
 
@@ -64,9 +46,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 				case 5: 
 				case 6: 
 					base.Parse(propIndex, value, nestedIndex); 
-					return;
-				case 7: 
-					_segments.InternalAdd((IfcAlignmentVerticalSegment)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -92,8 +71,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 					yield return @ObjectPlacement;
 				if (@Representation != null)
 					yield return @Representation;
-				foreach(var entity in @Segments)
-					yield return entity;
 			}
 		}
 		#endregion

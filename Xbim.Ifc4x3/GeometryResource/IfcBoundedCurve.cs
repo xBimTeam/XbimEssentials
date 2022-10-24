@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4x3.GeometricConstraintResource;
-using Xbim.Ifc4x3.ProductExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,17 +33,6 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 
 
-		#region Inverse attributes
-		[InverseProperty("Axis")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 3)]
-		public IEnumerable<IfcLinearPositioningElement> @PositioningElement 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcLinearPositioningElement>(e => Equals(e.Axis), "Axis", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)

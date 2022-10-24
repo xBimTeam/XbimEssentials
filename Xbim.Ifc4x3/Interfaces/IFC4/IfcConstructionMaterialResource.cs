@@ -48,12 +48,12 @@ namespace Xbim.Ifc4x3.ConstructionMgmtDomain
 						return Ifc4.Interfaces.IfcConstructionMaterialResourceTypeEnum.PLASTIC;
 					case IfcConstructionMaterialResourceTypeEnum.WOOD:
 						return Ifc4.Interfaces.IfcConstructionMaterialResourceTypeEnum.WOOD;
-					case IfcConstructionMaterialResourceTypeEnum.NOTDEFINED:
-						return Ifc4.Interfaces.IfcConstructionMaterialResourceTypeEnum.NOTDEFINED;
 					case IfcConstructionMaterialResourceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcConstructionMaterialResourceTypeEnum.USERDEFINED;
+					case IfcConstructionMaterialResourceTypeEnum.NOTDEFINED:
+						return Ifc4.Interfaces.IfcConstructionMaterialResourceTypeEnum.NOTDEFINED;
 					case null: 
 						return null;
 					

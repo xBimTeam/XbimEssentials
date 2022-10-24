@@ -61,10 +61,10 @@ namespace Xbim.Ifc4x3.RepresentationResource
 				//##
 				switch (TargetView)
 				{
+					case IfcGeometricProjectionEnum.ELEVATION_VIEW:
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.ELEVATION_VIEW;
 					case IfcGeometricProjectionEnum.GRAPH_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.GRAPH_VIEW;
-					case IfcGeometricProjectionEnum.SKETCH_VIEW:
-						return Ifc4.Interfaces.IfcGeometricProjectionEnum.SKETCH_VIEW;
 					case IfcGeometricProjectionEnum.MODEL_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.MODEL_VIEW;
 					case IfcGeometricProjectionEnum.PLAN_VIEW:
@@ -73,8 +73,8 @@ namespace Xbim.Ifc4x3.RepresentationResource
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.REFLECTED_PLAN_VIEW;
 					case IfcGeometricProjectionEnum.SECTION_VIEW:
 						return Ifc4.Interfaces.IfcGeometricProjectionEnum.SECTION_VIEW;
-					case IfcGeometricProjectionEnum.ELEVATION_VIEW:
-						return Ifc4.Interfaces.IfcGeometricProjectionEnum.ELEVATION_VIEW;
+					case IfcGeometricProjectionEnum.SKETCH_VIEW:
+						return Ifc4.Interfaces.IfcGeometricProjectionEnum.SKETCH_VIEW;
 					case IfcGeometricProjectionEnum.USERDEFINED:
 						//## Optional custom handling of TargetView == .USERDEFINED. 
 						//##

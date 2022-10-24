@@ -38,10 +38,6 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.LIGHT;
 					case IfcAlarmTypeEnum.MANUALPULLBOX:
 						return Ifc4.Interfaces.IfcAlarmTypeEnum.MANUALPULLBOX;
-					case IfcAlarmTypeEnum.SIREN:
-						return Ifc4.Interfaces.IfcAlarmTypeEnum.SIREN;
-					case IfcAlarmTypeEnum.WHISTLE:
-						return Ifc4.Interfaces.IfcAlarmTypeEnum.WHISTLE;
 					case IfcAlarmTypeEnum.RAILWAYCROCODILE:
 						//## Handle translation of RAILWAYCROCODILE member from IfcAlarmTypeEnum in property PredefinedType
 						//TODO: Handle translation of RAILWAYCROCODILE member from IfcAlarmTypeEnum in property PredefinedType
@@ -52,6 +48,10 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						//TODO: Handle translation of RAILWAYDETONATOR member from IfcAlarmTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcAlarmTypeEnum.SIREN:
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.SIREN;
+					case IfcAlarmTypeEnum.WHISTLE:
+						return Ifc4.Interfaces.IfcAlarmTypeEnum.WHISTLE;
 					case IfcAlarmTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

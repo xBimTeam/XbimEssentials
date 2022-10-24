@@ -31,12 +31,12 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 		}
 
 		#region Explicit attribute fields
-		private IfcPositiveLengthMeasure? _filletRadius;
+		private IfcNonNegativeLengthMeasure? _filletRadius;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
-		public IfcPositiveLengthMeasure? @FilletRadius 
+		public IfcNonNegativeLengthMeasure? @FilletRadius 
 		{ 
 			get 
 			{

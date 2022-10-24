@@ -11,12 +11,12 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 	public enum IfcStructuralCurveActivityTypeEnum : byte
 	{
 		@CONST ,
-		@LINEAR ,
-		@POLYGONAL ,
-		@EQUIDISTANT ,
-		@SINUS ,
-		@PARABOLA ,
 		@DISCRETE ,
+		@EQUIDISTANT ,
+		@LINEAR ,
+		@PARABOLA ,
+		@POLYGONAL ,
+		@SINUS ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

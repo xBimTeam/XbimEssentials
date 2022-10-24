@@ -30,10 +30,6 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcRailingTypeEnum.HANDRAIL:
-						return Ifc4.Interfaces.IfcRailingTypeEnum.HANDRAIL;
-					case IfcRailingTypeEnum.GUARDRAIL:
-						return Ifc4.Interfaces.IfcRailingTypeEnum.GUARDRAIL;
 					case IfcRailingTypeEnum.BALUSTRADE:
 						return Ifc4.Interfaces.IfcRailingTypeEnum.BALUSTRADE;
 					case IfcRailingTypeEnum.FENCE:
@@ -41,6 +37,10 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						//TODO: Handle translation of FENCE member from IfcRailingTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcRailingTypeEnum.GUARDRAIL:
+						return Ifc4.Interfaces.IfcRailingTypeEnum.GUARDRAIL;
+					case IfcRailingTypeEnum.HANDRAIL:
+						return Ifc4.Interfaces.IfcRailingTypeEnum.HANDRAIL;
 					case IfcRailingTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
