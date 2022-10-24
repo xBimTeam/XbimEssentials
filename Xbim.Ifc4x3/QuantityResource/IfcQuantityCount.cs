@@ -80,7 +80,7 @@ namespace Xbim.Ifc4x3.QuantityResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
-					_countValue = value.NumberVal;
+					_countValue = value.IntegerVal;
 					return;
 				case 4: 
 					_formula = value.StringVal;

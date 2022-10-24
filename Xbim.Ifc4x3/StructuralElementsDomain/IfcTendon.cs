@@ -42,7 +42,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
 		public IfcTendonTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -56,7 +56,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 36)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 37)]
 		public IfcPositiveLengthMeasure? @NominalDiameter 
 		{ 
 			get 
@@ -70,7 +70,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				SetValue( v =>  _nominalDiameter = v, _nominalDiameter, value,  "NominalDiameter", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 37)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 38)]
 		public IfcAreaMeasure? @CrossSectionArea 
 		{ 
 			get 
@@ -84,7 +84,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				SetValue( v =>  _crossSectionArea = v, _crossSectionArea, value,  "CrossSectionArea", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 38)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 39)]
 		public IfcForceMeasure? @TensionForce 
 		{ 
 			get 
@@ -98,7 +98,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				SetValue( v =>  _tensionForce = v, _tensionForce, value,  "TensionForce", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 39)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 40)]
 		public IfcPressureMeasure? @PreStress 
 		{ 
 			get 
@@ -112,7 +112,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				SetValue( v =>  _preStress = v, _preStress, value,  "PreStress", 14);
 			} 
 		}	
-		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 40)]
+		[EntityAttribute(15, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 41)]
 		public IfcNormalisedRatioMeasure? @FrictionCoefficient 
 		{ 
 			get 
@@ -126,7 +126,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				SetValue( v =>  _frictionCoefficient = v, _frictionCoefficient, value,  "FrictionCoefficient", 15);
 			} 
 		}	
-		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 41)]
+		[EntityAttribute(16, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 42)]
 		public IfcPositiveLengthMeasure? @AnchorageSlip 
 		{ 
 			get 
@@ -140,7 +140,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				SetValue( v =>  _anchorageSlip = v, _anchorageSlip, value,  "AnchorageSlip", 16);
 			} 
 		}	
-		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 42)]
+		[EntityAttribute(17, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 43)]
 		public IfcPositiveLengthMeasure? @MinCurvatureRadius 
 		{ 
 			get 

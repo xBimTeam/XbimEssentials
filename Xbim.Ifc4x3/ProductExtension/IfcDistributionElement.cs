@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatedElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 34)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 35)]
 		public IEnumerable<IfcRelConnectsPortToElement> @HasPorts 
 		{ 
 			get 

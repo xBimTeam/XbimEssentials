@@ -20,9 +20,9 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcClothoid", 1490)]
+	[ExpressType("IfcClothoid", 1421)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcClothoid : IfcCurve, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcClothoid>
+	public  partial class @IfcClothoid : IfcSpiral, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcClothoid>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -31,27 +31,10 @@ namespace Xbim.Ifc4x3.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private IfcAxis2Placement _position;
 		private IfcLengthMeasure _clothoidConstant;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
-		public IfcAxis2Placement @Position 
-		{ 
-			get 
-			{
-				if(_activated) return _position;
-				Activate();
-				return _position;
-			} 
-			set
-			{
-				if (value != null && !(ReferenceEquals(Model, value.Model)))
-					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _position = v, _position, value,  "Position", 1);
-			} 
-		}	
 		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLengthMeasure @ClothoidConstant 
 		{ 
@@ -77,7 +60,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			switch (propIndex)
 			{
 				case 0: 
-					_position = (IfcAxis2Placement)(value.EntityVal);
+					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
 					_clothoidConstant = value.RealVal;

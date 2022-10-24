@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 {
 	public enum IfcBuildingElementPartTypeEnum : byte
 	{
-		@INSULATION ,
-		@PRECASTPANEL ,
 		@APRON ,
 		@ARMOURUNIT ,
+		@INSULATION ,
+		@PRECASTPANEL ,
 		@SAFETYCAGE ,
 		@USERDEFINED ,
 		@NOTDEFINED 

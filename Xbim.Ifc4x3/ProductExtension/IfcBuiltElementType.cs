@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcBuiltElementType", 108)]
+	[ExpressType("IfcBuiltElementType", 1417)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBuiltElementType : IfcElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBuiltElementType>
 	{

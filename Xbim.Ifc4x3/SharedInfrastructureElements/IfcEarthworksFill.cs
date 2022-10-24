@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcEarthworksFill", 1423)]
+	[ExpressType("IfcEarthworksFill", 1436)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEarthworksFill : IfcEarthworksElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEarthworksFill>
 	{
@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcEarthworksFillTypeEnum? @PredefinedType 
 		{ 
 			get 

@@ -36,7 +36,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 12)]
+		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.None, new int [] { 2 }, new int [] { -1 }, 11)]
 		public IItemSet<IfcReal> @WeightsData 
 		{ 
 			get 

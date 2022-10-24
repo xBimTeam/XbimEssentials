@@ -30,24 +30,24 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
+					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER:
+						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER;
+					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER:
+						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER;
 					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER:
 						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERANDOMMEDIAAIRCOOLER;
 					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER:
 						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVERIGIDMEDIAAIRCOOLER;
 					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER:
 						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVESLINGERSPACKAGEDAIRCOOLER;
-					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER:
-						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEPACKAGEDROTARYAIRCOOLER;
-					case IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER:
-						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.DIRECTEVAPORATIVEAIRWASHER;
+					case IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION:
+						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION;
+					case IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER:
+						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER;
 					case IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER:
 						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEPACKAGEAIRCOOLER;
 					case IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL:
 						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVEWETCOIL;
-					case IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER:
-						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTEVAPORATIVECOOLINGTOWERORCOILCOOLER;
-					case IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION:
-						return Ifc4.Interfaces.IfcEvaporativeCoolerTypeEnum.INDIRECTDIRECTCOMBINATION;
 					case IfcEvaporativeCoolerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

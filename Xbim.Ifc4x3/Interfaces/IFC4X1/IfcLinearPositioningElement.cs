@@ -13,6 +13,7 @@ using System.Linq;
 using Xbim.Common;
 
 //## Custom using statements
+#pragma warning disable CS0162 // Unreachable code detected
 //##
 
 // ReSharper disable once CheckNamespace
@@ -26,11 +27,18 @@ namespace Xbim.Ifc4x3.ProductExtension
 		{ 
 			get
 			{
-				return Axis;
+				//## Handle return of Axis for which no match was found
+				//TODO: Handle return of Axis for which no match was found
+				throw new System.NotImplementedException();
+				//##
 			} 
 			set
 			{
-				Axis = value as GeometryResource.IfcCurve;
+				//## Handle setting of Axis for which no match was found
+				//TODO: Handle setting of Axis for which no match was found
+				throw new System.NotImplementedException();
+				//##
+				NotifyPropertyChanged("Axis");
 				
 			}
 		}

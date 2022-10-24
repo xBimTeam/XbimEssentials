@@ -10,15 +10,15 @@ namespace Xbim.Ifc4x3.ConstraintResource
 {
 	public enum IfcBenchmarkEnum : byte
 	{
+		@EQUALTO ,
 		@GREATERTHAN ,
 		@GREATERTHANOREQUALTO ,
+		@INCLUDEDIN ,
+		@INCLUDES ,
 		@LESSTHAN ,
 		@LESSTHANOREQUALTO ,
-		@EQUALTO ,
 		@NOTEQUALTO ,
-		@INCLUDES ,
-		@NOTINCLUDES ,
-		@INCLUDEDIN ,
-		@NOTINCLUDEDIN 
+		@NOTINCLUDEDIN ,
+		@NOTINCLUDES 
 	}
 }

@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcSignType", 1463)]
+	[ExpressType("IfcSignType", 1489)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcSignType : IfcElementComponentType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSignType>
 	{

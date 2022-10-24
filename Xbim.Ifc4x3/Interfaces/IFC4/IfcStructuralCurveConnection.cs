@@ -26,11 +26,11 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 		{ 
 			get
 			{
-				return Axis;
+				return AxisDirection;
 			} 
 			set
 			{
-				Axis = value as GeometryResource.IfcDirection;
+				AxisDirection = value as GeometryResource.IfcDirection;
 				
 			}
 		}

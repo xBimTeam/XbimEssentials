@@ -10,16 +10,16 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 {
 	public enum IfcWallTypeEnum : byte
 	{
+		@ELEMENTEDWALL ,
 		@MOVABLE ,
 		@PARAPET ,
 		@PARTITIONING ,
 		@PLUMBINGWALL ,
+		@POLYGONAL ,
+		@RETAININGWALL ,
 		@SHEAR ,
 		@SOLIDWALL ,
 		@STANDARD ,
-		@POLYGONAL ,
-		@ELEMENTEDWALL ,
-		@RETAININGWALL ,
 		@WAVEWALL ,
 		@USERDEFINED ,
 		@NOTDEFINED 

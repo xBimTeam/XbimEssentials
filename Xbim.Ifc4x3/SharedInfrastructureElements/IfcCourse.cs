@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcCourse", 1413)]
+	[ExpressType("IfcCourse", 1425)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCourse : IfcBuiltElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCourse>
 	{
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcCourseTypeEnum? @PredefinedType 
 		{ 
 			get 

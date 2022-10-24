@@ -10,17 +10,18 @@ namespace Xbim.Ifc4x3.Kernel
 {
 	public enum IfcSimplePropertyTemplateTypeEnum : byte
 	{
-		@P_SINGLEVALUE ,
-		@P_ENUMERATEDVALUE ,
 		@P_BOUNDEDVALUE ,
+		@P_ENUMERATEDVALUE ,
 		@P_LISTVALUE ,
-		@P_TABLEVALUE ,
 		@P_REFERENCEVALUE ,
-		@Q_LENGTH ,
+		@P_SINGLEVALUE ,
+		@P_TABLEVALUE ,
 		@Q_AREA ,
-		@Q_VOLUME ,
 		@Q_COUNT ,
-		@Q_WEIGHT ,
-		@Q_TIME 
+		@Q_LENGTH ,
+		@Q_NUMBER ,
+		@Q_TIME ,
+		@Q_VOLUME ,
+		@Q_WEIGHT 
 	}
 }

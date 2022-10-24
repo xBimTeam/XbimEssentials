@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.ProcessExtension
 {
 	public enum IfcEventTriggerTypeEnum : byte
 	{
-		@EVENTRULE ,
-		@EVENTMESSAGE ,
-		@EVENTTIME ,
 		@EVENTCOMPLEX ,
+		@EVENTMESSAGE ,
+		@EVENTRULE ,
+		@EVENTTIME ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

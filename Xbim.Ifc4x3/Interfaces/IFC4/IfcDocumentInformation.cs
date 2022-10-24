@@ -301,14 +301,14 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 				//##
 				switch (Confidentiality)
 				{
-					case IfcDocumentConfidentialityEnum.PUBLIC:
-						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC;
-					case IfcDocumentConfidentialityEnum.RESTRICTED:
-						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED;
 					case IfcDocumentConfidentialityEnum.CONFIDENTIAL:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.CONFIDENTIAL;
 					case IfcDocumentConfidentialityEnum.PERSONAL:
 						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PERSONAL;
+					case IfcDocumentConfidentialityEnum.PUBLIC:
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.PUBLIC;
+					case IfcDocumentConfidentialityEnum.RESTRICTED:
+						return Ifc4.Interfaces.IfcDocumentConfidentialityEnum.RESTRICTED;
 					case IfcDocumentConfidentialityEnum.USERDEFINED:
 						//## Optional custom handling of Confidentiality == .USERDEFINED. 
 						//##
@@ -368,10 +368,10 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 				{
 					case IfcDocumentStatusEnum.DRAFT:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.DRAFT;
-					case IfcDocumentStatusEnum.FINALDRAFT:
-						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT;
 					case IfcDocumentStatusEnum.FINAL:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINAL;
+					case IfcDocumentStatusEnum.FINALDRAFT:
+						return Ifc4.Interfaces.IfcDocumentStatusEnum.FINALDRAFT;
 					case IfcDocumentStatusEnum.REVISION:
 						return Ifc4.Interfaces.IfcDocumentStatusEnum.REVISION;
 					case IfcDocumentStatusEnum.NOTDEFINED:

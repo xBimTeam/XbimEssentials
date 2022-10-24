@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcAssemblyPlaceEnum? @AssemblyPlace 
 		{ 
 			get 
@@ -49,7 +49,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				SetValue( v =>  _assemblyPlace = v, _assemblyPlace, value,  "AssemblyPlace", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
 		public IfcElementAssemblyTypeEnum? @PredefinedType 
 		{ 
 			get 

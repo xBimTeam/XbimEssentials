@@ -10,11 +10,11 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	public enum IfcInternalOrExternalEnum : byte
 	{
-		@INTERNAL ,
 		@EXTERNAL ,
 		@EXTERNAL_EARTH ,
-		@EXTERNAL_WATER ,
 		@EXTERNAL_FIRE ,
+		@EXTERNAL_WATER ,
+		@INTERNAL ,
 		@NOTDEFINED 
 	}
 }

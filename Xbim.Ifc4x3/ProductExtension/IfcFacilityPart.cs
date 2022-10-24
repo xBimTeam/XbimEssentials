@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.SharedInfrastructureElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +19,9 @@ using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcFacilityPart", 1427)]
+	[ExpressType("IfcFacilityPart", 1440)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFacilityPart : IfcSpatialStructureElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcFacilityPart>
+	public abstract partial class @IfcFacilityPart : IfcSpatialStructureElement, IEquatable<@IfcFacilityPart>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -31,26 +30,11 @@ namespace Xbim.Ifc4x3.ProductExtension
 		}
 
 		#region Explicit attribute fields
-		private IfcFacilityPartTypeSelect _predefinedType;
 		private IfcFacilityUsageEnum _usageType;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 27)]
-		public IfcFacilityPartTypeSelect @PredefinedType 
-		{ 
-			get 
-			{
-				if(_activated) return _predefinedType;
-				Activate();
-				return _predefinedType;
-			} 
-			set
-			{
-				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 10);
-			} 
-		}	
-		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 28)]
+		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 29)]
 		public IfcFacilityUsageEnum @UsageType 
 		{ 
 			get 
@@ -61,7 +45,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 			} 
 			set
 			{
-				SetValue( v =>  _usageType = v, _usageType, value,  "UsageType", 11);
+				SetValue( v =>  _usageType = v, _usageType, value,  "UsageType", 10);
 			} 
 		}	
 		#endregion
@@ -86,9 +70,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 9: 
-					_predefinedType = (IfcFacilityPartTypeSelect)(value.EntityVal);
-					return;
-				case 10: 
                     _usageType = (IfcFacilityUsageEnum) System.Enum.Parse(typeof (IfcFacilityUsageEnum), value.EnumVal, true);
 					return;
 				default:
@@ -103,36 +84,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 	        return this == other;
 	    }
         #endregion
-
-		#region IContainsEntityReferences
-		IEnumerable<IPersistEntity> IContainsEntityReferences.References 
-		{
-			get 
-			{
-				if (@OwnerHistory != null)
-					yield return @OwnerHistory;
-				if (@ObjectPlacement != null)
-					yield return @ObjectPlacement;
-				if (@Representation != null)
-					yield return @Representation;
-			}
-		}
-		#endregion
-
-
-		#region IContainsIndexedReferences
-        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
-		{ 
-			get
-			{
-				if (@ObjectPlacement != null)
-					yield return @ObjectPlacement;
-				if (@Representation != null)
-					yield return @Representation;
-				
-			} 
-		}
-		#endregion
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code

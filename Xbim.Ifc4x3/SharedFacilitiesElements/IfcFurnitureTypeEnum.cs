@@ -10,13 +10,13 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 {
 	public enum IfcFurnitureTypeEnum : byte
 	{
-		@CHAIR ,
-		@TABLE ,
-		@DESK ,
 		@BED ,
+		@CHAIR ,
+		@DESK ,
 		@FILECABINET ,
 		@SHELF ,
 		@SOFA ,
+		@TABLE ,
 		@TECHNICALCABINET ,
 		@USERDEFINED ,
 		@NOTDEFINED 

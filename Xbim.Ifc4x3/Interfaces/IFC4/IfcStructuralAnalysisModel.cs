@@ -32,10 +32,10 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				{
 					case IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D:
 						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.IN_PLANE_LOADING_2D;
-					case IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
-						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
 					case IfcAnalysisModelTypeEnum.LOADING_3D:
 						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.LOADING_3D;
+					case IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D:
+						return Ifc4.Interfaces.IfcAnalysisModelTypeEnum.OUT_PLANE_LOADING_2D;
 					case IfcAnalysisModelTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

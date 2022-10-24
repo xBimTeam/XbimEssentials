@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 26)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 28)]
 		public IfcElementCompositionEnum? @CompositionType 
 		{ 
 			get 

@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
 		public IfcProjectionElementTypeEnum? @PredefinedType 
 		{ 
 			get 

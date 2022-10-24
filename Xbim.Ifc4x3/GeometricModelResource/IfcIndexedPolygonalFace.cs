@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4x3.MeasureResource;
+using Xbim.Ifc4x3.PresentationAppearanceResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,15 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 			get 
 			{
 				return Model.Instances.Where<IfcPolygonalFaceSet>(e => e.Faces != null &&  e.Faces.Contains(this), "Faces", this);
+			} 
+		}
+		[InverseProperty("TexCoordsOf")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 5)]
+		public IEnumerable<IfcTextureCoordinateIndices> @HasTexCoords 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcTextureCoordinateIndices>(e => Equals(e.TexCoordsOf), "TexCoordsOf", this);
 			} 
 		}
 		#endregion

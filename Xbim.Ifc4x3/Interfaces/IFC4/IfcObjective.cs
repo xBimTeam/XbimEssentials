@@ -42,14 +42,14 @@ namespace Xbim.Ifc4x3.ConstraintResource
 				{
 					case IfcLogicalOperatorEnum.LOGICALAND:
 						return Ifc4.Interfaces.IfcLogicalOperatorEnum.LOGICALAND;
-					case IfcLogicalOperatorEnum.LOGICALOR:
-						return Ifc4.Interfaces.IfcLogicalOperatorEnum.LOGICALOR;
-					case IfcLogicalOperatorEnum.LOGICALXOR:
-						return Ifc4.Interfaces.IfcLogicalOperatorEnum.LOGICALXOR;
 					case IfcLogicalOperatorEnum.LOGICALNOTAND:
 						return Ifc4.Interfaces.IfcLogicalOperatorEnum.LOGICALNOTAND;
 					case IfcLogicalOperatorEnum.LOGICALNOTOR:
 						return Ifc4.Interfaces.IfcLogicalOperatorEnum.LOGICALNOTOR;
+					case IfcLogicalOperatorEnum.LOGICALOR:
+						return Ifc4.Interfaces.IfcLogicalOperatorEnum.LOGICALOR;
+					case IfcLogicalOperatorEnum.LOGICALXOR:
+						return Ifc4.Interfaces.IfcLogicalOperatorEnum.LOGICALXOR;
 					case null: 
 						return null;
 					

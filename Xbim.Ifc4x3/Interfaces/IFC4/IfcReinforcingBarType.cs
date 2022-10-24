@@ -44,13 +44,13 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 						return Ifc4.Interfaces.IfcReinforcingBarTypeEnum.RING;
 					case IfcReinforcingBarTypeEnum.SHEAR:
 						return Ifc4.Interfaces.IfcReinforcingBarTypeEnum.SHEAR;
-					case IfcReinforcingBarTypeEnum.STUD:
-						return Ifc4.Interfaces.IfcReinforcingBarTypeEnum.STUD;
 					case IfcReinforcingBarTypeEnum.SPACEBAR:
 						//## Handle translation of SPACEBAR member from IfcReinforcingBarTypeEnum in property PredefinedType
 						//TODO: Handle translation of SPACEBAR member from IfcReinforcingBarTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcReinforcingBarTypeEnum.STUD:
+						return Ifc4.Interfaces.IfcReinforcingBarTypeEnum.STUD;
 					case IfcReinforcingBarTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

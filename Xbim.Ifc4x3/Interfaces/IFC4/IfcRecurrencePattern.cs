@@ -30,18 +30,18 @@ namespace Xbim.Ifc4x3.DateTimeResource
 				//##
 				switch (RecurrenceType)
 				{
-					case IfcRecurrenceTypeEnum.DAILY:
-						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.DAILY;
-					case IfcRecurrenceTypeEnum.WEEKLY:
-						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.WEEKLY;
-					case IfcRecurrenceTypeEnum.MONTHLY_BY_DAY_OF_MONTH:
-						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.MONTHLY_BY_DAY_OF_MONTH;
-					case IfcRecurrenceTypeEnum.MONTHLY_BY_POSITION:
-						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.MONTHLY_BY_POSITION;
 					case IfcRecurrenceTypeEnum.BY_DAY_COUNT:
 						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.BY_DAY_COUNT;
 					case IfcRecurrenceTypeEnum.BY_WEEKDAY_COUNT:
 						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.BY_WEEKDAY_COUNT;
+					case IfcRecurrenceTypeEnum.DAILY:
+						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.DAILY;
+					case IfcRecurrenceTypeEnum.MONTHLY_BY_DAY_OF_MONTH:
+						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.MONTHLY_BY_DAY_OF_MONTH;
+					case IfcRecurrenceTypeEnum.MONTHLY_BY_POSITION:
+						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.MONTHLY_BY_POSITION;
+					case IfcRecurrenceTypeEnum.WEEKLY:
+						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.WEEKLY;
 					case IfcRecurrenceTypeEnum.YEARLY_BY_DAY_OF_MONTH:
 						return Ifc4.Interfaces.IfcRecurrenceTypeEnum.YEARLY_BY_DAY_OF_MONTH;
 					case IfcRecurrenceTypeEnum.YEARLY_BY_POSITION:

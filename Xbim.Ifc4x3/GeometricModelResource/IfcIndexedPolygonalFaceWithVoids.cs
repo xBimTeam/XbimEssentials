@@ -36,7 +36,7 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 3 }, new int [] { -1, -1 }, 5)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.List, new int [] { 1, 3 }, new int [] { -1, -1 }, 6)]
 		public IItemSet<IItemSet<IfcPositiveInteger>> @InnerCoordIndices 
 		{ 
 			get 

@@ -16,9 +16,6 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 		@OUTERSHELL ,
 		@SHADING ,
 		@TRANSPORT ,
-		@REINFORCING ,
-		@PRESTRESSING ,
-		@EROSIONPREVENTION ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	public enum IfcGridTypeEnum : byte
 	{
-		@RECTANGULAR ,
-		@RADIAL ,
-		@TRIANGULAR ,
 		@IRREGULAR ,
+		@RADIAL ,
+		@RECTANGULAR ,
+		@TRIANGULAR ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

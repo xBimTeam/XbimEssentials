@@ -40,7 +40,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 27)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 29)]
 		public IfcCompoundPlaneAngleMeasure? @RefLatitude 
 		{ 
 			get 
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				SetValue( v =>  _refLatitude = v, _refLatitude, value,  "RefLatitude", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 28)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 30)]
 		public IfcCompoundPlaneAngleMeasure? @RefLongitude 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				SetValue( v =>  _refLongitude = v, _refLongitude, value,  "RefLongitude", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 29)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 31)]
 		public IfcLengthMeasure? @RefElevation 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				SetValue( v =>  _refElevation = v, _refElevation, value,  "RefElevation", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 30)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 32)]
 		public IfcLabel? @LandTitleNumber 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				SetValue( v =>  _landTitleNumber = v, _landTitleNumber, value,  "LandTitleNumber", 13);
 			} 
 		}	
-		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 31)]
+		[EntityAttribute(14, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 33)]
 		public IfcPostalAddress @SiteAddress 
 		{ 
 			get 

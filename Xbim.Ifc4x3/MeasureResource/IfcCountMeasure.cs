@@ -13,11 +13,11 @@ using Xbim.Common.Exceptions;
 namespace Xbim.Ifc4x3.MeasureResource
 {
 	[ExpressType("IfcCountMeasure", 217)]
-	[DefinedType(typeof(double))]
+	[DefinedType(typeof(long))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcCountMeasure : IfcMeasureValue, IExpressValueType, IExpressNumberType, System.IEquatable<double>
+	public partial struct IfcCountMeasure : IfcMeasureValue, IExpressValueType, IExpressIntegerType, System.IEquatable<long>
 	{ 
-		private double _value;
+		private long _value;
         
 		public object Value
         {
@@ -25,30 +25,28 @@ namespace Xbim.Ifc4x3.MeasureResource
         }
 
  
-		double IExpressNumberType.Value { get { return _value; } }
+		long IExpressIntegerType.Value { get { return _value; } }
 
 		public override string ToString()
         {
-            return _value.ToString("R", Culture);
+			return _value.ToString();
         }
-        public IfcCountMeasure(double val)
+        public IfcCountMeasure(long val)
         {
             _value = val;
         }
 
-	    private static readonly System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("en-US");
-
 		public IfcCountMeasure(string val)
         {
-			_value = System.Convert.ToDouble(val, Culture);
+			_value = System.Convert.ToInt64(val);
         }
 
-        public static implicit operator IfcCountMeasure(double value)
+        public static implicit operator IfcCountMeasure(long value)
         {
             return new IfcCountMeasure(value);
         }
 
-        public static implicit operator double(IfcCountMeasure obj)
+        public static implicit operator long(IfcCountMeasure obj)
         {
             return obj._value;
 
@@ -69,7 +67,7 @@ namespace Xbim.Ifc4x3.MeasureResource
             return ((IfcCountMeasure) obj)._value == _value;
         }
 
-		public bool Equals(double other)
+		public bool Equals(long other)
 	    {
 	        return this == other;
 	    }
@@ -94,7 +92,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 		{
 			if (propIndex != 0)
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
-            _value = value.NumberVal;
+            _value = value.IntegerVal;
             
 		}
 		#endregion
@@ -103,7 +101,7 @@ namespace Xbim.Ifc4x3.MeasureResource
         System.Type IExpressValueType.UnderlyingSystemType { 
 			get 
 			{
-				return typeof(double);
+				return typeof(long);
 			}
 		}
 		#endregion

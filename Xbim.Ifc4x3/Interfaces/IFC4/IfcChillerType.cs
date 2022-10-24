@@ -32,10 +32,10 @@ namespace Xbim.Ifc4x3.HvacDomain
 				{
 					case IfcChillerTypeEnum.AIRCOOLED:
 						return Ifc4.Interfaces.IfcChillerTypeEnum.AIRCOOLED;
-					case IfcChillerTypeEnum.WATERCOOLED:
-						return Ifc4.Interfaces.IfcChillerTypeEnum.WATERCOOLED;
 					case IfcChillerTypeEnum.HEATRECOVERY:
 						return Ifc4.Interfaces.IfcChillerTypeEnum.HEATRECOVERY;
+					case IfcChillerTypeEnum.WATERCOOLED:
+						return Ifc4.Interfaces.IfcChillerTypeEnum.WATERCOOLED;
 					case IfcChillerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

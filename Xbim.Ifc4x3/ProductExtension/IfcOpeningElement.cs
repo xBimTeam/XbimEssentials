@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
 		public IfcOpeningElementTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 
 		#region Inverse attributes
 		[InverseProperty("RelatingOpeningElement")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 36)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 37)]
 		public IEnumerable<IfcRelFillsElement> @HasFillings 
 		{ 
 			get 

@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcGeotechnicalElement", 1431)]
+	[ExpressType("IfcGeotechnicalElement", 1446)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcGeotechnicalElement : IfcElement, IEquatable<@IfcGeotechnicalElement>
 	{

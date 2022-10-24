@@ -31,8 +31,8 @@ namespace Xbim.Ifc4x3.DateTimeResource
 
 		#region Explicit attribute fields
 		private IfcRecurrencePattern _recurrencePattern;
-		private IfcDate? _start;
-		private IfcDate? _finish;
+		private IfcDate? _startDate;
+		private IfcDate? _finishDate;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -53,31 +53,31 @@ namespace Xbim.Ifc4x3.DateTimeResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
-		public IfcDate? @Start 
+		public IfcDate? @StartDate 
 		{ 
 			get 
 			{
-				if(_activated) return _start;
+				if(_activated) return _startDate;
 				Activate();
-				return _start;
+				return _startDate;
 			} 
 			set
 			{
-				SetValue( v =>  _start = v, _start, value,  "Start", 5);
+				SetValue( v =>  _startDate = v, _startDate, value,  "StartDate", 5);
 			} 
 		}	
 		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
-		public IfcDate? @Finish 
+		public IfcDate? @FinishDate 
 		{ 
 			get 
 			{
-				if(_activated) return _finish;
+				if(_activated) return _finishDate;
 				Activate();
-				return _finish;
+				return _finishDate;
 			} 
 			set
 			{
-				SetValue( v =>  _finish = v, _finish, value,  "Finish", 6);
+				SetValue( v =>  _finishDate = v, _finishDate, value,  "FinishDate", 6);
 			} 
 		}	
 		#endregion
@@ -99,10 +99,10 @@ namespace Xbim.Ifc4x3.DateTimeResource
 					_recurrencePattern = (IfcRecurrencePattern)(value.EntityVal);
 					return;
 				case 4: 
-					_start = value.StringVal;
+					_startDate = value.StringVal;
 					return;
 				case 5: 
-					_finish = value.StringVal;
+					_finishDate = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

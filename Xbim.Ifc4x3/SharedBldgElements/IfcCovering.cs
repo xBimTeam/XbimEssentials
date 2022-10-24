@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcCoveringTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -55,7 +55,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 
 		#region Inverse attributes
 		[InverseProperty("RelatedCoverings")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 35)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 36)]
 		public IEnumerable<IfcRelCoversSpaces> @CoversSpaces 
 		{ 
 			get 
@@ -64,7 +64,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 			} 
 		}
 		[InverseProperty("RelatedCoverings")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 36)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 37)]
 		public IEnumerable<IfcRelCoversBldgElements> @CoversElements 
 		{ 
 			get 

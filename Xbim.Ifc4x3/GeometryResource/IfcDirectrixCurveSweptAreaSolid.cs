@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcDirectrixCurveSweptAreaSolid", 1417)]
+	[ExpressType("IfcDirectrixCurveSweptAreaSolid", 1430)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcDirectrixCurveSweptAreaSolid : IfcSweptAreaSolid, IEquatable<@IfcDirectrixCurveSweptAreaSolid>
 	{

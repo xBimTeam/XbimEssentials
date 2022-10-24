@@ -17,8 +17,8 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 		@PUNCHING ,
 		@RING ,
 		@SHEAR ,
-		@STUD ,
 		@SPACEBAR ,
+		@STUD ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

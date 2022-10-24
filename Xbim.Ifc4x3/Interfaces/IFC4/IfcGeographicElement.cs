@@ -30,11 +30,16 @@ namespace Xbim.Ifc4x3.ProductExtension
 				//##
 				switch (PredefinedType)
 				{
-					case IfcGeographicElementTypeEnum.TERRAIN:
-						return Ifc4.Interfaces.IfcGeographicElementTypeEnum.TERRAIN;
 					case IfcGeographicElementTypeEnum.SOIL_BORING_POINT:
 						//## Handle translation of SOIL_BORING_POINT member from IfcGeographicElementTypeEnum in property PredefinedType
 						//TODO: Handle translation of SOIL_BORING_POINT member from IfcGeographicElementTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcGeographicElementTypeEnum.TERRAIN:
+						return Ifc4.Interfaces.IfcGeographicElementTypeEnum.TERRAIN;
+					case IfcGeographicElementTypeEnum.VEGETATION:
+						//## Handle translation of VEGETATION member from IfcGeographicElementTypeEnum in property PredefinedType
+						//TODO: Handle translation of VEGETATION member from IfcGeographicElementTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcGeographicElementTypeEnum.USERDEFINED:

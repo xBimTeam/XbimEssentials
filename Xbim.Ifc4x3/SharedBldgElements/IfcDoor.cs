@@ -40,7 +40,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 35)]
 		public IfcPositiveLengthMeasure? @OverallHeight 
 		{ 
 			get 
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				SetValue( v =>  _overallHeight = v, _overallHeight, value,  "OverallHeight", 9);
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 35)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 36)]
 		public IfcPositiveLengthMeasure? @OverallWidth 
 		{ 
 			get 
@@ -68,7 +68,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				SetValue( v =>  _overallWidth = v, _overallWidth, value,  "OverallWidth", 10);
 			} 
 		}	
-		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 37)]
 		public IfcDoorTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -82,7 +82,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 11);
 			} 
 		}	
-		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 37)]
+		[EntityAttribute(12, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 38)]
 		public IfcDoorTypeOperationEnum? @OperationType 
 		{ 
 			get 
@@ -96,7 +96,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				SetValue( v =>  _operationType = v, _operationType, value,  "OperationType", 12);
 			} 
 		}	
-		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 38)]
+		[EntityAttribute(13, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 39)]
 		public IfcLabel? @UserDefinedOperationType 
 		{ 
 			get 

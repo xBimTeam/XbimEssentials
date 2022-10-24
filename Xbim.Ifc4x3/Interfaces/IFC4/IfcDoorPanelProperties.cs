@@ -47,20 +47,20 @@ namespace Xbim.Ifc4x3.ArchitectureDomain
 				//##
 				switch (PanelOperation)
 				{
-					case IfcDoorPanelOperationEnum.SWINGING:
-						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SWINGING;
 					case IfcDoorPanelOperationEnum.DOUBLE_ACTING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.DOUBLE_ACTING;
-					case IfcDoorPanelOperationEnum.SLIDING:
-						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SLIDING;
+					case IfcDoorPanelOperationEnum.FIXEDPANEL:
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.FIXEDPANEL;
 					case IfcDoorPanelOperationEnum.FOLDING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.FOLDING;
 					case IfcDoorPanelOperationEnum.REVOLVING:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.REVOLVING;
 					case IfcDoorPanelOperationEnum.ROLLINGUP:
 						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.ROLLINGUP;
-					case IfcDoorPanelOperationEnum.FIXEDPANEL:
-						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.FIXEDPANEL;
+					case IfcDoorPanelOperationEnum.SLIDING:
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SLIDING;
+					case IfcDoorPanelOperationEnum.SWINGING:
+						return Ifc4.Interfaces.IfcDoorPanelOperationEnum.SWINGING;
 					case IfcDoorPanelOperationEnum.USERDEFINED:
 						//## Optional custom handling of PanelOperation == .USERDEFINED. 
 						//##

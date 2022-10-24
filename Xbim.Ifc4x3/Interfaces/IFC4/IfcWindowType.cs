@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcWindowTypeEnum.WINDOW:
-						return Ifc4.Interfaces.IfcWindowTypeEnum.WINDOW;
-					case IfcWindowTypeEnum.SKYLIGHT:
-						return Ifc4.Interfaces.IfcWindowTypeEnum.SKYLIGHT;
 					case IfcWindowTypeEnum.LIGHTDOME:
 						return Ifc4.Interfaces.IfcWindowTypeEnum.LIGHTDOME;
+					case IfcWindowTypeEnum.SKYLIGHT:
+						return Ifc4.Interfaces.IfcWindowTypeEnum.SKYLIGHT;
+					case IfcWindowTypeEnum.WINDOW:
+						return Ifc4.Interfaces.IfcWindowTypeEnum.WINDOW;
 					case IfcWindowTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
@@ -84,24 +84,24 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PartitioningType)
 				{
-					case IfcWindowTypePartitioningEnum.SINGLE_PANEL:
-						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.SINGLE_PANEL;
-					case IfcWindowTypePartitioningEnum.DOUBLE_PANEL_VERTICAL:
-						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.DOUBLE_PANEL_VERTICAL;
 					case IfcWindowTypePartitioningEnum.DOUBLE_PANEL_HORIZONTAL:
 						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.DOUBLE_PANEL_HORIZONTAL;
-					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_VERTICAL:
-						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_VERTICAL;
+					case IfcWindowTypePartitioningEnum.DOUBLE_PANEL_VERTICAL:
+						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.DOUBLE_PANEL_VERTICAL;
+					case IfcWindowTypePartitioningEnum.SINGLE_PANEL:
+						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.SINGLE_PANEL;
 					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_BOTTOM:
 						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_BOTTOM;
-					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_TOP:
-						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_TOP;
+					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_HORIZONTAL:
+						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_HORIZONTAL;
 					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_LEFT:
 						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_LEFT;
 					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_RIGHT:
 						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_RIGHT;
-					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_HORIZONTAL:
-						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_HORIZONTAL;
+					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_TOP:
+						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_TOP;
+					case IfcWindowTypePartitioningEnum.TRIPLE_PANEL_VERTICAL:
+						return Ifc4.Interfaces.IfcWindowTypePartitioningEnum.TRIPLE_PANEL_VERTICAL;
 					case IfcWindowTypePartitioningEnum.USERDEFINED:
 						//## Optional custom handling of PartitioningType == .USERDEFINED. 
 						//##

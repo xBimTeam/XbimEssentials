@@ -21,7 +21,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	[ExpressType("IfcTransportElement", 416)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransportElement : IfcElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElement>
+	public  partial class @IfcTransportElement : IfcTransportationDevice, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElement>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 34)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
 		public IfcTransportElementTypeEnum? @PredefinedType 
 		{ 
 			get 

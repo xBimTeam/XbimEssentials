@@ -10,13 +10,13 @@ namespace Xbim.Ifc4x3.ArchitectureDomain
 {
 	public enum IfcDoorPanelOperationEnum : byte
 	{
-		@SWINGING ,
 		@DOUBLE_ACTING ,
-		@SLIDING ,
+		@FIXEDPANEL ,
 		@FOLDING ,
 		@REVOLVING ,
 		@ROLLINGUP ,
-		@FIXEDPANEL ,
+		@SLIDING ,
+		@SWINGING ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

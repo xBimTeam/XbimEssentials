@@ -10,11 +10,11 @@ namespace Xbim.Ifc4x3.GeometryResource
 {
 	public enum IfcBSplineCurveForm : byte
 	{
-		@POLYLINE_FORM ,
 		@CIRCULAR_ARC ,
 		@ELLIPTIC_ARC ,
-		@PARABOLIC_ARC ,
 		@HYPERBOLIC_ARC ,
+		@PARABOLIC_ARC ,
+		@POLYLINE_FORM ,
 		@UNSPECIFIED 
 	}
 }

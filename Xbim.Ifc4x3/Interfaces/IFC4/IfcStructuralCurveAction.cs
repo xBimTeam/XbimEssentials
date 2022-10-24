@@ -75,18 +75,18 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				{
 					case IfcStructuralCurveActivityTypeEnum.CONST:
 						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.CONST;
-					case IfcStructuralCurveActivityTypeEnum.LINEAR:
-						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.LINEAR;
-					case IfcStructuralCurveActivityTypeEnum.POLYGONAL:
-						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.POLYGONAL;
-					case IfcStructuralCurveActivityTypeEnum.EQUIDISTANT:
-						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.EQUIDISTANT;
-					case IfcStructuralCurveActivityTypeEnum.SINUS:
-						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.SINUS;
-					case IfcStructuralCurveActivityTypeEnum.PARABOLA:
-						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.PARABOLA;
 					case IfcStructuralCurveActivityTypeEnum.DISCRETE:
 						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.DISCRETE;
+					case IfcStructuralCurveActivityTypeEnum.EQUIDISTANT:
+						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.EQUIDISTANT;
+					case IfcStructuralCurveActivityTypeEnum.LINEAR:
+						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.LINEAR;
+					case IfcStructuralCurveActivityTypeEnum.PARABOLA:
+						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.PARABOLA;
+					case IfcStructuralCurveActivityTypeEnum.POLYGONAL:
+						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.POLYGONAL;
+					case IfcStructuralCurveActivityTypeEnum.SINUS:
+						return Ifc4.Interfaces.IfcStructuralCurveActivityTypeEnum.SINUS;
 					case IfcStructuralCurveActivityTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

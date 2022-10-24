@@ -17,6 +17,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 		@METAL ,
 		@MIRROR ,
 		@PHONG ,
+		@PHYSICAL ,
 		@PLASTIC ,
 		@STRAUSS ,
 		@NOTDEFINED 

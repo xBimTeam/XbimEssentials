@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4x3.Kernel;
-using Xbim.Ifc4x3.SharedInfrastructureElements;
 using Xbim.Ifc4x3.GeometricConstraintResource;
 using Xbim.Ifc4x3.MeasureResource;
 using System;
@@ -39,6 +38,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		private IfcConnectionGeometry _interferenceGeometry;
 		private IfcIdentifier? _interferenceType;
 		private IfcLogical _impliedOrder;
+		private IfcSpatialZone _interferenceSpace;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -120,6 +120,22 @@ namespace Xbim.Ifc4x3.ProductExtension
 				SetValue( v =>  _impliedOrder = v, _impliedOrder, value,  "ImpliedOrder", 9);
 			} 
 		}	
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 10)]
+		public IfcSpatialZone @InterferenceSpace 
+		{ 
+			get 
+			{
+				if(_activated) return _interferenceSpace;
+				Activate();
+				return _interferenceSpace;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _interferenceSpace = v, _interferenceSpace, value,  "InterferenceSpace", 10);
+			} 
+		}	
 		#endregion
 
 
@@ -151,6 +167,9 @@ namespace Xbim.Ifc4x3.ProductExtension
 				case 8: 
 					_impliedOrder = value.BooleanVal;
 					return;
+				case 9: 
+					_interferenceSpace = (IfcSpatialZone)(value.EntityVal);
+					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			}
@@ -177,6 +196,8 @@ namespace Xbim.Ifc4x3.ProductExtension
 					yield return @RelatedElement;
 				if (@InterferenceGeometry != null)
 					yield return @InterferenceGeometry;
+				if (@InterferenceSpace != null)
+					yield return @InterferenceSpace;
 			}
 		}
 		#endregion

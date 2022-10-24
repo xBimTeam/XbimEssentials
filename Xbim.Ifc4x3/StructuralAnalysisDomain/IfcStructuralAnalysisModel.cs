@@ -43,7 +43,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 20)]
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 21)]
 		public IfcAnalysisModelTypeEnum @PredefinedType 
 		{ 
 			get 
@@ -57,7 +57,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 21)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 22)]
 		public IfcAxis2Placement3D @OrientationOf2DPlane 
 		{ 
 			get 
@@ -74,7 +74,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 22)]
+		[EntityAttribute(8, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 23)]
 		public IOptionalItemSet<IfcStructuralLoadGroup> @LoadedBy 
 		{ 
 			get 
@@ -85,7 +85,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 23)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 24)]
 		public IOptionalItemSet<IfcStructuralResultGroup> @HasResults 
 		{ 
 			get 
@@ -95,7 +95,7 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				return _hasResults;
 			} 
 		}	
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 24)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 25)]
 		public IfcObjectPlacement @SharedPlacement 
 		{ 
 			get 

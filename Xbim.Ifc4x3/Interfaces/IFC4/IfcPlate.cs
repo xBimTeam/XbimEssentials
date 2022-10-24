@@ -30,28 +30,9 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcPlateTypeEnum.CURTAIN_PANEL:
-						return Ifc4.Interfaces.IfcPlateTypeEnum.CURTAIN_PANEL;
-					case IfcPlateTypeEnum.SHEET:
-						return Ifc4.Interfaces.IfcPlateTypeEnum.SHEET;
-					case IfcPlateTypeEnum.FLANGE_PLATE:
-						//## Handle translation of FLANGE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of FLANGE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcPlateTypeEnum.WEB_PLATE:
-						//## Handle translation of WEB_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of WEB_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcPlateTypeEnum.STIFFENER_PLATE:
-						//## Handle translation of STIFFENER_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of STIFFENER_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcPlateTypeEnum.GUSSET_PLATE:
-						//## Handle translation of GUSSET_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of GUSSET_PLATE member from IfcPlateTypeEnum in property PredefinedType
+					case IfcPlateTypeEnum.BASE_PLATE:
+						//## Handle translation of BASE_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						//TODO: Handle translation of BASE_PLATE member from IfcPlateTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcPlateTypeEnum.COVER_PLATE:
@@ -59,14 +40,33 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						//TODO: Handle translation of COVER_PLATE member from IfcPlateTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcPlateTypeEnum.CURTAIN_PANEL:
+						return Ifc4.Interfaces.IfcPlateTypeEnum.CURTAIN_PANEL;
+					case IfcPlateTypeEnum.FLANGE_PLATE:
+						//## Handle translation of FLANGE_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						//TODO: Handle translation of FLANGE_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcPlateTypeEnum.GUSSET_PLATE:
+						//## Handle translation of GUSSET_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						//TODO: Handle translation of GUSSET_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcPlateTypeEnum.SHEET:
+						return Ifc4.Interfaces.IfcPlateTypeEnum.SHEET;
 					case IfcPlateTypeEnum.SPLICE_PLATE:
 						//## Handle translation of SPLICE_PLATE member from IfcPlateTypeEnum in property PredefinedType
 						//TODO: Handle translation of SPLICE_PLATE member from IfcPlateTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
-					case IfcPlateTypeEnum.BASE_PLATE:
-						//## Handle translation of BASE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of BASE_PLATE member from IfcPlateTypeEnum in property PredefinedType
+					case IfcPlateTypeEnum.STIFFENER_PLATE:
+						//## Handle translation of STIFFENER_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						//TODO: Handle translation of STIFFENER_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcPlateTypeEnum.WEB_PLATE:
+						//## Handle translation of WEB_PLATE member from IfcPlateTypeEnum in property PredefinedType
+						//TODO: Handle translation of WEB_PLATE member from IfcPlateTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
 					case IfcPlateTypeEnum.USERDEFINED:

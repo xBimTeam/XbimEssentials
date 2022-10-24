@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.SharedBldgElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -22,7 +22,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyle", 33)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IfcPresentationStyleSelect, IContainsEntityReferences, IEquatable<@IfcFillAreaStyle>
+	public  partial class @IfcFillAreaStyle : IfcPresentationStyle, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcFillAreaStyle>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

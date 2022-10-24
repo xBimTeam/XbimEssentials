@@ -30,32 +30,32 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcHumidifierTypeEnum.STEAMINJECTION:
-						return Ifc4.Interfaces.IfcHumidifierTypeEnum.STEAMINJECTION;
 					case IfcHumidifierTypeEnum.ADIABATICAIRWASHER:
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICAIRWASHER;
-					case IfcHumidifierTypeEnum.ADIABATICPAN:
-						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICPAN;
-					case IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT:
-						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT;
 					case IfcHumidifierTypeEnum.ADIABATICATOMIZING:
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICATOMIZING;
-					case IfcHumidifierTypeEnum.ADIABATICULTRASONIC:
-						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICULTRASONIC;
-					case IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA:
-						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA;
 					case IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE:
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICCOMPRESSEDAIRNOZZLE;
+					case IfcHumidifierTypeEnum.ADIABATICPAN:
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICPAN;
+					case IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA:
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICRIGIDMEDIA;
+					case IfcHumidifierTypeEnum.ADIABATICULTRASONIC:
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICULTRASONIC;
+					case IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT:
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ADIABATICWETTEDELEMENT;
+					case IfcHumidifierTypeEnum.ASSISTEDBUTANE:
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDBUTANE;
 					case IfcHumidifierTypeEnum.ASSISTEDELECTRIC:
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDELECTRIC;
 					case IfcHumidifierTypeEnum.ASSISTEDNATURALGAS:
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDNATURALGAS;
 					case IfcHumidifierTypeEnum.ASSISTEDPROPANE:
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDPROPANE;
-					case IfcHumidifierTypeEnum.ASSISTEDBUTANE:
-						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDBUTANE;
 					case IfcHumidifierTypeEnum.ASSISTEDSTEAM:
 						return Ifc4.Interfaces.IfcHumidifierTypeEnum.ASSISTEDSTEAM;
+					case IfcHumidifierTypeEnum.STEAMINJECTION:
+						return Ifc4.Interfaces.IfcHumidifierTypeEnum.STEAMINJECTION;
 					case IfcHumidifierTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

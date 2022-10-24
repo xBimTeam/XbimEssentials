@@ -84,14 +84,14 @@ namespace Xbim.Ifc4x3.ArchitectureDomain
 				//##
 				switch (PanelPosition)
 				{
+					case IfcWindowPanelPositionEnum.BOTTOM:
+						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.BOTTOM;
 					case IfcWindowPanelPositionEnum.LEFT:
 						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.LEFT;
 					case IfcWindowPanelPositionEnum.MIDDLE:
 						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.MIDDLE;
 					case IfcWindowPanelPositionEnum.RIGHT:
 						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.RIGHT;
-					case IfcWindowPanelPositionEnum.BOTTOM:
-						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.BOTTOM;
 					case IfcWindowPanelPositionEnum.TOP:
 						return Ifc4.Interfaces.IfcWindowPanelPositionEnum.TOP;
 					case IfcWindowPanelPositionEnum.NOTDEFINED:

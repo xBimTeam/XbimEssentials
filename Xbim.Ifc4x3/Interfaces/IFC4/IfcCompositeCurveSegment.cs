@@ -30,14 +30,14 @@ namespace Xbim.Ifc4x3.GeometryResource
 				//##
 				switch (Transition)
 				{
-					case IfcTransitionCode.DISCONTINUOUS:
-						return Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS;
 					case IfcTransitionCode.CONTINUOUS:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTINUOUS;
 					case IfcTransitionCode.CONTSAMEGRADIENT:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENT;
 					case IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE:
 						return Ifc4.Interfaces.IfcTransitionCode.CONTSAMEGRADIENTSAMECURVATURE;
+					case IfcTransitionCode.DISCONTINUOUS:
+						return Ifc4.Interfaces.IfcTransitionCode.DISCONTINUOUS;
 					
 					default:
 						throw new System.ArgumentOutOfRangeException();

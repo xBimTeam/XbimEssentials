@@ -10,9 +10,9 @@ namespace Xbim.Ifc4x3.HvacDomain
 {
 	public enum IfcCoolingTowerTypeEnum : byte
 	{
-		@NATURALDRAFT ,
-		@MECHANICALINDUCEDDRAFT ,
 		@MECHANICALFORCEDDRAFT ,
+		@MECHANICALINDUCEDDRAFT ,
+		@NATURALDRAFT ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

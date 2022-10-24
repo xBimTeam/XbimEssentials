@@ -14,10 +14,10 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 		@BREAKGLASSBUTTON ,
 		@LIGHT ,
 		@MANUALPULLBOX ,
-		@SIREN ,
-		@WHISTLE ,
 		@RAILWAYCROCODILE ,
 		@RAILWAYDETONATOR ,
+		@SIREN ,
+		@WHISTLE ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

@@ -10,9 +10,9 @@ namespace Xbim.Ifc4x3.ProcessExtension
 {
 	public enum IfcEventTypeEnum : byte
 	{
-		@STARTEVENT ,
 		@ENDEVENT ,
 		@INTERMEDIATEEVENT ,
+		@STARTEVENT ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

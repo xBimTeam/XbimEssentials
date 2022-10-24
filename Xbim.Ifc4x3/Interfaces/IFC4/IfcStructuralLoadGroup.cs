@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcLoadGroupTypeEnum.LOAD_GROUP:
-						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_GROUP;
 					case IfcLoadGroupTypeEnum.LOAD_CASE:
 						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_CASE;
 					case IfcLoadGroupTypeEnum.LOAD_COMBINATION:
 						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_COMBINATION;
+					case IfcLoadGroupTypeEnum.LOAD_GROUP:
+						return Ifc4.Interfaces.IfcLoadGroupTypeEnum.LOAD_GROUP;
 					case IfcLoadGroupTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
@@ -84,12 +84,12 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				//##
 				switch (ActionType)
 				{
+					case IfcActionTypeEnum.EXTRAORDINARY_A:
+						return Ifc4.Interfaces.IfcActionTypeEnum.EXTRAORDINARY_A;
 					case IfcActionTypeEnum.PERMANENT_G:
 						return Ifc4.Interfaces.IfcActionTypeEnum.PERMANENT_G;
 					case IfcActionTypeEnum.VARIABLE_Q:
 						return Ifc4.Interfaces.IfcActionTypeEnum.VARIABLE_Q;
-					case IfcActionTypeEnum.EXTRAORDINARY_A:
-						return Ifc4.Interfaces.IfcActionTypeEnum.EXTRAORDINARY_A;
 					case IfcActionTypeEnum.USERDEFINED:
 						//## Optional custom handling of ActionType == .USERDEFINED. 
 						//##
@@ -138,56 +138,56 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				//##
 				switch (ActionSource)
 				{
-					case IfcActionSourceTypeEnum.DEAD_LOAD_G:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.DEAD_LOAD_G;
-					case IfcActionSourceTypeEnum.COMPLETION_G1:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.COMPLETION_G1;
-					case IfcActionSourceTypeEnum.LIVE_LOAD_Q:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.LIVE_LOAD_Q;
-					case IfcActionSourceTypeEnum.SNOW_S:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SNOW_S;
-					case IfcActionSourceTypeEnum.WIND_W:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.WIND_W;
-					case IfcActionSourceTypeEnum.PRESTRESSING_P:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.PRESTRESSING_P;
-					case IfcActionSourceTypeEnum.SETTLEMENT_U:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SETTLEMENT_U;
-					case IfcActionSourceTypeEnum.TEMPERATURE_T:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.TEMPERATURE_T;
-					case IfcActionSourceTypeEnum.EARTHQUAKE_E:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.EARTHQUAKE_E;
-					case IfcActionSourceTypeEnum.FIRE:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.FIRE;
-					case IfcActionSourceTypeEnum.IMPULSE:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPULSE;
-					case IfcActionSourceTypeEnum.IMPACT:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPACT;
-					case IfcActionSourceTypeEnum.TRANSPORT:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.TRANSPORT;
-					case IfcActionSourceTypeEnum.ERECTION:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.ERECTION;
-					case IfcActionSourceTypeEnum.PROPPING:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.PROPPING;
-					case IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION;
-					case IfcActionSourceTypeEnum.SHRINKAGE:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SHRINKAGE;
-					case IfcActionSourceTypeEnum.CREEP:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.CREEP;
-					case IfcActionSourceTypeEnum.LACK_OF_FIT:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.LACK_OF_FIT;
-					case IfcActionSourceTypeEnum.BUOYANCY:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.BUOYANCY;
-					case IfcActionSourceTypeEnum.ICE:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.ICE;
-					case IfcActionSourceTypeEnum.CURRENT:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.CURRENT;
-					case IfcActionSourceTypeEnum.WAVE:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.WAVE;
-					case IfcActionSourceTypeEnum.RAIN:
-						return Ifc4.Interfaces.IfcActionSourceTypeEnum.RAIN;
 					case IfcActionSourceTypeEnum.BRAKES:
 						return Ifc4.Interfaces.IfcActionSourceTypeEnum.BRAKES;
+					case IfcActionSourceTypeEnum.BUOYANCY:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.BUOYANCY;
+					case IfcActionSourceTypeEnum.COMPLETION_G1:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.COMPLETION_G1;
+					case IfcActionSourceTypeEnum.CREEP:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.CREEP;
+					case IfcActionSourceTypeEnum.CURRENT:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.CURRENT;
+					case IfcActionSourceTypeEnum.DEAD_LOAD_G:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.DEAD_LOAD_G;
+					case IfcActionSourceTypeEnum.EARTHQUAKE_E:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.EARTHQUAKE_E;
+					case IfcActionSourceTypeEnum.ERECTION:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.ERECTION;
+					case IfcActionSourceTypeEnum.FIRE:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.FIRE;
+					case IfcActionSourceTypeEnum.ICE:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.ICE;
+					case IfcActionSourceTypeEnum.IMPACT:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPACT;
+					case IfcActionSourceTypeEnum.IMPULSE:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.IMPULSE;
+					case IfcActionSourceTypeEnum.LACK_OF_FIT:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.LACK_OF_FIT;
+					case IfcActionSourceTypeEnum.LIVE_LOAD_Q:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.LIVE_LOAD_Q;
+					case IfcActionSourceTypeEnum.PRESTRESSING_P:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.PRESTRESSING_P;
+					case IfcActionSourceTypeEnum.PROPPING:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.PROPPING;
+					case IfcActionSourceTypeEnum.RAIN:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.RAIN;
+					case IfcActionSourceTypeEnum.SETTLEMENT_U:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SETTLEMENT_U;
+					case IfcActionSourceTypeEnum.SHRINKAGE:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SHRINKAGE;
+					case IfcActionSourceTypeEnum.SNOW_S:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SNOW_S;
+					case IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.SYSTEM_IMPERFECTION;
+					case IfcActionSourceTypeEnum.TEMPERATURE_T:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.TEMPERATURE_T;
+					case IfcActionSourceTypeEnum.TRANSPORT:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.TRANSPORT;
+					case IfcActionSourceTypeEnum.WAVE:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.WAVE;
+					case IfcActionSourceTypeEnum.WIND_W:
+						return Ifc4.Interfaces.IfcActionSourceTypeEnum.WIND_W;
 					case IfcActionSourceTypeEnum.USERDEFINED:
 						//## Optional custom handling of ActionSource == .USERDEFINED. 
 						//##

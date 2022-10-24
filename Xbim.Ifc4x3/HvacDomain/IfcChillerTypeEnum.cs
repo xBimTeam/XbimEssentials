@@ -11,8 +11,8 @@ namespace Xbim.Ifc4x3.HvacDomain
 	public enum IfcChillerTypeEnum : byte
 	{
 		@AIRCOOLED ,
-		@WATERCOOLED ,
 		@HEATRECOVERY ,
+		@WATERCOOLED ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

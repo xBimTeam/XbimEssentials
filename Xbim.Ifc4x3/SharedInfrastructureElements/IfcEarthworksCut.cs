@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcEarthworksCut", 1421)]
+	[ExpressType("IfcEarthworksCut", 1434)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEarthworksCut : IfcFeatureElementSubtraction, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEarthworksCut>
 	{
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 35)]
+		[EntityAttribute(9, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
 		public IfcEarthworksCutTypeEnum? @PredefinedType 
 		{ 
 			get 

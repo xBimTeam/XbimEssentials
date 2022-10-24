@@ -61,12 +61,12 @@ namespace Xbim.Ifc4x3.ConstraintResource
 				//##
 				switch (ConstraintGrade)
 				{
+					case IfcConstraintEnum.ADVISORY:
+						return Ifc4.Interfaces.IfcConstraintEnum.ADVISORY;
 					case IfcConstraintEnum.HARD:
 						return Ifc4.Interfaces.IfcConstraintEnum.HARD;
 					case IfcConstraintEnum.SOFT:
 						return Ifc4.Interfaces.IfcConstraintEnum.SOFT;
-					case IfcConstraintEnum.ADVISORY:
-						return Ifc4.Interfaces.IfcConstraintEnum.ADVISORY;
 					case IfcConstraintEnum.USERDEFINED:
 						//## Optional custom handling of ConstraintGrade == .USERDEFINED. 
 						//##

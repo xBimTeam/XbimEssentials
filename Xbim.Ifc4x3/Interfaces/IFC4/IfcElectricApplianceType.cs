@@ -38,10 +38,10 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGELECTRICHEATER;
 					case IfcElectricApplianceTypeEnum.FREESTANDINGFAN:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGFAN;
-					case IfcElectricApplianceTypeEnum.FREESTANDINGWATERHEATER:
-						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERHEATER;
 					case IfcElectricApplianceTypeEnum.FREESTANDINGWATERCOOLER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERCOOLER;
+					case IfcElectricApplianceTypeEnum.FREESTANDINGWATERHEATER:
+						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREESTANDINGWATERHEATER;
 					case IfcElectricApplianceTypeEnum.FREEZER:
 						return Ifc4.Interfaces.IfcElectricApplianceTypeEnum.FREEZER;
 					case IfcElectricApplianceTypeEnum.FRIDGE_FREEZER:

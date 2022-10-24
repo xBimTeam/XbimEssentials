@@ -151,7 +151,7 @@ namespace Xbim.Ifc4x3.ProfileResource
 					_nominalBarDiameter = value.RealVal;
 					return;
 				case 5: 
-					_barCount = value.NumberVal;
+					_barCount = value.IntegerVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

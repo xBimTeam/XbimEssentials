@@ -34,10 +34,10 @@ namespace Xbim.Ifc4x3.ProductExtension
 						return Ifc4.Interfaces.IfcExternalSpatialElementTypeEnum.EXTERNAL;
 					case IfcExternalSpatialElementTypeEnum.EXTERNAL_EARTH:
 						return Ifc4.Interfaces.IfcExternalSpatialElementTypeEnum.EXTERNAL_EARTH;
-					case IfcExternalSpatialElementTypeEnum.EXTERNAL_WATER:
-						return Ifc4.Interfaces.IfcExternalSpatialElementTypeEnum.EXTERNAL_WATER;
 					case IfcExternalSpatialElementTypeEnum.EXTERNAL_FIRE:
 						return Ifc4.Interfaces.IfcExternalSpatialElementTypeEnum.EXTERNAL_FIRE;
+					case IfcExternalSpatialElementTypeEnum.EXTERNAL_WATER:
+						return Ifc4.Interfaces.IfcExternalSpatialElementTypeEnum.EXTERNAL_WATER;
 					case IfcExternalSpatialElementTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

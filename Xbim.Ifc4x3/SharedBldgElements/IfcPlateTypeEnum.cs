@@ -10,15 +10,15 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 {
 	public enum IfcPlateTypeEnum : byte
 	{
-		@CURTAIN_PANEL ,
-		@SHEET ,
-		@FLANGE_PLATE ,
-		@WEB_PLATE ,
-		@STIFFENER_PLATE ,
-		@GUSSET_PLATE ,
-		@COVER_PLATE ,
-		@SPLICE_PLATE ,
 		@BASE_PLATE ,
+		@COVER_PLATE ,
+		@CURTAIN_PANEL ,
+		@FLANGE_PLATE ,
+		@GUSSET_PLATE ,
+		@SHEET ,
+		@SPLICE_PLATE ,
+		@STIFFENER_PLATE ,
+		@WEB_PLATE ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

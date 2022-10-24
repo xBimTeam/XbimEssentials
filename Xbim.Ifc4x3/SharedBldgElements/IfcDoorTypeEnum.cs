@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 {
 	public enum IfcDoorTypeEnum : byte
 	{
+		@BOOM_BARRIER ,
 		@DOOR ,
 		@GATE ,
 		@TRAPDOOR ,
-		@BOOM_BARRIER ,
 		@TURNSTILE ,
 		@USERDEFINED ,
 		@NOTDEFINED 

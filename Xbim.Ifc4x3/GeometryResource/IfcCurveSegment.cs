@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcCurveSegment", 1491)]
+	[ExpressType("IfcCurveSegment", 1427)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCurveSegment : IfcSegment, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCurveSegment>
 	{
@@ -30,29 +30,44 @@ namespace Xbim.Ifc4x3.GeometryResource
 		}
 
 		#region Explicit attribute fields
-		private IfcPlacement _startPlacement;
+		private IfcPlacement _placement;
+		private IfcCurveMeasureSelect _segmentStart;
 		private IfcCurveMeasureSelect _segmentLength;
 		private IfcCurve _parentCurve;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
-		public IfcPlacement @StartPlacement 
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
+		public IfcPlacement @Placement 
 		{ 
 			get 
 			{
-				if(_activated) return _startPlacement;
+				if(_activated) return _placement;
 				Activate();
-				return _startPlacement;
+				return _placement;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _startPlacement = v, _startPlacement, value,  "StartPlacement", 2);
+				SetValue( v =>  _placement = v, _placement, value,  "Placement", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
+		public IfcCurveMeasureSelect @SegmentStart 
+		{ 
+			get 
+			{
+				if(_activated) return _segmentStart;
+				Activate();
+				return _segmentStart;
+			} 
+			set
+			{
+				SetValue( v =>  _segmentStart = v, _segmentStart, value,  "SegmentStart", 3);
+			} 
+		}	
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
 		public IfcCurveMeasureSelect @SegmentLength 
 		{ 
 			get 
@@ -63,10 +78,10 @@ namespace Xbim.Ifc4x3.GeometryResource
 			} 
 			set
 			{
-				SetValue( v =>  _segmentLength = v, _segmentLength, value,  "SegmentLength", 3);
+				SetValue( v =>  _segmentLength = v, _segmentLength, value,  "SegmentLength", 4);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
 		public IfcCurve @ParentCurve 
 		{ 
 			get 
@@ -79,7 +94,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _parentCurve = v, _parentCurve, value,  "ParentCurve", 4);
+				SetValue( v =>  _parentCurve = v, _parentCurve, value,  "ParentCurve", 5);
 			} 
 		}	
 		#endregion
@@ -96,12 +111,15 @@ namespace Xbim.Ifc4x3.GeometryResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 1: 
-					_startPlacement = (IfcPlacement)(value.EntityVal);
+					_placement = (IfcPlacement)(value.EntityVal);
 					return;
 				case 2: 
-					_segmentLength = (IfcCurveMeasureSelect)(value.EntityVal);
+					_segmentStart = (IfcCurveMeasureSelect)(value.EntityVal);
 					return;
 				case 3: 
+					_segmentLength = (IfcCurveMeasureSelect)(value.EntityVal);
+					return;
+				case 4: 
 					_parentCurve = (IfcCurve)(value.EntityVal);
 					return;
 				default:
@@ -122,8 +140,8 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{
 			get 
 			{
-				if (@StartPlacement != null)
-					yield return @StartPlacement;
+				if (@Placement != null)
+					yield return @Placement;
 				if (@ParentCurve != null)
 					yield return @ParentCurve;
 			}

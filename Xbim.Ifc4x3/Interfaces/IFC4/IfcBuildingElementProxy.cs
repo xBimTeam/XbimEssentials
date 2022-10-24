@@ -36,10 +36,10 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.ELEMENT;
 					case IfcBuildingElementProxyTypeEnum.PARTIAL:
 						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PARTIAL;
-					case IfcBuildingElementProxyTypeEnum.PROVISIONFORVOID:
-						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PROVISIONFORVOID;
 					case IfcBuildingElementProxyTypeEnum.PROVISIONFORSPACE:
 						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PROVISIONFORSPACE;
+					case IfcBuildingElementProxyTypeEnum.PROVISIONFORVOID:
+						return Ifc4.Interfaces.IfcBuildingElementProxyTypeEnum.PROVISIONFORVOID;
 					case IfcBuildingElementProxyTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

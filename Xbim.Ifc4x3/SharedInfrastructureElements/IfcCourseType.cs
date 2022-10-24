@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcCourseType", 1414)]
+	[ExpressType("IfcCourseType", 1426)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcCourseType : IfcBuiltElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCourseType>
 	{

@@ -34,10 +34,10 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcOutletTypeEnum.AUDIOVISUALOUTLET;
 					case IfcOutletTypeEnum.COMMUNICATIONSOUTLET:
 						return Ifc4.Interfaces.IfcOutletTypeEnum.COMMUNICATIONSOUTLET;
-					case IfcOutletTypeEnum.POWEROUTLET:
-						return Ifc4.Interfaces.IfcOutletTypeEnum.POWEROUTLET;
 					case IfcOutletTypeEnum.DATAOUTLET:
 						return Ifc4.Interfaces.IfcOutletTypeEnum.DATAOUTLET;
+					case IfcOutletTypeEnum.POWEROUTLET:
+						return Ifc4.Interfaces.IfcOutletTypeEnum.POWEROUTLET;
 					case IfcOutletTypeEnum.TELEPHONEOUTLET:
 						return Ifc4.Interfaces.IfcOutletTypeEnum.TELEPHONEOUTLET;
 					case IfcOutletTypeEnum.USERDEFINED:

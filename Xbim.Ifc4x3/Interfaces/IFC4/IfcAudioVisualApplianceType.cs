@@ -34,6 +34,11 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.AMPLIFIER;
 					case IfcAudioVisualApplianceTypeEnum.CAMERA:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.CAMERA;
+					case IfcAudioVisualApplianceTypeEnum.COMMUNICATIONTERMINAL:
+						//## Handle translation of COMMUNICATIONTERMINAL member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of COMMUNICATIONTERMINAL member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcAudioVisualApplianceTypeEnum.DISPLAY:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.DISPLAY;
 					case IfcAudioVisualApplianceTypeEnum.MICROPHONE:
@@ -44,6 +49,11 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.PROJECTOR;
 					case IfcAudioVisualApplianceTypeEnum.RECEIVER:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.RECEIVER;
+					case IfcAudioVisualApplianceTypeEnum.RECORDINGEQUIPMENT:
+						//## Handle translation of RECORDINGEQUIPMENT member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
+						//TODO: Handle translation of RECORDINGEQUIPMENT member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcAudioVisualApplianceTypeEnum.SPEAKER:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.SPEAKER;
 					case IfcAudioVisualApplianceTypeEnum.SWITCHER:
@@ -52,11 +62,6 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.TELEPHONE;
 					case IfcAudioVisualApplianceTypeEnum.TUNER:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.TUNER;
-					case IfcAudioVisualApplianceTypeEnum.RAILWAY_COMMUNICATION_TERMINAL:
-						//## Handle translation of RAILWAY_COMMUNICATION_TERMINAL member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
-						//TODO: Handle translation of RAILWAY_COMMUNICATION_TERMINAL member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcAudioVisualApplianceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

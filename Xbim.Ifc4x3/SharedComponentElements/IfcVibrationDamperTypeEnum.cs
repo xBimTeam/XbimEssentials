@@ -10,12 +10,12 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 {
 	public enum IfcVibrationDamperTypeEnum : byte
 	{
-		@BENDING_YIELD ,
-		@SHEAR_YIELD ,
 		@AXIAL_YIELD ,
+		@BENDING_YIELD ,
 		@FRICTION ,
-		@VISCOUS ,
 		@RUBBER ,
+		@SHEAR_YIELD ,
+		@VISCOUS ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

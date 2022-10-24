@@ -11,8 +11,8 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 	public enum IfcSignTypeEnum : byte
 	{
 		@MARKER ,
-		@PICTORAL ,
 		@MIRROR ,
+		@PICTORAL ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

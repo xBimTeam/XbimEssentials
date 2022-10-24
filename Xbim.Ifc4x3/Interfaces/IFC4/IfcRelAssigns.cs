@@ -36,70 +36,17 @@ namespace Xbim.Ifc4x3.Kernel
 		{ 
 			get
 			{
-				//## Custom code to handle enumeration of RelatedObjectsType
+				//## Handle return of RelatedObjectsType for which no match was found
+				//TODO: Handle return of RelatedObjectsType for which no match was found
+				throw new System.NotImplementedException();
 				//##
-				switch (RelatedObjectsType)
-				{
-					case IfcObjectTypeEnum.PRODUCT:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT;
-					case IfcObjectTypeEnum.PROCESS:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS;
-					case IfcObjectTypeEnum.CONTROL:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL;
-					case IfcObjectTypeEnum.RESOURCE:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE;
-					case IfcObjectTypeEnum.ACTOR:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR;
-					case IfcObjectTypeEnum.GROUP:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.GROUP;
-					case IfcObjectTypeEnum.PROJECT:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT;
-					case IfcObjectTypeEnum.NOTDEFINED:
-						return Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED;
-					case null: 
-						return null;
-					
-					default:
-						throw new System.ArgumentOutOfRangeException();
-				}
 			} 
 			set
 			{
-				//## Custom code to handle setting of enumeration of RelatedObjectsType
+				//## Handle setting of RelatedObjectsType for which no match was found
+				//TODO: Handle setting of RelatedObjectsType for which no match was found
+				throw new System.NotImplementedException();
 				//##
-				switch (value)
-				{
-					case Ifc4.Interfaces.IfcObjectTypeEnum.PRODUCT:
-						RelatedObjectsType = IfcObjectTypeEnum.PRODUCT;
-						return;
-					case Ifc4.Interfaces.IfcObjectTypeEnum.PROCESS:
-						RelatedObjectsType = IfcObjectTypeEnum.PROCESS;
-						return;
-					case Ifc4.Interfaces.IfcObjectTypeEnum.CONTROL:
-						RelatedObjectsType = IfcObjectTypeEnum.CONTROL;
-						return;
-					case Ifc4.Interfaces.IfcObjectTypeEnum.RESOURCE:
-						RelatedObjectsType = IfcObjectTypeEnum.RESOURCE;
-						return;
-					case Ifc4.Interfaces.IfcObjectTypeEnum.ACTOR:
-						RelatedObjectsType = IfcObjectTypeEnum.ACTOR;
-						return;
-					case Ifc4.Interfaces.IfcObjectTypeEnum.GROUP:
-						RelatedObjectsType = IfcObjectTypeEnum.GROUP;
-						return;
-					case Ifc4.Interfaces.IfcObjectTypeEnum.PROJECT:
-						RelatedObjectsType = IfcObjectTypeEnum.PROJECT;
-						return;
-					case Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED:
-						RelatedObjectsType = IfcObjectTypeEnum.NOTDEFINED;
-						return;
-					
-					case null:
-						RelatedObjectsType = null;
-						return;
-					default:
-						throw new System.ArgumentOutOfRangeException();
-				}
 				
 			}
 		}

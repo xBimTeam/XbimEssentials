@@ -58,16 +58,16 @@ namespace Xbim.Ifc4x3.UtilityResource
 				//##
 				switch (State)
 				{
-					case IfcStateEnum.READWRITE:
-						return Ifc4.Interfaces.IfcStateEnum.READWRITE;
-					case IfcStateEnum.READONLY:
-						return Ifc4.Interfaces.IfcStateEnum.READONLY;
 					case IfcStateEnum.LOCKED:
 						return Ifc4.Interfaces.IfcStateEnum.LOCKED;
-					case IfcStateEnum.READWRITELOCKED:
-						return Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED;
+					case IfcStateEnum.READONLY:
+						return Ifc4.Interfaces.IfcStateEnum.READONLY;
 					case IfcStateEnum.READONLYLOCKED:
 						return Ifc4.Interfaces.IfcStateEnum.READONLYLOCKED;
+					case IfcStateEnum.READWRITE:
+						return Ifc4.Interfaces.IfcStateEnum.READWRITE;
+					case IfcStateEnum.READWRITELOCKED:
+						return Ifc4.Interfaces.IfcStateEnum.READWRITELOCKED;
 					case null: 
 						return null;
 					
@@ -116,14 +116,14 @@ namespace Xbim.Ifc4x3.UtilityResource
 				//##
 				switch (ChangeAction)
 				{
-					case IfcChangeActionEnum.NOCHANGE:
-						return Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE;
-					case IfcChangeActionEnum.MODIFIED:
-						return Ifc4.Interfaces.IfcChangeActionEnum.MODIFIED;
 					case IfcChangeActionEnum.ADDED:
 						return Ifc4.Interfaces.IfcChangeActionEnum.ADDED;
 					case IfcChangeActionEnum.DELETED:
 						return Ifc4.Interfaces.IfcChangeActionEnum.DELETED;
+					case IfcChangeActionEnum.MODIFIED:
+						return Ifc4.Interfaces.IfcChangeActionEnum.MODIFIED;
+					case IfcChangeActionEnum.NOCHANGE:
+						return Ifc4.Interfaces.IfcChangeActionEnum.NOCHANGE;
 					case IfcChangeActionEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcChangeActionEnum.NOTDEFINED;
 					case null: 

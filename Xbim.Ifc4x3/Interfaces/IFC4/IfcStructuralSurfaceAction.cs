@@ -73,10 +73,10 @@ namespace Xbim.Ifc4x3.StructuralAnalysisDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcStructuralSurfaceActivityTypeEnum.CONST:
-						return Ifc4.Interfaces.IfcStructuralSurfaceActivityTypeEnum.CONST;
 					case IfcStructuralSurfaceActivityTypeEnum.BILINEAR:
 						return Ifc4.Interfaces.IfcStructuralSurfaceActivityTypeEnum.BILINEAR;
+					case IfcStructuralSurfaceActivityTypeEnum.CONST:
+						return Ifc4.Interfaces.IfcStructuralSurfaceActivityTypeEnum.CONST;
 					case IfcStructuralSurfaceActivityTypeEnum.DISCRETE:
 						return Ifc4.Interfaces.IfcStructuralSurfaceActivityTypeEnum.DISCRETE;
 					case IfcStructuralSurfaceActivityTypeEnum.ISOCONTOUR:

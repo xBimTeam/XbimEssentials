@@ -21,7 +21,7 @@ using Xbim.Ifc4x3.GeometricConstraintResource;
 
 namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
-	[ExpressType("IfcAlignmentHorizontalSegment", 1483)]
+	[ExpressType("IfcAlignmentHorizontalSegment", 1405)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcAlignmentHorizontalSegment : IfcAlignmentParameterSegment, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcAlignmentHorizontalSegment>
 	{
@@ -36,7 +36,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		private IfcPlaneAngleMeasure _startDirection;
 		private IfcLengthMeasure _startRadiusOfCurvature;
 		private IfcLengthMeasure _endRadiusOfCurvature;
-		private IfcPositiveLengthMeasure _segmentLength;
+		private IfcNonNegativeLengthMeasure _segmentLength;
 		private IfcPositiveLengthMeasure? _gravityCenterLineHeight;
 		private IfcAlignmentHorizontalSegmentTypeEnum _predefinedType;
 		#endregion
@@ -101,7 +101,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 			} 
 		}	
 		[EntityAttribute(7, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
-		public IfcPositiveLengthMeasure @SegmentLength 
+		public IfcNonNegativeLengthMeasure @SegmentLength 
 		{ 
 			get 
 			{

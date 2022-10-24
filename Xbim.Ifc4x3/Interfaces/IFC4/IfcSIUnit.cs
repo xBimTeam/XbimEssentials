@@ -30,38 +30,38 @@ namespace Xbim.Ifc4x3.MeasureResource
 				//##
 				switch (Prefix)
 				{
-					case IfcSIPrefix.EXA:
-						return Ifc4.Interfaces.IfcSIPrefix.EXA;
-					case IfcSIPrefix.PETA:
-						return Ifc4.Interfaces.IfcSIPrefix.PETA;
-					case IfcSIPrefix.TERA:
-						return Ifc4.Interfaces.IfcSIPrefix.TERA;
-					case IfcSIPrefix.GIGA:
-						return Ifc4.Interfaces.IfcSIPrefix.GIGA;
-					case IfcSIPrefix.MEGA:
-						return Ifc4.Interfaces.IfcSIPrefix.MEGA;
-					case IfcSIPrefix.KILO:
-						return Ifc4.Interfaces.IfcSIPrefix.KILO;
-					case IfcSIPrefix.HECTO:
-						return Ifc4.Interfaces.IfcSIPrefix.HECTO;
+					case IfcSIPrefix.ATTO:
+						return Ifc4.Interfaces.IfcSIPrefix.ATTO;
+					case IfcSIPrefix.CENTI:
+						return Ifc4.Interfaces.IfcSIPrefix.CENTI;
 					case IfcSIPrefix.DECA:
 						return Ifc4.Interfaces.IfcSIPrefix.DECA;
 					case IfcSIPrefix.DECI:
 						return Ifc4.Interfaces.IfcSIPrefix.DECI;
-					case IfcSIPrefix.CENTI:
-						return Ifc4.Interfaces.IfcSIPrefix.CENTI;
-					case IfcSIPrefix.MILLI:
-						return Ifc4.Interfaces.IfcSIPrefix.MILLI;
-					case IfcSIPrefix.MICRO:
-						return Ifc4.Interfaces.IfcSIPrefix.MICRO;
-					case IfcSIPrefix.NANO:
-						return Ifc4.Interfaces.IfcSIPrefix.NANO;
-					case IfcSIPrefix.PICO:
-						return Ifc4.Interfaces.IfcSIPrefix.PICO;
+					case IfcSIPrefix.EXA:
+						return Ifc4.Interfaces.IfcSIPrefix.EXA;
 					case IfcSIPrefix.FEMTO:
 						return Ifc4.Interfaces.IfcSIPrefix.FEMTO;
-					case IfcSIPrefix.ATTO:
-						return Ifc4.Interfaces.IfcSIPrefix.ATTO;
+					case IfcSIPrefix.GIGA:
+						return Ifc4.Interfaces.IfcSIPrefix.GIGA;
+					case IfcSIPrefix.HECTO:
+						return Ifc4.Interfaces.IfcSIPrefix.HECTO;
+					case IfcSIPrefix.KILO:
+						return Ifc4.Interfaces.IfcSIPrefix.KILO;
+					case IfcSIPrefix.MEGA:
+						return Ifc4.Interfaces.IfcSIPrefix.MEGA;
+					case IfcSIPrefix.MICRO:
+						return Ifc4.Interfaces.IfcSIPrefix.MICRO;
+					case IfcSIPrefix.MILLI:
+						return Ifc4.Interfaces.IfcSIPrefix.MILLI;
+					case IfcSIPrefix.NANO:
+						return Ifc4.Interfaces.IfcSIPrefix.NANO;
+					case IfcSIPrefix.PETA:
+						return Ifc4.Interfaces.IfcSIPrefix.PETA;
+					case IfcSIPrefix.PICO:
+						return Ifc4.Interfaces.IfcSIPrefix.PICO;
+					case IfcSIPrefix.TERA:
+						return Ifc4.Interfaces.IfcSIPrefix.TERA;
 					case null: 
 						return null;
 					

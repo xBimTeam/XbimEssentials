@@ -36,15 +36,15 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcCableFittingTypeEnum.ENTRY;
 					case IfcCableFittingTypeEnum.EXIT:
 						return Ifc4.Interfaces.IfcCableFittingTypeEnum.EXIT;
-					case IfcCableFittingTypeEnum.JUNCTION:
-						return Ifc4.Interfaces.IfcCableFittingTypeEnum.JUNCTION;
-					case IfcCableFittingTypeEnum.TRANSITION:
-						return Ifc4.Interfaces.IfcCableFittingTypeEnum.TRANSITION;
 					case IfcCableFittingTypeEnum.FANOUT:
 						//## Handle translation of FANOUT member from IfcCableFittingTypeEnum in property PredefinedType
 						//TODO: Handle translation of FANOUT member from IfcCableFittingTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcCableFittingTypeEnum.JUNCTION:
+						return Ifc4.Interfaces.IfcCableFittingTypeEnum.JUNCTION;
+					case IfcCableFittingTypeEnum.TRANSITION:
+						return Ifc4.Interfaces.IfcCableFittingTypeEnum.TRANSITION;
 					case IfcCableFittingTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

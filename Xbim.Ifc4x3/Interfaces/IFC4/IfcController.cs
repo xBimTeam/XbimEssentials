@@ -32,12 +32,12 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 				{
 					case IfcControllerTypeEnum.FLOATING:
 						return Ifc4.Interfaces.IfcControllerTypeEnum.FLOATING;
+					case IfcControllerTypeEnum.MULTIPOSITION:
+						return Ifc4.Interfaces.IfcControllerTypeEnum.MULTIPOSITION;
 					case IfcControllerTypeEnum.PROGRAMMABLE:
 						return Ifc4.Interfaces.IfcControllerTypeEnum.PROGRAMMABLE;
 					case IfcControllerTypeEnum.PROPORTIONAL:
 						return Ifc4.Interfaces.IfcControllerTypeEnum.PROPORTIONAL;
-					case IfcControllerTypeEnum.MULTIPOSITION:
-						return Ifc4.Interfaces.IfcControllerTypeEnum.MULTIPOSITION;
 					case IfcControllerTypeEnum.TWOPOSITION:
 						return Ifc4.Interfaces.IfcControllerTypeEnum.TWOPOSITION;
 					case IfcControllerTypeEnum.USERDEFINED:

@@ -137,16 +137,16 @@ namespace Xbim.Ifc4x3.ProductExtension
 				//##
 				switch (InternalOrExternalBoundary)
 				{
-					case IfcInternalOrExternalEnum.INTERNAL:
-						return Ifc4.Interfaces.IfcInternalOrExternalEnum.INTERNAL;
 					case IfcInternalOrExternalEnum.EXTERNAL:
 						return Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL;
 					case IfcInternalOrExternalEnum.EXTERNAL_EARTH:
 						return Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_EARTH;
-					case IfcInternalOrExternalEnum.EXTERNAL_WATER:
-						return Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_WATER;
 					case IfcInternalOrExternalEnum.EXTERNAL_FIRE:
 						return Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_FIRE;
+					case IfcInternalOrExternalEnum.EXTERNAL_WATER:
+						return Ifc4.Interfaces.IfcInternalOrExternalEnum.EXTERNAL_WATER;
+					case IfcInternalOrExternalEnum.INTERNAL:
+						return Ifc4.Interfaces.IfcInternalOrExternalEnum.INTERNAL;
 					case IfcInternalOrExternalEnum.NOTDEFINED:
 						return Ifc4.Interfaces.IfcInternalOrExternalEnum.NOTDEFINED;
 					

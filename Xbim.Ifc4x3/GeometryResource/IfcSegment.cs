@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcSegment", 1495)]
+	[ExpressType("IfcSegment", 1485)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public abstract partial class @IfcSegment : IfcGeometricRepresentationItem, IEquatable<@IfcSegment>
 	{
@@ -51,7 +51,32 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 
+		#region Derived attributes
+		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
+		public IfcDimensionCount @Dim 
+		{
+			get 
+			{
+				//## Getter for Dim
+				//TODO: Implement getter for derived attribute Dim
+				throw new NotImplementedException();
+				//##
+			}
+		}
 
+		#endregion
+
+		#region Inverse attributes
+		[InverseProperty("Segments")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
+		public IEnumerable<IfcCompositeCurve> @UsingCurves 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
+			} 
+		}
+		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)

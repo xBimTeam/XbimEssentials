@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedBldgElements;
 
 namespace Xbim.Ifc4x3.SharedBldgElements
 {
-	[ExpressType("IfcBearingType", 1404)]
+	[ExpressType("IfcBearingType", 1412)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBearingType : IfcBuiltElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBearingType>
 	{

@@ -54,16 +54,16 @@ namespace Xbim.Ifc4x3.GeometryResource
 				//##
 				switch (CurveForm)
 				{
-					case IfcBSplineCurveForm.POLYLINE_FORM:
-						return Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM;
 					case IfcBSplineCurveForm.CIRCULAR_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.CIRCULAR_ARC;
 					case IfcBSplineCurveForm.ELLIPTIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.ELLIPTIC_ARC;
-					case IfcBSplineCurveForm.PARABOLIC_ARC:
-						return Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC;
 					case IfcBSplineCurveForm.HYPERBOLIC_ARC:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.HYPERBOLIC_ARC;
+					case IfcBSplineCurveForm.PARABOLIC_ARC:
+						return Ifc4.Interfaces.IfcBSplineCurveForm.PARABOLIC_ARC;
+					case IfcBSplineCurveForm.POLYLINE_FORM:
+						return Ifc4.Interfaces.IfcBSplineCurveForm.POLYLINE_FORM;
 					case IfcBSplineCurveForm.UNSPECIFIED:
 						return Ifc4.Interfaces.IfcBSplineCurveForm.UNSPECIFIED;
 					

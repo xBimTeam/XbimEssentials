@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcRampFlightTypeEnum.STRAIGHT:
-						return Ifc4.Interfaces.IfcRampFlightTypeEnum.STRAIGHT;
 					case IfcRampFlightTypeEnum.SPIRAL:
 						return Ifc4.Interfaces.IfcRampFlightTypeEnum.SPIRAL;
+					case IfcRampFlightTypeEnum.STRAIGHT:
+						return Ifc4.Interfaces.IfcRampFlightTypeEnum.STRAIGHT;
 					case IfcRampFlightTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

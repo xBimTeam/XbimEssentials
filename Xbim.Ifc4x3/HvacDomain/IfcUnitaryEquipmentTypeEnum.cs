@@ -10,11 +10,11 @@ namespace Xbim.Ifc4x3.HvacDomain
 {
 	public enum IfcUnitaryEquipmentTypeEnum : byte
 	{
-		@AIRHANDLER ,
 		@AIRCONDITIONINGUNIT ,
+		@AIRHANDLER ,
 		@DEHUMIDIFIER ,
-		@SPLITSYSTEM ,
 		@ROOFTOPUNIT ,
+		@SPLITSYSTEM ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

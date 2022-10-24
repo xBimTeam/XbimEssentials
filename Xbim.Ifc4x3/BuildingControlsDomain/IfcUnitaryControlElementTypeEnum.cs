@@ -11,14 +11,15 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 	public enum IfcUnitaryControlElementTypeEnum : byte
 	{
 		@ALARMPANEL ,
+		@BASESTATIONCONTROLLER ,
+		@COMBINED ,
 		@CONTROLPANEL ,
 		@GASDETECTIONPANEL ,
+		@HUMIDISTAT ,
 		@INDICATORPANEL ,
 		@MIMICPANEL ,
-		@HUMIDISTAT ,
 		@THERMOSTAT ,
 		@WEATHERSTATION ,
-		@COMBINED ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

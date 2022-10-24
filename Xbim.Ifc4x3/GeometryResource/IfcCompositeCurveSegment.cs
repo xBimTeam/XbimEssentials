@@ -36,7 +36,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
 		public IfcBoolean @SameSense 
 		{ 
 			get 
@@ -50,7 +50,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _sameSense = v, _sameSense, value,  "SameSense", 2);
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 5)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 6)]
 		public IfcCurve @ParentCurve 
 		{ 
 			get 
@@ -69,31 +69,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 
-		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-		public IfcDimensionCount @Dim 
-		{
-			get 
-			{
-				//## Getter for Dim
-				return ParentCurve?.Dim ?? 0;
-				//##
-			}
-		}
 
-		#endregion
-
-		#region Inverse attributes
-		[InverseProperty("Segments")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 6)]
-		public IEnumerable<IfcCompositeCurve> @UsingCurves 
-		{ 
-			get 
-			{
-				return Model.Instances.Where<IfcCompositeCurve>(e => e.Segments != null &&  e.Segments.Contains(this), "Segments", this);
-			} 
-		}
-		#endregion
 
 		#region IPersist implementation
 		public override void Parse(int propIndex, IPropertyValue value, int[] nestedIndex)

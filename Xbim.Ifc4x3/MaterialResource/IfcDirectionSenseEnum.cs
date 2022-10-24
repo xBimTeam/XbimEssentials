@@ -10,7 +10,7 @@ namespace Xbim.Ifc4x3.MaterialResource
 {
 	public enum IfcDirectionSenseEnum : byte
 	{
-		@POSITIVE ,
-		@NEGATIVE 
+		@NEGATIVE ,
+		@POSITIVE 
 	}
 }

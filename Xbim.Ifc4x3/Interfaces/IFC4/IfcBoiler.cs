@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcBoilerTypeEnum.WATER:
-						return Ifc4.Interfaces.IfcBoilerTypeEnum.WATER;
 					case IfcBoilerTypeEnum.STEAM:
 						return Ifc4.Interfaces.IfcBoilerTypeEnum.STEAM;
+					case IfcBoilerTypeEnum.WATER:
+						return Ifc4.Interfaces.IfcBoilerTypeEnum.WATER;
 					case IfcBoilerTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

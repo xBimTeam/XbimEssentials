@@ -10,11 +10,11 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 {
 	public enum IfcTendonConduitTypeEnum : byte
 	{
-		@DUCT ,
 		@COUPLER ,
+		@DIABOLO ,
+		@DUCT ,
 		@GROUTING_DUCT ,
 		@TRUMPET ,
-		@DIABOLO ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

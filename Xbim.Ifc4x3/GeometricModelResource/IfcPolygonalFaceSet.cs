@@ -54,7 +54,7 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 			} 
 		}	
 		[IndexedProperty]
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 7)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.ListUnique, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 7)]
 		public IItemSet<IfcIndexedPolygonalFace> @Faces 
 		{ 
 			get 

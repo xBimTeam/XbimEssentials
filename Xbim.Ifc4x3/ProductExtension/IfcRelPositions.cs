@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcRelPositions", 1459)]
+	[ExpressType("IfcRelPositions", 1479)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcRelPositions : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelPositions>
 	{

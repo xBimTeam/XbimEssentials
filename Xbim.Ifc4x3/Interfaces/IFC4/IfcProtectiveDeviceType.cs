@@ -30,30 +30,30 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				//##
 				switch (PredefinedType)
 				{
+					case IfcProtectiveDeviceTypeEnum.ANTI_ARCING_DEVICE:
+						//## Handle translation of ANTI_ARCING_DEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
+						//TODO: Handle translation of ANTI_ARCING_DEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER;
-					case IfcProtectiveDeviceTypeEnum.EARTHLEAKAGECIRCUITBREAKER:
-						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.EARTHLEAKAGECIRCUITBREAKER;
 					case IfcProtectiveDeviceTypeEnum.EARTHINGSWITCH:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.EARTHINGSWITCH;
+					case IfcProtectiveDeviceTypeEnum.EARTHLEAKAGECIRCUITBREAKER:
+						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.EARTHLEAKAGECIRCUITBREAKER;
 					case IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.FUSEDISCONNECTOR;
 					case IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTCIRCUITBREAKER;
 					case IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH;
-					case IfcProtectiveDeviceTypeEnum.VARISTOR:
-						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.VARISTOR;
-					case IfcProtectiveDeviceTypeEnum.ANTI_ARCING_DEVICE:
-						//## Handle translation of ANTI_ARCING_DEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of ANTI_ARCING_DEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcProtectiveDeviceTypeEnum.SPARKGAP:
 						//## Handle translation of SPARKGAP member from IfcProtectiveDeviceTypeEnum in property PredefinedType
 						//TODO: Handle translation of SPARKGAP member from IfcProtectiveDeviceTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcProtectiveDeviceTypeEnum.VARISTOR:
+						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.VARISTOR;
 					case IfcProtectiveDeviceTypeEnum.VOLTAGELIMITER:
 						//## Handle translation of VOLTAGELIMITER member from IfcProtectiveDeviceTypeEnum in property PredefinedType
 						//TODO: Handle translation of VOLTAGELIMITER member from IfcProtectiveDeviceTypeEnum in property PredefinedType

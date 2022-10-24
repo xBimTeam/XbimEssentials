@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.ProcessExtension
 				//##
 				switch (PredefinedType)
 				{
-					case IfcEventTypeEnum.STARTEVENT:
-						return Ifc4.Interfaces.IfcEventTypeEnum.STARTEVENT;
 					case IfcEventTypeEnum.ENDEVENT:
 						return Ifc4.Interfaces.IfcEventTypeEnum.ENDEVENT;
 					case IfcEventTypeEnum.INTERMEDIATEEVENT:
 						return Ifc4.Interfaces.IfcEventTypeEnum.INTERMEDIATEEVENT;
+					case IfcEventTypeEnum.STARTEVENT:
+						return Ifc4.Interfaces.IfcEventTypeEnum.STARTEVENT;
 					case IfcEventTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
@@ -84,14 +84,14 @@ namespace Xbim.Ifc4x3.ProcessExtension
 				//##
 				switch (EventTriggerType)
 				{
-					case IfcEventTriggerTypeEnum.EVENTRULE:
-						return Ifc4.Interfaces.IfcEventTriggerTypeEnum.EVENTRULE;
-					case IfcEventTriggerTypeEnum.EVENTMESSAGE:
-						return Ifc4.Interfaces.IfcEventTriggerTypeEnum.EVENTMESSAGE;
-					case IfcEventTriggerTypeEnum.EVENTTIME:
-						return Ifc4.Interfaces.IfcEventTriggerTypeEnum.EVENTTIME;
 					case IfcEventTriggerTypeEnum.EVENTCOMPLEX:
 						return Ifc4.Interfaces.IfcEventTriggerTypeEnum.EVENTCOMPLEX;
+					case IfcEventTriggerTypeEnum.EVENTMESSAGE:
+						return Ifc4.Interfaces.IfcEventTriggerTypeEnum.EVENTMESSAGE;
+					case IfcEventTriggerTypeEnum.EVENTRULE:
+						return Ifc4.Interfaces.IfcEventTriggerTypeEnum.EVENTRULE;
+					case IfcEventTriggerTypeEnum.EVENTTIME:
+						return Ifc4.Interfaces.IfcEventTriggerTypeEnum.EVENTTIME;
 					case IfcEventTriggerTypeEnum.USERDEFINED:
 						//## Optional custom handling of EventTriggerType == .USERDEFINED. 
 						//##

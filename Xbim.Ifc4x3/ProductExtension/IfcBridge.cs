@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcBridge", 1406)]
+	[ExpressType("IfcBridge", 1414)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBridge : IfcFacility, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBridge>
 	{
@@ -34,7 +34,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 27)]
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 29)]
 		public IfcBridgeTypeEnum? @PredefinedType 
 		{ 
 			get 

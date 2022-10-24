@@ -7,6 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using Xbim.Ifc4x3.ProductExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Xbim.Ifc4x3.Kernel
 {
 	[ExpressType("IfcGroup", 228)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGroup>
+	public  partial class @IfcGroup : IfcObject, IInstantiableEntity, IfcSpatialReferenceSelect, IContainsEntityReferences, IEquatable<@IfcGroup>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -40,6 +41,15 @@ namespace Xbim.Ifc4x3.Kernel
 			get 
 			{
 				return Model.Instances.Where<IfcRelAssignsToGroup>(e => Equals(e.RelatingGroup), "RelatingGroup", this);
+			} 
+		}
+		[InverseProperty("RelatedElements")]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { -1 }, 18)]
+		public IEnumerable<IfcRelReferencedInSpatialStructure> @ReferencedInStructures 
+		{ 
+			get 
+			{
+				return Model.Instances.Where<IfcRelReferencedInSpatialStructure>(e => e.RelatedElements != null &&  e.RelatedElements.Contains(this), "RelatedElements", this);
 			} 
 		}
 		#endregion

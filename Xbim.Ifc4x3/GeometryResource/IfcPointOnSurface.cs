@@ -84,19 +84,6 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 
-		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-		public IfcDimensionCount @Dim 
-		{
-			get 
-			{
-				//## Getter for Dim
-				return BasisSurface?.Dim ?? 0;
-				//##
-			}
-		}
-
-		#endregion
 
 
 		#region IPersist implementation

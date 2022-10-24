@@ -12,8 +12,8 @@ namespace Xbim.Ifc4x3.HvacDomain
 	{
 		@CULVERT ,
 		@FLEXIBLESEGMENT ,
-		@RIGIDSEGMENT ,
 		@GUTTER ,
+		@RIGIDSEGMENT ,
 		@SPOOL ,
 		@USERDEFINED ,
 		@NOTDEFINED 

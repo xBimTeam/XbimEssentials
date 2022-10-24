@@ -38,7 +38,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 	
 		#region Explicit attribute properties
 		[IndexedProperty]
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 4)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 1 }, new int [] { -1 }, 3)]
 		public IItemSet<IfcSegment> @Segments 
 		{ 
 			get 
@@ -48,7 +48,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				return _segments;
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
 		public IfcLogical @SelfIntersect 
 		{ 
 			get 

@@ -7,7 +7,6 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.MeasureResource;
 using Xbim.Ifc4x3.GeometryResource;
 using System;
 using System.Collections.Generic;
@@ -29,37 +28,22 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSectionedSolidHorizontal(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
-			_crossSectionPositions = new ItemSet<IfcPointByDistanceExpression>( this, 0,  3);
+			_crossSectionPositions = new ItemSet<IfcAxis2PlacementLinear>( this, 0,  3);
 		}
 
 		#region Explicit attribute fields
-		private readonly ItemSet<IfcPointByDistanceExpression> _crossSectionPositions;
-		private IfcBoolean _fixedAxisVertical;
+		private readonly ItemSet<IfcAxis2PlacementLinear> _crossSectionPositions;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 5)]
-		public IItemSet<IfcPointByDistanceExpression> @CrossSectionPositions 
+		public IItemSet<IfcAxis2PlacementLinear> @CrossSectionPositions 
 		{ 
 			get 
 			{
 				if(_activated) return _crossSectionPositions;
 				Activate();
 				return _crossSectionPositions;
-			} 
-		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
-		public IfcBoolean @FixedAxisVertical 
-		{ 
-			get 
-			{
-				if(_activated) return _fixedAxisVertical;
-				Activate();
-				return _fixedAxisVertical;
-			} 
-			set
-			{
-				SetValue( v =>  _fixedAxisVertical = v, _fixedAxisVertical, value,  "FixedAxisVertical", 4);
 			} 
 		}	
 		#endregion
@@ -77,10 +61,7 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 2: 
-					_crossSectionPositions.InternalAdd((IfcPointByDistanceExpression)value.EntityVal);
-					return;
-				case 3: 
-					_fixedAxisVertical = value.BooleanVal;
+					_crossSectionPositions.InternalAdd((IfcAxis2PlacementLinear)value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

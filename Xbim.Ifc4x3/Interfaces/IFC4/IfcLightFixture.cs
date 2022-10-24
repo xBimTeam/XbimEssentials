@@ -30,10 +30,10 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcLightFixtureTypeEnum.POINTSOURCE:
-						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.POINTSOURCE;
 					case IfcLightFixtureTypeEnum.DIRECTIONSOURCE:
 						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.DIRECTIONSOURCE;
+					case IfcLightFixtureTypeEnum.POINTSOURCE:
+						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.POINTSOURCE;
 					case IfcLightFixtureTypeEnum.SECURITYLIGHTING:
 						return Ifc4.Interfaces.IfcLightFixtureTypeEnum.SECURITYLIGHTING;
 					case IfcLightFixtureTypeEnum.USERDEFINED:

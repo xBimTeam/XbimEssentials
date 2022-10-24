@@ -32,8 +32,8 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 			set
 			{
 				FilletRadius = value.HasValue ? 
-					new MeasureResource.IfcPositiveLengthMeasure(value.Value) :  
-					 new MeasureResource.IfcPositiveLengthMeasure?() ;
+					new MeasureResource.IfcNonNegativeLengthMeasure(value.Value) :  
+					 new MeasureResource.IfcNonNegativeLengthMeasure?() ;
 				
 			}
 		}

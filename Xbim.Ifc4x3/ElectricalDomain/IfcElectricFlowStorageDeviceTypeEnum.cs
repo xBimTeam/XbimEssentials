@@ -11,14 +11,14 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 	public enum IfcElectricFlowStorageDeviceTypeEnum : byte
 	{
 		@BATTERY ,
-		@CAPACITORBANK ,
-		@HARMONICFILTER ,
-		@INDUCTORBANK ,
-		@UPS ,
 		@CAPACITOR ,
+		@CAPACITORBANK ,
 		@COMPENSATOR ,
+		@HARMONICFILTER ,
 		@INDUCTOR ,
+		@INDUCTORBANK ,
 		@RECHARGER ,
+		@UPS ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

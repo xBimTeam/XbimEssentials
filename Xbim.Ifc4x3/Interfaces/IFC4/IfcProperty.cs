@@ -40,12 +40,12 @@ namespace Xbim.Ifc4x3.PropertyResource
 		{ 
 			get
 			{
-				if (!Description.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcText(Description.Value);
+				if (!Specification.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcText(Specification.Value);
 			} 
 			set
 			{
-				Description = value.HasValue ? 
+				Specification = value.HasValue ? 
 					new MeasureResource.IfcText(value.Value) :  
 					 new MeasureResource.IfcText?() ;
 				

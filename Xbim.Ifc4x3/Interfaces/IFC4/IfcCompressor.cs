@@ -30,36 +30,36 @@ namespace Xbim.Ifc4x3.HvacDomain
 				//##
 				switch (PredefinedType)
 				{
-					case IfcCompressorTypeEnum.DYNAMIC:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.DYNAMIC;
-					case IfcCompressorTypeEnum.RECIPROCATING:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.RECIPROCATING;
-					case IfcCompressorTypeEnum.ROTARY:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.ROTARY;
-					case IfcCompressorTypeEnum.SCROLL:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.SCROLL;
-					case IfcCompressorTypeEnum.TROCHOIDAL:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.TROCHOIDAL;
-					case IfcCompressorTypeEnum.SINGLESTAGE:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.SINGLESTAGE;
 					case IfcCompressorTypeEnum.BOOSTER:
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.BOOSTER;
-					case IfcCompressorTypeEnum.OPENTYPE:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.OPENTYPE;
+					case IfcCompressorTypeEnum.DYNAMIC:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.DYNAMIC;
 					case IfcCompressorTypeEnum.HERMETIC:
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.HERMETIC;
-					case IfcCompressorTypeEnum.SEMIHERMETIC:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.SEMIHERMETIC;
-					case IfcCompressorTypeEnum.WELDEDSHELLHERMETIC:
-						return Ifc4.Interfaces.IfcCompressorTypeEnum.WELDEDSHELLHERMETIC;
+					case IfcCompressorTypeEnum.OPENTYPE:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.OPENTYPE;
+					case IfcCompressorTypeEnum.RECIPROCATING:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.RECIPROCATING;
 					case IfcCompressorTypeEnum.ROLLINGPISTON:
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.ROLLINGPISTON;
+					case IfcCompressorTypeEnum.ROTARY:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.ROTARY;
 					case IfcCompressorTypeEnum.ROTARYVANE:
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.ROTARYVANE;
+					case IfcCompressorTypeEnum.SCROLL:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.SCROLL;
+					case IfcCompressorTypeEnum.SEMIHERMETIC:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.SEMIHERMETIC;
 					case IfcCompressorTypeEnum.SINGLESCREW:
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.SINGLESCREW;
+					case IfcCompressorTypeEnum.SINGLESTAGE:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.SINGLESTAGE;
+					case IfcCompressorTypeEnum.TROCHOIDAL:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.TROCHOIDAL;
 					case IfcCompressorTypeEnum.TWINSCREW:
 						return Ifc4.Interfaces.IfcCompressorTypeEnum.TWINSCREW;
+					case IfcCompressorTypeEnum.WELDEDSHELLHERMETIC:
+						return Ifc4.Interfaces.IfcCompressorTypeEnum.WELDEDSHELLHERMETIC;
 					case IfcCompressorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

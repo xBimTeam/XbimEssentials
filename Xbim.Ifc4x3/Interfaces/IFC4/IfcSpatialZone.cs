@@ -34,10 +34,20 @@ namespace Xbim.Ifc4x3.ProductExtension
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.CONSTRUCTION;
 					case IfcSpatialZoneTypeEnum.FIRESAFETY:
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.FIRESAFETY;
+					case IfcSpatialZoneTypeEnum.INTERFERENCE:
+						//## Handle translation of INTERFERENCE member from IfcSpatialZoneTypeEnum in property PredefinedType
+						//TODO: Handle translation of INTERFERENCE member from IfcSpatialZoneTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcSpatialZoneTypeEnum.LIGHTING:
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.LIGHTING;
 					case IfcSpatialZoneTypeEnum.OCCUPANCY:
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.OCCUPANCY;
+					case IfcSpatialZoneTypeEnum.RESERVATION:
+						//## Handle translation of RESERVATION member from IfcSpatialZoneTypeEnum in property PredefinedType
+						//TODO: Handle translation of RESERVATION member from IfcSpatialZoneTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcSpatialZoneTypeEnum.SECURITY:
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.SECURITY;
 					case IfcSpatialZoneTypeEnum.THERMAL:
@@ -46,11 +56,6 @@ namespace Xbim.Ifc4x3.ProductExtension
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.TRANSPORT;
 					case IfcSpatialZoneTypeEnum.VENTILATION:
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.VENTILATION;
-					case IfcSpatialZoneTypeEnum.RESERVATION:
-						//## Handle translation of RESERVATION member from IfcSpatialZoneTypeEnum in property PredefinedType
-						//TODO: Handle translation of RESERVATION member from IfcSpatialZoneTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
 					case IfcSpatialZoneTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

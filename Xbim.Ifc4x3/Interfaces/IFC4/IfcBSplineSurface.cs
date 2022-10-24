@@ -67,26 +67,26 @@ namespace Xbim.Ifc4x3.GeometryResource
 				//##
 				switch (SurfaceForm)
 				{
-					case IfcBSplineSurfaceForm.PLANE_SURF:
-						return Ifc4.Interfaces.IfcBSplineSurfaceForm.PLANE_SURF;
-					case IfcBSplineSurfaceForm.CYLINDRICAL_SURF:
-						return Ifc4.Interfaces.IfcBSplineSurfaceForm.CYLINDRICAL_SURF;
 					case IfcBSplineSurfaceForm.CONICAL_SURF:
 						return Ifc4.Interfaces.IfcBSplineSurfaceForm.CONICAL_SURF;
-					case IfcBSplineSurfaceForm.SPHERICAL_SURF:
-						return Ifc4.Interfaces.IfcBSplineSurfaceForm.SPHERICAL_SURF;
-					case IfcBSplineSurfaceForm.TOROIDAL_SURF:
-						return Ifc4.Interfaces.IfcBSplineSurfaceForm.TOROIDAL_SURF;
-					case IfcBSplineSurfaceForm.SURF_OF_REVOLUTION:
-						return Ifc4.Interfaces.IfcBSplineSurfaceForm.SURF_OF_REVOLUTION;
-					case IfcBSplineSurfaceForm.RULED_SURF:
-						return Ifc4.Interfaces.IfcBSplineSurfaceForm.RULED_SURF;
+					case IfcBSplineSurfaceForm.CYLINDRICAL_SURF:
+						return Ifc4.Interfaces.IfcBSplineSurfaceForm.CYLINDRICAL_SURF;
 					case IfcBSplineSurfaceForm.GENERALISED_CONE:
 						return Ifc4.Interfaces.IfcBSplineSurfaceForm.GENERALISED_CONE;
+					case IfcBSplineSurfaceForm.PLANE_SURF:
+						return Ifc4.Interfaces.IfcBSplineSurfaceForm.PLANE_SURF;
 					case IfcBSplineSurfaceForm.QUADRIC_SURF:
 						return Ifc4.Interfaces.IfcBSplineSurfaceForm.QUADRIC_SURF;
+					case IfcBSplineSurfaceForm.RULED_SURF:
+						return Ifc4.Interfaces.IfcBSplineSurfaceForm.RULED_SURF;
+					case IfcBSplineSurfaceForm.SPHERICAL_SURF:
+						return Ifc4.Interfaces.IfcBSplineSurfaceForm.SPHERICAL_SURF;
 					case IfcBSplineSurfaceForm.SURF_OF_LINEAR_EXTRUSION:
 						return Ifc4.Interfaces.IfcBSplineSurfaceForm.SURF_OF_LINEAR_EXTRUSION;
+					case IfcBSplineSurfaceForm.SURF_OF_REVOLUTION:
+						return Ifc4.Interfaces.IfcBSplineSurfaceForm.SURF_OF_REVOLUTION;
+					case IfcBSplineSurfaceForm.TOROIDAL_SURF:
+						return Ifc4.Interfaces.IfcBSplineSurfaceForm.TOROIDAL_SURF;
 					case IfcBSplineSurfaceForm.UNSPECIFIED:
 						return Ifc4.Interfaces.IfcBSplineSurfaceForm.UNSPECIFIED;
 					

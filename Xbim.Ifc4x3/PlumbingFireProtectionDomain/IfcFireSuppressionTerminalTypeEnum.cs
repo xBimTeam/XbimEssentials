@@ -12,6 +12,7 @@ namespace Xbim.Ifc4x3.PlumbingFireProtectionDomain
 	{
 		@BREECHINGINLET ,
 		@FIREHYDRANT ,
+		@FIREMONITOR ,
 		@HOSEREEL ,
 		@SPRINKLER ,
 		@SPRINKLERDEFLECTOR ,

@@ -34,6 +34,11 @@ namespace Xbim.Ifc4x3.PlumbingFireProtectionDomain
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.BREECHINGINLET;
 					case IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.FIREHYDRANT;
+					case IfcFireSuppressionTerminalTypeEnum.FIREMONITOR:
+						//## Handle translation of FIREMONITOR member from IfcFireSuppressionTerminalTypeEnum in property PredefinedType
+						//TODO: Handle translation of FIREMONITOR member from IfcFireSuppressionTerminalTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcFireSuppressionTerminalTypeEnum.HOSEREEL:
 						return Ifc4.Interfaces.IfcFireSuppressionTerminalTypeEnum.HOSEREEL;
 					case IfcFireSuppressionTerminalTypeEnum.SPRINKLER:

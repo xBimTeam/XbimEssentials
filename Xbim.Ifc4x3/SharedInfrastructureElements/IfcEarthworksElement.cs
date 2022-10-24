@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.SharedInfrastructureElements;
 
 namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
-	[ExpressType("IfcEarthworksElement", 1422)]
+	[ExpressType("IfcEarthworksElement", 1435)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcEarthworksElement : IfcBuiltElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcEarthworksElement>
 	{

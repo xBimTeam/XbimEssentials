@@ -19,7 +19,7 @@ using Xbim.Ifc4x3.ProductExtension;
 
 namespace Xbim.Ifc4x3.ProductExtension
 {
-	[ExpressType("IfcBridgePart", 1407)]
+	[ExpressType("IfcBridgePart", 1415)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcBridgePart : IfcFacilityPart, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcBridgePart>
 	{
@@ -29,6 +29,26 @@ namespace Xbim.Ifc4x3.ProductExtension
 		{
 		}
 
+		#region Explicit attribute fields
+		private IfcBridgePartTypeEnum? _predefinedType;
+		#endregion
+	
+		#region Explicit attribute properties
+		[EntityAttribute(11, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 30)]
+		public IfcBridgePartTypeEnum? @PredefinedType 
+		{ 
+			get 
+			{
+				if(_activated) return _predefinedType;
+				Activate();
+				return _predefinedType;
+			} 
+			set
+			{
+				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 11);
+			} 
+		}	
+		#endregion
 
 
 
@@ -48,8 +68,10 @@ namespace Xbim.Ifc4x3.ProductExtension
 				case 7: 
 				case 8: 
 				case 9: 
-				case 10: 
 					base.Parse(propIndex, value, nestedIndex); 
+					return;
+				case 10: 
+                    _predefinedType = (IfcBridgePartTypeEnum) System.Enum.Parse(typeof (IfcBridgePartTypeEnum), value.EnumVal, true);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

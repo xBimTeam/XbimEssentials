@@ -10,9 +10,9 @@ namespace Xbim.Ifc4x3.SharedInfrastructureElements
 {
 	public enum IfcSignalTypeEnum : byte
 	{
-		@VISUAL ,
 		@AUDIO ,
 		@MIXED ,
+		@VISUAL ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

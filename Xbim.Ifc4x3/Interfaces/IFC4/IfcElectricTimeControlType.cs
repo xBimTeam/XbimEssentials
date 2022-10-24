@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				//##
 				switch (PredefinedType)
 				{
+					case IfcElectricTimeControlTypeEnum.RELAY:
+						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.RELAY;
 					case IfcElectricTimeControlTypeEnum.TIMECLOCK:
 						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMECLOCK;
 					case IfcElectricTimeControlTypeEnum.TIMEDELAY:
 						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.TIMEDELAY;
-					case IfcElectricTimeControlTypeEnum.RELAY:
-						return Ifc4.Interfaces.IfcElectricTimeControlTypeEnum.RELAY;
 					case IfcElectricTimeControlTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

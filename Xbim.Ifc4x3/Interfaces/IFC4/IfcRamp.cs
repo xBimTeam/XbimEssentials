@@ -30,18 +30,18 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				//##
 				switch (PredefinedType)
 				{
-					case IfcRampTypeEnum.STRAIGHT_RUN_RAMP:
-						return Ifc4.Interfaces.IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
-					case IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP:
-						return Ifc4.Interfaces.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
-					case IfcRampTypeEnum.QUARTER_TURN_RAMP:
-						return Ifc4.Interfaces.IfcRampTypeEnum.QUARTER_TURN_RAMP;
-					case IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP:
-						return Ifc4.Interfaces.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
 					case IfcRampTypeEnum.HALF_TURN_RAMP:
 						return Ifc4.Interfaces.IfcRampTypeEnum.HALF_TURN_RAMP;
+					case IfcRampTypeEnum.QUARTER_TURN_RAMP:
+						return Ifc4.Interfaces.IfcRampTypeEnum.QUARTER_TURN_RAMP;
 					case IfcRampTypeEnum.SPIRAL_RAMP:
 						return Ifc4.Interfaces.IfcRampTypeEnum.SPIRAL_RAMP;
+					case IfcRampTypeEnum.STRAIGHT_RUN_RAMP:
+						return Ifc4.Interfaces.IfcRampTypeEnum.STRAIGHT_RUN_RAMP;
+					case IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP:
+						return Ifc4.Interfaces.IfcRampTypeEnum.TWO_QUARTER_TURN_RAMP;
+					case IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP:
+						return Ifc4.Interfaces.IfcRampTypeEnum.TWO_STRAIGHT_RUN_RAMP;
 					case IfcRampTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

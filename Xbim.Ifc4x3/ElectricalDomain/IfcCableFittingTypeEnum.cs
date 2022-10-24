@@ -13,9 +13,9 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 		@CONNECTOR ,
 		@ENTRY ,
 		@EXIT ,
+		@FANOUT ,
 		@JUNCTION ,
 		@TRANSITION ,
-		@FANOUT ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

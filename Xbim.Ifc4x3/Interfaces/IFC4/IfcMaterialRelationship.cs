@@ -50,12 +50,12 @@ namespace Xbim.Ifc4x3.MaterialResource
 		{ 
 			get
 			{
-				if (!Expression.HasValue) return null;
-				return new Ifc4.MeasureResource.IfcLabel(Expression.Value);
+				if (!MaterialExpression.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcLabel(MaterialExpression.Value);
 			} 
 			set
 			{
-				Expression = value.HasValue ? 
+				MaterialExpression = value.HasValue ? 
 					new MeasureResource.IfcLabel(value.Value) :  
 					 new MeasureResource.IfcLabel?() ;
 				

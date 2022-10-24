@@ -37,7 +37,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 20)]
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 21)]
 		public IfcBuildingSystemTypeEnum? @PredefinedType 
 		{ 
 			get 
@@ -51,7 +51,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				SetValue( v =>  _predefinedType = v, _predefinedType, value,  "PredefinedType", 6);
 			} 
 		}	
-		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 21)]
+		[EntityAttribute(7, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 22)]
 		public IfcLabel? @LongName 
 		{ 
 			get 

@@ -32,10 +32,10 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 				{
 					case IfcInventoryTypeEnum.ASSETINVENTORY:
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.ASSETINVENTORY;
-					case IfcInventoryTypeEnum.SPACEINVENTORY:
-						return Ifc4.Interfaces.IfcInventoryTypeEnum.SPACEINVENTORY;
 					case IfcInventoryTypeEnum.FURNITUREINVENTORY:
 						return Ifc4.Interfaces.IfcInventoryTypeEnum.FURNITUREINVENTORY;
+					case IfcInventoryTypeEnum.SPACEINVENTORY:
+						return Ifc4.Interfaces.IfcInventoryTypeEnum.SPACEINVENTORY;
 					case IfcInventoryTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

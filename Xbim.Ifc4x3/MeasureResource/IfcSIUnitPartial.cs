@@ -9,7 +9,7 @@ namespace Xbim.Ifc4x3.MeasureResource
     public partial class IfcSIUnit
     {
         private readonly Dictionary<IfcSIUnitName, IfcDimensionalExponents> ExponentsCache = new Dictionary<IfcSIUnitName, IfcDimensionalExponents>(); 
-        internal IfcDimensionalExponents IfcDimensionsForSiUnit(IfcSIUnitName name)
+        internal IfcDimensionalExponents IfcDimensionsForSIUnit(IfcSIUnitName name)
         {
             IfcDimensionalExponents result;
             if (ExponentsCache.TryGetValue(name, out result))

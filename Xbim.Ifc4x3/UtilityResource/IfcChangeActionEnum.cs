@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.UtilityResource
 {
 	public enum IfcChangeActionEnum : byte
 	{
-		@NOCHANGE ,
-		@MODIFIED ,
 		@ADDED ,
 		@DELETED ,
+		@MODIFIED ,
+		@NOCHANGE ,
 		@NOTDEFINED 
 	}
 }

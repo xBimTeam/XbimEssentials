@@ -22,7 +22,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 {
 	[ExpressType("IfcLocalPlacement", 481)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcLocalPlacement>
+	public  partial class @IfcLocalPlacement : IfcObjectPlacement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcLocalPlacement>
 	{
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -35,7 +35,7 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 3)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 4)]
 		public IfcAxis2Placement @RelativePlacement 
 		{ 
 			get 
@@ -90,6 +90,19 @@ namespace Xbim.Ifc4x3.GeometricConstraintResource
 				if (@RelativePlacement != null)
 					yield return @RelativePlacement;
 			}
+		}
+		#endregion
+
+
+		#region IContainsIndexedReferences
+        IEnumerable<IPersistEntity> IContainsIndexedReferences.IndexedReferences 
+		{ 
+			get
+			{
+				if (@PlacementRelTo != null)
+					yield return @PlacementRelTo;
+				
+			} 
 		}
 		#endregion
 

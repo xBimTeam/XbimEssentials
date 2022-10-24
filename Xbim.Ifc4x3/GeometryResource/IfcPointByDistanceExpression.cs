@@ -20,7 +20,7 @@ using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.GeometryResource
 {
-	[ExpressType("IfcPointByDistanceExpression", 1494)]
+	[ExpressType("IfcPointByDistanceExpression", 1469)]
 	// ReSharper disable once PartialTypeWithSinglePart
 	public  partial class @IfcPointByDistanceExpression : IfcPoint, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPointByDistanceExpression>
 	{
@@ -114,19 +114,6 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 
 
-		#region Derived attributes
-		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-		public IfcDimensionCount @Dim 
-		{
-			get 
-			{
-				//## Getter for Dim
-				return BasisCurve.Dim;
-				//##
-			}
-		}
-
-		#endregion
 
 
 		#region IPersist implementation

@@ -40,7 +40,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 4)]
+		[EntityAttribute(1, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
 		public IfcInteger @Degree 
 		{ 
 			get 
@@ -54,7 +54,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _degree = v, _degree, value,  "Degree", 1);
 			} 
 		}	
-		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 5)]
+		[EntityAttribute(2, EntityAttributeState.Mandatory, EntityAttributeType.List, EntityAttributeType.Class, new int [] { 2 }, new int [] { -1 }, 4)]
 		public IItemSet<IfcCartesianPoint> @ControlPointsList 
 		{ 
 			get 
@@ -64,7 +64,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				return _controlPointsList;
 			} 
 		}	
-		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 6)]
+		[EntityAttribute(3, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 5)]
 		public IfcBSplineCurveForm @CurveForm 
 		{ 
 			get 
@@ -78,7 +78,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _curveForm = v, _curveForm, value,  "CurveForm", 3);
 			} 
 		}	
-		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
+		[EntityAttribute(4, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcLogical @ClosedCurve 
 		{ 
 			get 
@@ -92,7 +92,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 				SetValue( v =>  _closedCurve = v, _closedCurve, value,  "ClosedCurve", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 8)]
+		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 7)]
 		public IfcLogical @SelfIntersect 
 		{ 
 			get 

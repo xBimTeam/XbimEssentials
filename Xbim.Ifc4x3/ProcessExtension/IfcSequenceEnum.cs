@@ -10,10 +10,10 @@ namespace Xbim.Ifc4x3.ProcessExtension
 {
 	public enum IfcSequenceEnum : byte
 	{
-		@START_START ,
-		@START_FINISH ,
-		@FINISH_START ,
 		@FINISH_FINISH ,
+		@FINISH_START ,
+		@START_FINISH ,
+		@START_START ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

@@ -12,13 +12,14 @@ namespace Xbim.Ifc4x3.ProductExtension
 	{
 		@CONSTRUCTION ,
 		@FIRESAFETY ,
+		@INTERFERENCE ,
 		@LIGHTING ,
 		@OCCUPANCY ,
+		@RESERVATION ,
 		@SECURITY ,
 		@THERMAL ,
 		@TRANSPORT ,
 		@VENTILATION ,
-		@RESERVATION ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

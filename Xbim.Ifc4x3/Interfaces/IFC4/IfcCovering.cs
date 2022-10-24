@@ -32,29 +32,34 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				{
 					case IfcCoveringTypeEnum.CEILING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.CEILING;
-					case IfcCoveringTypeEnum.FLOORING:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.FLOORING;
 					case IfcCoveringTypeEnum.CLADDING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.CLADDING;
-					case IfcCoveringTypeEnum.ROOFING:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.ROOFING;
-					case IfcCoveringTypeEnum.MOLDING:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.MOLDING;
-					case IfcCoveringTypeEnum.SKIRTINGBOARD:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.SKIRTINGBOARD;
-					case IfcCoveringTypeEnum.INSULATION:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION;
-					case IfcCoveringTypeEnum.MEMBRANE:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.MEMBRANE;
-					case IfcCoveringTypeEnum.SLEEVING:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.SLEEVING;
-					case IfcCoveringTypeEnum.WRAPPING:
-						return Ifc4.Interfaces.IfcCoveringTypeEnum.WRAPPING;
 					case IfcCoveringTypeEnum.COPING:
 						//## Handle translation of COPING member from IfcCoveringTypeEnum in property PredefinedType
 						//TODO: Handle translation of COPING member from IfcCoveringTypeEnum in property PredefinedType
 						throw new System.NotImplementedException();
 						//##
+					case IfcCoveringTypeEnum.FLOORING:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.FLOORING;
+					case IfcCoveringTypeEnum.INSULATION:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.INSULATION;
+					case IfcCoveringTypeEnum.MEMBRANE:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.MEMBRANE;
+					case IfcCoveringTypeEnum.MOLDING:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.MOLDING;
+					case IfcCoveringTypeEnum.ROOFING:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.ROOFING;
+					case IfcCoveringTypeEnum.SKIRTINGBOARD:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.SKIRTINGBOARD;
+					case IfcCoveringTypeEnum.SLEEVING:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.SLEEVING;
+					case IfcCoveringTypeEnum.TOPPING:
+						//## Handle translation of TOPPING member from IfcCoveringTypeEnum in property PredefinedType
+						//TODO: Handle translation of TOPPING member from IfcCoveringTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcCoveringTypeEnum.WRAPPING:
+						return Ifc4.Interfaces.IfcCoveringTypeEnum.WRAPPING;
 					case IfcCoveringTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
