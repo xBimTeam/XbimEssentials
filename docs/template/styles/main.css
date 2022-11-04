@@ -121,7 +121,7 @@ article h4 {
 .navbar-inverse {
   background-color: var(--header-bg-color);
   z-index: 100;
-  min-height: 60px;
+  min-height: 68px;
 }
 
 .navbar-inverse .navbar-nav > li > a,
@@ -172,8 +172,18 @@ article h4 {
 .navbar-inverse .navbar-toggle {
   box-shadow: var(--card-box-shadow);
   border: none;
-  margin-top: 13px;
+  margin-top: 17px;
 }
+
+@media (min-width: 768px){
+  #autocollapse.collapsed .navbar-toggle {
+    display: none;
+} 
+#autocollapse.collapsed .navbar-header {
+  float: none;
+}
+}
+ 
 
 .navbar-inverse .navbar-toggle:focus,
 .navbar-inverse .navbar-toggle:hover {
@@ -356,4 +366,21 @@ pre {
 
 .affix ul ul > li > a:before {
   top: 2px;
+}
+
+#--xbim-essentials, #--xbim-geometry{
+  font-family: 'Rajdhani', sans-serif;
+  color: #337ab7;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 34px;
+}
+
+
+#documentations{
+  font-family: 'Rajdhani', sans-serif;
+  color: #0f1c43;
+  text-decoration: none;
+  font-size: 41px;
+  font-weight: 400;
 }
