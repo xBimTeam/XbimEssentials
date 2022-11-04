@@ -204,7 +204,7 @@ steps:
    
 
 - task: CopyFiles@2
-  displayName: 'Copy generated docs to repo'
+  displayName: 'Copy generated docs to artifacts directory'
   #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)\\docs\\_build'
