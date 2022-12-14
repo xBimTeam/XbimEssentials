@@ -602,7 +602,11 @@ namespace Xbim.IO.Step21
             _isInNestedType = false;
             try
             {
-                PropertyValue.Init(_processStack.Pop().Entity);
+                var nestedEntity = _processStack.Pop();
+                if (nestedEntity.Entity != null)
+                {
+                    PropertyValue.Init(nestedEntity.Entity);
+                }
                 CurrentInstance = _processStack.Peek();
                 if (CurrentInstance.Entity != null)
                     CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
@@ -643,15 +647,41 @@ namespace Xbim.IO.Step21
             _isInNestedType = true;
         }
 
+        /// <summary>
+        /// Step21 allows to extend objects at the end.
+        /// </summary>
+        /// <returns>True if current property index is beyond the entity implementation parameters</returns>
+        private bool IsExtendedParameter()
+        {
+            if (!(CurrentInstance.Entity is IPersistEntity entity))
+            { 
+                return false;
+            }
+            var count = entity.ExpressType.Properties.Count;
+            return CurrentInstance.CurrentParamIndex >= count;
+        }
+
         private void SetEntityParameter(string value)
         {
             try
             {
                 if (CurrentInstance.Entity != null)
+                {
                     CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
+                }
             }
             catch (Exception e)
             {
+                if (IsExtendedParameter())
+                {
+                    // Extended parameters are permitted. But we should log a warning, because it might result in missing data
+                    Logger?.LogWarning("Entity #{entityLabel}={entityType} uses extended parameter at index {paramIndex}. This data will be lost.", 
+                        CurrentInstance.EntityLabel,
+                        CurrentInstance.Entity.GetType().Name,
+                        CurrentInstance.CurrentParamIndex);
+                    return;
+                }
+                
                 // return silently if this kind of error has already been reported
                 if (!_errors.AddPropertyNotSet(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, PropertyValue, e))
                     return;

@@ -528,11 +528,21 @@ namespace Xbim.Common.Model
                 if (sid == null)
                 {
                     //add in a bit of flexibility for old Ifc models with weird schema names
-                    var old2xSchemaNamesThatAreOK = new[] { "IFC2X_FINAL", "IFC2X2_FINAL", "IFC2X2", "IFC2X4_RC3" };
-                    if(old2xSchemaNamesThatAreOK.FirstOrDefault(s => string.Equals(s, id, StringComparison.OrdinalIgnoreCase))==null)
-                        throw new XbimParserException("Mismatch between schema defined in the file and schemas available in the data model.");
-                    else
+                    var ifc2xSchemaNamesThatAreOK = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "IFC2X_FINAL", "IFC2X2_FINAL", "IFC2X2", "IFC2X4_RC3" };
+                    var ifc4x3SchemaNamesThatAreOK = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "IFC4X3_RC2", "IFC4X3_RC4", "IFC4X3" };
+                    if (ifc2xSchemaNamesThatAreOK.Contains(id))
+                    {
                         sid = EntityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, "IFC2X3", StringComparison.OrdinalIgnoreCase));
+                    }
+                    else if (ifc4x3SchemaNamesThatAreOK.Contains(id))
+                    {
+                        sid = EntityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, "IFC4X3_ADD1", StringComparison.OrdinalIgnoreCase));
+                    }
+                    else
+                    {
+                        var available = string.Concat(", ", EntityFactory.SchemasIds);
+                        throw new XbimParserException($"Mismatch between schema '{id}' defined in the file and schemas available in the entity factory [{available}].");
+                    }
                 }
                 //if the case is different set it to the one from entity factory
                 if (id != sid)
