@@ -67,6 +67,10 @@ namespace Xbim.Ifc
 
                     writer.Write(model, xmlWriter, all);
                 }
+                else if (schema == XbimSchemaVersion.Ifc4x3)
+                {
+                    throw new System.NotImplementedException();
+                }
                 xmlWriter.Close();
             }
         }

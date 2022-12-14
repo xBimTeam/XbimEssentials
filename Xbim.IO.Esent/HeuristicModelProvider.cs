@@ -119,6 +119,8 @@ namespace Xbim.Ifc
             var schemaIdentifier = string.Join(", ", schemas);
             foreach (var schema in schemas)
             {
+                if (schema.StartsWith("Ifc4x3", StringComparison.OrdinalIgnoreCase))
+                    return XbimSchemaVersion.Ifc4x3;
                 if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0 ||
                     schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                     return XbimSchemaVersion.Ifc4;
