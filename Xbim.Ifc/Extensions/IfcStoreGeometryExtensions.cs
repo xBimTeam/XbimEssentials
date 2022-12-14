@@ -131,7 +131,9 @@ namespace Xbim.Ifc
                 var toIgnore = new short[4];
                 toIgnore[0] = model.Metadata.ExpressTypeId("IFCOPENINGELEMENT");
                 toIgnore[1] = model.Metadata.ExpressTypeId("IFCPROJECTIONELEMENT");
-                if (model.SchemaVersion == XbimSchemaVersion.Ifc4 || model.SchemaVersion == XbimSchemaVersion.Ifc4x1)
+                if (model.SchemaVersion == XbimSchemaVersion.Ifc4 || 
+                    model.SchemaVersion == XbimSchemaVersion.Ifc4x1 || 
+                    model.SchemaVersion == XbimSchemaVersion.Ifc4x3)
                 {
                     toIgnore[2] = model.Metadata.ExpressTypeId("IFCVOIDINGFEATURE");
                     toIgnore[3] = model.Metadata.ExpressTypeId("IFCSURFACEFEATURE");

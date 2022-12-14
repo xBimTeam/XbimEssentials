@@ -115,6 +115,8 @@ namespace Xbim.IO.Memory
         {
             foreach (var schema in schemas)
             {
+                if (schema.StartsWith("Ifc4x3", StringComparison.OrdinalIgnoreCase))
+                    return XbimSchemaVersion.Ifc4x3;
                 if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0 ||
                     schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                     return XbimSchemaVersion.Ifc4;
@@ -288,6 +290,8 @@ namespace Xbim.IO.Memory
                     return new Ifc4.EntityFactoryIfc4();
                 case XbimSchemaVersion.Ifc4x1:
                     return new Ifc4.EntityFactoryIfc4x1();
+                case XbimSchemaVersion.Ifc4x3:
+                    return new Ifc4x3.EntityFactoryIfc4x3Add1();
                 case XbimSchemaVersion.Ifc2X3:
                     return new Ifc2x3.EntityFactoryIfc2x3();
                 case XbimSchemaVersion.Cobie2X4:
