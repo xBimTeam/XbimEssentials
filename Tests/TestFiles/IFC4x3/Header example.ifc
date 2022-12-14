@@ -1,0 +1,13 @@
+ISO-10303-21; 
+
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition[Alignment-basedReferenceView]'),'2;1');
+FILE_NAME('Header example.ifc', '2022-09-16T10:35:07', ('Evandro Alfieri'), ('buildingSMART Int.'), 'MyToolboxName Version 1.0', 'MyApplicationName Version 22', 'none');
+FILE_SCHEMA(('IFC4X3_ADD1'));
+ENDSEC;
+
+DATA;
+#1 =(); …
+ENDSEC;
+
+END-ISO-10303-21;
