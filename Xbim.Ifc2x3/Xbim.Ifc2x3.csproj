@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <Title>Xbim IFC2x3</Title>
-    <Description>Provides supports the IFC2x3 schema.</Description>
+    <Description>Implementation of the IFC2x3 schema.</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
