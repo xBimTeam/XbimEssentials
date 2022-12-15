@@ -685,7 +685,7 @@ namespace Xbim.Common.Step21
                 foreach (var schema in FileSchema.Schemas)
                 {
                     if (schema.StartsWith("Ifc4x3", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
-                        return XbimSchemaVersion.Ifc4X3;
+                        return XbimSchemaVersion.Ifc4x3;
                     if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0 ||
                         schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                         return XbimSchemaVersion.Ifc4;                    
