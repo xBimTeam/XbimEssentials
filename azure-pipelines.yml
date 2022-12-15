@@ -28,6 +28,10 @@ variables:
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(major).$(minor).$(buildNo)
 
 steps:
+
+- checkout: self
+  persistCredentials: true
+
 # Windows script setting up  $(packageversion) of the nuget package based on branch
 # Master branch
 - script: |
@@ -203,3 +207,32 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts'
     
+  # Generate docs and push them to the documentation repo
+
+- powershell: |
+    choco install docfx -y
+    docfx docs/docfx.json
+    if ($lastexitcode -ne 0){
+      throw ("Error generating document")
+    }
+  displayName: 'Generate Documentation'
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+   
+
+- task: CopyFiles@2
+  displayName: 'Copy generated docs to artifacts directory'
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)\\docs\\_build'
+    Contents: |
+      **
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\\docs'
+    flattenFolders: false
+    OverWrite: true
+ 
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts: docs'
+  inputs:
+     pathtoPublish: '$(Build.ArtifactStagingDirectory)/docs' 
+     artifactName: docs

@@ -56,6 +56,21 @@ namespace Xbim.IO.Step21
 
                 return result;
             }
+            if (!string.IsNullOrEmpty(fmt) && fmt.ToUpper() == "G17" && arg is double)
+            {
+                var dArg = (double)arg;
+                var result = dArg.ToString("G17", StepText.DoubleCulture); 
+
+                if (result.Contains(".")) 
+                    return result;
+
+                if (result.Contains("E"))
+                    result = result.Replace("E", ".E");
+                else
+                    result += ".";
+
+                return result;
+            }
             if (!string.IsNullOrEmpty(fmt) && fmt.ToUpper() == "T") //TimeStamp
             {
                 if (!(arg is DateTime))

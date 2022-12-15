@@ -529,8 +529,8 @@ namespace Xbim.Ifc
                          (_defaultOwningApplication =
                              Instances.New<Ifc4.UtilityResource.IfcApplication>(a =>
                              {
-                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                                 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
+                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
+                                 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.ApplicationDevelopersName);
                                  a.ApplicationFullName = EditorDetails.ApplicationFullName;
                                  a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
                                  a.Version = EditorDetails.ApplicationVersion;
@@ -552,8 +552,8 @@ namespace Xbim.Ifc
                         (_defaultOwningApplication =
                             Instances.New<Ifc2x3.UtilityResource.IfcApplication>(a =>
                             {
-                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                                ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
+                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
+                                ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.ApplicationDevelopersName);
                                 a.ApplicationFullName = EditorDetails.ApplicationFullName;
                                 a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
                                 a.Version = EditorDetails.ApplicationVersion;
