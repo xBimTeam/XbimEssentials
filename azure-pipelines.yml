@@ -86,6 +86,14 @@ steps:
 - script: dotnet pack -c Release -o $(Build.BinariesDirectory) /p:PackageVersion=$(packageversion)
   displayName: 'Building and packaging all Xbim Essentials packages'
   
+# Essentials meta package
+- powershell: |
+    ((Get-Content -path Xbim.Essentials.tmpl -Raw) -replace '{{version}}','$(packageversion)') | Set-Content -Path Xbim.Essentials.nuspec
+  displayName: 'Xbim.Essentials - Setting packageversion $(packageversion)'
+
+- script: nuget pack Xbim.Essentials.nuspec -OutputDirectory $(Build.BinariesDirectory)
+  displayName: 'Xbim.Essentials - packing'
+  
 # Copy artifacts and Publish
 - task: CopyFiles@2
   displayName: 'Copy to artifacts'
