@@ -126,15 +126,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts'
-    
-    
-# 
-- script: |
-    git config --global user.name "BuildService"
-    git config --global user.email "info@xbim.net"
-    git tag $(packageversion)
-    git push origin $(packageversion)
-  workingDirectory: $(Build.SourcesDirectory)
+
   
 # Generate docs and push them to the documentation repo
 
