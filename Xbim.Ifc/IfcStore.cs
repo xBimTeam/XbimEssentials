@@ -1008,6 +1008,8 @@ namespace Xbim.Ifc
                         //managed resources
                         if (Model is IDisposable disposeInterface)
                             disposeInterface.Dispose();
+
+                        Model = null;
                     }
                     //unmanaged, mostly Esent related                  
                 }

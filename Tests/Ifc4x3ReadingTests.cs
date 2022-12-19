@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System.IO;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc;
 using Xbim.Ifc4x3;
@@ -75,5 +76,24 @@ namespace Xbim.Essentials.Tests
             exception.Should().BeNull();
         }
 
+        [Theory]
+        [InlineData(@"TestFiles\IFC4x3\test2.ifc")]
+        public void Ifc4_interfaces_can_be_used_to_read_IFC4x3(string file)
+        {
+            var config = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .WriteTo.Console()
+                .WriteTo.Debug()
+                .CreateLogger();
+            var logger = (new LoggerFactory()).AddSerilog(config).CreateLogger(typeof(IModel));
+
+            using var model = IfcStore.Open(file);
+            var productsIfc4x3 = model.Instances.OfType<Ifc4x3.Kernel.IfcProduct>().Count();
+            var productsIfc4 = model.Instances.OfType<Ifc4.Interfaces.IIfcProduct>().Count();
+            
+            productsIfc4x3.Should().BeGreaterThan(0);
+            productsIfc4x3.Should().Be(productsIfc4);
+
+        }
     }
 }
