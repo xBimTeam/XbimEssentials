@@ -1751,7 +1751,7 @@ namespace Xbim.Ifc4x3
 		public XbimSchemaVersion SchemaVersion { 
 			get
 			{
-				return XbimSchemaVersion.Unsupported;
+				return XbimSchemaVersion.Ifc4x3;
 			}
 		}
 
