@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xbim.Common.Metadata;
+using Xbim.Ifc4.Interfaces;
 
-namespace Xbim.Ifc4.Interfaces
+namespace Xbim.Ifc4x3
 {
     /// <summary>
-    /// This helper is using reflection because IfcValue types are identicla between IFC4 and IFC4x3
+    /// This helper is using reflection because IfcValue types are identical between IFC4 and IFC4x3
     /// </summary>
     public static class IfcValueHelper
     {

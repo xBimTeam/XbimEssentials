@@ -7,6 +7,7 @@ using Xbim.Common;
 using Xbim.Common.Model;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4x3;
 using Xbim.Ifc4x3.MeasureResource;
 using Xbim.Ifc4x3.ProductExtension;
 
