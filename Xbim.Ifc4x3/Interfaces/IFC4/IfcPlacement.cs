@@ -26,17 +26,25 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{ 
 			get
 			{
-				//## Handle return of Location for which no match was found
-				//TODO: Handle return of Location for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				// TODO: Martin- I assume this is the right approach?
+				if(Location == null) return null;
+				if(Location is IfcCartesianPoint cart)
+				{
+					return cart;
+				}
+				return null;
 			} 
 			set
 			{
-				//## Handle setting of Location for which no match was found
-				//TODO: Handle setting of Location for which no match was found
-				throw new System.NotImplementedException();
-				//##
+                if (value == null)
+                {
+                    Location = null;
+                    return;
+                }
+                if(value is IfcCartesianPoint cp)
+				{
+					Location = cp;
+				}
 				
 			}
 		}
