@@ -21,7 +21,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Memory" Version="4.5.4" />
+		<PackageReference Include="System.Memory" Version="4.5.5" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />

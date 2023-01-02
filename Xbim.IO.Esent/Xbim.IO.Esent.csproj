@@ -21,10 +21,10 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net47' ">
-    <PackageReference Include="ManagedEsent" Version="1.9.4" />
+    <PackageReference Include="ManagedEsent" Version="[1.9.4]" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.3" />
   </ItemGroup>
 
 	<ItemGroup>
