@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net45;net46;net47;netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0</TargetFrameworks>
+		<TargetFrameworks>net462;net47;netstandard2.0;netstandard2.1;netcoreapp3.1;net6.0</TargetFrameworks>
 		<Title>Xbim Common</Title>
 		<Description>Provides support for the Xbim commonly used behaviours and interfaces.</Description>
 	</PropertyGroup>
@@ -16,12 +16,12 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net46'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Memory" Version="4.5.4" />
+		<PackageReference Include="System.Memory" Version="4.5.5" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />

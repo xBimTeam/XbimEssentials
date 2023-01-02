@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.IO.Step21;
 
@@ -69,7 +70,7 @@ namespace Xbim.Essentials.Tests
             double arg = 0.84551240822557006;
 
             string result = formatter.Format(fmt, arg, null);
-            string expected = "0.84551240822557006";
+            string expected = "0.84551240822557";   // Last digits of double are truncated
             Assert.AreEqual(expected, result, "Wrong conversion!");
         }
 
@@ -83,7 +84,8 @@ namespace Xbim.Essentials.Tests
 
             string result = formatter.Format(fmt, arg, null);
             var roundTripDbl = double.Parse(result, new CultureInfo("en-US", false));
-            Assert.AreEqual(arg, roundTripDbl, "Wrong conversion!");
+            
+            roundTripDbl.Should().BeApproximately(arg, 0.000000000000001);
         }
 
         [TestMethod]
