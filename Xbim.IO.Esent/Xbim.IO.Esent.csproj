@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;net47;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net47;netstandard2.0</TargetFrameworks>
     <Company>Xbim Ltd.</Company>
     <Title>Xbim IO for ESENT</Title>
     <Description>Manages Ifc or STEP Models backed by the ESENT database. Windows only.</Description>
@@ -20,11 +20,11 @@
     <!-- New Microsoft.Database.ManagedEsent is not signed -->
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net47' ">
-    <PackageReference Include="ManagedEsent" Version="1.9.4" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net47' ">
+    <PackageReference Include="ManagedEsent" Version="[1.9.4]" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.3" />
   </ItemGroup>
 
 	<ItemGroup>

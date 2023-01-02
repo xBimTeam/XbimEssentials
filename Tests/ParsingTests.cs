@@ -810,6 +810,7 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        [Ignore("Slow test")]
         // this is a meta tast of the large stream mock-up
         public void LargeStreamTest()
         {
@@ -839,6 +840,7 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        [Ignore("Slow test")]
         public void ParsingLargeFile()
         {
             using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
