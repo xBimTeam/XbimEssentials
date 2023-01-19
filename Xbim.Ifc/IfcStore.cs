@@ -201,6 +201,7 @@ namespace Xbim.Ifc
         /// If are opening an *.xbim file you should also use the path-based overload because Esent database needs to operate 
         /// on the file and this function will have to create temporal file if it is not a file stream.
         /// If the input is a FileStream, be aware this method may call <see cref="Stream.Close"/> on it to keep exclusive access.
+        /// Note: the position of <see cref="Stream"/> should be at the start of the IFC model data
         /// </summary>
         /// <param name="stream">Stream of data</param>
         /// <param name="dataType">Type of data (*.ifc, *.ifcxml, *.ifczip)</param>
