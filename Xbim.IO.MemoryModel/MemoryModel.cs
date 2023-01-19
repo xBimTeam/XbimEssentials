@@ -115,11 +115,10 @@ namespace Xbim.IO.Memory
         {
             foreach (var schema in schemas)
             {
-                if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0 ||
-                    schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
-                    return XbimSchemaVersion.Ifc4;
                 if (string.Equals(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase))
                     return XbimSchemaVersion.Ifc4x1; 
+                if (schema.StartsWith("Ifc4", StringComparison.OrdinalIgnoreCase))
+                    return XbimSchemaVersion.Ifc4;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     return XbimSchemaVersion.Ifc2X3;
                 if (schema.StartsWith("Cobie2X4", StringComparison.OrdinalIgnoreCase)) //return this as Cobie
