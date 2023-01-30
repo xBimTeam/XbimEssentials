@@ -1,11 +1,15 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.IO;
+using Xbim.Common;
 using Xbim.Common.Geometry;
 
 
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces
 {
+    /// <summary>
+    /// Interface defining contracts for working with the xbim Geometry engine
+    /// </summary>
     public interface IXbimGeometryEngine
     {
        
@@ -162,5 +166,17 @@ namespace Xbim.Ifc4.Interfaces
         string ToBrep(IXbimGeometryObject geometryObject);
         void WriteBrep(string filename, IXbimGeometryObject geomObj);
         IXbimGeometryObject ReadBrep(string filename);
+
+        /// <summary>
+        /// Registers a model with geometry engine services
+        /// </summary>
+        /// <param name="model"></param>
+        void RegisterModel(IModel model);
+
+        /// <summary>
+        /// Unregister a model from its geometry engine services
+        /// </summary>
+        /// <param name="model"></param>
+        void UnregisterModel(IModel model);
     }
 }
