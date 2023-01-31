@@ -167,14 +167,22 @@ namespace Xbim.Ifc4.Interfaces
         void WriteBrep(string filename, IXbimGeometryObject geomObj);
         IXbimGeometryObject ReadBrep(string filename);
 
+        
+    }
+
+    /// <summary>
+    /// A managed Geometry Engine
+    /// </summary>
+    public interface IXbimManagedGeometryEngine : IXbimGeometryEngine
+    {
         /// <summary>
-        /// Registers a model with geometry engine services
+        /// Associates a model with native geometry engine services
         /// </summary>
         /// <param name="model"></param>
         void RegisterModel(IModel model);
 
         /// <summary>
-        /// Unregister a model from its geometry engine services
+        /// Disassociate a model from its native geometry engine services
         /// </summary>
         /// <param name="model"></param>
         void UnregisterModel(IModel model);
