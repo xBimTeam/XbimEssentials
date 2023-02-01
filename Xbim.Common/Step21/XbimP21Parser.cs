@@ -12,6 +12,7 @@
 
 #region Directives
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using QUT.Gppg;
 using System;
@@ -20,6 +21,7 @@ using System.IO;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Parser;
@@ -31,7 +33,7 @@ namespace Xbim.IO.Step21
 {
     public class XbimP21Parser : P21Parser
     {
-        public ILogger Logger { get; private set; }
+        protected ILogger Logger { get; private set; }
         public event ReportProgressDelegate ProgressStatus;
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
         protected int ListNestLevel = -1;
@@ -52,10 +54,11 @@ namespace Xbim.IO.Step21
             get { return ListNestLevel > 0 ? _nestedIndex.ToArray() : null; }
         }
 
-        public XbimP21Parser(Stream strm, long streamSize , ILogger logger)
-            : base(strm)
+        public XbimP21Parser(Stream strm, long streamSize , ILoggerFactory loggerFactory)
+            : base(strm, loggerFactory)
         {
-            Logger = logger ?? XbimLogging.CreateLogger<XbimP21Parser>();
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            Logger = loggerFactory.CreateLogger<XbimP21Parser>();
             var entityApproxCount = 5000;
             if (streamSize > 0)
             {
@@ -68,9 +71,10 @@ namespace Xbim.IO.Step21
             ErrorCount = 0;
         }
 
-        protected XbimP21Parser(ILogger logger)
+        protected XbimP21Parser(ILoggerFactory loggerFactory) : base(loggerFactory) 
         {
-            Logger = logger ?? XbimLogging.CreateLogger<XbimP21Parser>();
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            Logger = loggerFactory.CreateLogger<XbimP21Parser>();
             const int entityApproxCount = 5000;
             _entities = new Dictionary<long, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 2); //assume 50% deferred

@@ -12,7 +12,7 @@ namespace Xbim.Essentials.NetCore.Tests
         [TestMethod]
         public void CanCreateEsentModel()
         {
-            var esentModel = new Xbim.IO.Esent.EsentModel(new EntityFactoryIfc4());
+            var esentModel = new Xbim.IO.Esent.EsentModel(new EntityFactoryIfc4(), default);
 
             Assert.IsNotNull(esentModel);
         }

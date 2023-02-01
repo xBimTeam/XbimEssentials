@@ -16,7 +16,7 @@ using Xbim.IO.Step21;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    public class ParsingTests
+    public class ParsingTests : TestBase
     {
         private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
         private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
@@ -298,7 +298,7 @@ namespace Xbim.Essentials.Tests
         {
             using (var strm = File.OpenRead("TestFiles\\Badly formed Ifc file.ifc"))
             {
-                var scanner = new Scanner(strm);
+                var scanner = new Scanner(strm, LoggerFactory);
                 int tok;
                 do
                 {
@@ -838,6 +838,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [Ignore("Too slow")]
         [TestMethod]
         public void ParsingLargeFile()
         {

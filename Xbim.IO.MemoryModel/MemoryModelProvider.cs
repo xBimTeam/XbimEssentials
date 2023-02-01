@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Step21;
 
 namespace Xbim.IO.Memory
@@ -10,6 +13,18 @@ namespace Xbim.IO.Memory
     /// </summary>
     public class MemoryModelProvider : BaseModelProvider
     {
+        private readonly ILoggerFactory _loggerFactory;
+
+        public MemoryModelProvider() : this(default)
+        {
+
+        }
+
+        public MemoryModelProvider(ILoggerFactory loggerFactory)
+        {
+            _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+        }
+
         public override StoreCapabilities Capabilities =>  new StoreCapabilities(isTransient: true, supportsTransactions: true);
 
         public override void Close(IModel model)
@@ -25,7 +40,7 @@ namespace Xbim.IO.Memory
         public override IModel Create(XbimSchemaVersion ifcVersion, XbimStoreType storageType)
         {
             var factory = GetFactory(ifcVersion);
-            return new MemoryModel(factory);
+            return new MemoryModel(factory, _loggerFactory);
         }
 
         public override string GetLocation(IModel model)
@@ -127,10 +142,10 @@ namespace Xbim.IO.Memory
             throw new NotImplementedException("MemoryModelProvider is a transient store and does not support persistance");
         }
 
-        private MemoryModel CreateMemoryModel(XbimSchemaVersion schema)
+        private MemoryModel CreateMemoryModel(XbimSchemaVersion schema, ILoggerFactory loggerFactory = null)
         {
             var factory = GetFactory(schema);
-            return new MemoryModel(factory);
+            return new MemoryModel(factory, loggerFactory);
         }
     }
 }

@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Configuration;
 using Xbim.Common.Step21;
 using Xbim.IO;
 using Xbim.IO.Esent;
@@ -24,6 +27,18 @@ namespace Xbim.Ifc
     /// </remarks>
     public class HeuristicModelProvider : BaseModelProvider
     {
+        private readonly ILoggerFactory _loggerFactory;
+
+        public HeuristicModelProvider() : this(default)
+        {
+
+        }
+
+        public HeuristicModelProvider(ILoggerFactory loggerFactory)
+        {
+            _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+        }
+
         /// <summary>
         /// The default largest size in MB for an IFC file to be loaded into memory, above this size the store will choose to use 
         /// the database storage media to minimise the memory footprint. This size can be set in the config file or in the open 
@@ -35,6 +50,9 @@ namespace Xbim.Ifc
         /// Describes the capabilities of the provider
         /// </summary>
         public override StoreCapabilities Capabilities => new StoreCapabilities(isTransient: false, supportsTransactions: true);
+
+
+
 
         /// <summary>
         /// Closes a Model store, releasing any resources
@@ -77,7 +95,7 @@ namespace Xbim.Ifc
                 return EsentModel.CreateTemporaryModel(factory);
             }
 
-            return new MemoryModel(factory);
+            return new MemoryModel(factory, _loggerFactory);
         }
 
         /// <summary>
@@ -321,7 +339,7 @@ namespace Xbim.Ifc
 
             // Create a new Esent model for this Model => Model copy
             var factory = GetFactory(model.SchemaVersion);
-            using (var esentDb = new EsentModel(factory))
+            using (var esentDb = new EsentModel(factory, _loggerFactory))
             {
                 esentDb.CreateFrom(model, fileName, progDelegate);
                 esentDb.Close();
@@ -331,7 +349,7 @@ namespace Xbim.Ifc
         private EsentModel CreateEsentModel(XbimSchemaVersion schema, int codePageOverride)
         {
             var factory = GetFactory(schema);
-            var model = new EsentModel(factory)
+            var model = new EsentModel(factory, _loggerFactory)
             {
                 CodePageOverride = codePageOverride
             };
@@ -341,7 +359,7 @@ namespace Xbim.Ifc
         private MemoryModel CreateMemoryModel(XbimSchemaVersion schema)
         {
             var factory = GetFactory(schema);
-            return new MemoryModel(factory);
+            return new MemoryModel(factory, _loggerFactory);
         }
 
         

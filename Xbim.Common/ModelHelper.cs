@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -588,9 +589,9 @@ namespace Xbim.Common
         #endregion
 
         #region Schema Version
-        public static List<string> GetStepFileSchemaVersion(Stream stream)
+        public static List<string> GetStepFileSchemaVersion(Stream stream, ILoggerFactory loggerFactory = null)
         {
-            var scanner = new Scanner(stream);
+            var scanner = new Scanner(stream, loggerFactory);
             int tok = scanner.yylex();
             int dataToken = (int)Tokens.DATA;
             int eof = (int)Tokens.EOF;

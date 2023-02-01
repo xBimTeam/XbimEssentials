@@ -7,7 +7,6 @@
 
       IfcStore
       IfcValidator
-      DefaultModelProviderFactory
       XbimReferencedModel
     </Description>
     <RootNamespace>Xbim.Ifc</RootNamespace>

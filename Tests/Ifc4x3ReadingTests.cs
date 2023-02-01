@@ -11,8 +11,10 @@ using Xunit;
 
 namespace Xbim.Essentials.Tests
 {
-    public class Ifc4x3ReadingTests
+    [Collection(nameof(xUnitBootstrap))]
+    public class Ifc4x3ReadingTests: TestBase
     {
+            
         [Theory]
         [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-1.ifc")]
         [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-2.ifc")]
@@ -29,15 +31,17 @@ namespace Xbim.Essentials.Tests
         [InlineData(@"TestFiles\IFC4x3\test2.ifc")]
         public void CanParseSampleFiles(string file)
         {
+            var loggerFactory = new LoggerFactory();
             var config = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .WriteTo.Console()
                 .WriteTo.Debug()
                 .CreateLogger();
-            var logger = (new LoggerFactory()).AddSerilog(config).CreateLogger(typeof(IModel));
+
+            loggerFactory.AddSerilog(config);
 
             using var stream = File.OpenRead(file);
-            var model = new MemoryModel(new EntityFactoryIfc4x3Add1(), logger)
+            var model = new MemoryModel(new EntityFactoryIfc4x3Add1(), loggerFactory)
             {
                 AllowMissingReferences = false
             };
@@ -69,23 +73,17 @@ namespace Xbim.Essentials.Tests
                 .CreateLogger();
             var logger = (new LoggerFactory()).AddSerilog(config).CreateLogger(typeof(IModel));
 
-            var exception = Record.Exception(() =>
-            {
-                using var model = IfcStore.Open(file);
-            });
-            exception.Should().BeNull();
+       
+            using var model = IfcStore.Open(file);
+
+            model.Should().NotBeNull();
         }
 
         [Theory]
         [InlineData(@"TestFiles\IFC4x3\test2.ifc")]
         public void Ifc4_interfaces_can_be_used_to_read_IFC4x3(string file)
         {
-            var config = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .WriteTo.Console()
-                .WriteTo.Debug()
-                .CreateLogger();
-            var logger = (new LoggerFactory()).AddSerilog(config).CreateLogger(typeof(IModel));
+       
 
             using var model = IfcStore.Open(file);
             var productsIfc4x3 = model.Instances.OfType<Ifc4x3.Kernel.IfcProduct>().Count();

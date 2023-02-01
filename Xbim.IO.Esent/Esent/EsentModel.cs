@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
+using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 
@@ -67,10 +69,21 @@ namespace Xbim.IO.Esent
             protected set;
         }
 
-
-        public EsentModel(IEntityFactory factory)
+        /// <summary>
+        /// Constructs a new <see cref="EsentModel"/>
+        /// </summary>
+        /// <param name="factory"></param>
+        public EsentModel(IEntityFactory factory) : this(factory, default(ILoggerFactory))
         {
-            Logger = XbimLogging.CreateLogger<EsentModel>();
+        }
+
+        /// <summary>
+        /// Constructs a new <see cref="EsentModel"/>
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="loggerFactory"></param>
+        public EsentModel(IEntityFactory factory, ILoggerFactory loggerFactory) : this(loggerFactory)
+        {
             Init(factory);
         }
 
@@ -78,15 +91,20 @@ namespace Xbim.IO.Esent
         /// Only inherited models can call parameter-less constructor and it is their responsibility to 
         /// call Init() as the very first thing.
         /// </summary>
-        internal EsentModel()
+        internal EsentModel() : this(default(ILoggerFactory))
         {
-            Logger = XbimLogging.CreateLogger<EsentModel>();
+        }
+
+        private EsentModel(ILoggerFactory loggerFactory)
+        {
+            _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            Logger = _loggerFactory.CreateLogger<EsentModel>();
         }
 
         protected void Init(IEntityFactory factory)
         {
             _factory = factory;
-            InstanceCache = new PersistedEntityInstanceCache(this, factory);
+            InstanceCache = new PersistedEntityInstanceCache(this, factory, _loggerFactory);
             InstancesLocal = new XbimInstanceCollection(this);
             var r = new Random();
             UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
@@ -456,7 +474,8 @@ namespace Xbim.IO.Esent
             return true;
         }
 
-        public virtual bool CreateFrom(Stream inputStream, long streamSize, StorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false)
+        public virtual bool CreateFrom(Stream inputStream, long streamSize, StorageType streamType, string xbimDbName, ReportProgressDelegate progDelegate = null, bool keepOpen = false, bool cacheEntities = false,
+            ILoggerFactory loggerFactory = default)
         {
             Close();
             if (streamType.HasFlag(StorageType.IfcZip) ||
@@ -478,13 +497,13 @@ namespace Xbim.IO.Esent
         /// It will be returned open for read write operations
         /// </summary>
         /// <returns></returns>
-        static public EsentModel CreateTemporaryModel(IEntityFactory factory)
+        static public EsentModel CreateTemporaryModel(IEntityFactory factory, ILoggerFactory loggerFactory = null)
         {
-
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
             var tmpFileName = Path.GetTempFileName();
             try
             {
-                var model = new EsentModel(factory);
+                var model = new EsentModel(factory, loggerFactory);
                 model.CreateDatabase(tmpFileName);
                 model.Open(tmpFileName, XbimDBAccess.ReadWrite, true);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, model);
@@ -517,14 +536,16 @@ namespace Xbim.IO.Esent
         /// <param name="factory">Entity factory to be used for deserialization</param>
         /// <param name="dbFileName">Name of the Xbim file</param>
         /// <param name="access"></param>
+        /// <param name="loggerFactory"></param>
         /// <returns></returns>
-        static public EsentModel CreateModel(IEntityFactory factory, string dbFileName, XbimDBAccess access = XbimDBAccess.ReadWrite)
+        static public EsentModel CreateModel(IEntityFactory factory, string dbFileName, XbimDBAccess access = XbimDBAccess.ReadWrite, ILoggerFactory loggerFactory = default)
         {
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
             try
             {
                 if (string.IsNullOrWhiteSpace(Path.GetExtension(dbFileName)))
                     dbFileName += ".xBIM";
-                var model = new EsentModel(factory);
+                var model = new EsentModel(factory, loggerFactory);
                 model.CreateDatabase(dbFileName);
                 model.Open(dbFileName, access);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, model) { FileName = { Name = dbFileName } };
@@ -1056,6 +1077,7 @@ namespace Xbim.IO.Esent
 
         #region Federation 
         private readonly ReferencedModelCollection _referencedModels = new ReferencedModelCollection();
+        private readonly ILoggerFactory _loggerFactory;
         private EsentGeometryStore _geometryStore;
         private IStepFileHeader _header;
 
@@ -1140,7 +1162,7 @@ namespace Xbim.IO.Esent
         {
             //create a temporary model
             var esentModel = new EsentModel();
-            esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null);
+            esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null, default);
 
             esentModel.InstanceCache.DatabaseName = fileName;
             IStepFileHeader header;
@@ -1231,7 +1253,7 @@ namespace Xbim.IO.Esent
             get { return Factory.SchemaVersion; }
         }
 
-        public ILogger Logger { get; set; }
+        protected ILogger Logger { get; set; }
 
         public IEntityCache EntityCache => null;
     }
