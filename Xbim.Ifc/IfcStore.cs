@@ -70,8 +70,10 @@ namespace Xbim.Ifc
 
         static IfcStore()
         {
-
-            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit());
+            if(!XbimServices.Current.IsBuilt)
+            {
+                XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit());
+            }
             ModelProviderFactory = XbimServices.Current.ServiceProvider.GetRequiredService<IModelProviderFactory>();
         }
 

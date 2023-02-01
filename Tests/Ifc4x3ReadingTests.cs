@@ -12,14 +12,9 @@ using Xunit;
 
 namespace Xbim.Essentials.Tests
 {
+    [Collection(nameof(xUnitBootstrap))]
     public class Ifc4x3ReadingTests
     {
-
-        public Ifc4x3ReadingTests()
-        {
-            // Reset DI each test to help with stability. TODO: revisit
-            XbimServices.Current.Rebuild();
-        }
             
         [Theory]
         [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-1.ifc")]

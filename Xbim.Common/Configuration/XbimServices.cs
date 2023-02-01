@@ -40,6 +40,11 @@ namespace Xbim.Common.Configuration
 
 
         /// <summary>
+        /// Flag indicating if the DI container has been built
+        /// </summary>
+        public bool IsBuilt { get => isBuilt; }
+
+        /// <summary>
         /// Configure the internal <see cref="IServiceCollection"/>.
         /// </summary>
         /// <remarks>This cannot be called after <see cref="ServiceProvider"/> has been used since 

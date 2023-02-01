@@ -27,12 +27,9 @@ namespace Xbim.Common
         /// <returns>The <see cref="IServiceCollection"/> so additional calls can be chained</returns>
         public static IServiceCollection AddXbimToolkit(this IServiceCollection services, Action<IXbimConfigurationBuilder> configure)
         {
-            //services.AddOptions();
-
             
             services.TryAddSingleton<IModelProviderFactory, DefaultModelProviderFactory>();
-
-            //services.TryAddEnumerable(ServiceDescriptor.Singleton((IConfigureOptions<XbimOptions>)new DefaultXbimConfigurationOptions()));
+                        
             configure(new XbimConfigurationBuilder(services));
             return services;
         }
