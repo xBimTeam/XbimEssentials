@@ -73,7 +73,6 @@ namespace Xbim.IO.Esent
         /// Constructs a new <see cref="EsentModel"/>
         /// </summary>
         /// <param name="factory"></param>
-        [Obsolete]
         public EsentModel(IEntityFactory factory) : this(factory, default(ILoggerFactory))
         {
         }

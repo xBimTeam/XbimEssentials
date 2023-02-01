@@ -101,12 +101,12 @@ namespace Xbim.Common.Model
             Logger = _loggerFactory.CreateLogger<StepModel>();
         }
 
-        public StepModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory) : this(entityFactory, loggerFactory, 0)
+        public StepModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory = default) : this(entityFactory, loggerFactory, 0)
         {
         }
 
-        [Obsolete]
-        public StepModel(IEntityFactory entityFactory, ILogger logger = null, int labelFrom = 0) : this(entityFactory, default(ILoggerFactory), labelFrom)
+        [Obsolete("Prefer ILoggerFactory overload instead")]
+        public StepModel(IEntityFactory entityFactory, ILogger logger, int labelFrom) : this(entityFactory, default(ILoggerFactory), labelFrom)
         {
             Logger = logger ?? XbimLogging.CreateLogger<StepModel>();
         }
@@ -122,8 +122,8 @@ namespace Xbim.Common.Model
             ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
         }
 
-        [Obsolete("Prefer ILoggerFactory overload")]
-        public StepModel(EntityFactoryResolverDelegate factoryResolver, ILogger logger = null, int labelFrom = 0) : this(factoryResolver, default(ILoggerFactory), labelFrom) 
+        [Obsolete("Prefer ILoggerFactory overload instead")]
+        public StepModel(EntityFactoryResolverDelegate factoryResolver, ILogger logger, int labelFrom) : this(factoryResolver, default(ILoggerFactory), labelFrom) 
         {
             Logger = Logger ?? logger ?? XbimServices.Current.ServiceProvider.GetRequiredService<ILogger<StepModel>>();
         }

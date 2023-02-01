@@ -123,7 +123,7 @@ namespace Xbim.IO.Memory
                     schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                     return XbimSchemaVersion.Ifc4;
                 if (string.Equals(schema, "Ifc4x1", StringComparison.OrdinalIgnoreCase))
-                    return XbimSchemaVersion.Ifc4x1; 
+                    return XbimSchemaVersion.Ifc4x1;
                 if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
                     return XbimSchemaVersion.Ifc2X3;
                 if (schema.StartsWith("Ifc4x3", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
@@ -138,19 +138,16 @@ namespace Xbim.IO.Memory
         {
             return GetStepFileXbimSchemaVersion(GetStepFileSchemaVersion(stream));
         }
-        public MemoryModel(IEntityFactory entityFactory, IStepFileHeader header, ILoggerFactory loggerFactory = null) : base(entityFactory, loggerFactory, 0) 
+        public MemoryModel(IEntityFactory entityFactory, IStepFileHeader header, ILoggerFactory loggerFactory = default) : base(entityFactory, loggerFactory, 0)
         {
             Header = header;
         }
-        public MemoryModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory, int labelFrom) : base(entityFactory, loggerFactory, labelFrom) { }
+        public MemoryModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory = default, int labelFrom = 0) : base(entityFactory, loggerFactory, labelFrom) { }
 
-        public MemoryModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory) : this(entityFactory, loggerFactory, 0) { }
-
-        [Obsolete("Prefer ILoggerFactory implementation")]
-        public MemoryModel(IEntityFactory entityFactory, ILogger logger = null, int labelFrom = 0) : base(entityFactory, logger, labelFrom) { }
+       // public MemoryModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory) : this(entityFactory, loggerFactory, 0) { }
 
         [Obsolete("Prefer ILoggerFactory implementation")]
-        private MemoryModel(EntityFactoryResolverDelegate resolver, ILogger logger = null, int labelFrom = 0) : base(resolver, logger, labelFrom) { }
+        public MemoryModel(IEntityFactory entityFactory, ILogger logger, int labelFrom) : base(entityFactory, logger, labelFrom) { }
 
         private MemoryModel(EntityFactoryResolverDelegate resolver, ILoggerFactory loggerFactory, int labelFrom = 0) : base(resolver, loggerFactory, labelFrom) { }
 
@@ -262,6 +259,7 @@ namespace Xbim.IO.Memory
             return OpenRead(fileName, loggerFactory, null);
         }
 
+        [Obsolete("Prefer method with ILoggerFactory overload")]
         public static MemoryModel OpenRead(string fileName, ILogger logger, ReportProgressDelegate progressDel = null)
         { 
             return OpenRead(fileName, default(ILoggerFactory), progressDel);  
@@ -343,8 +341,8 @@ namespace Xbim.IO.Memory
         /// <param name="allowMissingReferences">Allow referenced entities that are not in the model, default false</param>
         /// <param name="keepOrder">When true, serialised file will maintain order of entities from the original file (or order of creation)</param>
         /// <returns>New memory model</returns>
-        [Obsolete("??Prefer ILoggerFactory implementation")]
-        public static MemoryModel OpenReadStep21(Stream stream, ILogger logger = null, ReportProgressDelegate progressDel = null,
+        [Obsolete("Prefer ILoggerFactory implementation")]
+        public static MemoryModel OpenReadStep21(Stream stream, ILogger logger, ReportProgressDelegate progressDel = null,
            IEnumerable<string> ignoreTypes = null, bool allowMissingReferences = false, bool keepOrder = true)
         {
             return OpenReadStep21(stream, default(ILoggerFactory), progressDel, ignoreTypes, allowMissingReferences, keepOrder);
@@ -361,7 +359,7 @@ namespace Xbim.IO.Memory
         /// <param name="allowMissingReferences">Allow referenced entities that are not in the model, default false</param>
         /// <param name="keepOrder">When true, serialised file will maintain order of entities from the original file (or order of creation)</param>
         /// <returns>New memory model</returns>
-        public static MemoryModel OpenReadStep21(Stream stream, ILoggerFactory loggerFactory, ReportProgressDelegate progressDel = null,
+        public static MemoryModel OpenReadStep21(Stream stream, ILoggerFactory loggerFactory = null, ReportProgressDelegate progressDel = null,
            IEnumerable<string> ignoreTypes = null, bool allowMissingReferences = false, bool keepOrder = true)
         {
 

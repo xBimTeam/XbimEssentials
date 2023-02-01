@@ -857,15 +857,15 @@ namespace Xbim.IO.Xml
             return input.Value;
         }
 
-        [Obsolete]
-        public static IStepFileHeader ReadHeader(Stream input, ILogger logger = null)
+        [Obsolete("Please use the ILoggerFactory overload")]
+        public static IStepFileHeader ReadHeader(Stream input, ILogger logger)
         {
             var xReader = new XbimXmlReader4(default, logger);
-            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4(), logger);
+            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4(), logger, 0);
             return xReader.Read(input, fakeModel, true); //using a dummy model to get the assembly correct
         }
 
-        public static IStepFileHeader ReadHeader(Stream input, ILoggerFactory loggerFactory)
+        public static IStepFileHeader ReadHeader(Stream input, ILoggerFactory loggerFactory = default)
         {
             var xReader = new XbimXmlReader4(loggerFactory, default);
             var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4(), loggerFactory);

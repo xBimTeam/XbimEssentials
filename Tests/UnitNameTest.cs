@@ -1,7 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Common.Step21;
-using Xbim.Ifc;
 using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
@@ -12,7 +10,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NamedUnitTest2X3()
         {
-            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3(), default))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3()))
             {
                 Ifc2x3.MeasureResource.IfcSIUnit unit;
                 using (var txn = model.BeginTransaction(""))
@@ -53,7 +51,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NamedUnitTest4()
         {
-            using (var model = new MemoryModel(new Ifc4.EntityFactoryIfc4(), default))
+            using (var model = new MemoryModel(new Ifc4.EntityFactoryIfc4()))
             {
                 Ifc4.MeasureResource.IfcSIUnit unit;
                 using (var txn = model.BeginTransaction(""))
