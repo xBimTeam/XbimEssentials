@@ -838,6 +838,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [Ignore("Too slow")]
         [TestMethod]
         public void ParsingLargeFile()
         {

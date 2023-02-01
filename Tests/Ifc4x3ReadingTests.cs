@@ -4,6 +4,7 @@ using Serilog;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Ifc;
 using Xbim.Ifc4x3;
 using Xbim.IO.Memory;
@@ -11,8 +12,10 @@ using Xunit;
 
 namespace Xbim.Essentials.Tests
 {
+    [Collection(nameof(xUnitBootstrap))]
     public class Ifc4x3ReadingTests
     {
+            
         [Theory]
         [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-1.ifc")]
         [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-2.ifc")]
@@ -69,11 +72,10 @@ namespace Xbim.Essentials.Tests
                 .CreateLogger();
             var logger = (new LoggerFactory()).AddSerilog(config).CreateLogger(typeof(IModel));
 
-            var exception = Record.Exception(() =>
-            {
-                using var model = IfcStore.Open(file);
-            });
-            exception.Should().BeNull();
+       
+            using var model = IfcStore.Open(file);
+
+            model.Should().NotBeNull();
         }
 
         [Theory]

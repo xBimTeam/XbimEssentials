@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Xbim.Common.Configuration;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Parser;
 
@@ -13,6 +15,11 @@ namespace Xbim.Ifc
    
     public class XbimTexture 
     {
+        private readonly ILogger logger;
+        public XbimTexture()
+        {
+            logger = XbimServices.Current.ServiceProvider.GetRequiredService<ILogger<XbimTexture>>();
+        }
        
         public readonly XbimColourMap ColourMap = new XbimColourMap();
         /// <summary>
@@ -130,7 +137,7 @@ namespace Xbim.Ifc
             }
             catch (System.Exception ex)
             {
-                rendering.Model.Logger?.LogWarning($"#{DefinedObjectId} attempted to add a duplicate colour (same name).", ex);
+                logger.LogWarning($"#{DefinedObjectId} attempted to add a duplicate colour (same name).", ex);
             }
         }
 

@@ -7,6 +7,7 @@ using Xbim.Common.Metadata;
 using Xbim.IO.Esent;
 using Xbim.IO.Step21;
 using Xbim.IO.Step21.Parser;
+using Microsoft.Extensions.Logging;
 
 namespace Xbim.IO
 {
@@ -388,11 +389,12 @@ namespace Xbim.IO
         /// <param name="br"></param>
         /// <param name="unCached">If true instances inside the properties are not added to the cache</param>
         /// <param name="fromCache"> If true the instance is read from the cache if not present it is created, used during parsing</param>
-        internal static void ReadEntityProperties(this IPersistEntity entity, PersistedEntityInstanceCache cache, BinaryReader br, bool unCached = false, bool fromCache = false)
+        /// <param name="loggerFactory"></param>
+        internal static void ReadEntityProperties(this IPersistEntity entity, PersistedEntityInstanceCache cache, BinaryReader br, ILoggerFactory loggerFactory, bool unCached = false, bool fromCache = false)
         {
             var action = (P21ParseAction)br.ReadByte();
 
-            var parserState = new XbimParserState(entity);
+            var parserState = new XbimParserState(entity, loggerFactory);
             while (action != P21ParseAction.EndEntity)
             {
                 switch (action)
@@ -485,7 +487,7 @@ namespace Xbim.IO
                         parserState.EndEntity();
                         break;
                     case P21ParseAction.NewEntity:
-                        parserState = new XbimParserState(entity);
+                        parserState = new XbimParserState(entity, loggerFactory);
                         break;
                     default:
                         throw new XbimException("Invalid Property Record #" + entity.EntityLabel + " EntityType: " + entity.GetType().Name);

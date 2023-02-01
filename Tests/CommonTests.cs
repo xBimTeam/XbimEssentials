@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -104,7 +105,7 @@ namespace Xbim.Essentials.Tests
                 }
                 var unwantedTypes = allTypes.Except(requiredTypes);
                 var unwanted = new HashSet<string>(unwantedTypes);
-                using (var mm = MemoryModel.OpenReadStep21(strm, null, null, unwantedTypes.ToList()))
+                using (var mm = MemoryModel.OpenReadStep21(strm, default(ILoggerFactory), null, unwantedTypes.ToList()))
                 {
                     foreach(var instance in mm.Instances)
                     {

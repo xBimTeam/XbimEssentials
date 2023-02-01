@@ -13,7 +13,7 @@ namespace Xbim.Essentials.NetCore.Tests
         [TestMethod]
         public void SerializeXML()
         {
-            using (var model = new MemoryModel(new EntityFactoryIfc4()))
+            using (var model = new MemoryModel(new EntityFactoryIfc4(), default))
             {
                 using (var txn = model.BeginTransaction("Create"))
                 {

@@ -20,6 +20,8 @@ using Microsoft.Extensions.Logging;
 using System.IO.Compression;
 using Xbim.IO.Xml;
 using Xbim.Common.Step21;
+using Xbim.Common.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Xbim.IO.Esent
 {
@@ -34,6 +36,8 @@ namespace Xbim.IO.Esent
 
         private Instance _jetInstance;
         private readonly IEntityFactory _factory;
+        private readonly ILoggerFactory _loggerFactory;
+        private readonly ILogger _logger;
         private Session _session;
         private JET_DBID _databaseId;
 
@@ -93,9 +97,11 @@ namespace Xbim.IO.Esent
         private bool _caching;
         private bool _previousCaching;
 
-        public PersistedEntityInstanceCache(EsentModel model, IEntityFactory factory)
+        public PersistedEntityInstanceCache(EsentModel model, IEntityFactory factory, ILoggerFactory loggerFactory)
         {
             _factory = factory;
+            _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _logger = _loggerFactory.CreateLogger<PersistedEntityInstanceCache>();
             _jetInstance = CreateInstance("XbimInstance");
             _lockObject = new object();
             _model = model;
@@ -216,7 +222,7 @@ namespace Xbim.IO.Esent
                 }
             }
             var openMode = AttachedDatabase();
-            return new EsentEntityCursor(_model, _databaseName, openMode);
+            return new EsentEntityCursor(_model, _databaseName, openMode, _loggerFactory);  
         }
 
         private OpenDatabaseGrbit AttachedDatabase()
@@ -264,11 +270,11 @@ namespace Xbim.IO.Esent
                                     // Give the process time to die, as we'll likely be reading files it has open next.
                                     Thread.Sleep(500);
                                 }
-                                Model.Logger.LogWarning("Repair failed {0} after dirty shutdown, time out", _databaseName);
+                                _logger.LogWarning("Repair failed {0} after dirty shutdown, time out", _databaseName);
                             }
                             else
                             {
-                                Model.Logger.LogWarning("Repair success {0} after dirty shutdown", _databaseName);
+                                _logger.LogWarning("Repair success {0} after dirty shutdown", _databaseName);
                                 if (proc != null) proc.Close();
                                 //try again
                                 Api.JetAttachDatabase(_session, _databaseName, openMode == OpenDatabaseGrbit.ReadOnly ? AttachDatabaseGrbit.ReadOnly : AttachDatabaseGrbit.None);
@@ -691,7 +697,7 @@ namespace Xbim.IO.Esent
             {
 
                 _forwardReferences = new BlockingCollection<StepForwardReference>();
-                using (var part21Parser = new P21ToIndexParser(stream, streamSize, table, this, codePageOverride))
+                using (var part21Parser = new P21ToIndexParser(stream, streamSize, table, this, codePageOverride, _loggerFactory))
                 {
                     if (progressHandler != null) part21Parser.ProgressStatus += progressHandler;
                     part21Parser.Parse();
@@ -764,7 +770,7 @@ namespace Xbim.IO.Esent
                             using (var reader = entry.Open())
                             {
                                 _forwardReferences = new BlockingCollection<StepForwardReference>();
-                                using (var part21Parser = new P21ToIndexParser(reader, entry.Length, table, this, codePageOverride))
+                                using (var part21Parser = new P21ToIndexParser(reader, entry.Length, table, this, codePageOverride, _loggerFactory))
                                 {
                                     if (progressHandler != null) part21Parser.ProgressStatus += progressHandler;
                                     part21Parser.Parse();
@@ -813,7 +819,7 @@ namespace Xbim.IO.Esent
                                             ModifiedEntities.TryAdd(e.EntityLabel, e);
                                             //pulse will flush the model if necessary (based on the number of entities being processed)
                                             transaction.Pulse();
-                                        }, Model.Metadata, Model.Logger);
+                                        }, Model.Metadata, _loggerFactory);
                                         if (progressHandler != null) xmlReader.ProgressStatus += progressHandler;
                                         _model.Header = xmlReader.Read(xmlInStream, _model);
                                         if (progressHandler != null) xmlReader.ProgressStatus -= progressHandler;
@@ -884,7 +890,7 @@ namespace Xbim.IO.Esent
                             ModifiedEntities.TryAdd(e.EntityLabel, e);
                             //pulse will flush the model if necessary (based on the number of entities being processed)
                             transaction.Pulse();
-                        }, Model.Metadata, _model.Logger);
+                        }, Model.Metadata, _loggerFactory);
                         if (progressHandler != null) xmlReader.ProgressStatus += progressHandler;
                         _model.Header = xmlReader.Read(inputStream, _model);
                         if (progressHandler != null) xmlReader.ProgressStatus -= progressHandler;
@@ -1215,14 +1221,15 @@ namespace Xbim.IO.Esent
 
             if (type.IsAbstract)
             {
-                Model.Logger.LogError("Illegal Entity in the model #{0}, Type {1} is defined as Abstract and cannot be created", label, type.Name);
+
+                _logger.LogError("Illegal Entity in the model #{0}, Type {1} is defined as Abstract and cannot be created", label, type.Name);
                 return null;
             }
 
             return _read.GetOrAdd(label, l =>
             {
                 var instance = _factory.New(_model, type, label, true);
-                instance.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), false, true);
+                instance.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), _loggerFactory, false, true);
                 return instance;
             }); //might have been done by another
         }
@@ -1259,7 +1266,7 @@ namespace Xbim.IO.Esent
                                 // this has been seen to happen when files attempt to instantiate abstract classes.
                                 return null;
                             }
-                            entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), unCached);
+                            entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), _loggerFactory, unCached);
                         }
                         else
                             entity = _factory.New(_model, currentIfcTypeId, entityLabel, false);
@@ -1316,7 +1323,7 @@ namespace Xbim.IO.Esent
                                     {
                                         var properties = entityTable.GetProperties();
                                         entity.ReadEntityProperties(this,
-                                            new BinaryReader(new MemoryStream(properties)));
+                                            new BinaryReader(new MemoryStream(properties)), _loggerFactory);
                                         FlagSetter.SetActivationFlag(entity, true);
                                     }
                                     entityLabels.Add(entity.EntityLabel);
@@ -1328,7 +1335,7 @@ namespace Xbim.IO.Esent
                                     {
                                         var properties = entityTable.GetProperties();
                                         entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
-                                        entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
+                                        entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), _loggerFactory);
                                     }
                                     else
                                         //the attributes of this entity have not been loaded yet
@@ -1418,7 +1425,7 @@ namespace Xbim.IO.Esent
                                         var properties = entityTable.GetProperties();
                                         entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
                                         entity.ReadEntityProperties(this,
-                                            new BinaryReader(new MemoryStream(properties)));
+                                            new BinaryReader(new MemoryStream(properties)), _loggerFactory);
                                     }
                                     entityLabels.Add(entity.EntityLabel);
                                     yield return (TOType)entity;
@@ -1430,7 +1437,7 @@ namespace Xbim.IO.Esent
                                         var properties = entityTable.GetProperties();
                                         entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
                                         entity.ReadEntityProperties(this,
-                                            new BinaryReader(new MemoryStream(properties)));
+                                            new BinaryReader(new MemoryStream(properties)), _loggerFactory);
                                     }
                                     else
                                         // the attributes of this entity have not been loaded yet
@@ -1477,7 +1484,7 @@ namespace Xbim.IO.Esent
         {
             var bytes = GetEntityBinaryData(entity);
             if (bytes != null)
-                (entity as IInstantiableEntity).ReadEntityProperties(this, new BinaryReader(new MemoryStream(bytes)));
+                (entity as IInstantiableEntity).ReadEntityProperties(this, new BinaryReader(new MemoryStream(bytes)), _loggerFactory);
         }
 
         public void Dispose()
@@ -2437,7 +2444,7 @@ namespace Xbim.IO.Esent
         internal EsentEntityCursor GetWriteableEntityTable()
         {
             AttachedDatabase(); //make sure the database is attached           
-            return new EsentEntityCursor(_model, _databaseName, OpenDatabaseGrbit.None);
+            return new EsentEntityCursor(_model, _databaseName, OpenDatabaseGrbit.None, _loggerFactory);
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
@@ -66,10 +68,20 @@ namespace Xbim.Ifc
         
         private readonly ReferencedModelCollection _referencedModels = new ReferencedModelCollection();
 
+        static IfcStore()
+        {
+            if(!XbimServices.Current.IsBuilt)
+            {
+                XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit());
+            }
+            ModelProviderFactory = XbimServices.Current.ServiceProvider.GetRequiredService<IModelProviderFactory>();
+        }
+
         // Internal Constructor for reading
         protected IfcStore()
         {
             ModelProvider = ModelProviderFactory.CreateProvider();
+            Logger = XbimServices.Current.ServiceProvider.GetRequiredService<ILogger<IfcStore>>();
         }
 
         /// <summary>
@@ -129,7 +141,7 @@ namespace Xbim.Ifc
         {
             get;
             set;
-        } = new DefaultModelProviderFactory();
+        }
 
         private void AssignModel(IModel model, XbimEditorCredentials editorDetails, XbimSchemaVersion schema)
         {
@@ -265,7 +277,7 @@ namespace Xbim.Ifc
         #region IModel
 
         public object Tag { get => Model.Tag; set => Model.Tag = value; }
-        public ILogger Logger { get => Model.Logger; set => Model.Logger = value; }
+        protected ILogger Logger { get; private set; }
         public IInverseCache InverseCache
         {
             get { return Model.InverseCache; }

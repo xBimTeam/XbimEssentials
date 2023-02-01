@@ -12,7 +12,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NamedUnitTest2X3()
         {
-            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3()))
+            using (var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3(), default))
             {
                 Ifc2x3.MeasureResource.IfcSIUnit unit;
                 using (var txn = model.BeginTransaction(""))
@@ -53,7 +53,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void NamedUnitTest4()
         {
-            using (var model = new MemoryModel(new Ifc4.EntityFactoryIfc4()))
+            using (var model = new MemoryModel(new Ifc4.EntityFactoryIfc4(), default))
             {
                 Ifc4.MeasureResource.IfcSIUnit unit;
                 using (var txn = model.BeginTransaction(""))

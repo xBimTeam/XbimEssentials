@@ -1,4 +1,7 @@
-﻿using Xbim.IO;
+﻿using System;
+using Xbim.Common;
+using Xbim.Common.Configuration;
+using Xbim.IO;
 using Xbim.IO.Memory;
 
 namespace Xbim.Ifc
@@ -15,9 +18,12 @@ namespace Xbim.Ifc
         /// </remarks>
         /// <param name="providerFactory">The <see cref="IModelProviderFactory"/> to configure</param>
         /// <returns>The <see cref="IModelProviderFactory"/></returns>
+        
+        [Obsolete("Use XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel())) instead")]
         public static IModelProviderFactory UseMemoryModelProvider(this IModelProviderFactory providerFactory)
         {
-            providerFactory.Use(() => new MemoryModelProvider());
+            
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel()));
             return providerFactory;
         }
     }
