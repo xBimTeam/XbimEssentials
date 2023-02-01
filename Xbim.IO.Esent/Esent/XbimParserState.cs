@@ -1,14 +1,16 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Parser;
 
 namespace Xbim.IO.Esent
 {
-    public class XbimParserState
+    internal class XbimParserState
     {
 
         private readonly ILogger _logger;
@@ -16,9 +18,11 @@ namespace Xbim.IO.Esent
         private readonly List<int> _nestedIndex = new List<int>();
         public int[] NestedIndex { get { return _listNestLevel > 0 ? _nestedIndex.ToArray() : null; } }
 
-        public XbimParserState(IPersistEntity entity, ILogger logger = null)
+
+        public XbimParserState(IPersistEntity entity, ILoggerFactory loggerFactory)
         {
-            _logger = logger ?? XbimLogging.CreateLogger<EsentModel>();
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _logger = loggerFactory.CreateLogger<XbimParserState>();
             _currentInstance = new Part21Entity(entity);
             _processStack.Push(_currentInstance);
             _metadata = entity.Model.Metadata;

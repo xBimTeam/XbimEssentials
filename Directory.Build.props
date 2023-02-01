@@ -6,6 +6,7 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <GenerateDocumentationFile Condition=" '$(IsTestProject)' != 'true' ">true</GenerateDocumentationFile>
     <NoWarn>CS1591</NoWarn>
+    <WarningsNotAsErrors>CS0618</WarningsNotAsErrors>
   </PropertyGroup>
 
   <PropertyGroup>

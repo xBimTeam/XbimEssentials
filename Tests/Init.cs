@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Ifc;
 
 namespace Xbim.Essentials.Tests
@@ -11,7 +13,8 @@ namespace Xbim.Essentials.Tests
         {
             var dummy = Microsoft.Extensions.Logging.Abstractions.NullLogger.Instance;
 
-            IfcStore.ModelProviderFactory.Use(() => new HeuristicModelProvider());
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+
         }
 
 

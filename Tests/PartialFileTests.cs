@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,7 +40,7 @@ namespace Xbim.IfcCore.UnitTests
             using (var s = File.OpenRead(file))
             {
                 var w = Stopwatch.StartNew();
-                var model = MemoryModel.OpenReadStep21(s);
+                var model = MemoryModel.OpenReadStep21(s, default(ILoggerFactory));
                 w.Stop();
                 timeA = w.ElapsedMilliseconds;
                 Console.WriteLine($"Opening complete model: {timeA}");
@@ -54,7 +55,7 @@ namespace Xbim.IfcCore.UnitTests
             using (var s = File.OpenRead(file))
             {
                 var w = Stopwatch.StartNew();
-                var model = MemoryModel.OpenReadStep21(s, null, null, ignoreTypes);
+                var model = MemoryModel.OpenReadStep21(s, default(ILoggerFactory), null, ignoreTypes);
                 w.Stop();
                 timeB = w.ElapsedMilliseconds;
                 Console.WriteLine($"Opening stripped down model: {timeB}");

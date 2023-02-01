@@ -1985,16 +1985,20 @@ int NextState() {
 			this.code = value.chrSv;
 			this.cCol = value.cColSv;
 			this.lNum = value.lNumSv;
-        } 
+        }
         // =================== End Nested classes =======================
 
 #if !NOFILES
-     public Scanner(Stream file) {
+        [Obsolete] // TODO: This is codegen so just temporary - to flush out upstream
+        public Scanner(Stream file)
+        {
             SetSource(file); // no unicode option
-        }   
+        }
 #endif // !NOFILES
 
-     public Scanner() { }
+        [Obsolete]
+        public Scanner()
+        { }
 
         private long readPos;
 

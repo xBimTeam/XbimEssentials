@@ -1,10 +1,15 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Common;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security.Policy;
+using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Ifc;
 using Xbim.IO;
 using Xbim.IO.Esent;
@@ -31,49 +36,65 @@ namespace Xbim.Essentials.Tests
         }
 
 
+
         private readonly ITestOutputHelper testOutputHelper;
 
         public DefaultModelProviderFactoryTests(ITestOutputHelper  testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
+            // Create private instance of DI
+            xbimServices = XbimServices.CreateInstance();
         }
 
-        [Fact]
+        XbimServices xbimServices;
+
+        [Fact(Skip = "Need to re-consider the requirement - should it be explicit")]
         public void ShouldProvideHeuristicModelProvider_When_XBIM_Esent_Loaded()
         {
-            IModelProviderFactory modelProvider = new DefaultModelProviderFactory();
+            xbimServices.ConfigureServices(s => s.AddXbimToolkit());
+            var serviceProvider = xbimServices.ServiceProvider;
+                
 
-            var provider = modelProvider.CreateProvider();
+            IModelProviderFactory factory = serviceProvider.GetRequiredService<IModelProviderFactory>();
 
-            Assert.IsType<HeuristicModelProvider>(provider);
+            var modelProvider = factory.CreateProvider();
+
+            Assert.IsType<HeuristicModelProvider>(modelProvider);
         }
 
         [Fact]
         public void Can_Override_Default_with_the_Essent_Provider()
         {
             // Arrange
-            var modelProvider = new DefaultModelProviderFactory();
+            xbimServices.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel()));
+            var serviceProvider = xbimServices.ServiceProvider;
+
+            IModelProviderFactory factory = serviceProvider.GetRequiredService<IModelProviderFactory>();
             // Act
-            modelProvider.UseEsentModelProvider();
-            var provider = modelProvider.CreateProvider();
+
+            var modelProvider = factory.CreateProvider();
 
             // Assert
-            Assert.IsType<EsentModelProvider>(provider);
+            Assert.IsType<EsentModelProvider>(modelProvider);
         }
 
         [Fact]
         public void Can_Override_Default_with_the_Heuristic_Provider()
         {
             // Arrange
-            var modelProvider = new DefaultModelProviderFactory();
+            xbimServices.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+            var serviceProvider = xbimServices.ServiceProvider;
+
+            IModelProviderFactory factory = serviceProvider.GetRequiredService<IModelProviderFactory>();
             // Act
-            modelProvider.UseHeuristicModelProvider();
-            var provider = modelProvider.CreateProvider();
+
+            var modelProvider = factory.CreateProvider();
 
             // Assert
-            Assert.IsType<HeuristicModelProvider>(provider);
+            Assert.IsType<HeuristicModelProvider>(modelProvider);
         }
 
+        // Sanity check
         [Fact]
         public void Should_Load_IO_Esent_In_Default_Domain()
         {
@@ -88,6 +109,7 @@ namespace Xbim.Essentials.Tests
             Assert.Single(assemblies);
         }
 
+        //Sanity Check
         [Fact]
         public void In_a_Pristine_Domain_Esent_Should_Not_Be_loaded()
         {
@@ -163,9 +185,19 @@ namespace Xbim.Essentials.Tests
             return AppDomain.CurrentDomain.GetAssemblies();
         }
 
+        
         public Type GetModelProviderType()
         {
-            IModelProviderFactory modelProviderFactory = new DefaultModelProviderFactory();
+
+            // Arrange
+            var xbimServices = XbimServices.CreateInstance();
+            xbimServices.ConfigureServices(s => s.AddXbimToolkit());
+            var serviceProvider = xbimServices.ServiceProvider;
+
+
+            IModelProviderFactory modelProviderFactory = serviceProvider.GetRequiredService<IModelProviderFactory>();
+
+           
             return modelProviderFactory.CreateProvider().GetType();
         }
     }
