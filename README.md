@@ -20,16 +20,10 @@ _[**B**uilding **I**nformation **M**odelling](https://en.wikipedia.org/wiki/Buil
 the .NET platform. This library enables software developers to easily read, write, validate and interrogate data in 
 the buildingSmart [IFC formats](https://en.wikipedia.org/wiki/Industry_Foundation_Classes), using any .NET language. 
 
-As of version 5.0 XbimEssentials includes elementary support for .NET Core 2.0 in addition .NET Framework.
-Support for Net Core 3.1 is added
-## Updating from prior versions
+As of version 6.0 XbimEssentials includes support for `.netstandard2.0`, `.netstandard2.1` and `.net6.0`. Supporting `netstandard2.0` provides support .NET Framework 4.7.2 upwards. 
+Earlier .NET Framewaork versions may work, but we can't provide any support for them.
 
-Please see our [ChangeLog](CHANGELOG.md) for details on what's new and what you need to upgrade. 
-In particular, please **note the following section copied here:**
 
-> **BREAKING CHANGE**: Windows forms and Console apps using *IfcStore* must now call `IfcStore.ModelProviderFactory.UseHeuristicModelProvider();` at application startup
->
-> [failure to do so] will likely result in use of the very basic `MemoryModel` implementation which does not support *.xbim* files
 
 ## Background / Motivation ##
 
@@ -46,9 +40,25 @@ The wider XBIM toolkit contains additional repositories with libraries to read a
 In order to visualise 3D Geometries you will need to include the [Xbim.Geometry](https://github.com/xBimTeam/XbimGeometry) 
 package which provides full support for geometric, topological operations and visualisation.
 
-The motivation behind XbimEssentials is to take away much of the complexity and 'heavy lifting' required to work 
-with Open BIM file formats, so you can focus on creating software solutions without needing deep understanding 
-of STEP/Express parsing, 3D graphics, allowing you to work at a higher level than the buildingSmart [data model](http://www.buildingsmart-tech.org/ifc/IFC4/Add2/html/link/introduction.htm). 
+The motivation behind XbimEssentials is to take away much of the complexity and 'heavy lifting' required to read and write 
+OpenBIM file formats, so you can focus on creating software solutions without needing deep understanding 
+of STEP/Express parsing, 3D graphics - enabling you to work at a higher level than the buildingSmart [data model](http://www.buildingsmart-tech.org/ifc/IFC4/Add2/html/link/introduction.htm). 
+
+
+## Updating from prior versions
+
+Please see our [ChangeLog](CHANGELOG.md) for details on what's new and what you need to upgrade. 
+In particular, please **note the following section copied here:**
+
+> **BREAKING CHANGE**: V6 implements a new mechanism for discovering internal resources and uses standard (.net Dependency Injection patterns)[https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection] for managing services internally.
+> `Xbim.Common` now introduces an internal DI service that you can optionally integrate with your own DI implementation, for providing Logging services, and configuring xbim service behaviour. E.g. Invoking:
+> ` XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel().UseLoggerFactory(yourloggerFactory)));
+> registers the Toolkit internal dependencies, uses an In-memory model and inserts your configured ILoggerFactory into the service in place of our default one.
+> `IfcStore.ModelProviderFactory` has been deprecated as this is provided for by the above mechanism
+> The persistent EsentModel is now available automatically through IfcStore (on Windows) so there is no need for the `UseHeuristicModelProvider()` 'ceremony' to ensure Esent is used.
+> Note: The default Logging implementation has been removed from Toolkit to reduce the amount of dependencies. To enable is a simple matter of adding logging to the Xbim Services. 
+> See (Example)[https://github.com/xBimTeam/XbimEssentials/blob/b3fce6f40a31fb87a75b24888a4e20740a378e31/Tests/DependencyInjectionTests.cs#L96]
+
 
 ## Code Examples
 
@@ -179,9 +189,6 @@ using [Xbim.WebUI](http://docs.xbim.net/XbimWebUI/)
 const string fileName = @"SampleHouse4.ifc";
 var wexBimFilename = Path.ChangeExtension(fileName, "wexBIM");
 var xbimDbFilename = Path.ChangeExtension(fileName, "xBIM");
-
-// Make sure we are using an IModel implementation that supports saving of '.xbim' files
-IfcStore.ModelProviderFactory.UseHeuristicModelProvider();
 	
 using (var model = IfcStore.Open(fileName))
 {

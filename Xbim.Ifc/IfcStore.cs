@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
@@ -28,25 +31,20 @@ namespace Xbim.Ifc
     /// <remarks>
     /// <para>
     /// Note: the Store capabilities may be affected by the ModelProvider implementation - some stores may not
-    /// implement all capabilities. e.g. An In-Memory store will not permit saving to XBIM format.
+    /// implement all capabilities. e.g. An In-Memory store will not permit reading or writing to XBIM format.
     /// </para>
     /// <para>
-    /// IMPORTANT: By default, the v5 <see cref="IfcStore"/> will attempt to discover the 
-    /// HeuristicModelProvider (in the Esent assembly), by probing the app's loaded assemblies. 
-    /// This provider gives the same functionality as prior IfcStore versions. 
-    /// However, this will only be discovered if Xbim.IO.Esent dll has been 
-    /// referenced and loaded. ASP.NET apps do this automatically, but console and windows apps may not load the
-    /// DLL into the AppDomain unless a type is referenced.
-    /// If the store cannot be discover the Heuristic provider it will fall back to a <see cref="MemoryModelProvider"/>
-    /// which is less efficient with larger models.
+    /// IMPORTANT: The exact IModel implementation used depends on the <see cref="IModelProvider"/> resolved. EsentModel
+    /// is only supported on Windows operating systems, so you may need to provide an alternative (SqlLite etc)
+    /// through the configuration system.
     /// </para>
     /// <para>
-    /// To guarantee the correct provider regardless, configure <see cref="IfcStore.ModelProviderFactory"/> with the 
-    /// following code in your application initialisation:
+    /// You can define the Model Provider used through the internal Services Collection at application startup:
+    /// </para>
     /// <code>
-    /// IfcStore.ModelProviderFactory.UseHeuristicModelProvider();
+    /// XbimServices.Current.ConfigureServices(s =&gt; s.AddXbimToolkit(opt =&gt; opt.UseModelProvider&lt;MyCustomProvider&gt;()));
     /// </code>
-    /// </para>
+    /// 
     /// </remarks>
     public class IfcStore : IModel, IDisposable, IFederatedModel, IEquatable<IModel>
     {
@@ -66,10 +64,27 @@ namespace Xbim.Ifc
         
         private readonly ReferencedModelCollection _referencedModels = new ReferencedModelCollection();
 
+        static IfcStore()
+        {
+            if(!XbimServices.Current.IsBuilt)
+            {
+                if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+                }
+                else
+                {
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel()));
+                }
+            }
+            
+        }
+
         // Internal Constructor for reading
         protected IfcStore()
         {
-            ModelProvider = ModelProviderFactory.CreateProvider();
+            ModelProvider = XbimServices.Current.ServiceProvider.GetRequiredService<IModelProvider>();
+            Logger = XbimServices.Current.ServiceProvider.GetRequiredService<ILogger<IfcStore>>();
         }
 
         /// <summary>
@@ -96,17 +111,21 @@ namespace Xbim.Ifc
             AssignModel(model, editorDetails, ifcVersion);
         }
 
+        /// <summary>
+        /// Gets the Model
+        /// </summary>
         public IModel Model
         {
             get;
-            private set;
+            protected set;
         }
+
         public XbimEditorCredentials EditorDetails { get; private set; }
 
         /// <summary>
         /// Provides access to model persistence capabilities
         /// </summary>
-        protected IModelProvider ModelProvider
+        public IModelProvider ModelProvider
         {
             get;
             private set;
@@ -115,21 +134,20 @@ namespace Xbim.Ifc
         /// <summary>
         /// Factory to create ModelProvider instances. 
         /// </summary>
-        /// <remarks>Consumers can use this instance of <see cref="IModelProviderFactory"/> to control the 
-        /// implementations of IModel it uses.
-        /// In particular you can tell the factory to always use MemoryModel, or Esent model, or a blend (Heuristic)
-        /// </remarks>
+        /// <remarks><see cref="ModelProviderFactory"/> is no longer in use. Update your initialisation code as follows.
         /// <example>
-        /// To override the Store's backing model with an implementation you would use:
+        /// For example here we change the default Mode to be the EsentModel:
         /// <code>
-        /// IfcStore.ModelProvider.Use(() => new MyCustomModelProvider());
+        /// XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel()));
         /// </code>
         /// </example>
+        /// </remarks>
+        [Obsolete("Redundant. Model Providers are now provided by internal dependency injection with the ServicesProvider on XbimServices")]
         public static IModelProviderFactory ModelProviderFactory
         {
             get;
             set;
-        } = new DefaultModelProviderFactory();
+        }
 
         private void AssignModel(IModel model, XbimEditorCredentials editorDetails, XbimSchemaVersion schema)
         {
@@ -265,7 +283,7 @@ namespace Xbim.Ifc
         #region IModel
 
         public object Tag { get => Model.Tag; set => Model.Tag = value; }
-        public ILogger Logger { get => Model.Logger; set => Model.Logger = value; }
+        protected ILogger Logger { get; private set; }
         public IInverseCache InverseCache
         {
             get { return Model.InverseCache; }
