@@ -1,4 +1,7 @@
-﻿using Xbim.IO;
+﻿using System;
+using Xbim.Common;
+using Xbim.Common.Configuration;
+using Xbim.IO;
 using Xbim.IO.Esent;
 
 namespace Xbim.Ifc
@@ -12,9 +15,10 @@ namespace Xbim.Ifc
         /// <see cref="EsentModel"/> and <see cref="IO.Memory.MemoryModel"/></remarks>
         /// <param name="providerFactory">The <see cref="IModelProviderFactory"/> to configure</param>
         /// <returns>The <see cref="IModelProviderFactory"/></returns>
+        [Obsolete("Use XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel())) instead")]
         public static IModelProviderFactory UseHeuristicModelProvider(this IModelProviderFactory providerFactory)
         {
-            providerFactory.Use(() => new HeuristicModelProvider());
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
             return providerFactory;
         }
 
@@ -23,9 +27,10 @@ namespace Xbim.Ifc
         /// </summary>
         /// <param name="providerFactory">The <see cref="IModelProviderFactory"/> to configure</param>
         /// <returns>The <see cref="IModelProviderFactory"/></returns>
+        [Obsolete("Use XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel())) instead")]
         public static IModelProviderFactory UseEsentModelProvider(this IModelProviderFactory providerFactory)
         {
-            providerFactory.Use(() => new EsentModelProvider());
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel()));
             return providerFactory;
         }
     }

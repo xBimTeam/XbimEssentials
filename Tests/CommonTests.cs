@@ -104,7 +104,7 @@ namespace Xbim.Essentials.Tests
                 }
                 var unwantedTypes = allTypes.Except(requiredTypes);
                 var unwanted = new HashSet<string>(unwantedTypes);
-                using (var mm = MemoryModel.OpenReadStep21(strm, null, null, unwantedTypes.ToList()))
+                using (var mm = MemoryModel.OpenReadStep21(strm, null, unwantedTypes.ToList()))
                 {
                     foreach(var instance in mm.Instances)
                     {

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Step21.Parser;
@@ -36,7 +36,6 @@ namespace Xbim.IO.Xml
         /// </summary>
         public Dictionary<string, int> IdMap { get { return _idMap; } }
 
-
         /// <summary>
         /// Constructor of the reader for IFC2x3 XML. XSD is different for different versions of IFC and there is a major difference
         /// between IFC2x3 and IFC4 to there are two different classes to deal with this.
@@ -45,8 +44,8 @@ namespace Xbim.IO.Xml
         /// <param name="finish">Delegate which will be called once the entity is finished (no changes will be made to it)
         /// This is useful for a DB when this is the point when it can be serialized to DB</param>
         /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
-        /// <param name="logger">A Logger</param>
-        public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata, ILogger logger)
+        /// <param name="loggerFactory">A Logger Factory</param>
+        public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata, ILoggerFactory loggerFactory) : this(loggerFactory, default)
         {
             if (getOrCreate == null)
                 throw new ArgumentNullException("getOrCreate");
@@ -60,12 +59,38 @@ namespace Xbim.IO.Xml
             _getOrCreate = getOrCreate;
             _finish = finish;
             _metadata = metadata;
-            Logger = logger ?? XbimLogging.CreateLogger<XbimXmlReader4>(); ;
         }
 
-        private XbimXmlReader4()
+        /// <summary>
+        /// Constructor of the reader for IFC2x3 XML. XSD is different for different versions of IFC and there is a major difference
+        /// between IFC2x3 and IFC4 to there are two different classes to deal with this.
+        /// </summary>x
+        /// <param name="getOrCreate">Delegate which will be used to getOrCreate new entities</param>
+        /// <param name="finish">Delegate which will be called once the entity is finished (no changes will be made to it)
+        /// This is useful for a DB when this is the point when it can be serialized to DB</param>
+        /// <param name="metadata">Metadata model used to inspect Express types and their properties</param>
+        /// <param name="logger">A Logger</param>
+        [Obsolete]
+        public XbimXmlReader4(GetOrCreateEntity getOrCreate, FinishEntity finish, ExpressMetaData metadata, ILogger logger) : this(default, logger)
         {
-            Logger = XbimLogging.CreateLogger<XbimXmlReader4>(); ;
+            if (getOrCreate == null)
+                throw new ArgumentNullException("getOrCreate");
+
+            if (finish == null)
+                throw new ArgumentNullException("finish");
+
+            if (metadata == null)
+                throw new ArgumentNullException("metadata");
+
+            _getOrCreate = getOrCreate;
+            _finish = finish;
+            _metadata = metadata;
+        }
+
+        private XbimXmlReader4(ILoggerFactory loggerFactory, ILogger logger)
+        {
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            Logger = logger ?? loggerFactory.CreateLogger<XbimXmlReader4>(); ;
         }
 
         static XbimXmlReader4()
@@ -830,10 +855,19 @@ namespace Xbim.IO.Xml
             return input.Value;
         }
 
+        [Obsolete("Please use the ILoggerFactory overload")]
+        public static IStepFileHeader ReadHeader(Stream input, ILogger logger)
+        {
+            var xReader = new XbimXmlReader4(default, logger);
+            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4(), logger, 0);
+            return xReader.Read(input, fakeModel, true); //using a dummy model to get the assembly correct
+        }
+
         public static IStepFileHeader ReadHeader(Stream input)
         {
-            var xReader = new XbimXmlReader4();
-            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4());
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
+            var xReader = new XbimXmlReader4(loggerFactory, default);
+            var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4(), loggerFactory);
             return xReader.Read(input, fakeModel, true); //using a dummy model to get the assembly correct
         }
 
