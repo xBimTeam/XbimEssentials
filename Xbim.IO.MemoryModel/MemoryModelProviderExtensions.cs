@@ -6,7 +6,7 @@ using Xbim.IO.Memory;
 
 namespace Xbim.Ifc
 {
-    public static class ModelProviderExtensions
+    public static class MemoryModelProviderExtensions
     {
         /// <summary>
         /// Configures the <see cref="IModelProviderFactory"/> to use the <see cref="MemoryModelProvider"/>

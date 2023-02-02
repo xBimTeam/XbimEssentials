@@ -6,7 +6,7 @@ using Xbim.IO.Esent;
 
 namespace Xbim.Ifc
 {
-    public static class ModelProviderExtensions
+    public static class EsentModelProviderExtensions
     {
         /// <summary>
         /// Configures the <see cref="IModelProviderFactory"/> to use the <see cref="HeuristicModelProvider"/>
