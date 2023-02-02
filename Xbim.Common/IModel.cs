@@ -9,11 +9,7 @@ namespace Xbim.Common
 {
 	public interface IModel: IDisposable
 	{
-        // TODO: retire this ILogger property. We should assign Loggers in constructors
-        /// <summary>
-        /// Logger abstraction to be used by the model
-        /// </summary>
-        ILogger Logger { get; set; }
+       
 
         /// <summary>
         /// Returns or sets a user defined id for the model

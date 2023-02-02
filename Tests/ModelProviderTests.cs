@@ -11,6 +11,7 @@ using Xunit;
 
 namespace Xbim.Essentials.Tests
 {
+    [Collection(nameof(xUnitBootstrap))]
     public class ModelProviderTests
     {
         [Fact]

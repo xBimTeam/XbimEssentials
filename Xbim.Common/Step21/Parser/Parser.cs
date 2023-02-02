@@ -19,6 +19,8 @@ using QUT.Gppg;
 using Xbim.Common;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
+using Xbim.Common.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 
 #endregion
@@ -27,12 +29,27 @@ namespace Xbim.IO.Parser
 {
     public sealed partial class Scanner : ScanBase
     {
-        public Scanner(ILogger logger)
+        public Scanner(ILoggerFactory loggerFactory)
         {
-            Logger = logger ?? XbimLogging.CreateLogger<Scanner>();
+            SetupLogger(loggerFactory);
         }
 
-        public ILogger Logger { get; private set; }
+#pragma warning disable CS0612 // TODO: Type or member is obsolete
+        public Scanner(Stream file, ILoggerFactory loggerFactory) : this(file)
+#pragma warning restore CS0612 // Type or member is obsolete
+        {
+            SetupLogger(loggerFactory);
+        }
+
+        private void SetupLogger(ILoggerFactory loggerFactory)
+        {
+            _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            Logger = _loggerFactory.CreateLogger<Scanner>();
+        }
+
+        private ILogger Logger { get; set; }
+
+        private ILoggerFactory _loggerFactory;
 
 
         public override void yyerror(string format, params object[] args)
@@ -133,11 +150,17 @@ namespace Xbim.IO.Parser
 
     abstract partial class P21Parser
     {
-        protected P21Parser(Stream strm)
-            : base(new Scanner(strm))
+        protected P21Parser(Stream strm, ILoggerFactory loggerFactory)
+            : base(new Scanner(strm, loggerFactory))
         {
         }
 
+        protected P21Parser(ILoggerFactory loggerFactory)
+            : base(new Scanner(loggerFactory))
+        {
+        }
+
+        [Obsolete("Prefer ILoggerFactory")]
         protected P21Parser()
             : base(new Scanner())
         {
