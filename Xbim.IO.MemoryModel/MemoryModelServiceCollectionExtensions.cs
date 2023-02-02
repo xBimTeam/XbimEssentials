@@ -1,13 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using Xbim.Common.Configuration;
-using Xbim.IO;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Xbim.Ifc;
 
 namespace Xbim.Common
 {
-    public static class ServiceCollectionExtensions
+    public static class MemoryModelServiceCollectionExtensions
     {
         /// <summary>
         /// Adds xbim Toolkit IFC Model services to the specified <see cref="IServiceCollection"/>
