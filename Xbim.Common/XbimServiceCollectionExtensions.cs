@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Xbim.Common
 {
-    public static class ServiceCollectionExtensions
+    public static class XbimServiceCollectionExtensions
     {
        
 
