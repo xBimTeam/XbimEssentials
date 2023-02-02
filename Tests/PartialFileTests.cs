@@ -11,7 +11,6 @@ using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.GeometricModelResource;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.ProductExtension;
-using Xbim.Ifc4.SharedBldgElements;
 using Xbim.IO;
 using Xbim.IO.Memory;
 
@@ -54,7 +53,7 @@ namespace Xbim.IfcCore.UnitTests
             using (var s = File.OpenRead(file))
             {
                 var w = Stopwatch.StartNew();
-                var model = MemoryModel.OpenReadStep21(s, null, null, ignoreTypes);
+                var model = MemoryModel.OpenReadStep21(s, null, ignoreTypes);
                 w.Stop();
                 timeB = w.ElapsedMilliseconds;
                 Console.WriteLine($"Opening stripped down model: {timeB}");

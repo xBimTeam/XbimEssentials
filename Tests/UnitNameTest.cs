@@ -1,7 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Xbim.Common.Step21;
-using Xbim.Ifc;
 using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests

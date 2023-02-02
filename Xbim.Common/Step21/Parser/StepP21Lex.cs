@@ -1985,16 +1985,18 @@ int NextState() {
 			this.code = value.chrSv;
 			this.cCol = value.cColSv;
 			this.lNum = value.lNumSv;
-        } 
+        }
         // =================== End Nested classes =======================
 
 #if !NOFILES
-     public Scanner(Stream file) {
+        public Scanner(Stream file)
+        {
             SetSource(file); // no unicode option
-        }   
+        }
 #endif // !NOFILES
 
-     public Scanner() { }
+        public Scanner()
+        { }
 
         private long readPos;
 
