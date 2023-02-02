@@ -30,7 +30,6 @@ namespace Xbim.Essentials.Tests
         [InlineData(typeof(ILogger))]
         [InlineData(typeof(ILogger<XbimServices>))]
         [InlineData(typeof(IModelProvider))]
-        [InlineData(typeof(IModelProviderFactory))]
         [Theory]
         public void Services_can_be_resolved(Type type)
         {

@@ -24,7 +24,7 @@ namespace Xbim.Essentials.Tests
             xUnitInit.Initialize();
 
             // Initialises the Singleton XbimServices ServiceProvider via IfcStores static ctor.
-            _modelProvider = IfcStore.ModelProviderFactory.CreateProvider();
+            _modelProvider = IfcStore.Create(Common.Step21.XbimSchemaVersion.Ifc4, XbimStoreType.InMemoryModel).ModelProvider;
         }
 
 
@@ -48,7 +48,8 @@ namespace Xbim.Essentials.Tests
         {
             
             Initialize();
-            _ = IfcStore.ModelProviderFactory.CreateProvider();
+            // Trigger initialisation
+            _ = IfcStore.Create(Common.Step21.XbimSchemaVersion.Ifc4, XbimStoreType.InMemoryModel);
         }
 
         public static void Initialize()
