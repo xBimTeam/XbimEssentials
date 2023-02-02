@@ -18,6 +18,7 @@ using Xunit.Abstractions;
 
 namespace Xbim.Essentials.Tests
 {
+    [Collection(nameof(xUnitBootstrap))]
     public class DefaultModelProviderFactoryTests
     {
         // The DefaultModelProviderFactory lives in Xbim.Ifc assembly, which now has no reference

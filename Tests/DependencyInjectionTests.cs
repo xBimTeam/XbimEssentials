@@ -15,6 +15,7 @@ using Xunit;
 
 namespace Xbim.Essentials.Tests
 {
+    [Collection(nameof(xUnitBootstrap))]
     public class DependencyInjectionTests
     {
         public DependencyInjectionTests()
