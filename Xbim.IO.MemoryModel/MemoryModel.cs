@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -250,31 +249,29 @@ namespace Xbim.IO.Memory
             }
         }
 
-        public static MemoryModel OpenRead(string fileName, ReportProgressDelegate progressDel, ILoggerFactory loggerFactory = null)
+        
+        public static MemoryModel OpenRead(string fileName)
         {
-            return OpenRead(fileName, loggerFactory, progressDel);
-        }
-        public static MemoryModel OpenRead(string fileName, ILoggerFactory loggerFactory = null)
-        {
-            return OpenRead(fileName, loggerFactory, null);
+            return OpenRead(fileName, null);
         }
 
         [Obsolete("Prefer method with ILoggerFactory overload")]
         public static MemoryModel OpenRead(string fileName, ILogger logger, ReportProgressDelegate progressDel = null)
         { 
-            return OpenRead(fileName, default(ILoggerFactory), progressDel);  
+            return OpenRead(fileName, progressDel);  
         }
 
 
 
-        public static MemoryModel OpenRead(string fileName, ILoggerFactory loggerFactory, ReportProgressDelegate progressDel = null)
+        public static MemoryModel OpenRead(string fileName, ReportProgressDelegate progressDel = null)
         {
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             //step21 text file can resolve version in parser
             if (fileName.IsStepTextFile())
             {
                 using (var file = File.OpenRead(fileName))
                 {
-                    return OpenReadStep21(file, loggerFactory, progressDel);
+                    return OpenReadStep21(file, progressDel);
                 }
             }
 
@@ -326,7 +323,7 @@ namespace Xbim.IO.Memory
         {
             using (var stream = File.OpenRead(file))
             {
-                return OpenReadStep21(stream, default(ILoggerFactory), progressDel);
+                return OpenReadStep21(stream, progressDel);
             }
         }
 
@@ -345,7 +342,7 @@ namespace Xbim.IO.Memory
         public static MemoryModel OpenReadStep21(Stream stream, ILogger logger, ReportProgressDelegate progressDel = null,
            IEnumerable<string> ignoreTypes = null, bool allowMissingReferences = false, bool keepOrder = true)
         {
-            return OpenReadStep21(stream, default(ILoggerFactory), progressDel, ignoreTypes, allowMissingReferences, keepOrder);
+            return OpenReadStep21(stream, progressDel, ignoreTypes, allowMissingReferences, keepOrder);
         }
 
         /// <summary>
@@ -353,17 +350,16 @@ namespace Xbim.IO.Memory
         /// access the file twice.
         /// </summary>
         /// <param name="stream">Input stream for step21 text file</param>
-        /// <param name="loggerFactory">A <see cref="ILoggerFactory"/></param>
         /// <param name="progressDel">Progress delegate</param>
         /// <param name="ignoreTypes">A list of ifc types to skip</param>
         /// <param name="allowMissingReferences">Allow referenced entities that are not in the model, default false</param>
         /// <param name="keepOrder">When true, serialised file will maintain order of entities from the original file (or order of creation)</param>
         /// <returns>New memory model</returns>
-        public static MemoryModel OpenReadStep21(Stream stream, ILoggerFactory loggerFactory = null, ReportProgressDelegate progressDel = null,
+        public static MemoryModel OpenReadStep21(Stream stream, ReportProgressDelegate progressDel = null,
            IEnumerable<string> ignoreTypes = null, bool allowMissingReferences = false, bool keepOrder = true)
         {
 
-            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             var model = new MemoryModel((IEnumerable<string> schemas) =>
             {
                 var schema = GetStepFileXbimSchemaVersion(schemas);

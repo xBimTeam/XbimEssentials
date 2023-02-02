@@ -23,8 +23,9 @@ namespace Xbim.Common.Model
 
         protected ILoggerFactory _loggerFactory;
 
-        public static List<string> GetStepFileSchemaVersion(Stream stream, ILoggerFactory loggerFactory = default)
+        public static List<string> GetStepFileSchemaVersion(Stream stream)
         {
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             var scanner = new Scanner(stream, loggerFactory);
             int tok = scanner.yylex();
             int dataToken = (int)Tokens.DATA;
@@ -406,8 +407,9 @@ namespace Xbim.Common.Model
         }
 
 
-        public static IStepFileHeader LoadStep21Header(Stream stream, ILoggerFactory loggerFactory = null)
+        public static IStepFileHeader LoadStep21Header(Stream stream)
         {
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, null);
             var scanner = new XbimP21Scanner(stream, 1000, loggerFactory);
             

@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -865,8 +863,9 @@ namespace Xbim.IO.Xml
             return xReader.Read(input, fakeModel, true); //using a dummy model to get the assembly correct
         }
 
-        public static IStepFileHeader ReadHeader(Stream input, ILoggerFactory loggerFactory = default)
+        public static IStepFileHeader ReadHeader(Stream input)
         {
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             var xReader = new XbimXmlReader4(loggerFactory, default);
             var fakeModel = new Memory.MemoryModel(new Ifc4.EntityFactoryIfc4(), loggerFactory);
             return xReader.Read(input, fakeModel, true); //using a dummy model to get the assembly correct

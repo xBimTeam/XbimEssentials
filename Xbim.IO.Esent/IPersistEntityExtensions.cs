@@ -8,6 +8,7 @@ using Xbim.IO.Esent;
 using Xbim.IO.Step21;
 using Xbim.IO.Step21.Parser;
 using Microsoft.Extensions.Logging;
+using Xbim.Common.Configuration;
 
 namespace Xbim.IO
 {
@@ -117,6 +118,7 @@ namespace Xbim.IO
         //    tw.WriteLine();
         //}
 
+        static ILoggerFactory loggerFactory = XbimServices.Current.GetLoggerFactory();
         internal static XbimInstanceHandle GetHandle(this IPersistEntity entity)
         {
             return new XbimInstanceHandle(entity);
@@ -389,8 +391,7 @@ namespace Xbim.IO
         /// <param name="br"></param>
         /// <param name="unCached">If true instances inside the properties are not added to the cache</param>
         /// <param name="fromCache"> If true the instance is read from the cache if not present it is created, used during parsing</param>
-        /// <param name="loggerFactory"></param>
-        internal static void ReadEntityProperties(this IPersistEntity entity, PersistedEntityInstanceCache cache, BinaryReader br, ILoggerFactory loggerFactory, bool unCached = false, bool fromCache = false)
+        internal static void ReadEntityProperties(this IPersistEntity entity, PersistedEntityInstanceCache cache, BinaryReader br, bool unCached = false, bool fromCache = false)
         {
             var action = (P21ParseAction)br.ReadByte();
 

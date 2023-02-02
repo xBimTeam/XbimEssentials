@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -504,9 +503,9 @@ namespace Xbim.IO.Esent
         /// It will be returned open for read write operations
         /// </summary>
         /// <returns></returns>
-        static public EsentModel CreateTemporaryModel(IEntityFactory factory, ILoggerFactory loggerFactory = null)
+        static public EsentModel CreateTemporaryModel(IEntityFactory factory)
         {
-            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             var tmpFileName = Path.GetTempFileName();
             try
             {
@@ -543,11 +542,10 @@ namespace Xbim.IO.Esent
         /// <param name="factory">Entity factory to be used for deserialization</param>
         /// <param name="dbFileName">Name of the Xbim file</param>
         /// <param name="access"></param>
-        /// <param name="loggerFactory"></param>
         /// <returns></returns>
-        static public EsentModel CreateModel(IEntityFactory factory, string dbFileName, XbimDBAccess access = XbimDBAccess.ReadWrite, ILoggerFactory loggerFactory = default)
+        static public EsentModel CreateModel(IEntityFactory factory, string dbFileName, XbimDBAccess access = XbimDBAccess.ReadWrite)
         {
-            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             try
             {
                 if (string.IsNullOrWhiteSpace(Path.GetExtension(dbFileName)))

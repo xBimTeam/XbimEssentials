@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using Xbim.Common;
@@ -142,10 +141,10 @@ namespace Xbim.IO.Memory
             throw new NotImplementedException("MemoryModelProvider is a transient store and does not support persistance");
         }
 
-        private MemoryModel CreateMemoryModel(XbimSchemaVersion schema, ILoggerFactory loggerFactory = null)
+        private MemoryModel CreateMemoryModel(XbimSchemaVersion schema)
         {
             var factory = GetFactory(schema);
-            return new MemoryModel(factory, loggerFactory);
+            return new MemoryModel(factory, _loggerFactory);
         }
     }
 }

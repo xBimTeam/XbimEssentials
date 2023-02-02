@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Metadata;
 using Xbim.IO;
@@ -589,8 +590,9 @@ namespace Xbim.Common
         #endregion
 
         #region Schema Version
-        public static List<string> GetStepFileSchemaVersion(Stream stream, ILoggerFactory loggerFactory = null)
+        public static List<string> GetStepFileSchemaVersion(Stream stream)
         {
+            var loggerFactory = XbimServices.Current.GetLoggerFactory();
             var scanner = new Scanner(stream, loggerFactory);
             int tok = scanner.yylex();
             int dataToken = (int)Tokens.DATA;

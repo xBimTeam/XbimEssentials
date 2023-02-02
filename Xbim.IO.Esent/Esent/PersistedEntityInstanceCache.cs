@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -21,7 +20,6 @@ using System.IO.Compression;
 using Xbim.IO.Xml;
 using Xbim.Common.Step21;
 using Xbim.Common.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Xbim.IO.Esent
 {
@@ -1229,7 +1227,7 @@ namespace Xbim.IO.Esent
             return _read.GetOrAdd(label, l =>
             {
                 var instance = _factory.New(_model, type, label, true);
-                instance.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), _loggerFactory, false, true);
+                instance.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), false, true);
                 return instance;
             }); //might have been done by another
         }
@@ -1266,7 +1264,7 @@ namespace Xbim.IO.Esent
                                 // this has been seen to happen when files attempt to instantiate abstract classes.
                                 return null;
                             }
-                            entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), _loggerFactory, unCached);
+                            entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), unCached);
                         }
                         else
                             entity = _factory.New(_model, currentIfcTypeId, entityLabel, false);
@@ -1323,7 +1321,7 @@ namespace Xbim.IO.Esent
                                     {
                                         var properties = entityTable.GetProperties();
                                         entity.ReadEntityProperties(this,
-                                            new BinaryReader(new MemoryStream(properties)), _loggerFactory);
+                                            new BinaryReader(new MemoryStream(properties)));
                                         FlagSetter.SetActivationFlag(entity, true);
                                     }
                                     entityLabels.Add(entity.EntityLabel);
@@ -1335,7 +1333,7 @@ namespace Xbim.IO.Esent
                                     {
                                         var properties = entityTable.GetProperties();
                                         entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
-                                        entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)), _loggerFactory);
+                                        entity.ReadEntityProperties(this, new BinaryReader(new MemoryStream(properties)));
                                     }
                                     else
                                         //the attributes of this entity have not been loaded yet
@@ -1425,7 +1423,7 @@ namespace Xbim.IO.Esent
                                         var properties = entityTable.GetProperties();
                                         entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
                                         entity.ReadEntityProperties(this,
-                                            new BinaryReader(new MemoryStream(properties)), _loggerFactory);
+                                            new BinaryReader(new MemoryStream(properties)));
                                     }
                                     entityLabels.Add(entity.EntityLabel);
                                     yield return (TOType)entity;
@@ -1437,7 +1435,7 @@ namespace Xbim.IO.Esent
                                         var properties = entityTable.GetProperties();
                                         entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, true);
                                         entity.ReadEntityProperties(this,
-                                            new BinaryReader(new MemoryStream(properties)), _loggerFactory);
+                                            new BinaryReader(new MemoryStream(properties)));
                                     }
                                     else
                                         // the attributes of this entity have not been loaded yet
@@ -1484,7 +1482,7 @@ namespace Xbim.IO.Esent
         {
             var bytes = GetEntityBinaryData(entity);
             if (bytes != null)
-                (entity as IInstantiableEntity).ReadEntityProperties(this, new BinaryReader(new MemoryStream(bytes)), _loggerFactory);
+                (entity as IInstantiableEntity).ReadEntityProperties(this, new BinaryReader(new MemoryStream(bytes)));
         }
 
         public void Dispose()

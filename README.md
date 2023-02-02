@@ -50,12 +50,14 @@ of STEP/Express parsing, 3D graphics - enabling you to work at a higher level th
 Please see our [ChangeLog](CHANGELOG.md) for details on what's new and what you need to upgrade. 
 In particular, please **note the following section copied here:**
 
-> **BREAKING CHANGE**: V6 implements a new mechanism for discovering 'models providers' and uses standard (.net Dependency Injection patterns)[https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection] for managing services internally.
+> **BREAKING CHANGE**: V6 implements a new mechanism for discovering internal resources and uses standard (.net Dependency Injection patterns)[https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection] for managing services internally.
 > `Xbim.Common` now introduces an internal DI service that you can optionally integrate with your own DI implementation, for providing Logging services, and configuring xbim service behaviour. E.g. Invoking:
 > ` XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel().UseLoggerFactory(yourloggerFactory)));
 > registers the Toolkit internal dependencies, uses an In-memory model and inserts your configured ILoggerFactory into the service in place of our default one.
 > `IfcStore.ModelProviderFactory` has been deprecated as this is provided for by the above mechanism
 > The persistent EsentModel is now available automatically through IfcStore (on Windows) so there is no need for the `UseHeuristicModelProvider()` 'ceremony' to ensure Esent is used.
+> Note: The default Logging implementation has been removed from Toolkit to reduce the amount of dependencies. To enable is a simple matter of adding logging to the Xbim Services. 
+> See (Example)[https://github.com/xBimTeam/XbimEssentials/blob/b3fce6f40a31fb87a75b24888a4e20740a378e31/Tests/DependencyInjectionTests.cs#L96]
 
 
 ## Code Examples
