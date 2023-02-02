@@ -143,8 +143,6 @@ namespace Xbim.IO.Memory
         }
         public MemoryModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory = default, int labelFrom = 0) : base(entityFactory, loggerFactory, labelFrom) { }
 
-       // public MemoryModel(IEntityFactory entityFactory, ILoggerFactory loggerFactory) : this(entityFactory, loggerFactory, 0) { }
-
         [Obsolete("Prefer ILoggerFactory implementation")]
         public MemoryModel(IEntityFactory entityFactory, ILogger logger, int labelFrom) : base(entityFactory, logger, labelFrom) { }
 
@@ -255,7 +253,7 @@ namespace Xbim.IO.Memory
             return OpenRead(fileName, null);
         }
 
-        [Obsolete("Prefer method with ILoggerFactory overload")]
+        [Obsolete("Prefer ILogger injection")]
         public static MemoryModel OpenRead(string fileName, ILogger logger, ReportProgressDelegate progressDel = null)
         { 
             return OpenRead(fileName, progressDel);  
@@ -318,7 +316,7 @@ namespace Xbim.IO.Memory
         /// <param name="logger">Logger</param>
         /// <param name="progressDel">Progress delegate</param>
         /// <returns>New memory model</returns>
-        [Obsolete("Prefer ILoggerFactory implementation")]
+        [Obsolete("Prefer ILogger injection")]
         public static MemoryModel OpenReadStep21(string file, ILogger logger = null, ReportProgressDelegate progressDel = null)
         {
             using (var stream = File.OpenRead(file))
@@ -338,7 +336,7 @@ namespace Xbim.IO.Memory
         /// <param name="allowMissingReferences">Allow referenced entities that are not in the model, default false</param>
         /// <param name="keepOrder">When true, serialised file will maintain order of entities from the original file (or order of creation)</param>
         /// <returns>New memory model</returns>
-        [Obsolete("Prefer ILoggerFactory implementation")]
+        [Obsolete("Prefer ILogger injection")]
         public static MemoryModel OpenReadStep21(Stream stream, ILogger logger, ReportProgressDelegate progressDel = null,
            IEnumerable<string> ignoreTypes = null, bool allowMissingReferences = false, bool keepOrder = true)
         {
@@ -465,6 +463,7 @@ namespace Xbim.IO.Memory
                 break;
             }
             //sort out precision, esp for some legacy models
+            if (defaultPrecision < 1e-7) //sometimes found in old revit models where the precision should really be 1e-5
             if (defaultPrecision < 1e-7) //sometimes found in old revit models where the precision should really be 1e-5
                 defaultPrecision = 1e-5;
            // defaultPrecision *= 1.1; //this fixes errors where things are nearly coincidental like faces

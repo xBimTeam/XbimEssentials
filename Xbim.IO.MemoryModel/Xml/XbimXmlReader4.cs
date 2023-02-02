@@ -855,7 +855,7 @@ namespace Xbim.IO.Xml
             return input.Value;
         }
 
-        [Obsolete("Please use the ILoggerFactory overload")]
+        [Obsolete("Prefer ILogger constructor injection")]
         public static IStepFileHeader ReadHeader(Stream input, ILogger logger)
         {
             var xReader = new XbimXmlReader4(default, logger);

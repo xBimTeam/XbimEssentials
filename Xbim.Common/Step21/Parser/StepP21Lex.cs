@@ -1989,14 +1989,12 @@ int NextState() {
         // =================== End Nested classes =======================
 
 #if !NOFILES
-        [Obsolete] // TODO: This is codegen so just temporary - to flush out upstream
         public Scanner(Stream file)
         {
             SetSource(file); // no unicode option
         }
 #endif // !NOFILES
 
-        [Obsolete]
         public Scanner()
         { }
 
