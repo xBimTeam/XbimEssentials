@@ -13,13 +13,15 @@ using Xbim.Common.Geometry;
 using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
+using System.Runtime.InteropServices;
 
 namespace Xbim.IO.Esent
 {
     /// <summary>
     /// IModel implementation for Esent DB based model support
     /// </summary>
-
+    /// <remarks>Esent is a data storage system deployed automatically on Microsoft Windows machines.
+    /// Consequently this IModel is only supported on Windows Operating Systems</remarks>
     public class EsentModel : IModel, IFederatedModel, IDisposable
     {
         #region Fields
@@ -99,6 +101,11 @@ namespace Xbim.IO.Esent
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
             Logger = _loggerFactory.CreateLogger<EsentModel>();
+            if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Logger.LogCritical("Esent is Windows only and not supported on {OS}", RuntimeInformation.OSDescription);
+                throw new NotSupportedException("Esent is not supported on this operating system");
+            }
         }
 
         protected void Init(IEntityFactory factory)

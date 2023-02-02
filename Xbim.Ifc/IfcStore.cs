@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Xbim.Common;
 using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
@@ -72,7 +73,14 @@ namespace Xbim.Ifc
         {
             if(!XbimServices.Current.IsBuilt)
             {
-                XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit());
+                if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+                }
+                else
+                {
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel()));
+                }
             }
             ModelProviderFactory = XbimServices.Current.ServiceProvider.GetRequiredService<IModelProviderFactory>();
         }

@@ -48,16 +48,11 @@ namespace Xbim.Essentials.Tests
 
         XbimServices xbimServices;
 
-        [Fact(Skip = "Need to re-consider the requirement - should it be explicit")]
-        public void ShouldProvideHeuristicModelProvider_When_XBIM_Esent_Loaded()
+        [Fact]
+        public void ShouldProvideHeuristicModelProvider_In_IfcStore()
         {
-            xbimServices.ConfigureServices(s => s.AddXbimToolkit());
-            var serviceProvider = xbimServices.ServiceProvider;
-                
 
-            IModelProviderFactory factory = serviceProvider.GetRequiredService<IModelProviderFactory>();
-
-            var modelProvider = factory.CreateProvider();
+            var modelProvider = IfcStore.ModelProviderFactory.CreateProvider();
 
             Assert.IsType<HeuristicModelProvider>(modelProvider);
         }

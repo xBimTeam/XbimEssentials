@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
+    <ProjectReference Include="..\Xbim.IO.Esent\Xbim.IO.Esent.csproj" />
     <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
   </ItemGroup>
   <ItemGroup>

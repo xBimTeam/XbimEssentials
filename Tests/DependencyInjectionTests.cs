@@ -91,19 +91,6 @@ namespace Xbim.Essentials.Tests
             provider.Should().BeOfType<DummyModelProvider>();
         }
 
-        [Fact(Skip ="Brittle due to use of singleton state")]
-        public void IfcStore_resolves_defined_provider()
-        {
-            XbimServices.Current.Rebuild();
-
-            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel()));
-
-            var provider = IfcStore.ModelProviderFactory.CreateProvider();
-            XbimServices.Current.Rebuild();
-
-            provider.Should().BeOfType<EsentModelProvider>();
-        }
-
 
         [Fact]
         public void Logging_can_be_added()

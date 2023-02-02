@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,12 +9,11 @@ using Xbim.Common.Step21;
 using Xbim.IO;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
+using System.Runtime.InteropServices;
 
 namespace Xbim.Ifc
 {
 
-    // IMPORTANT: if we ever rename this provider we need to update the DefaultModelProviderFactory, since
-    // this is the default provider when the assembly is loaded, and it's discovered by Name through reflection
 
     /// <summary>
     /// The <see cref="HeuristicModelProvider"/> encapsulates the underlying <see cref="IModel"/> implementations we use 
@@ -24,10 +22,13 @@ namespace Xbim.Ifc
     /// <remarks>This store permits a <see cref="MemoryModel"/> to be used where it's appropriate, while switching to an
     /// <see cref="EsentModel"/> when persistance is required, or a source model is above a size threshold.
     /// The store also permits a <see cref="MemoryModel"/> to persisted.
+    /// 
+    /// Since EsentModel only supports the Windows platform this provider is not suitable for use on non-Windows Operating Systems
     /// </remarks>
     public class HeuristicModelProvider : BaseModelProvider
     {
         private readonly ILoggerFactory _loggerFactory;
+        private readonly ILogger _logger;
 
         public HeuristicModelProvider() : this(default)
         {
@@ -37,6 +38,12 @@ namespace Xbim.Ifc
         public HeuristicModelProvider(ILoggerFactory loggerFactory)
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _logger = _loggerFactory.CreateLogger<HeuristicModelProvider>();
+
+            if(!IsEsentSupported())
+            {
+                _logger.LogWarning("EsentModel is only compatible with Windows operating systems. Please use another ModelProvider.");
+            }
         }
 
         /// <summary>
@@ -50,8 +57,6 @@ namespace Xbim.Ifc
         /// Describes the capabilities of the provider
         /// </summary>
         public override StoreCapabilities Capabilities => new StoreCapabilities(isTransient: false, supportsTransactions: true);
-
-
 
 
         /// <summary>
@@ -168,6 +173,13 @@ namespace Xbim.Ifc
         public override IModel Open(Stream stream, StorageType dataType, XbimSchemaVersion schema, XbimModelType modelType, 
             XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1)
         {
+
+            if(modelType == XbimModelType.EsentModel  && ! IsEsentSupported())
+            {
+                modelType = XbimModelType.MemoryModel;
+                _logger.LogWarning("EsentModel not support on this platform. Falling back to memory model where possible");
+            }
+
             //any Esent model needs to run from the file so we need to create a temporal one
             var xbimFilePath = Path.GetTempFileName();
             xbimFilePath = Path.ChangeExtension(xbimFilePath, ".xbim");
@@ -175,6 +187,11 @@ namespace Xbim.Ifc
             switch (dataType)
             {
                 case StorageType.Xbim:
+                    if(modelType == XbimModelType.MemoryModel)
+                    {
+                        throw new NotSupportedException($"Cannot open xbim file with a Memory Model");
+                    }
+
                     //xBIM file has to be opened from the file so we need to create temporary file if it is not a local file stream
                     var localFile = false;
                     var fileStream = stream as FileStream;
@@ -281,23 +298,27 @@ namespace Xbim.Ifc
 
             if (storageType == StorageType.Xbim) //open the XbimFile
             {
+                if(!IsEsentSupported())
+                {
+                    throw new NotSupportedException($"Cannot open xbim file on this platform");
+                }
                 var model = CreateEsentModel(schemaVersion, codePageOverride);
                 model.Open(path, accessMode, progDelegate);
                 return model;
             }
             else //it will be an IFC file if we are at this point
             {
-                var fInfo = new FileInfo(path);
-                double ifcMaxLength = (ifcDatabaseSizeThreshHold ?? DefaultIfcDatabaseSizeThreshHoldMb) * 1024 * 1024;
+                var file = new FileInfo(path);
+                double ifcMaxFileLength = (ifcDatabaseSizeThreshHold ?? DefaultIfcDatabaseSizeThreshHoldMb) * 1024 * 1024;
                 // we need to make an Esent database, if ifcMaxLength<0 we use in memory
-                if (ifcMaxLength >= 0 && fInfo.Length > ifcMaxLength) 
+                if (ExceedsThreshold(file, ifcMaxFileLength) && IsEsentSupported())
                 {
                     var tmpFileName = Path.GetTempFileName();
                     var model = CreateEsentModel(schemaVersion, codePageOverride);
                     // We delete the XBIM on close as the consumer is not controlling the generation of the XBIM file
                     if (model.CreateFrom(path, tmpFileName, progDelegate, keepOpen: true, deleteOnClose: true))
-                        return model; 
-                    
+                        return model;
+
                     throw new FileLoadException(path + " file was not a valid IFC format");
                 }
                 else //we can use a memory model
@@ -319,6 +340,16 @@ namespace Xbim.Ifc
                     return model;
                 }
             }
+        }
+
+        private static bool ExceedsThreshold(FileInfo file, double maxLength)
+        {
+            return maxLength >= 0 && file.Length > maxLength;
+        }
+
+        private static bool IsEsentSupported()
+        {
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
         }
 
         /// <summary>

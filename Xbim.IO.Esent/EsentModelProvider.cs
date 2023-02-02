@@ -7,6 +7,7 @@ using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Configuration;
 using Xbim.Common.Step21;
+using System.Runtime.InteropServices;
 
 namespace Xbim.IO.Esent
 {
@@ -23,6 +24,10 @@ namespace Xbim.IO.Esent
         public EsentModelProvider(ILoggerFactory loggerFactory)
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            if (!IsEsentSupported())
+            {
+                _logger.LogWarning("EsentModel is only compatible with Windows platforms. Please use another ModelProvider.");
+            }
         }
 
         public override StoreCapabilities Capabilities => new StoreCapabilities(isTransient: false, supportsTransactions: true);
@@ -231,5 +236,10 @@ namespace Xbim.IO.Esent
         }
 
         public string DatabaseFileName { get; set; }
+
+        private static bool IsEsentSupported()
+        {
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        }
     }
 }
