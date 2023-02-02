@@ -11,13 +11,11 @@ namespace Xbim.Ifc
     /// <summary>
     /// A default factory that provides an <see cref="IModelProvider"/>
     /// </summary>
-    /// <remarks>By default, unless Xbim.Esent.IO is referenced the factory will create a <see cref="MemoryModelProvider"/>
-    /// If Esent is loaded, the Heuristic provider is loaded, which provides better scalability.
+    /// <remarks>The Default ModelProvider is simply a slender wrapped around the DI service.
     /// </remarks>
     public class DefaultModelProviderFactory : IModelProviderFactory
     {
         
-
         private readonly ILogger logger;
 
         private readonly ILoggerFactory _loggerFactory;
@@ -39,35 +37,22 @@ namespace Xbim.Ifc
             return  GetDefaultProvider();
         }
 
-        // We infer the best provider based on what we can find in process. 
+        // Historically we used to load different providers depending on what was loaded in the AppDomain.
+        // Now we simply rely on the DI config to give us a provider 
         private IModelProvider GetDefaultProvider()
         {
-            try
-            {
-                var provider = modelProvider;
+           
+            var provider = modelProvider;
 
-                if (provider != null)
-                {
-                    if(provider is MemoryModelProvider)
-                    {
-                        
-                        logger.LogWarning(
-                        @"Xbim using the MemoryModelProvider. Working with large models could be sub-optimal. 
-To fix this warning, consider calling 'XbimServices.ServiceCollection.AddXbimToolkit(opt=> opt.UseHeuristicModel);' at application startup'");
-                    }
-                    return provider;
-                }
-                else
-                {
-                    
-                }
-            }
-            catch(Exception ex)
+            if(provider is MemoryModelProvider)
             {
-                logger.LogError(0, ex, @"Failed to resolve Esent.IO's ModelProvider. Defaulting to MemoryModelProvider. 
-Consider calling 'XbimServices.ServiceCollection.AddXbimToolkit(opt=> opt.UseHeuristicModel);' at application startup'");
+                        
+                logger.LogWarning(
+                @"Xbim using the MemoryModelProvider. Working with large models could be sub-optimal and could consume large amounts of RAM. 
+To fix this warning, consider calling 'XbimServices.ServiceCollection.AddXbimToolkit(opt=> opt.UseHeuristicModel);' at application startup'");
             }
-            return new MemoryModelProvider(_loggerFactory);
+            return provider;
+            
         }
 
         [Obsolete("Replaced by dependency injection. Use XbimServices.ServiceCollection.AddXbimToolkit(opt=> opt.UseModelProvider<T>() instead")]

@@ -17,5 +17,15 @@ namespace Xbim.Common.Configuration
         {
             return services.ServiceProvider.GetRequiredService<ILoggerFactory>();
         }
+
+        /// <summary>
+        /// Convenience method to simplify creating an <see cref="ILogger{TCategoryName}"/> outside of DI
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns>The <see cref="ILogger{TCategoryName}"/></returns>
+        public static ILogger<T> CreateLogger<T>(this XbimServices services)
+        {
+            return services.ServiceProvider.GetRequiredService<ILogger<T>>();
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +14,7 @@ namespace Xbim.IO.Esent
     {
 
         private readonly ILoggerFactory _loggerFactory;
+        private readonly ILogger _logger;
 
         public EsentModelProvider() : this(default)
         {
@@ -24,9 +24,10 @@ namespace Xbim.IO.Esent
         public EsentModelProvider(ILoggerFactory loggerFactory)
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _logger = _loggerFactory.CreateLogger<EsentModelProvider>();
             if (!IsEsentSupported())
             {
-                _logger.LogWarning("EsentModel is only compatible with Windows platforms. Please use another ModelProvider.");
+                _logger.LogWarning("EsentModel is only compatible with Windows operating systems. Please use another ModelProvider.");
             }
         }
 

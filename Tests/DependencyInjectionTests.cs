@@ -95,7 +95,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void Logging_can_be_added()
         {
-            SuT.ConfigureServices(s => s.AddLogging()); // MSE Logging as a replacement for AddXbimCore
+            SuT.ConfigureServices(s => s.AddLogging()); // MSE Logging as a replacement for default XbimLogging (NullLogger)
 
             var factory = SuT.ServiceProvider.GetRequiredService<ILoggerFactory>();
             factory.Should().NotBeNull();
