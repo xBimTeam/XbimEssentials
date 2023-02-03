@@ -185,6 +185,34 @@ namespace Xbim.Essentials.Tests
             logger.Should().BeOfType<Logger<DependencyInjectionTests>>();
         }
 
+        //[Fact]
+        //public void Can_Supply_External_ServiceCollection()
+        //{
+        //    var externalServices = new ServiceCollection();
+
+           
+        //    SuT.UseExternalServiceCollection(externalServices);
+
+        //    // XbimServices is will register manadatory services
+        //    var service = SuT.ServiceProvider.GetRequiredService<ILoggerFactory>();
+
+        //    service.Should().NotBeNull();
+        //}
+
+        [Fact]
+        public void Can_Supply_External_ServiceProvider()
+        {
+            var externalServices = new ServiceCollection();
+            externalServices.AddXbimToolkit()
+                .AddLogging();
+            var extProvider = externalServices.BuildServiceProvider();
+            SuT.UseExternalServiceProvider(extProvider);
+
+            var service = SuT.ServiceProvider.GetRequiredService<IModelProvider>();
+
+            service.Should().NotBeNull();
+        }
+
         private class DummyModelProvider : IModelProvider
         {
             public StoreCapabilities Capabilities => throw new NotImplementedException();

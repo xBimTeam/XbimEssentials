@@ -28,7 +28,8 @@ namespace Xbim.Common.Configuration
 
         private bool isBuilt = false;
 
-        private IServiceCollection services = new ServiceCollection();
+        private IServiceCollection servicesCollection = new ServiceCollection();
+        private IServiceProvider externalServiceProvider = null;
 
         static Lazy<XbimServices> lazySingleton = new Lazy<XbimServices>(() => new XbimServices());
         Lazy<IServiceProvider> serviceProviderBuilder;
@@ -38,6 +39,55 @@ namespace Xbim.Common.Configuration
         /// </summary>
         public static XbimServices Current { get; private set; } = lazySingleton.Value;
 
+        // TODO: Need to consider if this is a good idea/useful. Could be open to abuse/bugs
+        ///// <summary>
+        ///// Override xbim's internal <see cref="IServiceCollection"/> with another instance for configuration
+        ///// </summary>
+        ///// <remarks>Use this when you are responsible for creating your application's IServiceProvider, and
+        ///// have an existing ServiceCollection you want xbim to register services with. 
+        ///// <para>Note: XbimServices will automatically generate its own <see cref="IServiceProvider"/> which may result in
+        ///// duplicate providers in your application. 
+        ///// </para>
+        ///// <para>
+        ///// Prefer <see cref="UseExternalServiceProvider(IServiceProvider)"/> 
+        ///// unless you are sure what you're doing. If using this approach you would typically use XbimService's <see cref="ServiceProvider"/> 
+        ///// instance for resolving your own services.</para>
+        ///// </remarks>
+        ///// <param name="collection"></param>
+        ///// <exception cref="InvalidOperationException"></exception>
+        //public void UseExternalServiceCollection(IServiceCollection collection)
+        //{
+        //    if (isBuilt)
+        //    {
+        //        throw new InvalidOperationException("The xbim internal ServiceCollection has already been built");
+        //    }
+        //    servicesCollection = collection;
+        //}
+
+        /// <summary>
+        /// Override xbim's internal <see cref="IServiceProvider"/> with a configured instance
+        /// </summary>
+        /// <remarks>
+        /// After calling this any prior or future calls to <see cref="ConfigureServices"/> will be ignored.
+        /// Use this when you want to take full control of the DependencyInjection setup for xbim Toolkit in your application.
+        /// <para>
+        /// You must add logging, or call <see cref="XbimServiceCollectionExtensions.AddXbimLogging"/>.
+        /// Be sure to call AddXbimToolkit() on your ServiceCollection if using the IfcStore.
+        /// </para>
+        /// </remarks>
+        /// <param name="provider"></param>
+        /// <exception cref="InvalidOperationException"></exception>
+        public void UseExternalServiceProvider(IServiceProvider provider)
+        {
+            if (isBuilt)
+            {
+                // likely to cause lifecycle issues if we let this happen / e.g. Duplicate Singletons, or
+                // unexpected disposal of resources if we GC'd the original provider.
+                throw new InvalidOperationException("The xbim internal ServiceProvider has already been built");
+            }
+            isBuilt = true; // Prevent users Configuring Services as it won't take effect
+            externalServiceProvider = provider;
+        }
 
         /// <summary>
         /// Flag indicating if the DI container has been built
@@ -56,21 +106,21 @@ namespace Xbim.Common.Configuration
             {
                 throw new InvalidOperationException("The xbim internal ServiceCollection has already been built");
             }
-            configure(services);
+            configure(servicesCollection);
         }
 
         /// <summary>
         /// Gets a <see cref="IServiceProvider"/> used for resolving xbim services 
         /// </summary>
         /// <remarks>Used when an external DI service is not employed</remarks>
-        public IServiceProvider ServiceProvider => serviceProviderBuilder.Value;
+        public IServiceProvider ServiceProvider => externalServiceProvider ?? serviceProviderBuilder.Value;
 
         /// <summary>
         /// For internal and unit test purposes only
         /// </summary>
         internal void Rebuild()
         {
-            services.Clear();
+            servicesCollection.Clear();
             isBuilt = false;
             if (serviceProviderBuilder != null &&
                 serviceProviderBuilder.IsValueCreated && 
@@ -82,7 +132,7 @@ namespace Xbim.Common.Configuration
             serviceProviderBuilder = new Lazy<IServiceProvider>(() =>
             {
                 isBuilt = true;
-                return services
+                return servicesCollection
                     .AddXbimLogging()  // Add after other services have been added to avoid hijacking logging
                     .BuildServiceProvider();
             });
