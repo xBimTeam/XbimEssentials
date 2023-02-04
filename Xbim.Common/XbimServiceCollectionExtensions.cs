@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Xbim.Common
+namespace Xbim.Common.Configuration
 {
     public static class XbimServiceCollectionExtensions
     {

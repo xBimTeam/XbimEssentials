@@ -2,10 +2,9 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Xbim.Common.Configuration;
 using Xbim.IO;
 
-namespace Xbim.Common
+namespace Xbim.Common.Configuration
 {
     /// <summary>
     /// Extension methods for setting up xbim services using an <see cref="IXbimConfigurationBuilder"/>
@@ -22,7 +21,7 @@ namespace Xbim.Common
         /// <param name="builder"></param>
         /// <param name="loggerFactory"></param>
         /// <returns></returns>
-        public static IXbimConfigurationBuilder UseLoggerFactory(this IXbimConfigurationBuilder builder, ILoggerFactory loggerFactory)
+        public static IXbimConfigurationBuilder AddLoggerFactory(this IXbimConfigurationBuilder builder, ILoggerFactory loggerFactory)
         {
             builder.Services.RemoveAll<ILoggerFactory>();
             
@@ -38,10 +37,10 @@ namespace Xbim.Common
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public static IXbimConfigurationBuilder UseModelProvider<T>(this IXbimConfigurationBuilder builder) where T : IModelProvider
+        public static IXbimConfigurationBuilder AddModelProvider<T>(this IXbimConfigurationBuilder builder) where T : IModelProvider
         {
 
-            builder.Services.AddSingleton(typeof(IModelProvider), typeof(T));
+            builder.Services.TryAddSingleton(typeof(IModelProvider), typeof(T));
           
             return builder;
         }
