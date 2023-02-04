@@ -54,7 +54,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void MemoryModelProvider_can_be_added_explicitly()
         {
-            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel()));
+            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddMemoryModel()));
             
             var provider = SuT.ServiceProvider.GetRequiredService<IModelProvider>();
             provider.Should().NotBeNull();
@@ -64,7 +64,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void EsentModelProvider_resolves()
         {
-            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel()));
+            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel()));
 
             var provider = SuT.ServiceProvider.GetRequiredService<IModelProvider>();
             provider.Should().NotBeNull();
@@ -74,7 +74,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void HeuristicModelProvider_resolves()
         {
-            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
 
             var provider = SuT.ServiceProvider.GetRequiredService<IModelProvider>();
             provider.Should().NotBeNull();
@@ -84,7 +84,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void ThirdParty_modelProviders_resolve()
         {
-            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseModelProvider<DummyModelProvider>()));
+            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddModelProvider<DummyModelProvider>()));
 
             var provider = SuT.ServiceProvider.GetRequiredService<IModelProvider>();
             provider.Should().NotBeNull();
@@ -174,7 +174,7 @@ namespace Xbim.Essentials.Tests
             var loggerFactory = new LoggerFactory();
 
             SuT.ConfigureServices(s => s
-                .AddXbimToolkit(opt => opt.UseLoggerFactory(loggerFactory))
+                .AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory))
                 );
 
             var factory = SuT.ServiceProvider.GetRequiredService<ILoggerFactory>();
@@ -185,19 +185,19 @@ namespace Xbim.Essentials.Tests
             logger.Should().BeOfType<Logger<DependencyInjectionTests>>();
         }
 
-        //[Fact]
-        //public void Can_Supply_External_ServiceCollection()
-        //{
-        //    var externalServices = new ServiceCollection();
+        [Fact]
+        public void Can_Supply_External_ServiceCollection()
+        {
+            var externalServices = new ServiceCollection();
 
-           
-        //    SuT.UseExternalServiceCollection(externalServices);
 
-        //    // XbimServices is will register manadatory services
-        //    var service = SuT.ServiceProvider.GetRequiredService<ILoggerFactory>();
+            SuT.UseExternalServiceCollection(externalServices);
 
-        //    service.Should().NotBeNull();
-        //}
+            // XbimServices is will register manadatory services
+            var service = SuT.ServiceProvider.GetRequiredService<ILoggerFactory>();
+
+            service.Should().NotBeNull();
+        }
 
         [Fact]
         public void Can_Supply_External_ServiceProvider()
@@ -212,6 +212,7 @@ namespace Xbim.Essentials.Tests
 
             service.Should().NotBeNull();
         }
+
 
         private class DummyModelProvider : IModelProvider
         {

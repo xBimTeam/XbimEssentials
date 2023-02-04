@@ -1,11 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Xbim.Common.Configuration;
+﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using Xbim.Ifc;
 using Xbim.IO;
 using Xbim.IO.Esent;
 
-namespace Xbim.Common
+namespace Xbim.Common.Configuration
 {
     public static class EsentModelConfigurationBuilderExtensions
     {
@@ -14,7 +12,7 @@ namespace Xbim.Common
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public static IXbimConfigurationBuilder UseEsentModel(this IXbimConfigurationBuilder builder)
+        public static IXbimConfigurationBuilder AddEsentModel(this IXbimConfigurationBuilder builder)
         {
             builder.Services.TryAddSingleton<IModelProvider, EsentModelProvider>();
             return builder;
@@ -25,7 +23,7 @@ namespace Xbim.Common
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public static IXbimConfigurationBuilder UseHeuristicModel(this IXbimConfigurationBuilder builder)
+        public static IXbimConfigurationBuilder AddHeuristicModel(this IXbimConfigurationBuilder builder)
         {
             builder.Services.TryAddSingleton<IModelProvider, HeuristicModelProvider>();
             return builder;

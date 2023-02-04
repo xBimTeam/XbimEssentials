@@ -23,7 +23,7 @@ namespace Xbim.Ifc
         public static IModelProviderFactory UseMemoryModelProvider(this IModelProviderFactory providerFactory)
         {
             
-            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel()));
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddMemoryModel()));
             return providerFactory;
         }
     }
