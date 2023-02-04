@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using Xbim.Common.Configuration;
 
-namespace Xbim.Common
+
+namespace Xbim.Common.Configuration
 {
     public static class MemoryModelServiceCollectionExtensions
     {
@@ -13,7 +13,7 @@ namespace Xbim.Common
         /// <returns>The <see cref="IServiceCollection"/> so additional calls can be chained</returns>
         public static IServiceCollection AddXbimToolkit(this IServiceCollection services)
         {
-            return services.AddXbimToolkit(o => o.UseMemoryModel());
+            return services.AddXbimToolkit(o => o.AddMemoryModel());
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace Xbim.Ifc
         [Obsolete("Use XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel())) instead")]
         public static IModelProviderFactory UseHeuristicModelProvider(this IModelProviderFactory providerFactory)
         {
-            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
             return providerFactory;
         }
 
@@ -30,7 +30,7 @@ namespace Xbim.Ifc
         [Obsolete("Use XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel())) instead")]
         public static IModelProviderFactory UseEsentModelProvider(this IModelProviderFactory providerFactory)
         {
-            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel()));
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel()));
             return providerFactory;
         }
     }

@@ -70,11 +70,11 @@ namespace Xbim.Ifc
             {
                 if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
                 }
                 else
                 {
-                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel()));
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddMemoryModel()));
                 }
             }
             

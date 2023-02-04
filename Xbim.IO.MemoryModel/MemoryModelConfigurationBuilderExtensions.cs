@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using Xbim.Common.Configuration;
 using Xbim.IO;
 using Xbim.IO.Memory;
 
-namespace Xbim.Common
+namespace Xbim.Common.Configuration
 {
     public static class MemoryModelConfigurationBuilderExtensions
     {
@@ -12,7 +11,7 @@ namespace Xbim.Common
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public static IXbimConfigurationBuilder UseMemoryModel(this IXbimConfigurationBuilder builder)
+        public static IXbimConfigurationBuilder AddMemoryModel(this IXbimConfigurationBuilder builder)
         {
             builder.Services.TryAddSingleton<IModelProvider, MemoryModelProvider>();
             return builder;

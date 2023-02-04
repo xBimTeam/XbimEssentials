@@ -56,7 +56,7 @@ namespace Xbim.Essentials.Tests
         {
             if (!XbimServices.Current.IsBuilt)
             {
-                XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel()));
+                XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
             }
         }
 
