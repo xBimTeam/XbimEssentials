@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-
 namespace Xbim.Common.Configuration
 {
     public static class MemoryModelServiceCollectionExtensions
@@ -13,7 +12,7 @@ namespace Xbim.Common.Configuration
         /// <returns>The <see cref="IServiceCollection"/> so additional calls can be chained</returns>
         public static IServiceCollection AddXbimToolkit(this IServiceCollection services)
         {
-            return services.AddXbimToolkit(o => o.AddMemoryModel());
+            return services.AddXbimToolkit(opt => { });
         }
 
         /// <summary>
@@ -24,8 +23,11 @@ namespace Xbim.Common.Configuration
         /// <returns>The <see cref="IServiceCollection"/> so additional calls can be chained</returns>
         public static IServiceCollection AddXbimToolkit(this IServiceCollection services, Action<IXbimConfigurationBuilder> configure)
         {
-                        
-            configure(new XbimConfigurationBuilder(services));
+            var builder = new XbimConfigurationBuilder(services);
+            configure(builder);
+            // Fall back to MemoryProvider if no IModelProvider specified
+            MemoryModelConfigurationBuilderExtensions.AddMemoryModel(builder);
+            
             return services;
         }
     }

@@ -52,6 +52,16 @@ namespace Xbim.Essentials.Tests
         }
 
         [Fact]
+        public void MemoryModelProvider_resolved_by_default_with_Config()
+        {
+            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(new LoggerFactory())));
+
+            var provider = SuT.ServiceProvider.GetRequiredService<IModelProvider>();
+            provider.Should().NotBeNull();
+            provider.Should().BeOfType<MemoryModelProvider>();
+        }
+
+        [Fact]
         public void MemoryModelProvider_can_be_added_explicitly()
         {
             SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddMemoryModel()));
@@ -211,6 +221,27 @@ namespace Xbim.Essentials.Tests
             var service = SuT.ServiceProvider.GetRequiredService<IModelProvider>();
 
             service.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Services_Are_Registered_Once_Only()
+        {
+            var services = new ServiceCollection();
+            int count = 0;
+            
+            SuT.ConfigureServices(s => 
+            { 
+                s.AddXbimToolkit();
+                count = s.Count;
+            });
+
+            SuT.ConfigureServices(s =>
+            {
+                s.AddXbimToolkit();
+                s.Count.Should().Be(count);
+            });
+
+
         }
 
 
