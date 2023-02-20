@@ -10,8 +10,9 @@ This is the 6.0 release of XBIM Toolkit
 - Added net6.0 support to all Essentials components (including Esent) [#432](https://github.com/xBimTeam/XbimEssentials/issues/432) [#451](https://github.com/xBimTeam/XbimEssentials/issues/451)
 - Added Common units to new projects
 - Docs are automatically generated with each build [#449](https://github.com/xBimTeam/XbimEssentials/issues/449) [#457](https://github.com/xBimTeam/XbimEssentials/issues/457)
-- Support for IFC 4x3 schema [#450] 
+- Support for IFC 4x3 schema [#450](https://github.com/xBimTeam/XbimEssentials/issues/450)
 - Added support for Dependency Injection of services, with internal services provider [#455](https://github.com/xBimTeam/XbimEssentials/issues/455)
+	- See [Tests for examples](https://github.com/xBimTeam/XbimEssentials/blob/develop/Tests/DependencyInjectionTests.cs)
 - Optimisation to Esent SaveAs
 
 ### Fixed
@@ -22,14 +23,14 @@ This is the 6.0 release of XBIM Toolkit
 
 ### Changed
 - Removed need to call `IfcStore.ModelProviderFactory.UseHeuristicModelProvider();` before using IfcStore. 
-	- Replaced with `XbimServices.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));`
+	- Replaced with optional call to `XbimServices.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));` ... and equivalent.
 - ModelProviderFactory replaced by standard DI / service Provider. 
 - IfcStore.ModelProvider deprecated
 - Methods accepting ILogger parameters deprecated - Loggers can be injected (if using DI) or are provided by the XbimServices ServiceProvider
 
 ### Removed
 
-- #455 Removed static Xbim.Commom.XbimLogger - replaced with a DI friendly internal service provide Logger functionality when needed
+- Removed static Xbim.Commom.XbimLogger - replaced with a DI friendly internal service provide Logger functionality when needed [#455](https://github.com/xBimTeam/XbimEssentials/issues/455)
 - Removed support for .NET Framework targets prior to net472 - now out of support by Microsoft
 - Removed targeting of .NET 3.1 (Out of support, but can still be used via netstandard2.0)
 - Removed Default Microsoft.Extensions.Logging implementation - now requires explicit setup via Xbim.Common.Configuration.XbimServices
