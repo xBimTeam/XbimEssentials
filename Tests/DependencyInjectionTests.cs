@@ -42,6 +42,12 @@ namespace Xbim.Essentials.Tests
         }
 
         [Fact]
+        public void Services_Start_Unbuilt()
+        {
+            SuT.IsBuilt.Should().BeFalse();
+        }
+
+        [Fact]
         public void MemoryModelProvider_resolved_by_default()
         {
             SuT.ConfigureServices(s => s.AddXbimToolkit());

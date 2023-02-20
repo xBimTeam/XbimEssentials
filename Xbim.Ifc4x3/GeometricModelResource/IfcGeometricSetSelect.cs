@@ -9,6 +9,7 @@
 
 using Xbim.Common;
 //## Custom using statements
+using Xbim.Ifc4x3.GeometryResource;
 //##
 
 namespace Xbim.Ifc4x3.GeometricModelResource
@@ -17,10 +18,11 @@ namespace Xbim.Ifc4x3.GeometricModelResource
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial interface IfcGeometricSetSelect : IExpressSelectType, IPersistEntity
 	{
-		#region Custom code for a select
-		//## Custom code for a select
-		//##
-		#endregion
-	}
+        #region Custom code for a select
+        //## Custom code for a select
+        IfcDimensionCount Dim { get; }
+        //##
+        #endregion
+    }
 }
 

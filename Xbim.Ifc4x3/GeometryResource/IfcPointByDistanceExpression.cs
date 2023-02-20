@@ -158,11 +158,22 @@ namespace Xbim.Ifc4x3.GeometryResource
 					yield return @BasisCurve;
 			}
 		}
-		#endregion
+        #endregion
 
-		#region Custom code (will survive code regeneration)
-		//## Custom code
-		//##
-		#endregion
-	}
+        #region Custom code (will survive code regeneration)
+        //## Custom code
+
+        [EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
+        public override IfcDimensionCount @Dim
+        {
+            get
+            {
+                //## Getter for Dim
+                return BasisCurve.Dim;
+                //##
+            }
+        }
+        //##
+        #endregion
+    }
 }
