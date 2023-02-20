@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>5.1.0.0</Version>
+    <Version>6.0.0.0</Version>
     <Copyright>Copyright © XBIM Ltd</Copyright>
     <Company>Xbim Ltd.</Company>
     <Authors>Steve Lockley, Martin Cerny and XBIMTeam Contributors</Authors>
@@ -17,13 +17,12 @@
 	  <PackageLicenseExpression>CDDL-1.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/xBimTeam/XbimEssentials</PackageProjectUrl>
 	  <PackageIcon>xbim-toolkit-icon.png</PackageIcon>
-    <PackageReleaseNotes>Version 5.1 update. See https://github.com/xBimTeam/XbimEssentials/blob/master/CHANGELOG.md
+    <PackageReleaseNotes>Version 6.0 update. See https://github.com/xBimTeam/XbimEssentials/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageTags>BIM, IFC, IfcXml, IfcZip, Ifc4, COBie, BuildingSmart</PackageTags>
     <RepositoryUrl>https://github.com/xBimTeam/XbimEssentials/tree/master</RepositoryUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
     <SignAssembly>true</SignAssembly>   
     <AssemblyOriginatorKeyFile>..\XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>   
     <DelaySign>false</DelaySign>
