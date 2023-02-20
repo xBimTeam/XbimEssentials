@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using Xbim.Common.Model;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4x3;
+using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.MeasureResource;
 using Xbim.Ifc4x3.ProductExtension;
 
@@ -52,6 +54,34 @@ namespace Xbim.Essentials.Tests
             var converted = value.ToIfc4();
             Assert.IsTrue(converted.GetType() == typeof(Ifc4.MeasureResource.IfcLengthMeasure));
             Assert.IsTrue((Ifc4.MeasureResource.IfcLengthMeasure)converted == new Ifc4.MeasureResource.IfcLengthMeasure(20));
+        }
+
+        [TestMethod]
+        public void PointDimensionsImplemented()
+        {
+            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
+            {
+                var i = model.Instances;
+                using (var txn = model.BeginTransaction("Sample creation"))
+                {
+                    var point = i.New<IfcCartesianPoint>(c =>
+                    {
+                        c.X = 1;
+                        c.Y = 1;
+                        c.Z = 1;
+                    });
+
+
+                    point.Dim.Value.Should().Be(3, "There are three coordinates");
+
+                    IIfcCartesianPoint ifc4point = point as IIfcCartesianPoint;
+                    ifc4point.Dim.Value.Should().Be(3, "Ifc4 interface returns 3");
+
+                    IfcPoint abstractPoint = point as IfcPoint;
+                    abstractPoint.Dim.Value.Should().Be(3, "Ifc4x3 base Point returns 3");
+                }
+                
+            }
         }
     }
 }
