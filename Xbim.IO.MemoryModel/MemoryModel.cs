@@ -309,15 +309,30 @@ namespace Xbim.IO.Memory
         }
 
         /// <summary>
-        /// Reads schema version fron the file on the fly inside the parser so it doesn't need to
+        /// Reads schema version from the file on the fly inside the parser so it doesn't need to
         /// access the file twice.
         /// </summary>
         /// <param name="file">Input step21 text file</param>
         /// <param name="logger">Logger</param>
         /// <param name="progressDel">Progress delegate</param>
         /// <returns>New memory model</returns>
-        [Obsolete("Prefer ILogger injection")]
-        public static MemoryModel OpenReadStep21(string file, ILogger logger = null, ReportProgressDelegate progressDel = null)
+        [Obsolete("Passing of ILogger is redundant. Use XbimServices")]
+        public static MemoryModel OpenReadStep21(string file, ILogger logger, ReportProgressDelegate progressDel = null)
+        {
+            using (var stream = File.OpenRead(file))
+            {
+                return OpenReadStep21(stream, progressDel);
+            }
+        }
+
+        /// <summary>
+        /// Reads schema version from the file on the fly inside the parser so it doesn't need to
+        /// access the file twice.
+        /// </summary>
+        /// <param name="file">Input step21 text file</param>
+        /// <param name="progressDel">Progress delegate</param>
+        /// <returns>New memory model</returns>
+        public static MemoryModel OpenReadStep21(string file, ReportProgressDelegate progressDel = null)
         {
             using (var stream = File.OpenRead(file))
             {
