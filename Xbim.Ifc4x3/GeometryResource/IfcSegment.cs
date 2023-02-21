@@ -53,7 +53,7 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-		public IfcDimensionCount @Dim 
+		public virtual IfcDimensionCount @Dim 
 		{
 			get 
 			{
