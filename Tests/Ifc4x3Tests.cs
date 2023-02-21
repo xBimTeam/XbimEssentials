@@ -83,5 +83,43 @@ namespace Xbim.Essentials.Tests
                 
             }
         }
+
+        [TestMethod]
+        public void SurfaceDimensionsImplemented()
+        {
+            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
+            {
+                var i = model.Instances;
+                using (var txn = model.BeginTransaction("Sample creation"))
+                {
+
+                    var curve = i.New<IfcLine>(e =>
+                    {
+                        e.Pnt = i.New<IfcCartesianPoint>(c =>
+                        {
+                            c.SetXY(0, 0);
+                        });
+
+                        e.Dir = i.New<IfcVector>(c =>
+                        {
+                            c.Orientation = i.New<IfcDirection>(c => c.SetXY(0, 1));
+                        });
+
+                    });
+                    var segment = i.New<IfcCurveSegment>(c =>
+                    {
+                        c.ParentCurve = curve;
+                    });
+
+
+                    segment.Dim.Value.Should().Be(2, "There are two coordinates");
+
+
+                    IfcSegment abstractSegment = segment as IfcSegment;
+                    abstractSegment.Dim.Value.Should().Be(2, "Ifc4x3 base Segment returns 3");
+                }
+
+            }
+        }
     }
 }
