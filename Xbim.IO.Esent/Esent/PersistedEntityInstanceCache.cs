@@ -129,15 +129,20 @@ namespace Xbim.IO.Esent
                     EsentCursor.CreateGlobalsTable(session, dbid); //create the gobals table
                     EnsureGeometryTables(session, dbid);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Api.JetCloseDatabase(session, dbid, CloseDatabaseGrbit.None);
-                    lock (OpenInstances)
+                    _logger.LogError(ex, "Failed to Create Esent Database, {filename}", fileName);
+                    try
                     {
-                        Api.JetDetachDatabase(session, fileName);
-                        OpenInstances.Remove(this);
+                        Api.JetCloseDatabase(session, dbid, CloseDatabaseGrbit.None);
+                        lock (OpenInstances)
+                        {
+                            Api.JetDetachDatabase(session, fileName);
+                            OpenInstances.Remove(this);
+                        }
+                        File.Delete(fileName);
                     }
-                    File.Delete(fileName);
+                    catch { }
                     throw;
                 }
             }
@@ -164,18 +169,20 @@ namespace Xbim.IO.Esent
                 {
                     Api.JetDeleteTable(_session, _databaseId, EsentShapeGeometryCursor.GeometryTableName);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //
-                }
+                    _logger.LogDebug(ex, "Failed to delete geometry table {tableName}", EsentShapeGeometryCursor.GeometryTableName);
+;                }
 
                 try
                 {
                     Api.JetDeleteTable(_session, _databaseId, EsentShapeInstanceCursor.InstanceTableName);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //
+                    _logger.LogDebug(ex, "Failed to delete geometry table {tableName}", EsentShapeInstanceCursor.InstanceTableName);
                 }
                 EnsureGeometryTables(_session, _databaseId);
             }
@@ -249,6 +256,7 @@ namespace Xbim.IO.Esent
                     }
                     catch (EsentDatabaseDirtyShutdownException)
                     {
+                        _logger.LogInformation("Dirty shutdown of Esent DB detected. Attempting repair with EsentUtl.exe");
                         // try and fix the problem with the badly shutdown database
                         var startInfo = new ProcessStartInfo("EsentUtl.exe")
                         {
@@ -465,6 +473,7 @@ namespace Xbim.IO.Esent
                 if (refCount == 0) //only detach if we have no more references
                     Api.JetDetachDatabase(_session, _databaseName);
             }
+            _logger.LogTrace("Closed PersistedEntityInstanceCache {dbName}", _databaseName);
             _databaseName = null;
             _session.Dispose();
             _session = null;
@@ -658,10 +667,15 @@ namespace Xbim.IO.Esent
                 }
                 Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Failed to Import Step file to {xbimFile}", xbimDbName);
                 Close();
-                File.Delete(xbimDbName);
+                try
+                {
+                    File.Delete(xbimDbName);
+                }
+                catch { }
                 throw;
             }
         }
@@ -686,7 +700,7 @@ namespace Xbim.IO.Esent
 
         internal void ImportStep(string xbimDbName, Stream stream, long streamSize, ReportProgressDelegate progressHandler = null, bool keepOpen = false, bool cacheEntities = false, int codePageOverride = -1)
         {
-
+            _logger.LogInformation("Opening {esentDb}", xbimDbName);
             CreateDatabase(xbimDbName);
             Open(xbimDbName, XbimDBAccess.Exclusive);
             var table = GetEntityTable();
@@ -711,12 +725,26 @@ namespace Xbim.IO.Esent
                 FreeTable(table);
                 if (!keepOpen) Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Failed to Import Step file to {xbimFile}", xbimDbName);
+                TidyUp(xbimDbName, table);
+                throw;
+            }
+        }
+
+        private void TidyUp(string xbimDbName, EsentEntityCursor table)
+        {
+            try
+            {
+
                 FreeTable(table);
                 Close();
                 File.Delete(xbimDbName);
-                throw;
+            }
+            catch(Exception ex)
+            {
+                _logger.LogWarning(ex, "Failed to tidy up {xbimFile}", xbimDbName);
             }
         }
 
@@ -838,11 +866,10 @@ namespace Xbim.IO.Esent
                 Close();
                 File.Delete(xbimDbName);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                FreeTable(table);
-                Close();
-                File.Delete(xbimDbName);
+                _logger.LogError(ex, "Failed to Import Xml file to {xbimFile}", xbimDbName);
+                TidyUp(xbimDbName, table);
                 throw;
             }
         }
@@ -1505,15 +1532,14 @@ namespace Xbim.IO.Esent
             // Check to see if Dispose has already been called.
             if (!_disposed)
             {
-                // If disposing equals true, dispose all managed 
-                // and unmanaged resources.
-                if (disposing)
-                {
-                    Close();
-
-                }
                 try
                 {
+                    // If disposing equals true, dispose all managed 
+                    // and unmanaged resources.
+                    if (disposing)
+                    {
+                        Close();
+                    }
                     var systemPath = _jetInstance.Parameters.SystemDirectory;
                     lock (OpenInstances)
                     {
@@ -1527,11 +1553,11 @@ namespace Xbim.IO.Esent
                                 Directory.Delete(systemPath, true);
                         }
                     }
-
+                    _logger.LogDebug("Disposed PersistedEntityInstanceCache");
                 }
-                catch (Exception) //just in case we cannot delete
+                catch (Exception ex) //just in case we cannot delete
                 {
-                    // ignored
+                    _logger.LogWarning(ex, "Failed to Dispose Esent Model");
                 }
                 finally
                 {
@@ -2365,7 +2391,7 @@ namespace Xbim.IO.Esent
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                _logger.LogWarning(ex, "Failed to delete Jet table {table}", name);
                 return false;
             }
             return true;

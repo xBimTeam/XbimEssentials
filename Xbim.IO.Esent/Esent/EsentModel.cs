@@ -109,18 +109,27 @@ namespace Xbim.IO.Esent
 
         protected void Init(IEntityFactory factory)
         {
-            _factory = factory;
-            InstanceCache = new PersistedEntityInstanceCache(this, factory, _loggerFactory);
-            InstancesLocal = new XbimInstanceCollection(this);
-            var r = new Random();
-            UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
-            Metadata = ExpressMetaData.GetMetadata(factory.GetType().Module);
-            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
+            try
+            {
+
+                _factory = factory;
+                InstanceCache = new PersistedEntityInstanceCache(this, factory, _loggerFactory);
+                InstancesLocal = new XbimInstanceCollection(this);
+                var r = new Random();
+                UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
+                Metadata = ExpressMetaData.GetMetadata(factory.GetType().Module);
+                ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
+            }
+            catch(Exception ex)
+            {
+                Logger.LogError(ex, "Failed to Initialise EsentModel");
+                throw;
+            }
         }
 
         public string DatabaseName
         {
-            get { return InstanceCache.DatabaseName; }
+            get { return InstanceCache?.DatabaseName; }
         }
         
         //sets or gets the Geometry Manager for this model
@@ -628,26 +637,28 @@ namespace Xbim.IO.Esent
         /// </summary>
         public virtual void Close()
         {
-            var dbName = DatabaseName;
-            ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
-            Header = null;
-
-            if (_editTransactionEntityCursor != null)
-                EndTransaction();
-            if (_geometryStore != null)
-            {
-                _geometryStore.Dispose();
-                _geometryStore = null;
-            }
-            InstanceCache.Close();
-
-            //dispose any referenced models
-            foreach (var refModel in _referencedModels.Select(r => r.Model).OfType<IDisposable>())
-                refModel.Dispose();
-            _referencedModels.Clear();
-
+           
             try //try and tidy up if required
             {
+                var dbName = DatabaseName;
+                
+                ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
+                Header = null;
+
+                if (_editTransactionEntityCursor != null)
+                    EndTransaction();
+                if (_geometryStore != null)
+                {
+                    _geometryStore.Dispose();
+                    _geometryStore = null;
+                }
+                InstanceCache?.Close();
+
+                //dispose any referenced models
+                foreach (var refModel in _referencedModels.Select(r => r.Model).OfType<IDisposable>())
+                    refModel.Dispose();
+                _referencedModels.Clear();
+
                 if (_deleteOnClose && File.Exists(dbName))
                 {
                     File.Delete(dbName);
@@ -660,10 +671,11 @@ namespace Xbim.IO.Esent
                     }
 
                 }
+                Logger.LogDebug("Closed EsentModel {dbName}", dbName);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                Logger.LogWarning(ex, "Failed to close EsentModel");
             }
             _deleteOnClose = false;
         }
