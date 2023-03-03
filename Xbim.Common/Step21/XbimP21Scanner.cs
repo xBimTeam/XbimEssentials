@@ -272,6 +272,7 @@ namespace Xbim.IO.Step21
 
                     // scan until the beginning of next entity
                     var entityToken = (int)Tokens.ENTITY;
+                    tok = _scanner.yylex();
                     while (tok != eofToken && tok != entityToken)
                     {
                         tok = _scanner.yylex();
@@ -557,6 +558,9 @@ namespace Xbim.IO.Step21
                 // check if it is actually an integral number
                 if (component < 0 || component > 9)
                     continue;
+
+                if (order > magnitudes.Length - 1)
+                    throw new Exception($"Entity label #{value} is bigger than Int32.MaxValue");
 
                 label += component * magnitudes[order++];
             }

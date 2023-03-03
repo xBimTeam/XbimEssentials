@@ -810,6 +810,14 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        public void Parsing_large_entity_label_doesnt_loop()
+        {
+            using var model = new IO.Memory.MemoryModel(ef2x3);
+            var errCount = model.LoadStep21("TestFiles\\Large_entity_label.ifc");
+            Assert.AreEqual(1, errCount);
+        }
+
+        [TestMethod]
         // this is a meta tast of the large stream mock-up
         public void LargeStreamTest()
         {
