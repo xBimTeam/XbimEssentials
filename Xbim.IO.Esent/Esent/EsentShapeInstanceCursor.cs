@@ -340,7 +340,7 @@ namespace Xbim.IO.Esent
                 UpdateCount(1);
 
             }
-            return id; ;
+            return id;
         }
 
         private void GetShapeInstanceData(IXbimShapeInstanceData si)
