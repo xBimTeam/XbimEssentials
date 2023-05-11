@@ -334,17 +334,7 @@ namespace Xbim.Common.Model
             var c = InverseCache;
             if (c != null)
                 return c;
-            return InverseCache = new MemoryInverseCache(_instances, this);
-        }
-
-        public void StopCaching()
-        {
-            var c = InverseCache;
-            if (c == null)
-                return;
-
-            c.Dispose();
-            InverseCache = null;
+            return InverseCache = new MemoryInverseCache(_instances);
         }
 
         private WeakReference _cacheReference;
