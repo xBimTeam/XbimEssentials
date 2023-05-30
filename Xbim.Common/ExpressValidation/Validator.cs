@@ -149,8 +149,7 @@ namespace Xbim.Common.ExpressValidation
             if (hierarchical && hierResult.IssueType != ValidationFlags.None)
             {
                 // the IssueType is populated if any children have been added.
-                hierResult.Message = string.Format("Entity #{0} ({1}) has validation failures.", ent.EntityLabel,
-                    expType.Name);
+                hierResult.Message = string.Format("Entity {0} has validation failures.", ent);
                 yield return hierResult;
             }
         }
@@ -168,12 +167,12 @@ namespace Xbim.Common.ExpressValidation
         protected static IEnumerable<ValidationResult> GetSchemaErrors(IPersist instance, ExpressMetaProperty prop, ValidationFlags validateLevel, bool hierarchical)
         {
             var attr = prop.EntityAttribute;
-            var propVal = prop.PropertyInfo.GetValue(instance, null);
+            object propVal = GetPropertyValue(instance, prop);
             var propName = prop.PropertyInfo.Name;
 
             if (propVal is IExpressValueType)
             {
-                var val = ((IExpressValueType) propVal).Value;
+                var val = ((IExpressValueType)propVal).Value;
                 var underlyingType = ((IExpressValueType)propVal).UnderlyingSystemType;
                 if (attr.State == EntityAttributeState.Mandatory && val == null && underlyingType != typeof(bool?))
                 {
@@ -192,7 +191,7 @@ namespace Xbim.Common.ExpressValidation
                     {
                         if (hierarchical)
                         {
-                            hierResult.AddDetail(issue);  
+                            hierResult.AddDetail(issue);
                         }
                         else
                         {
@@ -211,12 +210,12 @@ namespace Xbim.Common.ExpressValidation
 
             if (attr.State == EntityAttributeState.Mandatory && propVal == null)
                 yield return new ValidationResult()
-                    {
-                        Item = instance,
-                        IssueType = ValidationFlags.Properties,
+                {
+                    Item = instance,
+                    IssueType = ValidationFlags.Properties,
                     IssueSource = propName,
-                        Message = string.Format("{0}.{1} is not optional.", instance.GetType().Name, propName)
-                    };
+                    Message = string.Format("{0}.{1} is not optional.", instance.GetType().Name, propName)
+                };
             if (attr.State == EntityAttributeState.Optional && propVal == null)
                 //if it is null and optional then it is ok
                 yield break;
@@ -248,6 +247,18 @@ namespace Xbim.Common.ExpressValidation
                     IssueSource = propName,
                     Message = string.Format("{0}.{1}: {2}", instance.GetType().Name, prop.Name, msg)
                 };
+            }
+        }
+
+        private static object GetPropertyValue(IPersist instance, ExpressMetaProperty prop)
+        {
+            try
+            {
+                return prop.PropertyInfo.GetValue(instance, null);
+            }
+            catch
+            {
+                return null;
             }
         }
 

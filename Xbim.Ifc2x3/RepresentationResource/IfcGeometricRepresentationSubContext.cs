@@ -128,9 +128,11 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		[EntityAttribute(6, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, null, null, 0)]
 		public override IfcDirection @TrueNorth 
 		{
-			get 
-			{
-				return ParentContext.TrueNorth ?? WorldCoordinateSystem.P[2];
+			get
+            {
+				//## Overriding derived attribute TrueNorth getter
+                return ParentContext.TrueNorth ?? ((WorldCoordinateSystem?.Dim > 1) ? WorldCoordinateSystem.P[1] : new Common.Geometry.XbimVector3D(0,1,double.NaN));
+				//##
 			}
 			set 
 			{ 

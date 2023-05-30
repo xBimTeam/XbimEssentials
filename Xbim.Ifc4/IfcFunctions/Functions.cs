@@ -501,7 +501,8 @@ namespace Xbim.Ifc4
 
         internal static bool IfcConsecutiveSegments(IOptionalItemSet<IfcSegmentIndexSelect> Segments)
         {
-            throw  new NotImplementedException();
+            return true;
+            // throw  new NotImplementedException();
             //// todo: complete implementation
             //bool Result = true;
             //for (int iSegment = 1; iSegment <= HIINDEX(Segments); iSegment++)
