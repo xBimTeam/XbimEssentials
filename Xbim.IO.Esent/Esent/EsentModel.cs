@@ -1138,18 +1138,21 @@ namespace Xbim.IO.Esent
 
         public static IStepFileHeader GetStepFileHeader(string fileName)
         {
-            //create a temporary model
-            var esentModel = new EsentModel();
-            esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null);
+            EsentModel esentModel = null;
+            EsentEntityCursor entTable = null;
 
-            esentModel.InstanceCache.DatabaseName = fileName;
-            IStepFileHeader header;
-            var entTable = esentModel.InstanceCache.GetEntityTable();
             try
             {
+                //create a temporary model
+                esentModel = new EsentModel();
+                esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null);
+                esentModel.InstanceCache.DatabaseName = fileName;
+
+                entTable = esentModel.InstanceCache.GetEntityTable();
                 using (entTable.BeginReadOnlyTransaction())
                 {
-                    header = entTable.ReadHeader();
+                    var header = entTable.ReadHeader();
+                    return header;
                 }
             }
             catch (Exception e)
@@ -1158,10 +1161,14 @@ namespace Xbim.IO.Esent
             }
             finally
             {
-                esentModel.InstanceCache.FreeTable(entTable);
-                esentModel.Dispose();
+                if (esentModel != null)
+                {
+                    if (entTable != null)
+                        esentModel.InstanceCache.FreeTable(entTable);
+
+                    esentModel.Dispose();
+                }
             }
-            return header;
         }
 
         public void CreateFrom(IModel model, string fileName, ReportProgressDelegate progDelegate = null)
