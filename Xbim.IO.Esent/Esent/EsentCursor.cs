@@ -53,19 +53,36 @@ namespace Xbim.IO.Esent
 
         protected EsentCursor(EsentModel model, string database,  OpenDatabaseGrbit mode)
         {
-            LockObject = new Object();
-            Model = model;
-            Instance = model.Cache.JetInstance;
-            Sesid = new Session(Instance);
-            Api.JetOpenDatabase(Sesid, database, String.Empty, out DbId, mode);
-            Api.JetOpenTable(Sesid, DbId, GlobalsTableName, null, 0,  mode == OpenDatabaseGrbit.ReadOnly ? OpenTableGrbit.ReadOnly : 
-                                                                                mode == OpenDatabaseGrbit.Exclusive ? OpenTableGrbit.DenyWrite : OpenTableGrbit.None, 
-                                                                                out GlobalsTable);
-            EntityCountColumn = Api.GetTableColumnid(Sesid, GlobalsTable, EntityCountColumnName);
-            GeometryCountColumn = Api.GetTableColumnid(Sesid, GlobalsTable, GeometryCountColumnName);
-            FlushColumn = Api.GetTableColumnid(Sesid, GlobalsTable, FlushColumnName);
-            IfcHeaderColumn = Api.GetTableColumnid(Sesid, GlobalsTable, ifcHeaderColumnName);
-            ReadOnly = (mode == OpenDatabaseGrbit.ReadOnly);
+            try
+            {
+                LockObject = new Object();
+                Model = model;
+                Instance = model.Cache.JetInstance;
+                Sesid = new Session(Instance);
+                Api.JetOpenDatabase(Sesid, database, String.Empty, out DbId, mode);
+                Api.JetOpenTable(Sesid, DbId, GlobalsTableName, null, 0, mode == OpenDatabaseGrbit.ReadOnly ? OpenTableGrbit.ReadOnly :
+                                                                                    mode == OpenDatabaseGrbit.Exclusive ? OpenTableGrbit.DenyWrite : OpenTableGrbit.None,
+                                                                                    out GlobalsTable);
+                EntityCountColumn = Api.GetTableColumnid(Sesid, GlobalsTable, EntityCountColumnName);
+                GeometryCountColumn = Api.GetTableColumnid(Sesid, GlobalsTable, GeometryCountColumnName);
+                FlushColumn = Api.GetTableColumnid(Sesid, GlobalsTable, FlushColumnName);
+                IfcHeaderColumn = Api.GetTableColumnid(Sesid, GlobalsTable, ifcHeaderColumnName);
+                ReadOnly = (mode == OpenDatabaseGrbit.ReadOnly);
+            }
+            catch
+            {
+                if (Sesid != null)
+                {
+                    if (Table != JET_TABLEID.Nil && !Table.IsInvalid)
+                        Api.JetCloseTable(Sesid, Table);
+                    if (GlobalsTable != JET_TABLEID.Nil && !GlobalsTable.IsInvalid)
+                        Api.JetCloseTable(Sesid, GlobalsTable);
+                    if (DbId != JET_DBID.Nil && DbId != default(JET_DBID))
+                        Api.JetCloseDatabase(Sesid, DbId, CloseDatabaseGrbit.None);
+                    Api.JetEndSession(Sesid, EndSessionGrbit.None);
+                }
+                throw;
+            }
         }
 
         internal abstract int RetrieveCount();
