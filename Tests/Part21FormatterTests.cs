@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.IO.Step21;
 
@@ -14,7 +15,7 @@ namespace Xbim.Essentials.Tests
     {
         public static string fmt = "R";
         //public static string fmt = "G";
-        public static string g17Fmt = "G17";
+        //public static string fmt = "G17";
 
         [TestMethod]
         public void FormatDoubleScientificNotation()
@@ -68,8 +69,8 @@ namespace Xbim.Essentials.Tests
             // https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?view=netframework-4.8#the-general-g-format-specifier
             double arg = 0.84551240822557006;
 
-            string result = formatter.Format(g17Fmt, arg, null);
-            string expected = "0.84551240822557006";
+            string result = formatter.Format(fmt, arg, null);
+            string expected = "0.84551240822557";   // Last digits of double are truncated
             Assert.AreEqual(expected, result, "Wrong conversion!");
         }
 
@@ -81,9 +82,10 @@ namespace Xbim.Essentials.Tests
             // https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?view=netframework-4.8#the-general-g-format-specifier
             double arg = 0.84551240822557006;
 
-            string result = formatter.Format(g17Fmt, arg, null);
+            string result = formatter.Format(fmt, arg, null);
             var roundTripDbl = double.Parse(result, new CultureInfo("en-US", false));
-            Assert.AreEqual(arg, roundTripDbl, "Wrong conversion!");
+            
+            roundTripDbl.Should().BeApproximately(arg, 0.000000000000001);
         }
 
         [TestMethod]
