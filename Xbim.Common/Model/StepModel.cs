@@ -502,12 +502,13 @@ namespace Xbim.Common.Model
             };
             try
             {
-                parser.Parse();
+                var success = parser.Parse();
+                
 
                 //fix header with the schema if it was not a part of the data
-                if (Header.FileSchema.Schemas.Count == 0)
+                if (Header.FileSchema.Schemas.Count == 0 && EntityFactory != null)
                 {
-                    foreach (var s in EntityFactory.SchemasIds)
+                    foreach (var s in EntityFactory?.SchemasIds)
                     {
                         Header.FileSchema.Schemas.Add(s);
                     }
