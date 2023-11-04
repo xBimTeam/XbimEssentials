@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Configuration;
+using Xbim.Common.Exceptions;
 using Xbim.Common.Model;
 using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
@@ -376,6 +377,10 @@ namespace Xbim.IO.Memory
             var model = new MemoryModel((IEnumerable<string> schemas) =>
             {
                 var schema = GetStepFileXbimSchemaVersion(schemas);
+                if(schema == XbimSchemaVersion.Unsupported)
+                {
+                    throw new XbimParserException("IFC Schema could not be read from Header");
+                }
                 return GetFactory(schema);
             }, loggerFactory)
             {
