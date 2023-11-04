@@ -12,6 +12,7 @@ using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
+using Xbim.Common.Model;
 using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
@@ -213,8 +214,8 @@ namespace Xbim.Ifc
         }
         /// <summary>
         /// You can use this function to open IFC model from a <see cref="Stream"/>. 
-        /// You need to know file type (IFC, IFCZIP, IFCXML) and schema type (IFC2x3 or IFC4) to be able to use this function.
-        /// If you don't know, you should the overloaded <see cref="Open(string, XbimEditorCredentials, double?, ReportProgressDelegate, XbimDBAccess, int)"/>
+        /// You need to know file type (IFC, IFCZIP, IFCXML) and schema type (IFC2x3, IFC4 IFC4x3 etc) to be able to use this function.
+        /// If you don't know, you should use the alternate <see cref="Open(string, XbimEditorCredentials, double?, ReportProgressDelegate, XbimDBAccess, int)"/>
         /// method which takes file paths as an argument, and can automatically detect schema and file type. 
         /// If are opening an *.xbim file you should also use the path-based overload because Esent database needs to operate 
         /// on the file and this function will have to create temporal file if it is not a file stream.
@@ -222,7 +223,7 @@ namespace Xbim.Ifc
         /// </summary>
         /// <param name="stream">Stream of data</param>
         /// <param name="dataType">Type of data (*.ifc, *.ifcxml, *.ifczip)</param>
-        /// <param name="schema">IFC schema (IFC2x3, IFC4). Other schemas are not supported by this class.</param>
+        /// <param name="schema">IFC schema. Non IFC schemas are not supported by this class.</param>
         /// <param name="modelType">Type of model to be used. You can choose between EsentModel and MemoryModel</param>
         /// <param name="editorDetails">Optional details. You should always pass these if you are going to change the data.</param>
         /// <param name="accessMode">Access mode to the stream. This is only important if you choose EsentModel. MemoryModel is completely in memory so this is not relevant</param>
@@ -240,6 +241,74 @@ namespace Xbim.Ifc
             newStore.AssignModel(model, editorDetails, schema);
             return newStore;
 
+        }
+
+        /// <summary>
+        /// Open an IFC model from a <see cref="Stream"/> inferring the Schema from automatically. 
+        /// You need to know IFC file format (IFC, IFCZIP, IFCXML) to use this function.
+        /// If you don't know, you should use the alternate <see cref="Open(string, XbimEditorCredentials, double?, ReportProgressDelegate, XbimDBAccess, int)"/>
+        /// method which takes file paths as an argument, and can automatically detect schema and file type. 
+        /// If are opening an *.xbim file you should also use the path-based overload because Esent database needs to operate 
+        /// on the file and this function will have to create temporal file if it is not a file stream.
+        /// If the input is a FileStream, be aware this method may call <see cref="Stream.Close"/> on it to keep exclusive access.
+        /// </summary>
+        /// <param name="stream">Stream of data</param>
+        /// <param name="dataType">Type of data (*.ifc, *.ifcxml, *.ifczip)</param>
+        /// <param name="modelType">Type of model to be used. You can choose between EsentModel and MemoryModel</param>
+        /// <param name="editorDetails">Optional details. You should always pass these if you are going to change the data.</param>
+        /// <param name="accessMode">Access mode to the stream. This is only important if you choose EsentModel. MemoryModel is completely in memory so this is not relevant</param>
+        /// <param name="progDelegate">Progress reporting delegate</param>
+        /// <param name="codePageOverride">
+        /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
+        /// encoding will be used according to the Ifc specification. </param>
+        /// <param name="streamBufferSize">The size of buffer to use when reading the file header (default: 8KB)</param>
+        /// <returns></returns>
+        public static IfcStore Open(Stream stream, StorageType dataType, XbimModelType modelType, XbimEditorCredentials editorDetails = null,
+            XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1, int streamBufferSize = 4096 * 2)
+        {
+            if (stream.CanSeek)
+            {
+                XbimSchemaVersion schema = InferPayloadFromSchema(stream);
+                return OpenModelStream(stream, dataType, modelType, editorDetails, accessMode, progDelegate, codePageOverride, schema);
+            }
+            else
+            {
+                // On a non-seekable stream we need to buffer the stream so we can reset the position after reading the header
+                using var seekableStream = new ReadSeekableStream(stream, streamBufferSize);
+                XbimSchemaVersion schema;
+                try
+                {
+                    schema = InferPayloadFromSchema(seekableStream);
+                }
+                catch(NotSupportedException ex)
+                {
+                    throw new XbimException($"Cannot infer Schema for this model since the header size ({seekableStream.Position} bytes) exceeds the size of the buffer size ({streamBufferSize} bytes)", ex);
+                }
+                return OpenModelStream(seekableStream, dataType, modelType, editorDetails, accessMode, progDelegate, codePageOverride, schema);
+            }
+
+        }
+
+        private static XbimSchemaVersion InferPayloadFromSchema(Stream stream)
+        {
+            // TODO: Could also sniff Xml Format. (STP,Zip,Xml) from header
+            XbimSchemaVersion schema = MemoryModel.GetStepFileXbimSchemaVersion(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            if(stream is ReadSeekableStream buffered)
+            {
+                // Optimisation: No further buffering required. Forward only from here
+                buffered.DisableBuffering();
+            }
+            return schema;
+        }
+
+        private static IfcStore OpenModelStream(Stream stream, StorageType dataType, XbimModelType modelType, XbimEditorCredentials editorDetails, XbimDBAccess accessMode, ReportProgressDelegate progDelegate, int codePageOverride, XbimSchemaVersion schema)
+        {
+            var newStore = new IfcStore();
+            var model = newStore.ModelProvider.Open(stream, dataType, schema, modelType, accessMode, progDelegate, codePageOverride);
+
+            newStore.AssignModel(model, editorDetails, schema);
+            return newStore;
         }
 
         /// <summary>
