@@ -201,3 +201,6 @@ FakesAssemblies/
 SharedFileVersionInfo.cs
 *.jfm
 *.idea
+
+# BenchmarkDotNet
+results/

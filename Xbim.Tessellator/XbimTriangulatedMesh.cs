@@ -100,7 +100,7 @@ namespace Xbim.Tessellator
         /// </summary>
         /// <param name="edge"></param>
         /// <returns></returns>
-        public XbimVector3D TriangleNormal(XbimTriangleEdge edge)
+        private XbimVector3D TriangleNormal(XbimTriangleEdge edge)
         {
             var p1 = _vertices[edge.StartVertexIndex].Position;
             var p2 = _vertices[edge.NextEdge.StartVertexIndex].Position;
@@ -150,7 +150,7 @@ namespace Xbim.Tessellator
         /// Orientates edges to orientate in a uniform direction
         /// </summary>
         /// <returns></returns>
-        public void UnifyFaceOrientation(int entityLabel)
+        internal void UnifyFaceOrientation(bool balanceNormals = true)
         {
             XbimTriangleEdge[] extremeTriangle = FindExtremeTriangle();
             if (extremeTriangle == null) return;
@@ -181,7 +181,8 @@ namespace Xbim.Tessellator
                 } while (triangles.Any());
 
             }
-            BalanceNormals();
+            if(balanceNormals)
+                BalanceNormals();
         }
 
         private XbimTriangleEdge[] FindExtremeTriangle()
@@ -215,7 +216,7 @@ namespace Xbim.Tessellator
             return null;
         }
 
-        public void BalanceNormals()
+        private void BalanceNormals()
         {
             const double minAngle = Math.PI / 5;
            
@@ -435,7 +436,7 @@ namespace Xbim.Tessellator
         /// <summary>
         /// Calculates the normal for a connected triangle edge, assumes the edge is part of a complete triangle and there are 3 triangle edges
         /// </summary>
-        public bool ComputeTriangleNormal(XbimTriangleEdge[] edges)
+        private bool ComputeTriangleNormal(XbimTriangleEdge[] edges)
         {
             var p1 = _vertices[edges[0].StartVertexIndex].Position;
             var p2 = _vertices[edges[0].NextEdge.StartVertexIndex].Position;

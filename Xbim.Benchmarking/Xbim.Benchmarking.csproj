@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.10" />
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Xbim.Ifc\Xbim.Ifc.csproj" />
+    <ProjectReference Include="..\Xbim.Tessellator\Xbim.Tessellator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Tests\TestFiles\IFC4TessellationComplex.ifc" Link="TestFiles\IFC4TessellationComplex.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Tests\TestFiles\IfcTriangulatedFaceSet.ifc" Link="TestFiles\IfcTriangulatedFaceSet.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\Tests\TestFiles\BasinTessellation.ifc" Link="TestFiles\BasinTessellation.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -25,7 +25,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <SignAssembly>true</SignAssembly>   
-    <AssemblyOriginatorKeyFile>..\XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>   
+    <AssemblyOriginatorKeyFile Condition="EXISTS('..\XbimOpenSourceKeyFile.snk')">..\XbimOpenSourceKeyFile.snk</AssemblyOriginatorKeyFile>   
     <DelaySign>false</DelaySign>
   </PropertyGroup>
 

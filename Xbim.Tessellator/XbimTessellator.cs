@@ -17,12 +17,16 @@ namespace Xbim.Tessellator
         private readonly IModel _model;
         private readonly XbimGeometryType _geometryType;
         private readonly bool _reduceLargeCoordinates;
+        private readonly bool balanceNormals;
+        private readonly bool unifyFaces;
 
-        public XbimTessellator(IModel model, XbimGeometryType geometryType, bool reduceLargeCoordinates = true)
+        public XbimTessellator(IModel model, XbimGeometryType geometryType, bool reduceLargeCoordinates = true, bool balanceNormals = false, bool unifyFaces = false)
         {
             _model = model;
             _geometryType = geometryType;
             _reduceLargeCoordinates = reduceLargeCoordinates;
+            this.balanceNormals = balanceNormals;
+            this.unifyFaces = unifyFaces;
         }
 
         public IXbimShapeGeometryData Mesh(IXbimGeometryObject geomObject)
@@ -624,7 +628,8 @@ namespace Xbim.Tessellator
                 }
             }
 
-            triangulatedMesh.UnifyFaceOrientation(entityLabel);
+            if(unifyFaces)
+                triangulatedMesh.UnifyFaceOrientation(balanceNormals);
             return triangulatedMesh;
         }
 
@@ -650,7 +655,8 @@ namespace Xbim.Tessellator
                 var tpl = triangleFace.AsTriplet<IfcPositiveInteger>();
                 triangulatedMesh.AddTriangle(vertices[(int)tpl.A - 1], vertices[(int)tpl.B - 1], vertices[(int)tpl.C - 1], faceId);
             }
-            triangulatedMesh.UnifyFaceOrientation(entityLabel);
+            if(unifyFaces)
+                triangulatedMesh.UnifyFaceOrientation(balanceNormals);
             return triangulatedMesh;
         }
 
