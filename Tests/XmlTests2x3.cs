@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc2x3;
 using Xbim.Ifc2x3.SharedBldgElements;
+using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
 using Xbim.IO.Xml;
 
@@ -45,6 +47,25 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestMethod]
+        public void HandlesInvalidDecimal()
+        {
+
+            using (var model = new IO.Memory.MemoryModel(new EntityFactoryIfc2x3()))
+            {
+                
+                model.LoadXml("TestFiles\\InvalidNan.ifcxml");
+                
+
+                var site = model.Instances.OfType<IIfcBuilding>().First();
+                Assert.AreEqual(double.NaN, site.ElevationOfRefHeight.Value.Value, "Expected NaN");
+
+                var walls = model.Instances.OfType<IIfcWall>().Count();
+
+                Assert.AreEqual(6, walls);
+            }
+
+        }
 
         /// <summary>
         /// </summary>

@@ -18,7 +18,12 @@ namespace Xbim.IO.Step21
                 case "-1.#IND":
                     return double.NaN;
             }
-            return Convert.ToDouble(val, DoubleCulture);
+
+            if (double.TryParse(val, NumberStyles.Any, DoubleCulture, out double result))
+            {
+                return result;
+            }
+            return double.NaN;
         }
 
         public static string ToPart21(this string source)
