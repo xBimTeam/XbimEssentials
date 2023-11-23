@@ -67,7 +67,7 @@ namespace Xbim.Common
 
         public FileInfo FileInfo
         {
-#if NET6_0
+#if NET6_0_OR_GREATER
             get => _assembly.IsDynamic ?
                             new FileInfo("") :
                             new FileInfo(new Uri(_assembly.Location).LocalPath);
