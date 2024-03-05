@@ -31,26 +31,12 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		}
 
 		#region Explicit attribute fields
-		private IfcIdentifier? _geodeticDatum;
 		private IfcIdentifier? _primeMeridian;
-		private IfcNamedUnit _unit;
+		private IfcNamedUnit _angleUnit;
+		private IfcNamedUnit _heightUnit;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
-		public IfcIdentifier? @GeodeticDatum 
-		{ 
-			get 
-			{
-				if(_activated) return _geodeticDatum;
-				Activate();
-				return _geodeticDatum;
-			} 
-			set
-			{
-				SetValue( v =>  _geodeticDatum = v, _geodeticDatum, value,  "GeodeticDatum", 3);
-			} 
-		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcIdentifier? @PrimeMeridian 
 		{ 
@@ -66,19 +52,35 @@ namespace Xbim.Ifc4x3.RepresentationResource
 			} 
 		}	
 		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 7)]
-		public IfcNamedUnit @Unit 
+		public IfcNamedUnit @AngleUnit 
 		{ 
 			get 
 			{
-				if(_activated) return _unit;
+				if(_activated) return _angleUnit;
 				Activate();
-				return _unit;
+				return _angleUnit;
 			} 
 			set
 			{
 				if (value != null && !(ReferenceEquals(Model, value.Model)))
 					throw new XbimException("Cross model entity assignment.");
-				SetValue( v =>  _unit = v, _unit, value,  "Unit", 5);
+				SetValue( v =>  _angleUnit = v, _angleUnit, value,  "AngleUnit", 5);
+			} 
+		}	
+		[EntityAttribute(6, EntityAttributeState.Optional, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
+		public IfcNamedUnit @HeightUnit 
+		{ 
+			get 
+			{
+				if(_activated) return _heightUnit;
+				Activate();
+				return _heightUnit;
+			} 
+			set
+			{
+				if (value != null && !(ReferenceEquals(Model, value.Model)))
+					throw new XbimException("Cross model entity assignment.");
+				SetValue( v =>  _heightUnit = v, _heightUnit, value,  "HeightUnit", 6);
 			} 
 		}	
 		#endregion
@@ -93,16 +95,17 @@ namespace Xbim.Ifc4x3.RepresentationResource
 			{
 				case 0: 
 				case 1: 
-					base.Parse(propIndex, value, nestedIndex); 
-					return;
 				case 2: 
-					_geodeticDatum = value.StringVal;
+					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
 					_primeMeridian = value.StringVal;
 					return;
 				case 4: 
-					_unit = (IfcNamedUnit)(value.EntityVal);
+					_angleUnit = (IfcNamedUnit)(value.EntityVal);
+					return;
+				case 5: 
+					_heightUnit = (IfcNamedUnit)(value.EntityVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
@@ -122,8 +125,10 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		{
 			get 
 			{
-				if (@Unit != null)
-					yield return @Unit;
+				if (@AngleUnit != null)
+					yield return @AngleUnit;
+				if (@HeightUnit != null)
+					yield return @HeightUnit;
 			}
 		}
 		#endregion

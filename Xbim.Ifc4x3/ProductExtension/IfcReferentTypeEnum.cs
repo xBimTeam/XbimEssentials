@@ -18,6 +18,8 @@ namespace Xbim.Ifc4x3.ProductExtension
 		@POSITION ,
 		@REFERENCEMARKER ,
 		@STATION ,
+		@SUPERELEVATIONEVENT ,
+		@WIDTHEVENT ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

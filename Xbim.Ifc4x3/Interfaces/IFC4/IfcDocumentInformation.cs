@@ -77,8 +77,8 @@ namespace Xbim.Ifc4x3.ExternalReferenceResource
 			set
 			{
 				Location = value.HasValue ? 
-					new IfcURIReference(value.Value) :  
-					 new IfcURIReference?() ;
+					new MeasureResource.IfcURIReference(value.Value) :  
+					 new MeasureResource.IfcURIReference?() ;
 				
 			}
 		}

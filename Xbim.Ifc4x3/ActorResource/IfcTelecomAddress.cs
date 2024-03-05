@@ -8,7 +8,6 @@
 // ------------------------------------------------------------------------------
 
 using Xbim.Ifc4x3.MeasureResource;
-using Xbim.Ifc4x3.ExternalReferenceResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

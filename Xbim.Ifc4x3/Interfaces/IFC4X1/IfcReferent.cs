@@ -62,6 +62,16 @@ namespace Xbim.Ifc4x3.ProductExtension
 						//##
 					case IfcReferentTypeEnum.STATION:
 						return Ifc4.Interfaces.IfcReferentTypeEnum.STATION;
+					case IfcReferentTypeEnum.SUPERELEVATIONEVENT:
+						//## Handle translation of SUPERELEVATIONEVENT member from IfcReferentTypeEnum in property PredefinedType
+						//TODO: Handle translation of SUPERELEVATIONEVENT member from IfcReferentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
+					case IfcReferentTypeEnum.WIDTHEVENT:
+						//## Handle translation of WIDTHEVENT member from IfcReferentTypeEnum in property PredefinedType
+						//TODO: Handle translation of WIDTHEVENT member from IfcReferentTypeEnum in property PredefinedType
+						throw new System.NotImplementedException();
+						//##
 					case IfcReferentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##

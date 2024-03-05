@@ -247,6 +247,10 @@ namespace Xbim.Ifc4x3.PropertyResource
 					return new Ifc4.DateTimeResource.IfcTime((DateTimeResource.IfcTime)UpperBoundValue);
 				if (UpperBoundValue is DateTimeResource.IfcTimeStamp) 
 					return new Ifc4.DateTimeResource.IfcTimeStamp((DateTimeResource.IfcTimeStamp)UpperBoundValue);
+				if (UpperBoundValue is MeasureResource.IfcURIReference)
+                    //## Handle defined type IfcURIReference which is not a part of the target select interface IIfcValue in property UpperBoundValue
+                    return new Ifc4.MeasureResource.IfcText(((MeasureResource.IfcURIReference)UpperBoundValue).Value.ToString());
+					//##
 				return null;
 			} 
 			set
@@ -1244,6 +1248,10 @@ namespace Xbim.Ifc4x3.PropertyResource
 					return new Ifc4.DateTimeResource.IfcTime((DateTimeResource.IfcTime)LowerBoundValue);
 				if (LowerBoundValue is DateTimeResource.IfcTimeStamp) 
 					return new Ifc4.DateTimeResource.IfcTimeStamp((DateTimeResource.IfcTimeStamp)LowerBoundValue);
+				if (LowerBoundValue is MeasureResource.IfcURIReference)
+                    //## Handle defined type IfcURIReference which is not a part of the target select interface IIfcValue in property LowerBoundValue
+                    return new Ifc4.MeasureResource.IfcText(((MeasureResource.IfcURIReference)LowerBoundValue).Value.ToString());
+					//##
 				return null;
 			} 
 			set
@@ -2287,7 +2295,11 @@ namespace Xbim.Ifc4x3.PropertyResource
 					return new Ifc4.DateTimeResource.IfcTime((DateTimeResource.IfcTime)SetPointValue);
 				if (SetPointValue is DateTimeResource.IfcTimeStamp) 
 					return new Ifc4.DateTimeResource.IfcTimeStamp((DateTimeResource.IfcTimeStamp)SetPointValue);
-				return null;
+				if (SetPointValue is MeasureResource.IfcURIReference)
+                    //## Handle defined type IfcURIReference which is not a part of the target select interface IIfcValue in property SetPointValue
+                    return new Ifc4.MeasureResource.IfcText(((MeasureResource.IfcURIReference)SetPointValue).Value.ToString());
+                    //##
+                return null;
 			} 
 			set
 			{

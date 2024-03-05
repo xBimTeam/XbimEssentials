@@ -10,6 +10,7 @@
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 using Xbim.Ifc4x3.StructuralElementsDomain;
+using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.PresentationAppearanceResource;
 
 namespace Xbim.Ifc4x3.MeasureResource
@@ -17,7 +18,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 	[ExpressType("IfcLengthMeasure", 409)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcLengthMeasure : IfcBendingParameterSelect, IfcMeasureValue, IfcSizeSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>
+	public partial struct IfcLengthMeasure : IfcBendingParameterSelect, IfcCurveMeasureSelect, IfcMeasureValue, IfcSizeSelect, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         

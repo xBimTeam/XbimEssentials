@@ -85,8 +85,8 @@ namespace Xbim.Ifc4x3.ActorResource
 			set
 			{
 				WWWHomePageURL = value.HasValue ? 
-					new ExternalReferenceResource.IfcURIReference(value.Value) :  
-					 new ExternalReferenceResource.IfcURIReference?() ;
+					new MeasureResource.IfcURIReference(value.Value) :  
+					 new MeasureResource.IfcURIReference?() ;
 				
 			}
 		}
@@ -97,9 +97,9 @@ namespace Xbim.Ifc4x3.ActorResource
 			get
 			{
 			
-				return new Common.Collections.ProxyValueSet<ExternalReferenceResource.IfcURIReference, Ifc4.ExternalReferenceResource.IfcURIReference>(MessagingIDs, 
+				return new Common.Collections.ProxyValueSet<MeasureResource.IfcURIReference, Ifc4.ExternalReferenceResource.IfcURIReference>(MessagingIDs, 
 					s => new Ifc4.ExternalReferenceResource.IfcURIReference(s), 
-					t => new ExternalReferenceResource.IfcURIReference(t));
+					t => new MeasureResource.IfcURIReference(t));
 			} 
 		}
 	//## Custom code

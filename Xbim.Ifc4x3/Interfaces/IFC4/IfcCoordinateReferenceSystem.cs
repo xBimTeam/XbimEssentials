@@ -59,18 +59,14 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		{ 
 			get
 			{
-				//## Handle return of GeodeticDatum for which no match was found
-				//TODO: Handle return of GeodeticDatum for which no match was found
-				throw new System.NotImplementedException();
-				//##
+				if (!GeodeticDatum.HasValue) return null;
+				return new Ifc4.MeasureResource.IfcIdentifier(GeodeticDatum.Value);
 			} 
 			set
 			{
-				//## Handle setting of GeodeticDatum for which no match was found
-				//TODO: Handle setting of GeodeticDatum for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				NotifyPropertyChanged("GeodeticDatum");
+				GeodeticDatum = value.HasValue ? 
+					new MeasureResource.IfcIdentifier(value.Value) :  
+					 new MeasureResource.IfcIdentifier?() ;
 				
 			}
 		}

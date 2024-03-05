@@ -9,14 +9,13 @@
 
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.GeometryResource;
 
 namespace Xbim.Ifc4x3.MeasureResource
 {
 	[ExpressType("IfcNonNegativeLengthMeasure", 994)]
 	[DefinedType(typeof(double))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcNonNegativeLengthMeasure : IfcCurveMeasureSelect, IfcMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>
+	public partial struct IfcNonNegativeLengthMeasure : IfcMeasureValue, IExpressValueType, IExpressRealType, System.IEquatable<double>
 	{ 
 		private double _value;
         

@@ -10,12 +10,12 @@
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 
-namespace Xbim.Ifc4x3.ExternalReferenceResource
+namespace Xbim.Ifc4x3.MeasureResource
 {
 	[ExpressType("IfcURIReference", 1001)]
 	[DefinedType(typeof(string))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcURIReference : IExpressValueType, IExpressStringType, System.IEquatable<string>
+	public partial struct IfcURIReference : IfcSimpleValue, IExpressValueType, IExpressStringType, System.IEquatable<string>
 	{ 
 		private string _value;
         

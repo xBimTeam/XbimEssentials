@@ -30,12 +30,12 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 		}
 
 		#region Explicit attribute fields
-		private IfcTendonConduitTypeEnum _predefinedType;
+		private IfcTendonConduitTypeEnum? _predefinedType;
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
-		public IfcTendonConduitTypeEnum @PredefinedType 
+		[EntityAttribute(10, EntityAttributeState.Optional, EntityAttributeType.Enum, EntityAttributeType.None, null, null, 36)]
+		public IfcTendonConduitTypeEnum? @PredefinedType 
 		{ 
 			get 
 			{

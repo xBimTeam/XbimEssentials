@@ -540,14 +540,14 @@ namespace Xbim.Common.Model
                 {
                     //add in a bit of flexibility for old Ifc models with weird schema names
                     var ifc2xSchemaNamesThatAreOK = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "IFC2X_FINAL", "IFC2X2_FINAL", "IFC2X2", "IFC2X4_RC3" };
-                    var ifc4x3SchemaNamesThatAreOK = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "IFC4X3_RC2", "IFC4X3_RC4", "IFC4X3" };
+                    var ifc4x3SchemaNamesThatAreOK = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "IFC4X3_RC2", "IFC4X3_RC4", "IFC4X3", "IFC4X3_ADD1" };
                     if (ifc2xSchemaNamesThatAreOK.Contains(id))
                     {
                         sid = EntityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, "IFC2X3", StringComparison.OrdinalIgnoreCase));
                     }
                     else if (ifc4x3SchemaNamesThatAreOK.Contains(id))
                     {
-                        sid = EntityFactory.SchemasIds.FirstOrDefault(s => string.Equals(s, "IFC4X3_ADD1", StringComparison.OrdinalIgnoreCase));
+                        sid = EntityFactory.SchemasIds.FirstOrDefault(s => s.StartsWith("IFC4X3", StringComparison.OrdinalIgnoreCase));
                     }
                     else
                     {

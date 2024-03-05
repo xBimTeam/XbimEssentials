@@ -122,7 +122,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CanGetObjectsPredefinedTypeInIfc4x3()
         {
-            using (var model = new MemoryModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
+            using (var model = new MemoryModel(new Ifc4x3.EntityFactoryIfc4x3Add2()))
             {
                 using (var txn = model.BeginTransaction("Test"))
                 {
@@ -142,7 +142,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CanGetTypesPredefinedTypeInIfc4x3()
         {
-            using (var model = new MemoryModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
+            using (var model = new MemoryModel(new Ifc4x3.EntityFactoryIfc4x3Add2()))
             {
                 using (var txn = model.BeginTransaction("Test"))
                 {

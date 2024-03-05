@@ -7,18 +7,18 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.GeometricModelResource;
+using Xbim.Ifc4x3.GeometryResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4x3.GeometryResource;
+using Xbim.Ifc4x3.GeometricModelResource;
 //## Custom using statements
 //##
 
 
-namespace Xbim.Ifc4x3.GeometryResource
+namespace Xbim.Ifc4x3.GeometricModelResource
 {
 	[ExpressType("IfcDirectrixCurveSweptAreaSolid", 1430)]
 	// ReSharper disable once PartialTypeWithSinglePart

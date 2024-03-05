@@ -247,7 +247,11 @@ namespace Xbim.Ifc4x3.PropertyResource
 					return new Ifc4.DateTimeResource.IfcTime((DateTimeResource.IfcTime)NominalValue);
 				if (NominalValue is DateTimeResource.IfcTimeStamp) 
 					return new Ifc4.DateTimeResource.IfcTimeStamp((DateTimeResource.IfcTimeStamp)NominalValue);
-				return null;
+				if (NominalValue is MeasureResource.IfcURIReference)
+                    //## Handle defined type IfcURIReference which is not a part of the target select interface IIfcValue in property NominalValue
+                    return new Ifc4.MeasureResource.IfcText(((MeasureResource.IfcURIReference)NominalValue).Value.ToString());
+                    //##
+                return null;
 			} 
 			set
 			{

@@ -1,0 +1,65 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition [DesignTransferView_V1]'),'2;1');
+FILE_NAME(
+/* name */ 'column-extruded-solid.ifc',
+/* time_stamp */ '2016-02-04T08:47:55',
+/* author */ ('redacted'),
+/* organization */ ('redacted'),
+/* preprocessor_version */ 'redacted',
+/* originating_system */ 'redacted',
+/* authorization */ 'None');
+
+FILE_SCHEMA (('IFC4X3_ADD2'));
+ENDSEC;
+
+DATA;
+/* general entities required for all IFC data sets, defining the context for the exchange */
+#1= IFCGEOMETRICREPRESENTATIONCONTEXT($,'Model',3,0.0001,#3,$);
+#2= IFCCARTESIANPOINT((0.0,0.0,0.0));
+#3= IFCAXIS2PLACEMENT3D(#2,$,$);
+#4= IFCGEOMETRICREPRESENTATIONSUBCONTEXT('Axis','Model',*,*,*,*,#1,$,.MODEL_VIEW.,$);
+#5= IFCGEOMETRICREPRESENTATIONSUBCONTEXT('Body','Model',*,*,*,*,#1,$,.MODEL_VIEW.,$);
+/* defines the default building (as required as the minimum spatial element)  */
+#50= IFCBUILDING('39t4Pu3nTC4ekXYRIHJB9W',#56,'IfcBuilding',$,$,$,$,$,$,$,$,$);
+#51= IFCPERSONANDORGANIZATION(#52,#53,$);
+#52= IFCPERSON('redacted','redacted',$,$,$,$,$,$);
+#53= IFCORGANIZATION($,'redacted',$,$,$);
+#54= IFCAPPLICATION(#55,'redacted','redacted','redacted');
+#55= IFCORGANIZATION($,'redacted',$,$,$);
+#56= IFCOWNERHISTORY(#51,#54,$,.ADDED.,1454575675,$,$,1454575675);
+#57= IFCRELCONTAINEDINSPATIALSTRUCTURE('3Sa3dTJGn0H8TQIGiuGQd5',#56,'Building','Building Container for Elements',(#210),#50);
+#58= IFCAXIS2PLACEMENT3D(#2,$,$);
+#100= IFCPROJECT('0$WU4A9R19$vKWO$AdOnKA',#56,'IfcProject',$,$,$,$,(#1),#101);
+#101= IFCUNITASSIGNMENT((#102,#103,#104));
+#102= IFCSIUNIT(*,.LENGTHUNIT.,.MILLI.,.METRE.);
+#103= IFCSIUNIT(*,.PLANEANGLEUNIT.,$,.RADIAN.);
+#104= IFCSIUNIT(*,.TIMEUNIT.,$,.SECOND.);
+#105= IFCRELAGGREGATES('091a6ewbvCMQ2Vyiqspa7a',#56,'Project Container','Project Container for Buildings',#100,(#50));
+#200= IFCMATERIAL('S355JR','Steel',$);
+#202= IFCISHAPEPROFILEDEF(.AREA.,'IPE200',$,100.0,200.0,5.6,8.5,12.0,$,$);
+#203= IFCMATERIALPROFILE('IPE200',$,#200,#202,0,$);
+#205= IFCMATERIALPROFILESET('IPE200',$,(#203),$);
+#206= IFCRELASSOCIATESMATERIAL('0TDF0F6A574e3x4InqoSrm',#56,'MatAssoc','Material Associates',(#207),#205);
+#207= IFCCOLUMNTYPE('3qJDCKcPj1tgEHrIL1MUed',#56,'IPE200',$,$,$,$,$,$,.COLUMN.);
+#208= IFCRELDEFINESBYTYPE('0QSJIMj99DcOpmktgECZT7',#56,$,$,(#210),#207);
+#209= IFCRELDECLARES('2RA6m5trr5aOD9rZCp3GjP',#56,$,$,#100,(#207));
+#210= IFCCOLUMN('3S1GK_wA565RDoiWQEJc_l',#56,'IPE200',$,$,#211,#224,$,$);
+#211= IFCLOCALPLACEMENT($,#212);
+#212= IFCAXIS2PLACEMENT3D(#2,#214,#213);
+#213= IFCDIRECTION((0.0,-1.0,0.0));
+#214= IFCDIRECTION((0.0,0.0,1.0));
+#215= IFCCARTESIANPOINT((0.0,0.0,2000.0));
+#216= IFCCARTESIANPOINT((0.0,0.0,0.0));
+#217= IFCPOLYLINE((#216,#215));
+#218= IFCSHAPEREPRESENTATION(#5,'Axis','Curve3D',(#217));
+#219= IFCMATERIALPROFILESETUSAGE(#205,5,$);
+#220= IFCRELASSOCIATESMATERIAL('0$JavXVwHFKOejR2KlPyfE',#56,'MatAssoc','Material Associates',(#210),#219);
+#221= IFCDIRECTION((0.0,0.0,1.0));
+#222= IFCEXTRUDEDAREASOLID(#202,$,#221,2000.0);
+#223= IFCSHAPEREPRESENTATION(#5,'Body','SweptSolid',(#222));
+#224= IFCPRODUCTDEFINITIONSHAPE($,$,(#218,#223));
+ENDSEC;
+
+END-ISO-10303-21;
+

@@ -31,52 +31,52 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		}
 
 		#region Explicit attribute fields
-		private IfcReal _scaleX;
-		private IfcReal _scaleY;
-		private IfcReal _scaleZ;
+		private IfcReal _factorX;
+		private IfcReal _factorY;
+		private IfcReal _factorZ;
 		#endregion
 	
 		#region Explicit attribute properties
 		[EntityAttribute(9, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 9)]
-		public IfcReal @ScaleX 
+		public IfcReal @FactorX 
 		{ 
 			get 
 			{
-				if(_activated) return _scaleX;
+				if(_activated) return _factorX;
 				Activate();
-				return _scaleX;
+				return _factorX;
 			} 
 			set
 			{
-				SetValue( v =>  _scaleX = v, _scaleX, value,  "ScaleX", 9);
+				SetValue( v =>  _factorX = v, _factorX, value,  "FactorX", 9);
 			} 
 		}	
 		[EntityAttribute(10, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 10)]
-		public IfcReal @ScaleY 
+		public IfcReal @FactorY 
 		{ 
 			get 
 			{
-				if(_activated) return _scaleY;
+				if(_activated) return _factorY;
 				Activate();
-				return _scaleY;
+				return _factorY;
 			} 
 			set
 			{
-				SetValue( v =>  _scaleY = v, _scaleY, value,  "ScaleY", 10);
+				SetValue( v =>  _factorY = v, _factorY, value,  "FactorY", 10);
 			} 
 		}	
 		[EntityAttribute(11, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 11)]
-		public IfcReal @ScaleZ 
+		public IfcReal @FactorZ 
 		{ 
 			get 
 			{
-				if(_activated) return _scaleZ;
+				if(_activated) return _factorZ;
 				Activate();
-				return _scaleZ;
+				return _factorZ;
 			} 
 			set
 			{
-				SetValue( v =>  _scaleZ = v, _scaleZ, value,  "ScaleZ", 11);
+				SetValue( v =>  _factorZ = v, _factorZ, value,  "FactorZ", 11);
 			} 
 		}	
 		#endregion
@@ -100,13 +100,13 @@ namespace Xbim.Ifc4x3.RepresentationResource
 					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 8: 
-					_scaleX = value.RealVal;
+					_factorX = value.RealVal;
 					return;
 				case 9: 
-					_scaleY = value.RealVal;
+					_factorY = value.RealVal;
 					return;
 				case 10: 
-					_scaleZ = value.RealVal;
+					_factorZ = value.RealVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

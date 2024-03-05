@@ -30,7 +30,7 @@ namespace Xbim.Ifc4x3.PresentationAppearanceResource
 			} 
 			set
 			{
-				URLReference = new ExternalReferenceResource.IfcURIReference(value);
+				URLReference = new MeasureResource.IfcURIReference(value);
 				
 			}
 		}

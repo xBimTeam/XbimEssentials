@@ -356,6 +356,10 @@ namespace Xbim.Ifc4x3.ConstraintResource
 					return new Ifc4.DateTimeResource.IfcTime((DateTimeResource.IfcTime)DataValue);
 				if (DataValue is DateTimeResource.IfcTimeStamp) 
 					return new Ifc4.DateTimeResource.IfcTimeStamp((DateTimeResource.IfcTimeStamp)DataValue);
+				if (DataValue is MeasureResource.IfcURIReference)
+                    //## Handle defined type IfcURIReference which is not a part of the target select interface IIfcMetricValueSelect in property DataValue
+                    return new Ifc4.MeasureResource.IfcText(((MeasureResource.IfcURIReference)DataValue).Value.ToString());
+					//##
 				return null;
 			} 
 			set

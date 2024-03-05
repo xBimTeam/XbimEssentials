@@ -16,19 +16,51 @@ namespace Xbim.Essentials.Tests
     {
             
         [Theory]
-        [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-2.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\FixedReferenceSweptAreaSolid-1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\Header example.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-2.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-3.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-4.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-5.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-6.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\test0.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\test1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\test2.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\basin-advanced-brep.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\basin-faceted-brep.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\basin-tessellation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\bath-csg-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-curved-i-shape-tessellated.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-parametric-cross-section.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-revolved-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-straight-i-shape-tessellated.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-varying-cardinal-points.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-varying-extrusion-paths.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-varying-profiles.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\brep-model.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\column-extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\column-straight-rectangle-tessellation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\construction-scheduling-task.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\csg-primitive.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\cube-advanced-brep.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\curve-parameters-in-degrees.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\curve-parameters-in-radians.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\fixed-reference-swept-area-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\geographic-referencing-gk.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\geographic-referencing-rigid-operation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\geographic-referencing-utm.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\grid-placement.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\linear-placement-of-signal.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\mapped-shape-with-multiple-items.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\mapped-shape-with-transformation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\mapped-shape-without-transformation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\polygonal-face-tessellation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\reinforcing-assembly.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\reinforcing-stirrup.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\sectioned-solid-horizontal.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\slab-extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\slab-openings.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\slab-tessellated-unique-vertices.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\structural-curve-member.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\surface-model.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-blob-texture.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-image-texture.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-individual-colors.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-pixel-texture.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\triangulated-item.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\wall-extruded-solid.ifc")]
         public void CanParseSampleFiles(string file)
         {
             var loggerFactory = new LoggerFactory();
@@ -41,7 +73,7 @@ namespace Xbim.Essentials.Tests
             loggerFactory.AddSerilog(config);
 
             using var stream = File.OpenRead(file);
-            var model = new MemoryModel(new EntityFactoryIfc4x3Add1(), loggerFactory)
+            var model = new MemoryModel(new EntityFactoryIfc4x3Add2(), loggerFactory)
             {
                 AllowMissingReferences = false
             };
@@ -51,19 +83,51 @@ namespace Xbim.Essentials.Tests
         }
 
         [Theory]
-        [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\DirectrixDerivedReferenceSweptAreaSolid-2.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\FixedReferenceSweptAreaSolid-1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\Header example.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-2.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-3.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-4.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-5.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\SectionedSolidHorizontal-6.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\test0.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\test1.ifc")]
-        [InlineData(@"TestFiles\IFC4x3\test2.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\basin-advanced-brep.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\basin-faceted-brep.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\basin-tessellation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\bath-csg-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-curved-i-shape-tessellated.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-parametric-cross-section.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-revolved-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-straight-i-shape-tessellated.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-varying-cardinal-points.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-varying-extrusion-paths.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\beam-varying-profiles.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\brep-model.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\column-extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\column-straight-rectangle-tessellation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\construction-scheduling-task.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\csg-primitive.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\cube-advanced-brep.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\curve-parameters-in-degrees.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\curve-parameters-in-radians.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\fixed-reference-swept-area-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\geographic-referencing-gk.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\geographic-referencing-rigid-operation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\geographic-referencing-utm.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\grid-placement.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\linear-placement-of-signal.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\mapped-shape-with-multiple-items.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\mapped-shape-with-transformation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\mapped-shape-without-transformation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\polygonal-face-tessellation.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\reinforcing-assembly.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\reinforcing-stirrup.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\sectioned-solid-horizontal.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\slab-extruded-solid.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\slab-openings.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\slab-tessellated-unique-vertices.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\structural-curve-member.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\surface-model.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-blob-texture.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-image-texture.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-individual-colors.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\tessellation-with-pixel-texture.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\triangulated-item.ifc")]
+        [InlineData(@"TestFiles\IFC4x3_ADD2\wall-extruded-solid.ifc")]
         public void IfcStoreCanOpenSampleFiles(string file)
         {
             var config = new LoggerConfiguration()
@@ -92,6 +156,26 @@ namespace Xbim.Essentials.Tests
             productsIfc4x3.Should().BeGreaterThan(0);
             productsIfc4x3.Should().Be(productsIfc4);
 
+        }
+
+        [Fact]
+        public void Can_create_IFC4x3_model_from_scratch()
+        {
+            using var model = new MemoryModel(new EntityFactoryIfc4x3Add2());
+            using var txn = model.BeginTransaction("Creation");
+
+            var i = model.Instances;
+            i.New<Ifc4x3.SharedBldgElements.IfcWall>(w => w.Name = "First wall");
+
+            txn.Commit();
+
+            using var stream = File.Create(nameof(Can_create_IFC4x3_model_from_scratch) + ".ifc");
+            model.SaveAsIfc(stream);
+
+            using var store = IfcStore.Create(Common.Step21.XbimSchemaVersion.Ifc4x3, IO.XbimStoreType.InMemoryModel);
+            using var storeTxn = store.BeginTransaction();
+            store.Instances.New<Ifc4x3.SharedBldgElements.IfcWall>(w => w.Name = "Second wall");
+            store.SaveAs(nameof(Can_create_IFC4x3_model_from_scratch) + "_store.ifc");
         }
     }
 }

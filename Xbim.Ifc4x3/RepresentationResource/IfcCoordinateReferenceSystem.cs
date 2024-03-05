@@ -35,6 +35,7 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		#region Explicit attribute fields
 		private IfcLabel? _name;
 		private IfcText? _description;
+		private IfcIdentifier? _geodeticDatum;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -66,13 +67,27 @@ namespace Xbim.Ifc4x3.RepresentationResource
 				SetValue( v =>  _description = v, _description, value,  "Description", 2);
 			} 
 		}	
+		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 3)]
+		public IfcIdentifier? @GeodeticDatum 
+		{ 
+			get 
+			{
+				if(_activated) return _geodeticDatum;
+				Activate();
+				return _geodeticDatum;
+			} 
+			set
+			{
+				SetValue( v =>  _geodeticDatum = v, _geodeticDatum, value,  "GeodeticDatum", 3);
+			} 
+		}	
 		#endregion
 
 
 
 		#region Inverse attributes
 		[InverseProperty("SourceCRS")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 3)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 4)]
 		public IEnumerable<IfcCoordinateOperation> @HasCoordinateOperation 
 		{ 
 			get 
@@ -81,7 +96,7 @@ namespace Xbim.Ifc4x3.RepresentationResource
 			} 
 		}
 		[InverseProperty("CoordinateReferenceSystem")]
-		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 4)]
+		[EntityAttribute(-1, EntityAttributeState.Mandatory, EntityAttributeType.Set, EntityAttributeType.Class, new int [] { 0 }, new int [] { 1 }, 5)]
 		public IEnumerable<IfcWellKnownText> @WellKnownText 
 		{ 
 			get 
@@ -101,6 +116,9 @@ namespace Xbim.Ifc4x3.RepresentationResource
 					return;
 				case 1: 
 					_description = value.StringVal;
+					return;
+				case 2: 
+					_geodeticDatum = value.StringVal;
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));

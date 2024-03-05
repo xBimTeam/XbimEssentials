@@ -55,13 +55,13 @@ using Xbim.Common;
 
 namespace Xbim.Ifc4x3
 {
-	public sealed class EntityFactoryIfc4x3Add1 : IEntityFactory
+	public sealed class EntityFactoryIfc4x3Add2 : IEntityFactory
 	{
 		private static readonly System.Reflection.Assembly _assembly;
 		
-		static EntityFactoryIfc4x3Add1()
+		static EntityFactoryIfc4x3Add2()
 		{
-			_assembly = typeof(EntityFactoryIfc4x3Add1).Assembly;
+			_assembly = typeof(EntityFactoryIfc4x3Add2).Assembly;
 		}
 
 		public T New<T>(IModel model, int entityLabel, bool activated) where T: IInstantiableEntity
@@ -1742,7 +1742,7 @@ namespace Xbim.Ifc4x3
 			}
 		}
 
-		private static readonly List<string> _schemasIds = new List<string> { "IFC4X3_ADD1" };
+		private static readonly List<string> _schemasIds = new List<string> { "IFC4X3_ADD2" };
 		public IEnumerable<string> SchemasIds { get { return _schemasIds; } }
 
 		/// <summary>

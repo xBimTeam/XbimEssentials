@@ -7,7 +7,7 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
-using Xbim.Ifc4x3.ExternalReferenceResource;
+using Xbim.Ifc4x3.MeasureResource;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -22,7 +22,7 @@ namespace Xbim.Essentials.Tests
         public void Entity_types_should_be_unique()
         {
             var unique = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            var types = typeof(Ifc4x3.EntityFactoryIfc4x3Add1).Assembly.GetTypes().Where(t => typeof(IPersist).IsAssignableFrom(t)).Select(t => t.Name);
+            var types = typeof(Ifc4x3.EntityFactoryIfc4x3Add2).Assembly.GetTypes().Where(t => typeof(IPersist).IsAssignableFrom(t)).Select(t => t.Name);
             var duplicates = types.Where(t => !unique.Add(t)).ToList();
 
             Assert.AreEqual(0, duplicates.Count, $"Duplicated types: {string.Join(", ", duplicates)}");
@@ -31,7 +31,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CreateSimpleIfc4x3File()
         {
-            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
+            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add2()))
             {
                 var i = model.Instances;
                 using (var txn = model.BeginTransaction("Sample creation"))
@@ -59,7 +59,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void PointDimensionsImplemented()
         {
-            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
+            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add2()))
             {
                 var i = model.Instances;
                 using (var txn = model.BeginTransaction("Sample creation"))
@@ -87,7 +87,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void SurfaceDimensionsImplemented()
         {
-            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add1()))
+            using (var model = new StepModel(new Ifc4x3.EntityFactoryIfc4x3Add2()))
             {
                 var i = model.Instances;
                 using (var txn = model.BeginTransaction("Sample creation"))

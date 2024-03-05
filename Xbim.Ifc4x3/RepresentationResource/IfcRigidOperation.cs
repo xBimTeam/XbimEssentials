@@ -33,7 +33,7 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		#region Explicit attribute fields
 		private IfcMeasureValue _firstCoordinate;
 		private IfcMeasureValue _secondCoordinate;
-		private IfcLengthMeasure _height;
+		private IfcLengthMeasure? _height;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -65,8 +65,8 @@ namespace Xbim.Ifc4x3.RepresentationResource
 				SetValue( v =>  _secondCoordinate = v, _secondCoordinate, value,  "SecondCoordinate", 4);
 			} 
 		}	
-		[EntityAttribute(5, EntityAttributeState.Mandatory, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
-		public IfcLengthMeasure @Height 
+		[EntityAttribute(5, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
+		public IfcLengthMeasure? @Height 
 		{ 
 			get 
 			{

@@ -247,6 +247,10 @@ namespace Xbim.Ifc4x3.MeasureResource
 					return new Ifc4.DateTimeResource.IfcTime((DateTimeResource.IfcTime)ValueComponent);
 				if (ValueComponent is DateTimeResource.IfcTimeStamp) 
 					return new Ifc4.DateTimeResource.IfcTimeStamp((DateTimeResource.IfcTimeStamp)ValueComponent);
+				if (ValueComponent is IfcURIReference)
+                    //## Handle defined type IfcURIReference which is not a part of the target select interface IIfcValue in property ValueComponent
+                    return new Ifc4.MeasureResource.IfcText(((MeasureResource.IfcURIReference)ValueComponent).Value.ToString());
+					//##
 				return null;
 			} 
 			set

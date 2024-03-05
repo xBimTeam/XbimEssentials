@@ -31,7 +31,6 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		}
 
 		#region Explicit attribute fields
-		private IfcIdentifier? _geodeticDatum;
 		private IfcIdentifier? _verticalDatum;
 		private IfcIdentifier? _mapProjection;
 		private IfcIdentifier? _mapZone;
@@ -39,20 +38,6 @@ namespace Xbim.Ifc4x3.RepresentationResource
 		#endregion
 	
 		#region Explicit attribute properties
-		[EntityAttribute(3, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 5)]
-		public IfcIdentifier? @GeodeticDatum 
-		{ 
-			get 
-			{
-				if(_activated) return _geodeticDatum;
-				Activate();
-				return _geodeticDatum;
-			} 
-			set
-			{
-				SetValue( v =>  _geodeticDatum = v, _geodeticDatum, value,  "GeodeticDatum", 3);
-			} 
-		}	
 		[EntityAttribute(4, EntityAttributeState.Optional, EntityAttributeType.None, EntityAttributeType.None, null, null, 6)]
 		public IfcIdentifier? @VerticalDatum 
 		{ 
@@ -123,10 +108,8 @@ namespace Xbim.Ifc4x3.RepresentationResource
 			{
 				case 0: 
 				case 1: 
-					base.Parse(propIndex, value, nestedIndex); 
-					return;
 				case 2: 
-					_geodeticDatum = value.StringVal;
+					base.Parse(propIndex, value, nestedIndex); 
 					return;
 				case 3: 
 					_verticalDatum = value.StringVal;

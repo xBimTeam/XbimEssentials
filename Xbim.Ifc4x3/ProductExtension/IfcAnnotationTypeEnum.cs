@@ -10,15 +10,15 @@ namespace Xbim.Ifc4x3.ProductExtension
 {
 	public enum IfcAnnotationTypeEnum : byte
 	{
-		@ASBUILTAREA ,
-		@ASBUILTLINE ,
-		@ASBUILTPOINT ,
-		@ASSUMEDAREA ,
-		@ASSUMEDLINE ,
-		@ASSUMEDPOINT ,
-		@NON_PHYSICAL_SIGNAL ,
-		@SUPERELEVATIONEVENT ,
-		@WIDTHEVENT ,
+		@CONTOURLINE ,
+		@DIMENSION ,
+		@ISOBAR ,
+		@ISOLUX ,
+		@ISOTHERM ,
+		@LEADER ,
+		@SURVEY ,
+		@SYMBOL ,
+		@TEXT ,
 		@USERDEFINED ,
 		@NOTDEFINED 
 	}

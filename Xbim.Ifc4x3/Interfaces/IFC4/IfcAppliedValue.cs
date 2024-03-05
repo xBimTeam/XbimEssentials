@@ -287,6 +287,10 @@ namespace Xbim.Ifc4x3.CostResource
 					return new Ifc4.DateTimeResource.IfcTime((DateTimeResource.IfcTime)AppliedValue);
 				if (AppliedValue is DateTimeResource.IfcTimeStamp) 
 					return new Ifc4.DateTimeResource.IfcTimeStamp((DateTimeResource.IfcTimeStamp)AppliedValue);
+				if (AppliedValue is MeasureResource.IfcURIReference)
+					//## Handle defined type IfcURIReference which is not a part of the target select interface IIfcAppliedValueSelect in property AppliedValue
+					return new Ifc4.MeasureResource.IfcText(((MeasureResource.IfcURIReference)AppliedValue).Value.ToString());
+					//##
 				return null;
 			} 
 			set
@@ -1169,6 +1173,11 @@ namespace Xbim.Ifc4x3.CostResource
 						return Ifc4.Interfaces.IfcArithmeticOperatorEnum.ADD;
 					case IfcArithmeticOperatorEnum.DIVIDE:
 						return Ifc4.Interfaces.IfcArithmeticOperatorEnum.DIVIDE;
+					case IfcArithmeticOperatorEnum.MODULO:
+						//## Handle translation of MODULO member from IfcArithmeticOperatorEnum in property ArithmeticOperator
+						//TODO: Handle translation of MODULO member from IfcArithmeticOperatorEnum in property ArithmeticOperator
+						throw new System.NotImplementedException();
+						//##
 					case IfcArithmeticOperatorEnum.MULTIPLY:
 						return Ifc4.Interfaces.IfcArithmeticOperatorEnum.MULTIPLY;
 					case IfcArithmeticOperatorEnum.SUBTRACT:

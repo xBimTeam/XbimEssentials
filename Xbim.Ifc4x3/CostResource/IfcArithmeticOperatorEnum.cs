@@ -12,6 +12,7 @@ namespace Xbim.Ifc4x3.CostResource
 	{
 		@ADD ,
 		@DIVIDE ,
+		@MODULO ,
 		@MULTIPLY ,
 		@SUBTRACT 
 	}
