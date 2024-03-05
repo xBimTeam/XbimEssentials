@@ -14,49 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStyledItem
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStyledItem : IIfcRepresentationItem
-	{
-		IIfcRepresentationItem @Item { get;  set; }
-		IItemSet<IIfcPresentationStyleAssignment> @Styles { get; }
-		IfcLabel? @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcStyledItem", 56)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IIfcStyledItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStyledItem>
+	public  partial class @IfcStyledItem : IfcRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStyledItem>
 	{
-		#region IIfcStyledItem explicit implementation
-		IIfcRepresentationItem IIfcStyledItem.Item { 
- 
- 
-			get { return @Item; } 
-			set { Item = value as IfcRepresentationItem;}
-		}	
-		IItemSet<IIfcPresentationStyleAssignment> IIfcStyledItem.Styles { 
-			get { return new Common.Collections.ProxyItemSet<IfcPresentationStyleAssignment, IIfcPresentationStyleAssignment>( @Styles); } 
-		}	
-		IfcLabel? IIfcStyledItem.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStyledItem(IModel model, int label, bool activated) : base(model, label, activated)  

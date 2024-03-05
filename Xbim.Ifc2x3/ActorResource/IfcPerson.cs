@@ -16,72 +16,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ActorResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPerson
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPerson : IPersistEntity, IfcActorSelect, IfcObjectReferenceSelect
-	{
-		IfcIdentifier? @Id { get;  set; }
-		IfcLabel? @FamilyName { get;  set; }
-		IfcLabel? @GivenName { get;  set; }
-		IItemSet<IfcLabel> @MiddleNames { get; }
-		IItemSet<IfcLabel> @PrefixTitles { get; }
-		IItemSet<IfcLabel> @SuffixTitles { get; }
-		IItemSet<IIfcActorRole> @Roles { get; }
-		IItemSet<IIfcAddress> @Addresses { get; }
-		IEnumerable<IIfcPersonAndOrganization> @EngagedIn {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ActorResource
 {
 	[ExpressType("IfcPerson", 198)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPerson : PersistEntity, IInstantiableEntity, IIfcPerson, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPerson>
+	public  partial class @IfcPerson : PersistEntity, IInstantiableEntity, IfcActorSelect, IfcObjectReferenceSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPerson>
 	{
-		#region IIfcPerson explicit implementation
-		IfcIdentifier? IIfcPerson.Id { 
- 
-			get { return @Id; } 
-			set { Id = value;}
-		}	
-		IfcLabel? IIfcPerson.FamilyName { 
- 
-			get { return @FamilyName; } 
-			set { FamilyName = value;}
-		}	
-		IfcLabel? IIfcPerson.GivenName { 
- 
-			get { return @GivenName; } 
-			set { GivenName = value;}
-		}	
-		IItemSet<IfcLabel> IIfcPerson.MiddleNames { 
-			get { return @MiddleNames; } 
-		}	
-		IItemSet<IfcLabel> IIfcPerson.PrefixTitles { 
-			get { return @PrefixTitles; } 
-		}	
-		IItemSet<IfcLabel> IIfcPerson.SuffixTitles { 
-			get { return @SuffixTitles; } 
-		}	
-		IItemSet<IIfcActorRole> IIfcPerson.Roles { 
-			get { return new Common.Collections.ProxyItemSet<IfcActorRole, IIfcActorRole>( @Roles); } 
-		}	
-		IItemSet<IIfcAddress> IIfcPerson.Addresses { 
-			get { return new Common.Collections.ProxyItemSet<IfcAddress, IIfcAddress>( @Addresses); } 
-		}	
-		 
-		IEnumerable<IIfcPersonAndOrganization> IIfcPerson.EngagedIn {  get { return @EngagedIn; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPerson(IModel model, int label, bool activated) : base(model, label, activated)  

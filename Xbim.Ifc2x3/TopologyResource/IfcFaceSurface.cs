@@ -14,45 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFaceSurface
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFaceSurface : IIfcFace, IfcSurfaceOrFaceSurface
-	{
-		IIfcSurface @FaceSurface { get;  set; }
-		bool @SameSense { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcFaceSurface", 85)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IIfcFaceSurface, IContainsEntityReferences, IEquatable<@IfcFaceSurface>
+	public  partial class @IfcFaceSurface : IfcFace, IInstantiableEntity, IfcSurfaceOrFaceSurface, IContainsEntityReferences, IEquatable<@IfcFaceSurface>
 	{
-		#region IIfcFaceSurface explicit implementation
-		IIfcSurface IIfcFaceSurface.FaceSurface { 
- 
- 
-			get { return @FaceSurface; } 
-			set { FaceSurface = value as IfcSurface;}
-		}	
-		bool IIfcFaceSurface.SameSense { 
- 
-			get { return @SameSense; } 
-			set { SameSense = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFaceSurface(IModel model, int label, bool activated) : base(model, label, activated)  

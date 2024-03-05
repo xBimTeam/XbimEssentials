@@ -12,36 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelDefines
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelDefines : IIfcRelationship
-	{
-		IItemSet<IIfcObject> @RelatedObjects { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelDefines", 207)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelDefines : IfcRelationship, IIfcRelDefines, IEquatable<@IfcRelDefines>
+	public abstract partial class @IfcRelDefines : IfcRelationship, IEquatable<@IfcRelDefines>
 	{
-		#region IIfcRelDefines explicit implementation
-		IItemSet<IIfcObject> IIfcRelDefines.RelatedObjects { 
-			get { return new Common.Collections.ProxyItemSet<IfcObject, IIfcObject>( @RelatedObjects); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelDefines(IModel model, int label, bool activated) : base(model, label, activated)  

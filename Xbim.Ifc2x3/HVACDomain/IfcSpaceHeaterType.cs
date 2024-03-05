@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSpaceHeaterType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSpaceHeaterType : IIfcEnergyConversionDeviceType
-	{
-		IfcSpaceHeaterTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcSpaceHeaterType", 59)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceHeaterType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcSpaceHeaterType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpaceHeaterType>
+	public  partial class @IfcSpaceHeaterType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSpaceHeaterType>
 	{
-		#region IIfcSpaceHeaterType explicit implementation
-		IfcSpaceHeaterTypeEnum IIfcSpaceHeaterType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceHeaterType(IModel model, int label, bool activated) : base(model, label, activated)  

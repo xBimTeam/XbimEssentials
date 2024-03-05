@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElementarySurface
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElementarySurface : IIfcSurface
-	{
-		IIfcAxis2Placement3D @Position { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcElementarySurface", 389)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElementarySurface : IfcSurface, IIfcElementarySurface, IEquatable<@IfcElementarySurface>
+	public abstract partial class @IfcElementarySurface : IfcSurface, IEquatable<@IfcElementarySurface>
 	{
-		#region IIfcElementarySurface explicit implementation
-		IIfcAxis2Placement3D IIfcElementarySurface.Position { 
- 
- 
-			get { return @Position; } 
-			set { Position = value as IfcAxis2Placement3D;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElementarySurface(IModel model, int label, bool activated) : base(model, label, activated)  

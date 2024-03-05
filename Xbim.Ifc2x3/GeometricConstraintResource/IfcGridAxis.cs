@@ -17,59 +17,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGridAxis
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGridAxis : IPersistEntity
-	{
-		IfcLabel? @AxisTag { get;  set; }
-		IIfcCurve @AxisCurve { get;  set; }
-		IfcBoolean @SameSense { get;  set; }
-		IEnumerable<IIfcGrid> @PartOfW {  get; }
-		IEnumerable<IIfcGrid> @PartOfV {  get; }
-		IEnumerable<IIfcGrid> @PartOfU {  get; }
-		IEnumerable<IIfcVirtualGridIntersection> @HasIntersections {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricConstraintResource
 {
 	[ExpressType("IfcGridAxis", 441)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGridAxis : PersistEntity, IInstantiableEntity, IIfcGridAxis, IContainsEntityReferences, IEquatable<@IfcGridAxis>
+	public  partial class @IfcGridAxis : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcGridAxis>
 	{
-		#region IIfcGridAxis explicit implementation
-		IfcLabel? IIfcGridAxis.AxisTag { 
- 
-			get { return @AxisTag; } 
-			set { AxisTag = value;}
-		}	
-		IIfcCurve IIfcGridAxis.AxisCurve { 
- 
- 
-			get { return @AxisCurve; } 
-			set { AxisCurve = value as IfcCurve;}
-		}	
-		IfcBoolean IIfcGridAxis.SameSense { 
- 
-			get { return @SameSense; } 
-			set { SameSense = value;}
-		}	
-		 
-		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfW {  get { return @PartOfW; } }
-		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfV {  get { return @PartOfV; } }
-		IEnumerable<IIfcGrid> IIfcGridAxis.PartOfU {  get { return @PartOfU; } }
-		IEnumerable<IIfcVirtualGridIntersection> IIfcGridAxis.HasIntersections {  get { return @HasIntersections; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGridAxis(IModel model, int label, bool activated) : base(model, label, activated)  

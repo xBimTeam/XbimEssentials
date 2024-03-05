@@ -70,7 +70,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 			get { return @Purpose; } 
 			set { Purpose = value;}
 		}	
-		 
 		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup {  get { return @SourceOfResultGroup; } }
 		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor {  get { return @LoadGroupFor; } }
 		#endregion

@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			get { return @ModelorDraughting; } 
 			set { ModelorDraughting = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

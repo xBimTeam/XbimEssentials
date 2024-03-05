@@ -38,7 +38,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public abstract partial class @IfcStructuralItem : IfcProduct, IIfcStructuralItem, IEquatable<@IfcStructuralItem>
 	{
 		#region IIfcStructuralItem explicit implementation
-		 
 		IEnumerable<IIfcRelConnectsStructuralActivity> IIfcStructuralItem.AssignedStructuralActivity {  get { return @AssignedStructuralActivity; } }
 		#endregion
 

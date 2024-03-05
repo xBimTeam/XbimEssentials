@@ -17,61 +17,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRepresentation
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRepresentation : IPersistEntity, IfcLayeredItem
-	{
-		IIfcRepresentationContext @ContextOfItems { get;  set; }
-		IfcLabel? @RepresentationIdentifier { get;  set; }
-		IfcLabel? @RepresentationType { get;  set; }
-		IItemSet<IIfcRepresentationItem> @Items { get; }
-		IEnumerable<IIfcRepresentationMap> @RepresentationMap {  get; }
-		IEnumerable<IIfcPresentationLayerAssignment> @LayerAssignments {  get; }
-		IEnumerable<IIfcProductRepresentation> @OfProductRepresentation {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcRepresentation", 87)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRepresentation : PersistEntity, IInstantiableEntity, IIfcRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentation>
+	public  partial class @IfcRepresentation : PersistEntity, IInstantiableEntity, IfcLayeredItem, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRepresentation>
 	{
-		#region IIfcRepresentation explicit implementation
-		IIfcRepresentationContext IIfcRepresentation.ContextOfItems { 
- 
- 
-			get { return @ContextOfItems; } 
-			set { ContextOfItems = value as IfcRepresentationContext;}
-		}	
-		IfcLabel? IIfcRepresentation.RepresentationIdentifier { 
- 
-			get { return @RepresentationIdentifier; } 
-			set { RepresentationIdentifier = value;}
-		}	
-		IfcLabel? IIfcRepresentation.RepresentationType { 
- 
-			get { return @RepresentationType; } 
-			set { RepresentationType = value;}
-		}	
-		IItemSet<IIfcRepresentationItem> IIfcRepresentation.Items { 
-			get { return new Common.Collections.ProxyItemSet<IfcRepresentationItem, IIfcRepresentationItem>( @Items); } 
-		}	
-		 
-		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap {  get { return @RepresentationMap; } }
-		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentation.LayerAssignments {  get { return @LayerAssignments; } }
-		IEnumerable<IIfcProductRepresentation> IIfcRepresentation.OfProductRepresentation {  get { return @OfProductRepresentation; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRepresentation(IModel model, int label, bool activated) : base(model, label, activated)  

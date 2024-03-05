@@ -43,7 +43,6 @@ namespace Xbim.Ifc4.TopologyResource
 			get { return @LoopVertex; } 
 			set { LoopVertex = value as IfcVertex;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

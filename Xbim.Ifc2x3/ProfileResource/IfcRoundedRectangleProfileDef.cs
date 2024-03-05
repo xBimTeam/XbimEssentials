@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRoundedRectangleProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRoundedRectangleProfileDef : IIfcRectangleProfileDef
-	{
-		IfcPositiveLengthMeasure @RoundingRadius { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcRoundedRectangleProfileDef", 106)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IIfcRoundedRectangleProfileDef, IContainsEntityReferences, IEquatable<@IfcRoundedRectangleProfileDef>
+	public  partial class @IfcRoundedRectangleProfileDef : IfcRectangleProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRoundedRectangleProfileDef>
 	{
-		#region IIfcRoundedRectangleProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcRoundedRectangleProfileDef.RoundingRadius { 
- 
-			get { return @RoundingRadius; } 
-			set { RoundingRadius = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRoundedRectangleProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

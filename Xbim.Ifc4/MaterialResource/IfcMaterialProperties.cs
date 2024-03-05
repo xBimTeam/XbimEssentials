@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.MaterialResource
 			get { return @Material; } 
 			set { Material = value as IfcMaterialDefinition;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

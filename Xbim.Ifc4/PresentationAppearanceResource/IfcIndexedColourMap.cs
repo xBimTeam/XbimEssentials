@@ -63,7 +63,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IItemSet<IfcPositiveInteger> IIfcIndexedColourMap.ColourIndex { 
 			get { return @ColourIndex; } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

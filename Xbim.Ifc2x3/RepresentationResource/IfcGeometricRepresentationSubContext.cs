@@ -14,57 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcGeometricRepresentationSubContext
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcGeometricRepresentationSubContext : IIfcGeometricRepresentationContext
-	{
-		IIfcGeometricRepresentationContext @ParentContext { get;  set; }
-		IfcPositiveRatioMeasure? @TargetScale { get;  set; }
-		IfcGeometricProjectionEnum @TargetView { get;  set; }
-		IfcLabel? @UserDefinedTargetView { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcGeometricRepresentationSubContext", 556)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IIfcGeometricRepresentationSubContext, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeometricRepresentationSubContext>
+	public  partial class @IfcGeometricRepresentationSubContext : IfcGeometricRepresentationContext, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcGeometricRepresentationSubContext>
 	{
-		#region IIfcGeometricRepresentationSubContext explicit implementation
-		IIfcGeometricRepresentationContext IIfcGeometricRepresentationSubContext.ParentContext { 
- 
- 
-			get { return @ParentContext; } 
-			set { ParentContext = value as IfcGeometricRepresentationContext;}
-		}	
-		IfcPositiveRatioMeasure? IIfcGeometricRepresentationSubContext.TargetScale { 
- 
-			get { return @TargetScale; } 
-			set { TargetScale = value;}
-		}	
-		IfcGeometricProjectionEnum IIfcGeometricRepresentationSubContext.TargetView { 
- 
-			get { return @TargetView; } 
-			set { TargetView = value;}
-		}	
-		IfcLabel? IIfcGeometricRepresentationSubContext.UserDefinedTargetView { 
- 
-			get { return @UserDefinedTargetView; } 
-			set { UserDefinedTargetView = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcGeometricRepresentationSubContext(IModel model, int label, bool activated) : base(model, label, activated)  
@@ -168,9 +128,11 @@ namespace Xbim.Ifc2x3.RepresentationResource
 		[EntityAttribute(6, EntityAttributeState.DerivedOverride, EntityAttributeType.Class, EntityAttributeType.None, null, null, 0)]
 		public override IfcDirection @TrueNorth 
 		{
-			get 
-			{
-				return ParentContext.TrueNorth ?? WorldCoordinateSystem.P[2];
+			get
+            {
+				//## Overriding derived attribute TrueNorth getter
+                return ParentContext.TrueNorth ?? ((WorldCoordinateSystem?.Dim > 1) ? WorldCoordinateSystem.P[1] : new Common.Geometry.XbimVector3D(0,1,double.NaN));
+				//##
 			}
 			set 
 			{ 

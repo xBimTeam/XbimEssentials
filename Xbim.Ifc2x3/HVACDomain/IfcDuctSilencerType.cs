@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDuctSilencerType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDuctSilencerType : IIfcFlowTreatmentDeviceType
-	{
-		IfcDuctSilencerTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcDuctSilencerType", 141)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IIfcDuctSilencerType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctSilencerType>
+	public  partial class @IfcDuctSilencerType : IfcFlowTreatmentDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDuctSilencerType>
 	{
-		#region IIfcDuctSilencerType explicit implementation
-		IfcDuctSilencerTypeEnum IIfcDuctSilencerType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDuctSilencerType(IModel model, int label, bool activated) : base(model, label, activated)  

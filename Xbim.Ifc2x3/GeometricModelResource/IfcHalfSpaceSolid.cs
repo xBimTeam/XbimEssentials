@@ -13,45 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcHalfSpaceSolid
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcHalfSpaceSolid : IIfcGeometricRepresentationItem, IfcBooleanOperand
-	{
-		IIfcSurface @BaseSurface { get;  set; }
-		bool @AgreementFlag { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcHalfSpaceSolid", 338)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcHalfSpaceSolid, IContainsEntityReferences, IEquatable<@IfcHalfSpaceSolid>
+	public  partial class @IfcHalfSpaceSolid : IfcGeometricRepresentationItem, IInstantiableEntity, IfcBooleanOperand, IContainsEntityReferences, IEquatable<@IfcHalfSpaceSolid>
 	{
-		#region IIfcHalfSpaceSolid explicit implementation
-		IIfcSurface IIfcHalfSpaceSolid.BaseSurface { 
- 
- 
-			get { return @BaseSurface; } 
-			set { BaseSurface = value as IfcSurface;}
-		}	
-		bool IIfcHalfSpaceSolid.AgreementFlag { 
- 
-			get { return @AgreementFlag; } 
-			set { AgreementFlag = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcHalfSpaceSolid(IModel model, int label, bool activated) : base(model, label, activated)  

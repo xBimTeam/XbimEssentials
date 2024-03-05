@@ -14,38 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPermit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPermit : IIfcControl
-	{
-		IfcIdentifier @PermitID { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcPermit", 189)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IIfcPermit, IContainsEntityReferences, IEquatable<@IfcPermit>
+	public  partial class @IfcPermit : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcPermit>
 	{
-		#region IIfcPermit explicit implementation
-		IfcIdentifier IIfcPermit.PermitID { 
- 
-			get { return @PermitID; } 
-			set { PermitID = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPermit(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.RepresentationResource
 	public abstract partial class @IfcShapeModel : IfcRepresentation, IIfcShapeModel, IEquatable<@IfcShapeModel>
 	{
 		#region IIfcShapeModel explicit implementation
-		 
 		IEnumerable<IIfcShapeAspect> IIfcShapeModel.OfShapeAspect {  get { return @OfShapeAspect; } }
 		#endregion
 

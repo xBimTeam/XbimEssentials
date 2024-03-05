@@ -15,48 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.RepresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProductRepresentation
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProductRepresentation : IPersistEntity
-	{
-		IfcLabel? @Name { get;  set; }
-		IfcText? @Description { get;  set; }
-		IItemSet<IIfcRepresentation> @Representations { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.RepresentationResource
 {
 	[ExpressType("IfcProductRepresentation", 1)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProductRepresentation : PersistEntity, IInstantiableEntity, IIfcProductRepresentation, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductRepresentation>
+	public  partial class @IfcProductRepresentation : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcProductRepresentation>
 	{
-		#region IIfcProductRepresentation explicit implementation
-		IfcLabel? IIfcProductRepresentation.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		IfcText? IIfcProductRepresentation.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IItemSet<IIfcRepresentation> IIfcProductRepresentation.Representations { 
-			get { return new Common.Collections.ProxyItemSet<IfcRepresentation, IIfcRepresentation>( @Representations); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProductRepresentation(IModel model, int label, bool activated) : base(model, label, activated)  

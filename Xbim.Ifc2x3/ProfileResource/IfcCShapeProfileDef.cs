@@ -13,68 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCShapeProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCShapeProfileDef : IIfcParameterizedProfileDef
-	{
-		IfcPositiveLengthMeasure @Depth { get;  set; }
-		IfcPositiveLengthMeasure @Width { get;  set; }
-		IfcPositiveLengthMeasure @WallThickness { get;  set; }
-		IfcPositiveLengthMeasure @Girth { get;  set; }
-		IfcPositiveLengthMeasure? @InternalFilletRadius { get;  set; }
-		IfcPositiveLengthMeasure? @CentreOfGravityInX { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcCShapeProfileDef", 501)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcCShapeProfileDef, IContainsEntityReferences, IEquatable<@IfcCShapeProfileDef>
+	public  partial class @IfcCShapeProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCShapeProfileDef>
 	{
-		#region IIfcCShapeProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Depth { 
- 
-			get { return @Depth; } 
-			set { Depth = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Width { 
- 
-			get { return @Width; } 
-			set { Width = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.WallThickness { 
- 
-			get { return @WallThickness; } 
-			set { WallThickness = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcCShapeProfileDef.Girth { 
- 
-			get { return @Girth; } 
-			set { Girth = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.InternalFilletRadius { 
- 
-			get { return @InternalFilletRadius; } 
-			set { InternalFilletRadius = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcCShapeProfileDef.CentreOfGravityInX { 
- 
-			get { return @CentreOfGravityInX; } 
-			set { CentreOfGravityInX = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCShapeProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

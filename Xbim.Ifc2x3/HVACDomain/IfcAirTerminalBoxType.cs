@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAirTerminalBoxType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAirTerminalBoxType : IIfcFlowControllerType
-	{
-		IfcAirTerminalBoxTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcAirTerminalBoxType", 332)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAirTerminalBoxType : IfcFlowControllerType, IInstantiableEntity, IIfcAirTerminalBoxType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirTerminalBoxType>
+	public  partial class @IfcAirTerminalBoxType : IfcFlowControllerType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAirTerminalBoxType>
 	{
-		#region IIfcAirTerminalBoxType explicit implementation
-		IfcAirTerminalBoxTypeEnum IIfcAirTerminalBoxType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAirTerminalBoxType(IModel model, int label, bool activated) : base(model, label, activated)  

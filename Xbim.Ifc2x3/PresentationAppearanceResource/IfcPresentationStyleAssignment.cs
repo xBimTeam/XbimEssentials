@@ -14,36 +14,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPresentationStyleAssignment
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPresentationStyleAssignment : IPersistEntity
-	{
-		IItemSet<IIfcPresentationStyleSelect> @Styles { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcPresentationStyleAssignment", 584)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPresentationStyleAssignment : PersistEntity, IInstantiableEntity, IIfcPresentationStyleAssignment, IEquatable<@IfcPresentationStyleAssignment>
+	public  partial class @IfcPresentationStyleAssignment : PersistEntity, IInstantiableEntity, IEquatable<@IfcPresentationStyleAssignment>
 	{
-		#region IIfcPresentationStyleAssignment explicit implementation
-		IItemSet<IIfcPresentationStyleSelect> IIfcPresentationStyleAssignment.Styles { 
-			get { return new Common.Collections.ProxyItemSet<IfcPresentationStyleSelect, IIfcPresentationStyleSelect>( @Styles); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPresentationStyleAssignment(IModel model, int label, bool activated) : base(model, label, activated)  

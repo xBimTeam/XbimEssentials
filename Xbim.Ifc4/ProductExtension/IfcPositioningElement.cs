@@ -38,7 +38,6 @@ namespace Xbim.Ifc4.ProductExtension
 	public abstract partial class @IfcPositioningElement : IfcProduct, IIfcPositioningElement, IEquatable<@IfcPositioningElement>
 	{
 		#region IIfcPositioningElement explicit implementation
-		 
 		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcPositioningElement.ContainedInStructure {  get { return @ContainedInStructure; } }
 		#endregion
 

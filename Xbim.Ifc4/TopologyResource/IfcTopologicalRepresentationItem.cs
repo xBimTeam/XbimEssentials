@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.TopologyResource
 	public abstract partial class @IfcTopologicalRepresentationItem : IfcRepresentationItem, IIfcTopologicalRepresentationItem, IEquatable<@IfcTopologicalRepresentationItem>
 	{
 		#region IIfcTopologicalRepresentationItem explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

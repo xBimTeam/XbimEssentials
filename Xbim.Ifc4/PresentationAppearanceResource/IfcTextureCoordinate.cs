@@ -41,7 +41,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IItemSet<IIfcSurfaceTexture> IIfcTextureCoordinate.Maps { 
 			get { return new Common.Collections.ProxyItemSet<IfcSurfaceTexture, IIfcSurfaceTexture>( @Maps); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

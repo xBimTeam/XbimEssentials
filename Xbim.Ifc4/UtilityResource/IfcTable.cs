@@ -58,7 +58,9 @@ namespace Xbim.Ifc4.UtilityResource
 		IItemSet<IIfcTableColumn> IIfcTable.Columns { 
 			get { return new Common.Collections.ProxyItemSet<IfcTableColumn, IIfcTableColumn>( @Columns); } 
 		}	
-		 
+		IfcInteger IIfcTable.@NumberOfCellsInRow  { get { return @NumberOfCellsInRow; } }
+		IfcInteger IIfcTable.@NumberOfHeadings  { get { return @NumberOfHeadings; } }
+		IfcInteger IIfcTable.@NumberOfDataRows  { get { return @NumberOfDataRows; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

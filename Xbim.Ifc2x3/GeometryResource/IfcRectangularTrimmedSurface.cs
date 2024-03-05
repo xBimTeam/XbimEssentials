@@ -13,75 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRectangularTrimmedSurface
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRectangularTrimmedSurface : IIfcBoundedSurface
-	{
-		IIfcSurface @BasisSurface { get;  set; }
-		IfcParameterValue @U1 { get;  set; }
-		IfcParameterValue @V1 { get;  set; }
-		IfcParameterValue @U2 { get;  set; }
-		IfcParameterValue @V2 { get;  set; }
-		bool @Usense { get;  set; }
-		bool @Vsense { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcRectangularTrimmedSurface", 653)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IIfcRectangularTrimmedSurface, IContainsEntityReferences, IEquatable<@IfcRectangularTrimmedSurface>
+	public  partial class @IfcRectangularTrimmedSurface : IfcBoundedSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRectangularTrimmedSurface>
 	{
-		#region IIfcRectangularTrimmedSurface explicit implementation
-		IIfcSurface IIfcRectangularTrimmedSurface.BasisSurface { 
- 
- 
-			get { return @BasisSurface; } 
-			set { BasisSurface = value as IfcSurface;}
-		}	
-		IfcParameterValue IIfcRectangularTrimmedSurface.U1 { 
- 
-			get { return @U1; } 
-			set { U1 = value;}
-		}	
-		IfcParameterValue IIfcRectangularTrimmedSurface.V1 { 
- 
-			get { return @V1; } 
-			set { V1 = value;}
-		}	
-		IfcParameterValue IIfcRectangularTrimmedSurface.U2 { 
- 
-			get { return @U2; } 
-			set { U2 = value;}
-		}	
-		IfcParameterValue IIfcRectangularTrimmedSurface.V2 { 
- 
-			get { return @V2; } 
-			set { V2 = value;}
-		}	
-		bool IIfcRectangularTrimmedSurface.Usense { 
- 
-			get { return @Usense; } 
-			set { Usense = value;}
-		}	
-		bool IIfcRectangularTrimmedSurface.Vsense { 
- 
-			get { return @Vsense; } 
-			set { Vsense = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRectangularTrimmedSurface(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @Identification; } 
 			set { Identification = value;}
 		}	
-		 
 		IEnumerable<IIfcRelAssignsToControl> IIfcControl.Controls {  get { return @Controls; } }
 		#endregion
 

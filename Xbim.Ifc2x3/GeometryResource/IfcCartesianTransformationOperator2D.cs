@@ -12,33 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCartesianTransformationOperator2D
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCartesianTransformationOperator2D : IIfcCartesianTransformationOperator
-	{
-		List<Common.Geometry.XbimVector3D> @U  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCartesianTransformationOperator2D", 145)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2D>
+	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2D>
 	{
-		#region IIfcCartesianTransformationOperator2D explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianTransformationOperator2D(IModel model, int label, bool activated) : base(model, label, activated)  

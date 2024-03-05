@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PlumbingFireProtectionDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSanitaryTerminalType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSanitaryTerminalType : IIfcFlowTerminalType
-	{
-		IfcSanitaryTerminalTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcSanitaryTerminalType", 435)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSanitaryTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcSanitaryTerminalType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSanitaryTerminalType>
+	public  partial class @IfcSanitaryTerminalType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSanitaryTerminalType>
 	{
-		#region IIfcSanitaryTerminalType explicit implementation
-		IfcSanitaryTerminalTypeEnum IIfcSanitaryTerminalType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSanitaryTerminalType(IModel model, int label, bool activated) : base(model, label, activated)  

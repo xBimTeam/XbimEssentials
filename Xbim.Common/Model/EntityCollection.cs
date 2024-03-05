@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
 
 namespace Xbim.Common.Model
@@ -25,6 +26,8 @@ namespace Xbim.Common.Model
                 return obj.EntityLabel;
             }
         }
+
+        private readonly ILogger _logger;
         private readonly StepModel _model;
         private readonly XbimMultiValueDictionary<Type, IPersistEntity> _internal;
         private readonly Dictionary<int, IPersistEntity> _collection = new Dictionary<int, IPersistEntity>(0x77777);
@@ -51,6 +54,9 @@ namespace Xbim.Common.Model
             _internal =
                 XbimMultiValueDictionary<Type, IPersistEntity>.Create(
                     () => new HashSet<IPersistEntity>(new EntityLabelComparer()));
+
+            var logFactory = XbimServices.Current.GetLoggerFactory();
+            _logger = logFactory.CreateLogger<EntityCollection>();
         }
 
         private IEnumerable<Type> GetQueryTypes(Type type)
@@ -69,31 +75,10 @@ namespace Xbim.Common.Model
             where T : IPersistEntity
 
         {
-            var cache = _model.InverseCache as MemoryInverseCache;
-            if (cache == null)
+            if (!(_model.InverseCache is MemoryInverseCache cache) || cache.IsDisposed)
                 return Where(condition);
 
             if (cache.TryGet(inverseProperty, inverseArgument, out IEnumerable<T> result))
-                return result.Where(condition);
-
-            //build cache for this type
-            lock (cache)
-            {
-                // check the condition again for case it was computed whilewaiting for access
-                if (cache.TryGet(inverseProperty, inverseArgument, out result))
-                    return result.Where(condition);
-
-                var indexed = OfType<T>().OfType<IContainsIndexedReferences>().ToList();
-                foreach (var item in indexed)
-                {
-                    foreach (var reference in item.IndexedReferences)
-                    {
-                        cache.Add(reference.EntityLabel, item);
-                    }
-                }
-            }
-
-            if (cache.TryGet(inverseProperty, inverseArgument, out result))
                 return result.Where(condition);
 
             return Enumerable.Empty<T>();
@@ -253,9 +238,9 @@ namespace Xbim.Common.Model
 
                 var exist = _collection[entity.EntityLabel];
                 if (entity.ExpressType != exist.ExpressType)
-                    _model.Logger?.LogError($"Duplicate entity #{entity.EntityLabel} with different data type ({exist.ExpressType.Name}/{entity.ExpressType.Name})", ex);
+                    _logger?.LogError($"Duplicate entity #{entity.EntityLabel} with different data type ({exist.ExpressType.Name}/{entity.ExpressType.Name})", ex);
                 else
-                    _model.Logger?.LogWarning($"Duplicate entity #{entity.EntityLabel}", ex);
+                    _logger?.LogWarning($"Duplicate entity #{entity.EntityLabel}", ex);
             }
         }
 

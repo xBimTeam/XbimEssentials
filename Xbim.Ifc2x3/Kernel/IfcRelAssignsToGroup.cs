@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssignsToGroup
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssignsToGroup : IIfcRelAssigns
-	{
-		IIfcGroup @RelatingGroup { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssignsToGroup", 278)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IIfcRelAssignsToGroup, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToGroup>
+	public  partial class @IfcRelAssignsToGroup : IfcRelAssigns, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToGroup>
 	{
-		#region IIfcRelAssignsToGroup explicit implementation
-		IIfcGroup IIfcRelAssignsToGroup.RelatingGroup { 
- 
- 
-			get { return @RelatingGroup; } 
-			set { RelatingGroup = value as IfcGroup;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToGroup(IModel model, int label, bool activated) : base(model, label, activated)  

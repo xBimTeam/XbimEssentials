@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.PresentationDefinitionResource
 		IItemSet<IIfcCurve> IIfcAnnotationFillArea.InnerBoundaries { 
 			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerBoundaries); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.QuantityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcQuantityTime
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcQuantityTime : IIfcPhysicalSimpleQuantity
-	{
-		IfcTimeMeasure @TimeValue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.QuantityResource
 {
 	[ExpressType("IfcQuantityTime", 254)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IIfcQuantityTime, IContainsEntityReferences, IEquatable<@IfcQuantityTime>
+	public  partial class @IfcQuantityTime : IfcPhysicalSimpleQuantity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcQuantityTime>
 	{
-		#region IIfcQuantityTime explicit implementation
-		IfcTimeMeasure IIfcQuantityTime.TimeValue { 
- 
-			get { return @TimeValue; } 
-			set { TimeValue = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcQuantityTime(IModel model, int label, bool activated) : base(model, label, activated)  

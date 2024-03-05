@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.Kernel
 		IItemSet<IIfcObjectDefinition> IIfcRelAggregates.RelatedObjects { 
 			get { return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>( @RelatedObjects); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

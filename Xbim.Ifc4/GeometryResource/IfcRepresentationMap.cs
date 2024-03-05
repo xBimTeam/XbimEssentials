@@ -55,7 +55,6 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @MappedRepresentation; } 
 			set { MappedRepresentation = value as IfcRepresentation;}
 		}	
-		 
 		IEnumerable<IIfcShapeAspect> IIfcRepresentationMap.HasShapeAspects {  get { return @HasShapeAspects; } }
 		IEnumerable<IIfcMappedItem> IIfcRepresentationMap.MapUsage {  get { return @MapUsage; } }
 		#endregion

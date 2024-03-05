@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCondition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCondition : IIfcGroup
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcCondition", 482)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCondition : IfcGroup, IInstantiableEntity, IIfcCondition, IContainsEntityReferences, IEquatable<@IfcCondition>
+	public  partial class @IfcCondition : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCondition>
 	{
-		#region IIfcCondition explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCondition(IModel model, int label, bool activated) : base(model, label, activated)  

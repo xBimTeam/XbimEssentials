@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.StructuralAnalysisDomain
 	public  partial class @IfcStructuralPointReaction : IfcStructuralReaction, IInstantiableEntity, IIfcStructuralPointReaction, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcStructuralPointReaction>
 	{
 		#region IIfcStructuralPointReaction explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

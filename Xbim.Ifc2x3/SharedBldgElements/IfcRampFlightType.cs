@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRampFlightType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRampFlightType : IIfcBuildingElementType
-	{
-		IfcRampFlightTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcRampFlightType", 283)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRampFlightType : IfcBuildingElementType, IInstantiableEntity, IIfcRampFlightType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRampFlightType>
+	public  partial class @IfcRampFlightType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRampFlightType>
 	{
-		#region IIfcRampFlightType explicit implementation
-		IfcRampFlightTypeEnum IIfcRampFlightType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRampFlightType(IModel model, int label, bool activated) : base(model, label, activated)  

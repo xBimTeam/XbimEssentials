@@ -51,7 +51,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IfcPositiveInteger> IIfcPolygonalFaceSet.PnIndex { 
 			get { return @PnIndex; } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

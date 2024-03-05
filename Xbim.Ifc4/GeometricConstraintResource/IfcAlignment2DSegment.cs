@@ -56,7 +56,6 @@ namespace Xbim.Ifc4.GeometricConstraintResource
 			get { return @EndTag; } 
 			set { EndTag = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

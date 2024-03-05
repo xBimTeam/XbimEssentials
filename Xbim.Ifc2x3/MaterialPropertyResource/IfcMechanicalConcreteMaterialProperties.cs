@@ -13,68 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMechanicalConcreteMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMechanicalConcreteMaterialProperties : IIfcMechanicalMaterialProperties
-	{
-		IfcPressureMeasure? @CompressiveStrength { get;  set; }
-		IfcPositiveLengthMeasure? @MaxAggregateSize { get;  set; }
-		IfcText? @AdmixturesDescription { get;  set; }
-		IfcText? @Workability { get;  set; }
-		IfcNormalisedRatioMeasure? @ProtectivePoreRatio { get;  set; }
-		IfcText? @WaterImpermeability { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcMechanicalConcreteMaterialProperties", 693)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMechanicalConcreteMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IIfcMechanicalConcreteMaterialProperties, IContainsEntityReferences, IEquatable<@IfcMechanicalConcreteMaterialProperties>
+	public  partial class @IfcMechanicalConcreteMaterialProperties : IfcMechanicalMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcMechanicalConcreteMaterialProperties>
 	{
-		#region IIfcMechanicalConcreteMaterialProperties explicit implementation
-		IfcPressureMeasure? IIfcMechanicalConcreteMaterialProperties.CompressiveStrength { 
- 
-			get { return @CompressiveStrength; } 
-			set { CompressiveStrength = value;}
-		}	
-		IfcPositiveLengthMeasure? IIfcMechanicalConcreteMaterialProperties.MaxAggregateSize { 
- 
-			get { return @MaxAggregateSize; } 
-			set { MaxAggregateSize = value;}
-		}	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.AdmixturesDescription { 
- 
-			get { return @AdmixturesDescription; } 
-			set { AdmixturesDescription = value;}
-		}	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.Workability { 
- 
-			get { return @Workability; } 
-			set { Workability = value;}
-		}	
-		IfcNormalisedRatioMeasure? IIfcMechanicalConcreteMaterialProperties.ProtectivePoreRatio { 
- 
-			get { return @ProtectivePoreRatio; } 
-			set { ProtectivePoreRatio = value;}
-		}	
-		IfcText? IIfcMechanicalConcreteMaterialProperties.WaterImpermeability { 
- 
-			get { return @WaterImpermeability; } 
-			set { WaterImpermeability = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMechanicalConcreteMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

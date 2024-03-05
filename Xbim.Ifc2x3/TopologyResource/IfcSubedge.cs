@@ -12,39 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSubedge
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSubedge : IIfcEdge
-	{
-		IIfcEdge @ParentEdge { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcSubedge", 487)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IIfcSubedge, IContainsEntityReferences, IEquatable<@IfcSubedge>
+	public  partial class @IfcSubedge : IfcEdge, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSubedge>
 	{
-		#region IIfcSubedge explicit implementation
-		IIfcEdge IIfcSubedge.ParentEdge { 
- 
- 
-			get { return @ParentEdge; } 
-			set { ParentEdge = value as IfcEdge;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSubedge(IModel model, int label, bool activated) : base(model, label, activated)  

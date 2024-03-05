@@ -14,44 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedFacilitiesElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcServiceLife
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcServiceLife : IIfcControl
-	{
-		IfcServiceLifeTypeEnum @ServiceLifeType { get;  set; }
-		IfcTimeMeasure @ServiceLifeDuration { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcServiceLife", 769)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IIfcServiceLife, IContainsEntityReferences, IEquatable<@IfcServiceLife>
+	public  partial class @IfcServiceLife : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcServiceLife>
 	{
-		#region IIfcServiceLife explicit implementation
-		IfcServiceLifeTypeEnum IIfcServiceLife.ServiceLifeType { 
- 
-			get { return @ServiceLifeType; } 
-			set { ServiceLifeType = value;}
-		}	
-		IfcTimeMeasure IIfcServiceLife.ServiceLifeDuration { 
- 
-			get { return @ServiceLifeDuration; } 
-			set { ServiceLifeDuration = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcServiceLife(IModel model, int label, bool activated) : base(model, label, activated)  

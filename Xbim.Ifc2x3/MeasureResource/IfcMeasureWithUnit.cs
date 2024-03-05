@@ -17,46 +17,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MeasureResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMeasureWithUnit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMeasureWithUnit : IPersistEntity, IfcAppliedValueSelect, IfcConditionCriterionSelect, IfcMetricValueSelect
-	{
-		IIfcValue @ValueComponent { get;  set; }
-		IIfcUnit @UnitComponent { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
 	[ExpressType("IfcMeasureWithUnit", 7)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMeasureWithUnit : PersistEntity, IInstantiableEntity, IIfcMeasureWithUnit, IContainsEntityReferences, IEquatable<@IfcMeasureWithUnit>
+	public  partial class @IfcMeasureWithUnit : PersistEntity, IInstantiableEntity, IfcAppliedValueSelect, IfcConditionCriterionSelect, IfcMetricValueSelect, IContainsEntityReferences, IEquatable<@IfcMeasureWithUnit>
 	{
-		#region IIfcMeasureWithUnit explicit implementation
-		IIfcValue IIfcMeasureWithUnit.ValueComponent { 
- 
- 
-			get { return @ValueComponent; } 
-			set { ValueComponent = value as IfcValue;}
-		}	
-		IIfcUnit IIfcMeasureWithUnit.UnitComponent { 
- 
- 
-			get { return @UnitComponent; } 
-			set { UnitComponent = value as IfcUnit;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMeasureWithUnit(IModel model, int label, bool activated) : base(model, label, activated)  

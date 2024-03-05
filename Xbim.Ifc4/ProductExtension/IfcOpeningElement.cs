@@ -43,7 +43,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @PredefinedType; } 
 			set { PredefinedType = value;}
 		}	
-		 
 		IEnumerable<IIfcRelFillsElement> IIfcOpeningElement.HasFillings {  get { return @HasFillings; } }
 		#endregion
 

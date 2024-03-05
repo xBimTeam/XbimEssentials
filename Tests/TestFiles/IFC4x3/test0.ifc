@@ -1,0 +1,10 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition[CoordinationView]'),'2;1');
+FILE_NAME('test1.ifc','2021-10-21T23:51:33',('Ron.Breukelaar'),('Bentley Systems Inc'),'OpenRoadsDesigner 99.99.99.99','OpenRoadsDesigner 99.99.99.99','Administrator');
+FILE_SCHEMA(('IFC4X3_RC4'));
+ENDSEC;
+DATA;
+#1=IFCOWNERHISTORY($,$,$,IFCCHANGEACTIONENUM(.NOCHANGE.),$,$,$,1634860293);
+ENDSEC;
+END-ISO-10303-21;

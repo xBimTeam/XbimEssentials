@@ -12,40 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurfaceOfRevolution
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurfaceOfRevolution : IIfcSweptSurface
-	{
-		IIfcAxis1Placement @AxisPosition { get;  set; }
-		Common.Geometry.XbimLine @AxisLine  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurfaceOfRevolution", 109)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IIfcSurfaceOfRevolution, IContainsEntityReferences, IEquatable<@IfcSurfaceOfRevolution>
+	public  partial class @IfcSurfaceOfRevolution : IfcSweptSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSurfaceOfRevolution>
 	{
-		#region IIfcSurfaceOfRevolution explicit implementation
-		IIfcAxis1Placement IIfcSurfaceOfRevolution.AxisPosition { 
- 
- 
-			get { return @AxisPosition; } 
-			set { AxisPosition = value as IfcAxis1Placement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurfaceOfRevolution(IModel model, int label, bool activated) : base(model, label, activated)  

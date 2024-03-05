@@ -16,57 +16,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.UtilityResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcApplication
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcApplication : IPersistEntity
-	{
-		IIfcOrganization @ApplicationDeveloper { get;  set; }
-		IfcLabel @Version { get;  set; }
-		IfcLabel @ApplicationFullName { get;  set; }
-		IfcIdentifier @ApplicationIdentifier { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.UtilityResource
 {
 	[ExpressType("IfcApplication", 627)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApplication : PersistEntity, IInstantiableEntity, IIfcApplication, IContainsEntityReferences, IEquatable<@IfcApplication>
+	public  partial class @IfcApplication : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcApplication>
 	{
-		#region IIfcApplication explicit implementation
-		IIfcOrganization IIfcApplication.ApplicationDeveloper { 
- 
- 
-			get { return @ApplicationDeveloper; } 
-			set { ApplicationDeveloper = value as IfcOrganization;}
-		}	
-		IfcLabel IIfcApplication.Version { 
- 
-			get { return @Version; } 
-			set { Version = value;}
-		}	
-		IfcLabel IIfcApplication.ApplicationFullName { 
- 
-			get { return @ApplicationFullName; } 
-			set { ApplicationFullName = value;}
-		}	
-		IfcIdentifier IIfcApplication.ApplicationIdentifier { 
- 
-			get { return @ApplicationIdentifier; } 
-			set { ApplicationIdentifier = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApplication(IModel model, int label, bool activated) : base(model, label, activated)  

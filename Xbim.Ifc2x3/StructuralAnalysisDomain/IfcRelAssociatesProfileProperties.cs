@@ -15,53 +15,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssociatesProfileProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssociatesProfileProperties : IIfcRelAssociates
-	{
-		IIfcProfileProperties @RelatingProfileProperties { get;  set; }
-		IIfcShapeAspect @ProfileSectionLocation { get;  set; }
-		IIfcOrientationSelect @ProfileOrientation { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelAssociatesProfileProperties", 676)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IIfcRelAssociatesProfileProperties, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesProfileProperties>
+	public  partial class @IfcRelAssociatesProfileProperties : IfcRelAssociates, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssociatesProfileProperties>
 	{
-		#region IIfcRelAssociatesProfileProperties explicit implementation
-		IIfcProfileProperties IIfcRelAssociatesProfileProperties.RelatingProfileProperties { 
- 
- 
-			get { return @RelatingProfileProperties; } 
-			set { RelatingProfileProperties = value as IfcProfileProperties;}
-		}	
-		IIfcShapeAspect IIfcRelAssociatesProfileProperties.ProfileSectionLocation { 
- 
- 
-			get { return @ProfileSectionLocation; } 
-			set { ProfileSectionLocation = value as IfcShapeAspect;}
-		}	
-		IIfcOrientationSelect IIfcRelAssociatesProfileProperties.ProfileOrientation { 
- 
- 
-			get { return @ProfileOrientation; } 
-			set { ProfileOrientation = value as IfcOrientationSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssociatesProfileProperties(IModel model, int label, bool activated) : base(model, label, activated)  

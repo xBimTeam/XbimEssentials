@@ -51,7 +51,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @RelatedBuildingElement; } 
 			set { RelatedBuildingElement = value as IfcElement;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

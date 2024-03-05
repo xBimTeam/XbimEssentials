@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCoilType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCoilType : IIfcEnergyConversionDeviceType
-	{
-		IfcCoilTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcCoilType", 622)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCoilType : IfcEnergyConversionDeviceType, IInstantiableEntity, IIfcCoilType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCoilType>
+	public  partial class @IfcCoilType : IfcEnergyConversionDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCoilType>
 	{
-		#region IIfcCoilType explicit implementation
-		IfcCoilTypeEnum IIfcCoilType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCoilType(IModel model, int label, bool activated) : base(model, label, activated)  

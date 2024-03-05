@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @ReferenceSurface; } 
 			set { ReferenceSurface = value as IfcSurface;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

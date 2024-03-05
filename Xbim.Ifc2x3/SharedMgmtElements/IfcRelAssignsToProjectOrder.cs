@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedMgmtElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssignsToProjectOrder
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssignsToProjectOrder : IIfcRelAssignsToControl
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcRelAssignsToProjectOrder", 698)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelAssignsToProjectOrder : IfcRelAssignsToControl, IInstantiableEntity, IIfcRelAssignsToProjectOrder, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProjectOrder>
+	public  partial class @IfcRelAssignsToProjectOrder : IfcRelAssignsToControl, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelAssignsToProjectOrder>
 	{
-		#region IIfcRelAssignsToProjectOrder explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssignsToProjectOrder(IModel model, int label, bool activated) : base(model, label, activated)  

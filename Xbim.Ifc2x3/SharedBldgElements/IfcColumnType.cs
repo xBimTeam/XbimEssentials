@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcColumnType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcColumnType : IIfcBuildingElementType
-	{
-		IfcColumnTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcColumnType", 214)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColumnType : IfcBuildingElementType, IInstantiableEntity, IIfcColumnType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcColumnType>
+	public  partial class @IfcColumnType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcColumnType>
 	{
-		#region IIfcColumnType explicit implementation
-		IfcColumnTypeEnum IIfcColumnType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcColumnType(IModel model, int label, bool activated) : base(model, label, activated)  

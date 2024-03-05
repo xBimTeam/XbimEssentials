@@ -79,7 +79,6 @@ namespace Xbim.Ifc4.ExternalReferenceResource
 			get { return @Description; } 
 			set { Description = value;}
 		}	
-		 
 		IEnumerable<IIfcRelAssociatesLibrary> IIfcLibraryInformation.LibraryInfoForObjects {  get { return @LibraryInfoForObjects; } }
 		IEnumerable<IIfcLibraryReference> IIfcLibraryInformation.HasLibraryReferences {  get { return @HasLibraryReferences; } }
 		#endregion

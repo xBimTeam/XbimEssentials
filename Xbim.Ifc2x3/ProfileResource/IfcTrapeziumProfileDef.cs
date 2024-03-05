@@ -13,56 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProfileResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTrapeziumProfileDef
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTrapeziumProfileDef : IIfcParameterizedProfileDef
-	{
-		IfcPositiveLengthMeasure @BottomXDim { get;  set; }
-		IfcPositiveLengthMeasure @TopXDim { get;  set; }
-		IfcPositiveLengthMeasure @YDim { get;  set; }
-		IfcLengthMeasure @TopXOffset { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProfileResource
 {
 	[ExpressType("IfcTrapeziumProfileDef", 561)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IIfcTrapeziumProfileDef, IContainsEntityReferences, IEquatable<@IfcTrapeziumProfileDef>
+	public  partial class @IfcTrapeziumProfileDef : IfcParameterizedProfileDef, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcTrapeziumProfileDef>
 	{
-		#region IIfcTrapeziumProfileDef explicit implementation
-		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.BottomXDim { 
- 
-			get { return @BottomXDim; } 
-			set { BottomXDim = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.TopXDim { 
- 
-			get { return @TopXDim; } 
-			set { TopXDim = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcTrapeziumProfileDef.YDim { 
- 
-			get { return @YDim; } 
-			set { YDim = value;}
-		}	
-		IfcLengthMeasure IIfcTrapeziumProfileDef.TopXOffset { 
- 
-			get { return @TopXOffset; } 
-			set { TopXOffset = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTrapeziumProfileDef(IModel model, int label, bool activated) : base(model, label, activated)  

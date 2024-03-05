@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCurtainWallType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCurtainWallType : IIfcBuildingElementType
-	{
-		IfcCurtainWallTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcCurtainWallType", 494)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurtainWallType : IfcBuildingElementType, IInstantiableEntity, IIfcCurtainWallType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCurtainWallType>
+	public  partial class @IfcCurtainWallType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcCurtainWallType>
 	{
-		#region IIfcCurtainWallType explicit implementation
-		IfcCurtainWallTypeEnum IIfcCurtainWallType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurtainWallType(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -13,34 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgServiceElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDistributionFlowElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDistributionFlowElement : IIfcDistributionElement
-	{
-		IEnumerable<IIfcRelFlowControlElements> @HasControlElements {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgServiceElements
 {
 	[ExpressType("IfcDistributionFlowElement", 45)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDistributionFlowElement : IfcDistributionElement, IInstantiableEntity, IIfcDistributionFlowElement, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionFlowElement>
+	public  partial class @IfcDistributionFlowElement : IfcDistributionElement, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDistributionFlowElement>
 	{
-		#region IIfcDistributionFlowElement explicit implementation
-		 
-		IEnumerable<IIfcRelFlowControlElements> IIfcDistributionFlowElement.HasControlElements {  get { return @HasControlElements; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDistributionFlowElement(IModel model, int label, bool activated) : base(model, label, activated)  

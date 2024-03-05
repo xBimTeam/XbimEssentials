@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVector
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVector : IIfcGeometricRepresentationItem, IfcVectorOrDirection
-	{
-		IIfcDirection @Orientation { get;  set; }
-		IfcLengthMeasure @Magnitude { get;  set; }
-		IfcDimensionCount @Dim  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcVector", 652)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcVector, IContainsEntityReferences, IEquatable<@IfcVector>
+	public  partial class @IfcVector : IfcGeometricRepresentationItem, IInstantiableEntity, IfcVectorOrDirection, IContainsEntityReferences, IEquatable<@IfcVector>
 	{
-		#region IIfcVector explicit implementation
-		IIfcDirection IIfcVector.Orientation { 
- 
- 
-			get { return @Orientation; } 
-			set { Orientation = value as IfcDirection;}
-		}	
-		IfcLengthMeasure IIfcVector.Magnitude { 
- 
-			get { return @Magnitude; } 
-			set { Magnitude = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVector(IModel model, int label, bool activated) : base(model, label, activated)  

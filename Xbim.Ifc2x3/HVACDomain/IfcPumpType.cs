@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.HVACDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPumpType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPumpType : IIfcFlowMovingDeviceType
-	{
-		IfcPumpTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.HVACDomain
 {
 	[ExpressType("IfcPumpType", 685)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPumpType : IfcFlowMovingDeviceType, IInstantiableEntity, IIfcPumpType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPumpType>
+	public  partial class @IfcPumpType : IfcFlowMovingDeviceType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcPumpType>
 	{
-		#region IIfcPumpType explicit implementation
-		IfcPumpTypeEnum IIfcPumpType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPumpType(IModel model, int label, bool activated) : base(model, label, activated)  

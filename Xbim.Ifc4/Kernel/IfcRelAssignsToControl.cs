@@ -43,7 +43,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @RelatingControl; } 
 			set { RelatingControl = value as IfcControl;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

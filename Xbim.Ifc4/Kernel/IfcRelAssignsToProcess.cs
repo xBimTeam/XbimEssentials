@@ -51,7 +51,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @QuantityInProcess; } 
 			set { QuantityInProcess = value as IfcMeasureWithUnit;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

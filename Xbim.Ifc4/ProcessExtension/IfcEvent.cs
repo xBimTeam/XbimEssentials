@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.ProcessExtension
 			get { return @EventOccurenceTime; } 
 			set { EventOccurenceTime = value as IfcEventTime;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

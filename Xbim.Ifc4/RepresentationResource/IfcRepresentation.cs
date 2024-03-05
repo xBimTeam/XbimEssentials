@@ -67,7 +67,6 @@ namespace Xbim.Ifc4.RepresentationResource
 		IItemSet<IIfcRepresentationItem> IIfcRepresentation.Items { 
 			get { return new Common.Collections.ProxyItemSet<IfcRepresentationItem, IIfcRepresentationItem>( @Items); } 
 		}	
-		 
 		IEnumerable<IIfcRepresentationMap> IIfcRepresentation.RepresentationMap {  get { return @RepresentationMap; } }
 		IEnumerable<IIfcPresentationLayerAssignment> IIfcRepresentation.LayerAssignments {  get { return @LayerAssignments; } }
 		IEnumerable<IIfcProductRepresentation> IIfcRepresentation.OfProductRepresentation {  get { return @OfProductRepresentation; } }

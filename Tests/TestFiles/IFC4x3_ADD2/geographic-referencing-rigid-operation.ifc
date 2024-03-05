@@ -1,0 +1,75 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION (('ViewDefinition[Alignment-basedReferenceView]'), '2;1');
+FILE_NAME ('geographic-referencing-rigid-operation.ifc', '2022-11-16T10:37:00', (), (), 'redacted', 'redacted', $);
+FILE_SCHEMA (('IFC4X3_ADD2'));
+ENDSEC;
+DATA;
+
+/*The basis definitions of an IfcProject and IfcGeometricRepresentationContext */
+#1=IFCPROJECT('2DAvEupIz0HQr73cMaawtY',$, 'Project name', $, $, $, $, (#21), #11);
+#2=IFCDIRECTION((1., 0., 0.));
+#4=IFCDIRECTION((0., 0., 1.));
+#5=IFCCARTESIANPOINT((0., 0., 0.));
+#7=IFCDIRECTION((0.,1.));
+#11=IFCUNITASSIGNMENT((#12, #15));
+#12=IFCSIUNIT(*, .LENGTHUNIT., $, .METRE.);
+#13=IFCSIUNIT(*, .PLANEANGLEUNIT., $, .RADIAN.);
+#14=IFCMEASUREWITHUNIT(IFCPLANEANGLEMEASURE(0.017453292519943295), #13);
+#15=IFCCONVERSIONBASEDUNIT(#16,.PLANEANGLEUNIT., 'degree', #14);
+#16=IFCDIMENSIONALEXPONENTS(0, 0, 0, 0, 0, 0, 0);
+#21=IFCGEOMETRICREPRESENTATIONCONTEXT($,'Model', 3, 1.E-6, #22, #7);
+#22=IFCAXIS2PLACEMENT3D(#5, #4, #2);
+
+/* Georeferencing data of an IFC dataset in a Geographic CRS. The site with this context lies at the Bell tower on the island of Lake Bled in Slovenia.*/
+#301=IFCGEOGRAPHICCRS('EPSG:4258', 'ETRS89', 'EPSG:6258', 'EPSG:8901', #15, #12);
+#302=IFCRIGIDOPERATION(#21, #301, IFCPLANEANGLEMEASURE(14.0902217), IFCPLANEANGLEMEASURE(46.3623297), 475.);
+
+
+/* IfcSite definition*/
+#30 = IFCSITE('27H$neCQf1NwtmczxBInPR', $, $, $, $, #31, $, $, .ELEMENT., $, $, $, $, $);
+/* IfcSite's placement is the top-most placement and uses the same IfcAxis2Placement as IfcGeometricRepresentationContext does */
+#31 = IFCLOCALPLACEMENT($, #22);
+/* Relationship between Project and Site */
+#33 = IFCRELAGGREGATES('3Hu7f6BmT14B_XS9yS78Jr', $, $, $, #1, (#30));
+
+
+/* Definition of a Footprint */
+#40 = IFCBUILTELEMENT('28H$neCQf1NwtmczxBInPR', $, 'Footprint', $, $, #50, #60, $);
+/* Relationship: Footprint in Site */
+#41 = IFCRELCONTAINEDINSPATIALSTRUCTURE('3Uu7sw3ALEWKTWNPpz$fqn', $, 'Container', 'Container to Contained', (#40), #30);
+/* Placement of the Footprint, relative to that of IfcSite. The way it is modelled, there is no offset and no rotation. */
+#50 = IFCLOCALPLACEMENT(#31, #22);
+/* Representation of the Footprint: a polyline with six points */
+#60= IFCPRODUCTDEFINITIONSHAPE($,$,(#61));
+#61= IFCSHAPEREPRESENTATION(#21,'Axis','Curve2D',(#62));
+#62= IFCPOLYLINE((#63,#64,#67,#68,#65,#66,#63));
+#63 = IFCCARTESIANPOINT((32.58,3.68));
+#64 = IFCCARTESIANPOINT((31.82,9.10));
+#65 = IFCCARTESIANPOINT((28.26,0.37));
+#66 = IFCCARTESIANPOINT((27.95,2.90));
+#67 = IFCCARTESIANPOINT((17.37,6.98));
+#68 = IFCCARTESIANPOINT((18.67,-1.02));
+
+
+/* Definition of a Cube*/
+#70= IFCBUILTELEMENT('1kTvXnbbzCWw8lcMd1dR4o',$,'Cube',$,$,#80,#90,$);
+/* Relationship: Cube in Site */
+#71=IFCRELCONTAINEDINSPATIALSTRUCTURE('2TnxZkTXT08eDuMuhUUFNy',$,'Container','Container to Contained',(#70),#30);
+/* Placement of the cube, relative to that of IfcSite. */
+#80= IFCLOCALPLACEMENT(#31,#81);
+/* Set local placement to 1 meter on x-axis, and 0 on y and z axes, no rotation. z and x axes are set to '$' and therefore identical to those of Site */ 
+#81= IFCAXIS2PLACEMENT3D(#82,$,$);
+#82= IFCCARTESIANPOINT((1.,0.,0.));
+/* Representation of the Cube: a single swept solid shape */
+#90= IFCPRODUCTDEFINITIONSHAPE($,$,(#91));
+#91= IFCSHAPEREPRESENTATION(#21,'Body','SweptSolid',(#92));
+/* based on a profile (or cross section) of 3m by 4m being extruded by 1.5m */
+#92= IFCEXTRUDEDAREASOLID(#93,$,#4,1.5);
+#93= IFCRECTANGLEPROFILEDEF(.AREA.,'3m x 4m rectangle',$,3.,4.);
+/* extrusion body is placed centric with no rotation inside the object coordinate placement */
+/* extrusion position z = default = (0.,0.,1.), x = default = (1.,0.,0.) */
+/* the default position, i.e. no re-positioning of the results, hence the position is NIL */
+/* the extrusion is perpendicular to the profile - i.e. along the positive z-axis */
+ENDSEC;
+END-ISO-10303-21;

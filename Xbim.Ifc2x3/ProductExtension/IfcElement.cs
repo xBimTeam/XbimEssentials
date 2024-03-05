@@ -15,62 +15,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElement
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElement : IIfcProduct, IfcStructuralActivityAssignmentSelect
-	{
-		IfcIdentifier? @Tag { get;  set; }
-		IEnumerable<IIfcRelConnectsStructuralElement> @HasStructuralMember {  get; }
-		IEnumerable<IIfcRelFillsElement> @FillsVoids {  get; }
-		IEnumerable<IIfcRelConnectsElements> @ConnectedTo {  get; }
-		IEnumerable<IIfcRelCoversBldgElements> @HasCoverings {  get; }
-		IEnumerable<IIfcRelProjectsElement> @HasProjections {  get; }
-		IEnumerable<IIfcRelReferencedInSpatialStructure> @ReferencedInStructures {  get; }
-		IEnumerable<IIfcRelConnectsPortToElement> @HasPorts {  get; }
-		IEnumerable<IIfcRelVoidsElement> @HasOpenings {  get; }
-		IEnumerable<IIfcRelConnectsWithRealizingElements> @IsConnectionRealization {  get; }
-		IEnumerable<IIfcRelSpaceBoundary> @ProvidesBoundaries {  get; }
-		IEnumerable<IIfcRelConnectsElements> @ConnectedFrom {  get; }
-		IEnumerable<IIfcRelContainedInSpatialStructure> @ContainedInStructure {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcElement", 19)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcElement : IfcProduct, IIfcElement, IEquatable<@IfcElement>
+	public abstract partial class @IfcElement : IfcProduct, IfcStructuralActivityAssignmentSelect, IEquatable<@IfcElement>
 	{
-		#region IIfcElement explicit implementation
-		IfcIdentifier? IIfcElement.Tag { 
- 
-			get { return @Tag; } 
-			set { Tag = value;}
-		}	
-		 
-		IEnumerable<IIfcRelConnectsStructuralElement> IIfcElement.HasStructuralMember {  get { return @HasStructuralMember; } }
-		IEnumerable<IIfcRelFillsElement> IIfcElement.FillsVoids {  get { return @FillsVoids; } }
-		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedTo {  get { return @ConnectedTo; } }
-		IEnumerable<IIfcRelCoversBldgElements> IIfcElement.HasCoverings {  get { return @HasCoverings; } }
-		IEnumerable<IIfcRelProjectsElement> IIfcElement.HasProjections {  get { return @HasProjections; } }
-		IEnumerable<IIfcRelReferencedInSpatialStructure> IIfcElement.ReferencedInStructures {  get { return @ReferencedInStructures; } }
-		IEnumerable<IIfcRelConnectsPortToElement> IIfcElement.HasPorts {  get { return @HasPorts; } }
-		IEnumerable<IIfcRelVoidsElement> IIfcElement.HasOpenings {  get { return @HasOpenings; } }
-		IEnumerable<IIfcRelConnectsWithRealizingElements> IIfcElement.IsConnectionRealization {  get { return @IsConnectionRealization; } }
-		IEnumerable<IIfcRelSpaceBoundary> IIfcElement.ProvidesBoundaries {  get { return @ProvidesBoundaries; } }
-		IEnumerable<IIfcRelConnectsElements> IIfcElement.ConnectedFrom {  get { return @ConnectedFrom; } }
-		IEnumerable<IIfcRelContainedInSpatialStructure> IIfcElement.ContainedInStructure {  get { return @ContainedInStructure; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElement(IModel model, int label, bool activated) : base(model, label, activated)  

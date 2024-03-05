@@ -13,58 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ConstraintResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcObjective
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcObjective : IIfcConstraint
-	{
-		IIfcMetric @BenchmarkValues { get;  set; }
-		IIfcMetric @ResultValues { get;  set; }
-		IfcObjectiveEnum @ObjectiveQualifier { get;  set; }
-		IfcLabel? @UserDefinedQualifier { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ConstraintResource
 {
 	[ExpressType("IfcObjective", 518)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IIfcObjective, IContainsEntityReferences, IEquatable<@IfcObjective>
+	public  partial class @IfcObjective : IfcConstraint, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcObjective>
 	{
-		#region IIfcObjective explicit implementation
-		IIfcMetric IIfcObjective.BenchmarkValues { 
- 
- 
-			get { return @BenchmarkValues; } 
-			set { BenchmarkValues = value as IfcMetric;}
-		}	
-		IIfcMetric IIfcObjective.ResultValues { 
- 
- 
-			get { return @ResultValues; } 
-			set { ResultValues = value as IfcMetric;}
-		}	
-		IfcObjectiveEnum IIfcObjective.ObjectiveQualifier { 
- 
-			get { return @ObjectiveQualifier; } 
-			set { ObjectiveQualifier = value;}
-		}	
-		IfcLabel? IIfcObjective.UserDefinedQualifier { 
- 
-			get { return @UserDefinedQualifier; } 
-			set { UserDefinedQualifier = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcObjective(IModel model, int label, bool activated) : base(model, label, activated)  

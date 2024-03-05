@@ -52,7 +52,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 			get { return @TilingScale; } 
 			set { TilingScale = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

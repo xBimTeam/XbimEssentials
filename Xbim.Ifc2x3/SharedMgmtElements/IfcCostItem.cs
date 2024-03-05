@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedMgmtElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCostItem
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCostItem : IIfcControl
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedMgmtElements
 {
 	[ExpressType("IfcCostItem", 694)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IIfcCostItem, IContainsEntityReferences, IEquatable<@IfcCostItem>
+	public  partial class @IfcCostItem : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCostItem>
 	{
-		#region IIfcCostItem explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCostItem(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -45,7 +45,7 @@ namespace Xbim.Ifc4.MeasureResource
         {
 			var hex = val.Trim('"').Substring(1); //trim eventual leading and ending apostrophe and leading offset number
 			int numChars = hex.Length;
-            _value = new byte[numChars / 2];
+            _value = new byte[numChars / 2]; 
             for (int i = 0; i < numChars; i += 2)
                 _value[i / 2] = System.Convert.ToByte(hex.Substring(i, 2), 16);
         }

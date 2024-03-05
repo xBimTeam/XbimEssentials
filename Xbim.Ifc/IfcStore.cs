@@ -1,14 +1,18 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
+using Xbim.Common.Model;
 using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
@@ -28,25 +32,20 @@ namespace Xbim.Ifc
     /// <remarks>
     /// <para>
     /// Note: the Store capabilities may be affected by the ModelProvider implementation - some stores may not
-    /// implement all capabilities. e.g. An In-Memory store will not permit saving to XBIM format.
+    /// implement all capabilities. e.g. An In-Memory store will not permit reading or writing to XBIM format.
     /// </para>
     /// <para>
-    /// IMPORTANT: By default, the v5 <see cref="IfcStore"/> will attempt to discover the 
-    /// HeuristicModelProvider (in the Esent assembly), by probing the app's loaded assemblies. 
-    /// This provider gives the same functionality as prior IfcStore versions. 
-    /// However, this will only be discovered if Xbim.IO.Esent dll has been 
-    /// referenced and loaded. ASP.NET apps do this automatically, but console and windows apps may not load the
-    /// DLL into the AppDomain unless a type is referenced.
-    /// If the store cannot be discover the Heuristic provider it will fall back to a <see cref="MemoryModelProvider"/>
-    /// which is less efficient with larger models.
+    /// IMPORTANT: The exact IModel implementation used depends on the <see cref="IModelProvider"/> resolved. EsentModel
+    /// is only supported on Windows operating systems, so you may need to provide an alternative (SqlLite etc)
+    /// through the configuration system.
     /// </para>
     /// <para>
-    /// To guarantee the correct provider regardless, configure <see cref="IfcStore.ModelProviderFactory"/> with the 
-    /// following code in your application initialisation:
+    /// You can define the Model Provider used through the internal Services Collection at application startup:
+    /// </para>
     /// <code>
-    /// IfcStore.ModelProviderFactory.UseHeuristicModelProvider();
+    /// XbimServices.Current.ConfigureServices(s =&gt; s.AddXbimToolkit(opt =&gt; opt.UseModelProvider&lt;MyCustomProvider&gt;()));
     /// </code>
-    /// </para>
+    /// 
     /// </remarks>
     public class IfcStore : IModel, IDisposable, IFederatedModel, IEquatable<IModel>
     {
@@ -66,10 +65,27 @@ namespace Xbim.Ifc
         
         private readonly ReferencedModelCollection _referencedModels = new ReferencedModelCollection();
 
+        static IfcStore()
+        {
+            if(!XbimServices.Current.IsBuilt)
+            {
+                if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
+                }
+                else
+                {
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddMemoryModel()));
+                }
+            }
+            
+        }
+
         // Internal Constructor for reading
         protected IfcStore()
         {
-            ModelProvider = ModelProviderFactory.CreateProvider();
+            ModelProvider = XbimServices.Current.ServiceProvider.GetRequiredService<IModelProvider>();
+            Logger = XbimServices.Current.ServiceProvider.GetRequiredService<ILogger<IfcStore>>();
         }
 
         /// <summary>
@@ -96,17 +112,21 @@ namespace Xbim.Ifc
             AssignModel(model, editorDetails, ifcVersion);
         }
 
+        /// <summary>
+        /// Gets the Model
+        /// </summary>
         public IModel Model
         {
             get;
-            private set;
+            protected set;
         }
+
         public XbimEditorCredentials EditorDetails { get; private set; }
 
         /// <summary>
         /// Provides access to model persistence capabilities
         /// </summary>
-        protected IModelProvider ModelProvider
+        public IModelProvider ModelProvider
         {
             get;
             private set;
@@ -115,21 +135,20 @@ namespace Xbim.Ifc
         /// <summary>
         /// Factory to create ModelProvider instances. 
         /// </summary>
-        /// <remarks>Consumers can use this instance of <see cref="IModelProviderFactory"/> to control the 
-        /// implementations of IModel it uses.
-        /// In particular you can tell the factory to always use MemoryModel, or Esent model, or a blend (Heuristic)
-        /// </remarks>
+        /// <remarks><see cref="ModelProviderFactory"/> is no longer in use. Update your initialisation code as follows.
         /// <example>
-        /// To override the Store's backing model with an implementation you would use:
+        /// For example here we change the default Mode to be the EsentModel:
         /// <code>
-        /// IfcStore.ModelProvider.Use(() => new MyCustomModelProvider());
+        /// XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseEsentModel()));
         /// </code>
         /// </example>
+        /// </remarks>
+        [Obsolete("Redundant. Model Providers are now provided by internal dependency injection with the ServicesProvider on XbimServices")]
         public static IModelProviderFactory ModelProviderFactory
         {
             get;
             set;
-        } = new DefaultModelProviderFactory();
+        }
 
         private void AssignModel(IModel model, XbimEditorCredentials editorDetails, XbimSchemaVersion schema)
         {
@@ -195,8 +214,8 @@ namespace Xbim.Ifc
         }
         /// <summary>
         /// You can use this function to open IFC model from a <see cref="Stream"/>. 
-        /// You need to know file type (IFC, IFCZIP, IFCXML) and schema type (IFC2x3 or IFC4) to be able to use this function.
-        /// If you don't know, you should the overloaded <see cref="Open(string, XbimEditorCredentials, double?, ReportProgressDelegate, XbimDBAccess, int)"/>
+        /// You need to know file type (IFC, IFCZIP, IFCXML) and schema type (IFC2x3, IFC4 IFC4x3 etc) to be able to use this function.
+        /// If you don't know, you should use the alternate <see cref="Open(string, XbimEditorCredentials, double?, ReportProgressDelegate, XbimDBAccess, int)"/>
         /// method which takes file paths as an argument, and can automatically detect schema and file type. 
         /// If are opening an *.xbim file you should also use the path-based overload because Esent database needs to operate 
         /// on the file and this function will have to create temporal file if it is not a file stream.
@@ -204,7 +223,7 @@ namespace Xbim.Ifc
         /// </summary>
         /// <param name="stream">Stream of data</param>
         /// <param name="dataType">Type of data (*.ifc, *.ifcxml, *.ifczip)</param>
-        /// <param name="schema">IFC schema (IFC2x3, IFC4). Other schemas are not supported by this class.</param>
+        /// <param name="schema">IFC schema. Non IFC schemas are not supported by this class.</param>
         /// <param name="modelType">Type of model to be used. You can choose between EsentModel and MemoryModel</param>
         /// <param name="editorDetails">Optional details. You should always pass these if you are going to change the data.</param>
         /// <param name="accessMode">Access mode to the stream. This is only important if you choose EsentModel. MemoryModel is completely in memory so this is not relevant</param>
@@ -222,6 +241,74 @@ namespace Xbim.Ifc
             newStore.AssignModel(model, editorDetails, schema);
             return newStore;
 
+        }
+
+        /// <summary>
+        /// Open an IFC model from a <see cref="Stream"/> inferring the Schema from automatically. 
+        /// You need to know IFC file format (IFC, IFCZIP, IFCXML) to use this function.
+        /// If you don't know, you should use the alternate <see cref="Open(string, XbimEditorCredentials, double?, ReportProgressDelegate, XbimDBAccess, int)"/>
+        /// method which takes file paths as an argument, and can automatically detect schema and file type. 
+        /// If are opening an *.xbim file you should also use the path-based overload because Esent database needs to operate 
+        /// on the file and this function will have to create temporal file if it is not a file stream.
+        /// If the input is a FileStream, be aware this method may call <see cref="Stream.Close"/> on it to keep exclusive access.
+        /// </summary>
+        /// <param name="stream">Stream of data</param>
+        /// <param name="dataType">Type of data (*.ifc, *.ifcxml, *.ifczip)</param>
+        /// <param name="modelType">Type of model to be used. You can choose between EsentModel and MemoryModel</param>
+        /// <param name="editorDetails">Optional details. You should always pass these if you are going to change the data.</param>
+        /// <param name="accessMode">Access mode to the stream. This is only important if you choose EsentModel. MemoryModel is completely in memory so this is not relevant</param>
+        /// <param name="progDelegate">Progress reporting delegate</param>
+        /// <param name="codePageOverride">
+        /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
+        /// encoding will be used according to the Ifc specification. </param>
+        /// <param name="streamBufferSize">The size of buffer to use when reading the file header (default: 8KB)</param>
+        /// <returns></returns>
+        public static IfcStore Open(Stream stream, StorageType dataType, XbimModelType modelType, XbimEditorCredentials editorDetails = null,
+            XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1, int streamBufferSize = 4096 * 2)
+        {
+            if (stream.CanSeek)
+            {
+                XbimSchemaVersion schema = InferPayloadFromSchema(stream);
+                return OpenModelStream(stream, dataType, modelType, editorDetails, accessMode, progDelegate, codePageOverride, schema);
+            }
+            else
+            {
+                // On a non-seekable stream we need to buffer the stream so we can reset the position after reading the header
+                using var seekableStream = new ReadSeekableStream(stream, streamBufferSize);
+                XbimSchemaVersion schema;
+                try
+                {
+                    schema = InferPayloadFromSchema(seekableStream);
+                }
+                catch(NotSupportedException ex)
+                {
+                    throw new XbimException($"Cannot infer Schema for this model since the header size ({seekableStream.Position} bytes) exceeds the size of the buffer size ({streamBufferSize} bytes)", ex);
+                }
+                return OpenModelStream(seekableStream, dataType, modelType, editorDetails, accessMode, progDelegate, codePageOverride, schema);
+            }
+
+        }
+
+        private static XbimSchemaVersion InferPayloadFromSchema(Stream stream)
+        {
+            // TODO: Could also sniff Xml Format. (STP,Zip,Xml) from header
+            XbimSchemaVersion schema = MemoryModel.GetStepFileXbimSchemaVersion(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            if(stream is ReadSeekableStream buffered)
+            {
+                // Optimisation: No further buffering required. Forward only from here
+                buffered.DisableBuffering();
+            }
+            return schema;
+        }
+
+        private static IfcStore OpenModelStream(Stream stream, StorageType dataType, XbimModelType modelType, XbimEditorCredentials editorDetails, XbimDBAccess accessMode, ReportProgressDelegate progDelegate, int codePageOverride, XbimSchemaVersion schema)
+        {
+            var newStore = new IfcStore();
+            var model = newStore.ModelProvider.Open(stream, dataType, schema, modelType, accessMode, progDelegate, codePageOverride);
+
+            newStore.AssignModel(model, editorDetails, schema);
+            return newStore;
         }
 
         /// <summary>
@@ -264,8 +351,8 @@ namespace Xbim.Ifc
 
         #region IModel
 
-        public object Tag { get; set; }
-        public ILogger Logger { get => Model.Logger; set => Model.Logger = value; }
+        public object Tag { get => Model.Tag; set => Model.Tag = value; }
+        protected ILogger Logger { get; private set; }
         public IInverseCache InverseCache
         {
             get { return Model.InverseCache; }
@@ -476,6 +563,21 @@ namespace Xbim.Ifc
                         po.ThePerson = person;
                     });
                 }
+                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
+                {
+                    var person = Instances.New<Ifc4x3.ActorResource.IfcPerson>(p =>
+                    {
+                        p.GivenName = EditorDetails.EditorsGivenName;
+                        p.FamilyName = EditorDetails.EditorsFamilyName;
+                    });
+                    var organization = Instances.OfType<Ifc4x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
+                        ?? Instances.New<Ifc4x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
+                    _defaultOwningUser = Instances.New<Ifc4x3.ActorResource.IfcPersonAndOrganization>(po =>
+                    {
+                        po.TheOrganization = organization;
+                        po.ThePerson = person;
+                    });
+                }
                 else
                 {
                     var person = Instances.New<Ifc2x3.ActorResource.IfcPerson>(p =>
@@ -514,8 +616,20 @@ namespace Xbim.Ifc
                          (_defaultOwningApplication =
                              Instances.New<Ifc4.UtilityResource.IfcApplication>(a =>
                              {
-                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                                 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
+                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
+                                 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.ApplicationDevelopersName);
+                                 a.ApplicationFullName = EditorDetails.ApplicationFullName;
+                                 a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
+                                 a.Version = EditorDetails.ApplicationVersion;
+                             }
+                ));
+                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
+                    return _defaultOwningApplication ??
+                         (_defaultOwningApplication =
+                             Instances.New<Ifc4x3.UtilityResource.IfcApplication>(a =>
+                             {
+                                 a.ApplicationDeveloper = Instances.OfType<Ifc4x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
+                                 ?? Instances.New<Ifc4x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
                                  a.ApplicationFullName = EditorDetails.ApplicationFullName;
                                  a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
                                  a.Version = EditorDetails.ApplicationVersion;
@@ -525,8 +639,8 @@ namespace Xbim.Ifc
                         (_defaultOwningApplication =
                             Instances.New<Ifc2x3.UtilityResource.IfcApplication>(a =>
                             {
-                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                                ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
+                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
+                                ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.ApplicationDevelopersName);
                                 a.ApplicationFullName = EditorDetails.ApplicationFullName;
                                 a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
                                 a.Version = EditorDetails.ApplicationVersion;
@@ -547,6 +661,14 @@ namespace Xbim.Ifc
                     histAdd.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
                     histAdd.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
                     histAdd.ChangeAction = IfcChangeActionEnum.ADDED;
+                    _ownerHistoryAddObject = histAdd;
+                }
+                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
+                {
+                    var histAdd = Instances.New<Ifc4x3.UtilityResource.IfcOwnerHistory>();
+                    histAdd.OwningUser = (Ifc4x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histAdd.OwningApplication = (Ifc4x3.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histAdd.ChangeAction = Ifc4x3.UtilityResource.IfcChangeActionEnum.ADDED;
                     _ownerHistoryAddObject = histAdd;
                 }
                 else
@@ -573,6 +695,14 @@ namespace Xbim.Ifc
                     histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
                     histmod.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
                     histmod.ChangeAction = IfcChangeActionEnum.MODIFIED;
+                    _ownerHistoryModifyObject = histmod;
+                }
+                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
+                {
+                    var histmod = Instances.New<Ifc4x3.UtilityResource.IfcOwnerHistory>();
+                    histmod.OwningUser = (Ifc4x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
+                    histmod.OwningApplication = (Ifc4x3.UtilityResource.IfcApplication)DefaultOwningApplication;
+                    histmod.ChangeAction = Ifc4x3.UtilityResource.IfcChangeActionEnum.MODIFIED;
                     _ownerHistoryModifyObject = histmod;
                 }
                 else
@@ -965,6 +1095,8 @@ namespace Xbim.Ifc
                         //managed resources
                         if (Model is IDisposable disposeInterface)
                             disposeInterface.Dispose();
+
+                        Model = null;
                     }
                     //unmanaged, mostly Esent related                  
                 }

@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPreDefinedPointMarkerSymbol
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPreDefinedPointMarkerSymbol : IIfcPreDefinedSymbol
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcPreDefinedPointMarkerSymbol", 748)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPreDefinedPointMarkerSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IIfcPreDefinedPointMarkerSymbol, IEquatable<@IfcPreDefinedPointMarkerSymbol>
+	public  partial class @IfcPreDefinedPointMarkerSymbol : IfcPreDefinedSymbol, IInstantiableEntity, IEquatable<@IfcPreDefinedPointMarkerSymbol>
 	{
-		#region IIfcPreDefinedPointMarkerSymbol explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPreDefinedPointMarkerSymbol(IModel model, int label, bool activated) : base(model, label, activated)  

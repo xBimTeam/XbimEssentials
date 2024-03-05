@@ -16,73 +16,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsStructuralMember
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsStructuralMember : IIfcRelConnects
-	{
-		IIfcStructuralMember @RelatingStructuralMember { get;  set; }
-		IIfcStructuralConnection @RelatedStructuralConnection { get;  set; }
-		IIfcBoundaryCondition @AppliedCondition { get;  set; }
-		IIfcStructuralConnectionCondition @AdditionalConditions { get;  set; }
-		IfcLengthMeasure? @SupportedLength { get;  set; }
-		IIfcAxis2Placement3D @ConditionCoordinateSystem { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsStructuralMember", 321)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralMember, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralMember>
+	public  partial class @IfcRelConnectsStructuralMember : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralMember>
 	{
-		#region IIfcRelConnectsStructuralMember explicit implementation
-		IIfcStructuralMember IIfcRelConnectsStructuralMember.RelatingStructuralMember { 
- 
- 
-			get { return @RelatingStructuralMember; } 
-			set { RelatingStructuralMember = value as IfcStructuralMember;}
-		}	
-		IIfcStructuralConnection IIfcRelConnectsStructuralMember.RelatedStructuralConnection { 
- 
- 
-			get { return @RelatedStructuralConnection; } 
-			set { RelatedStructuralConnection = value as IfcStructuralConnection;}
-		}	
-		IIfcBoundaryCondition IIfcRelConnectsStructuralMember.AppliedCondition { 
- 
- 
-			get { return @AppliedCondition; } 
-			set { AppliedCondition = value as IfcBoundaryCondition;}
-		}	
-		IIfcStructuralConnectionCondition IIfcRelConnectsStructuralMember.AdditionalConditions { 
- 
- 
-			get { return @AdditionalConditions; } 
-			set { AdditionalConditions = value as IfcStructuralConnectionCondition;}
-		}	
-		IfcLengthMeasure? IIfcRelConnectsStructuralMember.SupportedLength { 
- 
-			get { return @SupportedLength; } 
-			set { SupportedLength = value;}
-		}	
-		IIfcAxis2Placement3D IIfcRelConnectsStructuralMember.ConditionCoordinateSystem { 
- 
- 
-			get { return @ConditionCoordinateSystem; } 
-			set { ConditionCoordinateSystem = value as IfcAxis2Placement3D;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsStructuralMember(IModel model, int label, bool activated) : base(model, label, activated)  

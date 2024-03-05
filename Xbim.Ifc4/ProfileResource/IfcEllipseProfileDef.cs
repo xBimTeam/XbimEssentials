@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.ProfileResource
 			get { return @SemiAxis2; } 
 			set { SemiAxis2 = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

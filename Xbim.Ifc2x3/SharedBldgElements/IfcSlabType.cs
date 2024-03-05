@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedBldgElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSlabType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSlabType : IIfcBuildingElementType
-	{
-		IfcSlabTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedBldgElements
 {
 	[ExpressType("IfcSlabType", 381)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlabType : IfcBuildingElementType, IInstantiableEntity, IIfcSlabType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSlabType>
+	public  partial class @IfcSlabType : IfcBuildingElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSlabType>
 	{
-		#region IIfcSlabType explicit implementation
-		IfcSlabTypeEnum IIfcSlabType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSlabType(IModel model, int label, bool activated) : base(model, label, activated)  

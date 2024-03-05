@@ -14,32 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSurface
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSurface : IIfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcSurfaceOrFaceSurface
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcSurface", 111)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IIfcSurface, IEquatable<@IfcSurface>
+	public abstract partial class @IfcSurface : IfcGeometricRepresentationItem, IfcGeometricSetSelect, IfcSurfaceOrFaceSurface, IEquatable<@IfcSurface>
 	{
-		#region IIfcSurface explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSurface(IModel model, int label, bool activated) : base(model, label, activated)  

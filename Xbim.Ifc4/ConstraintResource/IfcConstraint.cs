@@ -87,7 +87,6 @@ namespace Xbim.Ifc4.ConstraintResource
 			get { return @UserDefinedGrade; } 
 			set { UserDefinedGrade = value;}
 		}	
-		 
 		IEnumerable<IIfcExternalReferenceRelationship> IIfcConstraint.HasExternalReferences {  get { return @HasExternalReferences; } }
 		IEnumerable<IIfcResourceConstraintRelationship> IIfcConstraint.PropertiesForConstraint {  get { return @PropertiesForConstraint; } }
 		#endregion

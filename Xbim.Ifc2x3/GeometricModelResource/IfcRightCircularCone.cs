@@ -13,44 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometricModelResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRightCircularCone
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRightCircularCone : IIfcCsgPrimitive3D
-	{
-		IfcPositiveLengthMeasure @Height { get;  set; }
-		IfcPositiveLengthMeasure @BottomRadius { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometricModelResource
 {
 	[ExpressType("IfcRightCircularCone", 703)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IIfcRightCircularCone, IContainsEntityReferences, IEquatable<@IfcRightCircularCone>
+	public  partial class @IfcRightCircularCone : IfcCsgPrimitive3D, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcRightCircularCone>
 	{
-		#region IIfcRightCircularCone explicit implementation
-		IfcPositiveLengthMeasure IIfcRightCircularCone.Height { 
- 
-			get { return @Height; } 
-			set { Height = value;}
-		}	
-		IfcPositiveLengthMeasure IIfcRightCircularCone.BottomRadius { 
- 
-			get { return @BottomRadius; } 
-			set { BottomRadius = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRightCircularCone(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,38 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTransportElementType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTransportElementType : IIfcElementType
-	{
-		IfcTransportElementTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcTransportElementType", 475)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTransportElementType : IfcElementType, IInstantiableEntity, IIfcTransportElementType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElementType>
+	public  partial class @IfcTransportElementType : IfcElementType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTransportElementType>
 	{
-		#region IIfcTransportElementType explicit implementation
-		IfcTransportElementTypeEnum IIfcTransportElementType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTransportElementType(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -12,32 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcVertex
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcVertex : IIfcTopologicalRepresentationItem
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcVertex", 520)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IIfcVertex, IEquatable<@IfcVertex>
+	public  partial class @IfcVertex : IfcTopologicalRepresentationItem, IInstantiableEntity, IEquatable<@IfcVertex>
 	{
-		#region IIfcVertex explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcVertex(IModel model, int label, bool activated) : base(model, label, activated)  

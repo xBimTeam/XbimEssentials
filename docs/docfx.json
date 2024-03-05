@@ -1,0 +1,160 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "Xbim.Common/Xbim.Common.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../"
+        }
+      ],
+      "dest": "obj/documentation/Xbim.Common"
+    },
+    {
+      "src": [
+        {
+          "files": [ "Xbim.Ifc/Xbim.Ifc.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../"
+        }
+      ],
+      "dest": "obj/documentation/Xbim.Ifc"
+    },
+    {
+      "src": [
+        {
+          "files": [ "Xbim.Ifc2x3/Xbim.Ifc2x3.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../"
+        }
+      ],
+      "dest": "obj/documentation/Xbim.Ifc2x3"
+    },
+    {
+      "src": [
+        {
+          "files": [ "Xbim.Ifc4/Xbim.Ifc4.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../"
+        }
+      ],
+      "dest": "obj/documentation/Xbim.Ifc4"
+    },
+    {
+      "src": [
+        {
+          "files": [ "Xbim.IO.Esent/Xbim.IO.Esent.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../"
+        }
+      ],
+      "dest": "obj/documentation/Xbim.IO.Esent"
+    },
+    {
+      "src": [
+        {
+          "files": [ "Xbim.IO.MemoryModel/Xbim.IO.MemoryModel.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../"
+        }
+      ],
+      "dest": "obj/documentation/Xbim.IO.MemoryModel"
+    },
+    {
+      "src": [
+        {
+          "files": [ "Xbim.Tessellator/Xbim.Tessellator.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../"
+        }
+      ],
+      "dest": "obj/documentation/Xbim.Tessellator"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/documentation/Xbim.Common",
+        "dest": "documentation/Xbim.Common"
+      },
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/documentation/Xbim.Ifc",
+        "dest": "documentation/Xbim.Ifc"
+      },
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/documentation/Xbim.Ifc2x3",
+        "dest": "documentation/Xbim.Ifc2x3"
+      },
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/documentation/Xbim.Ifc4",
+        "dest": "documentation/Xbim.Ifc4"
+      },
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/documentation/Xbim.IO.Esent",
+        "dest": "documentation/Xbim.IO.Esent"
+      },
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/documentation/Xbim.IO.MemoryModel",
+        "dest": "documentation/Xbim.IO.MemoryModel"
+      },
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/documentation/Xbim.Tessellator",
+        "dest": "documentation/Xbim.Tessellator"
+      },
+      {
+        "files": [ "CHANGELOG.md" ],
+        "src": "../"
+      },
+      {
+        "files": [
+          "articles/**.md",
+          "articles/**/toc.yml",
+          "toc.yml",
+          "*.md",
+          "documentation/**.md",
+          "geo-documentation/**.md",
+          "documentation/**/toc.yml"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "markdownEngineName": "markdig",
+    "dest": "_build",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default",
+      "template"
+    ],
+    "postProcessors": [
+      "ExtractSearchIndex"
+    ],
+    "globalMetadata": {
+      "_appFooter": "<span>Copyright © 2022 <strong>xbim</strong></span>",
+      "_enableSearch": "true",
+      "_appLogoPath": "images/logo.svg",
+      "_appFaviconPath": "images/favicon.ico",
+      "_gitContribute": {
+        "repo": "https://github.com/xBimTeam/XbimEssentials"
+      },
+      "_gitUrlPattern": "github"
+    },
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false
+  }
+}

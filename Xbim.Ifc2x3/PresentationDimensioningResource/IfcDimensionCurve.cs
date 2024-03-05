@@ -13,34 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDimensionCurve
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDimensionCurve : IIfcAnnotationCurveOccurrence
-	{
-		IEnumerable<IIfcTerminatorSymbol> @AnnotatedBySymbols {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurve", 742)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IIfcDimensionCurve, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCurve>
+	public  partial class @IfcDimensionCurve : IfcAnnotationCurveOccurrence, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCurve>
 	{
-		#region IIfcDimensionCurve explicit implementation
-		 
-		IEnumerable<IIfcTerminatorSymbol> IIfcDimensionCurve.AnnotatedBySymbols {  get { return @AnnotatedBySymbols; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDimensionCurve(IModel model, int label, bool activated) : base(model, label, activated)  

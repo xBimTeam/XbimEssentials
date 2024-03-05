@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 		IItemSet<IIfcCurveStyleFontPattern> IIfcCurveStyleFont.PatternList { 
 			get { return new Common.Collections.ProxyItemSet<IfcCurveStyleFontPattern, IIfcCurveStyleFontPattern>( @PatternList); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.TopologyResource
 	public  partial class @IfcClosedShell : IfcConnectedFaceSet, IInstantiableEntity, IIfcClosedShell, IContainsEntityReferences, IEquatable<@IfcClosedShell>
 	{
 		#region IIfcClosedShell explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

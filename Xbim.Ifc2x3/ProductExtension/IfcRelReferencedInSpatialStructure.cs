@@ -13,43 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelReferencedInSpatialStructure
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelReferencedInSpatialStructure : IIfcRelConnects
-	{
-		IItemSet<IIfcProduct> @RelatedElements { get; }
-		IIfcSpatialStructureElement @RelatingStructure { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelReferencedInSpatialStructure", 455)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IIfcRelReferencedInSpatialStructure, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelReferencedInSpatialStructure>
+	public  partial class @IfcRelReferencedInSpatialStructure : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelReferencedInSpatialStructure>
 	{
-		#region IIfcRelReferencedInSpatialStructure explicit implementation
-		IItemSet<IIfcProduct> IIfcRelReferencedInSpatialStructure.RelatedElements { 
-			get { return new Common.Collections.ProxyItemSet<IfcProduct, IIfcProduct>( @RelatedElements); } 
-		}	
-		IIfcSpatialStructureElement IIfcRelReferencedInSpatialStructure.RelatingStructure { 
- 
- 
-			get { return @RelatingStructure; } 
-			set { RelatingStructure = value as IfcSpatialStructureElement;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelReferencedInSpatialStructure(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -14,66 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcStructuralLoadGroup
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcStructuralLoadGroup : IIfcGroup
-	{
-		IfcLoadGroupTypeEnum @PredefinedType { get;  set; }
-		IfcActionTypeEnum @ActionType { get;  set; }
-		IfcActionSourceTypeEnum @ActionSource { get;  set; }
-		IfcRatioMeasure? @Coefficient { get;  set; }
-		IfcLabel? @Purpose { get;  set; }
-		IEnumerable<IIfcStructuralResultGroup> @SourceOfResultGroup {  get; }
-		IEnumerable<IIfcStructuralAnalysisModel> @LoadGroupFor {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcStructuralLoadGroup", 573)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IIfcStructuralLoadGroup, IContainsEntityReferences, IEquatable<@IfcStructuralLoadGroup>
+	public  partial class @IfcStructuralLoadGroup : IfcGroup, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcStructuralLoadGroup>
 	{
-		#region IIfcStructuralLoadGroup explicit implementation
-		IfcLoadGroupTypeEnum IIfcStructuralLoadGroup.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		IfcActionTypeEnum IIfcStructuralLoadGroup.ActionType { 
- 
-			get { return @ActionType; } 
-			set { ActionType = value;}
-		}	
-		IfcActionSourceTypeEnum IIfcStructuralLoadGroup.ActionSource { 
- 
-			get { return @ActionSource; } 
-			set { ActionSource = value;}
-		}	
-		IfcRatioMeasure? IIfcStructuralLoadGroup.Coefficient { 
- 
-			get { return @Coefficient; } 
-			set { Coefficient = value;}
-		}	
-		IfcLabel? IIfcStructuralLoadGroup.Purpose { 
- 
-			get { return @Purpose; } 
-			set { Purpose = value;}
-		}	
-		 
-		IEnumerable<IIfcStructuralResultGroup> IIfcStructuralLoadGroup.SourceOfResultGroup {  get { return @SourceOfResultGroup; } }
-		IEnumerable<IIfcStructuralAnalysisModel> IIfcStructuralLoadGroup.LoadGroupFor {  get { return @LoadGroupFor; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcStructuralLoadGroup(IModel model, int label, bool activated) : base(model, label, activated)  

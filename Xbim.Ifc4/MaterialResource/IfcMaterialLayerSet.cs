@@ -54,7 +54,7 @@ namespace Xbim.Ifc4.MaterialResource
 			get { return @Description; } 
 			set { Description = value;}
 		}	
-		 
+		IfcLengthMeasure IIfcMaterialLayerSet.@TotalThickness  { get { return @TotalThickness; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

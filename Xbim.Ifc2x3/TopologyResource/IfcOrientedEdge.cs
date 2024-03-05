@@ -12,45 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TopologyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOrientedEdge
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOrientedEdge : IIfcEdge
-	{
-		IIfcEdge @EdgeElement { get;  set; }
-		bool @Orientation { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TopologyResource
 {
 	[ExpressType("IfcOrientedEdge", 596)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IIfcOrientedEdge, IContainsEntityReferences, IEquatable<@IfcOrientedEdge>
+	public  partial class @IfcOrientedEdge : IfcEdge, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcOrientedEdge>
 	{
-		#region IIfcOrientedEdge explicit implementation
-		IIfcEdge IIfcOrientedEdge.EdgeElement { 
- 
- 
-			get { return @EdgeElement; } 
-			set { EdgeElement = value as IfcEdge;}
-		}	
-		bool IIfcOrientedEdge.Orientation { 
- 
-			get { return @Orientation; } 
-			set { Orientation = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOrientedEdge(IModel model, int label, bool activated) : base(model, label, activated)  

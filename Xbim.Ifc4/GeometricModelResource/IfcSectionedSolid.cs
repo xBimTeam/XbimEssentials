@@ -49,7 +49,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 		IItemSet<IIfcProfileDef> IIfcSectionedSolid.CrossSections { 
 			get { return new Common.Collections.ProxyItemSet<IfcProfileDef, IIfcProfileDef>( @CrossSections); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

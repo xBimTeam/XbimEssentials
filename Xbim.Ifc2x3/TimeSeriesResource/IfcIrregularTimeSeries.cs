@@ -12,36 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.TimeSeriesResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcIrregularTimeSeries
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcIrregularTimeSeries : IIfcTimeSeries
-	{
-		IItemSet<IIfcIrregularTimeSeriesValue> @Values { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.TimeSeriesResource
 {
 	[ExpressType("IfcIrregularTimeSeries", 570)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IIfcIrregularTimeSeries, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeries>
+	public  partial class @IfcIrregularTimeSeries : IfcTimeSeries, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcIrregularTimeSeries>
 	{
-		#region IIfcIrregularTimeSeries explicit implementation
-		IItemSet<IIfcIrregularTimeSeriesValue> IIfcIrregularTimeSeries.Values { 
-			get { return new Common.Collections.ProxyItemSet<IfcIrregularTimeSeriesValue, IIfcIrregularTimeSeriesValue>( @Values); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcIrregularTimeSeries(IModel model, int label, bool activated) : base(model, label, activated)  

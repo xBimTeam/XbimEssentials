@@ -12,13 +12,8 @@ namespace Xbim.Common.Geometry
         public readonly double Z;
 
        
-        public readonly static XbimPoint3D Zero;
+        public readonly static XbimPoint3D Zero = new XbimPoint3D(0, 0, 0);
         
-        static XbimPoint3D()
-        {
-            Zero = new XbimPoint3D(0, 0, 0);
-        }
-       
         /// <summary>
         /// 
         /// </summary>
@@ -124,9 +119,14 @@ namespace Xbim.Common.Geometry
                                     a.Z - b.Z);
         }
 
+        public static bool operator ==(XbimPoint3D left, XbimPoint3D right)
+        {
+            return left.Equals(right);
+        }
 
-
-
-        
+        public static bool operator !=(XbimPoint3D left, XbimPoint3D right)
+        {
+            return !(left == right);
+        }
     }
 }

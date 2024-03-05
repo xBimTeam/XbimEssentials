@@ -14,66 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationAppearanceResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcFillAreaStyleHatching
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcFillAreaStyleHatching : IIfcGeometricRepresentationItem, IfcFillStyleSelect
-	{
-		IIfcCurveStyle @HatchLineAppearance { get;  set; }
-		IIfcHatchLineDistanceSelect @StartOfNextHatchLine { get;  set; }
-		IIfcCartesianPoint @PointOfReferenceHatchLine { get;  set; }
-		IIfcCartesianPoint @PatternStart { get;  set; }
-		IfcPlaneAngleMeasure @HatchLineAngle { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationAppearanceResource
 {
 	[ExpressType("IfcFillAreaStyleHatching", 462)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcFillAreaStyleHatching, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleHatching>
+	public  partial class @IfcFillAreaStyleHatching : IfcGeometricRepresentationItem, IInstantiableEntity, IfcFillStyleSelect, IContainsEntityReferences, IEquatable<@IfcFillAreaStyleHatching>
 	{
-		#region IIfcFillAreaStyleHatching explicit implementation
-		IIfcCurveStyle IIfcFillAreaStyleHatching.HatchLineAppearance { 
- 
- 
-			get { return @HatchLineAppearance; } 
-			set { HatchLineAppearance = value as IfcCurveStyle;}
-		}	
-		IIfcHatchLineDistanceSelect IIfcFillAreaStyleHatching.StartOfNextHatchLine { 
- 
- 
-			get { return @StartOfNextHatchLine; } 
-			set { StartOfNextHatchLine = value as IfcHatchLineDistanceSelect;}
-		}	
-		IIfcCartesianPoint IIfcFillAreaStyleHatching.PointOfReferenceHatchLine { 
- 
- 
-			get { return @PointOfReferenceHatchLine; } 
-			set { PointOfReferenceHatchLine = value as IfcCartesianPoint;}
-		}	
-		IIfcCartesianPoint IIfcFillAreaStyleHatching.PatternStart { 
- 
- 
-			get { return @PatternStart; } 
-			set { PatternStart = value as IfcCartesianPoint;}
-		}	
-		IfcPlaneAngleMeasure IIfcFillAreaStyleHatching.HatchLineAngle { 
- 
-			get { return @HatchLineAngle; } 
-			set { HatchLineAngle = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcFillAreaStyleHatching(IModel model, int label, bool activated) : base(model, label, activated)  

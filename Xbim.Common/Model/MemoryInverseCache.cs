@@ -5,19 +5,17 @@ using System.Reflection;
 
 namespace Xbim.Common.Model
 {
-    internal class MemoryInverseCache : IInverseCache
+    public class MemoryInverseCache : IInverseCache
     {
         private Dictionary<Type, Dictionary<int, HashSet<int>>> _index = new Dictionary<Type, Dictionary<int, HashSet<int>>>();
-        private EntityCollection _entities;
-        private StepModel _model;
+        private IEntityCollection _entities;
 
-        public MemoryInverseCache(EntityCollection entities, StepModel model)
+        public MemoryInverseCache(IEntityCollection entities)
         {
             _entities = entities;
-            _model = model;
         }
 
-        internal void Add(int key, IPersistEntity value)
+        private void Add(int key, IPersistEntity value)
         {
             var index = GetIndex(value.GetType());
             if (!index.TryGetValue(key, out HashSet<int> set))
@@ -55,6 +53,8 @@ namespace Xbim.Common.Model
             }
         }
 
+        public bool IsDisposed => _disposed;
+
         public void Dispose()
         {
             if (_disposed)
@@ -64,12 +64,41 @@ namespace Xbim.Common.Model
             _index = null;
             _entities = null;
             _disposed = true;
-
-            _model.StopCaching();
-            _model = null;
         }
 
         public bool TryGet<T>(string inverseProperty, IPersistEntity inverseArgument, out IEnumerable<T> entities) where T : IPersistEntity
+        {
+            if (_disposed) throw new ObjectDisposedException(GetType().FullName);
+
+            if (TryGetPrivate(inverseProperty, inverseArgument, out entities))
+                return true;
+
+            //build cache for this type
+            lock (_index)
+            {
+                // check the condition again for case it was computed while waiting for access
+                if (TryGetPrivate(inverseProperty, inverseArgument, out entities))
+                    return true;
+
+                var indexed = inverseArgument.Model.Instances.OfType<T>()
+                    .OfType<IContainsIndexedReferences>().ToList();
+                foreach (var item in indexed)
+                {
+                    foreach (var reference in item.IndexedReferences)
+                    {
+                        Add(reference.EntityLabel, item);
+                    }
+                }
+            }
+
+            if (TryGetPrivate(inverseProperty, inverseArgument, out entities))
+                return true;
+
+            entities = null;
+            return false;
+        }
+
+        private bool TryGetPrivate<T>(string inverseProperty, IPersistEntity inverseArgument, out IEnumerable<T> entities) where T : IPersistEntity
         {
             var type = typeof(T);
             //get candidate types

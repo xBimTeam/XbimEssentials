@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcOutletType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcOutletType : IIfcFlowTerminalType
-	{
-		IfcOutletTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcOutletType", 240)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcOutletType : IfcFlowTerminalType, IInstantiableEntity, IIfcOutletType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOutletType>
+	public  partial class @IfcOutletType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcOutletType>
 	{
-		#region IIfcOutletType explicit implementation
-		IfcOutletTypeEnum IIfcOutletType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcOutletType(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.SharedBldgElements
 	public  partial class @IfcSlabStandardCase : IfcSlab, IInstantiableEntity, IIfcSlabStandardCase, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcSlabStandardCase>
 	{
 		#region IIfcSlabStandardCase explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

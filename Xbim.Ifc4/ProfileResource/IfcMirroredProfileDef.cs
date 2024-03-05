@@ -37,7 +37,6 @@ namespace Xbim.Ifc4.ProfileResource
 	public  partial class @IfcMirroredProfileDef : IfcDerivedProfileDef, IInstantiableEntity, IIfcMirroredProfileDef, IContainsEntityReferences, IEquatable<@IfcMirroredProfileDef>
 	{
 		#region IIfcMirroredProfileDef explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

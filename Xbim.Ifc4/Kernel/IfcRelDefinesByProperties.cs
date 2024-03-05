@@ -47,7 +47,6 @@ namespace Xbim.Ifc4.Kernel
 			get { return @RelatingPropertyDefinition; } 
 			set { RelatingPropertyDefinition = value as IfcPropertySetDefinitionSelect;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

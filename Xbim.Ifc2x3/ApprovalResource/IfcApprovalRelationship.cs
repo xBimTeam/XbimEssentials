@@ -15,58 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ApprovalResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcApprovalRelationship
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcApprovalRelationship : IPersistEntity
-	{
-		IIfcApproval @RelatedApproval { get;  set; }
-		IIfcApproval @RelatingApproval { get;  set; }
-		IfcText? @Description { get;  set; }
-		IfcLabel @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ApprovalResource
 {
 	[ExpressType("IfcApprovalRelationship", 552)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcApprovalRelationship : PersistEntity, IInstantiableEntity, IIfcApprovalRelationship, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcApprovalRelationship>
+	public  partial class @IfcApprovalRelationship : PersistEntity, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcApprovalRelationship>
 	{
-		#region IIfcApprovalRelationship explicit implementation
-		IIfcApproval IIfcApprovalRelationship.RelatedApproval { 
- 
- 
-			get { return @RelatedApproval; } 
-			set { RelatedApproval = value as IfcApproval;}
-		}	
-		IIfcApproval IIfcApprovalRelationship.RelatingApproval { 
- 
- 
-			get { return @RelatingApproval; } 
-			set { RelatingApproval = value as IfcApproval;}
-		}	
-		IfcText? IIfcApprovalRelationship.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IfcLabel IIfcApprovalRelationship.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcApprovalRelationship(IModel model, int label, bool activated) : base(model, label, activated)  

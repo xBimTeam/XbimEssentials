@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 		IItemSet<IIfcLightDistributionData> IIfcLightIntensityDistribution.DistributionData { 
 			get { return new Common.Collections.ProxyItemSet<IfcLightDistributionData, IIfcLightDistributionData>( @DistributionData); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

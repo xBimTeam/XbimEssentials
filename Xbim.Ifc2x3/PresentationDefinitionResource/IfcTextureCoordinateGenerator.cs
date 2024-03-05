@@ -13,42 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTextureCoordinateGenerator
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTextureCoordinateGenerator : IIfcTextureCoordinate
-	{
-		IfcLabel @Mode { get;  set; }
-		IEnumerable<IIfcSimpleValue> @Parameter { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcTextureCoordinateGenerator", 733)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IIfcTextureCoordinateGenerator, IEquatable<@IfcTextureCoordinateGenerator>
+	public  partial class @IfcTextureCoordinateGenerator : IfcTextureCoordinate, IInstantiableEntity, IEquatable<@IfcTextureCoordinateGenerator>
 	{
-		#region IIfcTextureCoordinateGenerator explicit implementation
-		IfcLabel IIfcTextureCoordinateGenerator.Mode { 
- 
-			get { return @Mode; } 
-			set { Mode = value;}
-		}	
-		IEnumerable<IIfcSimpleValue> IIfcTextureCoordinateGenerator.Parameter { 
-			get { return new Common.Collections.ProxyItemSet<IfcSimpleValue, IIfcSimpleValue>( @Parameter); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTextureCoordinateGenerator(IModel model, int label, bool activated) : base(model, label, activated)  

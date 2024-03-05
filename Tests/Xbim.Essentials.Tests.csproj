@@ -29,12 +29,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="6.8.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
-    <PackageReference Include="xunit" Version="2.6.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.4">
+    <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Include="xunit" Version="2.5.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -44,6 +47,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Xbim.Common\Xbim.Common.csproj" />
     <ProjectReference Include="..\Xbim.Ifc2x3\Xbim.Ifc2x3.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc4x3\Xbim.Ifc4x3.csproj" />
     <ProjectReference Include="..\Xbim.Ifc4\Xbim.Ifc4.csproj" />
     <ProjectReference Include="..\Xbim.Ifc\Xbim.Ifc.csproj" />
     <ProjectReference Include="..\Xbim.IO.Esent\Xbim.IO.Esent.csproj" />
@@ -76,6 +80,11 @@
     </None>
     <None Update="XsdSchemas\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="TestSourceFiles\IfcOpenShell-Issue2499.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

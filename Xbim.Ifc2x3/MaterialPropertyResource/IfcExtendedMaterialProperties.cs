@@ -14,48 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialPropertyResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcExtendedMaterialProperties
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcExtendedMaterialProperties : IIfcMaterialProperties
-	{
-		IItemSet<IIfcProperty> @ExtendedProperties { get; }
-		IfcText? @Description { get;  set; }
-		IfcLabel @Name { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialPropertyResource
 {
 	[ExpressType("IfcExtendedMaterialProperties", 585)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IIfcExtendedMaterialProperties, IContainsEntityReferences, IEquatable<@IfcExtendedMaterialProperties>
+	public  partial class @IfcExtendedMaterialProperties : IfcMaterialProperties, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcExtendedMaterialProperties>
 	{
-		#region IIfcExtendedMaterialProperties explicit implementation
-		IItemSet<IIfcProperty> IIfcExtendedMaterialProperties.ExtendedProperties { 
-			get { return new Common.Collections.ProxyItemSet<IfcProperty, IIfcProperty>( @ExtendedProperties); } 
-		}	
-		IfcText? IIfcExtendedMaterialProperties.Description { 
- 
-			get { return @Description; } 
-			set { Description = value;}
-		}	
-		IfcLabel IIfcExtendedMaterialProperties.Name { 
- 
-			get { return @Name; } 
-			set { Name = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcExtendedMaterialProperties(IModel model, int label, bool activated) : base(model, label, activated)  

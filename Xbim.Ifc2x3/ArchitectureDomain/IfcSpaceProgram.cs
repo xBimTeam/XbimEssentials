@@ -15,67 +15,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ArchitectureDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSpaceProgram
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSpaceProgram : IIfcControl
-	{
-		IfcIdentifier @SpaceProgramIdentifier { get;  set; }
-		IfcAreaMeasure? @MaxRequiredArea { get;  set; }
-		IfcAreaMeasure? @MinRequiredArea { get;  set; }
-		IIfcSpatialStructureElement @RequestedLocation { get;  set; }
-		IfcAreaMeasure @StandardRequiredArea { get;  set; }
-		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsFrom {  get; }
-		IEnumerable<IIfcRelInteractionRequirements> @HasInteractionReqsTo {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ArchitectureDomain
 {
 	[ExpressType("IfcSpaceProgram", 709)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IIfcSpaceProgram, IContainsEntityReferences, IEquatable<@IfcSpaceProgram>
+	public  partial class @IfcSpaceProgram : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcSpaceProgram>
 	{
-		#region IIfcSpaceProgram explicit implementation
-		IfcIdentifier IIfcSpaceProgram.SpaceProgramIdentifier { 
- 
-			get { return @SpaceProgramIdentifier; } 
-			set { SpaceProgramIdentifier = value;}
-		}	
-		IfcAreaMeasure? IIfcSpaceProgram.MaxRequiredArea { 
- 
-			get { return @MaxRequiredArea; } 
-			set { MaxRequiredArea = value;}
-		}	
-		IfcAreaMeasure? IIfcSpaceProgram.MinRequiredArea { 
- 
-			get { return @MinRequiredArea; } 
-			set { MinRequiredArea = value;}
-		}	
-		IIfcSpatialStructureElement IIfcSpaceProgram.RequestedLocation { 
- 
- 
-			get { return @RequestedLocation; } 
-			set { RequestedLocation = value as IfcSpatialStructureElement;}
-		}	
-		IfcAreaMeasure IIfcSpaceProgram.StandardRequiredArea { 
- 
-			get { return @StandardRequiredArea; } 
-			set { StandardRequiredArea = value;}
-		}	
-		 
-		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsFrom {  get { return @HasInteractionReqsFrom; } }
-		IEnumerable<IIfcRelInteractionRequirements> IIfcSpaceProgram.HasInteractionReqsTo {  get { return @HasInteractionReqsTo; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSpaceProgram(IModel model, int label, bool activated) : base(model, label, activated)  

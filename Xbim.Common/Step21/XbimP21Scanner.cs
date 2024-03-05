@@ -12,6 +12,7 @@
 
 #region Directives
 
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using QUT.Gppg;
 using System;
@@ -23,6 +24,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
 using Xbim.IO.Parser;
@@ -41,7 +43,7 @@ namespace Xbim.IO.Step21
     /// </summary>
     public class XbimP21Scanner: IDisposable
     {
-        public ILogger Logger { get; private set; }
+        protected ILogger Logger { get; private set; }
         private event ReportProgressDelegate _progressStatus;
         private List<ReportProgressDelegate> _progressStatusEvents = new List<ReportProgressDelegate>();
         private readonly Stack<Part21Entity> _processStack = new Stack<Part21Entity>();
@@ -88,10 +90,11 @@ namespace Xbim.IO.Step21
         private Scanner _scanner;
         private bool _inHeader;
 
-        public XbimP21Scanner(Stream strm, long streamSize, IEnumerable<string> ignoreTypes = null)
+        public XbimP21Scanner(Stream strm, long streamSize, ILoggerFactory loggerFactory, IEnumerable<string> ignoreTypes = null)
         {
-            Logger = XbimLogging.CreateLogger<XbimP21Scanner>();
-            _scanner = new Scanner(strm);
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            Logger = loggerFactory.CreateLogger<XbimP21Scanner>();
+            _scanner = new Scanner(strm, loggerFactory);
             //_scanner = new Scanner(new XbimScanBuffer(strm));
             if (ignoreTypes != null) SkipTypes = new HashSet<string>(ignoreTypes);
             var entityApproxCount = 50000;
@@ -116,10 +119,11 @@ namespace Xbim.IO.Step21
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
 
-        public XbimP21Scanner(string data, IEnumerable<string> ignoreTypes = null)
+        public XbimP21Scanner(string data, ILoggerFactory loggerFactory, IEnumerable<string> ignoreTypes = null)
         {
-            Logger = XbimLogging.CreateLogger<XbimP21Scanner>();
-            _scanner = new Scanner();
+            loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            Logger = loggerFactory.CreateLogger<XbimP21Scanner>();
+            _scanner = new Scanner(loggerFactory);
             _scanner.SetSource(data, 0);
             _streamSize = data.Length;
             if (ignoreTypes != null) SkipTypes = new HashSet<string>(ignoreTypes);
@@ -268,6 +272,7 @@ namespace Xbim.IO.Step21
 
                     // scan until the beginning of next entity
                     var entityToken = (int)Tokens.ENTITY;
+                    tok = _scanner.yylex();
                     while (tok != eofToken && tok != entityToken)
                     {
                         tok = _scanner.yylex();
@@ -554,6 +559,9 @@ namespace Xbim.IO.Step21
                 if (component < 0 || component > 9)
                     continue;
 
+                if (order > magnitudes.Length - 1)
+                    throw new Exception($"Entity label #{value} is bigger than Int32.MaxValue");
+
                 label += component * magnitudes[order++];
             }
             return label;
@@ -602,7 +610,11 @@ namespace Xbim.IO.Step21
             _isInNestedType = false;
             try
             {
-                PropertyValue.Init(_processStack.Pop().Entity);
+                var nestedEntity = _processStack.Pop();
+                if (nestedEntity.Entity != null)
+                {
+                    PropertyValue.Init(nestedEntity.Entity);
+                }
                 CurrentInstance = _processStack.Peek();
                 if (CurrentInstance.Entity != null)
                     CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
@@ -643,15 +655,41 @@ namespace Xbim.IO.Step21
             _isInNestedType = true;
         }
 
+        /// <summary>
+        /// Step21 allows to extend objects at the end.
+        /// </summary>
+        /// <returns>True if current property index is beyond the entity implementation parameters</returns>
+        private bool IsExtendedParameter()
+        {
+            if (!(CurrentInstance.Entity is IPersistEntity entity))
+            { 
+                return false;
+            }
+            var count = entity.ExpressType.Properties.Count;
+            return CurrentInstance.CurrentParamIndex >= count;
+        }
+
         private void SetEntityParameter(string value)
         {
             try
             {
                 if (CurrentInstance.Entity != null)
+                {
                     CurrentInstance.Entity.Parse(CurrentInstance.CurrentParamIndex, PropertyValue, NestedIndex);
+                }
             }
             catch (Exception e)
             {
+                if (IsExtendedParameter())
+                {
+                    // Extended parameters are permitted. But we should log a warning, because it might result in missing data
+                    Logger?.LogWarning("Entity #{entityLabel}={entityType} uses extended parameter at index {paramIndex}. This data will be lost.", 
+                        CurrentInstance.EntityLabel,
+                        CurrentInstance.Entity.GetType().Name,
+                        CurrentInstance.CurrentParamIndex);
+                    return;
+                }
+                
                 // return silently if this kind of error has already been reported
                 if (!_errors.AddPropertyNotSet(CurrentInstance.Entity, CurrentInstance.CurrentParamIndex, PropertyValue, e))
                     return;

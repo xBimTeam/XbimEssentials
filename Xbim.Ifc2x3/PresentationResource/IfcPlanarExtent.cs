@@ -14,44 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcPlanarExtent
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcPlanarExtent : IIfcGeometricRepresentationItem
-	{
-		IfcLengthMeasure @SizeInX { get;  set; }
-		IfcLengthMeasure @SizeInY { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcPlanarExtent", 469)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcPlanarExtent, IEquatable<@IfcPlanarExtent>
+	public  partial class @IfcPlanarExtent : IfcGeometricRepresentationItem, IInstantiableEntity, IEquatable<@IfcPlanarExtent>
 	{
-		#region IIfcPlanarExtent explicit implementation
-		IfcLengthMeasure IIfcPlanarExtent.SizeInX { 
- 
-			get { return @SizeInX; } 
-			set { SizeInX = value;}
-		}	
-		IfcLengthMeasure IIfcPlanarExtent.SizeInY { 
- 
-			get { return @SizeInY; } 
-			set { SizeInY = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcPlanarExtent(IModel model, int label, bool activated) : base(model, label, activated)  

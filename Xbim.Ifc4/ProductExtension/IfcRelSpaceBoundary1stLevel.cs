@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @ParentBoundary; } 
 			set { ParentBoundary = value as IfcRelSpaceBoundary1stLevel;}
 		}	
-		 
 		IEnumerable<IIfcRelSpaceBoundary1stLevel> IIfcRelSpaceBoundary1stLevel.InnerBoundaries {  get { return @InnerBoundaries; } }
 		#endregion
 

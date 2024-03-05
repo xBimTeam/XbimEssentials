@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ElectricalDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcElectricalCircuit
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcElectricalCircuit : IIfcSystem
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ElectricalDomain
 {
 	[ExpressType("IfcElectricalCircuit", 406)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcElectricalCircuit : IfcSystem, IInstantiableEntity, IIfcElectricalCircuit, IContainsEntityReferences, IEquatable<@IfcElectricalCircuit>
+	public  partial class @IfcElectricalCircuit : IfcSystem, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcElectricalCircuit>
 	{
-		#region IIfcElectricalCircuit explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcElectricalCircuit(IModel model, int label, bool activated) : base(model, label, activated)  

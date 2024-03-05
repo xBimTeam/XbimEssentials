@@ -101,7 +101,6 @@ namespace Xbim.Ifc4.StructuralElementsDomain
 		IItemSet<IIfcBendingParameterSelect> IIfcReinforcingMeshType.BendingParameters { 
 			get { return new Common.Collections.ProxyItemSet<IfcBendingParameterSelect, IIfcBendingParameterSelect>( @BendingParameters); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

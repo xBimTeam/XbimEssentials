@@ -1,0 +1,489 @@
+Number of entities:
+IFC4X3_RC2: 885
+IFC4X3_ADD1: 876
+
+Number of non-abstract entities:
+IFC4X3_RC2: 752
+IFC4X3_ADD1: 743
+
+Number of types:
+IFC4X3_RC2: 130
+IFC4X3_ADD1: 132
+
+Number of enumerations:
+IFC4X3_RC2: 245
+IFC4X3_ADD1: 243
+
+Number of select types:
+IFC4X3_RC2: 67
+IFC4X3_ADD1: 61
+
+Number of global rules:
+IFC4X3_RC2: 2
+IFC4X3_ADD1: 2
+
+Entities added to schema (25):
+Added EntityDefinition: IfcCosineSpiral
+Added EntityDefinition: IfcDirectrixDerivedReferenceSweptAreaSolid
+Added EntityDefinition: IfcFacilityPartCommon
+Added EntityDefinition: IfcGeographicCRS
+Added EntityDefinition: IfcIndexedPolygonalTextureMap
+Added EntityDefinition: IfcMapConversionScaled
+Added EntityDefinition: IfcMarinePart
+Added EntityDefinition: IfcPolynomialCurve
+Added EntityDefinition: IfcQuantityNumber
+Added EntityDefinition: IfcRailwayPart
+Added EntityDefinition: IfcRelAdheresToElement
+Added EntityDefinition: IfcRigidOperation
+Added EntityDefinition: IfcRoadPart
+Added EntityDefinition: IfcSecondOrderPolynomialSpiral
+Added EntityDefinition: IfcSeventhOrderPolynomialSpiral
+Added EntityDefinition: IfcSineSpiral
+Added EntityDefinition: IfcSpiral
+Added EntityDefinition: IfcTextureCoordinateIndices
+Added EntityDefinition: IfcTextureCoordinateIndicesWithVoids
+Added EntityDefinition: IfcThirdOrderPolynomialSpiral
+Added EntityDefinition: IfcTransportationDevice
+Added EntityDefinition: IfcTransportationDeviceType
+Added EntityDefinition: IfcVehicle
+Added EntityDefinition: IfcVehicleType
+Added EntityDefinition: IfcWellKnownText
+
+Selects added to schema (0):
+
+Defined types added to schema (2):
+Added DefinedType: IfcStrippedOptional
+Added DefinedType: IfcWellKnownTextLiteral
+
+Enumerations added to schema (8):
+Added EnumerationType: IfcGeotechnicalStratumTypeEnum
+Added EnumerationType: IfcKerbTypeEnum
+Added EnumerationType: IfcPavementTypeEnum
+Added EnumerationType: IfcRailwayTypeEnum
+Added EnumerationType: IfcRoadTypeEnum
+Added EnumerationType: IfcTransportElementTypeEnum
+Added EnumerationType: IfcVehicleTypeEnum
+Added EnumerationType: IfcVirtualElementTypeEnum
+
+Entities removed from schema (34):
+Removed EntityDefinition: IfcAlignment2DVerSegCircularArc
+Removed EntityDefinition: IfcAlignment2DVerSegLine
+Removed EntityDefinition: IfcAlignment2DVerSegParabolicArc
+Removed EntityDefinition: IfcAlignmentCurve
+Removed EntityDefinition: IfcAxisLateralInclination
+Removed EntityDefinition: IfcBeamStandardCase
+Removed EntityDefinition: IfcBlossCurve
+Removed EntityDefinition: IfcCircularArcSegment2D
+Removed EntityDefinition: IfcColumnStandardCase
+Removed EntityDefinition: IfcCurveSegment2D
+Removed EntityDefinition: IfcDirectrixDistanceSweptAreaSolid
+Removed EntityDefinition: IfcDoorStandardCase
+Removed EntityDefinition: IfcDoorStyle
+Removed EntityDefinition: IfcInclinedReferenceSweptAreaSolid
+Removed EntityDefinition: IfcLineSegment2D
+Removed EntityDefinition: IfcLinearAxisWithInclination
+Removed EntityDefinition: IfcLinearPlacementWithInclination
+Removed EntityDefinition: IfcLinearSpanPlacement
+Removed EntityDefinition: IfcMemberStandardCase
+Removed EntityDefinition: IfcOpeningStandardCase
+Removed EntityDefinition: IfcPlant
+Removed EntityDefinition: IfcPlateStandardCase
+Removed EntityDefinition: IfcPresentationStyleAssignment
+Removed EntityDefinition: IfcProxy
+Removed EntityDefinition: IfcSeriesParameterCurve
+Removed EntityDefinition: IfcSlabElementedCase
+Removed EntityDefinition: IfcSlabStandardCase
+Removed EntityDefinition: IfcSolidStratum
+Removed EntityDefinition: IfcTransitionCurveSegment2D
+Removed EntityDefinition: IfcVoidStratum
+Removed EntityDefinition: IfcWallElementedCase
+Removed EntityDefinition: IfcWaterStratum
+Removed EntityDefinition: IfcWindowStandardCase
+Removed EntityDefinition: IfcWindowStyle
+
+Selects removed from schema (6):
+Removed SelectType: IfcFacilityPartTypeSelect
+Removed SelectType: IfcImpactProtectionDeviceTypeSelect
+Removed SelectType: IfcLinearAxisSelect
+Removed SelectType: IfcPresentationStyleSelect
+Removed SelectType: IfcStyleAssignmentSelect
+Removed SelectType: IfcTransportElementTypeSelect
+
+Defined types removed from schema (0):
+
+Enumerations removed from schema (10):
+Removed EnumerationType: IfcBearingTypeDisplacementEnum
+Removed EnumerationType: IfcDoorStyleConstructionEnum
+Removed EnumerationType: IfcDoorStyleOperationEnum
+Removed EnumerationType: IfcNullStyle
+Removed EnumerationType: IfcObjectTypeEnum
+Removed EnumerationType: IfcTransitionCurveType
+Removed EnumerationType: IfcTransportElementFixedTypeEnum
+Removed EnumerationType: IfcTransportElementNonFixedTypeEnum
+Removed EnumerationType: IfcWindowStyleConstructionEnum
+Removed EnumerationType: IfcWindowStyleOperationEnum
+
+Changed entity definitions (58):
+Entity: IfcAlignment
+Removed attribute: Axis 
+Changed attribute index: PredefinedType (Old index: 8, New index: 7)
+
+Entity: IfcAlignmentCant
+Removed attribute: Segments 
+
+Entity: IfcAlignmentCantSegment
+Removed attribute: SmoothingLength 
+Changed attribute type: HorizontalLength (Old type: IfcPositiveLengthMeasure, New type: IfcNonNegativeLengthMeasure)
+Changed attribute index: PredefinedType (Old index: 9, New index: 8)
+
+Entity: IfcAlignmentHorizontal
+Removed attribute: StartDistAlong 
+Removed attribute: Segments 
+
+Entity: IfcAlignmentHorizontalSegment
+Changed attribute type: SegmentLength (Old type: IfcPositiveLengthMeasure, New type: IfcNonNegativeLengthMeasure)
+
+Entity: IfcAlignmentSegment
+Added attribute: DesignParameters 
+Removed attribute: GeometricParameters 
+
+Entity: IfcAlignmentVertical
+Removed attribute: Segments 
+
+Entity: IfcAlignmentVerticalSegment
+Changed attribute type: HorizontalLength (Old type: IfcPositiveLengthMeasure, New type: IfcNonNegativeLengthMeasure)
+Changed attribute type: StartGradient (Old type: IfcLengthMeasure, New type: IfcRatioMeasure)
+Changed attribute type: EndGradient (Old type: IfcLengthMeasure, New type: IfcRatioMeasure)
+Changed attribute type: RadiusOfCurvature (Old type: IfcPositiveLengthMeasure, New type: IfcLengthMeasure)
+
+Entity: IfcBridgePart
+Changed attribute index: UsageType (Old index: 10, New index: 9)
+Changed attribute index: PredefinedType (Old index: 9, New index: 10)
+Changed attribute type: PredefinedType (Old type: IfcFacilityPartTypeSelect, New type: IfcBridgePartTypeEnum)
+
+Entity: IfcClassification
+Added attribute: Specification 
+Removed attribute: Location 
+
+Entity: IfcComplexProperty
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcCoordinateReferenceSystem
+Removed attribute: GeodeticDatum 
+Removed attribute: VerticalDatum 
+
+Entity: IfcCurveSegment
+Added attribute: Placement 
+Added attribute: SegmentStart 
+Removed attribute: StartPlacement 
+Changed attribute index: SegmentLength (Old index: 2, New index: 3)
+Changed attribute index: ParentCurve (Old index: 3, New index: 4)
+
+Entity: IfcCurveStyleFontAndScaling
+Added attribute: CurveStyleFont 
+Removed attribute: CurveFont 
+
+Entity: IfcDerivedUnit
+Added attribute: Name 
+
+Entity: IfcFacilityPart
+Removed attribute: PredefinedType 
+Changed attribute index: UsageType (Old index: 10, New index: 9)
+
+Entity: IfcGeotechnicalStratum
+Added attribute: PredefinedType 
+
+Entity: IfcGradientCurve
+Added attribute: SelfIntersect 
+Changed attribute index: Segments (Old index: 1, New index: 0)
+Changed attribute type: Segments (Old type: ListType<IfcCurveSegment>, New type: ListType<IfcSegment>)
+Changed attribute index: BaseCurve (Old index: 0, New index: 2)
+Changed attribute index: EndPoint (Old index: 2, New index: 3)
+Changed attribute type: EndPoint (Old type: IfcCartesianPoint, New type: IfcPlacement)
+
+Entity: IfcImpactProtectionDevice
+Changed attribute type: PredefinedType (Old type: IfcImpactProtectionDeviceTypeSelect, New type: IfcImpactProtectionDeviceTypeEnum)
+
+Entity: IfcImpactProtectionDeviceType
+Changed attribute type: PredefinedType (Old type: IfcImpactProtectionDeviceTypeSelect, New type: IfcImpactProtectionDeviceTypeEnum)
+
+Entity: IfcKerb
+Added attribute: PredefinedType 
+Removed attribute: Mountable 
+
+Entity: IfcKerbType
+Added attribute: PredefinedType 
+Removed attribute: Mountable 
+
+Entity: IfcLinearPlacement
+Removed attribute: PlacementMeasuredAlong 
+Removed attribute: Distance 
+Changed attribute index: RelativePlacement (Old index: 3, New index: 1)
+Changed attribute index: CartesianPosition (Old index: 4, New index: 2)
+
+Entity: IfcLinearPositioningElement
+Removed attribute: Axis 
+
+Entity: IfcMaterialRelationship
+Added attribute: MaterialExpression 
+Removed attribute: Expression 
+
+Entity: IfcOpenCrossProfileDef
+Added attribute: OffsetPoint 
+
+Entity: IfcPavement
+Added attribute: PredefinedType 
+Removed attribute: Flexible 
+
+Entity: IfcPavementType
+Added attribute: PredefinedType 
+Removed attribute: Flexible 
+
+Entity: IfcProperty
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcPropertyBoundedValue
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcPropertyEnumeratedValue
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcPropertyListValue
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcPropertyReferenceValue
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcPropertySingleValue
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcPropertyTableValue
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcRailway
+Added attribute: PredefinedType 
+
+Entity: IfcReferent
+Removed attribute: RestartDistance 
+
+Entity: IfcRelAssigns
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelAssignsToActor
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelAssignsToControl
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelAssignsToGroup
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelAssignsToGroupByFactor
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelAssignsToProcess
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelAssignsToProduct
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelAssignsToResource
+Changed attribute type: RelatedObjectsType (Old type: IfcObjectTypeEnum, New type: IfcStrippedOptional)
+
+Entity: IfcRelInterferesElements
+Added attribute: InterferenceSpace 
+
+Entity: IfcRoad
+Added attribute: PredefinedType 
+
+Entity: IfcSectionedSolidHorizontal
+Removed attribute: FixedAxisVertical 
+Changed attribute type: CrossSectionPositions (Old type: ListType<IfcPointByDistanceExpression>, New type: ListType<IfcAxis2PlacementLinear>)
+
+Entity: IfcSectionedSurface
+Removed attribute: FixedAxisVertical 
+Changed attribute type: CrossSectionPositions (Old type: ListType<IfcPointByDistanceExpression>, New type: ListType<IfcAxis2PlacementLinear>)
+
+Entity: IfcSegmentedReferenceCurve
+Added attribute: SelfIntersect 
+Changed attribute index: Segments (Old index: 1, New index: 0)
+Changed attribute type: Segments (Old type: ListType<IfcCurveSegment>, New type: ListType<IfcSegment>)
+Changed attribute index: BaseCurve (Old index: 0, New index: 2)
+Changed attribute index: EndPoint (Old index: 2, New index: 3)
+
+Entity: IfcSimpleProperty
+Added attribute: Specification 
+Removed attribute: Description 
+
+Entity: IfcStructuralCurveConnection
+Added attribute: AxisDirection 
+Removed attribute: Axis 
+
+Entity: IfcStyledItem
+Changed attribute type: Styles (Old type: SetType<IfcStyleAssignmentSelect>, New type: SetType<IfcPresentationStyle>)
+
+Entity: IfcSweptDiskSolidPolygonal
+Changed attribute type: FilletRadius (Old type: IfcPositiveLengthMeasure, New type: IfcNonNegativeLengthMeasure)
+
+Entity: IfcTransportElement
+Changed attribute type: PredefinedType (Old type: IfcTransportElementTypeSelect, New type: IfcTransportElementTypeEnum)
+
+Entity: IfcTransportElementType
+Changed attribute type: PredefinedType (Old type: IfcTransportElementTypeSelect, New type: IfcTransportElementTypeEnum)
+
+Entity: IfcVirtualElement
+Added attribute: PredefinedType 
+
+Entity: IfcWorkTime
+Added attribute: StartDate 
+Added attribute: FinishDate 
+Removed attribute: Start 
+Removed attribute: Finish 
+
+
+Changed selects (1):
+Select type IfcSpatialReferenceSelect:
+    Added select: IfcGroup
+    Removed select: IfcSystem
+
+
+Changed enumerations (26):
+Enumeration IfcAlignmentCantSegmentTypeEnum:
+    Added: HELMERTCURVE
+    Removed: BIQUADRATICPARABOLA
+
+Enumeration IfcAlignmentHorizontalSegmentTypeEnum:
+    Added: CUBIC
+    Added: HELMERTCURVE
+    Removed: CUBICSPIRAL
+    Removed: BIQUADRATICPARABOLA
+
+Enumeration IfcAudioVisualApplianceTypeEnum:
+    Added: COMMUNICATIONTERMINAL
+    Added: RECORDINGEQUIPMENT
+    Removed: RAILWAY_COMMUNICATION_TERMINAL
+
+Enumeration IfcBuildingSystemTypeEnum:
+    Removed: REINFORCING
+    Removed: PRESTRESSING
+    Removed: EROSIONPREVENTION
+
+Enumeration IfcBuiltSystemTypeEnum:
+    Added: RAILWAYLINE
+    Added: RAILWAYTRACK
+    Removed: MOORINGSYSTEM
+
+Enumeration IfcCableCarrierFittingTypeEnum:
+    Added: CONNECTOR
+    Added: JUNCTION
+    Added: TRANSITION
+
+Enumeration IfcCommunicationsApplianceTypeEnum:
+    Added: INTELLIGENTPERIPHERAL
+    Added: IPNETWORKEQUIPMENT
+    Added: LINESIDEELECTRONICUNIT
+    Added: OPTICALLINETERMINAL
+    Added: OPTICALNETWORKUNIT
+    Added: RADIOBLOCKCENTER
+    Removed: INTELLIGENT_PERIPHERAL
+    Removed: IP_NETWORK_EQUIPMENT
+    Removed: OPTICAL_NETWORK_UNIT
+
+Enumeration IfcCoveringTypeEnum:
+    Added: TOPPING
+
+Enumeration IfcDiscreteAccessoryTypeEnum:
+    Added: FILLER
+    Added: FLASHING
+    Added: POINTMACHINEMOUNTINGDEVICE
+    Added: POINT_MACHINE_LOCKING_DEVICE
+
+Enumeration IfcDistributionBoardTypeEnum:
+    Added: DISPATCHINGBOARD
+
+Enumeration IfcDistributionSystemEnum:
+    Added: FIXEDTRANSMISSIONNETWORK
+    Added: MOBILENETWORK
+    Added: MONITORINGSYSTEM
+    Added: OPERATIONALTELEPHONYSYSTEM
+
+Enumeration IfcDoorTypeOperationEnum:
+    Added: DOUBLE_DOOR_LIFTING_VERTICAL
+    Added: LIFTING_HORIZONTAL
+    Added: LIFTING_VERTICAL_LEFT
+    Added: LIFTING_VERTICAL_RIGHT
+    Added: REVOLVING_VERTICAL
+
+Enumeration IfcFireSuppressionTerminalTypeEnum:
+    Added: FIREMONITOR
+
+Enumeration IfcGeographicElementTypeEnum:
+    Added: VEGETATION
+
+Enumeration IfcMarineFacilityTypeEnum:
+    Added: REVETMENT
+    Removed: EMBANKMENT
+
+Enumeration IfcMarinePartTypeEnum:
+    Added: STORAGEAREA
+    Removed: STORAGE
+
+Enumeration IfcMobileTelecommunicationsApplianceTypeEnum:
+    Added: GATEWAY_GPRS_SUPPORT_NODE
+    Added: MOBILESWITCHINGCENTER
+    Added: MSCSERVER
+    Added: PACKETCONTROLUNIT
+    Added: REMOTERADIOUNIT
+    Added: SERVICE_GPRS_SUPPORT_NODE
+    Added: SUBSCRIBERSERVER
+    Removed: REMOTE_RADIO_UNIT
+
+Enumeration IfcPropertySetTemplateTypeEnum:
+    Added: PSET_MATERIALDRIVEN
+    Added: PSET_PROFILEDRIVEN
+
+Enumeration IfcRailwayPartTypeEnum:
+    Added: PLAINTRACKSUPERSTRUCTURE
+    Removed: PLAINTRACKSUPESTRUCTURE
+
+Enumeration IfcReferentTypeEnum:
+    Added: BOUNDARY
+    Added: INTERSECTION
+    Added: LANDMARK
+    Added: POSITION
+
+Enumeration IfcReflectanceMethodEnum:
+    Added: PHYSICAL
+
+Enumeration IfcSimplePropertyTemplateTypeEnum:
+    Added: Q_NUMBER
+
+Enumeration IfcSpaceTypeEnum:
+    Added: BERTH
+
+Enumeration IfcSpatialZoneTypeEnum:
+    Added: INTERFERENCE
+
+Enumeration IfcTaskTypeEnum:
+    Added: ADJUSTMENT
+    Added: CALIBRATION
+    Added: EMERGENCY
+    Added: INSPECTION
+    Added: SAFETY
+    Added: SHUTDOWN
+    Added: STARTUP
+    Added: TESTING
+    Added: TROUBLESHOOTING
+
+Enumeration IfcUnitaryControlElementTypeEnum:
+    Added: BASESTATIONCONTROLLER
+
+

@@ -15,43 +15,17 @@ using System.ComponentModel;
 using Xbim.Common.Metadata;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.MaterialResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcMaterialLayerSet
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcMaterialLayerSet : IPersistEntity, IfcMaterialSelect
-	{
-		IItemSet<IIfcMaterialLayer> @MaterialLayers { get; }
-		IfcLabel? @LayerSetName { get;  set; }
-		IfcLengthMeasure @TotalThickness  { get ; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.MaterialResource
 {
 	[ExpressType("IfcMaterialLayerSet", 205)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcMaterialLayerSet : PersistEntity, IInstantiableEntity, IIfcMaterialLayerSet, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialLayerSet>
+	public  partial class @IfcMaterialLayerSet : PersistEntity, IInstantiableEntity, IfcMaterialSelect, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcMaterialLayerSet>
 	{
-		#region IIfcMaterialLayerSet explicit implementation
-		IItemSet<IIfcMaterialLayer> IIfcMaterialLayerSet.MaterialLayers { 
-			get { return new Common.Collections.ProxyItemSet<IfcMaterialLayer, IIfcMaterialLayer>( @MaterialLayers); } 
-		}	
-		IfcLabel? IIfcMaterialLayerSet.LayerSetName { 
- 
-			get { return @LayerSetName; } 
-			set { LayerSetName = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcMaterialLayerSet(IModel model, int label, bool activated) : base(model, label, activated)  

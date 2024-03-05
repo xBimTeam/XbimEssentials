@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @AxisPosition; } 
 			set { AxisPosition = value as IfcAxis1Placement;}
 		}	
-		 
+		Common.Geometry.XbimLine IIfcSurfaceOfRevolution.@AxisLine  { get { return @AxisLine; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

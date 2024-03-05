@@ -60,7 +60,6 @@ namespace Xbim.Ifc4.ActorResource
 			get { return @UserDefinedPurpose; } 
 			set { UserDefinedPurpose = value;}
 		}	
-		 
 		IEnumerable<IIfcPerson> IIfcAddress.OfPerson {  get { return @OfPerson; } }
 		IEnumerable<IIfcOrganization> IIfcAddress.OfOrganization {  get { return @OfOrganization; } }
 		#endregion

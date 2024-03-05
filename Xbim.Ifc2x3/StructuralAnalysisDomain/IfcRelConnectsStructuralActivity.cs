@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralAnalysisDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelConnectsStructuralActivity
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelConnectsStructuralActivity : IIfcRelConnects
-	{
-		IIfcStructuralActivityAssignmentSelect @RelatingElement { get;  set; }
-		IIfcStructuralActivity @RelatedStructuralActivity { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralAnalysisDomain
 {
 	[ExpressType("IfcRelConnectsStructuralActivity", 211)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IIfcRelConnectsStructuralActivity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralActivity>
+	public  partial class @IfcRelConnectsStructuralActivity : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelConnectsStructuralActivity>
 	{
-		#region IIfcRelConnectsStructuralActivity explicit implementation
-		IIfcStructuralActivityAssignmentSelect IIfcRelConnectsStructuralActivity.RelatingElement { 
- 
- 
-			get { return @RelatingElement; } 
-			set { RelatingElement = value as IfcStructuralActivityAssignmentSelect;}
-		}	
-		IIfcStructuralActivity IIfcRelConnectsStructuralActivity.RelatedStructuralActivity { 
- 
- 
-			get { return @RelatedStructuralActivity; } 
-			set { RelatedStructuralActivity = value as IfcStructuralActivity;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelConnectsStructuralActivity(IModel model, int label, bool activated) : base(model, label, activated)  

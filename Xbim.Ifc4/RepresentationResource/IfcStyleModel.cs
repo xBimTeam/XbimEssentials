@@ -36,7 +36,6 @@ namespace Xbim.Ifc4.RepresentationResource
 	public abstract partial class @IfcStyleModel : IfcRepresentation, IIfcStyleModel, IEquatable<@IfcStyleModel>
 	{
 		#region IIfcStyleModel explicit implementation
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

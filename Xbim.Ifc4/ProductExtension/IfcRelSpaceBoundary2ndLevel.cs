@@ -44,7 +44,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @CorrespondingBoundary; } 
 			set { CorrespondingBoundary = value as IfcRelSpaceBoundary2ndLevel;}
 		}	
-		 
 		IEnumerable<IIfcRelSpaceBoundary2ndLevel> IIfcRelSpaceBoundary2ndLevel.Corresponds {  get { return @Corresponds; } }
 		#endregion
 

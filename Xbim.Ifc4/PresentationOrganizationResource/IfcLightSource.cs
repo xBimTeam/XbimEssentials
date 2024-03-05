@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.PresentationOrganizationResource
 			get { return @Intensity; } 
 			set { Intensity = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

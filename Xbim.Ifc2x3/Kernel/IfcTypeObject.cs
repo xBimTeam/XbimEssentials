@@ -13,44 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcTypeObject
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcTypeObject : IIfcObjectDefinition
-	{
-		IfcLabel? @ApplicableOccurrence { get;  set; }
-		IItemSet<IIfcPropertySetDefinition> @HasPropertySets { get; }
-		IEnumerable<IIfcRelDefinesByType> @ObjectTypeOf {  get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcTypeObject", 42)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IIfcTypeObject, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeObject>
+	public  partial class @IfcTypeObject : IfcObjectDefinition, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcTypeObject>
 	{
-		#region IIfcTypeObject explicit implementation
-		IfcLabel? IIfcTypeObject.ApplicableOccurrence { 
- 
-			get { return @ApplicableOccurrence; } 
-			set { ApplicableOccurrence = value;}
-		}	
-		IItemSet<IIfcPropertySetDefinition> IIfcTypeObject.HasPropertySets { 
-			get { return new Common.Collections.ProxyItemSet<IfcPropertySetDefinition, IIfcPropertySetDefinition>( @HasPropertySets); } 
-		}	
-		 
-		IEnumerable<IIfcRelDefinesByType> IIfcTypeObject.ObjectTypeOf {  get { return @ObjectTypeOf; } }
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcTypeObject(IModel model, int label, bool activated) : base(model, label, activated)  

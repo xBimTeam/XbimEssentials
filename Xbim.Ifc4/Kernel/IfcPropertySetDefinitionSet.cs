@@ -10,19 +10,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
 
 namespace Xbim.Ifc4.Kernel
 {
 	[ExpressType("IfcPropertySetDefinitionSet", 996)]
-	[DefinedType(typeof(List<IfcPropertySetDefinition>))]
+	[DefinedType(typeof(List<IIfcPropertySetDefinition>))]
     // ReSharper disable once PartialTypeWithSinglePart
-	public partial struct IfcPropertySetDefinitionSet : IfcPropertySetDefinitionSelect, IExpressComplexType, System.IEquatable<List<IfcPropertySetDefinition>>
+	public partial struct IfcPropertySetDefinitionSet : IfcPropertySetDefinitionSelect, IExpressComplexType, System.IEquatable<List<IIfcPropertySetDefinition>>
 	{ 
-		private List<IfcPropertySetDefinition> _value;
+		private List<IIfcPropertySetDefinition> _value;
         
-		public static void Add(ref IfcPropertySetDefinitionSet comp, IfcPropertySetDefinition component)
+		public static void Add(ref IfcPropertySetDefinitionSet comp, IIfcPropertySetDefinition component)
         {
             if (comp._value == null)
                 comp.Initialise(component);
@@ -30,9 +31,9 @@ namespace Xbim.Ifc4.Kernel
                 comp._value.Add(component);
         }
 
-		private void Initialise(IfcPropertySetDefinition comp)
+		private void Initialise(IIfcPropertySetDefinition comp)
         {
-            _value = new List<IfcPropertySetDefinition>{ comp };
+            _value = new List<IIfcPropertySetDefinition>{ comp };
         }
 
 		public object Value
@@ -40,22 +41,22 @@ namespace Xbim.Ifc4.Kernel
             get { return _value; }
         }
 
-        public IfcPropertySetDefinitionSet(List<IfcPropertySetDefinition> val)
+        public IfcPropertySetDefinitionSet(List<IIfcPropertySetDefinition> val)
         {
 			//copy items into new inner list
-			_value = new List<IfcPropertySetDefinition>(val);
+			_value = new List<IIfcPropertySetDefinition>(val);
         }
 
 
-        public static implicit operator IfcPropertySetDefinitionSet(List<IfcPropertySetDefinition> value)
+        public static implicit operator IfcPropertySetDefinitionSet(List<IIfcPropertySetDefinition> value)
         {
             return new IfcPropertySetDefinitionSet(value);
         }
 
-        public static implicit operator List<IfcPropertySetDefinition>(IfcPropertySetDefinitionSet obj)
+        public static implicit operator List<IIfcPropertySetDefinition>(IfcPropertySetDefinitionSet obj)
         {
 			//return copy so that underlying collection is not exposed
-			return new List<IfcPropertySetDefinition>(obj._value);
+			return new List<IIfcPropertySetDefinition>(obj._value);
 
         }
 
@@ -74,7 +75,7 @@ namespace Xbim.Ifc4.Kernel
             return System.Linq.Enumerable.SequenceEqual(((IfcPropertySetDefinitionSet) obj)._value, _value);
         }
 
-		public bool Equals(List<IfcPropertySetDefinition> other)
+		public bool Equals(List<IIfcPropertySetDefinition> other)
 	    {
 	        return this == other;
 	    }
@@ -100,8 +101,8 @@ namespace Xbim.Ifc4.Kernel
 			if (propIndex != 0)
 				throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
 			if (_value == null)
-				_value = new List<IfcPropertySetDefinition>();
-            _value.Add(value.EntityVal as IfcPropertySetDefinition);
+				_value = new List<IIfcPropertySetDefinition>();
+            _value.Add(value.EntityVal as IIfcPropertySetDefinition);
             
 		}
 		#endregion
@@ -110,7 +111,7 @@ namespace Xbim.Ifc4.Kernel
         System.Type IExpressValueType.UnderlyingSystemType { 
 			get 
 			{
-				return typeof(List<IfcPropertySetDefinition>);
+				return typeof(List<IIfcPropertySetDefinition>);
 			}
 		}
 		#endregion

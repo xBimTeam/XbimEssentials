@@ -37,7 +37,7 @@ namespace Xbim.Ifc4.GeometryResource
 	public  partial class @IfcCartesianTransformationOperator2D : IfcCartesianTransformationOperator, IInstantiableEntity, IIfcCartesianTransformationOperator2D, IContainsEntityReferences, IEquatable<@IfcCartesianTransformationOperator2D>
 	{
 		#region IIfcCartesianTransformationOperator2D explicit implementation
-		 
+		List<Common.Geometry.XbimVector3D> IIfcCartesianTransformationOperator2D.@U  { get { return new List<Common.Geometry.XbimVector3D>(@U); } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

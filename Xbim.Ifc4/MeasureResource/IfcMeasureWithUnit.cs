@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.MeasureResource
 			get { return @UnitComponent; } 
 			set { UnitComponent = value as IfcUnit;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

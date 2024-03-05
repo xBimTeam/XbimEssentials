@@ -13,46 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDefinitionResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcAnnotationSurface
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcAnnotationSurface : IIfcGeometricRepresentationItem
-	{
-		IIfcGeometricRepresentationItem @Item { get;  set; }
-		IIfcTextureCoordinate @TextureCoordinates { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDefinitionResource
 {
 	[ExpressType("IfcAnnotationSurface", 731)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IIfcAnnotationSurface, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationSurface>
+	public  partial class @IfcAnnotationSurface : IfcGeometricRepresentationItem, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcAnnotationSurface>
 	{
-		#region IIfcAnnotationSurface explicit implementation
-		IIfcGeometricRepresentationItem IIfcAnnotationSurface.Item { 
- 
- 
-			get { return @Item; } 
-			set { Item = value as IfcGeometricRepresentationItem;}
-		}	
-		IIfcTextureCoordinate IIfcAnnotationSurface.TextureCoordinates { 
- 
- 
-			get { return @TextureCoordinates; } 
-			set { TextureCoordinates = value as IfcTextureCoordinate;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcAnnotationSurface(IModel model, int label, bool activated) : base(model, label, activated)  

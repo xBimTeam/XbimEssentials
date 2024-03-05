@@ -64,7 +64,6 @@ namespace Xbim.Ifc4.RepresentationResource
 			get { return @UserDefinedTargetView; } 
 			set { UserDefinedTargetView = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
@@ -174,8 +173,8 @@ namespace Xbim.Ifc4.RepresentationResource
 				//## Overriding derived attribute TrueNorth getter
 			    if (ParentContext.TrueNorth != null)
 			        return ParentContext.TrueNorth;
-                //IfcConvertDirectionInto2D(SELF\IfcGeometricRepresentationContext.WorldCoordinateSystem.P[2]));
-			    var dir = new XbimVector3D(WorldCoordinateSystem.P[2].X, WorldCoordinateSystem.P[2].Y, double.NaN);			   
+				//IfcConvertDirectionInto2D(SELF\IfcGeometricRepresentationContext.WorldCoordinateSystem.P[2]));
+				var dir = (WorldCoordinateSystem?.Dim > 1) ? new XbimVector3D(WorldCoordinateSystem.P[1].X, WorldCoordinateSystem.P[1].Y, double.NaN) : new XbimVector3D(0, 1, double.NaN);
 			    return dir;
 			    //##
 			}

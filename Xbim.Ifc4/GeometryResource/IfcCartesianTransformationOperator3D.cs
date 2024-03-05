@@ -44,7 +44,7 @@ namespace Xbim.Ifc4.GeometryResource
 			get { return @Axis3; } 
 			set { Axis3 = value as IfcDirection;}
 		}	
-		 
+		List<Common.Geometry.XbimVector3D> IIfcCartesianTransformationOperator3D.@U  { get { return new List<Common.Geometry.XbimVector3D>(@U); } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

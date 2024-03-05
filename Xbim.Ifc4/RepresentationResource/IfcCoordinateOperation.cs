@@ -52,7 +52,6 @@ namespace Xbim.Ifc4.RepresentationResource
 			get { return @TargetCRS; } 
 			set { TargetCRS = value as IfcCoordinateReferenceSystem;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

@@ -12,38 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationDimensioningResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcDimensionCurveTerminator
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcDimensionCurveTerminator : IIfcTerminatorSymbol
-	{
-		IfcDimensionExtentUsage @Role { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationDimensioningResource
 {
 	[ExpressType("IfcDimensionCurveTerminator", 744)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcDimensionCurveTerminator : IfcTerminatorSymbol, IInstantiableEntity, IIfcDimensionCurveTerminator, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCurveTerminator>
+	public  partial class @IfcDimensionCurveTerminator : IfcTerminatorSymbol, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcDimensionCurveTerminator>
 	{
-		#region IIfcDimensionCurveTerminator explicit implementation
-		IfcDimensionExtentUsage IIfcDimensionCurveTerminator.Role { 
- 
-			get { return @Role; } 
-			set { Role = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcDimensionCurveTerminator(IModel model, int label, bool activated) : base(model, label, activated)  

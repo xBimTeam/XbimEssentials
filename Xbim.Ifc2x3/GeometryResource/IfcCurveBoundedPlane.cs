@@ -12,50 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.GeometryResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcCurveBoundedPlane
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcCurveBoundedPlane : IIfcBoundedSurface
-	{
-		IIfcPlane @BasisSurface { get;  set; }
-		IIfcCurve @OuterBoundary { get;  set; }
-		IItemSet<IIfcCurve> @InnerBoundaries { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.GeometryResource
 {
 	[ExpressType("IfcCurveBoundedPlane", 334)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcCurveBoundedPlane : IfcBoundedSurface, IInstantiableEntity, IIfcCurveBoundedPlane, IContainsEntityReferences, IEquatable<@IfcCurveBoundedPlane>
+	public  partial class @IfcCurveBoundedPlane : IfcBoundedSurface, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcCurveBoundedPlane>
 	{
-		#region IIfcCurveBoundedPlane explicit implementation
-		IIfcPlane IIfcCurveBoundedPlane.BasisSurface { 
- 
- 
-			get { return @BasisSurface; } 
-			set { BasisSurface = value as IfcPlane;}
-		}	
-		IIfcCurve IIfcCurveBoundedPlane.OuterBoundary { 
- 
- 
-			get { return @OuterBoundary; } 
-			set { OuterBoundary = value as IfcCurve;}
-		}	
-		IItemSet<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries { 
-			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerBoundaries); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCurveBoundedPlane(IModel model, int label, bool activated) : base(model, label, activated)  

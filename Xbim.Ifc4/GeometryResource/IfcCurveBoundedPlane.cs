@@ -54,7 +54,6 @@ namespace Xbim.Ifc4.GeometryResource
 		IItemSet<IIfcCurve> IIfcCurveBoundedPlane.InnerBoundaries { 
 			get { return new Common.Collections.ProxyItemSet<IfcCurve, IIfcCurve>( @InnerBoundaries); } 
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

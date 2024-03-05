@@ -13,43 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProductExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelCoversBldgElements
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelCoversBldgElements : IIfcRelConnects
-	{
-		IIfcElement @RelatingBuildingElement { get;  set; }
-		IItemSet<IIfcCovering> @RelatedCoverings { get; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProductExtension
 {
 	[ExpressType("IfcRelCoversBldgElements", 24)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IIfcRelCoversBldgElements, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversBldgElements>
+	public  partial class @IfcRelCoversBldgElements : IfcRelConnects, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelCoversBldgElements>
 	{
-		#region IIfcRelCoversBldgElements explicit implementation
-		IIfcElement IIfcRelCoversBldgElements.RelatingBuildingElement { 
- 
- 
-			get { return @RelatingBuildingElement; } 
-			set { RelatingBuildingElement = value as IfcElement;}
-		}	
-		IItemSet<IIfcCovering> IIfcRelCoversBldgElements.RelatedCoverings { 
-			get { return new Common.Collections.ProxyItemSet<IfcCovering, IIfcCovering>( @RelatedCoverings); } 
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelCoversBldgElements(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -52,7 +52,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get { return @Angle; } 
 			set { Angle = value;}
 		}	
-		 
+		Common.Geometry.XbimLine IIfcRevolvedAreaSolid.@AxisLine  { get { return @AxisLine; } }
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

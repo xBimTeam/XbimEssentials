@@ -14,50 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.ProcessExtension;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProcedure
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProcedure : IIfcProcess
-	{
-		IfcIdentifier @ProcedureID { get;  set; }
-		IfcProcedureTypeEnum @ProcedureType { get;  set; }
-		IfcLabel? @UserDefinedProcedureType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.ProcessExtension
 {
 	[ExpressType("IfcProcedure", 294)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IIfcProcedure, IContainsEntityReferences, IEquatable<@IfcProcedure>
+	public  partial class @IfcProcedure : IfcProcess, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProcedure>
 	{
-		#region IIfcProcedure explicit implementation
-		IfcIdentifier IIfcProcedure.ProcedureID { 
- 
-			get { return @ProcedureID; } 
-			set { ProcedureID = value;}
-		}	
-		IfcProcedureTypeEnum IIfcProcedure.ProcedureType { 
- 
-			get { return @ProcedureType; } 
-			set { ProcedureType = value;}
-		}	
-		IfcLabel? IIfcProcedure.UserDefinedProcedureType { 
- 
-			get { return @UserDefinedProcedureType; } 
-			set { UserDefinedProcedureType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProcedure(IModel model, int label, bool activated) : base(model, label, activated)  

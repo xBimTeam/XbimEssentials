@@ -14,46 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.FacilitiesMgmtDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcConditionCriterion
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcConditionCriterion : IIfcControl
-	{
-		IIfcConditionCriterionSelect @Criterion { get;  set; }
-		IIfcDateTimeSelect @CriterionDateTime { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.FacilitiesMgmtDomain
 {
 	[ExpressType("IfcConditionCriterion", 688)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IIfcConditionCriterion, IContainsEntityReferences, IEquatable<@IfcConditionCriterion>
+	public  partial class @IfcConditionCriterion : IfcControl, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcConditionCriterion>
 	{
-		#region IIfcConditionCriterion explicit implementation
-		IIfcConditionCriterionSelect IIfcConditionCriterion.Criterion { 
- 
- 
-			get { return @Criterion; } 
-			set { Criterion = value as IfcConditionCriterionSelect;}
-		}	
-		IIfcDateTimeSelect IIfcConditionCriterion.CriterionDateTime { 
- 
- 
-			get { return @CriterionDateTime; } 
-			set { CriterionDateTime = value as IfcDateTimeSelect;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcConditionCriterion(IModel model, int label, bool activated) : base(model, label, activated)  

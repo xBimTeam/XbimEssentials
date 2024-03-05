@@ -13,50 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcSlippageConnectionCondition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcSlippageConnectionCondition : IIfcStructuralConnectionCondition
-	{
-		IfcLengthMeasure? @SlippageX { get;  set; }
-		IfcLengthMeasure? @SlippageY { get;  set; }
-		IfcLengthMeasure? @SlippageZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcSlippageConnectionCondition", 638)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IIfcSlippageConnectionCondition, IEquatable<@IfcSlippageConnectionCondition>
+	public  partial class @IfcSlippageConnectionCondition : IfcStructuralConnectionCondition, IInstantiableEntity, IEquatable<@IfcSlippageConnectionCondition>
 	{
-		#region IIfcSlippageConnectionCondition explicit implementation
-		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageX { 
- 
-			get { return @SlippageX; } 
-			set { SlippageX = value;}
-		}	
-		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageY { 
- 
-			get { return @SlippageY; } 
-			set { SlippageY = value;}
-		}	
-		IfcLengthMeasure? IIfcSlippageConnectionCondition.SlippageZ { 
- 
-			get { return @SlippageZ; } 
-			set { SlippageZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcSlippageConnectionCondition(IModel model, int label, bool activated) : base(model, label, activated)  

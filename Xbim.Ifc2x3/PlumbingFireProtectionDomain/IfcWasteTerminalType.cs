@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PlumbingFireProtectionDomain;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcWasteTerminalType
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcWasteTerminalType : IIfcFlowTerminalType
-	{
-		IfcWasteTerminalTypeEnum @PredefinedType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PlumbingFireProtectionDomain
 {
 	[ExpressType("IfcWasteTerminalType", 295)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcWasteTerminalType : IfcFlowTerminalType, IInstantiableEntity, IIfcWasteTerminalType, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWasteTerminalType>
+	public  partial class @IfcWasteTerminalType : IfcFlowTerminalType, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcWasteTerminalType>
 	{
-		#region IIfcWasteTerminalType explicit implementation
-		IfcWasteTerminalTypeEnum IIfcWasteTerminalType.PredefinedType { 
- 
-			get { return @PredefinedType; } 
-			set { PredefinedType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcWasteTerminalType(IModel model, int label, bool activated) : base(model, label, activated)  

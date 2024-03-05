@@ -65,7 +65,6 @@ namespace Xbim.Ifc4.UtilityResource
 			get { return @ApplicationIdentifier; } 
 			set { ApplicationIdentifier = value;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

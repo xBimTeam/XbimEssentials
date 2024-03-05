@@ -13,32 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedFacilitiesElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelOccupiesSpaces
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelOccupiesSpaces : IIfcRelAssignsToActor
-	{
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedFacilitiesElements
 {
 	[ExpressType("IfcRelOccupiesSpaces", 324)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRelOccupiesSpaces : IfcRelAssignsToActor, IInstantiableEntity, IIfcRelOccupiesSpaces, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelOccupiesSpaces>
+	public  partial class @IfcRelOccupiesSpaces : IfcRelAssignsToActor, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRelOccupiesSpaces>
 	{
-		#region IIfcRelOccupiesSpaces explicit implementation
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelOccupiesSpaces(IModel model, int label, bool activated) : base(model, label, activated)  

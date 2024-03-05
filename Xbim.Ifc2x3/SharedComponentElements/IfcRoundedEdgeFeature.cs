@@ -13,38 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.SharedComponentElements;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRoundedEdgeFeature
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRoundedEdgeFeature : IIfcEdgeFeature
-	{
-		IfcPositiveLengthMeasure? @Radius { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.SharedComponentElements
 {
 	[ExpressType("IfcRoundedEdgeFeature", 766)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IIfcRoundedEdgeFeature, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoundedEdgeFeature>
+	public  partial class @IfcRoundedEdgeFeature : IfcEdgeFeature, IInstantiableEntity, IContainsEntityReferences, IContainsIndexedReferences, IEquatable<@IfcRoundedEdgeFeature>
 	{
-		#region IIfcRoundedEdgeFeature explicit implementation
-		IfcPositiveLengthMeasure? IIfcRoundedEdgeFeature.Radius { 
- 
-			get { return @Radius; } 
-			set { Radius = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRoundedEdgeFeature(IModel model, int label, bool activated) : base(model, label, activated)  

@@ -14,50 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.PresentationResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcColourRgb
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcColourRgb : IIfcColourSpecification, IfcColourOrFactor
-	{
-		IfcNormalisedRatioMeasure @Red { get;  set; }
-		IfcNormalisedRatioMeasure @Green { get;  set; }
-		IfcNormalisedRatioMeasure @Blue { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.PresentationResource
 {
 	[ExpressType("IfcColourRgb", 27)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IIfcColourRgb, IEquatable<@IfcColourRgb>
+	public  partial class @IfcColourRgb : IfcColourSpecification, IInstantiableEntity, IfcColourOrFactor, IEquatable<@IfcColourRgb>
 	{
-		#region IIfcColourRgb explicit implementation
-		IfcNormalisedRatioMeasure IIfcColourRgb.Red { 
- 
-			get { return @Red; } 
-			set { Red = value;}
-		}	
-		IfcNormalisedRatioMeasure IIfcColourRgb.Green { 
- 
-			get { return @Green; } 
-			set { Green = value;}
-		}	
-		IfcNormalisedRatioMeasure IIfcColourRgb.Blue { 
- 
-			get { return @Blue; } 
-			set { Blue = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcColourRgb(IModel model, int label, bool activated) : base(model, label, activated)  

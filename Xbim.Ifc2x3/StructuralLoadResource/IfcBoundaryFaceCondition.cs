@@ -13,50 +13,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.StructuralLoadResource;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcBoundaryFaceCondition
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcBoundaryFaceCondition : IIfcBoundaryCondition
-	{
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaX { get;  set; }
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaY { get;  set; }
-		IfcModulusOfSubgradeReactionMeasure? @LinearStiffnessByAreaZ { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.StructuralLoadResource
 {
 	[ExpressType("IfcBoundaryFaceCondition", 674)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IIfcBoundaryFaceCondition, IEquatable<@IfcBoundaryFaceCondition>
+	public  partial class @IfcBoundaryFaceCondition : IfcBoundaryCondition, IInstantiableEntity, IEquatable<@IfcBoundaryFaceCondition>
 	{
-		#region IIfcBoundaryFaceCondition explicit implementation
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaX { 
- 
-			get { return @LinearStiffnessByAreaX; } 
-			set { LinearStiffnessByAreaX = value;}
-		}	
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaY { 
- 
-			get { return @LinearStiffnessByAreaY; } 
-			set { LinearStiffnessByAreaY = value;}
-		}	
-		IfcModulusOfSubgradeReactionMeasure? IIfcBoundaryFaceCondition.LinearStiffnessByAreaZ { 
- 
-			get { return @LinearStiffnessByAreaZ; } 
-			set { LinearStiffnessByAreaZ = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcBoundaryFaceCondition(IModel model, int label, bool activated) : base(model, label, activated)  

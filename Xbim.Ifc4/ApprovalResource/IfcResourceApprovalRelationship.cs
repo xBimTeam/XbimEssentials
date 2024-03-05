@@ -48,7 +48,6 @@ namespace Xbim.Ifc4.ApprovalResource
 			get { return @RelatingApproval; } 
 			set { RelatingApproval = value as IfcApproval;}
 		}	
-		 
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area

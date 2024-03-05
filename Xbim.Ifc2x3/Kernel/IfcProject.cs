@@ -14,55 +14,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcProject
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcProject : IIfcObject
-	{
-		IfcLabel? @LongName { get;  set; }
-		IfcLabel? @Phase { get;  set; }
-		IItemSet<IIfcRepresentationContext> @RepresentationContexts { get; }
-		IIfcUnitAssignment @UnitsInContext { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcProject", 204)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public  partial class @IfcProject : IfcObject, IInstantiableEntity, IIfcProject, IContainsEntityReferences, IEquatable<@IfcProject>
+	public  partial class @IfcProject : IfcObject, IInstantiableEntity, IContainsEntityReferences, IEquatable<@IfcProject>
 	{
-		#region IIfcProject explicit implementation
-		IfcLabel? IIfcProject.LongName { 
- 
-			get { return @LongName; } 
-			set { LongName = value;}
-		}	
-		IfcLabel? IIfcProject.Phase { 
- 
-			get { return @Phase; } 
-			set { Phase = value;}
-		}	
-		IItemSet<IIfcRepresentationContext> IIfcProject.RepresentationContexts { 
-			get { return new Common.Collections.ProxyItemSet<IfcRepresentationContext, IIfcRepresentationContext>( @RepresentationContexts); } 
-		}	
-		IIfcUnitAssignment IIfcProject.UnitsInContext { 
- 
- 
-			get { return @UnitsInContext; } 
-			set { UnitsInContext = value as IfcUnitAssignment;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcProject(IModel model, int label, bool activated) : base(model, label, activated)  

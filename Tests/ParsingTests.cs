@@ -16,7 +16,7 @@ using Xbim.IO.Step21;
 namespace Xbim.Essentials.Tests
 {
     [TestClass]
-    public class ParsingTests
+    public class ParsingTests : TestBase
     {
         private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
         private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
@@ -298,7 +298,7 @@ namespace Xbim.Essentials.Tests
         {
             using (var strm = File.OpenRead("TestFiles\\Badly formed Ifc file.ifc"))
             {
-                var scanner = new Scanner(strm);
+                var scanner = new Scanner(strm, LoggerFactory);
                 int tok;
                 do
                 {
@@ -810,6 +810,14 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
+        public void Parsing_large_entity_label_doesnt_loop()
+        {
+            using var model = new IO.Memory.MemoryModel(ef2x3);
+            var errCount = model.LoadStep21("TestFiles\\Large_entity_label.ifc");
+            Assert.AreEqual(1, errCount);
+        }
+
+        [TestMethod]
         [Ignore("Slow test")]
         // this is a meta tast of the large stream mock-up
         public void LargeStreamTest()
@@ -862,7 +870,8 @@ namespace Xbim.Essentials.Tests
         {
             internal readonly Stream inner;
             internal const long offset = int.MaxValue;
-            private const string line = "                                                                                                    \r\n";
+            private static readonly byte[] line = "                                                                                                    \r\n"
+                .Select(c => Convert.ToByte(c)).ToArray();
 
             public LargeStream(Stream stream)
             {
@@ -895,7 +904,7 @@ namespace Xbim.Essentials.Tests
                 if ((Position + count) < offset)
                 {
                     for (int i = 0; i < count; i++)
-                        buffer[bufferOffset + i] = (byte)line[(int)((Position + i) % line.Length)];
+                        buffer[bufferOffset + i] = line[((Position + i) % line.Length)];
 
                     Position += count;
                     return count;

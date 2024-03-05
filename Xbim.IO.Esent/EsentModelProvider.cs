@@ -1,14 +1,36 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Configuration;
 using Xbim.Common.Step21;
+using System.Runtime.InteropServices;
 
 namespace Xbim.IO.Esent
 {
     public class EsentModelProvider : BaseModelProvider
     {
+
+        private readonly ILoggerFactory _loggerFactory;
+        private readonly ILogger _logger;
+
+        public EsentModelProvider() : this(default)
+        {
+
+        }
+
+        public EsentModelProvider(ILoggerFactory loggerFactory)
+        {
+            _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _logger = _loggerFactory.CreateLogger<EsentModelProvider>();
+            if (!IsEsentSupported())
+            {
+                _logger.LogWarning("EsentModel is only compatible with Windows operating systems. Please use another ModelProvider.");
+            }
+        }
+
         public override StoreCapabilities Capabilities => new StoreCapabilities(isTransient: false, supportsTransactions: true);
 
         public override void Close(IModel model)
@@ -61,6 +83,8 @@ namespace Xbim.IO.Esent
             var schemaIdentifier = string.Join(", ", schemas);
             foreach (var schema in schemas)
             {
+                if (schema.StartsWith("Ifc4x3", StringComparison.OrdinalIgnoreCase))
+                    return XbimSchemaVersion.Ifc4x3;
                 if (string.Compare(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) == 0 ||
                     schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
                     return XbimSchemaVersion.Ifc4;
@@ -195,7 +219,7 @@ namespace Xbim.IO.Esent
             }
             // Create a new Esent model for this Model => Model copy
             var factory = GetFactory(model.SchemaVersion);
-            using (var esentDb = new EsentModel(factory))
+            using (var esentDb = new EsentModel(factory, _loggerFactory))
             {
                 esentDb.CreateFrom(model, fileName, progDelegate);
                 esentDb.Close();
@@ -205,7 +229,7 @@ namespace Xbim.IO.Esent
         private EsentModel CreateEsentModel(XbimSchemaVersion schema, int codePageOverride)
         {
             var factory = GetFactory(schema);
-            var model = new EsentModel(factory)
+            var model = new EsentModel(factory, _loggerFactory)
             {
                 CodePageOverride = codePageOverride
             };
@@ -213,5 +237,10 @@ namespace Xbim.IO.Esent
         }
 
         public string DatabaseFileName { get; set; }
+
+        private static bool IsEsentSupported()
+        {
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        }
     }
 }

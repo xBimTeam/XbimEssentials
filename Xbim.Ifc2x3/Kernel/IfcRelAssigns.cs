@@ -12,42 +12,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc2x3.Interfaces;
 using Xbim.Ifc2x3.Kernel;
 //## Custom using statements
 //##
 
-namespace Xbim.Ifc2x3.Interfaces
-{
-	/// <summary>
-    /// Readonly interface for IfcRelAssigns
-    /// </summary>
-	// ReSharper disable once PartialTypeWithSinglePart
-	public partial interface @IIfcRelAssigns : IIfcRelationship
-	{
-		IItemSet<IIfcObjectDefinition> @RelatedObjects { get; }
-		IfcObjectTypeEnum? @RelatedObjectsType { get;  set; }
-	
-	}
-}
 
 namespace Xbim.Ifc2x3.Kernel
 {
 	[ExpressType("IfcRelAssigns", 10)]
 	// ReSharper disable once PartialTypeWithSinglePart
-	public abstract partial class @IfcRelAssigns : IfcRelationship, IIfcRelAssigns, IEquatable<@IfcRelAssigns>
+	public abstract partial class @IfcRelAssigns : IfcRelationship, IEquatable<@IfcRelAssigns>
 	{
-		#region IIfcRelAssigns explicit implementation
-		IItemSet<IIfcObjectDefinition> IIfcRelAssigns.RelatedObjects { 
-			get { return new Common.Collections.ProxyItemSet<IfcObjectDefinition, IIfcObjectDefinition>( @RelatedObjects); } 
-		}	
-		IfcObjectTypeEnum? IIfcRelAssigns.RelatedObjectsType { 
- 
-			get { return @RelatedObjectsType; } 
-			set { RelatedObjectsType = value;}
-		}	
-		 
-		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcRelAssigns(IModel model, int label, bool activated) : base(model, label, activated)  

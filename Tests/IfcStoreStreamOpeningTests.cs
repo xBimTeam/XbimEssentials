@@ -3,6 +3,8 @@ using Xbim.Ifc;
 using System.IO;
 using Xbim.IO;
 using Xbim.Common.Step21;
+using Xbim.Common.Exceptions;
+using FluentAssertions;
 
 namespace Xbim.Essentials.Tests
 {
@@ -12,9 +14,9 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void OpenStreamTest()
         {
-            const string ifcPath =  "TestFiles\\4walls1floorSite.ifc";
-            const string xmlPath =  "TestFiles\\OpenStreamTest.ifcxml";
-            const string zipPath =  "TestFiles\\OpenStreamTest.ifczip";
+            const string ifcPath = "TestFiles\\4walls1floorSite.ifc";
+            const string xmlPath = "TestFiles\\OpenStreamTest.ifcxml";
+            const string zipPath = "TestFiles\\OpenStreamTest.ifczip";
             const string xbimPath = "TestFiles\\OpenStreamTest.xbim";
 
             var instCount = 0L;
@@ -91,6 +93,48 @@ namespace Xbim.Essentials.Tests
                     model.Close();
                 }
             }
+        }
+
+        [TestMethod]
+        public void CanOpenStreamInferringSchemaFromNonSeekableIfc2x3()
+        {
+            AssertCanOpenFromStream(@"TestFiles/SmallModelIfc2x3.ifc", XbimSchemaVersion.Ifc2X3);
+        }
+
+        [TestMethod]
+        public void CanOpenStreamInferringSchemaFromNonSeekableIfc4()
+        {
+            AssertCanOpenFromStream(@"TestFiles/SampleHouse4.ifc", XbimSchemaVersion.Ifc4);
+        }
+
+        [TestMethod]
+        public void CanOpenStreamInferringSchemaFromNonSeekableIfc4x3()
+        {
+            AssertCanOpenFromStream(@"TestFiles/IFC4x3/test1.ifc", XbimSchemaVersion.Ifc4x3);
+        }
+
+        private void AssertCanOpenFromStream(string ifcPath,  XbimSchemaVersion expectedVersion)
+        {
+            using var fileStream = File.Open(ifcPath, FileMode.Open);
+            using var nonseekableStream = new NonSeekableStream(fileStream);
+
+            using var model = IfcStore.Open(nonseekableStream, StorageType.Ifc, XbimModelType.MemoryModel);
+            Assert.AreNotEqual(0, model.Instances.Count);
+            Assert.AreEqual(expectedVersion, model.SchemaVersion);
+        }
+
+
+        [TestMethod]
+        public void SchemaInferenceThrowsWhenBufferOverflowed()
+        {
+            string ifcPath = @"TestFiles/SmallModelIfc2x3.ifc";
+            using var fileStream = File.Open(ifcPath, FileMode.Open);
+            using var nonseekableStream = new NonSeekableStream(fileStream);
+            
+            var bufferSize = 1; // 1 byte buffer
+            var ex = Assert.ThrowsException<XbimException>(() => IfcStore.Open(nonseekableStream, StorageType.Ifc, XbimModelType.MemoryModel, streamBufferSize: bufferSize));
+            
+            ex.Message.Should().StartWith("Cannot infer Schema for this model since the header size (");
         }
     }
 }

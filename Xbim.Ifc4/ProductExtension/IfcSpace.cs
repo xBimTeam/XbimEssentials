@@ -52,7 +52,6 @@ namespace Xbim.Ifc4.ProductExtension
 			get { return @ElevationWithFlooring; } 
 			set { ElevationWithFlooring = value;}
 		}	
-		 
 		IEnumerable<IIfcRelCoversSpaces> IIfcSpace.HasCoverings {  get { return @HasCoverings; } }
 		IEnumerable<IIfcRelSpaceBoundary> IIfcSpace.BoundedBy {  get { return @BoundedBy; } }
 		#endregion
