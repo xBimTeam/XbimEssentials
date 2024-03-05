@@ -18,11 +18,11 @@ namespace Xbim.Ifc4x3.GeometricModelResource
     // ReSharper disable once PartialTypeWithSinglePart
 	public partial interface IfcGeometricSetSelect : IExpressSelectType, IPersistEntity
 	{
-        #region Custom code for a select
-        //## Custom code for a select
+		#region Custom code for a select
+		//## Custom code for a select
         IfcDimensionCount Dim { get; }
         //##
-        #endregion
-    }
+		#endregion
+	}
 }
 

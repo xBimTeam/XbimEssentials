@@ -5,17 +5,6 @@ namespace Xbim.Ifc4x3.GeometryResource
 {
     public partial class IfcCartesianPoint
     {
-        [EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-        public override IfcDimensionCount @Dim
-        {
-            get
-            {
-                //## Getter for Dim
-                return Coordinates.Count;
-                //##
-            }
-        }
-
         public double X
         {
             get

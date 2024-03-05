@@ -35,13 +35,12 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-		public virtual IfcDimensionCount @Dim 
+		public IfcDimensionCount @Dim 
 		{
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
+				return Dimension;
 				//##
 			}
 		}
@@ -71,24 +70,21 @@ namespace Xbim.Ifc4x3.GeometryResource
 			get
             {
 				if (this is IfcCartesianPoint cp)
-					return cp.Dim;
+					return cp.Coordinates.Count;
 				else if (this is IfcPointByDistanceExpression pbde)
-					return pbde.Dim;
+					return pbde.BasisCurve.Dim;
 				else if (this is IfcPointOnCurve poc)
-					return poc.Dim;
+					return poc.BasisCurve.Dim;
 				else if (this is IfcPointOnSurface pos)
-					return pos.Dim;
+					return pos.BasisSurface.Dim;
 				else throw new XbimException("Unexpected point type");
             }
         }
-        //##
-
-        //## Custom code
         /// <summary>
         /// This is always overriden in specific non-abstract classes
         /// </summary>
         IfcDimensionCount IfcGeometricSetSelect.Dim { get { return 0; } }
         //##
-        #endregion
-    }
+		#endregion
+	}
 }

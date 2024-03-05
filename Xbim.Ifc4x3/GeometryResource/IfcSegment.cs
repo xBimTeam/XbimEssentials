@@ -53,13 +53,14 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
-		public virtual IfcDimensionCount @Dim 
+		public IfcDimensionCount @Dim 
 		{
 			get 
 			{
 				//## Getter for Dim
-				//TODO: Implement getter for derived attribute Dim
-				throw new NotImplementedException();
+				if (this is IfcCurveSegment cs) return cs.ParentCurve.Dim;
+				if (this is IfcCompositeCurveSegment ccs) return ccs.ParentCurve.Dim;
+				throw new NotSupportedException($"Unexpected segment type {GetType().Name}");
 				//##
 			}
 		}

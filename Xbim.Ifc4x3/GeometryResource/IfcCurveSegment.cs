@@ -146,14 +146,11 @@ namespace Xbim.Ifc4x3.GeometryResource
 					yield return @ParentCurve;
 			}
 		}
-        #endregion
+		#endregion
 
-        #region Custom code (will survive code regeneration)
-        //## Custom code
-
-        public override IfcDimensionCount Dim => ParentCurve.Dim;
-
+		#region Custom code (will survive code regeneration)
+		//## Custom code
         //##
-        #endregion
-    }
+		#endregion
+	}
 }

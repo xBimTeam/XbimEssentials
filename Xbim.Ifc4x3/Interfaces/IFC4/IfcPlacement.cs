@@ -26,25 +26,29 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{ 
 			get
 			{
-				// TODO: Martin- I assume this is the right approach?
-				if(Location == null) return null;
-				if(Location is IfcCartesianPoint cart)
-				{
-					return cart;
-				}
-				return null;
+				//## Handle return of Location for which no match was found
+                // TODO: Martin- I assume this is the right approach?
+                if (Location == null) return null;
+                if (Location is IfcCartesianPoint cart)
+                {
+                    return cart;
+                }
+                return null;
+                //##
 			} 
 			set
 			{
+				//## Handle setting of Location for which no match was found
                 if (value == null)
                 {
                     Location = null;
                     return;
                 }
-                if(value is IfcCartesianPoint cp)
-				{
-					Location = cp;
-				}
+                if (value is IfcCartesianPoint cp)
+                {
+                    Location = cp;
+                }
+                //##
 				
 			}
 		}
