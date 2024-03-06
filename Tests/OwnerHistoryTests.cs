@@ -17,7 +17,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var txn = model.BeginTransaction())
                 {
-                    var create = new Create(model);
+                    var create = new EntityCreator(model);
                     var wall = create.Wall(w => w.Name = "New wall");
                     Assert.IsNotNull(wall.OwnerHistory);
                     Assert.IsTrue(model.Instances.Count > 1);
@@ -33,7 +33,7 @@ namespace Xbim.Essentials.Tests
                 model.ManageOwnerHistory = false;
                 using (var txn = model.BeginTransaction())
                 {
-                    var create = new Create(model);
+                    var create = new EntityCreator(model);
                     var wall = create.Wall(w => w.Name = "New wall");
                     Assert.IsNull(wall.OwnerHistory);
                     Assert.AreEqual(1, model.Instances.Count);
@@ -48,7 +48,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var txn = source.BeginTransaction())
                 {
-                    var create = new Create(source);
+                    var create = new EntityCreator(source);
                     source.ManageOwnerHistory = false;
                     create.Wall(w => w.Name = "New wall #1");
                     create.Wall(w => w.Name = "New wall #2");

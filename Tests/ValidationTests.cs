@@ -46,7 +46,7 @@ namespace Xbim.Essentials.Tests
             {
                 using (var txn = model.BeginTransaction())
                 {
-                    var c = new Create(model);
+                    var c = new EntityCreator(model);
                     var unit = c.ContextDependentUnit(u =>
                     {
                         u.UnitType = IfcUnitEnum.USERDEFINED;

@@ -13,3117 +13,4823 @@ using Xbim.Common.Step21;
 // ReSharper disable once CheckNamespace
 namespace Xbim.Ifc4.Interfaces
 {
-	public class Create: IDisposable
+	public class EntityCreator
 	{
 		private readonly IModel _model;
 		private readonly XbimSchemaVersion _version;
 
-		public Create(IModel model)
+		public EntityCreator(IModel model)
 		{
 			_model = model;
-
-            var stepSchema = model.Header.FileSchema;
-            foreach (var schema in stepSchema.Schemas)
-            {
-                if (string.Equals(schema, "Ifc4", StringComparison.OrdinalIgnoreCase) ||
-                    schema.StartsWith("Ifc4RC", StringComparison.OrdinalIgnoreCase))
-                    _version = XbimSchemaVersion.Ifc4;
-                else if (schema.StartsWith("Ifc2x", StringComparison.OrdinalIgnoreCase)) //return this as 2x3
-                    _version = XbimSchemaVersion.Ifc2X3;
-                else
-                    throw new NotSupportedException("Only IFC2x3 and IFC4 schemas are supported.");
-            }
+			_version = model.SchemaVersion;
 		}
 
 		public IIfcActionRequest ActionRequest(Action<IIfcActionRequest> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedMgmtElements.IfcActionRequest>(init);
-			return _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcActionRequest>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcActionRequest>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedMgmtElements.IfcActionRequest>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedMgmtElements.IfcActionRequest>(init),
+				_ => throw new NotSupportedException($"Type IfcActionRequest is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcActor Actor(Action<IIfcActor> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcActor>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcActor>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcActor>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcActor>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcActor>(init),
+				_ => throw new NotSupportedException($"Type IfcActor is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcActorRole ActorRole(Action<IIfcActorRole> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ActorResource.IfcActorRole>(init);
-			return _model.Instances.New<Ifc2x3.ActorResource.IfcActorRole>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ActorResource.IfcActorRole>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ActorResource.IfcActorRole>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ActorResource.IfcActorRole>(init),
+				_ => throw new NotSupportedException($"Type IfcActorRole is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcActuatorType ActuatorType(Action<IIfcActuatorType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<BuildingControlsDomain.IfcActuatorType>(init);
-			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcActuatorType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcActuatorType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.BuildingControlsDomain.IfcActuatorType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.BuildingControlsDomain.IfcActuatorType>(init),
+				_ => throw new NotSupportedException($"Type IfcActuatorType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAirTerminalBoxType AirTerminalBoxType(Action<IIfcAirTerminalBoxType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcAirTerminalBoxType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalBoxType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalBoxType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcAirTerminalBoxType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcAirTerminalBoxType>(init),
+				_ => throw new NotSupportedException($"Type IfcAirTerminalBoxType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAirTerminalType AirTerminalType(Action<IIfcAirTerminalType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcAirTerminalType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcAirTerminalType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcAirTerminalType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcAirTerminalType>(init),
+				_ => throw new NotSupportedException($"Type IfcAirTerminalType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAirToAirHeatRecoveryType AirToAirHeatRecoveryType(Action<IIfcAirToAirHeatRecoveryType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcAirToAirHeatRecoveryType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcAirToAirHeatRecoveryType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcAirToAirHeatRecoveryType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcAirToAirHeatRecoveryType>(init),
+				_ => throw new NotSupportedException($"Type IfcAirToAirHeatRecoveryType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAlarmType AlarmType(Action<IIfcAlarmType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<BuildingControlsDomain.IfcAlarmType>(init);
-			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcAlarmType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcAlarmType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.BuildingControlsDomain.IfcAlarmType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.BuildingControlsDomain.IfcAlarmType>(init),
+				_ => throw new NotSupportedException($"Type IfcAlarmType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAnnotation Annotation(Action<IIfcAnnotation> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcAnnotation>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcAnnotation>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcAnnotation>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcAnnotation>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcAnnotation>(init),
+				_ => throw new NotSupportedException($"Type IfcAnnotation is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAnnotationFillArea AnnotationFillArea(Action<IIfcAnnotationFillArea> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationDefinitionResource.IfcAnnotationFillArea>(init);
-			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcAnnotationFillArea>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcAnnotationFillArea>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationDefinitionResource.IfcAnnotationFillArea>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationDefinitionResource.IfcAnnotationFillArea>(init),
+				_ => throw new NotSupportedException($"Type IfcAnnotationFillArea is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcApplication Application(Action<IIfcApplication> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<UtilityResource.IfcApplication>(init);
-			return _model.Instances.New<Ifc2x3.UtilityResource.IfcApplication>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.UtilityResource.IfcApplication>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.UtilityResource.IfcApplication>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.UtilityResource.IfcApplication>(init),
+				_ => throw new NotSupportedException($"Type IfcApplication is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcApproval Approval(Action<IIfcApproval> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ApprovalResource.IfcApproval>(init);
-			return _model.Instances.New<Ifc2x3.ApprovalResource.IfcApproval>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ApprovalResource.IfcApproval>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ApprovalResource.IfcApproval>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ApprovalResource.IfcApproval>(init),
+				_ => throw new NotSupportedException($"Type IfcApproval is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcApprovalRelationship ApprovalRelationship(Action<IIfcApprovalRelationship> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ApprovalResource.IfcApprovalRelationship>(init);
-			return _model.Instances.New<Ifc2x3.ApprovalResource.IfcApprovalRelationship>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ApprovalResource.IfcApprovalRelationship>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ApprovalResource.IfcApprovalRelationship>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ApprovalResource.IfcApprovalRelationship>(init),
+				_ => throw new NotSupportedException($"Type IfcApprovalRelationship is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcArbitraryClosedProfileDef ArbitraryClosedProfileDef(Action<IIfcArbitraryClosedProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcArbitraryClosedProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryClosedProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcArbitraryClosedProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcArbitraryClosedProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcArbitraryClosedProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcArbitraryOpenProfileDef ArbitraryOpenProfileDef(Action<IIfcArbitraryOpenProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcArbitraryOpenProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryOpenProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryOpenProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcArbitraryOpenProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcArbitraryOpenProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcArbitraryOpenProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcArbitraryProfileDefWithVoids ArbitraryProfileDefWithVoids(Action<IIfcArbitraryProfileDefWithVoids> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcArbitraryProfileDefWithVoids>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcArbitraryProfileDefWithVoids>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcArbitraryProfileDefWithVoids>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcArbitraryProfileDefWithVoids>(init),
+				_ => throw new NotSupportedException($"Type IfcArbitraryProfileDefWithVoids is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAsset Asset(Action<IIfcAsset> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedFacilitiesElements.IfcAsset>(init);
-			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcAsset>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcAsset>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedFacilitiesElements.IfcAsset>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedFacilitiesElements.IfcAsset>(init),
+				_ => throw new NotSupportedException($"Type IfcAsset is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAsymmetricIShapeProfileDef AsymmetricIShapeProfileDef(Action<IIfcAsymmetricIShapeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcAsymmetricIShapeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcAsymmetricIShapeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcAsymmetricIShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcAsymmetricIShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcAsymmetricIShapeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcAsymmetricIShapeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAxis1Placement Axis1Placement(Action<IIfcAxis1Placement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcAxis1Placement>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis1Placement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis1Placement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcAxis1Placement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcAxis1Placement>(init),
+				_ => throw new NotSupportedException($"Type IfcAxis1Placement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAxis2Placement2D Axis2Placement2D(Action<IIfcAxis2Placement2D> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcAxis2Placement2D>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement2D>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement2D>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcAxis2Placement2D>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcAxis2Placement2D>(init),
+				_ => throw new NotSupportedException($"Type IfcAxis2Placement2D is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcAxis2Placement3D Axis2Placement3D(Action<IIfcAxis2Placement3D> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcAxis2Placement3D>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement3D>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcAxis2Placement3D>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcAxis2Placement3D>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcAxis2Placement3D>(init),
+				_ => throw new NotSupportedException($"Type IfcAxis2Placement3D is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBeam Beam(Action<IIfcBeam> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcBeam>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeam>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeam>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcBeam>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcBeam>(init),
+				_ => throw new NotSupportedException($"Type IfcBeam is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBeamType BeamType(Action<IIfcBeamType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcBeamType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeamType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcBeamType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcBeamType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcBeamType>(init),
+				_ => throw new NotSupportedException($"Type IfcBeamType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBlobTexture BlobTexture(Action<IIfcBlobTexture> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcBlobTexture>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcBlobTexture>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcBlobTexture>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcBlobTexture>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcBlobTexture>(init),
+				_ => throw new NotSupportedException($"Type IfcBlobTexture is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBlock Block(Action<IIfcBlock> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcBlock>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBlock>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBlock>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcBlock>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcBlock>(init),
+				_ => throw new NotSupportedException($"Type IfcBlock is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBoilerType BoilerType(Action<IIfcBoilerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcBoilerType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcBoilerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcBoilerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcBoilerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcBoilerType>(init),
+				_ => throw new NotSupportedException($"Type IfcBoilerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBooleanClippingResult BooleanClippingResult(Action<IIfcBooleanClippingResult> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcBooleanClippingResult>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanClippingResult>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanClippingResult>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcBooleanClippingResult>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcBooleanClippingResult>(init),
+				_ => throw new NotSupportedException($"Type IfcBooleanClippingResult is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBooleanResult BooleanResult(Action<IIfcBooleanResult> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcBooleanResult>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanResult>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBooleanResult>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcBooleanResult>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcBooleanResult>(init),
+				_ => throw new NotSupportedException($"Type IfcBooleanResult is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBoundaryEdgeCondition BoundaryEdgeCondition(Action<IIfcBoundaryEdgeCondition> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcBoundaryEdgeCondition>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryEdgeCondition>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryEdgeCondition>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcBoundaryEdgeCondition>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcBoundaryEdgeCondition>(init),
+				_ => throw new NotSupportedException($"Type IfcBoundaryEdgeCondition is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBoundaryFaceCondition BoundaryFaceCondition(Action<IIfcBoundaryFaceCondition> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcBoundaryFaceCondition>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryFaceCondition>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryFaceCondition>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcBoundaryFaceCondition>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcBoundaryFaceCondition>(init),
+				_ => throw new NotSupportedException($"Type IfcBoundaryFaceCondition is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBoundaryNodeCondition BoundaryNodeCondition(Action<IIfcBoundaryNodeCondition> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcBoundaryNodeCondition>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeCondition>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeCondition>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcBoundaryNodeCondition>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcBoundaryNodeCondition>(init),
+				_ => throw new NotSupportedException($"Type IfcBoundaryNodeCondition is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBoundaryNodeConditionWarping BoundaryNodeConditionWarping(Action<IIfcBoundaryNodeConditionWarping> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcBoundaryNodeConditionWarping>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeConditionWarping>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcBoundaryNodeConditionWarping>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcBoundaryNodeConditionWarping>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcBoundaryNodeConditionWarping>(init),
+				_ => throw new NotSupportedException($"Type IfcBoundaryNodeConditionWarping is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBoundingBox BoundingBox(Action<IIfcBoundingBox> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcBoundingBox>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoundingBox>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoundingBox>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcBoundingBox>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcBoundingBox>(init),
+				_ => throw new NotSupportedException($"Type IfcBoundingBox is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBoxedHalfSpace BoxedHalfSpace(Action<IIfcBoxedHalfSpace> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcBoxedHalfSpace>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcBoxedHalfSpace>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcBoxedHalfSpace>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcBoxedHalfSpace>(init),
+				_ => throw new NotSupportedException($"Type IfcBoxedHalfSpace is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBuilding Building(Action<IIfcBuilding> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcBuilding>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuilding>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcBuilding>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcBuilding>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcBuilding>(init),
+				_ => throw new NotSupportedException($"Type IfcBuilding is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBuildingElementPart BuildingElementPart(Action<IIfcBuildingElementPart> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedComponentElements.IfcBuildingElementPart>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcBuildingElementPart>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcBuildingElementPart>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedComponentElements.IfcBuildingElementPart>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedComponentElements.IfcBuildingElementPart>(init),
+				_ => throw new NotSupportedException($"Type IfcBuildingElementPart is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBuildingElementProxy BuildingElementProxy(Action<IIfcBuildingElementProxy> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcBuildingElementProxy>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxy>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxy>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcBuildingElementProxy>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcBuildingElementProxy>(init),
+				_ => throw new NotSupportedException($"Type IfcBuildingElementProxy is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBuildingElementProxyType BuildingElementProxyType(Action<IIfcBuildingElementProxyType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcBuildingElementProxyType>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxyType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingElementProxyType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcBuildingElementProxyType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcBuildingElementProxyType>(init),
+				_ => throw new NotSupportedException($"Type IfcBuildingElementProxyType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcBuildingStorey BuildingStorey(Action<IIfcBuildingStorey> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcBuildingStorey>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingStorey>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcBuildingStorey>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcBuildingStorey>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcBuildingStorey>(init),
+				_ => throw new NotSupportedException($"Type IfcBuildingStorey is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCShapeProfileDef CShapeProfileDef(Action<IIfcCShapeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcCShapeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCShapeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcCShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcCShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcCShapeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcCShapeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCableCarrierFittingType CableCarrierFittingType(Action<IIfcCableCarrierFittingType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcCableCarrierFittingType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierFittingType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierFittingType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcCableCarrierFittingType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcCableCarrierFittingType>(init),
+				_ => throw new NotSupportedException($"Type IfcCableCarrierFittingType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCableCarrierSegmentType CableCarrierSegmentType(Action<IIfcCableCarrierSegmentType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcCableCarrierSegmentType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableCarrierSegmentType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcCableCarrierSegmentType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcCableCarrierSegmentType>(init),
+				_ => throw new NotSupportedException($"Type IfcCableCarrierSegmentType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCableSegmentType CableSegmentType(Action<IIfcCableSegmentType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcCableSegmentType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableSegmentType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcCableSegmentType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcCableSegmentType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcCableSegmentType>(init),
+				_ => throw new NotSupportedException($"Type IfcCableSegmentType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCartesianPoint CartesianPoint(Action<IIfcCartesianPoint> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCartesianPoint>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianPoint>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianPoint>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCartesianPoint>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCartesianPoint>(init),
+				_ => throw new NotSupportedException($"Type IfcCartesianPoint is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCartesianTransformationOperator2D CartesianTransformationOperator2D(Action<IIfcCartesianTransformationOperator2D> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator2D>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2D>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCartesianTransformationOperator2D>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCartesianTransformationOperator2D>(init),
+				_ => throw new NotSupportedException($"Type IfcCartesianTransformationOperator2D is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCartesianTransformationOperator2DnonUniform CartesianTransformationOperator2DnonUniform(Action<IIfcCartesianTransformationOperator2DnonUniform> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator2DnonUniform>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2DnonUniform>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator2DnonUniform>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCartesianTransformationOperator2DnonUniform>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCartesianTransformationOperator2DnonUniform>(init),
+				_ => throw new NotSupportedException($"Type IfcCartesianTransformationOperator2DnonUniform is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCartesianTransformationOperator3D CartesianTransformationOperator3D(Action<IIfcCartesianTransformationOperator3D> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator3D>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3D>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCartesianTransformationOperator3D>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCartesianTransformationOperator3D>(init),
+				_ => throw new NotSupportedException($"Type IfcCartesianTransformationOperator3D is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCartesianTransformationOperator3DnonUniform CartesianTransformationOperator3DnonUniform(Action<IIfcCartesianTransformationOperator3DnonUniform> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCartesianTransformationOperator3DnonUniform>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3DnonUniform>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCartesianTransformationOperator3DnonUniform>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCartesianTransformationOperator3DnonUniform>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCartesianTransformationOperator3DnonUniform>(init),
+				_ => throw new NotSupportedException($"Type IfcCartesianTransformationOperator3DnonUniform is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCenterLineProfileDef CenterLineProfileDef(Action<IIfcCenterLineProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcCenterLineProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCenterLineProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcCenterLineProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcCenterLineProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcCenterLineProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcCenterLineProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcChillerType ChillerType(Action<IIfcChillerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcChillerType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcChillerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcChillerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcChillerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcChillerType>(init),
+				_ => throw new NotSupportedException($"Type IfcChillerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCircle Circle(Action<IIfcCircle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCircle>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCircle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCircle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCircle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCircle>(init),
+				_ => throw new NotSupportedException($"Type IfcCircle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCircleHollowProfileDef CircleHollowProfileDef(Action<IIfcCircleHollowProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcCircleHollowProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleHollowProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleHollowProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcCircleHollowProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcCircleHollowProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcCircleHollowProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCircleProfileDef CircleProfileDef(Action<IIfcCircleProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcCircleProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcCircleProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcCircleProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcCircleProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcCircleProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcClassification Classification(Action<IIfcClassification> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ExternalReferenceResource.IfcClassification>(init);
-			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassification>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassification>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ExternalReferenceResource.IfcClassification>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ExternalReferenceResource.IfcClassification>(init),
+				_ => throw new NotSupportedException($"Type IfcClassification is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcClassificationReference ClassificationReference(Action<IIfcClassificationReference> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ExternalReferenceResource.IfcClassificationReference>(init);
-			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassificationReference>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcClassificationReference>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ExternalReferenceResource.IfcClassificationReference>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ExternalReferenceResource.IfcClassificationReference>(init),
+				_ => throw new NotSupportedException($"Type IfcClassificationReference is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcClosedShell ClosedShell(Action<IIfcClosedShell> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcClosedShell>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcClosedShell>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcClosedShell>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcClosedShell>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcClosedShell>(init),
+				_ => throw new NotSupportedException($"Type IfcClosedShell is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCoilType CoilType(Action<IIfcCoilType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcCoilType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCoilType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcCoilType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcCoilType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcCoilType>(init),
+				_ => throw new NotSupportedException($"Type IfcCoilType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcColourRgb ColourRgb(Action<IIfcColourRgb> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcColourRgb>(init);
-			return _model.Instances.New<Ifc2x3.PresentationResource.IfcColourRgb>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationResource.IfcColourRgb>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcColourRgb>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcColourRgb>(init),
+				_ => throw new NotSupportedException($"Type IfcColourRgb is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcColumn Column(Action<IIfcColumn> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcColumn>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumn>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumn>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcColumn>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcColumn>(init),
+				_ => throw new NotSupportedException($"Type IfcColumn is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcColumnType ColumnType(Action<IIfcColumnType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcColumnType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumnType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcColumnType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcColumnType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcColumnType>(init),
+				_ => throw new NotSupportedException($"Type IfcColumnType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcComplexProperty ComplexProperty(Action<IIfcComplexProperty> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcComplexProperty>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcComplexProperty>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcComplexProperty>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcComplexProperty>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcComplexProperty>(init),
+				_ => throw new NotSupportedException($"Type IfcComplexProperty is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCompositeCurve CompositeCurve(Action<IIfcCompositeCurve> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCompositeCurve>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurve>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurve>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCompositeCurve>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCompositeCurve>(init),
+				_ => throw new NotSupportedException($"Type IfcCompositeCurve is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCompositeCurveSegment CompositeCurveSegment(Action<IIfcCompositeCurveSegment> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCompositeCurveSegment>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurveSegment>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCompositeCurveSegment>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCompositeCurveSegment>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCompositeCurveSegment>(init),
+				_ => throw new NotSupportedException($"Type IfcCompositeCurveSegment is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCompositeProfileDef CompositeProfileDef(Action<IIfcCompositeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcCompositeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcCompositeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcCompositeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcCompositeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcCompositeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcCompositeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCompressorType CompressorType(Action<IIfcCompressorType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcCompressorType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCompressorType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcCompressorType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcCompressorType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcCompressorType>(init),
+				_ => throw new NotSupportedException($"Type IfcCompressorType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCondenserType CondenserType(Action<IIfcCondenserType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcCondenserType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCondenserType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcCondenserType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcCondenserType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcCondenserType>(init),
+				_ => throw new NotSupportedException($"Type IfcCondenserType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConnectedFaceSet ConnectedFaceSet(Action<IIfcConnectedFaceSet> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcConnectedFaceSet>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcConnectedFaceSet>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcConnectedFaceSet>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcConnectedFaceSet>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcConnectedFaceSet>(init),
+				_ => throw new NotSupportedException($"Type IfcConnectedFaceSet is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConnectionCurveGeometry ConnectionCurveGeometry(Action<IIfcConnectionCurveGeometry> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcConnectionCurveGeometry>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionCurveGeometry>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionCurveGeometry>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcConnectionCurveGeometry>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcConnectionCurveGeometry>(init),
+				_ => throw new NotSupportedException($"Type IfcConnectionCurveGeometry is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConnectionPointEccentricity ConnectionPointEccentricity(Action<IIfcConnectionPointEccentricity> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcConnectionPointEccentricity>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointEccentricity>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointEccentricity>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcConnectionPointEccentricity>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcConnectionPointEccentricity>(init),
+				_ => throw new NotSupportedException($"Type IfcConnectionPointEccentricity is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConnectionPointGeometry ConnectionPointGeometry(Action<IIfcConnectionPointGeometry> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcConnectionPointGeometry>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointGeometry>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionPointGeometry>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcConnectionPointGeometry>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcConnectionPointGeometry>(init),
+				_ => throw new NotSupportedException($"Type IfcConnectionPointGeometry is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConnectionSurfaceGeometry ConnectionSurfaceGeometry(Action<IIfcConnectionSurfaceGeometry> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcConnectionSurfaceGeometry>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionSurfaceGeometry>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcConnectionSurfaceGeometry>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcConnectionSurfaceGeometry>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcConnectionSurfaceGeometry>(init),
+				_ => throw new NotSupportedException($"Type IfcConnectionSurfaceGeometry is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConstructionEquipmentResource ConstructionEquipmentResource(Action<IIfcConstructionEquipmentResource> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstructionMgmtDomain.IfcConstructionEquipmentResource>(init);
-			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionEquipmentResource>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionEquipmentResource>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstructionMgmtDomain.IfcConstructionEquipmentResource>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstructionMgmtDomain.IfcConstructionEquipmentResource>(init),
+				_ => throw new NotSupportedException($"Type IfcConstructionEquipmentResource is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConstructionMaterialResource ConstructionMaterialResource(Action<IIfcConstructionMaterialResource> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstructionMgmtDomain.IfcConstructionMaterialResource>(init);
-			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionMaterialResource>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionMaterialResource>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstructionMgmtDomain.IfcConstructionMaterialResource>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstructionMgmtDomain.IfcConstructionMaterialResource>(init),
+				_ => throw new NotSupportedException($"Type IfcConstructionMaterialResource is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConstructionProductResource ConstructionProductResource(Action<IIfcConstructionProductResource> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstructionMgmtDomain.IfcConstructionProductResource>(init);
-			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionProductResource>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcConstructionProductResource>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstructionMgmtDomain.IfcConstructionProductResource>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstructionMgmtDomain.IfcConstructionProductResource>(init),
+				_ => throw new NotSupportedException($"Type IfcConstructionProductResource is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcContextDependentUnit ContextDependentUnit(Action<IIfcContextDependentUnit> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcContextDependentUnit>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcContextDependentUnit>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcContextDependentUnit>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcContextDependentUnit>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcContextDependentUnit>(init),
+				_ => throw new NotSupportedException($"Type IfcContextDependentUnit is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcControllerType ControllerType(Action<IIfcControllerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<BuildingControlsDomain.IfcControllerType>(init);
-			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcControllerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcControllerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.BuildingControlsDomain.IfcControllerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.BuildingControlsDomain.IfcControllerType>(init),
+				_ => throw new NotSupportedException($"Type IfcControllerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcConversionBasedUnit ConversionBasedUnit(Action<IIfcConversionBasedUnit> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcConversionBasedUnit>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcConversionBasedUnit>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcConversionBasedUnit>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcConversionBasedUnit>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcConversionBasedUnit>(init),
+				_ => throw new NotSupportedException($"Type IfcConversionBasedUnit is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCooledBeamType CooledBeamType(Action<IIfcCooledBeamType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcCooledBeamType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCooledBeamType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcCooledBeamType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcCooledBeamType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcCooledBeamType>(init),
+				_ => throw new NotSupportedException($"Type IfcCooledBeamType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCoolingTowerType CoolingTowerType(Action<IIfcCoolingTowerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcCoolingTowerType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcCoolingTowerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcCoolingTowerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcCoolingTowerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcCoolingTowerType>(init),
+				_ => throw new NotSupportedException($"Type IfcCoolingTowerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCostItem CostItem(Action<IIfcCostItem> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedMgmtElements.IfcCostItem>(init);
-			return _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostItem>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostItem>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedMgmtElements.IfcCostItem>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedMgmtElements.IfcCostItem>(init),
+				_ => throw new NotSupportedException($"Type IfcCostItem is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCostSchedule CostSchedule(Action<IIfcCostSchedule> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedMgmtElements.IfcCostSchedule>(init);
-			return _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostSchedule>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcCostSchedule>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedMgmtElements.IfcCostSchedule>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedMgmtElements.IfcCostSchedule>(init),
+				_ => throw new NotSupportedException($"Type IfcCostSchedule is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCostValue CostValue(Action<IIfcCostValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<CostResource.IfcCostValue>(init);
-			return _model.Instances.New<Ifc2x3.CostResource.IfcCostValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.CostResource.IfcCostValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.CostResource.IfcCostValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.CostResource.IfcCostValue>(init),
+				_ => throw new NotSupportedException($"Type IfcCostValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCovering Covering(Action<IIfcCovering> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcCovering>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcCovering>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcCovering>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcCovering>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcCovering>(init),
+				_ => throw new NotSupportedException($"Type IfcCovering is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCoveringType CoveringType(Action<IIfcCoveringType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcCoveringType>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcCoveringType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcCoveringType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcCoveringType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcCoveringType>(init),
+				_ => throw new NotSupportedException($"Type IfcCoveringType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCrewResource CrewResource(Action<IIfcCrewResource> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstructionMgmtDomain.IfcCrewResource>(init);
-			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcCrewResource>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcCrewResource>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstructionMgmtDomain.IfcCrewResource>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstructionMgmtDomain.IfcCrewResource>(init),
+				_ => throw new NotSupportedException($"Type IfcCrewResource is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCsgSolid CsgSolid(Action<IIfcCsgSolid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcCsgSolid>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcCsgSolid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcCsgSolid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcCsgSolid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcCsgSolid>(init),
+				_ => throw new NotSupportedException($"Type IfcCsgSolid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurrencyRelationship CurrencyRelationship(Action<IIfcCurrencyRelationship> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<CostResource.IfcCurrencyRelationship>(init);
-			return _model.Instances.New<Ifc2x3.CostResource.IfcCurrencyRelationship>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.CostResource.IfcCurrencyRelationship>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.CostResource.IfcCurrencyRelationship>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.CostResource.IfcCurrencyRelationship>(init),
+				_ => throw new NotSupportedException($"Type IfcCurrencyRelationship is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurtainWall CurtainWall(Action<IIfcCurtainWall> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcCurtainWall>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWall>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWall>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcCurtainWall>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcCurtainWall>(init),
+				_ => throw new NotSupportedException($"Type IfcCurtainWall is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurtainWallType CurtainWallType(Action<IIfcCurtainWallType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcCurtainWallType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWallType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcCurtainWallType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcCurtainWallType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcCurtainWallType>(init),
+				_ => throw new NotSupportedException($"Type IfcCurtainWallType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurveBoundedPlane CurveBoundedPlane(Action<IIfcCurveBoundedPlane> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcCurveBoundedPlane>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcCurveBoundedPlane>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcCurveBoundedPlane>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcCurveBoundedPlane>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcCurveBoundedPlane>(init),
+				_ => throw new NotSupportedException($"Type IfcCurveBoundedPlane is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurveStyle CurveStyle(Action<IIfcCurveStyle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyle>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcCurveStyle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcCurveStyle>(init),
+				_ => throw new NotSupportedException($"Type IfcCurveStyle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurveStyleFont CurveStyleFont(Action<IIfcCurveStyleFont> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFont>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFont>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcCurveStyleFont>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcCurveStyleFont>(init),
+				_ => throw new NotSupportedException($"Type IfcCurveStyleFont is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurveStyleFontAndScaling CurveStyleFontAndScaling(Action<IIfcCurveStyleFontAndScaling> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFontAndScaling>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontAndScaling>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontAndScaling>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcCurveStyleFontAndScaling>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcCurveStyleFontAndScaling>(init),
+				_ => throw new NotSupportedException($"Type IfcCurveStyleFontAndScaling is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcCurveStyleFontPattern CurveStyleFontPattern(Action<IIfcCurveStyleFontPattern> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcCurveStyleFontPattern>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontPattern>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcCurveStyleFontPattern>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcCurveStyleFontPattern>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcCurveStyleFontPattern>(init),
+				_ => throw new NotSupportedException($"Type IfcCurveStyleFontPattern is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDamperType DamperType(Action<IIfcDamperType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcDamperType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDamperType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcDamperType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcDamperType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcDamperType>(init),
+				_ => throw new NotSupportedException($"Type IfcDamperType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDerivedProfileDef DerivedProfileDef(Action<IIfcDerivedProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcDerivedProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcDerivedProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcDerivedProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcDerivedProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcDerivedProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcDerivedProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDerivedUnit DerivedUnit(Action<IIfcDerivedUnit> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcDerivedUnit>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnit>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnit>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcDerivedUnit>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcDerivedUnit>(init),
+				_ => throw new NotSupportedException($"Type IfcDerivedUnit is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDerivedUnitElement DerivedUnitElement(Action<IIfcDerivedUnitElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcDerivedUnitElement>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnitElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcDerivedUnitElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcDerivedUnitElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcDerivedUnitElement>(init),
+				_ => throw new NotSupportedException($"Type IfcDerivedUnitElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDimensionalExponents DimensionalExponents(Action<IIfcDimensionalExponents> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcDimensionalExponents>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcDimensionalExponents>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcDimensionalExponents>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcDimensionalExponents>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcDimensionalExponents>(init),
+				_ => throw new NotSupportedException($"Type IfcDimensionalExponents is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDirection Direction(Action<IIfcDirection> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcDirection>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcDirection>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcDirection>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcDirection>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcDirection>(init),
+				_ => throw new NotSupportedException($"Type IfcDirection is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDiscreteAccessory DiscreteAccessory(Action<IIfcDiscreteAccessory> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedComponentElements.IfcDiscreteAccessory>(init);
-			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessory>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessory>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedComponentElements.IfcDiscreteAccessory>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedComponentElements.IfcDiscreteAccessory>(init),
+				_ => throw new NotSupportedException($"Type IfcDiscreteAccessory is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDiscreteAccessoryType DiscreteAccessoryType(Action<IIfcDiscreteAccessoryType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedComponentElements.IfcDiscreteAccessoryType>(init);
-			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessoryType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedComponentElements.IfcDiscreteAccessoryType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedComponentElements.IfcDiscreteAccessoryType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedComponentElements.IfcDiscreteAccessoryType>(init),
+				_ => throw new NotSupportedException($"Type IfcDiscreteAccessoryType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDistributionChamberElement DistributionChamberElement(Action<IIfcDistributionChamberElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionChamberElement>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcDistributionChamberElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcDistributionChamberElement>(init),
+				_ => throw new NotSupportedException($"Type IfcDistributionChamberElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDistributionChamberElementType DistributionChamberElementType(Action<IIfcDistributionChamberElementType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionChamberElementType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionChamberElementType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcDistributionChamberElementType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcDistributionChamberElementType>(init),
+				_ => throw new NotSupportedException($"Type IfcDistributionChamberElementType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDistributionControlElement DistributionControlElement(Action<IIfcDistributionControlElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionControlElement>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionControlElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionControlElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcDistributionControlElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcDistributionControlElement>(init),
+				_ => throw new NotSupportedException($"Type IfcDistributionControlElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDistributionElement DistributionElement(Action<IIfcDistributionElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcDistributionElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcDistributionElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcDistributionElement>(init),
+				_ => throw new NotSupportedException($"Type IfcDistributionElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDistributionElementType DistributionElementType(Action<IIfcDistributionElementType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcDistributionElementType>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElementType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcDistributionElementType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcDistributionElementType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcDistributionElementType>(init),
+				_ => throw new NotSupportedException($"Type IfcDistributionElementType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDistributionFlowElement DistributionFlowElement(Action<IIfcDistributionFlowElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionFlowElement>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionFlowElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionFlowElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcDistributionFlowElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcDistributionFlowElement>(init),
+				_ => throw new NotSupportedException($"Type IfcDistributionFlowElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDistributionPort DistributionPort(Action<IIfcDistributionPort> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcDistributionPort>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionPort>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcDistributionPort>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcDistributionPort>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcDistributionPort>(init),
+				_ => throw new NotSupportedException($"Type IfcDistributionPort is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDocumentInformation DocumentInformation(Action<IIfcDocumentInformation> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ExternalReferenceResource.IfcDocumentInformation>(init);
-			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ExternalReferenceResource.IfcDocumentInformation>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ExternalReferenceResource.IfcDocumentInformation>(init),
+				_ => throw new NotSupportedException($"Type IfcDocumentInformation is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDocumentInformationRelationship DocumentInformationRelationship(Action<IIfcDocumentInformationRelationship> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ExternalReferenceResource.IfcDocumentInformationRelationship>(init);
-			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformationRelationship>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformationRelationship>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ExternalReferenceResource.IfcDocumentInformationRelationship>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ExternalReferenceResource.IfcDocumentInformationRelationship>(init),
+				_ => throw new NotSupportedException($"Type IfcDocumentInformationRelationship is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDocumentReference DocumentReference(Action<IIfcDocumentReference> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ExternalReferenceResource.IfcDocumentReference>(init);
-			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentReference>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentReference>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ExternalReferenceResource.IfcDocumentReference>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ExternalReferenceResource.IfcDocumentReference>(init),
+				_ => throw new NotSupportedException($"Type IfcDocumentReference is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDoor Door(Action<IIfcDoor> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcDoor>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoor>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoor>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcDoor>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcDoor>(init),
+				_ => throw new NotSupportedException($"Type IfcDoor is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDoorLiningProperties DoorLiningProperties(Action<IIfcDoorLiningProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ArchitectureDomain.IfcDoorLiningProperties>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorLiningProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorLiningProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ArchitectureDomain.IfcDoorLiningProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ArchitectureDomain.IfcDoorLiningProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcDoorLiningProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDoorPanelProperties DoorPanelProperties(Action<IIfcDoorPanelProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ArchitectureDomain.IfcDoorPanelProperties>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorPanelProperties>(init);
-		}
-
-		public IIfcDoorStyle DoorStyle(Action<IIfcDoorStyle> init = null)
-		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ArchitectureDomain.IfcDoorStyle>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcDoorPanelProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ArchitectureDomain.IfcDoorPanelProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ArchitectureDomain.IfcDoorPanelProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcDoorPanelProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDraughtingPreDefinedColour DraughtingPreDefinedColour(Action<IIfcDraughtingPreDefinedColour> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcDraughtingPreDefinedColour>(init);
-			return _model.Instances.New<Ifc2x3.PresentationResource.IfcDraughtingPreDefinedColour>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationResource.IfcDraughtingPreDefinedColour>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcDraughtingPreDefinedColour>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedColour>(init),
+				_ => throw new NotSupportedException($"Type IfcDraughtingPreDefinedColour is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDraughtingPreDefinedCurveFont DraughtingPreDefinedCurveFont(Action<IIfcDraughtingPreDefinedCurveFont> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcDraughtingPreDefinedCurveFont>(init),
+				_ => throw new NotSupportedException($"Type IfcDraughtingPreDefinedCurveFont is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDuctFittingType DuctFittingType(Action<IIfcDuctFittingType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcDuctFittingType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctFittingType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctFittingType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcDuctFittingType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcDuctFittingType>(init),
+				_ => throw new NotSupportedException($"Type IfcDuctFittingType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDuctSegmentType DuctSegmentType(Action<IIfcDuctSegmentType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcDuctSegmentType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSegmentType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSegmentType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcDuctSegmentType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcDuctSegmentType>(init),
+				_ => throw new NotSupportedException($"Type IfcDuctSegmentType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcDuctSilencerType DuctSilencerType(Action<IIfcDuctSilencerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcDuctSilencerType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSilencerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcDuctSilencerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcDuctSilencerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcDuctSilencerType>(init),
+				_ => throw new NotSupportedException($"Type IfcDuctSilencerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEdge Edge(Action<IIfcEdge> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcEdge>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcEdge>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcEdge>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcEdge>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcEdge>(init),
+				_ => throw new NotSupportedException($"Type IfcEdge is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEdgeCurve EdgeCurve(Action<IIfcEdgeCurve> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcEdgeCurve>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeCurve>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeCurve>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcEdgeCurve>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcEdgeCurve>(init),
+				_ => throw new NotSupportedException($"Type IfcEdgeCurve is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEdgeLoop EdgeLoop(Action<IIfcEdgeLoop> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcEdgeLoop>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeLoop>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcEdgeLoop>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcEdgeLoop>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcEdgeLoop>(init),
+				_ => throw new NotSupportedException($"Type IfcEdgeLoop is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcElectricApplianceType ElectricApplianceType(Action<IIfcElectricApplianceType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcElectricApplianceType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricApplianceType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricApplianceType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcElectricApplianceType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcElectricApplianceType>(init),
+				_ => throw new NotSupportedException($"Type IfcElectricApplianceType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcElectricFlowStorageDeviceType ElectricFlowStorageDeviceType(Action<IIfcElectricFlowStorageDeviceType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcElectricFlowStorageDeviceType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricFlowStorageDeviceType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcElectricFlowStorageDeviceType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcElectricFlowStorageDeviceType>(init),
+				_ => throw new NotSupportedException($"Type IfcElectricFlowStorageDeviceType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcElectricGeneratorType ElectricGeneratorType(Action<IIfcElectricGeneratorType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcElectricGeneratorType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricGeneratorType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricGeneratorType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcElectricGeneratorType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcElectricGeneratorType>(init),
+				_ => throw new NotSupportedException($"Type IfcElectricGeneratorType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcElectricMotorType ElectricMotorType(Action<IIfcElectricMotorType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcElectricMotorType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricMotorType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricMotorType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcElectricMotorType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcElectricMotorType>(init),
+				_ => throw new NotSupportedException($"Type IfcElectricMotorType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcElectricTimeControlType ElectricTimeControlType(Action<IIfcElectricTimeControlType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcElectricTimeControlType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricTimeControlType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcElectricTimeControlType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcElectricTimeControlType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcElectricTimeControlType>(init),
+				_ => throw new NotSupportedException($"Type IfcElectricTimeControlType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcElementAssembly ElementAssembly(Action<IIfcElementAssembly> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcElementAssembly>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcElementAssembly>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcElementAssembly>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcElementAssembly>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcElementAssembly>(init),
+				_ => throw new NotSupportedException($"Type IfcElementAssembly is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcElementQuantity ElementQuantity(Action<IIfcElementQuantity> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcElementQuantity>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcElementQuantity>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcElementQuantity>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcElementQuantity>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcElementQuantity>(init),
+				_ => throw new NotSupportedException($"Type IfcElementQuantity is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEllipse Ellipse(Action<IIfcEllipse> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcEllipse>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcEllipse>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcEllipse>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcEllipse>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcEllipse>(init),
+				_ => throw new NotSupportedException($"Type IfcEllipse is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEllipseProfileDef EllipseProfileDef(Action<IIfcEllipseProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcEllipseProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcEllipseProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcEllipseProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcEllipseProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcEllipseProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcEllipseProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEnergyConversionDevice EnergyConversionDevice(Action<IIfcEnergyConversionDevice> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcEnergyConversionDevice>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcEnergyConversionDevice>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcEnergyConversionDevice>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcEnergyConversionDevice>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcEnergyConversionDevice>(init),
+				_ => throw new NotSupportedException($"Type IfcEnergyConversionDevice is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEvaporativeCoolerType EvaporativeCoolerType(Action<IIfcEvaporativeCoolerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcEvaporativeCoolerType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporativeCoolerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporativeCoolerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcEvaporativeCoolerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcEvaporativeCoolerType>(init),
+				_ => throw new NotSupportedException($"Type IfcEvaporativeCoolerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcEvaporatorType EvaporatorType(Action<IIfcEvaporatorType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcEvaporatorType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporatorType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcEvaporatorType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcEvaporatorType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcEvaporatorType>(init),
+				_ => throw new NotSupportedException($"Type IfcEvaporatorType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcExternallyDefinedHatchStyle ExternallyDefinedHatchStyle(Action<IIfcExternallyDefinedHatchStyle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcExternallyDefinedHatchStyle>(init),
+				_ => throw new NotSupportedException($"Type IfcExternallyDefinedHatchStyle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcExternallyDefinedSurfaceStyle ExternallyDefinedSurfaceStyle(Action<IIfcExternallyDefinedSurfaceStyle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcExternallyDefinedSurfaceStyle>(init),
+				_ => throw new NotSupportedException($"Type IfcExternallyDefinedSurfaceStyle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcExternallyDefinedTextFont ExternallyDefinedTextFont(Action<IIfcExternallyDefinedTextFont> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcExternallyDefinedTextFont>(init);
-			return _model.Instances.New<Ifc2x3.PresentationResource.IfcExternallyDefinedTextFont>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationResource.IfcExternallyDefinedTextFont>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcExternallyDefinedTextFont>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcExternallyDefinedTextFont>(init),
+				_ => throw new NotSupportedException($"Type IfcExternallyDefinedTextFont is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcExtrudedAreaSolid ExtrudedAreaSolid(Action<IIfcExtrudedAreaSolid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcExtrudedAreaSolid>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcExtrudedAreaSolid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcExtrudedAreaSolid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcExtrudedAreaSolid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcExtrudedAreaSolid>(init),
+				_ => throw new NotSupportedException($"Type IfcExtrudedAreaSolid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFace Face(Action<IIfcFace> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcFace>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFace>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcFace>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcFace>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcFace>(init),
+				_ => throw new NotSupportedException($"Type IfcFace is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFaceBasedSurfaceModel FaceBasedSurfaceModel(Action<IIfcFaceBasedSurfaceModel> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcFaceBasedSurfaceModel>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFaceBasedSurfaceModel>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcFaceBasedSurfaceModel>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcFaceBasedSurfaceModel>(init),
+				_ => throw new NotSupportedException($"Type IfcFaceBasedSurfaceModel is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFaceBound FaceBound(Action<IIfcFaceBound> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcFaceBound>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceBound>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceBound>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcFaceBound>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcFaceBound>(init),
+				_ => throw new NotSupportedException($"Type IfcFaceBound is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFaceOuterBound FaceOuterBound(Action<IIfcFaceOuterBound> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcFaceOuterBound>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceOuterBound>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceOuterBound>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcFaceOuterBound>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcFaceOuterBound>(init),
+				_ => throw new NotSupportedException($"Type IfcFaceOuterBound is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFaceSurface FaceSurface(Action<IIfcFaceSurface> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcFaceSurface>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceSurface>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcFaceSurface>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcFaceSurface>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcFaceSurface>(init),
+				_ => throw new NotSupportedException($"Type IfcFaceSurface is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFacetedBrep FacetedBrep(Action<IIfcFacetedBrep> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcFacetedBrep>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrep>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrep>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcFacetedBrep>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcFacetedBrep>(init),
+				_ => throw new NotSupportedException($"Type IfcFacetedBrep is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFacetedBrepWithVoids FacetedBrepWithVoids(Action<IIfcFacetedBrepWithVoids> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcFacetedBrepWithVoids>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrepWithVoids>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcFacetedBrepWithVoids>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcFacetedBrepWithVoids>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcFacetedBrepWithVoids>(init),
+				_ => throw new NotSupportedException($"Type IfcFacetedBrepWithVoids is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFailureConnectionCondition FailureConnectionCondition(Action<IIfcFailureConnectionCondition> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcFailureConnectionCondition>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcFailureConnectionCondition>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcFailureConnectionCondition>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcFailureConnectionCondition>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcFailureConnectionCondition>(init),
+				_ => throw new NotSupportedException($"Type IfcFailureConnectionCondition is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFanType FanType(Action<IIfcFanType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcFanType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcFanType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcFanType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcFanType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcFanType>(init),
+				_ => throw new NotSupportedException($"Type IfcFanType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFastener Fastener(Action<IIfcFastener> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedComponentElements.IfcFastener>(init);
-			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastener>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastener>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedComponentElements.IfcFastener>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedComponentElements.IfcFastener>(init),
+				_ => throw new NotSupportedException($"Type IfcFastener is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFastenerType FastenerType(Action<IIfcFastenerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedComponentElements.IfcFastenerType>(init);
-			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastenerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedComponentElements.IfcFastenerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedComponentElements.IfcFastenerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedComponentElements.IfcFastenerType>(init),
+				_ => throw new NotSupportedException($"Type IfcFastenerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFillAreaStyle FillAreaStyle(Action<IIfcFillAreaStyle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyle>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcFillAreaStyle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcFillAreaStyle>(init),
+				_ => throw new NotSupportedException($"Type IfcFillAreaStyle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFillAreaStyleHatching FillAreaStyleHatching(Action<IIfcFillAreaStyleHatching> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyleHatching>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleHatching>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcFillAreaStyleHatching>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcFillAreaStyleHatching>(init),
+				_ => throw new NotSupportedException($"Type IfcFillAreaStyleHatching is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFillAreaStyleTiles FillAreaStyleTiles(Action<IIfcFillAreaStyleTiles> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcFillAreaStyleTiles>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleTiles>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcFillAreaStyleTiles>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcFillAreaStyleTiles>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcFillAreaStyleTiles>(init),
+				_ => throw new NotSupportedException($"Type IfcFillAreaStyleTiles is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFilterType FilterType(Action<IIfcFilterType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcFilterType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcFilterType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcFilterType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcFilterType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcFilterType>(init),
+				_ => throw new NotSupportedException($"Type IfcFilterType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFireSuppressionTerminalType FireSuppressionTerminalType(Action<IIfcFireSuppressionTerminalType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>(init);
-			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PlumbingFireProtectionDomain.IfcFireSuppressionTerminalType>(init),
+				_ => throw new NotSupportedException($"Type IfcFireSuppressionTerminalType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowController FlowController(Action<IIfcFlowController> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcFlowController>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowController>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowController>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcFlowController>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcFlowController>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowController is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowFitting FlowFitting(Action<IIfcFlowFitting> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcFlowFitting>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowFitting>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowFitting>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcFlowFitting>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcFlowFitting>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowFitting is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowInstrumentType FlowInstrumentType(Action<IIfcFlowInstrumentType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<BuildingControlsDomain.IfcFlowInstrumentType>(init);
-			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcFlowInstrumentType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.BuildingControlsDomain.IfcFlowInstrumentType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.BuildingControlsDomain.IfcFlowInstrumentType>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowInstrumentType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowMeterType FlowMeterType(Action<IIfcFlowMeterType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcFlowMeterType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcFlowMeterType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcFlowMeterType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcFlowMeterType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcFlowMeterType>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowMeterType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowMovingDevice FlowMovingDevice(Action<IIfcFlowMovingDevice> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcFlowMovingDevice>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowMovingDevice>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowMovingDevice>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcFlowMovingDevice>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcFlowMovingDevice>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowMovingDevice is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowSegment FlowSegment(Action<IIfcFlowSegment> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcFlowSegment>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowSegment>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowSegment>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcFlowSegment>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcFlowSegment>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowSegment is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowStorageDevice FlowStorageDevice(Action<IIfcFlowStorageDevice> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcFlowStorageDevice>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowStorageDevice>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowStorageDevice>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcFlowStorageDevice>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcFlowStorageDevice>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowStorageDevice is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowTerminal FlowTerminal(Action<IIfcFlowTerminal> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcFlowTerminal>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTerminal>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTerminal>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcFlowTerminal>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcFlowTerminal>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowTerminal is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFlowTreatmentDevice FlowTreatmentDevice(Action<IIfcFlowTreatmentDevice> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcFlowTreatmentDevice>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTreatmentDevice>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcFlowTreatmentDevice>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcFlowTreatmentDevice>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcFlowTreatmentDevice>(init),
+				_ => throw new NotSupportedException($"Type IfcFlowTreatmentDevice is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFooting Footing(Action<IIfcFooting> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralElementsDomain.IfcFooting>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcFooting>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcFooting>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcFooting>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralElementsDomain.IfcFooting>(init),
+				_ => throw new NotSupportedException($"Type IfcFooting is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFurnishingElement FurnishingElement(Action<IIfcFurnishingElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcFurnishingElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcFurnishingElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcFurnishingElement>(init),
+				_ => throw new NotSupportedException($"Type IfcFurnishingElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFurnishingElementType FurnishingElementType(Action<IIfcFurnishingElementType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcFurnishingElementType>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElementType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcFurnishingElementType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcFurnishingElementType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcFurnishingElementType>(init),
+				_ => throw new NotSupportedException($"Type IfcFurnishingElementType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcFurnitureType FurnitureType(Action<IIfcFurnitureType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedFacilitiesElements.IfcFurnitureType>(init);
-			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcFurnitureType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcFurnitureType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedFacilitiesElements.IfcFurnitureType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedFacilitiesElements.IfcFurnitureType>(init),
+				_ => throw new NotSupportedException($"Type IfcFurnitureType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGeometricCurveSet GeometricCurveSet(Action<IIfcGeometricCurveSet> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcGeometricCurveSet>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricCurveSet>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricCurveSet>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcGeometricCurveSet>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcGeometricCurveSet>(init),
+				_ => throw new NotSupportedException($"Type IfcGeometricCurveSet is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGeometricRepresentationContext GeometricRepresentationContext(Action<IIfcGeometricRepresentationContext> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcGeometricRepresentationContext>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationContext>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationContext>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcGeometricRepresentationContext>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcGeometricRepresentationContext>(init),
+				_ => throw new NotSupportedException($"Type IfcGeometricRepresentationContext is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGeometricRepresentationSubContext GeometricRepresentationSubContext(Action<IIfcGeometricRepresentationSubContext> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcGeometricRepresentationSubContext>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationSubContext>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcGeometricRepresentationSubContext>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcGeometricRepresentationSubContext>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcGeometricRepresentationSubContext>(init),
+				_ => throw new NotSupportedException($"Type IfcGeometricRepresentationSubContext is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGeometricSet GeometricSet(Action<IIfcGeometricSet> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcGeometricSet>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricSet>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcGeometricSet>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcGeometricSet>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcGeometricSet>(init),
+				_ => throw new NotSupportedException($"Type IfcGeometricSet is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGrid Grid(Action<IIfcGrid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcGrid>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcGrid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcGrid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcGrid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcGrid>(init),
+				_ => throw new NotSupportedException($"Type IfcGrid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGridAxis GridAxis(Action<IIfcGridAxis> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcGridAxis>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridAxis>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridAxis>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcGridAxis>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcGridAxis>(init),
+				_ => throw new NotSupportedException($"Type IfcGridAxis is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGridPlacement GridPlacement(Action<IIfcGridPlacement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcGridPlacement>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridPlacement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcGridPlacement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcGridPlacement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcGridPlacement>(init),
+				_ => throw new NotSupportedException($"Type IfcGridPlacement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcGroup Group(Action<IIfcGroup> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcGroup>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcGroup>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcGroup>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcGroup>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcGroup>(init),
+				_ => throw new NotSupportedException($"Type IfcGroup is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcHalfSpaceSolid HalfSpaceSolid(Action<IIfcHalfSpaceSolid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcHalfSpaceSolid>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcHalfSpaceSolid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcHalfSpaceSolid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcHalfSpaceSolid>(init),
+				_ => throw new NotSupportedException($"Type IfcHalfSpaceSolid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcHeatExchangerType HeatExchangerType(Action<IIfcHeatExchangerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcHeatExchangerType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcHeatExchangerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcHeatExchangerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcHeatExchangerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcHeatExchangerType>(init),
+				_ => throw new NotSupportedException($"Type IfcHeatExchangerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcHumidifierType HumidifierType(Action<IIfcHumidifierType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcHumidifierType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcHumidifierType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcHumidifierType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcHumidifierType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcHumidifierType>(init),
+				_ => throw new NotSupportedException($"Type IfcHumidifierType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcIShapeProfileDef IShapeProfileDef(Action<IIfcIShapeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcIShapeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcIShapeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcIShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcIShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcIShapeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcIShapeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcImageTexture ImageTexture(Action<IIfcImageTexture> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcImageTexture>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcImageTexture>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcImageTexture>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcImageTexture>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcImageTexture>(init),
+				_ => throw new NotSupportedException($"Type IfcImageTexture is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcInventory Inventory(Action<IIfcInventory> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedFacilitiesElements.IfcInventory>(init);
-			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcInventory>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcInventory>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedFacilitiesElements.IfcInventory>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedFacilitiesElements.IfcInventory>(init),
+				_ => throw new NotSupportedException($"Type IfcInventory is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcIrregularTimeSeries IrregularTimeSeries(Action<IIfcIrregularTimeSeries> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<DateTimeResource.IfcIrregularTimeSeries>(init);
-			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeries>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeries>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.DateTimeResource.IfcIrregularTimeSeries>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.DateTimeResource.IfcIrregularTimeSeries>(init),
+				_ => throw new NotSupportedException($"Type IfcIrregularTimeSeries is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcIrregularTimeSeriesValue IrregularTimeSeriesValue(Action<IIfcIrregularTimeSeriesValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<DateTimeResource.IfcIrregularTimeSeriesValue>(init);
-			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeriesValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcIrregularTimeSeriesValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.DateTimeResource.IfcIrregularTimeSeriesValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.DateTimeResource.IfcIrregularTimeSeriesValue>(init),
+				_ => throw new NotSupportedException($"Type IfcIrregularTimeSeriesValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcJunctionBoxType JunctionBoxType(Action<IIfcJunctionBoxType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcJunctionBoxType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcJunctionBoxType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcJunctionBoxType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcJunctionBoxType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcJunctionBoxType>(init),
+				_ => throw new NotSupportedException($"Type IfcJunctionBoxType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLShapeProfileDef LShapeProfileDef(Action<IIfcLShapeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcLShapeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcLShapeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcLShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcLShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcLShapeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcLShapeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLaborResource LaborResource(Action<IIfcLaborResource> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstructionMgmtDomain.IfcLaborResource>(init);
-			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcLaborResource>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcLaborResource>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstructionMgmtDomain.IfcLaborResource>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstructionMgmtDomain.IfcLaborResource>(init),
+				_ => throw new NotSupportedException($"Type IfcLaborResource is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLampType LampType(Action<IIfcLampType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcLampType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLampType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLampType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcLampType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcLampType>(init),
+				_ => throw new NotSupportedException($"Type IfcLampType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLibraryInformation LibraryInformation(Action<IIfcLibraryInformation> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ExternalReferenceResource.IfcLibraryInformation>(init);
-			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryInformation>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryInformation>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ExternalReferenceResource.IfcLibraryInformation>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ExternalReferenceResource.IfcLibraryInformation>(init),
+				_ => throw new NotSupportedException($"Type IfcLibraryInformation is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLibraryReference LibraryReference(Action<IIfcLibraryReference> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ExternalReferenceResource.IfcLibraryReference>(init);
-			return _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryReference>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ExternalReferenceResource.IfcLibraryReference>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ExternalReferenceResource.IfcLibraryReference>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ExternalReferenceResource.IfcLibraryReference>(init),
+				_ => throw new NotSupportedException($"Type IfcLibraryReference is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightDistributionData LightDistributionData(Action<IIfcLightDistributionData> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcLightDistributionData>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightDistributionData>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightDistributionData>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcLightDistributionData>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcLightDistributionData>(init),
+				_ => throw new NotSupportedException($"Type IfcLightDistributionData is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightFixtureType LightFixtureType(Action<IIfcLightFixtureType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcLightFixtureType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLightFixtureType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcLightFixtureType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcLightFixtureType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcLightFixtureType>(init),
+				_ => throw new NotSupportedException($"Type IfcLightFixtureType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightIntensityDistribution LightIntensityDistribution(Action<IIfcLightIntensityDistribution> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcLightIntensityDistribution>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightIntensityDistribution>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightIntensityDistribution>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcLightIntensityDistribution>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcLightIntensityDistribution>(init),
+				_ => throw new NotSupportedException($"Type IfcLightIntensityDistribution is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightSourceAmbient LightSourceAmbient(Action<IIfcLightSourceAmbient> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceAmbient>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceAmbient>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceAmbient>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcLightSourceAmbient>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcLightSourceAmbient>(init),
+				_ => throw new NotSupportedException($"Type IfcLightSourceAmbient is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightSourceDirectional LightSourceDirectional(Action<IIfcLightSourceDirectional> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceDirectional>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceDirectional>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceDirectional>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcLightSourceDirectional>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcLightSourceDirectional>(init),
+				_ => throw new NotSupportedException($"Type IfcLightSourceDirectional is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightSourceGoniometric LightSourceGoniometric(Action<IIfcLightSourceGoniometric> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceGoniometric>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceGoniometric>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceGoniometric>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcLightSourceGoniometric>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcLightSourceGoniometric>(init),
+				_ => throw new NotSupportedException($"Type IfcLightSourceGoniometric is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightSourcePositional LightSourcePositional(Action<IIfcLightSourcePositional> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourcePositional>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourcePositional>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourcePositional>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcLightSourcePositional>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcLightSourcePositional>(init),
+				_ => throw new NotSupportedException($"Type IfcLightSourcePositional is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLightSourceSpot LightSourceSpot(Action<IIfcLightSourceSpot> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcLightSourceSpot>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceSpot>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcLightSourceSpot>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcLightSourceSpot>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcLightSourceSpot>(init),
+				_ => throw new NotSupportedException($"Type IfcLightSourceSpot is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLine Line(Action<IIfcLine> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcLine>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcLine>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcLine>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcLine>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcLine>(init),
+				_ => throw new NotSupportedException($"Type IfcLine is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLocalPlacement LocalPlacement(Action<IIfcLocalPlacement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcLocalPlacement>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcLocalPlacement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcLocalPlacement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcLocalPlacement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcLocalPlacement>(init),
+				_ => throw new NotSupportedException($"Type IfcLocalPlacement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcLoop Loop(Action<IIfcLoop> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcLoop>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcLoop>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcLoop>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcLoop>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcLoop>(init),
+				_ => throw new NotSupportedException($"Type IfcLoop is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMappedItem MappedItem(Action<IIfcMappedItem> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcMappedItem>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcMappedItem>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcMappedItem>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcMappedItem>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcMappedItem>(init),
+				_ => throw new NotSupportedException($"Type IfcMappedItem is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMaterial Material(Action<IIfcMaterial> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MaterialResource.IfcMaterial>(init);
-			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterial>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterial>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MaterialResource.IfcMaterial>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MaterialResource.IfcMaterial>(init),
+				_ => throw new NotSupportedException($"Type IfcMaterial is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMaterialClassificationRelationship MaterialClassificationRelationship(Action<IIfcMaterialClassificationRelationship> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MaterialResource.IfcMaterialClassificationRelationship>(init);
-			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialClassificationRelationship>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialClassificationRelationship>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MaterialResource.IfcMaterialClassificationRelationship>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MaterialResource.IfcMaterialClassificationRelationship>(init),
+				_ => throw new NotSupportedException($"Type IfcMaterialClassificationRelationship is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMaterialDefinitionRepresentation MaterialDefinitionRepresentation(Action<IIfcMaterialDefinitionRepresentation> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcMaterialDefinitionRepresentation>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcMaterialDefinitionRepresentation>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcMaterialDefinitionRepresentation>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcMaterialDefinitionRepresentation>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcMaterialDefinitionRepresentation>(init),
+				_ => throw new NotSupportedException($"Type IfcMaterialDefinitionRepresentation is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMaterialLayer MaterialLayer(Action<IIfcMaterialLayer> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MaterialResource.IfcMaterialLayer>(init);
-			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayer>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayer>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MaterialResource.IfcMaterialLayer>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MaterialResource.IfcMaterialLayer>(init),
+				_ => throw new NotSupportedException($"Type IfcMaterialLayer is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMaterialLayerSet MaterialLayerSet(Action<IIfcMaterialLayerSet> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MaterialResource.IfcMaterialLayerSet>(init);
-			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSet>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSet>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MaterialResource.IfcMaterialLayerSet>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MaterialResource.IfcMaterialLayerSet>(init),
+				_ => throw new NotSupportedException($"Type IfcMaterialLayerSet is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMaterialLayerSetUsage MaterialLayerSetUsage(Action<IIfcMaterialLayerSetUsage> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MaterialResource.IfcMaterialLayerSetUsage>(init);
-			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSetUsage>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialLayerSetUsage>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MaterialResource.IfcMaterialLayerSetUsage>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MaterialResource.IfcMaterialLayerSetUsage>(init),
+				_ => throw new NotSupportedException($"Type IfcMaterialLayerSetUsage is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMaterialList MaterialList(Action<IIfcMaterialList> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MaterialResource.IfcMaterialList>(init);
-			return _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialList>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MaterialResource.IfcMaterialList>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MaterialResource.IfcMaterialList>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MaterialResource.IfcMaterialList>(init),
+				_ => throw new NotSupportedException($"Type IfcMaterialList is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMeasureWithUnit MeasureWithUnit(Action<IIfcMeasureWithUnit> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcMeasureWithUnit>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcMeasureWithUnit>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcMeasureWithUnit>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcMeasureWithUnit>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcMeasureWithUnit>(init),
+				_ => throw new NotSupportedException($"Type IfcMeasureWithUnit is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMechanicalFastener MechanicalFastener(Action<IIfcMechanicalFastener> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedComponentElements.IfcMechanicalFastener>(init);
-			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastener>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastener>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedComponentElements.IfcMechanicalFastener>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedComponentElements.IfcMechanicalFastener>(init),
+				_ => throw new NotSupportedException($"Type IfcMechanicalFastener is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMechanicalFastenerType MechanicalFastenerType(Action<IIfcMechanicalFastenerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedComponentElements.IfcMechanicalFastenerType>(init);
-			return _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastenerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedComponentElements.IfcMechanicalFastenerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedComponentElements.IfcMechanicalFastenerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedComponentElements.IfcMechanicalFastenerType>(init),
+				_ => throw new NotSupportedException($"Type IfcMechanicalFastenerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMember Member(Action<IIfcMember> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcMember>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMember>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMember>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcMember>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcMember>(init),
+				_ => throw new NotSupportedException($"Type IfcMember is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMemberType MemberType(Action<IIfcMemberType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcMemberType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMemberType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcMemberType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcMemberType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcMemberType>(init),
+				_ => throw new NotSupportedException($"Type IfcMemberType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMetric Metric(Action<IIfcMetric> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstraintResource.IfcMetric>(init);
-			return _model.Instances.New<Ifc2x3.ConstraintResource.IfcMetric>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstraintResource.IfcMetric>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstraintResource.IfcMetric>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstraintResource.IfcMetric>(init),
+				_ => throw new NotSupportedException($"Type IfcMetric is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMonetaryUnit MonetaryUnit(Action<IIfcMonetaryUnit> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcMonetaryUnit>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcMonetaryUnit>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcMonetaryUnit>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcMonetaryUnit>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcMonetaryUnit>(init),
+				_ => throw new NotSupportedException($"Type IfcMonetaryUnit is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcMotorConnectionType MotorConnectionType(Action<IIfcMotorConnectionType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcMotorConnectionType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcMotorConnectionType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcMotorConnectionType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcMotorConnectionType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcMotorConnectionType>(init),
+				_ => throw new NotSupportedException($"Type IfcMotorConnectionType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcObjective Objective(Action<IIfcObjective> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstraintResource.IfcObjective>(init);
-			return _model.Instances.New<Ifc2x3.ConstraintResource.IfcObjective>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstraintResource.IfcObjective>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstraintResource.IfcObjective>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstraintResource.IfcObjective>(init),
+				_ => throw new NotSupportedException($"Type IfcObjective is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOccupant Occupant(Action<IIfcOccupant> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedFacilitiesElements.IfcOccupant>(init);
-			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcOccupant>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcOccupant>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedFacilitiesElements.IfcOccupant>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedFacilitiesElements.IfcOccupant>(init),
+				_ => throw new NotSupportedException($"Type IfcOccupant is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOffsetCurve2D OffsetCurve2D(Action<IIfcOffsetCurve2D> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcOffsetCurve2D>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve2D>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve2D>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcOffsetCurve2D>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcOffsetCurve2D>(init),
+				_ => throw new NotSupportedException($"Type IfcOffsetCurve2D is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOffsetCurve3D OffsetCurve3D(Action<IIfcOffsetCurve3D> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcOffsetCurve3D>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve3D>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcOffsetCurve3D>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcOffsetCurve3D>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcOffsetCurve3D>(init),
+				_ => throw new NotSupportedException($"Type IfcOffsetCurve3D is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOpenShell OpenShell(Action<IIfcOpenShell> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcOpenShell>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcOpenShell>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcOpenShell>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcOpenShell>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcOpenShell>(init),
+				_ => throw new NotSupportedException($"Type IfcOpenShell is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOpeningElement OpeningElement(Action<IIfcOpeningElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcOpeningElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcOpeningElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcOpeningElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcOpeningElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcOpeningElement>(init),
+				_ => throw new NotSupportedException($"Type IfcOpeningElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOrganization Organization(Action<IIfcOrganization> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ActorResource.IfcOrganization>(init);
-			return _model.Instances.New<Ifc2x3.ActorResource.IfcOrganization>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ActorResource.IfcOrganization>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ActorResource.IfcOrganization>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ActorResource.IfcOrganization>(init),
+				_ => throw new NotSupportedException($"Type IfcOrganization is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOrganizationRelationship OrganizationRelationship(Action<IIfcOrganizationRelationship> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ActorResource.IfcOrganizationRelationship>(init);
-			return _model.Instances.New<Ifc2x3.ActorResource.IfcOrganizationRelationship>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ActorResource.IfcOrganizationRelationship>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ActorResource.IfcOrganizationRelationship>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ActorResource.IfcOrganizationRelationship>(init),
+				_ => throw new NotSupportedException($"Type IfcOrganizationRelationship is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOrientedEdge OrientedEdge(Action<IIfcOrientedEdge> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcOrientedEdge>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcOrientedEdge>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcOrientedEdge>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcOrientedEdge>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcOrientedEdge>(init),
+				_ => throw new NotSupportedException($"Type IfcOrientedEdge is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOutletType OutletType(Action<IIfcOutletType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcOutletType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcOutletType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcOutletType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcOutletType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcOutletType>(init),
+				_ => throw new NotSupportedException($"Type IfcOutletType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcOwnerHistory OwnerHistory(Action<IIfcOwnerHistory> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<UtilityResource.IfcOwnerHistory>(init);
-			return _model.Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.UtilityResource.IfcOwnerHistory>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>(init),
+				_ => throw new NotSupportedException($"Type IfcOwnerHistory is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPath Path(Action<IIfcPath> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcPath>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcPath>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcPath>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcPath>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcPath>(init),
+				_ => throw new NotSupportedException($"Type IfcPath is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPerformanceHistory PerformanceHistory(Action<IIfcPerformanceHistory> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ControlExtension.IfcPerformanceHistory>(init);
-			return _model.Instances.New<Ifc2x3.ControlExtension.IfcPerformanceHistory>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ControlExtension.IfcPerformanceHistory>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ControlExtension.IfcPerformanceHistory>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ControlExtension.IfcPerformanceHistory>(init),
+				_ => throw new NotSupportedException($"Type IfcPerformanceHistory is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPermeableCoveringProperties PermeableCoveringProperties(Action<IIfcPermeableCoveringProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ArchitectureDomain.IfcPermeableCoveringProperties>(init);
-			return _model.Instances.New<Ifc2x3.ArchitectureDomain.IfcPermeableCoveringProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ArchitectureDomain.IfcPermeableCoveringProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ArchitectureDomain.IfcPermeableCoveringProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ArchitectureDomain.IfcPermeableCoveringProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcPermeableCoveringProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPermit Permit(Action<IIfcPermit> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedMgmtElements.IfcPermit>(init);
-			return _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcPermit>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.FacilitiesMgmtDomain.IfcPermit>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedMgmtElements.IfcPermit>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedMgmtElements.IfcPermit>(init),
+				_ => throw new NotSupportedException($"Type IfcPermit is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPerson Person(Action<IIfcPerson> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ActorResource.IfcPerson>(init);
-			return _model.Instances.New<Ifc2x3.ActorResource.IfcPerson>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ActorResource.IfcPerson>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ActorResource.IfcPerson>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ActorResource.IfcPerson>(init),
+				_ => throw new NotSupportedException($"Type IfcPerson is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPersonAndOrganization PersonAndOrganization(Action<IIfcPersonAndOrganization> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ActorResource.IfcPersonAndOrganization>(init);
-			return _model.Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ActorResource.IfcPersonAndOrganization>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ActorResource.IfcPersonAndOrganization>(init),
+				_ => throw new NotSupportedException($"Type IfcPersonAndOrganization is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPhysicalComplexQuantity PhysicalComplexQuantity(Action<IIfcPhysicalComplexQuantity> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<QuantityResource.IfcPhysicalComplexQuantity>(init);
-			return _model.Instances.New<Ifc2x3.QuantityResource.IfcPhysicalComplexQuantity>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.QuantityResource.IfcPhysicalComplexQuantity>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.QuantityResource.IfcPhysicalComplexQuantity>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.QuantityResource.IfcPhysicalComplexQuantity>(init),
+				_ => throw new NotSupportedException($"Type IfcPhysicalComplexQuantity is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPile Pile(Action<IIfcPile> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralElementsDomain.IfcPile>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcPile>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcPile>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>(init),
+				_ => throw new NotSupportedException($"Type IfcPile is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPipeFittingType PipeFittingType(Action<IIfcPipeFittingType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcPipeFittingType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeFittingType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeFittingType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcPipeFittingType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcPipeFittingType>(init),
+				_ => throw new NotSupportedException($"Type IfcPipeFittingType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPipeSegmentType PipeSegmentType(Action<IIfcPipeSegmentType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcPipeSegmentType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeSegmentType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcPipeSegmentType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcPipeSegmentType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcPipeSegmentType>(init),
+				_ => throw new NotSupportedException($"Type IfcPipeSegmentType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPixelTexture PixelTexture(Action<IIfcPixelTexture> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcPixelTexture>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPixelTexture>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPixelTexture>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcPixelTexture>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcPixelTexture>(init),
+				_ => throw new NotSupportedException($"Type IfcPixelTexture is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPlanarBox PlanarBox(Action<IIfcPlanarBox> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationDefinitionResource.IfcPlanarBox>(init);
-			return _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarBox>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarBox>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationDefinitionResource.IfcPlanarBox>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationDefinitionResource.IfcPlanarBox>(init),
+				_ => throw new NotSupportedException($"Type IfcPlanarBox is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPlanarExtent PlanarExtent(Action<IIfcPlanarExtent> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationDefinitionResource.IfcPlanarExtent>(init);
-			return _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarExtent>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationResource.IfcPlanarExtent>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationDefinitionResource.IfcPlanarExtent>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationDefinitionResource.IfcPlanarExtent>(init),
+				_ => throw new NotSupportedException($"Type IfcPlanarExtent is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPlane Plane(Action<IIfcPlane> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcPlane>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPlane>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcPlane>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcPlane>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcPlane>(init),
+				_ => throw new NotSupportedException($"Type IfcPlane is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPlate Plate(Action<IIfcPlate> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcPlate>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlate>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlate>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcPlate>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcPlate>(init),
+				_ => throw new NotSupportedException($"Type IfcPlate is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPlateType PlateType(Action<IIfcPlateType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcPlateType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlateType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcPlateType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcPlateType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcPlateType>(init),
+				_ => throw new NotSupportedException($"Type IfcPlateType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPointOnCurve PointOnCurve(Action<IIfcPointOnCurve> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcPointOnCurve>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnCurve>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnCurve>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcPointOnCurve>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcPointOnCurve>(init),
+				_ => throw new NotSupportedException($"Type IfcPointOnCurve is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPointOnSurface PointOnSurface(Action<IIfcPointOnSurface> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcPointOnSurface>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnSurface>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcPointOnSurface>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcPointOnSurface>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcPointOnSurface>(init),
+				_ => throw new NotSupportedException($"Type IfcPointOnSurface is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPolyLoop PolyLoop(Action<IIfcPolyLoop> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcPolyLoop>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcPolyLoop>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcPolyLoop>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcPolyLoop>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcPolyLoop>(init),
+				_ => throw new NotSupportedException($"Type IfcPolyLoop is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPolygonalBoundedHalfSpace PolygonalBoundedHalfSpace(Action<IIfcPolygonalBoundedHalfSpace> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcPolygonalBoundedHalfSpace>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcPolygonalBoundedHalfSpace>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcPolygonalBoundedHalfSpace>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcPolygonalBoundedHalfSpace>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcPolygonalBoundedHalfSpace>(init),
+				_ => throw new NotSupportedException($"Type IfcPolygonalBoundedHalfSpace is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPolyline Polyline(Action<IIfcPolyline> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcPolyline>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcPolyline>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcPolyline>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcPolyline>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcPolyline>(init),
+				_ => throw new NotSupportedException($"Type IfcPolyline is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPostalAddress PostalAddress(Action<IIfcPostalAddress> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ActorResource.IfcPostalAddress>(init);
-			return _model.Instances.New<Ifc2x3.ActorResource.IfcPostalAddress>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ActorResource.IfcPostalAddress>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ActorResource.IfcPostalAddress>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ActorResource.IfcPostalAddress>(init),
+				_ => throw new NotSupportedException($"Type IfcPostalAddress is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPresentationLayerAssignment PresentationLayerAssignment(Action<IIfcPresentationLayerAssignment> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcPresentationLayerAssignment>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerAssignment>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerAssignment>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcPresentationLayerAssignment>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcPresentationLayerAssignment>(init),
+				_ => throw new NotSupportedException($"Type IfcPresentationLayerAssignment is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPresentationLayerWithStyle PresentationLayerWithStyle(Action<IIfcPresentationLayerWithStyle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationOrganizationResource.IfcPresentationLayerWithStyle>(init);
-			return _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerWithStyle>(init);
-		}
-
-		public IIfcPresentationStyleAssignment PresentationStyleAssignment(Action<IIfcPresentationStyleAssignment> init = null)
-		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcPresentationStyleAssignment>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPresentationStyleAssignment>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationOrganizationResource.IfcPresentationLayerWithStyle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationOrganizationResource.IfcPresentationLayerWithStyle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationOrganizationResource.IfcPresentationLayerWithStyle>(init),
+				_ => throw new NotSupportedException($"Type IfcPresentationLayerWithStyle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcProcedure Procedure(Action<IIfcProcedure> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProcessExtension.IfcProcedure>(init);
-			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcProcedure>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProcessExtension.IfcProcedure>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProcessExtension.IfcProcedure>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProcessExtension.IfcProcedure>(init),
+				_ => throw new NotSupportedException($"Type IfcProcedure is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcProductDefinitionShape ProductDefinitionShape(Action<IIfcProductDefinitionShape> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcProductDefinitionShape>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcProductDefinitionShape>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcProductDefinitionShape>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcProductDefinitionShape>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcProductDefinitionShape>(init),
+				_ => throw new NotSupportedException($"Type IfcProductDefinitionShape is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcProject Project(Action<IIfcProject> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcProject>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcProject>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcProject>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcProject>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcProject>(init),
+				_ => throw new NotSupportedException($"Type IfcProject is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcProjectOrder ProjectOrder(Action<IIfcProjectOrder> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedMgmtElements.IfcProjectOrder>(init);
-			return _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcProjectOrder>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedMgmtElements.IfcProjectOrder>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedMgmtElements.IfcProjectOrder>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedMgmtElements.IfcProjectOrder>(init),
+				_ => throw new NotSupportedException($"Type IfcProjectOrder is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcProjectionElement ProjectionElement(Action<IIfcProjectionElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcProjectionElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcProjectionElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcProjectionElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcProjectionElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcProjectionElement>(init),
+				_ => throw new NotSupportedException($"Type IfcProjectionElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertyBoundedValue PropertyBoundedValue(Action<IIfcPropertyBoundedValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertyBoundedValue>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyBoundedValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyBoundedValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertyBoundedValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertyBoundedValue>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertyBoundedValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertyDependencyRelationship PropertyDependencyRelationship(Action<IIfcPropertyDependencyRelationship> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertyDependencyRelationship>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyDependencyRelationship>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyDependencyRelationship>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertyDependencyRelationship>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertyDependencyRelationship>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertyDependencyRelationship is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertyEnumeratedValue PropertyEnumeratedValue(Action<IIfcPropertyEnumeratedValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertyEnumeratedValue>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeratedValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeratedValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertyEnumeratedValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertyEnumeratedValue>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertyEnumeratedValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertyEnumeration PropertyEnumeration(Action<IIfcPropertyEnumeration> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertyEnumeration>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeration>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyEnumeration>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertyEnumeration>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertyEnumeration>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertyEnumeration is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertyListValue PropertyListValue(Action<IIfcPropertyListValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertyListValue>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyListValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyListValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertyListValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertyListValue>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertyListValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertyReferenceValue PropertyReferenceValue(Action<IIfcPropertyReferenceValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertyReferenceValue>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyReferenceValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyReferenceValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertyReferenceValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertyReferenceValue>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertyReferenceValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertySet PropertySet(Action<IIfcPropertySet> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcPropertySet>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcPropertySet>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcPropertySet>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcPropertySet>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcPropertySet>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertySet is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertySingleValue PropertySingleValue(Action<IIfcPropertySingleValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertySingleValue>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertySingleValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertySingleValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertySingleValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertySingleValue>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertySingleValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPropertyTableValue PropertyTableValue(Action<IIfcPropertyTableValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PropertyResource.IfcPropertyTableValue>(init);
-			return _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyTableValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PropertyResource.IfcPropertyTableValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PropertyResource.IfcPropertyTableValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PropertyResource.IfcPropertyTableValue>(init),
+				_ => throw new NotSupportedException($"Type IfcPropertyTableValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcProtectiveDeviceType ProtectiveDeviceType(Action<IIfcProtectiveDeviceType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcProtectiveDeviceType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcProtectiveDeviceType>(init);
-		}
-
-		public IIfcProxy Proxy(Action<IIfcProxy> init = null)
-		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcProxy>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcProxy>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcProtectiveDeviceType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcProtectiveDeviceType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcProtectiveDeviceType>(init),
+				_ => throw new NotSupportedException($"Type IfcProtectiveDeviceType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcPumpType PumpType(Action<IIfcPumpType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcPumpType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcPumpType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcPumpType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcPumpType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcPumpType>(init),
+				_ => throw new NotSupportedException($"Type IfcPumpType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcQuantityArea QuantityArea(Action<IIfcQuantityArea> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<QuantityResource.IfcQuantityArea>(init);
-			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityArea>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityArea>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityArea>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.QuantityResource.IfcQuantityArea>(init),
+				_ => throw new NotSupportedException($"Type IfcQuantityArea is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcQuantityCount QuantityCount(Action<IIfcQuantityCount> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<QuantityResource.IfcQuantityCount>(init);
-			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityCount>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityCount>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityCount>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.QuantityResource.IfcQuantityCount>(init),
+				_ => throw new NotSupportedException($"Type IfcQuantityCount is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcQuantityLength QuantityLength(Action<IIfcQuantityLength> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<QuantityResource.IfcQuantityLength>(init);
-			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityLength>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityLength>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityLength>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.QuantityResource.IfcQuantityLength>(init),
+				_ => throw new NotSupportedException($"Type IfcQuantityLength is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcQuantityTime QuantityTime(Action<IIfcQuantityTime> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<QuantityResource.IfcQuantityTime>(init);
-			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityTime>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityTime>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityTime>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.QuantityResource.IfcQuantityTime>(init),
+				_ => throw new NotSupportedException($"Type IfcQuantityTime is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcQuantityVolume QuantityVolume(Action<IIfcQuantityVolume> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<QuantityResource.IfcQuantityVolume>(init);
-			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityVolume>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityVolume>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityVolume>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.QuantityResource.IfcQuantityVolume>(init),
+				_ => throw new NotSupportedException($"Type IfcQuantityVolume is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcQuantityWeight QuantityWeight(Action<IIfcQuantityWeight> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<QuantityResource.IfcQuantityWeight>(init);
-			return _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityWeight>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.QuantityResource.IfcQuantityWeight>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityWeight>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.QuantityResource.IfcQuantityWeight>(init),
+				_ => throw new NotSupportedException($"Type IfcQuantityWeight is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRailing Railing(Action<IIfcRailing> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRailing>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailing>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailing>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRailing>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRailing>(init),
+				_ => throw new NotSupportedException($"Type IfcRailing is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRailingType RailingType(Action<IIfcRailingType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRailingType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailingType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRailingType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRailingType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRailingType>(init),
+				_ => throw new NotSupportedException($"Type IfcRailingType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRamp Ramp(Action<IIfcRamp> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRamp>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRamp>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRamp>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRamp>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRamp>(init),
+				_ => throw new NotSupportedException($"Type IfcRamp is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRampFlight RampFlight(Action<IIfcRampFlight> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRampFlight>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlight>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlight>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRampFlight>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRampFlight>(init),
+				_ => throw new NotSupportedException($"Type IfcRampFlight is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRampFlightType RampFlightType(Action<IIfcRampFlightType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRampFlightType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlightType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRampFlightType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRampFlightType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRampFlightType>(init),
+				_ => throw new NotSupportedException($"Type IfcRampFlightType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRectangleHollowProfileDef RectangleHollowProfileDef(Action<IIfcRectangleHollowProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcRectangleHollowProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleHollowProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleHollowProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcRectangleHollowProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcRectangleHollowProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcRectangleHollowProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRectangleProfileDef RectangleProfileDef(Action<IIfcRectangleProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcRectangleProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcRectangleProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcRectangleProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcRectangleProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcRectangleProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRectangularPyramid RectangularPyramid(Action<IIfcRectangularPyramid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcRectangularPyramid>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRectangularPyramid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRectangularPyramid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcRectangularPyramid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcRectangularPyramid>(init),
+				_ => throw new NotSupportedException($"Type IfcRectangularPyramid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRectangularTrimmedSurface RectangularTrimmedSurface(Action<IIfcRectangularTrimmedSurface> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcRectangularTrimmedSurface>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcRectangularTrimmedSurface>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcRectangularTrimmedSurface>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcRectangularTrimmedSurface>(init),
+				_ => throw new NotSupportedException($"Type IfcRectangularTrimmedSurface is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRegularTimeSeries RegularTimeSeries(Action<IIfcRegularTimeSeries> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<DateTimeResource.IfcRegularTimeSeries>(init);
-			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcRegularTimeSeries>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcRegularTimeSeries>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.DateTimeResource.IfcRegularTimeSeries>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.DateTimeResource.IfcRegularTimeSeries>(init),
+				_ => throw new NotSupportedException($"Type IfcRegularTimeSeries is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcReinforcementBarProperties ReinforcementBarProperties(Action<IIfcReinforcementBarProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcReinforcementBarProperties>(init);
-			return _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcReinforcementBarProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcReinforcementBarProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcReinforcementBarProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcReinforcementBarProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcReinforcementBarProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcReinforcementDefinitionProperties ReinforcementDefinitionProperties(Action<IIfcReinforcementDefinitionProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralElementsDomain.IfcReinforcementDefinitionProperties>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcementDefinitionProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcementDefinitionProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcReinforcementDefinitionProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralElementsDomain.IfcReinforcementDefinitionProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcReinforcementDefinitionProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcReinforcingBar ReinforcingBar(Action<IIfcReinforcingBar> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralElementsDomain.IfcReinforcingBar>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingBar>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingBar>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcReinforcingBar>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralElementsDomain.IfcReinforcingBar>(init),
+				_ => throw new NotSupportedException($"Type IfcReinforcingBar is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcReinforcingMesh ReinforcingMesh(Action<IIfcReinforcingMesh> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralElementsDomain.IfcReinforcingMesh>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingMesh>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcReinforcingMesh>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcReinforcingMesh>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralElementsDomain.IfcReinforcingMesh>(init),
+				_ => throw new NotSupportedException($"Type IfcReinforcingMesh is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAggregates RelAggregates(Action<IIfcRelAggregates> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAggregates>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAggregates>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAggregates>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAggregates>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAggregates>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAggregates is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssignsToActor RelAssignsToActor(Action<IIfcRelAssignsToActor> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssignsToActor>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToActor>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToActor>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssignsToActor>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssignsToActor>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssignsToActor is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssignsToControl RelAssignsToControl(Action<IIfcRelAssignsToControl> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssignsToControl>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToControl>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToControl>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssignsToControl>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssignsToControl>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssignsToControl is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssignsToGroup RelAssignsToGroup(Action<IIfcRelAssignsToGroup> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssignsToGroup>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToGroup>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToGroup>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssignsToGroup>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssignsToGroup>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssignsToGroup is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssignsToProcess RelAssignsToProcess(Action<IIfcRelAssignsToProcess> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssignsToProcess>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProcess>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProcess>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssignsToProcess>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssignsToProcess>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssignsToProcess is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssignsToProduct RelAssignsToProduct(Action<IIfcRelAssignsToProduct> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssignsToProduct>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProduct>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToProduct>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssignsToProduct>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssignsToProduct>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssignsToProduct is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssignsToResource RelAssignsToResource(Action<IIfcRelAssignsToResource> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssignsToResource>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToResource>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssignsToResource>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssignsToResource>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssignsToResource>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssignsToResource is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssociatesApproval RelAssociatesApproval(Action<IIfcRelAssociatesApproval> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ControlExtension.IfcRelAssociatesApproval>(init);
-			return _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesApproval>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesApproval>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ControlExtension.IfcRelAssociatesApproval>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ControlExtension.IfcRelAssociatesApproval>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssociatesApproval is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssociatesClassification RelAssociatesClassification(Action<IIfcRelAssociatesClassification> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssociatesClassification>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesClassification>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesClassification>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssociatesClassification>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssociatesClassification>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssociatesClassification is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssociatesConstraint RelAssociatesConstraint(Action<IIfcRelAssociatesConstraint> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ControlExtension.IfcRelAssociatesConstraint>(init);
-			return _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesConstraint>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ControlExtension.IfcRelAssociatesConstraint>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ControlExtension.IfcRelAssociatesConstraint>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ControlExtension.IfcRelAssociatesConstraint>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssociatesConstraint is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssociatesDocument RelAssociatesDocument(Action<IIfcRelAssociatesDocument> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssociatesDocument>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesDocument>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesDocument>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssociatesDocument>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssociatesDocument>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssociatesDocument is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssociatesLibrary RelAssociatesLibrary(Action<IIfcRelAssociatesLibrary> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelAssociatesLibrary>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesLibrary>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelAssociatesLibrary>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelAssociatesLibrary>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelAssociatesLibrary>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssociatesLibrary is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelAssociatesMaterial RelAssociatesMaterial(Action<IIfcRelAssociatesMaterial> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelAssociatesMaterial>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelAssociatesMaterial>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelAssociatesMaterial>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelAssociatesMaterial>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelAssociatesMaterial>(init),
+				_ => throw new NotSupportedException($"Type IfcRelAssociatesMaterial is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsElements RelConnectsElements(Action<IIfcRelConnectsElements> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelConnectsElements>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsElements>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsElements>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelConnectsElements>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelConnectsElements>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsElements is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsPathElements RelConnectsPathElements(Action<IIfcRelConnectsPathElements> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRelConnectsPathElements>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRelConnectsPathElements>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRelConnectsPathElements>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRelConnectsPathElements>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRelConnectsPathElements>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsPathElements is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsPortToElement RelConnectsPortToElement(Action<IIfcRelConnectsPortToElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelConnectsPortToElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPortToElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPortToElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelConnectsPortToElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelConnectsPortToElement>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsPortToElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsPorts RelConnectsPorts(Action<IIfcRelConnectsPorts> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelConnectsPorts>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPorts>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsPorts>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelConnectsPorts>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelConnectsPorts>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsPorts is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsStructuralActivity RelConnectsStructuralActivity(Action<IIfcRelConnectsStructuralActivity> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcRelConnectsStructuralActivity>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsStructuralActivity is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsStructuralMember RelConnectsStructuralMember(Action<IIfcRelConnectsStructuralMember> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsStructuralMember>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralMember>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsStructuralMember>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcRelConnectsStructuralMember>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcRelConnectsStructuralMember>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsStructuralMember is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsWithEccentricity RelConnectsWithEccentricity(Action<IIfcRelConnectsWithEccentricity> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcRelConnectsWithEccentricity>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsWithEccentricity is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelConnectsWithRealizingElements RelConnectsWithRealizingElements(Action<IIfcRelConnectsWithRealizingElements> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelConnectsWithRealizingElements>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsWithRealizingElements>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelConnectsWithRealizingElements>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelConnectsWithRealizingElements>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelConnectsWithRealizingElements>(init),
+				_ => throw new NotSupportedException($"Type IfcRelConnectsWithRealizingElements is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelContainedInSpatialStructure RelContainedInSpatialStructure(Action<IIfcRelContainedInSpatialStructure> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelContainedInSpatialStructure>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelContainedInSpatialStructure>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelContainedInSpatialStructure>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelContainedInSpatialStructure>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelContainedInSpatialStructure>(init),
+				_ => throw new NotSupportedException($"Type IfcRelContainedInSpatialStructure is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelCoversBldgElements RelCoversBldgElements(Action<IIfcRelCoversBldgElements> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRelCoversBldgElements>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversBldgElements>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversBldgElements>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRelCoversBldgElements>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRelCoversBldgElements>(init),
+				_ => throw new NotSupportedException($"Type IfcRelCoversBldgElements is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelCoversSpaces RelCoversSpaces(Action<IIfcRelCoversSpaces> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRelCoversSpaces>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversSpaces>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelCoversSpaces>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRelCoversSpaces>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRelCoversSpaces>(init),
+				_ => throw new NotSupportedException($"Type IfcRelCoversSpaces is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelDefinesByProperties RelDefinesByProperties(Action<IIfcRelDefinesByProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelDefinesByProperties>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelDefinesByProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelDefinesByProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcRelDefinesByProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelDefinesByType RelDefinesByType(Action<IIfcRelDefinesByType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelDefinesByType>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelDefinesByType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelDefinesByType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelDefinesByType>(init),
+				_ => throw new NotSupportedException($"Type IfcRelDefinesByType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelFillsElement RelFillsElement(Action<IIfcRelFillsElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelFillsElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelFillsElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelFillsElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelFillsElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelFillsElement>(init),
+				_ => throw new NotSupportedException($"Type IfcRelFillsElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelFlowControlElements RelFlowControlElements(Action<IIfcRelFlowControlElements> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgServiceElements.IfcRelFlowControlElements>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcRelFlowControlElements>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgServiceElements.IfcRelFlowControlElements>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgServiceElements.IfcRelFlowControlElements>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgServiceElements.IfcRelFlowControlElements>(init),
+				_ => throw new NotSupportedException($"Type IfcRelFlowControlElements is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelNests RelNests(Action<IIfcRelNests> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcRelNests>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelNests>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelNests>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcRelNests>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcRelNests>(init),
+				_ => throw new NotSupportedException($"Type IfcRelNests is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelProjectsElement RelProjectsElement(Action<IIfcRelProjectsElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelProjectsElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelProjectsElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelProjectsElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelProjectsElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelProjectsElement>(init),
+				_ => throw new NotSupportedException($"Type IfcRelProjectsElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelReferencedInSpatialStructure RelReferencedInSpatialStructure(Action<IIfcRelReferencedInSpatialStructure> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelReferencedInSpatialStructure>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelReferencedInSpatialStructure>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelReferencedInSpatialStructure>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelReferencedInSpatialStructure>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelReferencedInSpatialStructure>(init),
+				_ => throw new NotSupportedException($"Type IfcRelReferencedInSpatialStructure is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelSequence RelSequence(Action<IIfcRelSequence> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProcessExtension.IfcRelSequence>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcRelSequence>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcRelSequence>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProcessExtension.IfcRelSequence>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProcessExtension.IfcRelSequence>(init),
+				_ => throw new NotSupportedException($"Type IfcRelSequence is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelServicesBuildings RelServicesBuildings(Action<IIfcRelServicesBuildings> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelServicesBuildings>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelServicesBuildings>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelServicesBuildings>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelServicesBuildings>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelServicesBuildings>(init),
+				_ => throw new NotSupportedException($"Type IfcRelServicesBuildings is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelSpaceBoundary RelSpaceBoundary(Action<IIfcRelSpaceBoundary> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelSpaceBoundary>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelSpaceBoundary>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelSpaceBoundary>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelSpaceBoundary>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelSpaceBoundary>(init),
+				_ => throw new NotSupportedException($"Type IfcRelSpaceBoundary is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRelVoidsElement RelVoidsElement(Action<IIfcRelVoidsElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcRelVoidsElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcRelVoidsElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcRelVoidsElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcRelVoidsElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcRelVoidsElement>(init),
+				_ => throw new NotSupportedException($"Type IfcRelVoidsElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRepresentationMap RepresentationMap(Action<IIfcRepresentationMap> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcRepresentationMap>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcRepresentationMap>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcRepresentationMap>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcRepresentationMap>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcRepresentationMap>(init),
+				_ => throw new NotSupportedException($"Type IfcRepresentationMap is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRevolvedAreaSolid RevolvedAreaSolid(Action<IIfcRevolvedAreaSolid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcRevolvedAreaSolid>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRevolvedAreaSolid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcRevolvedAreaSolid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcRevolvedAreaSolid>(init),
+				_ => throw new NotSupportedException($"Type IfcRevolvedAreaSolid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRightCircularCone RightCircularCone(Action<IIfcRightCircularCone> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcRightCircularCone>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCone>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCone>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcRightCircularCone>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcRightCircularCone>(init),
+				_ => throw new NotSupportedException($"Type IfcRightCircularCone is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRightCircularCylinder RightCircularCylinder(Action<IIfcRightCircularCylinder> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcRightCircularCylinder>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCylinder>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcRightCircularCylinder>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcRightCircularCylinder>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcRightCircularCylinder>(init),
+				_ => throw new NotSupportedException($"Type IfcRightCircularCylinder is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRoof Roof(Action<IIfcRoof> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcRoof>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRoof>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcRoof>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcRoof>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcRoof>(init),
+				_ => throw new NotSupportedException($"Type IfcRoof is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcRoundedRectangleProfileDef RoundedRectangleProfileDef(Action<IIfcRoundedRectangleProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcRoundedRectangleProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcRoundedRectangleProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcRoundedRectangleProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcRoundedRectangleProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcRoundedRectangleProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSIUnit SIUnit(Action<IIfcSIUnit> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcSIUnit>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcSIUnit>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcSIUnit>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcSIUnit>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcSIUnit>(init),
+				_ => throw new NotSupportedException($"Type IfcSIUnit is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSanitaryTerminalType SanitaryTerminalType(Action<IIfcSanitaryTerminalType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PlumbingFireProtectionDomain.IfcSanitaryTerminalType>(init);
-			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcSanitaryTerminalType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcSanitaryTerminalType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PlumbingFireProtectionDomain.IfcSanitaryTerminalType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PlumbingFireProtectionDomain.IfcSanitaryTerminalType>(init),
+				_ => throw new NotSupportedException($"Type IfcSanitaryTerminalType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSectionProperties SectionProperties(Action<IIfcSectionProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcSectionProperties>(init);
-			return _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcSectionProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcSectionProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcSectionProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSectionReinforcementProperties SectionReinforcementProperties(Action<IIfcSectionReinforcementProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcSectionReinforcementProperties>(init);
-			return _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionReinforcementProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfilePropertyResource.IfcSectionReinforcementProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcSectionReinforcementProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcSectionReinforcementProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcSectionReinforcementProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSectionedSpine SectionedSpine(Action<IIfcSectionedSpine> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcSectionedSpine>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSectionedSpine>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSectionedSpine>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcSectionedSpine>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcSectionedSpine>(init),
+				_ => throw new NotSupportedException($"Type IfcSectionedSpine is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSensorType SensorType(Action<IIfcSensorType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<BuildingControlsDomain.IfcSensorType>(init);
-			return _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcSensorType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.BuildingcontrolsDomain.IfcSensorType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.BuildingControlsDomain.IfcSensorType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.BuildingControlsDomain.IfcSensorType>(init),
+				_ => throw new NotSupportedException($"Type IfcSensorType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcShapeAspect ShapeAspect(Action<IIfcShapeAspect> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcShapeAspect>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeAspect>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeAspect>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcShapeAspect>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcShapeAspect>(init),
+				_ => throw new NotSupportedException($"Type IfcShapeAspect is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcShapeRepresentation ShapeRepresentation(Action<IIfcShapeRepresentation> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcShapeRepresentation>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeRepresentation>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcShapeRepresentation>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcShapeRepresentation>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcShapeRepresentation>(init),
+				_ => throw new NotSupportedException($"Type IfcShapeRepresentation is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcShellBasedSurfaceModel ShellBasedSurfaceModel(Action<IIfcShellBasedSurfaceModel> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcShellBasedSurfaceModel>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcShellBasedSurfaceModel>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcShellBasedSurfaceModel>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcShellBasedSurfaceModel>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcShellBasedSurfaceModel>(init),
+				_ => throw new NotSupportedException($"Type IfcShellBasedSurfaceModel is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSite Site(Action<IIfcSite> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcSite>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSite>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcSite>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcSite>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcSite>(init),
+				_ => throw new NotSupportedException($"Type IfcSite is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSlab Slab(Action<IIfcSlab> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcSlab>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlab>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlab>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcSlab>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcSlab>(init),
+				_ => throw new NotSupportedException($"Type IfcSlab is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSlabType SlabType(Action<IIfcSlabType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcSlabType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlabType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcSlabType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcSlabType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcSlabType>(init),
+				_ => throw new NotSupportedException($"Type IfcSlabType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSlippageConnectionCondition SlippageConnectionCondition(Action<IIfcSlippageConnectionCondition> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcSlippageConnectionCondition>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcSlippageConnectionCondition>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcSlippageConnectionCondition>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcSlippageConnectionCondition>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcSlippageConnectionCondition>(init),
+				_ => throw new NotSupportedException($"Type IfcSlippageConnectionCondition is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSpace Space(Action<IIfcSpace> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcSpace>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSpace>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcSpace>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcSpace>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcSpace>(init),
+				_ => throw new NotSupportedException($"Type IfcSpace is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSpaceHeaterType SpaceHeaterType(Action<IIfcSpaceHeaterType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcSpaceHeaterType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcSpaceHeaterType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcSpaceHeaterType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcSpaceHeaterType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcSpaceHeaterType>(init),
+				_ => throw new NotSupportedException($"Type IfcSpaceHeaterType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSpaceType SpaceType(Action<IIfcSpaceType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcSpaceType>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSpaceType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcSpaceType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcSpaceType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcSpaceType>(init),
+				_ => throw new NotSupportedException($"Type IfcSpaceType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSphere Sphere(Action<IIfcSphere> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcSphere>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSphere>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSphere>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcSphere>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcSphere>(init),
+				_ => throw new NotSupportedException($"Type IfcSphere is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStackTerminalType StackTerminalType(Action<IIfcStackTerminalType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PlumbingFireProtectionDomain.IfcStackTerminalType>(init);
-			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcStackTerminalType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PlumbingFireProtectionDomain.IfcStackTerminalType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PlumbingFireProtectionDomain.IfcStackTerminalType>(init),
+				_ => throw new NotSupportedException($"Type IfcStackTerminalType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStair Stair(Action<IIfcStair> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcStair>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStair>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStair>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcStair>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcStair>(init),
+				_ => throw new NotSupportedException($"Type IfcStair is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStairFlight StairFlight(Action<IIfcStairFlight> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcStairFlight>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlight>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlight>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcStairFlight>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcStairFlight>(init),
+				_ => throw new NotSupportedException($"Type IfcStairFlight is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStairFlightType StairFlightType(Action<IIfcStairFlightType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcStairFlightType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlightType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcStairFlightType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcStairFlightType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcStairFlightType>(init),
+				_ => throw new NotSupportedException($"Type IfcStairFlightType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralAnalysisModel StructuralAnalysisModel(Action<IIfcStructuralAnalysisModel> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralAnalysisModel>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralAnalysisModel>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralAnalysisModel>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralAnalysisModel>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralAnalysisModel>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralAnalysisModel is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralCurveConnection StructuralCurveConnection(Action<IIfcStructuralCurveConnection> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveConnection>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveConnection>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveConnection>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralCurveConnection>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralCurveConnection>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralCurveConnection is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralCurveMember StructuralCurveMember(Action<IIfcStructuralCurveMember> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveMember>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMember>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMember>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralCurveMember>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMember>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralCurveMember is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralCurveMemberVarying StructuralCurveMemberVarying(Action<IIfcStructuralCurveMemberVarying> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralCurveMemberVarying>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralCurveMemberVarying is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLinearAction StructuralLinearAction(Action<IIfcStructuralLinearAction> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralLinearAction>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLinearAction>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralLinearAction>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralLinearAction>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLinearAction is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadGroup StructuralLoadGroup(Action<IIfcStructuralLoadGroup> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralLoadGroup>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLoadGroup>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralLoadGroup>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralLoadGroup>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralLoadGroup>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadGroup is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadLinearForce StructuralLoadLinearForce(Action<IIfcStructuralLoadLinearForce> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadLinearForce>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadLinearForce>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadLinearForce>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcStructuralLoadLinearForce>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcStructuralLoadLinearForce>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadLinearForce is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadPlanarForce StructuralLoadPlanarForce(Action<IIfcStructuralLoadPlanarForce> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadPlanarForce>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadPlanarForce>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadPlanarForce>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcStructuralLoadPlanarForce>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcStructuralLoadPlanarForce>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadPlanarForce is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadSingleDisplacement StructuralLoadSingleDisplacement(Action<IIfcStructuralLoadSingleDisplacement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleDisplacement>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcStructuralLoadSingleDisplacement>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadSingleDisplacement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadSingleDisplacementDistortion StructuralLoadSingleDisplacementDistortion(Action<IIfcStructuralLoadSingleDisplacementDistortion> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcStructuralLoadSingleDisplacementDistortion>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadSingleDisplacementDistortion is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadSingleForce StructuralLoadSingleForce(Action<IIfcStructuralLoadSingleForce> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleForce>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForce>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForce>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcStructuralLoadSingleForce>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcStructuralLoadSingleForce>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadSingleForce is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadSingleForceWarping StructuralLoadSingleForceWarping(Action<IIfcStructuralLoadSingleForceWarping> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadSingleForceWarping>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForceWarping>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadSingleForceWarping>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcStructuralLoadSingleForceWarping>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcStructuralLoadSingleForceWarping>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadSingleForceWarping is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralLoadTemperature StructuralLoadTemperature(Action<IIfcStructuralLoadTemperature> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralLoadResource.IfcStructuralLoadTemperature>(init);
-			return _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadTemperature>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralLoadResource.IfcStructuralLoadTemperature>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralLoadResource.IfcStructuralLoadTemperature>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralLoadResource.IfcStructuralLoadTemperature>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralLoadTemperature is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralPlanarAction StructuralPlanarAction(Action<IIfcStructuralPlanarAction> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPlanarAction>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPlanarAction>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPlanarAction>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralPlanarAction>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralPlanarAction>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralPlanarAction is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralPointAction StructuralPointAction(Action<IIfcStructuralPointAction> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointAction>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointAction>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointAction>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralPointAction>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralPointAction>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralPointAction is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralPointConnection StructuralPointConnection(Action<IIfcStructuralPointConnection> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointConnection>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointConnection>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointConnection>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralPointConnection>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralPointConnection>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralPointConnection is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralPointReaction StructuralPointReaction(Action<IIfcStructuralPointReaction> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralPointReaction>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointReaction>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralPointReaction>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralPointReaction>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralPointReaction>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralPointReaction is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralResultGroup StructuralResultGroup(Action<IIfcStructuralResultGroup> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralResultGroup>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralResultGroup>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralResultGroup>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralResultGroup>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralResultGroup>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralResultGroup is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralSurfaceConnection StructuralSurfaceConnection(Action<IIfcStructuralSurfaceConnection> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceConnection>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceConnection>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceConnection>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralSurfaceConnection>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceConnection>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralSurfaceConnection is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralSurfaceMember StructuralSurfaceMember(Action<IIfcStructuralSurfaceMember> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceMember>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMember>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMember>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralSurfaceMember>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceMember>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralSurfaceMember is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStructuralSurfaceMemberVarying StructuralSurfaceMemberVarying(Action<IIfcStructuralSurfaceMemberVarying> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>(init);
-			return _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralAnalysisDomain.IfcStructuralSurfaceMemberVarying>(init),
+				_ => throw new NotSupportedException($"Type IfcStructuralSurfaceMemberVarying is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStyledItem StyledItem(Action<IIfcStyledItem> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcStyledItem>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcStyledItem>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcStyledItem>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcStyledItem>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcStyledItem>(init),
+				_ => throw new NotSupportedException($"Type IfcStyledItem is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcStyledRepresentation StyledRepresentation(Action<IIfcStyledRepresentation> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcStyledRepresentation>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcStyledRepresentation>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcStyledRepresentation>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcStyledRepresentation>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcStyledRepresentation>(init),
+				_ => throw new NotSupportedException($"Type IfcStyledRepresentation is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSubContractResource SubContractResource(Action<IIfcSubContractResource> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ConstructionMgmtDomain.IfcSubContractResource>(init);
-			return _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcSubContractResource>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ConstructionMgmtDomain.IfcSubContractResource>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ConstructionMgmtDomain.IfcSubContractResource>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ConstructionMgmtDomain.IfcSubContractResource>(init),
+				_ => throw new NotSupportedException($"Type IfcSubContractResource is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSubedge Subedge(Action<IIfcSubedge> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcSubedge>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcSubedge>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcSubedge>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcSubedge>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcSubedge>(init),
+				_ => throw new NotSupportedException($"Type IfcSubedge is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceCurveSweptAreaSolid SurfaceCurveSweptAreaSolid(Action<IIfcSurfaceCurveSweptAreaSolid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcSurfaceCurveSweptAreaSolid>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceCurveSweptAreaSolid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceOfLinearExtrusion SurfaceOfLinearExtrusion(Action<IIfcSurfaceOfLinearExtrusion> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcSurfaceOfLinearExtrusion>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfLinearExtrusion>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfLinearExtrusion>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcSurfaceOfLinearExtrusion>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcSurfaceOfLinearExtrusion>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceOfLinearExtrusion is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceOfRevolution SurfaceOfRevolution(Action<IIfcSurfaceOfRevolution> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcSurfaceOfRevolution>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfRevolution>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcSurfaceOfRevolution>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcSurfaceOfRevolution>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcSurfaceOfRevolution>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceOfRevolution is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceStyle SurfaceStyle(Action<IIfcSurfaceStyle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyle>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcSurfaceStyle>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceStyle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceStyleLighting SurfaceStyleLighting(Action<IIfcSurfaceStyleLighting> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleLighting>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleLighting>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleLighting>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyleLighting>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcSurfaceStyleLighting>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceStyleLighting is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceStyleRefraction SurfaceStyleRefraction(Action<IIfcSurfaceStyleRefraction> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleRefraction>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRefraction>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRefraction>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyleRefraction>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcSurfaceStyleRefraction>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceStyleRefraction is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceStyleRendering SurfaceStyleRendering(Action<IIfcSurfaceStyleRendering> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleRendering>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRendering>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleRendering>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyleRendering>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcSurfaceStyleRendering>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceStyleRendering is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceStyleShading SurfaceStyleShading(Action<IIfcSurfaceStyleShading> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleShading>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleShading>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleShading>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyleShading>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcSurfaceStyleShading>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceStyleShading is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSurfaceStyleWithTextures SurfaceStyleWithTextures(Action<IIfcSurfaceStyleWithTextures> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcSurfaceStyleWithTextures>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleWithTextures>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleWithTextures>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyleWithTextures>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcSurfaceStyleWithTextures>(init),
+				_ => throw new NotSupportedException($"Type IfcSurfaceStyleWithTextures is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSweptDiskSolid SweptDiskSolid(Action<IIfcSweptDiskSolid> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricModelResource.IfcSweptDiskSolid>(init);
-			return _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSweptDiskSolid>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricModelResource.IfcSweptDiskSolid>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricModelResource.IfcSweptDiskSolid>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricModelResource.IfcSweptDiskSolid>(init),
+				_ => throw new NotSupportedException($"Type IfcSweptDiskSolid is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSwitchingDeviceType SwitchingDeviceType(Action<IIfcSwitchingDeviceType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcSwitchingDeviceType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcSwitchingDeviceType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcSwitchingDeviceType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcSwitchingDeviceType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcSwitchingDeviceType>(init),
+				_ => throw new NotSupportedException($"Type IfcSwitchingDeviceType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSystem System(Action<IIfcSystem> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcSystem>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcSystem>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcSystem>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcSystem>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcSystem>(init),
+				_ => throw new NotSupportedException($"Type IfcSystem is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcSystemFurnitureElementType SystemFurnitureElementType(Action<IIfcSystemFurnitureElementType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedFacilitiesElements.IfcSystemFurnitureElementType>(init);
-			return _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcSystemFurnitureElementType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedFacilitiesElements.IfcSystemFurnitureElementType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedFacilitiesElements.IfcSystemFurnitureElementType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedFacilitiesElements.IfcSystemFurnitureElementType>(init),
+				_ => throw new NotSupportedException($"Type IfcSystemFurnitureElementType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTShapeProfileDef TShapeProfileDef(Action<IIfcTShapeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcTShapeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcTShapeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcTShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcTShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcTShapeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcTShapeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTable Table(Action<IIfcTable> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<UtilityResource.IfcTable>(init);
-			return _model.Instances.New<Ifc2x3.UtilityResource.IfcTable>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.UtilityResource.IfcTable>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.UtilityResource.IfcTable>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.UtilityResource.IfcTable>(init),
+				_ => throw new NotSupportedException($"Type IfcTable is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTableRow TableRow(Action<IIfcTableRow> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<UtilityResource.IfcTableRow>(init);
-			return _model.Instances.New<Ifc2x3.UtilityResource.IfcTableRow>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.UtilityResource.IfcTableRow>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.UtilityResource.IfcTableRow>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.UtilityResource.IfcTableRow>(init),
+				_ => throw new NotSupportedException($"Type IfcTableRow is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTankType TankType(Action<IIfcTankType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcTankType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcTankType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcTankType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcTankType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcTankType>(init),
+				_ => throw new NotSupportedException($"Type IfcTankType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTask Task(Action<IIfcTask> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProcessExtension.IfcTask>(init);
-			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcTask>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProcessExtension.IfcTask>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProcessExtension.IfcTask>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProcessExtension.IfcTask>(init),
+				_ => throw new NotSupportedException($"Type IfcTask is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTelecomAddress TelecomAddress(Action<IIfcTelecomAddress> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ActorResource.IfcTelecomAddress>(init);
-			return _model.Instances.New<Ifc2x3.ActorResource.IfcTelecomAddress>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ActorResource.IfcTelecomAddress>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ActorResource.IfcTelecomAddress>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ActorResource.IfcTelecomAddress>(init),
+				_ => throw new NotSupportedException($"Type IfcTelecomAddress is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTendon Tendon(Action<IIfcTendon> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralElementsDomain.IfcTendon>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendon>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendon>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcTendon>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralElementsDomain.IfcTendon>(init),
+				_ => throw new NotSupportedException($"Type IfcTendon is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTendonAnchor TendonAnchor(Action<IIfcTendonAnchor> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<StructuralElementsDomain.IfcTendonAnchor>(init);
-			return _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendonAnchor>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.StructuralElementsDomain.IfcTendonAnchor>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcTendonAnchor>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.StructuralElementsDomain.IfcTendonAnchor>(init),
+				_ => throw new NotSupportedException($"Type IfcTendonAnchor is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextLiteral TextLiteral(Action<IIfcTextLiteral> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationDefinitionResource.IfcTextLiteral>(init);
-			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteral>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteral>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationDefinitionResource.IfcTextLiteral>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationDefinitionResource.IfcTextLiteral>(init),
+				_ => throw new NotSupportedException($"Type IfcTextLiteral is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextLiteralWithExtent TextLiteralWithExtent(Action<IIfcTextLiteralWithExtent> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationDefinitionResource.IfcTextLiteralWithExtent>(init);
-			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteralWithExtent>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextLiteralWithExtent>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationDefinitionResource.IfcTextLiteralWithExtent>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationDefinitionResource.IfcTextLiteralWithExtent>(init),
+				_ => throw new NotSupportedException($"Type IfcTextLiteralWithExtent is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextStyle TextStyle(Action<IIfcTextStyle> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyle>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyle>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcTextStyle>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcTextStyle>(init),
+				_ => throw new NotSupportedException($"Type IfcTextStyle is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextStyleFontModel TextStyleFontModel(Action<IIfcTextStyleFontModel> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyleFontModel>(init);
-			return _model.Instances.New<Ifc2x3.PresentationResource.IfcTextStyleFontModel>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationResource.IfcTextStyleFontModel>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcTextStyleFontModel>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcTextStyleFontModel>(init),
+				_ => throw new NotSupportedException($"Type IfcTextStyleFontModel is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextStyleForDefinedFont TextStyleForDefinedFont(Action<IIfcTextStyleForDefinedFont> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyleForDefinedFont>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleForDefinedFont>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleForDefinedFont>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcTextStyleForDefinedFont>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcTextStyleForDefinedFont>(init),
+				_ => throw new NotSupportedException($"Type IfcTextStyleForDefinedFont is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextStyleTextModel TextStyleTextModel(Action<IIfcTextStyleTextModel> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcTextStyleTextModel>(init);
-			return _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleTextModel>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcTextStyleTextModel>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcTextStyleTextModel>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcTextStyleTextModel>(init),
+				_ => throw new NotSupportedException($"Type IfcTextStyleTextModel is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextureCoordinateGenerator TextureCoordinateGenerator(Action<IIfcTextureCoordinateGenerator> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcTextureCoordinateGenerator>(init);
-			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureCoordinateGenerator>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureCoordinateGenerator>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcTextureCoordinateGenerator>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcTextureCoordinateGenerator>(init),
+				_ => throw new NotSupportedException($"Type IfcTextureCoordinateGenerator is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextureMap TextureMap(Action<IIfcTextureMap> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcTextureMap>(init);
-			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureMap>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureMap>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcTextureMap>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcTextureMap>(init),
+				_ => throw new NotSupportedException($"Type IfcTextureMap is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTextureVertex TextureVertex(Action<IIfcTextureVertex> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PresentationAppearanceResource.IfcTextureVertex>(init);
-			return _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureVertex>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PresentationDefinitionResource.IfcTextureVertex>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcTextureVertex>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PresentationAppearanceResource.IfcTextureVertex>(init),
+				_ => throw new NotSupportedException($"Type IfcTextureVertex is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTimeSeriesValue TimeSeriesValue(Action<IIfcTimeSeriesValue> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<DateTimeResource.IfcTimeSeriesValue>(init);
-			return _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcTimeSeriesValue>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TimeSeriesResource.IfcTimeSeriesValue>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.DateTimeResource.IfcTimeSeriesValue>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.DateTimeResource.IfcTimeSeriesValue>(init),
+				_ => throw new NotSupportedException($"Type IfcTimeSeriesValue is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTopologyRepresentation TopologyRepresentation(Action<IIfcTopologyRepresentation> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<RepresentationResource.IfcTopologyRepresentation>(init);
-			return _model.Instances.New<Ifc2x3.RepresentationResource.IfcTopologyRepresentation>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.RepresentationResource.IfcTopologyRepresentation>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.RepresentationResource.IfcTopologyRepresentation>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.RepresentationResource.IfcTopologyRepresentation>(init),
+				_ => throw new NotSupportedException($"Type IfcTopologyRepresentation is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTransformerType TransformerType(Action<IIfcTransformerType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ElectricalDomain.IfcTransformerType>(init);
-			return _model.Instances.New<Ifc2x3.ElectricalDomain.IfcTransformerType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ElectricalDomain.IfcTransformerType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ElectricalDomain.IfcTransformerType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ElectricalDomain.IfcTransformerType>(init),
+				_ => throw new NotSupportedException($"Type IfcTransformerType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTransportElement TransportElement(Action<IIfcTransportElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcTransportElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcTransportElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcTransportElement>(init),
+				_ => throw new NotSupportedException($"Type IfcTransportElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTransportElementType TransportElementType(Action<IIfcTransportElementType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcTransportElementType>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElementType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcTransportElementType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcTransportElementType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcTransportElementType>(init),
+				_ => throw new NotSupportedException($"Type IfcTransportElementType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTrapeziumProfileDef TrapeziumProfileDef(Action<IIfcTrapeziumProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcTrapeziumProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcTrapeziumProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcTrapeziumProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcTrapeziumProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcTrapeziumProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcTrapeziumProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTrimmedCurve TrimmedCurve(Action<IIfcTrimmedCurve> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcTrimmedCurve>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcTrimmedCurve>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcTrimmedCurve>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcTrimmedCurve>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcTrimmedCurve>(init),
+				_ => throw new NotSupportedException($"Type IfcTrimmedCurve is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTubeBundleType TubeBundleType(Action<IIfcTubeBundleType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcTubeBundleType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcTubeBundleType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcTubeBundleType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcTubeBundleType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcTubeBundleType>(init),
+				_ => throw new NotSupportedException($"Type IfcTubeBundleType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTypeObject TypeObject(Action<IIfcTypeObject> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcTypeObject>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcTypeObject>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcTypeObject>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcTypeObject>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcTypeObject>(init),
+				_ => throw new NotSupportedException($"Type IfcTypeObject is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcTypeProduct TypeProduct(Action<IIfcTypeProduct> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<Kernel.IfcTypeProduct>(init);
-			return _model.Instances.New<Ifc2x3.Kernel.IfcTypeProduct>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.Kernel.IfcTypeProduct>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.Kernel.IfcTypeProduct>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.Kernel.IfcTypeProduct>(init),
+				_ => throw new NotSupportedException($"Type IfcTypeProduct is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcUShapeProfileDef UShapeProfileDef(Action<IIfcUShapeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcUShapeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcUShapeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcUShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcUShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcUShapeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcUShapeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcUnitAssignment UnitAssignment(Action<IIfcUnitAssignment> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<MeasureResource.IfcUnitAssignment>(init);
-			return _model.Instances.New<Ifc2x3.MeasureResource.IfcUnitAssignment>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.MeasureResource.IfcUnitAssignment>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.MeasureResource.IfcUnitAssignment>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.MeasureResource.IfcUnitAssignment>(init),
+				_ => throw new NotSupportedException($"Type IfcUnitAssignment is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcUnitaryEquipmentType UnitaryEquipmentType(Action<IIfcUnitaryEquipmentType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcUnitaryEquipmentType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcUnitaryEquipmentType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcUnitaryEquipmentType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcUnitaryEquipmentType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcUnitaryEquipmentType>(init),
+				_ => throw new NotSupportedException($"Type IfcUnitaryEquipmentType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcValveType ValveType(Action<IIfcValveType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcValveType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcValveType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcValveType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcValveType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcValveType>(init),
+				_ => throw new NotSupportedException($"Type IfcValveType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcVector Vector(Action<IIfcVector> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometryResource.IfcVector>(init);
-			return _model.Instances.New<Ifc2x3.GeometryResource.IfcVector>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometryResource.IfcVector>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometryResource.IfcVector>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometryResource.IfcVector>(init),
+				_ => throw new NotSupportedException($"Type IfcVector is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcVertex Vertex(Action<IIfcVertex> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcVertex>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcVertex>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcVertex>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcVertex>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcVertex>(init),
+				_ => throw new NotSupportedException($"Type IfcVertex is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcVertexLoop VertexLoop(Action<IIfcVertexLoop> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcVertexLoop>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexLoop>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexLoop>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcVertexLoop>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcVertexLoop>(init),
+				_ => throw new NotSupportedException($"Type IfcVertexLoop is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcVertexPoint VertexPoint(Action<IIfcVertexPoint> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<TopologyResource.IfcVertexPoint>(init);
-			return _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexPoint>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.TopologyResource.IfcVertexPoint>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.TopologyResource.IfcVertexPoint>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.TopologyResource.IfcVertexPoint>(init),
+				_ => throw new NotSupportedException($"Type IfcVertexPoint is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcVibrationIsolatorType VibrationIsolatorType(Action<IIfcVibrationIsolatorType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<HvacDomain.IfcVibrationIsolatorType>(init);
-			return _model.Instances.New<Ifc2x3.HVACDomain.IfcVibrationIsolatorType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.HVACDomain.IfcVibrationIsolatorType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.HvacDomain.IfcVibrationIsolatorType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.HvacDomain.IfcVibrationIsolatorType>(init),
+				_ => throw new NotSupportedException($"Type IfcVibrationIsolatorType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcVirtualElement VirtualElement(Action<IIfcVirtualElement> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcVirtualElement>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcVirtualElement>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcVirtualElement>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcVirtualElement>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcVirtualElement>(init),
+				_ => throw new NotSupportedException($"Type IfcVirtualElement is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcVirtualGridIntersection VirtualGridIntersection(Action<IIfcVirtualGridIntersection> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<GeometricConstraintResource.IfcVirtualGridIntersection>(init);
-			return _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcVirtualGridIntersection>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.GeometricConstraintResource.IfcVirtualGridIntersection>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.GeometricConstraintResource.IfcVirtualGridIntersection>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.GeometricConstraintResource.IfcVirtualGridIntersection>(init),
+				_ => throw new NotSupportedException($"Type IfcVirtualGridIntersection is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWall Wall(Action<IIfcWall> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcWall>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWall>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWall>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcWall>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcWall>(init),
+				_ => throw new NotSupportedException($"Type IfcWall is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWallStandardCase WallStandardCase(Action<IIfcWallStandardCase> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcWallStandardCase>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallStandardCase>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallStandardCase>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcWallStandardCase>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcWallStandardCase>(init),
+				_ => throw new NotSupportedException($"Type IfcWallStandardCase is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWallType WallType(Action<IIfcWallType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcWallType>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWallType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcWallType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcWallType>(init),
+				_ => throw new NotSupportedException($"Type IfcWallType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWasteTerminalType WasteTerminalType(Action<IIfcWasteTerminalType> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<PlumbingFireProtectionDomain.IfcWasteTerminalType>(init);
-			return _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalType>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.PlumbingFireProtectionDomain.IfcWasteTerminalType>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.PlumbingFireProtectionDomain.IfcWasteTerminalType>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.PlumbingFireProtectionDomain.IfcWasteTerminalType>(init),
+				_ => throw new NotSupportedException($"Type IfcWasteTerminalType is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWindow Window(Action<IIfcWindow> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<SharedBldgElements.IfcWindow>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindow>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindow>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.SharedBldgElements.IfcWindow>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.SharedBldgElements.IfcWindow>(init),
+				_ => throw new NotSupportedException($"Type IfcWindow is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWindowLiningProperties WindowLiningProperties(Action<IIfcWindowLiningProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ArchitectureDomain.IfcWindowLiningProperties>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowLiningProperties>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowLiningProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ArchitectureDomain.IfcWindowLiningProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ArchitectureDomain.IfcWindowLiningProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcWindowLiningProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWindowPanelProperties WindowPanelProperties(Action<IIfcWindowPanelProperties> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ArchitectureDomain.IfcWindowPanelProperties>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowPanelProperties>(init);
-		}
-
-		public IIfcWindowStyle WindowStyle(Action<IIfcWindowStyle> init = null)
-		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ArchitectureDomain.IfcWindowStyle>(init);
-			return _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowStyle>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.SharedBldgElements.IfcWindowPanelProperties>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ArchitectureDomain.IfcWindowPanelProperties>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ArchitectureDomain.IfcWindowPanelProperties>(init),
+				_ => throw new NotSupportedException($"Type IfcWindowPanelProperties is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWorkPlan WorkPlan(Action<IIfcWorkPlan> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProcessExtension.IfcWorkPlan>(init);
-			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkPlan>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkPlan>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProcessExtension.IfcWorkPlan>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProcessExtension.IfcWorkPlan>(init),
+				_ => throw new NotSupportedException($"Type IfcWorkPlan is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcWorkSchedule WorkSchedule(Action<IIfcWorkSchedule> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProcessExtension.IfcWorkSchedule>(init);
-			return _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkSchedule>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProcessExtension.IfcWorkSchedule>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProcessExtension.IfcWorkSchedule>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProcessExtension.IfcWorkSchedule>(init),
+				_ => throw new NotSupportedException($"Type IfcWorkSchedule is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcZShapeProfileDef ZShapeProfileDef(Action<IIfcZShapeProfileDef> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProfileResource.IfcZShapeProfileDef>(init);
-			return _model.Instances.New<Ifc2x3.ProfileResource.IfcZShapeProfileDef>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProfileResource.IfcZShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProfileResource.IfcZShapeProfileDef>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProfileResource.IfcZShapeProfileDef>(init),
+				_ => throw new NotSupportedException($"Type IfcZShapeProfileDef is not supported in schema {_version}")
+			};
 		}
 
 		public IIfcZone Zone(Action<IIfcZone> init = null)
 		{
-			if (_version == XbimSchemaVersion.Ifc4)
-				return _model.Instances.New<ProductExtension.IfcZone>(init);
-			return _model.Instances.New<Ifc2x3.ProductExtension.IfcZone>(init);
+			return _version switch 
+			{
+				XbimSchemaVersion.Ifc2X3 => _model.Instances.New<Ifc2x3.ProductExtension.IfcZone>(init),
+				XbimSchemaVersion.Ifc4x3 => _model.Instances.New<Ifc4x3.ProductExtension.IfcZone>(init),
+				XbimSchemaVersion.Ifc4 => _model.Instances.New<Ifc4.ProductExtension.IfcZone>(init),
+				_ => throw new NotSupportedException($"Type IfcZone is not supported in schema {_version}")
+			};
 		}
 
-	    public void Dispose()
-	    {
-	    }
 	}
 }
