@@ -22,7 +22,7 @@ namespace Xbim.Essentials.Tests
 
         public void CreateDataWithoutInitializers(IModel model)
         {
-            var create = new Create(model);
+            var create = new EntityCreator(model);
             var wall = create.Wall();
             wall.PredefinedType = IfcWallTypeEnum.POLYGONAL;
             wall.Name = "Name of the perfect wall";
@@ -37,7 +37,7 @@ namespace Xbim.Essentials.Tests
 
         public void CreateDataWithInitializers(IModel model)
         {
-            var create = new Create(model);
+            var create = new EntityCreator(model);
             var wall = create.Wall(w =>
             {
                 w.PredefinedType = IfcWallTypeEnum.POLYGONAL;

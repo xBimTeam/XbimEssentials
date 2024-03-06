@@ -90,7 +90,7 @@ namespace Xbim.Essentials.Tests
             var data = new List<byte[]>() { new byte[] { 0, 0, 255, 255 }, new byte[] { 0, 255, 255, 255 }, new byte[] { 255, 0, 255, 255 }, new byte[] { 255, 0, 0, 255 } };
             using (var model = new MemoryModel(new EntityFactoryIfc4()))
             {
-                var create = new Create(model);
+                var create = new EntityCreator(model);
                 using (var txn = model.BeginTransaction(""))
                 {
                     var pt = create.PixelTexture(t => {
