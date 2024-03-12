@@ -36,6 +36,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+using Xbim.Common.Geometry;
+using Xbim.Common.XbimExtensions;
+using Xbim.Ifc4.MeasureResource;
+
 namespace Xbim.Tessellator
 {
     public struct Vec3EqualityComparer : IEqualityComparer<Vec3>
@@ -106,7 +110,19 @@ namespace Xbim.Tessellator
             // ReSharper restore CompareOfFloatsByEqualityOperator
         }
 
-       
+        public Vec3(XbimTriplet<IfcParameterValue> triple)
+        {
+            X = triple.A;
+            Y = triple.B;
+            Z = triple.C;
+        }
+
+        public Vec3(XbimPoint3D p)
+        {
+            X = p.X;
+            Y = p.Y;
+            Z = p.Z;
+        }
 
         public Vec3(double x, double y, double z)
         {
@@ -151,6 +167,7 @@ namespace Xbim.Tessellator
         {
             get { return Length2 > 0; }
         }
+
         public static double Angle(ref Vec3 v1, ref Vec3 v2)
         {
             double cosinus;
@@ -163,6 +180,7 @@ namespace Xbim.Tessellator
             if (cosinus < 0.0) return Math.PI - Math.Asin(sinus);
             return Math.Asin(sinus);
         }
+
         public static void Neg(ref Vec3 v)
         {
             v.X = -v.X;
