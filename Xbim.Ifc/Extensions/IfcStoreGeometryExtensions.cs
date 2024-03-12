@@ -67,6 +67,7 @@ namespace Xbim.Ifc
                 {
                     binaryStream.Write((Int32)(r.Population));
                     var bounds = r.ToXbimRect3D();
+                    bounds = XbimRect3D.TransformBy(bounds, t);
                     var centre = t.Transform(r.Centre);
                     //write out the centre of the region
                     binaryStream.Write((Single)centre.X);
