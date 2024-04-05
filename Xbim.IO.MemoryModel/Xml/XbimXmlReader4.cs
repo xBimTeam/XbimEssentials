@@ -849,6 +849,9 @@ namespace Xbim.IO.Xml
             if (!input.Read())
                 return null;
 
+            if (input.NodeType == XmlNodeType.EndElement)
+                return null;
+            
             if (input.NodeType != XmlNodeType.Text)
                 throw new FormatException("Unexpected node type");
 
