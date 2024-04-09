@@ -65,10 +65,14 @@ namespace Xbim.Common.Collections
 
         public TValue this[TKey key]
         {
-            get => FindChunkContainingKey(key)[key];
+            get
+            {
+                _ = FindChunkContainingKey(key, false, out var value);
+                return value;
+            }
             set
             {
-                var chunk = FindChunkContainingKey(key, true);
+                var chunk = FindChunkContainingKey(key, true, out _);
                 chunk[key] = value;
             }
         }
@@ -130,24 +134,21 @@ namespace Xbim.Common.Collections
 
         public bool Remove(TKey key)
         {
-            var chunk = FindChunkContainingKey(key);
+            var chunk = FindChunkContainingKey(key, false, out _);
             return chunk != null && chunk.Remove(key);
         }
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            var chunk = FindChunkContainingKey(item.Key);
+            var chunk = FindChunkContainingKey(item.Key, false, out _);
             return chunk != null && chunk.Remove(item.Key);
         }
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            var chunk = FindChunkContainingKey(key);
-            if (chunk != null)
-                return chunk.TryGetValue(key, out value);
-
             value = default;
-            return false;
+            var chunk = FindChunkContainingKey(key, false, out value);
+            return chunk != null;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -155,16 +156,19 @@ namespace Xbim.Common.Collections
             return GetEnumerator();
         }
 
-        private Dictionary<TKey, TValue> FindChunkContainingKey(TKey key, bool createIfNotExists = false)
+        private Dictionary<TKey, TValue> FindChunkContainingKey(TKey key, bool createIfNotExists, out TValue value)
         {
             foreach (var chunk in _chunks)
             {
-                if (chunk.ContainsKey(key))
+                if (chunk.TryGetValue(key, out value))
                     return chunk;
             }
 
             if (createIfNotExists)
+            {
+                value = default;
                 return AddNewChunk();
+            }
 
             throw new KeyNotFoundException($"The given key was not present in the dictionary.");
         }
