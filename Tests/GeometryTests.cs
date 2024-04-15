@@ -163,6 +163,42 @@ namespace Xbim.Essentials.Tests
 
 
         [TestMethod]
+        public void DecomposeAndBack()
+        {
+            var m = XbimMatrix3D.CreateTranslation(new XbimVector3D(10, 20, 30));
+            m.RotateAroundXAxis(Math.PI / 2);
+            m.RotateAroundYAxis(Math.PI / 4);
+            m.RotateAroundZAxis(Math.PI / 8);
+            m.Scale(new XbimVector3D(2, 3, 4));
+
+            m.Decompose(out XbimVector3D scale, out XbimQuaternion rotation, out XbimVector3D translation);
+
+            var restored = XbimMatrix3D.FromScaleRotationTranslation(scale, rotation, translation);
+
+            Assert.IsTrue(IsTolerableDifference(m.M11, restored.M11));
+            Assert.IsTrue(IsTolerableDifference(m.M12, restored.M12));
+            Assert.IsTrue(IsTolerableDifference(m.M13, restored.M13));
+            Assert.IsTrue(IsTolerableDifference(m.M14, restored.M14));
+
+            Assert.IsTrue(IsTolerableDifference(m.M21, restored.M21));
+            Assert.IsTrue(IsTolerableDifference(m.M22, restored.M22));
+            Assert.IsTrue(IsTolerableDifference(m.M23, restored.M23));
+            Assert.IsTrue(IsTolerableDifference(m.M24, restored.M24));
+
+            Assert.IsTrue(IsTolerableDifference(m.M31, restored.M31));
+            Assert.IsTrue(IsTolerableDifference(m.M32, restored.M32));
+            Assert.IsTrue(IsTolerableDifference(m.M33, restored.M33));
+            Assert.IsTrue(IsTolerableDifference(m.M34, restored.M34));
+
+            Assert.IsTrue(IsTolerableDifference(m.OffsetX, restored.OffsetX));
+            Assert.IsTrue(IsTolerableDifference(m.OffsetY, restored.OffsetY));
+            Assert.IsTrue(IsTolerableDifference(m.OffsetZ, restored.OffsetZ));
+            Assert.IsTrue(IsTolerableDifference(m.M44, restored.M44));
+
+        }
+
+
+        [TestMethod]
         public void TransformationOfRegion()
         {
             XbimRect3D r = new XbimRect3D(

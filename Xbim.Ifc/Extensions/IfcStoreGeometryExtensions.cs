@@ -22,9 +22,14 @@ namespace Xbim.Ifc
         /// <param name="binaryStream">An open writable streamer.</param>
         /// <param name="products">Optional products to be written to the wexBIM file. If null, all products from the model will be saved</param>
         /// <param name="translation">Optional 3D vector to apply</param>
-        public static void SaveAsWexBim(this IModel model, BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null, 
-            IVector3D translation = null)
+        /// <param name="scale">Optional scaling factor to apply</param>
+        /// <param name="rotation">Optional rotation to apply</param>
+        public static void SaveAsWexBim(this IModel model, BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null,
+            IVector3D translation = null, double? scale = null, XbimQuaternion? rotation = null)
         {
+            if (scale == 0) throw new ArgumentException("Scale cannot be zero", nameof(scale));
+            XbimMatrix3D transformationMatrix = XbimMatrix3D.FromScaleRotationTranslation(new XbimVector3D(scale ?? 1, scale ?? 1, scale ?? 1), rotation ?? new XbimQuaternion(), translation ?? new XbimVector3D(0, 0, 0));
+
             products = products ?? model.Instances.OfType<IIfcProduct>();
             // ReSharper disable RedundantCast
             if (model.GeometryStore == null) throw new XbimException("Geometry store has not been initialised");
@@ -57,12 +62,12 @@ namespace Xbim.Ifc
                 binaryStream.Write((Int32)0); //number of matrices
                 binaryStream.Write((Int32)0); //number of products
                 binaryStream.Write((Int32)numberOfStyles); //number of styles
-                binaryStream.Write(Convert.ToSingle(model.ModelFactors.OneMetre));
+                binaryStream.Write(Convert.ToSingle(model.ModelFactors.OneMetre / (scale ?? 1)));
                 //write out conversion to meter factor
 
                 binaryStream.Write(Convert.ToInt16(regions.Count)); //write out the population data
                 var t = XbimMatrix3D.Identity;
-                t = Translate(t, translation);
+                t = ApplyTransformation(t, transformationMatrix);
                 foreach (var r in regions)
                 {
                     binaryStream.Write((Int32)(r.Population));
@@ -110,7 +115,7 @@ namespace Xbim.Ifc
                     var bb = XbimRect3D.Empty;
                     foreach (var si in geomRead.ShapeInstancesOfEntity(product))
                     {
-                        var transformation = Translate(si.Transformation, translation);
+                        var transformation = ApplyTransformation(si.Transformation, transformationMatrix);
                         var bbPart = XbimRect3D.TransformBy(si.BoundingBox, transformation);
                         //make sure we put the box in the right place and then convert to axis aligned
                         if (bb.IsEmpty) bb = bbPart;
@@ -166,7 +171,7 @@ namespace Xbim.Ifc
                                 ? xbimShapeInstance.StyleLabel
                                 : xbimShapeInstance.IfcTypeId * -1);
 
-                            var transformation = Translate(XbimMatrix3D.FromArray(xbimShapeInstance.Transformation), translation);
+                            var transformation = ApplyTransformation(XbimMatrix3D.FromArray(xbimShapeInstance.Transformation), transformationMatrix);
                             binaryStream.Write(transformation.ToArray());
                             numberOfTriangles +=
                                 XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData)geometry).ShapeData);
@@ -198,7 +203,7 @@ namespace Xbim.Ifc
                         var ms = new MemoryStream(((IXbimShapeGeometryData)geometry).ShapeData);
                         var br = new BinaryReader(ms);
                         var tr = br.ReadShapeTriangulation();
-                        var transformation = Translate(xbimShapeInstance.Transformation, translation);
+                        var transformation = ApplyTransformation(xbimShapeInstance.Transformation, transformationMatrix);
                         var trTransformed = tr.Transform(transformation);
                         trTransformed.Write(binaryStream);
                         numberOfTriangles += XbimShapeTriangulation.TriangleCount(((IXbimShapeGeometryData)geometry).ShapeData);
@@ -219,16 +224,15 @@ namespace Xbim.Ifc
         }
 
         /// <summary>
-        /// If translation is defined, returns matrix translated by the vector
+        /// If transformation is defined, returns the transformation applied to the matrix
         /// </summary>
         /// <param name="matrix">Input matrix</param>
-        /// <param name="translation">Translation</param>
+        /// <param name="transformation">transformation matrix</param>
         /// <returns>Translated matrix</returns>
-        private static XbimMatrix3D Translate(XbimMatrix3D matrix, IVector3D translation)
+        private static XbimMatrix3D ApplyTransformation(XbimMatrix3D matrix, XbimMatrix3D transformation)
         {
-            if (translation == null) return matrix;
-            var translationMatrix = XbimMatrix3D.CreateTranslation(translation.X, translation.Y, translation.Z);
-            return XbimMatrix3D.Multiply(matrix, translationMatrix);
+            if (transformation.IsIdentity) return matrix;
+            return XbimMatrix3D.Multiply(matrix, transformation);
         }
 
     }
