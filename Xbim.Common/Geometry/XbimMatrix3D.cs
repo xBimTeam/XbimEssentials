@@ -613,6 +613,38 @@ namespace Xbim.Common.Geometry
             return CreateRotation(alpha, axis);
         }
 
+        public static XbimMatrix3D FromScaleRotationTranslation(IVector3D scale, XbimQuaternion rotation, IVector3D translation)
+        {
+            double xx = rotation.X * rotation.X;
+            double xy = rotation.X * rotation.Y;
+            double xz = rotation.X * rotation.Z;
+            double xw = rotation.X * rotation.W;
+            double yy = rotation.Y * rotation.Y;
+            double yz = rotation.Y * rotation.Z;
+            double yw = rotation.Y * rotation.W;
+            double zz = rotation.Z * rotation.Z;
+            double zw = rotation.Z * rotation.W;
+            double ww = rotation.W * rotation.W;
+            return new XbimMatrix3D(
+                m11: (2 * (xx + ww) - 1) * scale.X,
+                m12: 2 * (xy + zw) * scale.X,
+                m13: 2 * (xz - yw) * scale.X,
+                m14: 0,
+                m21: 2 * (xy - zw) * scale.Y,
+                m22: (2 * (yy + ww) - 1) * scale.Y,
+                m23: 2 * (yz + xw) * scale.Y,
+                m24: 0,
+                m31: 2 * (xz + yw) * scale.Z,
+                m32: 2 * (yz - xw) * scale.Z,
+                m33: (2 * (zz + ww) - 1) * scale.Z,
+                m34: 0,
+                offsetX: translation.X,
+                offsetY: translation.Y,
+                offsetZ: translation.Z,
+                m44: 1
+                );
+        }
+
         static double clamp(double x, double minval, double maxval)
         {
             return Math.Min(Math.Max(x, minval), maxval);
