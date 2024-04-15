@@ -613,7 +613,7 @@ namespace Xbim.Common.Geometry
             return CreateRotation(alpha, axis);
         }
 
-        internal static XbimMatrix3D FromScaleRotationTranslation(IVector3D scale, XbimQuaternion rotation, IVector3D translation)
+        public static XbimMatrix3D FromScaleRotationTranslation(IVector3D scale, XbimQuaternion rotation, IVector3D translation)
         {
             double xx = rotation.X * rotation.X;
             double xy = rotation.X * rotation.Y;
