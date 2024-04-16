@@ -27,8 +27,12 @@ namespace Xbim.Ifc
         public static void SaveAsWexBim(this IModel model, BinaryWriter binaryStream, IEnumerable<IIfcProduct> products = null,
             IVector3D translation = null, double? scale = null, XbimQuaternion? rotation = null)
         {
-            if (scale == 0) throw new ArgumentException("Scale cannot be zero", nameof(scale));
-            XbimMatrix3D transformationMatrix = XbimMatrix3D.FromScaleRotationTranslation(new XbimVector3D(scale ?? 1, scale ?? 1, scale ?? 1), rotation ?? new XbimQuaternion(), translation ?? new XbimVector3D(0, 0, 0));
+            double effectiveScale = scale ?? 1;
+            if (effectiveScale == 0) throw new ArgumentException("Scale cannot be zero", nameof(scale));
+            XbimVector3D effectiveScaleVector = new XbimVector3D(effectiveScale);
+            XbimQuaternion effectiveRotation = rotation ?? new XbimQuaternion();
+            IVector3D effectiveTranslation = translation ?? XbimVector3D.Zero;
+            XbimMatrix3D transformationMatrix = XbimMatrix3D.FromScaleRotationTranslation(effectiveScaleVector, effectiveRotation, effectiveTranslation);
 
             products = products ?? model.Instances.OfType<IIfcProduct>();
             // ReSharper disable RedundantCast
@@ -62,7 +66,7 @@ namespace Xbim.Ifc
                 binaryStream.Write((Int32)0); //number of matrices
                 binaryStream.Write((Int32)0); //number of products
                 binaryStream.Write((Int32)numberOfStyles); //number of styles
-                binaryStream.Write(Convert.ToSingle(model.ModelFactors.OneMetre / (scale ?? 1)));
+                binaryStream.Write(Convert.ToSingle(model.ModelFactors.OneMetre / effectiveScale));
                 //write out conversion to meter factor
 
                 binaryStream.Write(Convert.ToInt16(regions.Count)); //write out the population data
