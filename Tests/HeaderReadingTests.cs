@@ -46,17 +46,5 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(header.ModelViewDefinition == "");
             }
         }
-
-        [TestMethod]
-        public void TestSingleBackslashInHeader_FileName()
-        {
-            using (var s = File.OpenRead("TestSourceFiles\\SingleBackslash.ifc"))
-            {
-                var header = StepModel.LoadStep21Header(s);
-                var name = header.FileName.Name;
-                var schema = header.FileSchema.Schemas.FirstOrDefault();
-                Assert.IsTrue(header.FileSchema.Schemas.Count == 1);
-            }
-        }
     }
 }

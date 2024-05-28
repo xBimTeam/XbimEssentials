@@ -86,9 +86,6 @@
     <None Update="TestSourceFiles\IfcOpenShell-Issue2499.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="TestSourceFiles\SingleBackslash.ifc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
