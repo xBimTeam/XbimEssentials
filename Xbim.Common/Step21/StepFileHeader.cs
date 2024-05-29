@@ -197,9 +197,8 @@ namespace Xbim.Common.Step21
 
         public void SetTimeStampNow()
         {
-            var now = DateTime.Now;
-            var offset = TimeZoneInfo.Local.BaseUtcOffset;
-            _timeStamp = $"{now:s}{(offset.TotalHours >= 0 ? "+" : "-")}{offset:hh\\:mm}";
+            var now = DateTimeOffset.Now;
+            _timeStamp = string.Format(now.ToString("o"));
         }
 
         private readonly ObservableCollection<string> _authorName = new ObservableCollection<string>();
