@@ -25,12 +25,6 @@ namespace Xbim.Common
             new ConcurrentDictionary<Type, List<ReferingType>>();
 
         /// <summary>
-        /// This only keeps cache of metadata and types to speed up reflection search.
-        /// </summary>
-        private static readonly ConcurrentDictionary<Type, ReferingType> ReferingTypesCache =
-            new ConcurrentDictionary<Type, ReferingType>();
-
-        /// <summary>
         /// This will delete the entity from model dictionary and also from any references in the model.
         /// Be carefull as this might take a while to check for all occurances of the object. Also make sure 
         /// you don't use this object anymore yourself because it won't get disposed until than. This operation
@@ -118,26 +112,22 @@ namespace Xbim.Common
             // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var type in types)
             {
-                if (!ReferingTypesCache.TryGetValue(type.Type, out ReferingType rt))
-                {
-                    var singleReferences = type.Properties.Values.Where(p =>
-                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                        p.PropertyInfo.PropertyType.GetTypeInfo().IsAssignableFrom(entityType)).ToList();
-                    var listReferences = type.Properties.Values.Where(p =>
-                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                        p.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
-                        p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
-                    var nestedListReferences = type.Properties.Values.Where(p =>
-                        p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
-                        p.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
-                        p.PropertyInfo.PropertyType.GetItemTypeFromGenericType().IsGenericType &&
-                        p.PropertyInfo.PropertyType.GetItemTypeFromGenericType().GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
-                    if (!singleReferences.Any() && !listReferences.Any() && !nestedListReferences.Any())
-                        continue;
+                var singleReferences = type.Properties.Values.Where(p =>
+                    p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                    p.PropertyInfo.PropertyType.GetTypeInfo().IsAssignableFrom(entityType)).ToList();
+                var listReferences = type.Properties.Values.Where(p =>
+                    p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                    p.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
+                    p.PropertyInfo.PropertyType.GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
+                var nestedListReferences = type.Properties.Values.Where(p =>
+                    p.EntityAttribute != null && p.EntityAttribute.Order > 0 &&
+                    p.PropertyInfo.PropertyType.GetTypeInfo().IsGenericType &&
+                    p.PropertyInfo.PropertyType.GetItemTypeFromGenericType().IsGenericType &&
+                    p.PropertyInfo.PropertyType.GetItemTypeFromGenericType().GenericTypeArgumentIsAssignableFrom(entityType)).ToList();
+                if (!singleReferences.Any() && !listReferences.Any() && !nestedListReferences.Any())
+                    continue;
 
-                    rt = new ReferingType { Type = type, SingleReferences = singleReferences, ListReferences = listReferences, NestedListReferences = nestedListReferences };
-                    ReferingTypesCache.TryAdd(type.Type, rt);
-                }
+                var rt = new ReferingType { Type = type, SingleReferences = singleReferences, ListReferences = listReferences, NestedListReferences = nestedListReferences };
                 referingTypes.Add(rt);
             }
             return referingTypes;
@@ -179,17 +169,18 @@ namespace Xbim.Common
                     if (pVal == null) continue;
 
                     //it might be uninitialized optional item set
-                    var optSet = pVal as IOptionalItemSet;
-                    if (optSet != null && !optSet.Initialized) continue;
+                    if (pVal is IOptionalItemSet optSet && !optSet.Initialized)
+                        continue;
 
                     //or it is non-optional item set implementing IList
-                    var itemSet = pVal as IList;
-                    if (itemSet != null)
+                    if (pVal is IList itemSet)
                     {
                         if (itemSet.Contains(entity))
+                        {
                             itemSet.Remove(entity);
-                        if (replacement != null)
-                            itemSet.Add(replacement);
+                            if (replacement != null)
+                                itemSet.Add(replacement);
+                        }
                         continue;
                     }
 
