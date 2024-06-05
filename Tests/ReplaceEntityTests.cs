@@ -1,9 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.GeometryResource;
+using Xbim.Ifc4.Kernel;
+using Xbim.Ifc4.SharedBldgElements;
 using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
@@ -99,6 +103,34 @@ namespace Xbim.Essentials.Tests
                 {
                     model.SaveAsStep21(fileStream);
                 }
+            }
+        }
+
+        [TestMethod]
+        public void ReplaceEntity_ProxyType()
+        {
+            using var model = new MemoryModel(new Ifc4.EntityFactoryIfc4());
+            using (var txn = model.BeginTransaction("Create"))
+            {
+                var i = model.Instances;
+                var type = i.New<IfcBuildingElementProxyType>();
+                var instance = i.New<IfcBuildingElementProxy>();
+                var rel = i.New<IfcRelDefinesByType>(r => {
+                    r.RelatingType = type;
+                    r.RelatedObjects.Add(instance);
+                });
+                var group = i.New<IfcRelAssignsToGroup>();
+
+                var wallType = i.New<IfcWallType>();
+                var wall = i.New<IfcWall>();
+
+                ModelHelper.Replace<IPersistEntity, IPersistEntity>(model, instance, wall);
+                ModelHelper.Replace<IPersistEntity, IPersistEntity>(model, type, wallType);
+
+                rel.RelatingType.Should().Be(wallType);
+                rel.RelatedObjects.Should().NotContain(instance);
+                rel.RelatedObjects.Should().Contain(wall);
+                group.RelatedObjects.Should().BeEmpty();
             }
         }
     }
