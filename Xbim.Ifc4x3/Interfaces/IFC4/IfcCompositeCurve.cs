@@ -26,12 +26,18 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{ 
 			get
 			{
-				//## Handle return of Segments for which no match was found
-				//TODO: Handle return of Segments for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
-		}
+                //## Custom code - not auto generated
+                var compCurveSegs = @Segments.Where(x => x is IIfcCompositeCurveSegment).Cast<IIfcCompositeCurveSegment>();
+
+                var list = new ItemSet<IIfcCompositeCurveSegment>(this, 0, 1);
+                foreach (var seg in compCurveSegs)
+                {
+                    list.InternalAdd(seg); // no transaction available
+                }
+                return new Common.Collections.ProxyItemSet<IIfcCompositeCurveSegment, IIfcCompositeCurveSegment>(list);
+                //##
+            }
+        }
 
 		[CrossSchemaAttribute(typeof(IIfcCompositeCurve), 2)]
 		Ifc4.MeasureResource.IfcLogical IIfcCompositeCurve.SelfIntersect 
