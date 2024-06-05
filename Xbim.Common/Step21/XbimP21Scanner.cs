@@ -23,6 +23,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xbim.Common;
+using Xbim.Common.Collections;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
@@ -111,11 +112,12 @@ namespace Xbim.IO.Step21
                 if (adjustRatio < 0) adjustRatio = 0;
                 entityApproxCount = (int)( entityApproxCount * adjustRatio);
             }
-
             // make it 4 at least
             if (entityApproxCount < 1) entityApproxCount = 4;
-
-            Entities = new Dictionary<int, IPersist>(entityApproxCount);
+            var chunkSize = 100_000_000;
+            Entities = entityApproxCount > chunkSize?
+                new ChunkedDictionary<int, IPersist>(entityApproxCount, chunkSize) :
+                new Dictionary<int, IPersist>(entityApproxCount);
             _deferredReferences = new List<DeferredReference>(entityApproxCount / 4); //assume 50% deferred
         }
 
@@ -716,7 +718,7 @@ namespace Xbim.IO.Step21
             }
         }
 
-        public Dictionary<int, IPersist> Entities { get; private set; }
+        public IDictionary<int, IPersist> Entities { get; private set; }
 
         internal bool TrySetObjectValue(IPersist host, int paramIndex, int refId, int[] listNextLevel)
         {
