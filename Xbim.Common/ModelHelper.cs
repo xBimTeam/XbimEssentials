@@ -154,12 +154,12 @@ namespace Xbim.Common
                 //check properties
                 foreach (var pInfo in referingType.SingleReferences.Select(p => p.PropertyInfo))
                 {
-                    var pVal = pInfo.GetValue(toCheck);
-                    if (pVal == null && replacement == null)
+                    if (pInfo.GetValue(toCheck) is not IPersistEntity pVal)
                         continue;
 
-                    //it is enough to compare references
-                    if (!ReferenceEquals(pVal, entity)) continue;
+                    if (pVal.EntityLabel != entity.EntityLabel) 
+                        continue;
+
                     pInfo.SetValue(toCheck, replacement);
                 }
 
