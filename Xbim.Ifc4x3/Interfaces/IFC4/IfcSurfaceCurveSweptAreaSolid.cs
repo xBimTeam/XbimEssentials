@@ -37,43 +37,41 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 
 		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 4)]
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.StartParam 
-		{ 
-			get
-			{
-				//## Handle return of StartParam for which no match was found
-				//TODO: Handle return of StartParam for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
-			set
-			{
-				//## Handle setting of StartParam for which no match was found
-				//TODO: Handle setting of StartParam for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				
-			}
-		}
+		{
+            get
+            {
+                //## Custom code
+                if (_activated) return _startParam;
+                Activate();
+                return _startParam;
+                //##
+            }
+            set
+            {
+                //## Custom code
+                SetValue(v => _startParam = v, _startParam, value, "StartParam", 4);
+                //##
+            }
+        }
 
 		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 5)]
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam 
-		{ 
-			get
-			{
-				//## Handle return of EndParam for which no match was found
-				//TODO: Handle return of EndParam for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
-			set
-			{
-				//## Handle setting of EndParam for which no match was found
-				//TODO: Handle setting of EndParam for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				
-			}
-		}
+		{
+            get
+            {
+                //## Custom code
+                if (_activated) return _endParam;
+                Activate();
+                return _endParam;
+                //##
+            }
+            set
+            {
+                //## Custom code
+                SetValue(v => _endParam = v, _endParam, value, "EndParam", 5);
+                //##
+            }
+        }
 
 		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 6)]
 		IIfcSurface IIfcSurfaceCurveSweptAreaSolid.ReferenceSurface 
