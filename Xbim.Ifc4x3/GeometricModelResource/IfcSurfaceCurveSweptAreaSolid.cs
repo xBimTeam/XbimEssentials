@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Exceptions;
-using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4x3.GeometricModelResource;
 //## Custom using statements
 //##
@@ -33,10 +32,7 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 
 		#region Explicit attribute fields
 		private IfcSurface _referenceSurface;
-        //## Custom Code
-        private IfcParameterValue? _startParam;
-        private IfcParameterValue? _endParam;
-        //##
+
         #endregion
 
         #region Explicit attribute properties
