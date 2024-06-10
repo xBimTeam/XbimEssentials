@@ -33,10 +33,10 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 		#region Explicit attribute fields
 		private IfcSurface _referenceSurface;
 
-        #endregion
+		#endregion
 
-        #region Explicit attribute properties
-        [EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
+		#region Explicit attribute properties
+		[EntityAttribute(6, EntityAttributeState.Mandatory, EntityAttributeType.Class, EntityAttributeType.None, null, null, 8)]
 		public IfcSurface @ReferenceSurface 
 		{ 
 			get 
