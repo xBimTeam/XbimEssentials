@@ -40,38 +40,36 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 		{ 
 			get
 			{
-				//## Handle return of StartParam for which no match was found
-				//TODO: Handle return of StartParam for which no match was found
-				throw new System.NotImplementedException();
+				//## Custom code
+				return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)StartParam);
 				//##
-			} 
+			}
 			set
 			{
-				//## Handle setting of StartParam for which no match was found
-				//TODO: Handle setting of StartParam for which no match was found
-				throw new System.NotImplementedException();
+				//## Custom code
+				StartParam = value.HasValue ? 
+					new MeasureResource.IfcParameterValue(value.Value) :  
+					 default(MeasureResource.IfcParameterValue);
 				//##
-				
 			}
 		}
 
 		[CrossSchemaAttribute(typeof(IIfcSurfaceCurveSweptAreaSolid), 5)]
 		Ifc4.MeasureResource.IfcParameterValue? IIfcSurfaceCurveSweptAreaSolid.EndParam 
-		{ 
+		{
 			get
 			{
-				//## Handle return of EndParam for which no match was found
-				//TODO: Handle return of EndParam for which no match was found
-				throw new System.NotImplementedException();
+				//## Custom code
+				return new Ifc4.MeasureResource.IfcParameterValue((MeasureResource.IfcParameterValue)EndParam);
 				//##
-			} 
+			}
 			set
 			{
-				//## Handle setting of EndParam for which no match was found
-				//TODO: Handle setting of EndParam for which no match was found
-				throw new System.NotImplementedException();
+				//## Custom code
+				EndParam = value.HasValue ?
+					new MeasureResource.IfcParameterValue(value.Value) :
+					 default(MeasureResource.IfcParameterValue);
 				//##
-				
 			}
 		}
 
