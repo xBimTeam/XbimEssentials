@@ -23,17 +23,24 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		[CrossSchemaAttribute(typeof(IIfcCompositeCurve), 1)]
 		IItemSet<IIfcCompositeCurveSegment> IIfcCompositeCurve.Segments 
-		{ 
-			get
-			{
-				//## Handle return of Segments for which no match was found
-				//TODO: Handle return of Segments for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
-		}
+		{
+            get
+            {
+                //## Custom code - not auto generated
 
-		[CrossSchemaAttribute(typeof(IIfcCompositeCurve), 2)]
+                return _segmentsExtended ?? (_segmentsExtended = new Common.Collections.ExtendedItemSet<IfcSegment, IIfcCompositeCurveSegment>(
+                    Segments,
+                    new ItemSet<IIfcCompositeCurveSegment>(this, 0, -16),
+                    ifc4x3 => ifc4x3 as IIfcCompositeCurveSegment,
+                    ifc4if => ifc4if as IfcCompositeCurveSegment));
+                //##
+            }
+        }
+
+        //private field to hold any extended data
+        private IItemSet<IIfcCompositeCurveSegment> _segmentsExtended;
+
+        [CrossSchemaAttribute(typeof(IIfcCompositeCurve), 2)]
 		Ifc4.MeasureResource.IfcLogical IIfcCompositeCurve.SelfIntersect 
 		{ 
 			get
