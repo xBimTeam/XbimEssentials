@@ -20,7 +20,7 @@ _[**B**uilding **I**nformation **M**odelling](https://en.wikipedia.org/wiki/Buil
 the .NET platform. This library enables software developers to easily read, write, validate and interrogate data in 
 the buildingSmart [IFC formats](https://en.wikipedia.org/wiki/Industry_Foundation_Classes), using any .NET language. 
 
-As of version 6.0 XbimEssentials includes support for `.netstandard2.0`, `.netstandard2.1` and `.net6.0`. Supporting `netstandard2.0` provides support .NET Framework 4.7.2 upwards. 
+As of version 6.0 XbimEssentials includes support for `.netstandard2.0`, `.netstandard2.1`, `.net6.0` and `.net8.0`. Supporting `netstandard2.0` provides support .NET Framework 4.7.2 upwards. 
 Earlier .NET Framewaork versions may work, but we can't provide any support for them.
 
 
@@ -176,7 +176,7 @@ produces a tesselation/mesh that can be fed into a 3D graphics card, typically v
 (OpenGL, DirectX, WebGL etc)
 
 > **Note:** Generating the 3D Geometry requires the [Xbim.Geometry](https://github.com/xBimTeam/XbimGeometry) package
-which is currently only supported on a Windows platform. This utililises a native geometry engine to handle 
+which is currently only supported on a Windows platform. This utililises a native C++ geometry engine to handle 
 boolean operations / [CSG](https://en.wikipedia.org/wiki/Constructive_solid_geometry)
 
 Since this process can take some seconds / minutes for larger models, and can consume significant computation resource, 
@@ -228,11 +228,9 @@ and an ability open sementic model data from a JSON structure.
 
 ## Getting Started
 
-You will need Visual Studio 2015 or newer to compile the Solution. Visual Studio 2017 is recommended. 
-Prior versions of Visual Studio should work, but we'd recomments 2017 where possible
-The [free VS 2017 Community Edition](https://visualstudio.microsoft.com/downloads/) should work fine. 
-All projects target .NET Framework 4.7, with some projects also targeting .netstandard2.0, which should 
-permit limited trials of XBIM with .NET Core / Mono etc.
+You will need Visual Studio 2019 or newer to compile the Solution. Visual Studio 2022 is recommended. 
+The [free VS 2022 Community Edition](https://visualstudio.microsoft.com/downloads/) should work fine. 
+Other IDEs such as JetBrains Rider and VS Code should also be fine.
 
 ### Using the library
 
