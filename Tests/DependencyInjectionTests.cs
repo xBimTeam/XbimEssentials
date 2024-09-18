@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using Xbim.Common;
 using Xbim.Common.Configuration;
+using Xbim.Common.Model;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.IO;
@@ -21,7 +22,7 @@ namespace Xbim.Essentials.Tests
         public DependencyInjectionTests()
         {
             // Clear the singleton collection each test
-            SuT = XbimServices.CreateInstance();
+            SuT = XbimServices.CreateInstanceInternal();
         }
 
         private XbimServices SuT;
@@ -248,6 +249,25 @@ namespace Xbim.Essentials.Tests
             });
 
 
+        }
+
+        [Fact()]
+        public void Minimial_Fallback_Services_Are_Always_Available()
+        {
+
+            XbimServices.Current.Rebuild();
+            using (FileStream fs1 = new FileStream(@"TestFiles/4walls1floorSite.ifc", FileMode.Open))
+            {
+                var header = StepModel.LoadStep21Header(fs1);
+
+                header.Should().NotBeNull();
+
+            }
+            // Add explicitly. Normally set up by IfcStore static ctor etc, but that isundone by XbimServices.Current.Rebuild()
+            XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(t => t.AddHeuristicModel()));
+            using FileStream fs2 = new FileStream(@"TestFiles/4walls1floorSite.ifc", FileMode.Open);
+            var ifcStore = IfcStore.Open(fs2, StorageType.Ifc, XbimModelType.MemoryModel);
+            ifcStore.Instances.Should().NotBeEmpty();
         }
 
 
