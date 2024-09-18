@@ -13,7 +13,7 @@ namespace Xbim.Essentials.NetCore.Tests
         public void ServiceProviderIsValid()
         {
 
-            var SuT = XbimServices.CreateInstance();
+            var SuT = XbimServices.CreateInstanceInternal();
             SuT.ConfigureServices(s =>
             {
                 var services = s.AddXbimToolkit(opt => opt.AddEsentModel())
