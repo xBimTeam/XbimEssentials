@@ -11,6 +11,7 @@ using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Ifc4x3.MeasureResource;
 
 //## Custom using statements
 //##
@@ -60,13 +61,11 @@ namespace Xbim.Ifc4x3.GeometryResource
 			{
 				case "IfcArcIndex":
 					//## Handle defined type IfcArcIndex which is not a part of the target select interface IItemSet<IIfcSegmentIndexSelect> in property Segments
-					//TODO: Handle defined type IfcArcIndex which is not a part of the target select interface IItemSet<IIfcSegmentIndexSelect> in property Segments
-					throw new System.NotImplementedException();
+					return new Ifc4.GeometryResource.IfcArcIndex((member.Value as IEnumerable<IfcPositiveInteger>).Select(p => new Ifc4.MeasureResource.IfcPositiveInteger((long)p.Value)).ToList());
 					//##
 				case "IfcLineIndex":
 					//## Handle defined type IfcLineIndex which is not a part of the target select interface IItemSet<IIfcSegmentIndexSelect> in property Segments
-					//TODO: Handle defined type IfcLineIndex which is not a part of the target select interface IItemSet<IIfcSegmentIndexSelect> in property Segments
-					throw new System.NotImplementedException();
+					return new Ifc4.GeometryResource.IfcLineIndex((member.Value as IEnumerable<IfcPositiveInteger>).Select(p => new Ifc4.MeasureResource.IfcPositiveInteger((long)p.Value)).ToList());
 					//##
 				default:
 					throw new System.NotSupportedException();
@@ -82,13 +81,11 @@ namespace Xbim.Ifc4x3.GeometryResource
 			{
 				case "IfcArcIndex":
 					//## Handle return defined type IfcArcIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
-					//TODO: Handle defined type IfcArcIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
-					throw new System.NotImplementedException();
+					return new IfcArcIndex((member.Value as IEnumerable<Ifc4.MeasureResource.IfcPositiveInteger>).Select(p => new IfcPositiveInteger((long)p.Value)).ToList());
 					//##
 				case "IfcLineIndex":
 					//## Handle return defined type IfcLineIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
-					//TODO: Handle defined type IfcLineIndex which is not a part of the target select interface IfcSegmentIndexSelect in property Segments
-					throw new System.NotImplementedException();
+					return new IfcLineIndex((member.Value as IEnumerable<Ifc4.MeasureResource.IfcPositiveInteger>).Select(p => new IfcPositiveInteger((long)p.Value)).ToList());
 					//##
 				default:
 					throw new System.NotSupportedException();
