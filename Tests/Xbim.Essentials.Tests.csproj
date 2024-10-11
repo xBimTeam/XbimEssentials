@@ -26,6 +26,9 @@
     <EmbeddedResource Remove="TestResults\**" />
     <None Remove="Debug\**" />
     <None Remove="TestResults\**" />
+    <None Update="TestFiles\IFC4x3_ADD2\PlacmentOfSignal.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

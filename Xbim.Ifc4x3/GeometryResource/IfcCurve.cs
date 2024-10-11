@@ -51,6 +51,8 @@ namespace Xbim.Ifc4x3.GeometryResource
 				if (this is IfcOffsetCurveByDistances) return 3;
 				if (this is IfcPcurve) return 3;
 				if (this is IfcIndexedPolyCurve pc) return pc.Points.Dim;
+				if (this is IfcSegmentedReferenceCurve) return 3;
+				if (this is IfcGradientCurve) return 3;
 				if (this is IfcCompositeCurve cc) 
 				{
 					var segment = cc.Segments[1];
@@ -60,9 +62,9 @@ namespace Xbim.Ifc4x3.GeometryResource
 						return cs.ParentCurve.Dim;
 					else return 0;
 				}
-				if (this is IfcPolynomialCurve polynomialCurve)  return polynomialCurve.Dim;
-				if (this is IfcSpiral spiral) return spiral.Dim;
-				if (this is IfcSurfaceCurve surfaceCurve) return surfaceCurve.Dim;
+				if (this is IfcPolynomialCurve polynomialCurve)  return polynomialCurve.Position.Dim;
+				if (this is IfcSpiral spiral) return 2;
+				if (this is IfcSurfaceCurve surfaceCurve) return surfaceCurve.Curve3D.Dim;
 
 				throw new NotSupportedException();
 				//##
