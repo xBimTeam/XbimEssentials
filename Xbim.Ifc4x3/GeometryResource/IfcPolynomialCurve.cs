@@ -135,12 +135,6 @@ namespace Xbim.Ifc4x3.GeometryResource
 
 		#region Custom code (will survive code regeneration)
 		//## Custom code
-		
-		public new IfcDimensionCount @Dim
-		{
-			get => Position.Dim;
-		}		
-		
 		//##
 		#endregion
 	}

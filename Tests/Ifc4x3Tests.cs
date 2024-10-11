@@ -32,19 +32,25 @@ namespace Xbim.Essentials.Tests
         }
         
         [TestMethod]
-        public void SegmentedReferenceCurveShouldHaveDimensionAsItsSegments()
+        public void SegmentedReferenceCurveShouldBe3D()
         {
             using (var model = MemoryModel.OpenRead("TestFiles\\IFC4x3_ADD2\\PlacmentOfSignal.ifc"))
             {
-                var segmentedReferenceCurve = model.Instances.FirstOrDefault<IfcSegmentedReferenceCurve>();
-                var segments = segmentedReferenceCurve.Segments;
-
-                foreach (var segment in segments)
-                {
-                    segment.Dim.Should().BeEquivalentTo(segmentedReferenceCurve.Dim);
-                }
+                var segmentedReferenceCurve = model.Instances.FirstOrDefault<IfcSegmentedReferenceCurve>() as IfcCurve;
+                segmentedReferenceCurve.Dim.Value.Should().Be(3);
             }
         }
+        
+        [TestMethod]
+        public void GradientCurveShouldBe3D()
+        {
+            using (var model = MemoryModel.OpenRead("TestFiles\\IFC4x3_ADD2\\PlacmentOfSignal.ifc"))
+            {
+                var segmentedReferenceCurve = model.Instances.FirstOrDefault<IfcGradientCurve>() as IfcCurve;
+                segmentedReferenceCurve.Dim.Value.Should().Be(3);
+            }
+        }
+
         
         [TestMethod]
         public void Entity_types_should_be_unique()
