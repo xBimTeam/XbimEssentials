@@ -19,6 +19,39 @@ namespace Xbim.Essentials.Tests
     [TestClass]
     public class Ifc4x3Tests
     {
+
+        [TestMethod]
+        public void SpiralsShouldBe2D()
+        {
+            using (var model = MemoryModel.OpenRead("TestFiles\\IFC4x3_ADD2\\PlacmentOfSignal.ifc"))
+            {
+                var spiral = model.Instances.FirstOrDefault<IfcSpiral>() as IIfcCurve;
+
+                spiral.Dim.Value.Should().Be(2);
+            }
+        }
+        
+        [TestMethod]
+        public void SegmentedReferenceCurveShouldBe3D()
+        {
+            using (var model = MemoryModel.OpenRead("TestFiles\\IFC4x3_ADD2\\PlacmentOfSignal.ifc"))
+            {
+                var segmentedReferenceCurve = model.Instances.FirstOrDefault<IfcSegmentedReferenceCurve>() as IfcCurve;
+                segmentedReferenceCurve.Dim.Value.Should().Be(3);
+            }
+        }
+        
+        [TestMethod]
+        public void GradientCurveShouldBe3D()
+        {
+            using (var model = MemoryModel.OpenRead("TestFiles\\IFC4x3_ADD2\\PlacmentOfSignal.ifc"))
+            {
+                var segmentedReferenceCurve = model.Instances.FirstOrDefault<IfcGradientCurve>() as IfcCurve;
+                segmentedReferenceCurve.Dim.Value.Should().Be(3);
+            }
+        }
+
+        
         [TestMethod]
         public void Entity_types_should_be_unique()
         {
