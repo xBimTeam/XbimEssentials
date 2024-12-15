@@ -167,5 +167,26 @@ namespace Xbim.Essentials.Tests
 
             txn.Commit();
         }
+
+        [TestMethod]
+        public void IfcLengthMeasureSubClassesCanUsed()
+        {
+            using (var model = MemoryModel.OpenRead("TestFiles\\IFC4x3\\SectionedSolidHorizontal-1.ifc"))
+            {
+
+                
+                var curveSegment = model.Instances.FirstOrDefault<IfcCurveSegment>();
+
+                curveSegment.SegmentStart.Should().BeOfType<IfcNonNegativeLengthMeasure>();
+                var start = (IIfcLengthMeasure)curveSegment.SegmentStart;
+                var length = (IIfcLengthMeasure)curveSegment.SegmentLength;
+
+                start.Value.Should().Be(0);
+                length.Value.Should().Be(400);
+            }
+
+        }
+
+
     }
 }
