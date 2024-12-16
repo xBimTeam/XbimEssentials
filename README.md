@@ -20,10 +20,9 @@ _[**B**uilding **I**nformation **M**odelling](https://en.wikipedia.org/wiki/Buil
 the .NET platform. This library enables software developers to easily read, write, validate and interrogate data in 
 the buildingSmart [IFC formats](https://en.wikipedia.org/wiki/Industry_Foundation_Classes), using any .NET language. 
 
-As of version 6.0 XbimEssentials includes support for `.netstandard2.0`, `.netstandard2.1`, `.net6.0` and `.net8.0`. Supporting `netstandard2.0` provides support .NET Framework 4.7.2 upwards. 
-Earlier .NET Framewaork versions may work, but we can't provide any support for them.
-
-
+As of version 6.0 XbimEssentials includes support for `.netstandard2.0`, `.netstandard2.1`, `.net6.0` and `net8.0`. 
+Supporting `netstandard2.0` provides support .NET Framework 4.7.2 upwards. 
+Earlier .NET Framework versions may work, but we can't provide any support for them.
 
 ## Background / Motivation ##
 
@@ -35,7 +34,9 @@ This library supports *STEP*, *IfcXml* and *IfcZip* formats, and enables you to 
 [Ifc4 Addendum 2](http://www.buildingsmart-tech.org/specifications/ifc-releases/ifc4-add2)).
 
 The wider XBIM toolkit contains additional repositories with libraries to read and write related Open BIM formats including 
-[COBie](https://github.com/xBimTeam/XbimExchange) and BIM Collaboration Format ([BCF](https://github.com/xBimTeam/XbimBCF))
+[COBie](https://github.com/xBimTeam/XbimCobieExpress) and BIM Collaboration Format ([BCF](https://github.com/xBimTeam/XbimBCF))
+
+xbim Toolkit also supports IFC model verification with IDS using our [IDS Library](https://github.com/xBimTeam/Xbim.IDS.Validator).
 
 In order to visualise 3D Geometries you will need to include the [Xbim.Geometry](https://github.com/xBimTeam/XbimGeometry) 
 package which provides full support for geometric, topological operations and visualisation.
@@ -50,14 +51,20 @@ of STEP/Express parsing, 3D graphics - enabling you to work at a higher level th
 Please see our [ChangeLog](CHANGELOG.md) for details on what's new and what you need to upgrade. 
 In particular, please **note the following section copied here:**
 
-> **BREAKING CHANGE**: V6 implements a new mechanism for discovering internal resources and uses standard (.net Dependency Injection patterns)[https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection] for managing services internally.
-> `Xbim.Common` now introduces an internal DI service that you can optionally integrate with your own DI implementation, for providing Logging services, and configuring xbim service behaviour. E.g. Invoking:
-> ` XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel().UseLoggerFactory(yourloggerFactory)));
-> registers the Toolkit internal dependencies, uses an In-memory model and inserts your configured ILoggerFactory into the service in place of our default one.
+> **BREAKING CHANGE**: xbim Toolkit V6 implements a new mechanism for registering internal resources and makes use of standard [.net Dependency Injection patterns](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) for managing services internally.
+> `Xbim.Common` now introduces an internal DI service that you can optionally integrate with your own DI implementation, 
+> for providing Logging services, and configuring xbim service behaviour such as the model provider to use. E.g. Invoking:
+> 
+> `XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseMemoryModel().UseLoggerFactory(yourloggerFactory)));`
+>
+> registers the Toolkit internal dependencies, configures an In-memory model-provider and adds an existing ILoggerFactory into the service in place of our default one.
 > `IfcStore.ModelProviderFactory` has been deprecated as this is provided for by the above mechanism
-> The persistent EsentModel is now available automatically through IfcStore (on Windows) so there is no need for the `UseHeuristicModelProvider()` 'ceremony' to ensure Esent is used.
-> Note: The default Logging implementation has been removed from Toolkit to reduce the amount of dependencies. To enable is a simple matter of adding logging to the Xbim Services. 
-> See (Example)[https://github.com/xBimTeam/XbimEssentials/blob/b3fce6f40a31fb87a75b24888a4e20740a378e31/Tests/DependencyInjectionTests.cs#L96]
+> The persistent **EsentModel** is now available automatically through IfcStore (on Windows) so there is no need for the `UseHeuristicModelProvider()` 'ceremony' 
+> to ensure Esent is used although you can specify it explicitly with `XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.UseHeuristicModel())`
+>
+> Note: The default Logging implementation has been removed from Toolkit to reduce the amount of external dependencies. 
+> To enable is a simple matter of adding your preferred logging implementation to the Xbim Services. 
+> See [Example](https://github.com/xBimTeam/XbimEssentials/blob/b3fce6f40a31fb87a75b24888a4e20740a378e31/Tests/DependencyInjectionTests.cs#L96)
 
 
 ## Code Examples
@@ -230,7 +237,7 @@ and an ability open sementic model data from a JSON structure.
 
 You will need Visual Studio 2019 or newer to compile the Solution. Visual Studio 2022 is recommended. 
 The [free VS 2022 Community Edition](https://visualstudio.microsoft.com/downloads/) should work fine. 
-Other IDEs such as JetBrains Rider and VS Code should also be fine.
+Other IDEs such as JetBrains Rider and VS Code should work.
 
 ### Using the library
 
@@ -248,7 +255,6 @@ dependent packages directly. (Which is necessary for .NET Core currently, as Ess
 
 ## Toolkit Overview
 
-![XBIM Libraries - high level dependencies](docs/img/XBIM-Architecture-0_1.png)
 
 ### How to use it?
 
@@ -278,15 +284,11 @@ the licence agreements.
 
 The core XBIM library makes use of the following 3rd party software packages, under their associated licences:
 
-* 'OpenCASCADE' Geometry Engine : http://www.opencascade.org/ - OPEN CASCADE Public License
-* 'Gardens Point Parser Generator' http://gppg.codeplex.com/ - New BSD Licence
-* Elements of '3D Tools' WPF library http://3dtools.codeplex.com/ - MS Permissive Licence
-* Log4net : http://logging.apache.org/log4net/ - Apache 2.0 Licence
-* NPOI : http://npoi.codeplex.com - Apache 2.0 Licence
-* NewtonSoft JSON : http://json.codeplex.com/ - MIT Licence
+* 'Gardens Point Parser Generator' https://github.com/KommuSoft/Gardens-Point-Parser-Generator - New BSD Licence
+* 'OpenCASCADE' Geometry Engine : http://www.opencascade.org/ -  GNU Lesser General Public License (LGPL) version 2.1, with additional [exception](https://dev.opencascade.org/doc/overview/html/occt_public_license.html#occt_lgpl_exception)
 
-All 3rd party licences are permissive-style licences. We actively avoid Copyleft/GPL style licences to retain
-compatibility with our CDDL licence - meaning you can use the XBIM Toolkit in a closed-source commercial software package.
+All 3rd party licences are permissive-style licences. We actively avoid Strong Copyleft/GPL style licences to retain
+compatibility with our CDDL licence - meaning you can use the XBIM Toolkit in a closed-source commercial software package. 
 
 ## Support & Help
 
@@ -299,16 +301,7 @@ For bugs, and improvements, please use the GitHub Issues of the relevant reposit
 If you have a question, or need some help, you may find the
 [Stackoverflow xbim](https://stackoverflow.com/questions/tagged/xbim) tag a good place to start.
 
-## Acknowledgements
-While we do not qualify anymore for open source licenses of JetBrains, we would like to acknowledge the 
-good work and thank [JetBrains](https://www.jetbrains.com/) for supporting the XbimToolkit project with 
-free open source [Resharper](https://www.jetbrains.com/resharper/) licenses in the past.
-
-[![ReSharper Logo](https://raw.githubusercontent.com/xBimTeam/XbimWindowsUI/master/ReadmeResources/icon_ReSharper.png)](https://www.jetbrains.com/resharper/)
-
-Thanks also to Microsoft Azure DevOps for the use of [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) 
-to automate our builds.
 
 ## Getting Involved
 
-If you'd like to get involved and contribute to this project, please read the [CONTRIBUTING ](https://github.com/xBimTeam/XbimEssentials/blob/master/CONTRIBUTING.md) page or contact the Project Coordinators @CBenghi and @martin1cerny.
+If you'd like to get involved and contribute to this project, please read the [CONTRIBUTING](https://github.com/xBimTeam/XbimEssentials/blob/master/CONTRIBUTING.md) page or contact the Project Coordinators @CBenghi and @martin1cerny.

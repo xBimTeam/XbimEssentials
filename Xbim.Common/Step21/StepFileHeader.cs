@@ -197,8 +197,8 @@ namespace Xbim.Common.Step21
 
         public void SetTimeStampNow()
         {
-            var now = DateTime.Now;
-            _timeStamp = string.Format(now.ToString("s"));
+            var now = DateTimeOffset.Now;
+            _timeStamp = string.Format(now.ToString("o"));
         }
 
         private readonly ObservableCollection<string> _authorName = new ObservableCollection<string>();

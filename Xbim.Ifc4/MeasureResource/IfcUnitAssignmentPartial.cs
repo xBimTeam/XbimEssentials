@@ -143,6 +143,8 @@ namespace Xbim.Ifc4.MeasureResource
                 requiredUnit = IfcUnitEnum.LENGTHUNIT;
             else if (property.NominalValue is IfcPositiveLengthMeasure)
                 requiredUnit = IfcUnitEnum.LENGTHUNIT;
+            else if (property.NominalValue is IfcNonNegativeLengthMeasure)
+                requiredUnit = IfcUnitEnum.LENGTHUNIT;
             else if (property.NominalValue is IfcAmountOfSubstanceMeasure)
                 requiredUnit = IfcUnitEnum.AMOUNTOFSUBSTANCEUNIT;
             else if (property.NominalValue is IfcContextDependentMeasure)
