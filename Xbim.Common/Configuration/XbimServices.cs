@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Xbim.Essentials.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010029a3c6da60efcb3ebe48c3ce14a169b5fa08ffbf5f276392ffb2006a9a2d596f5929cf0e68568d14ac7cbe334440ca0b182be7fa6896d2a73036f24bca081b2427a8dec5689a97f3d62547acd5d471ee9f379540f338bbb0ae6a165b44b1ae34405624baa4388404bce6d3e30de128cec379147af363ce9c5845f4f92d405ed0")]
@@ -8,8 +9,12 @@ using System.Runtime.CompilerServices;
 namespace Xbim.Common.Configuration
 {
     /// <summary>
-    /// Class encapsulating the services used in the application managed by Dependency Injection
+    /// Class encapsulating the services  and <see cref="IServiceProvider"/>s used in the application.
+    /// Consumers can provide their own built service provider, or configure the internal xbim <see cref="IServiceProvider"/>.
     /// </summary>
+    /// <remarks>the service delays building of the internal service provider when not configured to support 
+    /// late configutation of the services.
+    /// In this case the service provision is delagated to <see cref="InternalServiceProvider"/></remarks>
     public class XbimServices
     {
 
@@ -19,15 +24,16 @@ namespace Xbim.Common.Configuration
         }
 
         /// <summary>
-        /// For testing only
+        /// Create a new XbimServiecs instance. For testing only
         /// </summary>
-        /// <returns></returns>
-        internal static XbimServices CreateInstance()
+        /// <returns>a private instance of the <see cref="XbimServices"/></returns>
+        public static XbimServices CreateInstanceInternal()
         {
             return new XbimServices();
         }
 
         private bool isBuilt = false;
+        
 
         private IServiceCollection servicesCollection = new ServiceCollection();
         private IServiceProvider externalServiceProvider = null;
@@ -99,6 +105,12 @@ namespace Xbim.Common.Configuration
         public bool IsBuilt { get => isBuilt; }
 
         /// <summary>
+        /// Flag indicating the DI container has been configured. When not configured the ServiceProvider will delay being built, and
+        /// service provision will fall back to an internal <see cref="IServiceProvider"/>.
+        /// </summary>
+        public bool IsConfigured { get => servicesCollection.Any() || externalServiceProvider != null; }
+
+        /// <summary>
         /// Configure the internal <see cref="IServiceCollection"/>.
         /// </summary>
         /// <remarks>This cannot be called after <see cref="ServiceProvider"/> has been used since 
@@ -116,23 +128,26 @@ namespace Xbim.Common.Configuration
         /// <summary>
         /// Gets a <see cref="IServiceProvider"/> used for resolving xbim services 
         /// </summary>
-        /// <remarks>Used when an external DI service is not employed</remarks>
-        public IServiceProvider ServiceProvider => externalServiceProvider ?? serviceProviderBuilder.Value;
+        /// <remarks>To avoid building the service provider too early, when not using an external service provider, 
+        /// and the xbim service has not been configured, the system reverts to a basic internal <see cref="IServiceProvider"/></remarks>
+        public IServiceProvider ServiceProvider => externalServiceProvider ?? 
+            (IsConfigured ? serviceProviderBuilder.Value : InternalServiceProvider.Current.ServiceProvider);
 
         /// <summary>
-        /// For internal and unit test purposes only
+        /// Rebuilds the internal xbim DI / Service Provider. For internal and unit test purposes only
         /// </summary>
         internal void Rebuild()
         {
             servicesCollection.Clear();
             isBuilt = false;
+            
             if (serviceProviderBuilder != null &&
                 serviceProviderBuilder.IsValueCreated && 
                 serviceProviderBuilder.Value is ServiceProvider sp)
             {
                 sp.Dispose();
             }
-            //rebuild the Lazy so IServiceProvider is rebuild next time
+            //rebuild the Lazy so IServiceProvider is rebuilt next time
             serviceProviderBuilder = new Lazy<IServiceProvider>(() =>
             {
                 isBuilt = true;

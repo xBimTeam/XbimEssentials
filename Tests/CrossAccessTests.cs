@@ -10,6 +10,7 @@ using IfcBeamTypeEnum = Xbim.Ifc4.Interfaces.IfcBeamTypeEnum;
 using Xbim.Common.Step21;
 using Xbim.IO.Memory;
 using Xbim.Essentials.Tests.Utilities;
+using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Essentials.Tests
 {
@@ -84,5 +85,63 @@ namespace Xbim.Essentials.Tests
                 }
             }
         }
+
+        //[TestMethod]
+        //public void AddingStyleItemStyles()
+        //{
+        //    using var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
+        //    using var txn = model.BeginTransaction("Style item creation");
+        //    var c = new EntityCreator(model);
+
+        //    var styledItem = c.StyledItem(styleItem =>
+        //    {
+        //        styleItem.Styles.Add(c.SurfaceStyle(style =>
+        //        {
+        //            style.Side = IfcSurfaceSide.BOTH;
+        //            style.Styles.Add(c.SurfaceStyleRendering(rendering =>
+        //            {
+        //                rendering.SurfaceColour = c.ColourRgb(colour =>
+        //                {
+        //                    colour.Name = "Grey";
+        //                    colour.Red = 0.6;
+        //                    colour.Green = 0.6;
+        //                    colour.Blue = 0.6;
+        //                });
+        //            }));
+        //        }));
+        //    }) as Ifc2x3.PresentationAppearanceResource.IfcStyledItem;
+
+
+        //    var i = model.Instances;
+        //    styledItem.Styles.Add(i)
+
+        //    txn.Commit();
+
+        //    Assert.IsTrue(styledItem.Styles.Any());
+        //}
+
+        //public void Example()
+        //{
+        //    using var model = MemoryModel.OpenRead("example.ifc");
+        //    using var txn = model.BeginTransaction("Enriching the model");
+
+        //    var create = new EntityCreator(model);
+
+        //    var rel = create.RelDefinesByProperties(r => {
+        //        r.GlobalId = Guid.NewGuid();
+        //        r.RelatingPropertyDefinition = create.PropertySet(ps => {
+        //            ps.Name = "MC_Extended_properties";
+        //            ps.HasProperties.Add(create.PropertySingleValue(p => {
+        //                p.Name = "TakenBy";
+        //                p.NominalValue = new IfcText("This is my wall now!");
+        //            }));
+        //        });
+        //    });
+        //    foreach (var wall in model.Instances.OfType<IIfcWall>())
+        //    {
+        //        rel.RelatedObjects.Add(wall);
+        //    }
+        //    txn.Commit();
+        //}
     }
 }
