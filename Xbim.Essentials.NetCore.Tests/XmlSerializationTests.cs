@@ -1,16 +1,16 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Xml;
 using Xbim.Ifc4;
 using Xbim.Ifc4.ActorResource;
 using Xbim.IO.Memory;
+using Xunit;
 
 namespace Xbim.Essentials.NetCore.Tests
 {
-    [TestClass]
+
     public class XmlSerializationTests
     {
-        [TestMethod]
+        [Fact]
         public void SerializeXML()
         {
             using (var model = new MemoryModel(new EntityFactoryIfc4()))
