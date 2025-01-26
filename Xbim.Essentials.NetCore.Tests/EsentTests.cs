@@ -1,20 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FluentAssertions;
 using Xbim.Ifc4;
+using Xunit;
 
 namespace Xbim.Essentials.NetCore.Tests
 {
-    [TestClass]
     public class EsentTests
     {
-        [TestMethod]
+        [Fact]
         public void CanCreateEsentModel()
         {
             var esentModel = new Xbim.IO.Esent.EsentModel(new EntityFactoryIfc4());
 
-            Assert.IsNotNull(esentModel);
+            esentModel.Should().NotBeNull();
         }
     }
 }
