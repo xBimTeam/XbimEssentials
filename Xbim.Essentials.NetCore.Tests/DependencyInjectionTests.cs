@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Common.Configuration;
+using Xunit;
 
 
 namespace Xbim.Essentials.NetCore.Tests
 {
-    [TestClass]
+    
     public class DependencyInjectionTests
     {
 
-        [TestMethod]
+        [Fact]
         public void ServiceProviderIsValid()
         {
 
