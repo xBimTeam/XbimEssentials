@@ -12,8 +12,7 @@ namespace Xbim.Common.Geometry
         IXbimShellSet Shells { get; }
         IXbimFaceSet Faces { get; }
         IXbimEdgeSet Edges { get; }
-        IXbimVertexSet Vertices { get; }
-        double Volume { get; }
+        IXbimVertexSet Vertices { get; }        
         double SurfaceArea { get; }
         bool IsPolyhedron { get; }
         IXbimSolidSet Cut(IXbimSolidSet toCut, double tolerance, ILogger logger=null);
