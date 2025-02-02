@@ -353,42 +353,33 @@ namespace Xbim.Ifc
             }
 
             //remove existing simple quality
-            var simpleQuality = obj.GetElementPhysicalSimpleQuantity(qSetName, qualityName);
-            if (simpleQuality != null)
+            var simpleQuantity = obj.GetElementPhysicalSimpleQuantity(qSetName, qualityName);
+            if (simpleQuantity != null)
             {
                 var elementQuality = obj.GetElementQuantity(qSetName);
-                elementQuality.Quantities.Remove(simpleQuality);
-                obj.Model.Delete(simpleQuality);
+                elementQuality.Quantities.Remove(simpleQuantity);
+                obj.Model.Delete(simpleQuantity);
             }
 
-            switch (quantityType)
+            simpleQuantity = quantityType switch
             {
-                case XbimQuantityTypeEnum.Area:
-                    simpleQuality = factory.QuantityArea(sq => sq.AreaValue = (Ifc4.MeasureResource.IfcAreaMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Count:
-                    simpleQuality = factory.QuantityCount(sq => sq.CountValue = (Ifc4.MeasureResource.IfcCountMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Length:
-                    simpleQuality = factory.QuantityLength(sq => sq.LengthValue = (Ifc4.MeasureResource.IfcLengthMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Time:
-                    simpleQuality = factory.QuantityTime(sq => sq.TimeValue = (Ifc4.MeasureResource.IfcTimeMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Volume:
-                    simpleQuality = factory.QuantityVolume(sq => sq.VolumeValue = (Ifc4.MeasureResource.IfcVolumeMeasure)value);
-                    break;
-                case XbimQuantityTypeEnum.Weight:
-                    simpleQuality = factory.QuantityWeight(sq => sq.WeightValue = (Ifc4.MeasureResource.IfcMassMeasure)value);
-                    break;
-                default:
-                    return;
-            }
+                XbimQuantityTypeEnum.Area => factory.QuantityArea(sq => sq.AreaValue = (Ifc4.MeasureResource.IfcAreaMeasure)value),
+                XbimQuantityTypeEnum.Length => factory.QuantityLength(sq => sq.LengthValue = (Ifc4.MeasureResource.IfcLengthMeasure)value),
+                XbimQuantityTypeEnum.Volume => factory.QuantityVolume(sq => sq.VolumeValue = (Ifc4.MeasureResource.IfcVolumeMeasure)value),
+                XbimQuantityTypeEnum.Count => factory.QuantityCount(sq => sq.CountValue = (Ifc4.MeasureResource.IfcCountMeasure)value),
+                XbimQuantityTypeEnum.Weight => factory.QuantityWeight(sq => sq.WeightValue = (Ifc4.MeasureResource.IfcMassMeasure)value),
+                XbimQuantityTypeEnum.Time => factory.QuantityTime(sq => sq.TimeValue = (Ifc4.MeasureResource.IfcTimeMeasure)value),
+                _ => default,
+                
+            };
 
-            simpleQuality.Unit = unit;
-            simpleQuality.Name = qualityName;
+            if (simpleQuantity == null)
+                return;
 
-            qset.Quantities.Add(simpleQuality);
+            simpleQuantity.Unit = unit;
+            simpleQuantity.Name = qualityName;
+
+            qset.Quantities.Add(simpleQuantity);
         }
 
     }

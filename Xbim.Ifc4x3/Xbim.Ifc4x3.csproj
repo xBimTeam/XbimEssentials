@@ -12,5 +12,8 @@
   </ItemGroup>
 	<ItemGroup>
 		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
+    <Compile Update="**\*.Partial.cs">
+      <DependentUpon>$([System.String]::Copy(%(Filename)).Replace('.Partial', '.cs'))</DependentUpon>
+    </Compile>
 	</ItemGroup>
 </Project>

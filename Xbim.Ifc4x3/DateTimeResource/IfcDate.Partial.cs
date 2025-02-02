@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Xbim.Ifc4.DateTimeResource
+namespace Xbim.Ifc4x3.DateTimeResource
 {
     public partial struct IfcDate
     {
@@ -12,7 +12,7 @@ namespace Xbim.Ifc4.DateTimeResource
 
         public static implicit operator DateTime(IfcDate obj)
         {
-            if (DateTime.TryParse(obj._value, null, DateTimeStyles.RoundtripKind, out DateTime result))
+            if(DateTime.TryParse(obj._value, null, DateTimeStyles.RoundtripKind, out DateTime result))
                 return result;
             return default;
         }

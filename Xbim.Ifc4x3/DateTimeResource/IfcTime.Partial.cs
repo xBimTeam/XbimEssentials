@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Xbim.Ifc4.DateTimeResource
+namespace Xbim.Ifc4x3.DateTimeResource
 {
     public partial struct IfcTime
     {
         public static implicit operator DateTime(IfcTime obj)
         {
-            if(DateTime.TryParse(obj, out DateTime d))
+            if (DateTime.TryParse(obj, out DateTime d))
                 return d;
             return default;
         }
