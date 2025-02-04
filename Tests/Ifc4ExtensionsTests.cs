@@ -10,22 +10,22 @@ using XbimCommonSchema = Xbim.Ifc4;
 
 namespace Xbim.Essentials.Tests
 {
-    public class Ifc4x3ExtensionsTests : IDisposable
+    public class Ifc4ExtensionsTests : IDisposable
     {
         protected IModel Model { get; set; }
         protected ITransaction Txn { get; set; }
 
-        public Ifc4x3ExtensionsTests()
+        public Ifc4ExtensionsTests()
         {
-            Model = new MemoryModel(new Ifc4x3.EntityFactoryIfc4x3Add2());
+            Model = new MemoryModel(new Ifc4.EntityFactoryIfc4());
             Txn = Model.BeginTransaction("Test");
         }
 
         [Fact]
         public void CanAddDefiningType()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var type = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPileType>();
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var type = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPileType>();
             pile.AddDefiningType(type);
 
             var relatingType = pile.IsTypedBy.First().RelatingType;
@@ -36,8 +36,8 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanAddPropertySet()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var pset = Model.Instances.New<Ifc4x3.Kernel.IfcPropertySet>(p=>
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var pset = Model.Instances.New<Ifc4.Kernel.IfcPropertySet>(p=>
             {
                 p.Name = "Pset_Test";
             });
@@ -51,8 +51,8 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanGetPropertySet()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var pset = Model.Instances.New<Ifc4x3.Kernel.IfcPropertySet>(p => p.Name = "Pset_Test");
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var pset = Model.Instances.New<Ifc4.Kernel.IfcPropertySet>(p => p.Name = "Pset_Test");
             pile.AddPropertySet(pset);
 
             var pset2 = pile.GetPropertySet("Pset_Test");
@@ -63,8 +63,8 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void GetPropertySetIsCaseSensitive()
         {
-            var pile = Model.Instances.New<Xbim.Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var pset = Model.Instances.New<Ifc4x3.Kernel.IfcPropertySet>(p => p.Name = "Pset_Test");
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var pset = Model.Instances.New<Ifc4.Kernel.IfcPropertySet>(p => p.Name = "Pset_Test");
             pile.AddPropertySet(pset);
 
             var pset2 = pile.GetPropertySet("pset_test");
@@ -74,8 +74,8 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void GetPropertySetCanBeCaseInsensitive()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var pset = Model.Instances.New<Ifc4x3.Kernel.IfcPropertySet>(p => p.Name = "Pset_Test");
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var pset = Model.Instances.New<Ifc4.Kernel.IfcPropertySet>(p => p.Name = "Pset_Test");
             pile.AddPropertySet(pset);
 
             var pset2 = pile.GetPropertySet("pset_test", false);
@@ -87,13 +87,13 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanGetPropertySingle()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var prop = Model.Instances.New<Ifc4x3.PropertyResource.IfcPropertySingleValue>(p=>
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var prop = Model.Instances.New<Ifc4.PropertyResource.IfcPropertySingleValue>(p=>
             {
                 p.Name = "SomeValue";
-                p.NominalValue = new Ifc4x3.MeasureResource.IfcLabel("Abc");
+                p.NominalValue = new Ifc4.MeasureResource.IfcLabel("Abc");
             });
-            var pset = Model.Instances.New<Ifc4x3.Kernel.IfcPropertySet>(p =>
+            var pset = Model.Instances.New<Ifc4.Kernel.IfcPropertySet>(p =>
             {
                 p.Name = "Pset_Test";
                 p.HasProperties.Add(prop);
@@ -108,19 +108,19 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanGetPropertySingleValue()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var prop = Model.Instances.New<Ifc4x3.PropertyResource.IfcPropertySingleValue>(p =>
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var prop = Model.Instances.New<Ifc4.PropertyResource.IfcPropertySingleValue>(p =>
             {
                 p.Name = "SomeNumber";
-                p.NominalValue = new Ifc4x3.MeasureResource.IfcReal(100.5d);
+                p.NominalValue = new Ifc4.MeasureResource.IfcReal(100.5d);
             });
-            var pset = Model.Instances.New<Ifc4x3.Kernel.IfcPropertySet>(p =>
+            var pset = Model.Instances.New<Ifc4.Kernel.IfcPropertySet>(p =>
             {
                 p.Name = "Pset_Test";
                 p.HasProperties.Add(prop);
             });
             pile.AddPropertySet(pset);
-
+            var x= pile.GetPropertySingleValue<XbimCommonSchema.MeasureResource.IfcReal >("", "");
             var value = pile.GetPropertySingleValue<XbimCommonSchema.MeasureResource.IfcReal>("Pset_Test", "SomeNumber");
             value.Should().NotBeNull();
             value.Value.Should().Be(100.5);
@@ -129,7 +129,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanSetPropertySingleValue()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
 
             pile.SetPropertySingleValue("Pset_Test", "SomeProp", typeof(XbimCommonSchema.MeasureResource.IfcReal));
 
@@ -142,7 +142,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanSetPropertySingleValueGeneric()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
 
             pile.SetPropertySingleValue<XbimCommonSchema.MeasureResource.IfcReal>("Pset_Test", "SomeProp");
 
@@ -154,9 +154,7 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanSetPropertySingleValueGenericEdgeCase()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-
-            pile.SetPropertySingleValue<XbimCommonSchema.MeasureResource.IfcPositiveLengthMeasure>("Pset_Test", "SomeProp");
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
 
             var value = pile.GetPropertySingleValue<XbimCommonSchema.MeasureResource.IfcPositiveLengthMeasure>("Pset_Test", "SomeProp");
             value.Should().NotBeNull();
@@ -166,8 +164,8 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanAddElementAndReadQuantity()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var quant = Model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityArea>(qa =>
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var quant = Model.Instances.New<Ifc4.QuantityResource.IfcQuantityArea>(qa =>
             {
                 qa.Name = "GrossArea";
                 qa.AreaValue = 123.4d;
@@ -178,23 +176,23 @@ namespace Xbim.Essentials.Tests
             quantities.Should().NotBeNull();
             var val = quantities.Quantities.First(q => q.Name == "GrossArea");
 
-            val.Should().BeOfType<Ifc4x3.QuantityResource.IfcQuantityArea>();
-            (val as Ifc4x3.QuantityResource.IfcQuantityArea).AreaValue.Value.Should().Be(123.4d);
+            val.Should().BeOfType<Ifc4.QuantityResource.IfcQuantityArea>();
+            (val as Ifc4.QuantityResource.IfcQuantityArea).AreaValue.Value.Should().Be(123.4d);
             
         }
 
         [Fact]
         public void CanAddElementAndReadPhysicalQuantity()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var quant = Model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityArea>(qa =>
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var quant = Model.Instances.New<Ifc4.QuantityResource.IfcQuantityArea>(qa =>
             {
                 qa.Name = "GrossArea";
                 qa.AreaValue = 123.4d;
             });
             pile.AddQuantity("BaseQuants", quant, "Some measure");
 
-            var val = pile.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityArea>("GrossArea");
+            var val = pile.GetQuantity<Ifc4.QuantityResource.IfcQuantityArea>("GrossArea");
             val.Should().NotBeNull();
             val.AreaValue.Value.Should().Be(123.4d);
         }
@@ -202,15 +200,15 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanAddElementAndReadPhysicalQuantityWithPset()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var quant = Model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityArea>(qa =>
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var quant = Model.Instances.New<Ifc4.QuantityResource.IfcQuantityArea>(qa =>
             {
                 qa.Name = "GrossArea";
                 qa.AreaValue = 123.4d;
             });
             pile.AddQuantity("BaseQuants", quant, "Some measure");
 
-            var val = pile.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityArea>("BaseQuants", "GrossArea");
+            var val = pile.GetQuantity<Ifc4.QuantityResource.IfcQuantityArea>("BaseQuants", "GrossArea");
             val.Should().NotBeNull();
             val.AreaValue.Value.Should().Be(123.4d);
         }
@@ -218,8 +216,8 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void CanAddElementAndReadPhysicalSimpleQuantityWithPset()
         {
-            var pile = Model.Instances.New<Ifc4x3.StructuralElementsDomain.IfcPile>();
-            var quant = Model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityArea>(qa =>
+            var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
+            var quant = Model.Instances.New<Ifc4.QuantityResource.IfcQuantityArea>(qa =>
             {
                 qa.Name = "GrossArea";
                 qa.AreaValue = 123.4d;
@@ -228,24 +226,24 @@ namespace Xbim.Essentials.Tests
 
             var val = pile.GetElementPhysicalSimpleQuantity("BaseQuants", "GrossArea");
             val.Should().NotBeNull();
-            val.Should().BeOfType<Ifc4x3.QuantityResource.IfcQuantityArea>();
+            val.Should().BeOfType<Ifc4.QuantityResource.IfcQuantityArea>();
         }
 
-        [InlineData("GFA", XbimQuantityTypeEnum.Area, 15.5d, Ifc4x3.MeasureResource.IfcSIUnitName.SQUARE_METRE)]
-        [InlineData("Width", XbimQuantityTypeEnum.Length, 1200.4d, Ifc4x3.MeasureResource.IfcSIUnitName.METRE)]
-        [InlineData("Volume", XbimQuantityTypeEnum.Volume, 12234d, Ifc4x3.MeasureResource.IfcSIUnitName.CUBIC_METRE)]
+        [InlineData("GFA", XbimQuantityTypeEnum.Area, 15.5d, Ifc4.Interfaces.IfcSIUnitName.SQUARE_METRE)]
+        [InlineData("Width", XbimQuantityTypeEnum.Length, 1200.4d,  Ifc4.Interfaces.IfcSIUnitName.METRE)]
+        [InlineData("Volume", XbimQuantityTypeEnum.Volume, 12234d, Ifc4.Interfaces.IfcSIUnitName.CUBIC_METRE)]
         [InlineData("Count", XbimQuantityTypeEnum.Count, 14d, null)]
-        [InlineData("Weight", XbimQuantityTypeEnum.Weight, 999, Ifc4x3.MeasureResource.IfcSIUnitName.GRAM, Ifc4x3.MeasureResource.IfcSIPrefix.KILO)]
-        [InlineData("Duration", XbimQuantityTypeEnum.Time, 10d, Ifc4x3.MeasureResource.IfcSIUnitName.SECOND)]
+        [InlineData("Weight", XbimQuantityTypeEnum.Weight, 999, Ifc4.Interfaces.IfcSIUnitName.GRAM, Ifc4.Interfaces.IfcSIPrefix.KILO)]
+        [InlineData("Duration", XbimQuantityTypeEnum.Time, 10d, Ifc4.Interfaces.IfcSIUnitName.SECOND)]
         [Theory]
-        public void CanSetElementPhysicalSimpleQuantity(string quantName, XbimQuantityTypeEnum measure, double value, 
-            Ifc4x3.MeasureResource.IfcSIUnitName? unitType, Ifc4x3.MeasureResource.IfcSIPrefix? unitPrefix = null)
+        public void CanSetElementPhysicalSimpleQuantity(string quantName, XbimQuantityTypeEnum measure, double value,
+            Ifc4.Interfaces.IfcSIUnitName? unitType, Ifc4.Interfaces.IfcSIPrefix? unitPrefix = null)
         {
-            var space = Model.Instances.New<Ifc4x3.ProductExtension.IfcSpace>();
-            Ifc4x3.MeasureResource.IfcNamedUnit unit = null;
+            var space = Model.Instances.New<Ifc4.ProductExtension.IfcSpace>();
+            Ifc4.MeasureResource.IfcNamedUnit unit = null;
             if(unitType != null)
             {
-                unit = Model.Instances.New<Ifc4x3.MeasureResource.IfcSIUnit>(u =>
+                unit = Model.Instances.New<Ifc4.MeasureResource.IfcSIUnit>(u =>
                 {
                     u.Name = unitType.Value;
                     u.Prefix = unitPrefix;
@@ -254,14 +252,14 @@ namespace Xbim.Essentials.Tests
 
             space.SetElementPhysicalSimpleQuantity("BaseQuants", quantName, value, measure, unit);
 
-            Ifc4x3.MeasureResource.IfcMeasureValue val = measure switch
+            Ifc4.MeasureResource.IfcMeasureValue val = measure switch
             {
-                XbimQuantityTypeEnum.Area => space.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityArea>("BaseQuants", quantName).AreaValue,
-                XbimQuantityTypeEnum.Length => space.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityLength>("BaseQuants", quantName).LengthValue,
-                XbimQuantityTypeEnum.Volume => space.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityVolume>("BaseQuants", quantName).VolumeValue,
-                XbimQuantityTypeEnum.Count => space.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityCount>("BaseQuants", quantName).CountValue,
-                XbimQuantityTypeEnum.Weight => space.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityWeight>("BaseQuants", quantName).WeightValue,
-                XbimQuantityTypeEnum.Time => space.GetQuantity<Ifc4x3.QuantityResource.IfcQuantityTime>("BaseQuants", quantName).TimeValue,
+                XbimQuantityTypeEnum.Area => space.GetQuantity<Ifc4.QuantityResource.IfcQuantityArea>("BaseQuants", quantName).AreaValue,
+                XbimQuantityTypeEnum.Length => space.GetQuantity<Ifc4.QuantityResource.IfcQuantityLength>("BaseQuants", quantName).LengthValue,
+                XbimQuantityTypeEnum.Volume => space.GetQuantity<Ifc4.QuantityResource.IfcQuantityVolume>("BaseQuants", quantName).VolumeValue,
+                XbimQuantityTypeEnum.Count => space.GetQuantity<Ifc4.QuantityResource.IfcQuantityCount>("BaseQuants", quantName).CountValue,
+                XbimQuantityTypeEnum.Weight => space.GetQuantity<Ifc4.QuantityResource.IfcQuantityWeight>("BaseQuants", quantName).WeightValue,
+                XbimQuantityTypeEnum.Time => space.GetQuantity<Ifc4.QuantityResource.IfcQuantityTime>("BaseQuants", quantName).TimeValue,
                 _ => throw new NotImplementedException(),
             };
 
@@ -280,7 +278,7 @@ namespace Xbim.Essentials.Tests
         public void CanReadMonetaryUnit(string tla, string expectedSymbol, string expectedName, string nativeName = null)
         {
             nativeName = nativeName ?? expectedName;
-            var currency = Model.Instances.New<Ifc4x3.MeasureResource.IfcMonetaryUnit>(u =>
+            var currency = Model.Instances.New<Ifc4.MeasureResource.IfcMonetaryUnit>(u =>
             {
                 u.Currency = tla;
             });
