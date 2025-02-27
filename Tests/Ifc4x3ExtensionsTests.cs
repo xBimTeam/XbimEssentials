@@ -290,6 +290,98 @@ namespace Xbim.Essentials.Tests
             currency.FullNativeName().Should().Be(nativeName);
         }
 
+        [Fact]
+        public void CanGetUnitForProperty()
+        {
+            XbimCommonSchema.Interfaces.IIfcProject project = Model.Instances.New<Ifc4x3.Kernel.IfcProject>();
+            project.Initialize(ProjectUnits.SIUnitsUK);
+
+            var prop = Model.Instances.New<Ifc4x3.PropertyResource.IfcPropertySingleValue>(p =>
+            {
+                p.Name = "Volume";
+                p.NominalValue = new Ifc4x3.MeasureResource.IfcVolumeMeasure(123d);
+            });
+
+            XbimCommonSchema.Interfaces.IIfcNamedUnit unit = project.UnitsInContext.GetUnitFor(prop);
+
+            unit.Should().NotBeNull();
+            unit.FullName.Should().Be("CUBICMETRE");
+        }
+
+        [Fact]
+        public void CanGetUnitForPropertyWhenOverridden()
+        {
+            XbimCommonSchema.Interfaces.IIfcProject project = Model.Instances.New<Ifc4x3.Kernel.IfcProject>();
+            project.Initialize(ProjectUnits.SIUnitsUK);
+            var modelunit = project.UnitsInContext.Units.OfType<Ifc4x3.MeasureResource.IfcSIUnit>().FirstOrDefault(u => u.UnitType == Ifc4x3.MeasureResource.IfcUnitEnum.LENGTHUNIT);
+
+            var prop = Model.Instances.New<Ifc4x3.PropertyResource.IfcPropertySingleValue>(p =>
+            {
+                p.Name = "Length";
+                p.NominalValue = new Ifc4x3.MeasureResource.IfcReal(123d);
+                p.Unit = modelunit;
+            });
+
+            XbimCommonSchema.Interfaces.IIfcNamedUnit unit = project.UnitsInContext.GetUnitFor(prop);
+
+            unit.Should().NotBeNull();
+            unit.FullName.Should().Be("MILLIMETRE");
+        }
+
+        [Fact]
+        public void CanGetUnitForQuantity()
+        {
+            XbimCommonSchema.Interfaces.IIfcProject project = Model.Instances.New<Ifc4x3.Kernel.IfcProject>();
+            project.Initialize(ProjectUnits.SIUnitsUK);
+
+            var quant = Model.Instances.New<Ifc4x3.QuantityResource.IfcQuantityTime>(qa =>
+            {
+                qa.Name = "GrossArea";
+                qa.TimeValue = 1.5;
+            });
+
+            XbimCommonSchema.Interfaces.IIfcNamedUnit unit = project.UnitsInContext.GetUnitFor(quant);
+            unit.Should().NotBeNull();
+            unit.FullName.Should().Be("SECOND");
+        }
+
+        [InlineData(XbimCommonSchema.Interfaces.IfcUnitEnum.LENGTHUNIT, "MILLIMETRE")]
+        [InlineData(XbimCommonSchema.Interfaces.IfcUnitEnum.AREAUNIT, "SQUAREMETRE")]
+        [InlineData(XbimCommonSchema.Interfaces.IfcUnitEnum.VOLUMEUNIT, "CUBICMETRE")]
+        [InlineData(XbimCommonSchema.Interfaces.IfcUnitEnum.MASSUNIT, "GRAM")]  // Inconsistent - is kg in Ifc2x3/4
+        [InlineData(XbimCommonSchema.Interfaces.IfcUnitEnum.THERMODYNAMICTEMPERATUREUNIT, "DEGREECELSIUS")]
+        [Theory]
+        public void CanGetUnits(XbimCommonSchema.Interfaces.IfcUnitEnum unitType, string expectedUnitName)
+        {
+            XbimCommonSchema.Interfaces.IIfcProject project = Model.Instances.New<Ifc4x3.Kernel.IfcProject>();
+            project.Initialize(ProjectUnits.SIUnitsUK);
+
+            XbimCommonSchema.Interfaces.IIfcNamedUnit result = project.UnitsInContext.GetUnitFor(unitType);
+            result.Should().NotBeNull();
+            result.UnitType.Should().Be(unitType);
+            result.Name().Should().Be(expectedUnitName);
+        }
+
+        [Fact]
+        public void CanChangeUnits()
+        {
+            XbimCommonSchema.Interfaces.IIfcProject project = Model.Instances.New<Ifc4x3.Kernel.IfcProject>();
+            project.Initialize(ProjectUnits.SIUnitsUK);
+
+            project.UnitsInContext.SetOrChangeConversionUnit(XbimCommonSchema.Interfaces.IfcUnitEnum.LENGTHUNIT, ConversionBasedUnit.Inch);
+
+            var unit = project.UnitsInContext.GetUnitFor(XbimCommonSchema.Interfaces.IfcUnitEnum.LENGTHUNIT);
+
+            unit.Should().NotBeNull();
+            unit.Name().Should().Be("inch");
+            unit.Should().BeOfType<Ifc4x3.MeasureResource.IfcConversionBasedUnit>();
+
+            var cbt = (Ifc4x3.MeasureResource.IfcConversionBasedUnit)unit;
+            cbt.ConversionFactor.ValueComponent.Value.Should().Be(25.4d);
+            cbt.ConversionFactor.UnitComponent.FullName.Should().Be("MILLIMETRE");
+
+        }
+
         #region Dispose
         private bool disposedValue;
 
