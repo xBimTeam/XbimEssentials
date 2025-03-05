@@ -12,6 +12,7 @@ using Xbim.Ifc4x3;
 using Xbim.Ifc4x3.GeometryResource;
 using Xbim.Ifc4x3.MeasureResource;
 using Xbim.Ifc4x3.ProductExtension;
+using Xbim.Ifc4x3.RepresentationResource;
 using Xbim.IO.Memory;
 
 namespace Xbim.Essentials.Tests
@@ -187,6 +188,37 @@ namespace Xbim.Essentials.Tests
 
         }
 
+
+        [TestMethod]
+        public void IfcCoordinateReferenceSystemVerticalDatumCanAccessViaIfc4()
+        {
+            using var model = new MemoryModel(new EntityFactoryIfc4x3Add2());
+            using var txn = model.BeginTransaction("Creation");
+
+            var projectedCoords = model.Instances.New<IfcProjectedCRS>(o => o.VerticalDatum="EPSG:5555");
+
+            IIfcCoordinateReferenceSystem ifc4Coords = projectedCoords;
+
+            ifc4Coords.VerticalDatum.Value.Value.Should().Be("EPSG:5555");
+            ifc4Coords.VerticalDatum = "Test";
+            projectedCoords.VerticalDatum.Value.Value.Should().Be("Test");
+
+        }
+
+        [TestMethod]
+        public void IfcCoordinateReferenceSystemVerticalDatumCanReadAndSetNull()
+        {
+            using var model = new MemoryModel(new EntityFactoryIfc4x3Add2());
+            using var txn = model.BeginTransaction("Creation");
+
+
+            var projectedCoords = model.Instances.New<IfcProjectedCRS>(o => o.VerticalDatum = null);
+            IIfcCoordinateReferenceSystem ifc4Coords = projectedCoords;
+            ifc4Coords.VerticalDatum.HasValue.Should().BeFalse();
+
+            ifc4Coords.VerticalDatum = null;
+            projectedCoords.VerticalDatum.HasValue.Should().BeFalse();
+        }
 
     }
 }
