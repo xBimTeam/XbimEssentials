@@ -32,8 +32,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 				{
 					case IfcSpaceTypeEnum.BERTH:
 						//## Handle translation of BERTH member from IfcSpaceTypeEnum in property PredefinedType
-						//TODO: Handle translation of BERTH member from IfcSpaceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSpaceTypeEnum>();
 						//##
 					case IfcSpaceTypeEnum.EXTERNAL:
 						return Ifc4.Interfaces.IfcSpaceTypeEnum.EXTERNAL;

@@ -32,13 +32,11 @@ namespace Xbim.Ifc4x3.ProductExtension
 				{
 					case IfcProjectionElementTypeEnum.BLISTER:
 						//## Handle translation of BLISTER member from IfcProjectionElementTypeEnum in property PredefinedType
-						//TODO: Handle translation of BLISTER member from IfcProjectionElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcProjectionElementTypeEnum>();
 						//##
 					case IfcProjectionElementTypeEnum.DEVIATOR:
 						//## Handle translation of DEVIATOR member from IfcProjectionElementTypeEnum in property PredefinedType
-						//TODO: Handle translation of DEVIATOR member from IfcProjectionElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcProjectionElementTypeEnum>();
 						//##
 					case IfcProjectionElementTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

@@ -33,23 +33,20 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 					case IfcColumnTypeEnum.COLUMN:
 						return Ifc4.Interfaces.IfcColumnTypeEnum.COLUMN;
 					case IfcColumnTypeEnum.PIERSTEM:
-						//## Handle translation of PIERSTEM member from IfcColumnTypeEnum in property PredefinedType
-						//TODO: Handle translation of PIERSTEM member from IfcColumnTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcColumnTypeEnum.PIERSTEM_SEGMENT:
-						//## Handle translation of PIERSTEM_SEGMENT member from IfcColumnTypeEnum in property PredefinedType
-						//TODO: Handle translation of PIERSTEM_SEGMENT member from IfcColumnTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcColumnTypeEnum.PILASTER:
+                        //## Handle translation of PIERSTEM member from IfcColumnTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcColumnTypeEnum>();
+                    //##
+                    case IfcColumnTypeEnum.PIERSTEM_SEGMENT:
+                        //## Handle translation of PIERSTEM_SEGMENT member from IfcColumnTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcColumnTypeEnum>();
+                    //##
+                    case IfcColumnTypeEnum.PILASTER:
 						return Ifc4.Interfaces.IfcColumnTypeEnum.PILASTER;
 					case IfcColumnTypeEnum.STANDCOLUMN:
-						//## Handle translation of STANDCOLUMN member from IfcColumnTypeEnum in property PredefinedType
-						//TODO: Handle translation of STANDCOLUMN member from IfcColumnTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcColumnTypeEnum.USERDEFINED:
+                        //## Handle translation of STANDCOLUMN member from IfcColumnTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcColumnTypeEnum>();
+                    //##
+                    case IfcColumnTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcColumnTypeEnum.USERDEFINED;

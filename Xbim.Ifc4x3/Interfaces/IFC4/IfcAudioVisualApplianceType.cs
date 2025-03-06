@@ -35,11 +35,10 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 					case IfcAudioVisualApplianceTypeEnum.CAMERA:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.CAMERA;
 					case IfcAudioVisualApplianceTypeEnum.COMMUNICATIONTERMINAL:
-						//## Handle translation of COMMUNICATIONTERMINAL member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
-						//TODO: Handle translation of COMMUNICATIONTERMINAL member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        //## Handle translation of COMMUNICATIONTERMINAL member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum>();
 						//##
-					case IfcAudioVisualApplianceTypeEnum.DISPLAY:
+                    case IfcAudioVisualApplianceTypeEnum.DISPLAY:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.DISPLAY;
 					case IfcAudioVisualApplianceTypeEnum.MICROPHONE:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.MICROPHONE;
@@ -50,11 +49,10 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 					case IfcAudioVisualApplianceTypeEnum.RECEIVER:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.RECEIVER;
 					case IfcAudioVisualApplianceTypeEnum.RECORDINGEQUIPMENT:
-						//## Handle translation of RECORDINGEQUIPMENT member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
-						//TODO: Handle translation of RECORDINGEQUIPMENT member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+                        //## Handle translation of RECORDINGEQUIPMENT member from IfcAudioVisualApplianceTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum>();
 						//##
-					case IfcAudioVisualApplianceTypeEnum.SPEAKER:
+                    case IfcAudioVisualApplianceTypeEnum.SPEAKER:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.SPEAKER;
 					case IfcAudioVisualApplianceTypeEnum.SWITCHER:
 						return Ifc4.Interfaces.IfcAudioVisualApplianceTypeEnum.SWITCHER;

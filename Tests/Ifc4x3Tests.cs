@@ -220,5 +220,34 @@ namespace Xbim.Essentials.Tests
             projectedCoords.VerticalDatum.HasValue.Should().BeFalse();
         }
 
+
+        [TestMethod]
+        public void Accessing4x3EnumsViaIfc4GivesUserDefined()
+        {
+            using var model = new MemoryModel(new EntityFactoryIfc4x3Add2());
+            using var txn = model.BeginTransaction("Creation");
+
+
+            var appliance = model.Instances.New<Ifc4x3.ElectricalDomain.IfcAudioVisualAppliance>(o => o.PredefinedType = Ifc4x3.ElectricalDomain.IfcAudioVisualApplianceTypeEnum.COMMUNICATIONTERMINAL);
+            IIfcAudioVisualAppliance ifc4Appliance = appliance;
+
+            ifc4Appliance.PredefinedType.Should().Be(IfcAudioVisualApplianceTypeEnum.USERDEFINED);
+
+            ifc4Appliance.GetPredefinedTypeValue().Should().Be("COMMUNICATIONTERMINAL");
+           
+        }
+
+        [TestMethod]
+        public void Accessing4x3EnumsViaIfc4GivesUserDefinedEdgeCase()
+        {
+            using var model = new MemoryModel(new EntityFactoryIfc4x3Add2());
+            using var txn = model.BeginTransaction("Creation");
+
+
+            var appliance = model.Instances.New<Ifc4x3.ElectricalDomain.IfcAudioVisualAppliance>();
+            // Enum does not have USERDEFINED
+            appliance.GetUserDefined<IO.XbimStoreType>().Should().Be(IO.XbimStoreType.EsentDatabase, "defaults to first enum");
+        }
+
     }
 }
