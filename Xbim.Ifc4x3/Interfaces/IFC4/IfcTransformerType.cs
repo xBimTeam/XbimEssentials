@@ -32,13 +32,11 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				{
 					case IfcTransformerTypeEnum.CHOPPER:
 						//## Handle translation of CHOPPER member from IfcTransformerTypeEnum in property PredefinedType
-						//TODO: Handle translation of CHOPPER member from IfcTransformerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTransformerTypeEnum>();
 						//##
 					case IfcTransformerTypeEnum.COMBINED:
 						//## Handle translation of COMBINED member from IfcTransformerTypeEnum in property PredefinedType
-						//TODO: Handle translation of COMBINED member from IfcTransformerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTransformerTypeEnum>();
 						//##
 					case IfcTransformerTypeEnum.CURRENT:
 						return Ifc4.Interfaces.IfcTransformerTypeEnum.CURRENT;

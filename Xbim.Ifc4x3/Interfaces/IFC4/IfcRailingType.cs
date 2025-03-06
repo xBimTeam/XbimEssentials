@@ -34,8 +34,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcRailingTypeEnum.BALUSTRADE;
 					case IfcRailingTypeEnum.FENCE:
 						//## Handle translation of FENCE member from IfcRailingTypeEnum in property PredefinedType
-						//TODO: Handle translation of FENCE member from IfcRailingTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcRailingTypeEnum>();
 						//##
 					case IfcRailingTypeEnum.GUARDRAIL:
 						return Ifc4.Interfaces.IfcRailingTypeEnum.GUARDRAIL;

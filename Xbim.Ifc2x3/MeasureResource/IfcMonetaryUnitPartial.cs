@@ -1,65 +1,50 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using Xbim.Ifc4.MeasureResource;
 
 namespace Xbim.Ifc2x3.MeasureResource
 {
     public partial class IfcMonetaryUnit
     {
         /// <summary>
-        /// Get Symbol string for money unit
+        /// Gets the Symbol string for money unit
         /// </summary>
         /// <returns>String holding symbol</returns>
         public string Symbol
         {
             get
             {
-                //string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                //    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
-                //    .Select(c => new RegionInfo(c.LCID).CurrencySymbol)
-                //    .FirstOrDefault();
-                //return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
-                return Currency.ToString();
+                return this.Symbol();
             }
         }
 
         /// <summary>
-        ///Get full English name of the currency
+        /// ets the name of the currency as its known internationally
         /// </summary>
         /// <returns>String as full name</returns>
-        public  string FullEnglishName
+        public string FullEnglishName
         {
             get
             {
-                //string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                //    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
-                //    .Select(c => new RegionInfo(c.LCID).CurrencyEnglishName)
-                //    .FirstOrDefault();
-                //return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
-                return Currency.ToString();
+                return this.FullEnglishName();
             }
         }
 
         /// <summary>
-        ///Get full Native name of the currency
+        /// Gets the name of the currency as its known natively
         /// </summary>
         /// <returns>String holding full name</returns>
-        public  string FullNativeName
+        public string FullNativeName
         {
             get
             {
-                //string value = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                //    .Where(c => new RegionInfo(c.LCID).ISOCurrencySymbol == Currency.ToString())
-                //    .Select(c => new RegionInfo(c.LCID).CurrencyNativeName)
-                //    .FirstOrDefault();
-                //return string.IsNullOrEmpty(value) ? Currency.ToString() : value;
-                return Currency.ToString();
+                return this.FullNativeName();
             }
         }
+
         public string FullName
         {
             get
             {
-                return FullNativeName;
+                return FullEnglishName;
             }
         }
 

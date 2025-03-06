@@ -24,11 +24,10 @@ namespace Xbim.Ifc4x3.GeometryResource
 		{
 			get 
 			{
-				//## Getter for BasisSurface in an interface
-				//TODO: Implement getter for derived attribute BasisSurface in an interface
-				throw new System.NotImplementedException();
-				//##
-			}
+                //## Getter for BasisSurface in an interface
+                return IfcGetBasisSurface(this).Cast<IIfcSurface>().ToList();
+                //##
+            }
 		}
 
 	//## Custom code

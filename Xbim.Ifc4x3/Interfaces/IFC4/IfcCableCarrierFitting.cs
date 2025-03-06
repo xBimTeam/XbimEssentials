@@ -33,27 +33,24 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 					case IfcCableCarrierFittingTypeEnum.BEND:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.BEND;
 					case IfcCableCarrierFittingTypeEnum.CONNECTOR:
-						//## Handle translation of CONNECTOR member from IfcCableCarrierFittingTypeEnum in property PredefinedType
-						//TODO: Handle translation of CONNECTOR member from IfcCableCarrierFittingTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableCarrierFittingTypeEnum.CROSS:
+                        //## Handle translation of CONNECTOR member from IfcCableCarrierFittingTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum>();
+                    //##
+                    case IfcCableCarrierFittingTypeEnum.CROSS:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.CROSS;
 					case IfcCableCarrierFittingTypeEnum.JUNCTION:
-						//## Handle translation of JUNCTION member from IfcCableCarrierFittingTypeEnum in property PredefinedType
-						//TODO: Handle translation of JUNCTION member from IfcCableCarrierFittingTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableCarrierFittingTypeEnum.REDUCER:
+                        //## Handle translation of JUNCTION member from IfcCableCarrierFittingTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum>();
+                    //##
+                    case IfcCableCarrierFittingTypeEnum.REDUCER:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.REDUCER;
 					case IfcCableCarrierFittingTypeEnum.TEE:
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.TEE;
 					case IfcCableCarrierFittingTypeEnum.TRANSITION:
-						//## Handle translation of TRANSITION member from IfcCableCarrierFittingTypeEnum in property PredefinedType
-						//TODO: Handle translation of TRANSITION member from IfcCableCarrierFittingTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableCarrierFittingTypeEnum.USERDEFINED:
+                        //## Handle translation of TRANSITION member from IfcCableCarrierFittingTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum>();
+                    //##
+                    case IfcCableCarrierFittingTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcCableCarrierFittingTypeEnum.USERDEFINED;
