@@ -71,26 +71,7 @@ namespace Xbim.Ifc4x3.RepresentationResource
 			}
 		}
 
-		[CrossSchemaAttribute(typeof(IIfcCoordinateReferenceSystem), 4)]
-		Ifc4.MeasureResource.IfcIdentifier? IIfcCoordinateReferenceSystem.VerticalDatum 
-		{ 
-			get
-			{
-				//## Handle return of VerticalDatum for which no match was found
-				//TODO: Handle return of VerticalDatum for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
-			set
-			{
-				//## Handle setting of VerticalDatum for which no match was found
-				//TODO: Handle setting of VerticalDatum for which no match was found
-				throw new System.NotImplementedException();
-				//##
-				NotifyPropertyChanged("VerticalDatum");
-				
-			}
-		}
+		
 		IEnumerable<IIfcCoordinateOperation> IIfcCoordinateReferenceSystem.HasCoordinateOperation 
 		{ 
 			get
@@ -98,7 +79,33 @@ namespace Xbim.Ifc4x3.RepresentationResource
 				return Model.Instances.Where<IIfcCoordinateOperation>(e => (e.SourceCRS as IfcCoordinateReferenceSystem) == this, "SourceCRS", this);
 			} 
 		}
-	//## Custom code
-	//##
-	}
+        //## Custom code
+
+        // IfcCoordinateReferenceSystem was made abstract in 4x3. VerticalDatum has been promoted to IfcProjectedCRS
+		// Will be null for IfcGeographicCRS
+        [CrossSchemaAttribute(typeof(IIfcCoordinateReferenceSystem), 4)]
+        Ifc4.MeasureResource.IfcIdentifier? IIfcCoordinateReferenceSystem.VerticalDatum
+        {
+            get
+            {
+                if (this is IfcProjectedCRS projected && projected.VerticalDatum.HasValue)
+                {
+                    return new Ifc4.MeasureResource.IfcIdentifier(projected.VerticalDatum.ToString());
+                }
+				return null;
+            }
+            set
+            {
+                if (this is IfcProjectedCRS projected)
+                {
+					if (value != null)
+					{
+						projected.VerticalDatum = value.ToString();
+						NotifyPropertyChanged("VerticalDatum");
+					}
+                }
+            }
+        }
+        //##
+    }
 }

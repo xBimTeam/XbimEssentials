@@ -34,29 +34,25 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.BATTERY;
 					case IfcElectricFlowStorageDeviceTypeEnum.CAPACITOR:
 						//## Handle translation of CAPACITOR member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of CAPACITOR member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum>();
 						//##
 					case IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK:
 						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.CAPACITORBANK;
 					case IfcElectricFlowStorageDeviceTypeEnum.COMPENSATOR:
 						//## Handle translation of COMPENSATOR member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of COMPENSATOR member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum>();
 						//##
 					case IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER:
 						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.HARMONICFILTER;
 					case IfcElectricFlowStorageDeviceTypeEnum.INDUCTOR:
 						//## Handle translation of INDUCTOR member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of INDUCTOR member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum>();
 						//##
 					case IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK:
 						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.INDUCTORBANK;
 					case IfcElectricFlowStorageDeviceTypeEnum.RECHARGER:
 						//## Handle translation of RECHARGER member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of RECHARGER member from IfcElectricFlowStorageDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum>();
 						//##
 					case IfcElectricFlowStorageDeviceTypeEnum.UPS:
 						return Ifc4.Interfaces.IfcElectricFlowStorageDeviceTypeEnum.UPS;
