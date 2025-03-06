@@ -156,6 +156,8 @@ namespace Xbim.Essentials.Tests
         {
             var pile = Model.Instances.New<Ifc4.StructuralElementsDomain.IfcPile>();
 
+            pile.SetPropertySingleValue<XbimCommonSchema.MeasureResource.IfcPositiveLengthMeasure>("Pset_Test", "SomeProp");
+
             var value = pile.GetPropertySingleValue<XbimCommonSchema.MeasureResource.IfcPositiveLengthMeasure>("Pset_Test", "SomeProp");
             value.Should().NotBeNull();
             value.Value.Should().Be(1.0);
