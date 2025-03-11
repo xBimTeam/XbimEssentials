@@ -64,8 +64,8 @@ namespace Xbim.Essentials.Tests
             using (var strm = File.OpenRead(@"TestFiles\4walls1floorSite.ifc"))
             {
 
-                var ifc2x3MetaData = ExpressMetaData.GetMetadata((new Xbim.Ifc2x3.EntityFactoryIfc2x3()).GetType().GetTypeInfo().Module);
-                var ifc4MetaData = ExpressMetaData.GetMetadata((new Xbim.Ifc4.EntityFactoryIfc4()).GetType().GetTypeInfo().Module);
+                var ifc2x3MetaData = ExpressMetaData.GetMetadata(new Xbim.Ifc2x3.EntityFactoryIfc2x3());
+                var ifc4MetaData = ExpressMetaData.GetMetadata(new Xbim.Ifc4.EntityFactoryIfc4());
                 var allTypes = new HashSet<string>(
                     ifc2x3MetaData.Types().Where(et => typeof(IPersistEntity).IsAssignableFrom(et.Type) && !et.Type.IsAbstract ).Select(et => et.ExpressNameUpper)
                     .Concat(ifc2x3MetaData.Types().Where(et => typeof(IPersistEntity).IsAssignableFrom(et.Type) && !et.Type.IsAbstract).Select(et => et.ExpressNameUpper)));
