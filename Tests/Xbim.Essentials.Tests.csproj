@@ -20,15 +20,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Debug\**" />
-    <Compile Remove="TestResults\**" />
-    <EmbeddedResource Remove="Debug\**" />
-    <EmbeddedResource Remove="TestResults\**" />
+    
     <None Remove="Debug\**" />
     <None Remove="TestResults\**" />
-    <None Update="TestFiles\IFC4x3_ADD2\PlacmentOfSignal.ifc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -67,26 +61,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="FederationTestFiles\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="GeometryCacheTestFiles\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="SubmittedFiles\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="TestFiles\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="TestSourceFiles\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="XsdSchemas\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="TestSourceFiles\IfcOpenShell-Issue2499.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

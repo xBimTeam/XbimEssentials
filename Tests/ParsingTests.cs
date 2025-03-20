@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
@@ -161,7 +162,22 @@ namespace Xbim.Essentials.Tests
                 Assert.AreEqual("Test Test Test", (string)project.Name);
             }
         }
-        
+
+        [TestMethod]
+        public void ToleratesInvalidMultibyteStringsTest()
+        {
+            //Github Issue 605
+            using (IfcStore store = IfcStore.Open(@"TestFiles\InvalidMultiByte.ifc"))
+            {
+                var prop = store.Instances.OfType<IIfcPropertySingleValue>().SingleOrDefault();
+                prop.Name.Value.Should().BeEquivalentTo("コンクリート体積");
+
+                prop.NominalValue.Should().BeNull(@"Because \\X2\ is an invalid Unicode marker");
+                //prop.NominalValue.Value.Should().BeEquivalentTo(@"file://ATTRIBUTE\コンクリート体積表.XLSX");
+
+            }
+        }
+
         [TestMethod]
         public void IfcStoreOpenAndCloseMemoryModelTest()
         {
