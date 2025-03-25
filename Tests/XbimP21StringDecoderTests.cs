@@ -24,7 +24,8 @@ namespace Xbim.Essentials.Tests
                          @"file://ATTRIBUTE\X2\30B330F330AF30EA30FC30C84F537A4D8868\X0\.XLSX")] // Invalid encoding. Only \\ un-escaped
         [InlineData(@"F:\\Dropbox\\00 - ndBIM_Coordena\S\C\S\'\S\C\S\#o\\01 - Parcerias Comerciais\\YellowBox\\2015-09-24\\IFC\\ARQ.ifc", 
                          @"F:\Dropbox\00 - ndBIM_CoordenaÃ§Ã£o\01 - Parcerias Comerciais\YellowBox\2015-09-24\IFC\ARQ.ifc")]
-        //
+        [InlineData(@"Em\X\F4ji\X4\0001F44D0001F604\X0\\X2\2B06FE0F\X0\", @"Emôji👍😄⬆️")]
+        
         [Theory]
         public void CanDecodeString(string p21input, string expectedOutput)
         {
