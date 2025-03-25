@@ -201,6 +201,16 @@ namespace Xbim.IO.Step21
                             case Tokens.STRING:
                                 SetStringValue(_scanner.yylval.strVal);
                                 break;
+                            case Tokens.MLSTRING:
+                                SetStringValue(_scanner.yylval.strVal);
+                                break;
+                            case Tokens.INVALIDSTRING:
+                                var last = GetLastEntity();
+                                Logger.LogWarning("Incorrectly escaped string found on #{entityId}={entity} at Line {line} Col {pos} : {string}", 
+                                    last.EntityLabel, last.Entity.GetType().Name.ToUpperInvariant(),
+                                    _scanner.yylloc.StartLine, _scanner.yylloc.StartColumn, _scanner.yylval.strVal);
+                                SetStringValue(_scanner.yylval.strVal);
+                                break;
                             case Tokens.BOOLEAN:
                                 SetBooleanValue(_scanner.yylval.strVal);
                                 break;
@@ -387,12 +397,8 @@ namespace Xbim.IO.Step21
             if (_processStack.Count > 0)
             {
 
-                var last = _processStack.Pop();
-                while(last?.EntityLabel < 0 && _processStack.Count > 0)
-                {
-                    last = _processStack.Pop();
-                }
-                
+                var last = GetLastEntity();
+
                 Logger.LogError(LogEventIds.FailedEntity, "Entity #{entityId}={entityType} was not fully parsed.",
                     last.EntityLabel, last.Entity?.GetType().Name.ToUpperInvariant());
                 _processStack.Clear();
@@ -403,6 +409,11 @@ namespace Xbim.IO.Step21
             //continue processing anyway because this is a great new start
             var label = GetLabel(entityLabel);
             NewEntity(label);
+        }
+
+        protected Part21Entity GetLastEntity()
+        {
+            return _processStack.FirstOrDefault(e => e.EntityLabel > 0) ?? _processStack.Peek();
         }
 
         private int _reportEntityCount = 0;
@@ -511,6 +522,12 @@ namespace Xbim.IO.Step21
         }
 
         protected void SetStringValue(string value)
+        {
+            PropertyValue.Init(value, StepParserType.String);
+            SetEntityParameter(value);
+        }
+
+        protected void SetInvalidStringValue(string value)
         {
             PropertyValue.Init(value, StepParserType.String);
             SetEntityParameter(value);

@@ -187,8 +187,8 @@ namespace Xbim.Essentials.Tests
                 {
                     prop.Name.Value.ToString().Should().EndWith("コンクリート体積");
 
-                    prop.NominalValue.Should().BeNull(@"Because \\X2\ is an invalid Unicode marker");
-                   // prop.NominalValue.Value.ToString().Should().EndWith(@"\X2\30B330F330AF30EA30FC30C84F537A4D8868\X0\.XLSX", "Invalid encoding");
+                    prop.NominalValue.Should().NotBeNull(@"Because should handle invalid Unicode marker");
+                    prop.NominalValue.Value.ToString().Should().EndWith(@"\X2\30B330F330AF30EA30FC30C84F537A4D8868\X0\.XLSX", "Invalid encoding");
                 });
 
 
@@ -282,14 +282,10 @@ namespace Xbim.Essentials.Tests
 
         [TestMethod]
         //[Ignore("Ignored. Handling this (invalid?) edgecase impacts handling of too many other edge-cases")]
-
-        // Proposal: introduce multi-line text parsing in future as explicit new MLString Token.
-        // Without a obvious terminator (like \n\r) it becomes intractible to handle other broken string scenarios
-        // e.g. Failure to escape \, invalid and edge case \X\ or \S character encoding.  E.g. \S\' is a viable 
         public void CanParseNewlinesInStrings()
         {
             using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
-            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3, loggerFactory))
             {
                 var errCount = model.LoadStep21("TestFiles\\NewlinesInStrings.ifc");
                 errCount.Should().Be(0);
@@ -298,9 +294,17 @@ namespace Xbim.Essentials.Tests
                 member.Name.ToString().Should().Be("L4x4x3/8\r\nB");
             }
 
+        }
+
+        [TestMethod]
+        //[Ignore("Ignored. Handling this (invalid?) edgecase impacts handling of too many other edge-cases")]
+        public void CanParseNewlinesInStringsEsent()
+        {
+            using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
+           
             using (var model = new Xbim.IO.Esent.EsentModel(ef2x3, loggerFactory))
             {
-                var err = model.CreateFrom("TestFiles\\NewlinesInStrings.ifc");
+                var err = model.CreateFrom("TestFiles\\NewlinesInStrings.ifc", keepOpen: true);
                 err.Should().Be(true);
                 model.Header.FileDescription.Description.First().Should().Be("(('ViewDefinition [CoordinationView_V2.0]'),'2;1\r\n')");
                 var member = model.Instances.OfType<IIfcMember>().First();

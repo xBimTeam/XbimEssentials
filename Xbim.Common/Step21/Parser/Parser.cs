@@ -47,7 +47,7 @@ namespace Xbim.IO.Parser
             Logger = _loggerFactory.CreateLogger<Scanner>();
         }
 
-        private ILogger Logger { get; set; }
+        public ILogger Logger { get; private set; }
 
         private ILoggerFactory _loggerFactory;
 
@@ -190,6 +190,7 @@ namespace Xbim.IO.Parser
         protected abstract void SetHexValue(string value);
         protected abstract void SetFloatValue(string value);
         protected abstract void SetStringValue(string value);
+        protected abstract void SetInvalidStringValue(string value);
         protected abstract void SetEnumValue(string value);
         protected abstract void SetBooleanValue(string value);
         protected abstract void SetNonDefinedValue();

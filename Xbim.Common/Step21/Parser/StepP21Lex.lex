@@ -31,7 +31,7 @@ infinite               "#INF"
 not_a_number           "#IND"
 ureal                  (({uinteger10}{exponent_suffix})|("."({digit10})+{exponent_suffix})|(({digit10})+"."({digit10})*{exponent_suffix}))
 real                   ({sign}{ureal}({infinite}|{not_a_number})?)
-hexid                    \"{uinteger16}\"
+hexid                  \"{uinteger16}\"
 
 equals                 /=
 entity_identifier      #{uinteger10}
@@ -39,7 +39,7 @@ entity                 {entity_identifier}{equals}
 entity_ws              ({entity_identifier}({whitespace})*{equals})
 
 single_string_char     [^\\\'\r\n]
-string_escape_char     \\\\|\'\'
+string_escape_char     \\{2}|\'{2}
 
 string_solidus_s       \\S\\[\040-\176]
 string_solidus_p       \\P[A-I]\\
@@ -52,6 +52,13 @@ string_invalid_tolerated         \\[^SPX\\]
 
 reg_string_char        {single_string_char}|{string_escape_char}|{string_encoding_char}|{string_invalid_tolerated}
 string_literal         \'({reg_string_char})*\'
+
+strict_string_char     {single_string_char}|{string_escape_char}|{string_encoding_char}|
+bad_string_literal     \'(({strict_string_char})*\\({strict_string_char})*)+\'
+
+ml_single_string_char  [^\\\']
+ml_string_char         {ml_single_string_char}|{string_escape_char}|{string_encoding_char}|{string_invalid_tolerated}
+ml_string_literal      \'({ml_string_char})*\'
 
 dot                    "."
 boolean                [TF]
@@ -74,6 +81,8 @@ notdefined             "$"
 {real}                 { SetValue(); return((int)Tokens.FLOAT); }
 
 {string_literal}       { SetValue();  return((int)Tokens.STRING); }
+{ml_string_literal}    { SetValue();  return((int)Tokens.MLSTRING); }
+{bad_string_literal}    { SetValue();  return((int)Tokens.INVALIDSTRING); }
 
 {hexid}                { SetValue(); return((int)Tokens.HEXA); } 
 {dot}{boolean}{dot}    { SetValue(); return((int)Tokens.BOOLEAN); } 
@@ -83,9 +92,9 @@ notdefined             "$"
 [(]		{ return ('('); }
 [)]		{ return (')'); }
 [,]		{ return (','); }
-[\*]	{ return((int)Tokens.OVERRIDE);  }
 [=]		{ return ('='); }
 [;]		{ return (';'); }
+[\*]	{ return((int)Tokens.OVERRIDE); }
 
 "/*"				{ BEGIN(COMMENT);  }
 <COMMENT>
