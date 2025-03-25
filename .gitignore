@@ -201,5 +201,4 @@ FakesAssemblies/
 SharedFileVersionInfo.cs
 *.jfm
 *.idea
-/Xbim.Common/Step21/Parser/StepP21Lex.lst
-/Xbim.Common/Step21/Parser/StepP21Parser.lst
+/Xbim.Common/Step21/Parser/*.lst

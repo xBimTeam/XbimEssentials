@@ -47,7 +47,7 @@ namespace Xbim.IO.Parser
             Logger = _loggerFactory.CreateLogger<Scanner>();
         }
 
-        public ILogger Logger { get; private set; }
+        private ILogger Logger { get; set; }
 
         private ILoggerFactory _loggerFactory;
 

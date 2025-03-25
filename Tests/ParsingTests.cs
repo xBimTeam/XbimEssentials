@@ -299,7 +299,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        //[Ignore("Ignored. Handling this (invalid?) edgecase impacts handling of too many other edge-cases")]
         public void CanParseNewlinesInStrings()
         {
             using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
@@ -315,7 +314,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        //[Ignore("Ignored. Handling this (invalid?) edgecase impacts handling of too many other edge-cases")]
         public void CanParseNewlinesInStringsEsent()
         {
             using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
@@ -831,7 +829,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        // [Ignore("We removed the ability to read illegal step files in order to read legal files with the \"\\S\\'\" sequence, that would otherwise be parsed by the normal backslash,S,backslash sequence, causing an early closure of the string when hitting the \"'\".")]
         public void EncodeBackslash()
         {
             const string path = "C:\\Data\\Martin\\document.txt";
