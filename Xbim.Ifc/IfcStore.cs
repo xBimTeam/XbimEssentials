@@ -97,7 +97,7 @@ namespace Xbim.Ifc
         protected IfcStore(string filepath, XbimSchemaVersion ifcVersion, XbimEditorCredentials editorDetails) : this()
         {
             var model = ModelProvider.Create(ifcVersion, filepath);
-            AssignModel(model, editorDetails, ifcVersion);
+            AssignModel(model, editorDetails, ifcVersion, filepath);
         }
 
         /// <summary>
@@ -150,16 +150,16 @@ namespace Xbim.Ifc
             set;
         }
 
-        private void AssignModel(IModel model, XbimEditorCredentials editorDetails, XbimSchemaVersion schema)
+        private void AssignModel(IModel model, XbimEditorCredentials editorDetails, XbimSchemaVersion schema, string modelPath = null)
         {
             Model = model;
             Model.EntityNew += Model_EntityNew;
             Model.EntityDeleted += Model_EntityDeleted;
             Model.EntityModified += Model_EntityModified;
-            FileName = Model.Header.FileName.Name;
+            FileName = modelPath ?? Model.Header.FileName.Name;
             SetupEditing(editorDetails);
 
-            LoadReferenceModels();
+            LoadReferenceModels(modelPath);
             IO.Memory.MemoryModel.CalculateModelFactors(model);
         }
 
@@ -343,8 +343,16 @@ namespace Xbim.Ifc
             }
 
             var model = newStore.ModelProvider.Open(path, ifcVersion, ifcDatabaseSizeThreshHold, progDelegate, accessMode, codePageOverride);
-
-            newStore.AssignModel(model, editorDetails, ifcVersion);
+            if (string.IsNullOrEmpty(model.Header.FileName.Name))
+            {
+                // if we are looking at a memory model loaded from a file it might be safe to fix the file name in the 
+                // header with the actual file loaded
+                // historically setting this Filename to local IFC Path isd what enabled 
+                // Federations to find their relative child models. 
+                FileInfo f = new FileInfo(path);
+                model.Header.FileName.Name = f.FullName;
+            }
+            newStore.AssignModel(model, editorDetails, ifcVersion, path);
             return newStore;
 
         }
@@ -932,31 +940,27 @@ namespace Xbim.Ifc
         /// 
         /// Loading referenced models defaults to avoiding Exception on file not found; in this way the federated model can still be opened and the error rectified.
         /// </summary>
+        /// <param name="rootModelPath">Path to the root model</param>
         /// <param name="throwErrorOnReferenceModelExceptions">Set to true to enable your own error handling</param>
-        private void LoadReferenceModels(bool throwErrorOnReferenceModelExceptions = false)
+        private void LoadReferenceModels(string rootModelPath, bool throwErrorOnReferenceModelExceptions = false)
         {
             var docInfos = Instances.OfType<IIfcDocumentInformation>().Where(d => d.IntendedUse == RefDocument);
             foreach (var docInfo in docInfos)
             {
-                if (throwErrorOnReferenceModelExceptions)
+                try
                 {
-                    // throw exception on referenceModel Creation
-                    AddModelReference(new XbimReferencedModel(docInfo));
+                    AddModelReference(new XbimReferencedModel(docInfo, rootModelPath));
                 }
-                else
+                catch (Exception ex)
                 {
                     // do not throw exception on referenceModel Creation
-                    try
-                    {
-                        AddModelReference(new XbimReferencedModel(docInfo));
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger?.LogError(
-                            string.Format("Ignored exception on modelreference load for #{0}.", docInfo.EntityLabel),
-                            ex);
-                    }
+                    if (throwErrorOnReferenceModelExceptions)
+                        throw;
+                    Logger?.LogError(
+                        string.Format("Ignored exception on modelreference load for #{0}.", docInfo.EntityLabel),
+                        ex);
                 }
+                
             }
         }
 
