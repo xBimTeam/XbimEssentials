@@ -125,6 +125,24 @@ namespace Xbim.Essentials.Tests
             }
         }
 
+        [TestMethod]
+        public void ToleratesFileWithInvalidFileName()
+        {
+            // Technically FILE_NAME should have escaped backslashes: \\users not \users
+            using (var s = File.OpenRead(@"TestFiles\InvalidHeaderFileName.ifc"))
+            {
+                var header = StepModel.LoadStep21Header(s);
+                var fileName = header.FileName.Name;
+                fileName.Should().Be("C:\\Users\\xbim\\myfile.IFC");
+            }
+
+            using (var store = IfcStore.Open(@"TestFiles\InvalidHeaderFileName.ifc"))
+            {
+                var fileName = store.Header.FileName.Name;
+                fileName.Should().Be("C:\\Users\\xbim\\myfile.IFC");
+            }
+        }
+
         /// <summary>
         /// This is only provided as a remainder of possible improvements in the tolerance of incorrect files.
         /// </summary>

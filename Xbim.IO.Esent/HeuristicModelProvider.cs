@@ -333,10 +333,13 @@ namespace Xbim.Ifc
                     else if (storageType.HasFlag(StorageType.IfcXml))
                         model.LoadXml(path, progDelegate);
 
-                    // if we are looking at a memory model loaded from a file it might be safe to fix the file name in the 
-                    // header with the actual file loaded
-                    FileInfo f = new FileInfo(path);
-                    model.Header.FileName.Name = f.FullName;
+                    if(string.IsNullOrEmpty(model.Header.FileName.Name))
+                    {
+                        // if we are looking at a memory model loaded from a file it might be safe to fix the file name in the 
+                        // header with the actual file loaded
+                        FileInfo f = new FileInfo(path);
+                        model.Header.FileName.Name = f.FullName;
+                    }
                     return model;
                 }
             }
