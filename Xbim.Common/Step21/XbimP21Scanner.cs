@@ -31,6 +31,7 @@ using Xbim.Common.Step21;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21.Parser;
 
+
 #endregion
 
 namespace Xbim.IO.Step21
@@ -155,6 +156,8 @@ namespace Xbim.IO.Step21
                     if (tok >= 63)
                     {
                         Tokens t = (Tokens)tok;
+
+                        //Logger.LogInformation("Token {tok}: [{type}] {val}", t, this.CurrentInstance?.Entity, _scanner.yylval.strVal);
                         switch (t)
                         {
                             case Tokens.HEADER:
@@ -216,7 +219,6 @@ namespace Xbim.IO.Step21
                             case Tokens.OVERRIDE:
                                 SetOverrideValue();
                                 break;
-
                             case Tokens.TEXT:
                             case Tokens.error:
                             case Tokens.ILLEGALCHAR:
@@ -384,8 +386,15 @@ namespace Xbim.IO.Step21
             //last entity wasn't properly finished
             if (_processStack.Count > 0)
             {
+
                 var last = _processStack.Pop();
-                Logger.LogError(LogEventIds.FailedEntity, $"Entity #{last.EntityLabel}={last.Entity?.GetType().Name.ToUpperInvariant()} wasn't closed and finished properly.");
+                while(last?.EntityLabel < 0 && _processStack.Count > 0)
+                {
+                    last = _processStack.Pop();
+                }
+                
+                Logger.LogError(LogEventIds.FailedEntity, "Entity #{entityId}={entityType} was not fully parsed.",
+                    last.EntityLabel, last.Entity?.GetType().Name.ToUpperInvariant());
                 _processStack.Clear();
 
                 ErrorCount++;
