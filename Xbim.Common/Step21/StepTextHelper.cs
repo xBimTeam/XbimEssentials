@@ -74,10 +74,22 @@ namespace Xbim.IO.Step21
             return sb.ToString();
         }
 
+        /// <summary>
+        /// ISO 10646 encoding types
+        /// </summary>
         private enum WriteState
         {
+            /// <summary>
+            /// Single Byte : \X\{hex2}
+            /// </summary>
             Normal,
+            /// <summary>
+            /// Double Byte : \X2\{hex4}+\X0\
+            /// </summary>
             TwoBytes,
+            /// <summary>
+            /// Quad Byte : \X4\{hex8}+\X0\
+            /// </summary>
             FourBytes
         }
 
