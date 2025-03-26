@@ -32,7 +32,10 @@ namespace Xbim.Common.Geometry
         /// Converts the object to a string in BRep format
         /// </summary>
         String ToBRep { get; }
-
+        /// <summary>
+        /// Returns the partial volume of the set which is closed and valid.
+        /// </summary>
+        double VolumeValid { get; }
     }
 
 }
