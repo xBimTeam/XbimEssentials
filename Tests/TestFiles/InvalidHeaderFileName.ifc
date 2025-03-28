@@ -1,0 +1,11 @@
+ISO-10303-21;
+HEADER;
+FILE_SCHEMA(('IFC2X3'));
+FILE_NAME('C:\Users\xbim\myfile.IFC','2012-01-01T09:00:00',('User'),('A',''),'v3','W','');
+ENDSEC;
+
+DATA;
+#1= IFCORGANIZATION($,'xbim',$,$,$);
+ENDSEC;
+
+END-ISO-10303-21;

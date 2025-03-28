@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -55,31 +56,42 @@ namespace Xbim.Common.Metadata
         /// <summary>
         /// Static cache to avoid multiple creation of the structure
         /// </summary>
-        private static readonly Dictionary<Module, ExpressMetaData> Cache = new Dictionary<Module, ExpressMetaData>();
+        private static readonly ConcurrentDictionary<Module, ExpressMetaData> Cache = new ConcurrentDictionary<Module, ExpressMetaData>();
 
-        private static readonly object _lock = new object();
+        private static readonly ConcurrentDictionary<IEntityFactory, ExpressMetaData> FactoryCache = new ConcurrentDictionary<IEntityFactory, ExpressMetaData>();
+
         /// <summary>
         /// This method creates metadata model for a specified module based on reflection and custom attributes.
         /// It only creates ExpressMetaData once for any module. If it already exists it is retrieved from a 
         /// static cache. However, for a performance reasons try to minimize this and rather keep a single instance
         /// reference for your code.
         /// </summary>
+        /// <remarks>Prefer <c>GetMetadata(IEntityFactory)</c> overload which permits more control over schema enumeration</remarks>
         /// <param name="module">Assembly module which contains single schema model</param>
         /// <returns>Meta data structure for the schema defined within the module</returns>
+        [Obsolete("Prefer ExpressMetaData GetMetadata(IEntityFactory) overload")]
         public static ExpressMetaData GetMetadata(Module module)
         {
+            return Cache.GetOrAdd(module, m => new ExpressMetaData(m));
+        }
 
-            ExpressMetaData result;
-            if (Cache.TryGetValue(module, out result))
-                return result;
-            lock (_lock)
+        /// <summary>
+        /// Creates an <see cref="ExpressMetaData"/> metadata model for a specified <see cref="IEntityFactory"/> based on reflection and custom attributes.
+        /// An ExpressMetaData is creted only once for any EntityFactory.
+        /// </summary>
+        /// <remarks>Only types sharing the same namespace as the <paramref name="entityFactory"/> are included. This makes it possible
+        /// to share multiple schemas in a single Assembly / Module</remarks>
+        /// <param name="entityFactory"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static ExpressMetaData GetMetadata(IEntityFactory entityFactory)
+        {
+            if (entityFactory is null)
             {
-                if (Cache.TryGetValue(module, out result))
-                    return result;
-                result = new ExpressMetaData(module);
-                Cache.Add(module, result);
-                return result;
+                throw new ArgumentNullException(nameof(entityFactory));
             }
+
+            return FactoryCache.GetOrAdd(entityFactory, f => new ExpressMetaData(f));
         }
 
         private ExpressMetaData(Module module)
@@ -87,15 +99,7 @@ namespace Xbim.Common.Metadata
             Module = module;
             var typesToProcess =
                 module.GetTypes().Where(
-                    t =>
-                    {
-                        var ti = t.GetTypeInfo();
-                        return typeof(IPersist).GetTypeInfo().IsAssignableFrom(t)
-                        && t != typeof(IPersist)
-                        && !ti.IsEnum && !ti.IsInterface
-                        && ti.IsPublic
-                        && !typeof(IExpressHeaderType).GetTypeInfo().IsAssignableFrom(t);
-                    }).ToList();
+                    t => IsExpressTypeForSchema(t)).ToList();
 
             _typeIdToExpressTypeLookup = new Dictionary<short, ExpressType>(typesToProcess.Count);
             _typeNameToExpressTypeLookup = new Dictionary<string, ExpressType>(typesToProcess.Count);
@@ -103,6 +107,38 @@ namespace Xbim.Common.Metadata
             _typeToExpressTypeLookup = new ExpressTypeDictionary();
             _interfaceToExpressTypesLookup = new Dictionary<Type, List<ExpressType>>();
 
+            RegisterTypes(typesToProcess);
+        }
+
+        private ExpressMetaData(IEntityFactory factory)
+        {
+            Module = factory.GetType().Module;
+            var schemaNamespace = factory.GetType().Namespace;
+            var typesToProcess =
+                Module.GetTypes().Where(
+                    t => IsExpressTypeForSchema(t, schemaNamespace)).ToList();
+
+            _typeIdToExpressTypeLookup = new Dictionary<short, ExpressType>(typesToProcess.Count);
+            _typeNameToExpressTypeLookup = new Dictionary<string, ExpressType>(typesToProcess.Count);
+            _persistNameToExpressTypeLookup = new Dictionary<string, ExpressType>(typesToProcess.Count);
+            _typeToExpressTypeLookup = new ExpressTypeDictionary();
+            _interfaceToExpressTypesLookup = new Dictionary<Type, List<ExpressType>>();
+
+            RegisterTypes(typesToProcess);
+        }
+
+        private static bool IsExpressTypeForSchema(Type type, string schemaNamespace = "")
+        {
+            return typeof(IPersist).GetTypeInfo().IsAssignableFrom(type)
+                        && type.IsPublic
+                        && !type.IsEnum && !type.IsInterface
+                        && type.GetCustomAttributes(typeof(ExpressTypeAttribute), false).Any()
+                        && !typeof(IExpressHeaderType).GetTypeInfo().IsAssignableFrom(type)
+                        && (string.IsNullOrEmpty(schemaNamespace) || type.Namespace.StartsWith(schemaNamespace));
+        }
+
+        private void RegisterTypes(IList<Type> typesToProcess)
+        {
             // System.Diagnostics.Debug.Write(typesToProcess.Count());
             foreach (var typeToProcess in typesToProcess)
             {

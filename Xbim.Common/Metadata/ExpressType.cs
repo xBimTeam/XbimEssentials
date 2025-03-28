@@ -97,10 +97,9 @@ namespace Xbim.Common.Metadata
             Type = type;
             var typeInfo = Type.GetTypeInfo();
             var entNameAttr = typeInfo.GetCustomAttributes(typeof(ExpressTypeAttribute), false).FirstOrDefault();
-#if DEBUG
+
             if (entNameAttr == null)
                 throw new Exception("Express Type is not defined for " + Type.Name);
-#endif
             _typeId = (short)((ExpressTypeAttribute)entNameAttr).EntityTypeId;
             _expressName = ((ExpressTypeAttribute)entNameAttr).Name;
             _expressNameUpper = _expressName.ToUpperInvariant();

@@ -34,8 +34,7 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.AMMETER;
 					case IfcFlowInstrumentTypeEnum.COMBINED:
 						//## Handle translation of COMBINED member from IfcFlowInstrumentTypeEnum in property PredefinedType
-						//TODO: Handle translation of COMBINED member from IfcFlowInstrumentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcFlowInstrumentTypeEnum>();
 						//##
 					case IfcFlowInstrumentTypeEnum.FREQUENCYMETER:
 						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.FREQUENCYMETER;
@@ -49,8 +48,7 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.THERMOMETER;
 					case IfcFlowInstrumentTypeEnum.VOLTMETER:
 						//## Handle translation of VOLTMETER member from IfcFlowInstrumentTypeEnum in property PredefinedType
-						//TODO: Handle translation of VOLTMETER member from IfcFlowInstrumentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcFlowInstrumentTypeEnum>();
 						//##
 					case IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK:
 						return Ifc4.Interfaces.IfcFlowInstrumentTypeEnum.VOLTMETER_PEAK;

@@ -32,8 +32,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				{
 					case IfcMemberTypeEnum.ARCH_SEGMENT:
 						//## Handle translation of ARCH_SEGMENT member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of ARCH_SEGMENT member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMemberTypeEnum>();
 						//##
 					case IfcMemberTypeEnum.BRACE:
 						return Ifc4.Interfaces.IfcMemberTypeEnum.BRACE;
@@ -55,20 +54,17 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcMemberTypeEnum.RAFTER;
 					case IfcMemberTypeEnum.STAY_CABLE:
 						//## Handle translation of STAY_CABLE member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of STAY_CABLE member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMemberTypeEnum>();
 						//##
 					case IfcMemberTypeEnum.STIFFENING_RIB:
 						//## Handle translation of STIFFENING_RIB member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of STIFFENING_RIB member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMemberTypeEnum>();
 						//##
 					case IfcMemberTypeEnum.STRINGER:
 						return Ifc4.Interfaces.IfcMemberTypeEnum.STRINGER;
 					case IfcMemberTypeEnum.STRUCTURALCABLE:
 						//## Handle translation of STRUCTURALCABLE member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of STRUCTURALCABLE member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMemberTypeEnum>();
 						//##
 					case IfcMemberTypeEnum.STRUT:
 						return Ifc4.Interfaces.IfcMemberTypeEnum.STRUT;
@@ -76,18 +72,15 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcMemberTypeEnum.STUD;
 					case IfcMemberTypeEnum.SUSPENDER:
 						//## Handle translation of SUSPENDER member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of SUSPENDER member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMemberTypeEnum>();
 						//##
 					case IfcMemberTypeEnum.SUSPENSION_CABLE:
 						//## Handle translation of SUSPENSION_CABLE member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of SUSPENSION_CABLE member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMemberTypeEnum>();
 						//##
 					case IfcMemberTypeEnum.TIEBAR:
 						//## Handle translation of TIEBAR member from IfcMemberTypeEnum in property PredefinedType
-						//TODO: Handle translation of TIEBAR member from IfcMemberTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMemberTypeEnum>();
 						//##
 					case IfcMemberTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

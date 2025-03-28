@@ -70,13 +70,11 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 						return Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum.BOLT;
 					case IfcMechanicalFastenerTypeEnum.CHAIN:
 						//## Handle translation of CHAIN member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						//TODO: Handle translation of CHAIN member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum>();
 						//##
 					case IfcMechanicalFastenerTypeEnum.COUPLER:
 						//## Handle translation of COUPLER member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						//TODO: Handle translation of COUPLER member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum>();
 						//##
 					case IfcMechanicalFastenerTypeEnum.DOWEL:
 						return Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum.DOWEL;
@@ -86,20 +84,17 @@ namespace Xbim.Ifc4x3.SharedComponentElements
 						return Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum.NAILPLATE;
 					case IfcMechanicalFastenerTypeEnum.RAILFASTENING:
 						//## Handle translation of RAILFASTENING member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						//TODO: Handle translation of RAILFASTENING member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum>();
 						//##
 					case IfcMechanicalFastenerTypeEnum.RAILJOINT:
 						//## Handle translation of RAILJOINT member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						//TODO: Handle translation of RAILJOINT member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum>();
 						//##
 					case IfcMechanicalFastenerTypeEnum.RIVET:
 						return Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum.RIVET;
 					case IfcMechanicalFastenerTypeEnum.ROPE:
 						//## Handle translation of ROPE member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						//TODO: Handle translation of ROPE member from IfcMechanicalFastenerTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum>();
 						//##
 					case IfcMechanicalFastenerTypeEnum.SCREW:
 						return Ifc4.Interfaces.IfcMechanicalFastenerTypeEnum.SCREW;
