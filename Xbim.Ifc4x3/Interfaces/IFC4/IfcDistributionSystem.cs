@@ -53,8 +53,7 @@ namespace Xbim.Ifc4x3.SharedBldgServiceElements
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.AUDIOVISUAL;
 					case IfcDistributionSystemEnum.CATENARY_SYSTEM:
 						//## Handle translation of CATENARY_SYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						//TODO: Handle translation of CATENARY_SYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDistributionSystemEnum>();
 						//##
 					case IfcDistributionSystemEnum.CHEMICAL:
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.CHEMICAL;
@@ -92,8 +91,7 @@ namespace Xbim.Ifc4x3.SharedBldgServiceElements
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.FIREPROTECTION;
 					case IfcDistributionSystemEnum.FIXEDTRANSMISSIONNETWORK:
 						//## Handle translation of FIXEDTRANSMISSIONNETWORK member from IfcDistributionSystemEnum in property PredefinedType
-						//TODO: Handle translation of FIXEDTRANSMISSIONNETWORK member from IfcDistributionSystemEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDistributionSystemEnum>();
 						//##
 					case IfcDistributionSystemEnum.FUEL:
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.FUEL;
@@ -109,13 +107,11 @@ namespace Xbim.Ifc4x3.SharedBldgServiceElements
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.LIGHTNINGPROTECTION;
 					case IfcDistributionSystemEnum.MOBILENETWORK:
 						//## Handle translation of MOBILENETWORK member from IfcDistributionSystemEnum in property PredefinedType
-						//TODO: Handle translation of MOBILENETWORK member from IfcDistributionSystemEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDistributionSystemEnum>();
 						//##
 					case IfcDistributionSystemEnum.MONITORINGSYSTEM:
 						//## Handle translation of MONITORINGSYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						//TODO: Handle translation of MONITORINGSYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDistributionSystemEnum>();
 						//##
 					case IfcDistributionSystemEnum.MUNICIPALSOLIDWASTE:
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.MUNICIPALSOLIDWASTE;
@@ -125,13 +121,11 @@ namespace Xbim.Ifc4x3.SharedBldgServiceElements
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.OPERATIONAL;
 					case IfcDistributionSystemEnum.OPERATIONALTELEPHONYSYSTEM:
 						//## Handle translation of OPERATIONALTELEPHONYSYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						//TODO: Handle translation of OPERATIONALTELEPHONYSYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDistributionSystemEnum>();
 						//##
 					case IfcDistributionSystemEnum.OVERHEAD_CONTACTLINE_SYSTEM:
 						//## Handle translation of OVERHEAD_CONTACTLINE_SYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						//TODO: Handle translation of OVERHEAD_CONTACTLINE_SYSTEM member from IfcDistributionSystemEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDistributionSystemEnum>();
 						//##
 					case IfcDistributionSystemEnum.POWERGENERATION:
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.POWERGENERATION;
@@ -141,8 +135,7 @@ namespace Xbim.Ifc4x3.SharedBldgServiceElements
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.REFRIGERATION;
 					case IfcDistributionSystemEnum.RETURN_CIRCUIT:
 						//## Handle translation of RETURN_CIRCUIT member from IfcDistributionSystemEnum in property PredefinedType
-						//TODO: Handle translation of RETURN_CIRCUIT member from IfcDistributionSystemEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDistributionSystemEnum>();
 						//##
 					case IfcDistributionSystemEnum.SECURITY:
 						return Ifc4.Interfaces.IfcDistributionSystemEnum.SECURITY;

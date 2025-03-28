@@ -12,10 +12,9 @@ namespace Xbim.Ifc4.DateTimeResource
 
         public static implicit operator DateTime(IfcDate obj)
         {
-            DateTime result;
-            DateTime.TryParse(obj._value, null, DateTimeStyles.RoundtripKind, out result);
-            return result;
-
+            if (DateTime.TryParse(obj._value, null, DateTimeStyles.RoundtripKind, out DateTime result))
+                return result;
+            return default;
         }
 
         public static implicit operator IfcDate(DateTime obj)

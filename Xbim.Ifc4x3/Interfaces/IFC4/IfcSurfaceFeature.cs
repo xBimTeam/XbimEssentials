@@ -32,47 +32,39 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 				{
 					case IfcSurfaceFeatureTypeEnum.DEFECT:
 						//## Handle translation of DEFECT member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of DEFECT member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.HATCHMARKING:
 						//## Handle translation of HATCHMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of HATCHMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.LINEMARKING:
 						//## Handle translation of LINEMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of LINEMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.MARK:
 						return Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum.MARK;
 					case IfcSurfaceFeatureTypeEnum.NONSKIDSURFACING:
 						//## Handle translation of NONSKIDSURFACING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of NONSKIDSURFACING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.PAVEMENTSURFACEMARKING:
 						//## Handle translation of PAVEMENTSURFACEMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of PAVEMENTSURFACEMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.RUMBLESTRIP:
 						//## Handle translation of RUMBLESTRIP member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of RUMBLESTRIP member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.SYMBOLMARKING:
 						//## Handle translation of SYMBOLMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of SYMBOLMARKING member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.TAG:
 						return Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum.TAG;
 					case IfcSurfaceFeatureTypeEnum.TRANSVERSERUMBLESTRIP:
 						//## Handle translation of TRANSVERSERUMBLESTRIP member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						//TODO: Handle translation of TRANSVERSERUMBLESTRIP member from IfcSurfaceFeatureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum>();
 						//##
 					case IfcSurfaceFeatureTypeEnum.TREATMENT:
 						return Ifc4.Interfaces.IfcSurfaceFeatureTypeEnum.TREATMENT;

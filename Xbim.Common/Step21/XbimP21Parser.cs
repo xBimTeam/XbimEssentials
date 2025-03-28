@@ -271,6 +271,12 @@ namespace Xbim.IO.Step21
             SetEntityParameter(value);
         }
 
+        protected override void SetInvalidStringValue(string value)
+        {
+            PropertyValue.Init(value, StepParserType.String);
+            SetEntityParameter(value);
+        }
+
         protected override void SetEnumValue(string value)
         {
             PropertyValue.Init(value.Trim('.'), StepParserType.Enum);

@@ -32,42 +32,35 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				{
 					case IfcPlateTypeEnum.BASE_PLATE:
 						//## Handle translation of BASE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of BASE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcPlateTypeEnum>();
 						//##
 					case IfcPlateTypeEnum.COVER_PLATE:
 						//## Handle translation of COVER_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of COVER_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcPlateTypeEnum>();
 						//##
 					case IfcPlateTypeEnum.CURTAIN_PANEL:
 						return Ifc4.Interfaces.IfcPlateTypeEnum.CURTAIN_PANEL;
 					case IfcPlateTypeEnum.FLANGE_PLATE:
 						//## Handle translation of FLANGE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of FLANGE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcPlateTypeEnum>();
 						//##
 					case IfcPlateTypeEnum.GUSSET_PLATE:
 						//## Handle translation of GUSSET_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of GUSSET_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcPlateTypeEnum>();
 						//##
 					case IfcPlateTypeEnum.SHEET:
 						return Ifc4.Interfaces.IfcPlateTypeEnum.SHEET;
 					case IfcPlateTypeEnum.SPLICE_PLATE:
 						//## Handle translation of SPLICE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of SPLICE_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcPlateTypeEnum>();
 						//##
 					case IfcPlateTypeEnum.STIFFENER_PLATE:
 						//## Handle translation of STIFFENER_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of STIFFENER_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcPlateTypeEnum>();
 						//##
 					case IfcPlateTypeEnum.WEB_PLATE:
 						//## Handle translation of WEB_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						//TODO: Handle translation of WEB_PLATE member from IfcPlateTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcPlateTypeEnum>();
 						//##
 					case IfcPlateTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

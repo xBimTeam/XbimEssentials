@@ -32,8 +32,7 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				{
 					case IfcProtectiveDeviceTypeEnum.ANTI_ARCING_DEVICE:
 						//## Handle translation of ANTI_ARCING_DEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of ANTI_ARCING_DEVICE member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum>();
 						//##
 					case IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.CIRCUITBREAKER;
@@ -49,15 +48,13 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.RESIDUALCURRENTSWITCH;
 					case IfcProtectiveDeviceTypeEnum.SPARKGAP:
 						//## Handle translation of SPARKGAP member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of SPARKGAP member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum>();
 						//##
 					case IfcProtectiveDeviceTypeEnum.VARISTOR:
 						return Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum.VARISTOR;
 					case IfcProtectiveDeviceTypeEnum.VOLTAGELIMITER:
 						//## Handle translation of VOLTAGELIMITER member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						//TODO: Handle translation of VOLTAGELIMITER member from IfcProtectiveDeviceTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcProtectiveDeviceTypeEnum>();
 						//##
 					case IfcProtectiveDeviceTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

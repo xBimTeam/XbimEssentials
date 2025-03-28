@@ -36,8 +36,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.FIRESAFETY;
 					case IfcSpatialZoneTypeEnum.INTERFERENCE:
 						//## Handle translation of INTERFERENCE member from IfcSpatialZoneTypeEnum in property PredefinedType
-						//TODO: Handle translation of INTERFERENCE member from IfcSpatialZoneTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSpatialZoneTypeEnum>();
 						//##
 					case IfcSpatialZoneTypeEnum.LIGHTING:
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.LIGHTING;
@@ -45,8 +44,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.OCCUPANCY;
 					case IfcSpatialZoneTypeEnum.RESERVATION:
 						//## Handle translation of RESERVATION member from IfcSpatialZoneTypeEnum in property PredefinedType
-						//TODO: Handle translation of RESERVATION member from IfcSpatialZoneTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSpatialZoneTypeEnum>();
 						//##
 					case IfcSpatialZoneTypeEnum.SECURITY:
 						return Ifc4.Interfaces.IfcSpatialZoneTypeEnum.SECURITY;

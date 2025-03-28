@@ -34,13 +34,11 @@ namespace Xbim.Ifc4x3.BuildingControlsDomain
 						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.ALARMPANEL;
 					case IfcUnitaryControlElementTypeEnum.BASESTATIONCONTROLLER:
 						//## Handle translation of BASESTATIONCONTROLLER member from IfcUnitaryControlElementTypeEnum in property PredefinedType
-						//TODO: Handle translation of BASESTATIONCONTROLLER member from IfcUnitaryControlElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum>();
 						//##
 					case IfcUnitaryControlElementTypeEnum.COMBINED:
 						//## Handle translation of COMBINED member from IfcUnitaryControlElementTypeEnum in property PredefinedType
-						//TODO: Handle translation of COMBINED member from IfcUnitaryControlElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum>();
 						//##
 					case IfcUnitaryControlElementTypeEnum.CONTROLPANEL:
 						return Ifc4.Interfaces.IfcUnitaryControlElementTypeEnum.CONTROLPANEL;

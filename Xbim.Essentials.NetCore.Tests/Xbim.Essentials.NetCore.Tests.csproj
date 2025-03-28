@@ -20,8 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Xbim.IO.Esent\Xbim.IO.Esent.csproj" />
-    <ProjectReference Include="..\Xbim.IO.MemoryModel\Xbim.IO.MemoryModel.csproj" />
+    <ProjectReference Include="..\Xbim.Ifc\Xbim.Ifc.csproj" />
   </ItemGroup>
 
 </Project>

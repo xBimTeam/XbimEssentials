@@ -117,7 +117,7 @@ namespace Xbim.IO.Esent
                 InstancesLocal = new XbimInstanceCollection(this);
                 var r = new Random();
                 UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
-                Metadata = ExpressMetaData.GetMetadata(factory.GetType().Module);
+                Metadata = ExpressMetaData.GetMetadata(factory);
                 ModelFactors = new XbimModelFactors(Math.PI / 180, 1e-3, 1e-5);
             }
             catch(Exception ex)

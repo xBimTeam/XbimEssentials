@@ -38,8 +38,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 						return Ifc4.Interfaces.IfcTransportElementTypeEnum.ESCALATOR;
 					case IfcTransportElementTypeEnum.HAULINGGEAR:
 						//## Handle translation of HAULINGGEAR member from IfcTransportElementTypeEnum in property PredefinedType
-						//TODO: Handle translation of HAULINGGEAR member from IfcTransportElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTransportElementTypeEnum>();
 						//##
 					case IfcTransportElementTypeEnum.LIFTINGGEAR:
 						return Ifc4.Interfaces.IfcTransportElementTypeEnum.LIFTINGGEAR;

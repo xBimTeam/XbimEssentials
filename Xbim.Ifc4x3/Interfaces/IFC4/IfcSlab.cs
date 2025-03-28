@@ -32,8 +32,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				{
 					case IfcSlabTypeEnum.APPROACH_SLAB:
 						//## Handle translation of APPROACH_SLAB member from IfcSlabTypeEnum in property PredefinedType
-						//TODO: Handle translation of APPROACH_SLAB member from IfcSlabTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSlabTypeEnum>();
 						//##
 					case IfcSlabTypeEnum.BASESLAB:
 						return Ifc4.Interfaces.IfcSlabTypeEnum.BASESLAB;
@@ -43,25 +42,21 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcSlabTypeEnum.LANDING;
 					case IfcSlabTypeEnum.PAVING:
 						//## Handle translation of PAVING member from IfcSlabTypeEnum in property PredefinedType
-						//TODO: Handle translation of PAVING member from IfcSlabTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSlabTypeEnum>();
 						//##
 					case IfcSlabTypeEnum.ROOF:
 						return Ifc4.Interfaces.IfcSlabTypeEnum.ROOF;
 					case IfcSlabTypeEnum.SIDEWALK:
 						//## Handle translation of SIDEWALK member from IfcSlabTypeEnum in property PredefinedType
-						//TODO: Handle translation of SIDEWALK member from IfcSlabTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSlabTypeEnum>();
 						//##
 					case IfcSlabTypeEnum.TRACKSLAB:
 						//## Handle translation of TRACKSLAB member from IfcSlabTypeEnum in property PredefinedType
-						//TODO: Handle translation of TRACKSLAB member from IfcSlabTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSlabTypeEnum>();
 						//##
 					case IfcSlabTypeEnum.WEARING:
 						//## Handle translation of WEARING member from IfcSlabTypeEnum in property PredefinedType
-						//TODO: Handle translation of WEARING member from IfcSlabTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSlabTypeEnum>();
 						//##
 					case IfcSlabTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

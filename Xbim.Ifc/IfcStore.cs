@@ -97,7 +97,7 @@ namespace Xbim.Ifc
         protected IfcStore(string filepath, XbimSchemaVersion ifcVersion, XbimEditorCredentials editorDetails) : this()
         {
             var model = ModelProvider.Create(ifcVersion, filepath);
-            AssignModel(model, editorDetails, ifcVersion);
+            AssignModel(model, editorDetails, ifcVersion, filepath);
         }
 
         /// <summary>
@@ -150,16 +150,16 @@ namespace Xbim.Ifc
             set;
         }
 
-        private void AssignModel(IModel model, XbimEditorCredentials editorDetails, XbimSchemaVersion schema)
+        private void AssignModel(IModel model, XbimEditorCredentials editorDetails, XbimSchemaVersion schema, string modelPath = null)
         {
             Model = model;
             Model.EntityNew += Model_EntityNew;
             Model.EntityDeleted += Model_EntityDeleted;
             Model.EntityModified += Model_EntityModified;
-            FileName = Model.Header.FileName.Name;
+            FileName = modelPath ?? Model.Header.FileName.Name;
             SetupEditing(editorDetails);
 
-            LoadReferenceModels();
+            LoadReferenceModels(modelPath);
             IO.Memory.MemoryModel.CalculateModelFactors(model);
         }
 
@@ -343,8 +343,16 @@ namespace Xbim.Ifc
             }
 
             var model = newStore.ModelProvider.Open(path, ifcVersion, ifcDatabaseSizeThreshHold, progDelegate, accessMode, codePageOverride);
-
-            newStore.AssignModel(model, editorDetails, ifcVersion);
+            if (string.IsNullOrEmpty(model.Header.FileName.Name))
+            {
+                // if we are looking at a memory model loaded from a file it might be safe to fix the file name in the 
+                // header with the actual file loaded
+                // historically setting this Filename to local IFC Path isd what enabled 
+                // Federations to find their relative child models. 
+                FileInfo f = new FileInfo(path);
+                model.Header.FileName.Name = f.FullName;
+            }
+            newStore.AssignModel(model, editorDetails, ifcVersion, path);
             return newStore;
 
         }
@@ -516,9 +524,22 @@ namespace Xbim.Ifc
 
             if (root.OwnerHistory != _ownerHistoryModifyObject)
             {
+                var originalHistory = root.OwnerHistory;
+                MergeOwnerHistory(originalHistory);
+
                 root.OwnerHistory = OwnerHistoryModifyObject;
-                OwnerHistoryModifyObject.LastModifiedDate = DateTime.Now;
+                OwnerHistoryModifyObject.LastModifiedDate = DateTime.UtcNow;
             }
+        }
+
+        private void MergeOwnerHistory(IIfcOwnerHistory originalHistory)
+        {
+            // This is naive. We have a store-wide OwnerHistory for modifications when really we 
+            // should clone one from the original history, and apply to those items we edit.
+            // OwnerHistory is not really fit for purpose
+            OwnerHistoryModifyObject.CreationDate = originalHistory.CreationDate;
+            OwnerHistoryModifyObject.OwningApplication = originalHistory.OwningApplication;
+            OwnerHistoryModifyObject.OwningUser = originalHistory.OwningUser;
         }
 
         private void IfcRootInit(IPersistEntity entity)
@@ -530,7 +551,9 @@ namespace Xbim.Ifc
             {
                 root.OwnerHistory = OwnerHistoryAddObject;
                 root.GlobalId = Guid.NewGuid().ToPart21();
-                OwnerHistoryAddObject.LastModifiedDate = DateTime.Now;
+                OwnerHistoryAddObject.LastModifiedDate = DateTime.UtcNow;
+                if(OwnerHistoryAddObject.CreationDate.Value == null)
+                    OwnerHistoryAddObject.CreationDate = DateTime.UtcNow;
             }
         }
 
@@ -548,51 +571,39 @@ namespace Xbim.Ifc
                 if (EditorDetails == null)
                     return null;
 
-                if (SchemaVersion == XbimSchemaVersion.Ifc4 || SchemaVersion == XbimSchemaVersion.Ifc4x1)
-                {
-                    var person = Instances.New<Ifc4.ActorResource.IfcPerson>(p =>
+                var factory = new EntityCreator(this);
+
+                var person = Instances.OfType<IIfcPerson>()
+                    .FirstOrDefault(p => // Look up by identifier and then Given/Family name
+                        EditorDetails.EditorsIdentifier != null && p.Identification == EditorDetails.EditorsIdentifier || 
+                        (p.GivenName == EditorDetails.EditorsGivenName && p.FamilyName == EditorDetails.EditorsFamilyName))
+                    ?? factory.Person(p =>
                     {
+                        p.Identification = EditorDetails.EditorsIdentifier;
                         p.GivenName = EditorDetails.EditorsGivenName;
                         p.FamilyName = EditorDetails.EditorsFamilyName;
                     });
-                    var organization = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                        ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
-                    _defaultOwningUser = Instances.New<Ifc4.ActorResource.IfcPersonAndOrganization>(po =>
+
+                var organization = Instances.OfType<IIfcOrganization>()
+                    .FirstOrDefault(o => // Look up by identifier and then Organisation name
+                        EditorDetails.EditorsOrganisationIdentifier != null && o.Identification == EditorDetails.EditorsOrganisationIdentifier || 
+                        (o.Name == EditorDetails.EditorsOrganisationName))
+                    ?? factory.Organization(o =>
+                    {
+                        o.Name = EditorDetails.EditorsOrganisationName;
+                        o.Identification = EditorDetails.EditorsOrganisationIdentifier;
+                    });
+
+                _defaultOwningUser = 
+                    Instances.OfType<IIfcPersonAndOrganization>()
+                    .FirstOrDefault(po => po.ThePerson == person && po.TheOrganization == organization)
+                    ?? factory.PersonAndOrganization(po =>
                     {
                         po.TheOrganization = organization;
                         po.ThePerson = person;
                     });
-                }
-                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
-                {
-                    var person = Instances.New<Ifc4x3.ActorResource.IfcPerson>(p =>
-                    {
-                        p.GivenName = EditorDetails.EditorsGivenName;
-                        p.FamilyName = EditorDetails.EditorsFamilyName;
-                    });
-                    var organization = Instances.OfType<Ifc4x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                        ?? Instances.New<Ifc4x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
-                    _defaultOwningUser = Instances.New<Ifc4x3.ActorResource.IfcPersonAndOrganization>(po =>
-                    {
-                        po.TheOrganization = organization;
-                        po.ThePerson = person;
-                    });
-                }
-                else
-                {
-                    var person = Instances.New<Ifc2x3.ActorResource.IfcPerson>(p =>
-                    {
-                        p.GivenName = EditorDetails.EditorsGivenName;
-                        p.FamilyName = EditorDetails.EditorsFamilyName;
-                    });
-                    var organization = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                        ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
-                    _defaultOwningUser = Instances.New<Ifc2x3.ActorResource.IfcPersonAndOrganization>(po =>
-                    {
-                        po.TheOrganization = organization;
-                        po.ThePerson = person;
-                    });
-                }
+
+                
                 return _defaultOwningUser;
             }
         }
@@ -611,41 +622,38 @@ namespace Xbim.Ifc
                 if (EditorDetails == null)
                     return null;
 
-                if (SchemaVersion == XbimSchemaVersion.Ifc4 || SchemaVersion == XbimSchemaVersion.Ifc4x1)
-                    return _defaultOwningApplication ??
-                         (_defaultOwningApplication =
-                             Instances.New<Ifc4.UtilityResource.IfcApplication>(a =>
-                             {
-                                 a.ApplicationDeveloper = Instances.OfType<Ifc4.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
-                                 ?? Instances.New<Ifc4.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.ApplicationDevelopersName);
-                                 a.ApplicationFullName = EditorDetails.ApplicationFullName;
-                                 a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
-                                 a.Version = EditorDetails.ApplicationVersion;
-                             }
-                ));
-                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
-                    return _defaultOwningApplication ??
-                         (_defaultOwningApplication =
-                             Instances.New<Ifc4x3.UtilityResource.IfcApplication>(a =>
-                             {
-                                 a.ApplicationDeveloper = Instances.OfType<Ifc4x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.EditorsOrganisationName)
-                                 ?? Instances.New<Ifc4x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.EditorsOrganisationName);
-                                 a.ApplicationFullName = EditorDetails.ApplicationFullName;
-                                 a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
-                                 a.Version = EditorDetails.ApplicationVersion;
-                             }
-                ));
-                return _defaultOwningApplication ??
-                        (_defaultOwningApplication =
-                            Instances.New<Ifc2x3.UtilityResource.IfcApplication>(a =>
+                var existingApplication = Instances.OfType<IIfcApplication>()
+                    .Where(a => a.ApplicationFullName == EditorDetails.ApplicationFullName)
+                    .Where(a => a.ApplicationIdentifier == EditorDetails.ApplicationIdentifier)
+                    .Where(a => a.Version == EditorDetails.ApplicationVersion)
+                    .FirstOrDefault();
+                if(existingApplication != null)
+                {
+                    // use existing to avoid duplicate applications
+                    _defaultOwningApplication = existingApplication;
+                }
+                else
+                {
+                    // Create new application
+                    var factory = new EntityCreator(this);
+                    _defaultOwningApplication = factory.Application(a =>
+                    {
+                        a.ApplicationDeveloper = Instances.OfType<IIfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
+                            ?? factory.Organization(o =>
                             {
-                                a.ApplicationDeveloper = Instances.OfType<Ifc2x3.ActorResource.IfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
-                                ?? Instances.New<Ifc2x3.ActorResource.IfcOrganization>(o => o.Name = EditorDetails.ApplicationDevelopersName);
-                                a.ApplicationFullName = EditorDetails.ApplicationFullName;
-                                a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
-                                a.Version = EditorDetails.ApplicationVersion;
-                            }
-                ));
+                                o.Name = EditorDetails.ApplicationDevelopersName;
+                                o.Roles.Add(factory.ActorRole(r =>
+                                {
+                                    r.Role = IfcRoleEnum.USERDEFINED;
+                                    r.UserDefinedRole = "Software Provider";
+                                }));
+                            });
+                        a.ApplicationFullName = EditorDetails.ApplicationFullName;
+                        a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
+                        a.Version = EditorDetails.ApplicationVersion;
+                    });
+                }
+                return _defaultOwningApplication;
             }
         }
 
@@ -655,30 +663,16 @@ namespace Xbim.Ifc
             {
                 if (_ownerHistoryAddObject != null)
                     return _ownerHistoryAddObject;
-                if (SchemaVersion == XbimSchemaVersion.Ifc4 || SchemaVersion == XbimSchemaVersion.Ifc4x1)
+                var factory = new EntityCreator(this);
+                _ownerHistoryAddObject = factory.OwnerHistory(owner =>
                 {
-                    var histAdd = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
-                    histAdd.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                    histAdd.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
-                    histAdd.ChangeAction = IfcChangeActionEnum.ADDED;
-                    _ownerHistoryAddObject = histAdd;
-                }
-                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
-                {
-                    var histAdd = Instances.New<Ifc4x3.UtilityResource.IfcOwnerHistory>();
-                    histAdd.OwningUser = (Ifc4x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                    histAdd.OwningApplication = (Ifc4x3.UtilityResource.IfcApplication)DefaultOwningApplication;
-                    histAdd.ChangeAction = Ifc4x3.UtilityResource.IfcChangeActionEnum.ADDED;
-                    _ownerHistoryAddObject = histAdd;
-                }
-                else
-                {
-                    var histAdd = Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
-                    histAdd.OwningUser = (Ifc2x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                    histAdd.OwningApplication = (Ifc2x3.UtilityResource.IfcApplication)DefaultOwningApplication;
-                    histAdd.ChangeAction = Ifc2x3.UtilityResource.IfcChangeActionEnum.ADDED;
-                    _ownerHistoryAddObject = histAdd;
-                }
+                    owner.OwningUser = DefaultOwningUser;
+                    owner.OwningApplication = DefaultOwningApplication;
+                    owner.ChangeAction = IfcChangeActionEnum.ADDED;
+                    owner.LastModifyingUser = DefaultOwningUser;
+                    owner.LastModifyingApplication = DefaultOwningApplication;
+                    
+                });
                 return _ownerHistoryAddObject;
             }
         }
@@ -689,30 +683,18 @@ namespace Xbim.Ifc
             {
                 if (_ownerHistoryModifyObject != null)
                     return _ownerHistoryModifyObject;
-                if (SchemaVersion == XbimSchemaVersion.Ifc4 || SchemaVersion == XbimSchemaVersion.Ifc4x1)
+
+                var factory = new EntityCreator(this);
+                _ownerHistoryModifyObject = factory.OwnerHistory(owner =>
                 {
-                    var histmod = Instances.New<Ifc4.UtilityResource.IfcOwnerHistory>();
-                    histmod.OwningUser = (Ifc4.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                    histmod.OwningApplication = (Ifc4.UtilityResource.IfcApplication)DefaultOwningApplication;
-                    histmod.ChangeAction = IfcChangeActionEnum.MODIFIED;
-                    _ownerHistoryModifyObject = histmod;
-                }
-                else if (SchemaVersion == XbimSchemaVersion.Ifc4x3)
-                {
-                    var histmod = Instances.New<Ifc4x3.UtilityResource.IfcOwnerHistory>();
-                    histmod.OwningUser = (Ifc4x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                    histmod.OwningApplication = (Ifc4x3.UtilityResource.IfcApplication)DefaultOwningApplication;
-                    histmod.ChangeAction = Ifc4x3.UtilityResource.IfcChangeActionEnum.MODIFIED;
-                    _ownerHistoryModifyObject = histmod;
-                }
-                else
-                {
-                    var histmod = Instances.New<Ifc2x3.UtilityResource.IfcOwnerHistory>();
-                    histmod.OwningUser = (Ifc2x3.ActorResource.IfcPersonAndOrganization)DefaultOwningUser;
-                    histmod.OwningApplication = (Ifc2x3.UtilityResource.IfcApplication)DefaultOwningApplication;
-                    histmod.ChangeAction = Ifc2x3.UtilityResource.IfcChangeActionEnum.MODIFIED;
-                    _ownerHistoryModifyObject = histmod;
-                }
+                    owner.OwningUser = DefaultOwningUser;
+                    owner.OwningApplication = DefaultOwningApplication;
+
+                    owner.ChangeAction = IfcChangeActionEnum.MODIFIED;
+                    owner.LastModifyingUser = DefaultOwningUser;
+                    owner.LastModifyingApplication = DefaultOwningApplication;
+                });
+                
                 return _ownerHistoryModifyObject;
             }
         }
@@ -829,26 +811,22 @@ namespace Xbim.Ifc
             XbimReferencedModel retVal;
             using (var txn = BeginTransaction())
             {
-                if (SchemaVersion == XbimSchemaVersion.Ifc4 || SchemaVersion == XbimSchemaVersion.Ifc4x1)
+                var factory = new EntityCreator(this);
+                // TODO: should look up an existing matching role/organisatuon
+                var role = factory.ActorRole(r =>
                 {
-                    var role = Instances.New<Ifc4.ActorResource.IfcActorRole>();
-                    role.RoleString = organisationRole;
-                    // the string is converted appropriately by the IfcActorRoleClass
-                    var org = Instances.New<Ifc4.ActorResource.IfcOrganization>();
+                    r.Role = IfcRoleEnum.USERDEFINED;
+                    r.UserDefinedRole = organisationRole;
+                });
+                // the string is converted appropriately by the IfcActorRoleClass
+                
+                var org = factory.Organization(org =>
+                {
                     org.Name = organisationName;
                     org.Roles.Add(role);
-                    retVal = AddModelReference(refModelPath, org);
-                }
-                else
-                {
-                    var role = Instances.New<Ifc2x3.ActorResource.IfcActorRole>();
-                    role.RoleString = organisationRole;
-                    // the string is converted appropriately by the IfcActorRoleClass
-                    var org = Instances.New<Ifc2x3.ActorResource.IfcOrganization>();
-                    org.Name = organisationName;
-                    org.Roles.Add(role);
-                    retVal = AddModelReference(refModelPath, org);
-                }
+                });
+                retVal = AddModelReference(refModelPath, org);
+
                 txn.Commit();
             }
             return retVal;
@@ -860,18 +838,21 @@ namespace Xbim.Ifc
         /// <param name="refModelPath">the file path of the xbim model to reference, this must be an xbim file</param>
         /// <param name="owner">the actor who supplied the model</param>
         /// <returns></returns>
-        private XbimReferencedModel AddModelReference(string refModelPath, Ifc2x3.ActorResource.IfcOrganization owner)
+        private XbimReferencedModel AddModelReference(string refModelPath, IIfcOrganization owner)
         {
             XbimReferencedModel retVal;
+            var factory = new EntityCreator(this);
             if (CurrentTransaction == null)
             {
                 using (var txn = BeginTransaction())
                 {
-                    var docInfo = Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
-                    docInfo.DocumentId = new Ifc2x3.MeasureResource.IfcIdentifier(_referencedModels.NextIdentifer());
-                    docInfo.Name = refModelPath;
-                    docInfo.DocumentOwner = owner;
-                    docInfo.IntendedUse = RefDocument;
+                    var docInfo = factory.DocumentInformation(d =>
+                    {
+                        d.Identification = new IfcIdentifier(_referencedModels.NextIdentifer());
+                        d.Name = refModelPath;
+                        d.DocumentOwner = owner;
+                        d.IntendedUse = RefDocument;
+                    });
                     retVal = new XbimReferencedModel(docInfo);
                     AddModelReference(retVal);
                     txn.Commit();
@@ -879,52 +860,20 @@ namespace Xbim.Ifc
             }
             else
             {
-                var docInfo = Instances.New<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
-                docInfo.DocumentId = new Ifc2x3.MeasureResource.IfcIdentifier(_referencedModels.NextIdentifer());
-                docInfo.Name = refModelPath;
-                docInfo.DocumentOwner = owner;
-                docInfo.IntendedUse = RefDocument;
+                var docInfo = factory.DocumentInformation(d =>
+                {
+                    d.Identification = new IfcIdentifier(_referencedModels.NextIdentifer());
+                    d.Name = refModelPath;
+                    d.DocumentOwner = owner;
+                    d.IntendedUse = RefDocument;
+                });
                 retVal = new XbimReferencedModel(docInfo);
                 AddModelReference(retVal);
             }
             return retVal;
         }
 
-        /// <summary>
-        /// adds a model as a reference model can be called inside a transaction
-        /// </summary>
-        /// <param name="refModelPath">the file path of the xbim model to reference, this must be an xbim file</param>
-        /// <param name="owner">the actor who supplied the model</param>
-        /// <returns></returns>
-        private XbimReferencedModel AddModelReference(string refModelPath, Ifc4.ActorResource.IfcOrganization owner)
-        {
-            XbimReferencedModel retVal;
-            if (CurrentTransaction == null)
-            {
-                using (var txn = BeginTransaction())
-                {
-                    var docInfo = Instances.New<Ifc4.ExternalReferenceResource.IfcDocumentInformation>();
-                    docInfo.Identification = new IfcIdentifier(_referencedModels.NextIdentifer());
-                    docInfo.Name = refModelPath;
-                    docInfo.DocumentOwner = owner;
-                    docInfo.IntendedUse = RefDocument;
-                    retVal = new XbimReferencedModel(docInfo);
-                    AddModelReference(retVal);
-                    txn.Commit();
-                }
-            }
-            else
-            {
-                var docInfo = Instances.New<Ifc4.ExternalReferenceResource.IfcDocumentInformation>();
-                docInfo.Identification = new IfcIdentifier(_referencedModels.NextIdentifer());
-                docInfo.Name = refModelPath;
-                docInfo.DocumentOwner = owner;
-                docInfo.IntendedUse = RefDocument;
-                retVal = new XbimReferencedModel(docInfo);
-                AddModelReference(retVal);
-            }
-            return retVal;
-        }
+       
 
         /// <summary>
         /// All reference models are opened in a readonly mode.
@@ -932,31 +881,27 @@ namespace Xbim.Ifc
         /// 
         /// Loading referenced models defaults to avoiding Exception on file not found; in this way the federated model can still be opened and the error rectified.
         /// </summary>
+        /// <param name="rootModelPath">Path to the root model</param>
         /// <param name="throwErrorOnReferenceModelExceptions">Set to true to enable your own error handling</param>
-        private void LoadReferenceModels(bool throwErrorOnReferenceModelExceptions = false)
+        private void LoadReferenceModels(string rootModelPath, bool throwErrorOnReferenceModelExceptions = false)
         {
             var docInfos = Instances.OfType<IIfcDocumentInformation>().Where(d => d.IntendedUse == RefDocument);
             foreach (var docInfo in docInfos)
             {
-                if (throwErrorOnReferenceModelExceptions)
+                try
                 {
-                    // throw exception on referenceModel Creation
-                    AddModelReference(new XbimReferencedModel(docInfo));
+                    AddModelReference(new XbimReferencedModel(docInfo, rootModelPath));
                 }
-                else
+                catch (Exception ex)
                 {
                     // do not throw exception on referenceModel Creation
-                    try
-                    {
-                        AddModelReference(new XbimReferencedModel(docInfo));
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger?.LogError(
-                            string.Format("Ignored exception on modelreference load for #{0}.", docInfo.EntityLabel),
-                            ex);
-                    }
+                    if (throwErrorOnReferenceModelExceptions)
+                        throw;
+                    Logger?.LogError(
+                        string.Format("Ignored exception on modelreference load for #{0}.", docInfo.EntityLabel),
+                        ex);
                 }
+                
             }
         }
 

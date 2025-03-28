@@ -55,7 +55,12 @@ namespace Xbim.Ifc2x3.PresentationAppearanceResource
 		}
 
 		//transformation function to convert/cast IFC4 data to appear as IFC2x3 if possible
-		private static IfcPresentationStyleAssignment StylesToIfc2X3 (IIfcStyleAssignmentSelect member){
+		private IfcPresentationStyleAssignment StylesToIfc2X3 (IIfcStyleAssignmentSelect member){
+
+			if(member is IIfcPresentationStyleSelect ps && Model.CurrentTransaction != null)
+			{
+				return Model.Instances.New<IfcPresentationStyleAssignment>(pa => ((IIfcPresentationStyleAssignment)pa).Styles.Add(ps));
+			}
 			return member as IfcPresentationStyleAssignment;
 		}
 
