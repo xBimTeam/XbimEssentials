@@ -32,15 +32,13 @@ namespace Xbim.Ifc4x3.ProcessExtension
 				{
 					case IfcTaskTypeEnum.ADJUSTMENT:
 						//## Handle translation of ADJUSTMENT member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of ADJUSTMENT member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.ATTENDANCE:
 						return Ifc4.Interfaces.IfcTaskTypeEnum.ATTENDANCE;
 					case IfcTaskTypeEnum.CALIBRATION:
 						//## Handle translation of CALIBRATION member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of CALIBRATION member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.CONSTRUCTION:
 						return Ifc4.Interfaces.IfcTaskTypeEnum.CONSTRUCTION;
@@ -52,13 +50,11 @@ namespace Xbim.Ifc4x3.ProcessExtension
 						return Ifc4.Interfaces.IfcTaskTypeEnum.DISPOSAL;
 					case IfcTaskTypeEnum.EMERGENCY:
 						//## Handle translation of EMERGENCY member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of EMERGENCY member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.INSPECTION:
 						//## Handle translation of INSPECTION member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of INSPECTION member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.INSTALLATION:
 						return Ifc4.Interfaces.IfcTaskTypeEnum.INSTALLATION;
@@ -76,28 +72,23 @@ namespace Xbim.Ifc4x3.ProcessExtension
 						return Ifc4.Interfaces.IfcTaskTypeEnum.RENOVATION;
 					case IfcTaskTypeEnum.SAFETY:
 						//## Handle translation of SAFETY member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of SAFETY member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.SHUTDOWN:
 						//## Handle translation of SHUTDOWN member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of SHUTDOWN member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.STARTUP:
 						//## Handle translation of STARTUP member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of STARTUP member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.TESTING:
 						//## Handle translation of TESTING member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of TESTING member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.TROUBLESHOOTING:
 						//## Handle translation of TROUBLESHOOTING member from IfcTaskTypeEnum in property PredefinedType
-						//TODO: Handle translation of TROUBLESHOOTING member from IfcTaskTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTaskTypeEnum>();
 						//##
 					case IfcTaskTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

@@ -37,15 +37,13 @@ namespace Xbim.Ifc4x3.Kernel
 			get
 			{
 				//## Handle return of RelatedObjectsType for which no match was found
-				//TODO: Handle return of RelatedObjectsType for which no match was found
-				throw new System.NotImplementedException();
-				//##
-			} 
+				return Ifc4.Interfaces.IfcObjectTypeEnum.NOTDEFINED;	// Not supported in IFC4x3
+                //##
+            } 
 			set
 			{
 				//## Handle setting of RelatedObjectsType for which no match was found
-				//TODO: Handle setting of RelatedObjectsType for which no match was found
-				throw new System.NotImplementedException();
+				// Do nothing. Deprecated in IFC4
 				//##
 				
 			}

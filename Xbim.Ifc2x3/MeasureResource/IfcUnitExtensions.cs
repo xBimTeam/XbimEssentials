@@ -9,12 +9,7 @@
         /// <returns>string holding full name</returns>
         public static string Name(this IfcUnit ifcUnit)
         {
-            var unit = ifcUnit as IfcDerivedUnit;
-            if (unit != null) return unit.FullName;
-            var namedUnit = ifcUnit as IfcNamedUnit;
-            if (namedUnit != null) return namedUnit.FullName;
-            var monetaryUnit = ifcUnit as IfcMonetaryUnit;
-            return monetaryUnit != null ? monetaryUnit.FullEnglishName : string.Empty;
+            return Xbim.Ifc4.MeasureResource.UnitExtensions.Name(ifcUnit);
         }
         /// <summary>
         /// Get the symbol of the IfcUnit
@@ -22,12 +17,7 @@
         /// <returns>string holding symbol</returns>
         public static string Symbol(this IfcUnit ifcUnit)
         {
-            var unit = ifcUnit as IfcDerivedUnit;
-            if (unit != null) return unit.FullName;
-            var namedUnit = ifcUnit as IfcNamedUnit;
-            if (namedUnit != null) return namedUnit.Symbol;
-            var monetaryUnit = ifcUnit as IfcMonetaryUnit;
-            return monetaryUnit != null ? monetaryUnit.Symbol : string.Empty;
+            return Xbim.Ifc4.MeasureResource.UnitExtensions.Symbol(ifcUnit);
         }
 
     }

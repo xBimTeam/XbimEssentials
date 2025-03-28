@@ -17,8 +17,8 @@ namespace Xbim.Ifc4x3
         private static ExpressMetaData _ifc4meta;
         private static ExpressMetaData _ifc4x3meta;
 
-        private static ExpressMetaData Ifc4Meta => _ifc4meta ?? (_ifc4meta = ExpressMetaData.GetMetadata(typeof(Ifc4.Interfaces.IIfcValue).Module));
-        private static ExpressMetaData Ifc4x3Meta => _ifc4x3meta ?? (_ifc4x3meta = ExpressMetaData.GetMetadata(typeof(Ifc4x3.MeasureResource.IfcValue).Module));
+        private static ExpressMetaData Ifc4Meta => _ifc4meta ?? (_ifc4meta = ExpressMetaData.GetMetadata(new Ifc4.EntityFactoryIfc4()));
+        private static ExpressMetaData Ifc4x3Meta => _ifc4x3meta ?? (_ifc4x3meta = ExpressMetaData.GetMetadata(new Ifc4x3.EntityFactoryIfc4x3Add2()));
 
         public static Ifc4.Interfaces.IIfcValue ToIfc4(this Ifc4x3.MeasureResource.IfcValue value)
         {

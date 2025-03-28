@@ -6,9 +6,9 @@ namespace Xbim.Ifc4.DateTimeResource
     {
         public static implicit operator DateTime(IfcTime obj)
         {
-            DateTime d;
-            DateTime.TryParse(obj, out d);
-            return d;
+            if(DateTime.TryParse(obj, out DateTime d))
+                return d;
+            return default;
         }
 
         public static implicit operator IfcTime(DateTime obj)

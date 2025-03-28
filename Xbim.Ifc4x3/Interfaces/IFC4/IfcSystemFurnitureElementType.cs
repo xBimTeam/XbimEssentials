@@ -34,8 +34,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 						return Ifc4.Interfaces.IfcSystemFurnitureElementTypeEnum.PANEL;
 					case IfcSystemFurnitureElementTypeEnum.SUBRACK:
 						//## Handle translation of SUBRACK member from IfcSystemFurnitureElementTypeEnum in property PredefinedType
-						//TODO: Handle translation of SUBRACK member from IfcSystemFurnitureElementTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcSystemFurnitureElementTypeEnum>();
 						//##
 					case IfcSystemFurnitureElementTypeEnum.WORKSURFACE:
 						return Ifc4.Interfaces.IfcSystemFurnitureElementTypeEnum.WORKSURFACE;

@@ -66,8 +66,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 				{
 					case IfcDoorTypeEnum.BOOM_BARRIER:
 						//## Handle translation of BOOM_BARRIER member from IfcDoorTypeEnum in property PredefinedType
-						//TODO: Handle translation of BOOM_BARRIER member from IfcDoorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDoorTypeEnum>();
 						//##
 					case IfcDoorTypeEnum.DOOR:
 						return Ifc4.Interfaces.IfcDoorTypeEnum.DOOR;
@@ -77,8 +76,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcDoorTypeEnum.TRAPDOOR;
 					case IfcDoorTypeEnum.TURNSTILE:
 						//## Handle translation of TURNSTILE member from IfcDoorTypeEnum in property PredefinedType
-						//TODO: Handle translation of TURNSTILE member from IfcDoorTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcDoorTypeEnum>();
 						//##
 					case IfcDoorTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
@@ -139,11 +137,10 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 					case IfcDoorTypeOperationEnum.DOUBLE_DOOR_FOLDING:
 						return Ifc4.Interfaces.IfcDoorTypeOperationEnum.DOUBLE_DOOR_FOLDING;
 					case IfcDoorTypeOperationEnum.DOUBLE_DOOR_LIFTING_VERTICAL:
-						//## Handle translation of DOUBLE_DOOR_LIFTING_VERTICAL member from IfcDoorTypeOperationEnum in property OperationType
-						//TODO: Handle translation of DOUBLE_DOOR_LIFTING_VERTICAL member from IfcDoorTypeOperationEnum in property OperationType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDoorTypeOperationEnum.DOUBLE_DOOR_SINGLE_SWING:
+                        //## Handle translation of DOUBLE_DOOR_LIFTING_VERTICAL member from IfcDoorTypeOperationEnum in property OperationType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcDoorTypeOperationEnum>();
+                    //##
+                    case IfcDoorTypeOperationEnum.DOUBLE_DOOR_SINGLE_SWING:
 						return Ifc4.Interfaces.IfcDoorTypeOperationEnum.DOUBLE_DOOR_SINGLE_SWING;
 					case IfcDoorTypeOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT:
 						return Ifc4.Interfaces.IfcDoorTypeOperationEnum.DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT;
@@ -160,28 +157,24 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 					case IfcDoorTypeOperationEnum.FOLDING_TO_RIGHT:
 						return Ifc4.Interfaces.IfcDoorTypeOperationEnum.FOLDING_TO_RIGHT;
 					case IfcDoorTypeOperationEnum.LIFTING_HORIZONTAL:
-						//## Handle translation of LIFTING_HORIZONTAL member from IfcDoorTypeOperationEnum in property OperationType
-						//TODO: Handle translation of LIFTING_HORIZONTAL member from IfcDoorTypeOperationEnum in property OperationType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDoorTypeOperationEnum.LIFTING_VERTICAL_LEFT:
-						//## Handle translation of LIFTING_VERTICAL_LEFT member from IfcDoorTypeOperationEnum in property OperationType
-						//TODO: Handle translation of LIFTING_VERTICAL_LEFT member from IfcDoorTypeOperationEnum in property OperationType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDoorTypeOperationEnum.LIFTING_VERTICAL_RIGHT:
-						//## Handle translation of LIFTING_VERTICAL_RIGHT member from IfcDoorTypeOperationEnum in property OperationType
-						//TODO: Handle translation of LIFTING_VERTICAL_RIGHT member from IfcDoorTypeOperationEnum in property OperationType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDoorTypeOperationEnum.REVOLVING:
+                        //## Handle translation of LIFTING_HORIZONTAL member from IfcDoorTypeOperationEnum in property OperationType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcDoorTypeOperationEnum>();
+                    //##
+                    case IfcDoorTypeOperationEnum.LIFTING_VERTICAL_LEFT:
+                        //## Handle translation of LIFTING_VERTICAL_LEFT member from IfcDoorTypeOperationEnum in property OperationType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcDoorTypeOperationEnum>();
+                    //##
+                    case IfcDoorTypeOperationEnum.LIFTING_VERTICAL_RIGHT:
+                        //## Handle translation of LIFTING_VERTICAL_RIGHT member from IfcDoorTypeOperationEnum in property OperationType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcDoorTypeOperationEnum>();
+                    //##
+                    case IfcDoorTypeOperationEnum.REVOLVING:
 						return Ifc4.Interfaces.IfcDoorTypeOperationEnum.REVOLVING;
 					case IfcDoorTypeOperationEnum.REVOLVING_VERTICAL:
-						//## Handle translation of REVOLVING_VERTICAL member from IfcDoorTypeOperationEnum in property OperationType
-						//TODO: Handle translation of REVOLVING_VERTICAL member from IfcDoorTypeOperationEnum in property OperationType
-						throw new System.NotImplementedException();
-						//##
-					case IfcDoorTypeOperationEnum.ROLLINGUP:
+                        //## Handle translation of REVOLVING_VERTICAL member from IfcDoorTypeOperationEnum in property OperationType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcDoorTypeOperationEnum>();
+                    //##
+                    case IfcDoorTypeOperationEnum.ROLLINGUP:
 						return Ifc4.Interfaces.IfcDoorTypeOperationEnum.ROLLINGUP;
 					case IfcDoorTypeOperationEnum.SINGLE_SWING_LEFT:
 						return Ifc4.Interfaces.IfcDoorTypeOperationEnum.SINGLE_SWING_LEFT;

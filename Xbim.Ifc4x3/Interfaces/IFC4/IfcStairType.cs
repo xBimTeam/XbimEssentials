@@ -40,8 +40,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcStairTypeEnum.HALF_WINDING_STAIR;
 					case IfcStairTypeEnum.LADDER:
 						//## Handle translation of LADDER member from IfcStairTypeEnum in property PredefinedType
-						//TODO: Handle translation of LADDER member from IfcStairTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcStairTypeEnum>();
 						//##
 					case IfcStairTypeEnum.QUARTER_TURN_STAIR:
 						return Ifc4.Interfaces.IfcStairTypeEnum.QUARTER_TURN_STAIR;

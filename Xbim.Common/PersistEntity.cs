@@ -144,7 +144,9 @@ namespace Xbim.Common
             if (Model != null)
                 md = Model.Metadata;
             else
+#pragma warning disable CS0618 // Type or member is obsolete
                 md = ExpressMetaData.GetMetadata(GetType().Module);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             using (var sw = new StringWriter())
             {

@@ -15,6 +15,218 @@ namespace Xbim.Essentials.NetCore.Tests
    
     public class GithubTests
     {
+       
+
+        [Fact]
+        public void Issue_603_StyledItem_Ifc2x3Native()
+        {
+            using var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
+
+            Ifc2x3.PresentationAppearanceResource.IfcStyledItem nativeStyledItem = CreateIfc2x3StyledItem(model);
+
+            nativeStyledItem.Styles.Should().HaveCount(1);
+            var firstStyle = nativeStyledItem.Styles.First();
+            firstStyle.Should().NotBeNull();
+            firstStyle.Should().BeOfType<Ifc2x3.PresentationAppearanceResource.IfcPresentationStyleAssignment>();
+            // and contents of assignment are the Style
+            firstStyle.Styles.Should().HaveCount(1);
+            firstStyle.Styles.First().Should().BeOfType<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle>();
+
+            IIfcStyledItem si = nativeStyledItem;
+
+            si.Styles.First().Should().BeAssignableTo<IIfcPresentationStyleAssignment>();
+        }
+
+        [Fact]
+        public void Issue_603_StyledItem_Ifc4x3Native()
+        {
+            using var model = new MemoryModel(new Ifc4x3.EntityFactoryIfc4x3Add2());
+
+            Ifc4x3.PresentationAppearanceResource.IfcStyledItem nativeStyledItem = CreateIfc4x3StyledItem(model);
+
+            nativeStyledItem.Styles.Should().HaveCount(1);
+            var firstStyle = nativeStyledItem.Styles.First();
+            firstStyle.Should().NotBeNull();
+            firstStyle.Should().BeOfType<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyle>();
+
+            IIfcStyledItem si = nativeStyledItem;
+
+            si.Styles.First().Should().BeAssignableTo<IIfcSurfaceStyle>();
+        }
+
+        [Fact]
+        public void Issue_603_StyledItem_Ifc2x3()
+        {
+            using var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
+
+            IIfcStyledItem si = CreateStyledItemViaInterfaces(model);
+
+            var nativeStyledItem = si as Ifc2x3.PresentationAppearanceResource.IfcStyledItem;
+
+            nativeStyledItem.Styles.Should().HaveCount(1);
+            var firstStyle = nativeStyledItem.Styles.First();
+            firstStyle.Should().NotBeNull();
+            firstStyle.Should().BeAssignableTo<IIfcPresentationStyleAssignment>();
+            // Styles are accessed indirectly via PresentationStyleAssignment's Styles.
+            firstStyle.Styles.Should().HaveCount(1);
+            firstStyle.Styles.First().Should().BeAssignableTo<IIfcSurfaceStyle>();
+        }
+
+
+        [Fact]
+        public void Issue_603_StyledItem_Ifc4()
+        {
+            using var model = new MemoryModel(new Ifc4.EntityFactoryIfc4());
+
+            IIfcStyledItem si = CreateStyledItemViaInterfaces(model);
+
+            var nativeStyledItem = si as Ifc4.PresentationAppearanceResource.IfcStyledItem;
+
+            nativeStyledItem.Styles.Should().HaveCount(1);
+            var firstStyle = nativeStyledItem.Styles.First();
+            firstStyle.Should().NotBeNull();
+            firstStyle.Should().BeAssignableTo<IIfcSurfaceStyle>();
+        }
+
+        [Fact]
+        public void Issue_603_StyledItem_Ifc4x3()
+        {
+            using var model = new MemoryModel(new Ifc4x3.EntityFactoryIfc4x3Add2());
+
+            IIfcStyledItem si = CreateStyledItemViaInterfaces(model);
+
+            var nativeStyledItem = si as Ifc4x3.PresentationAppearanceResource.IfcStyledItem;
+
+            nativeStyledItem.Styles.Should().HaveCount(1);
+            var firstStyle = nativeStyledItem.Styles.First();
+            firstStyle.Should().NotBeNull();
+            firstStyle.Should().BeAssignableTo<IIfcSurfaceStyle>();
+        }
+
+        // Use the IFC2x3 IIfcPresentationStyleAssignment explicitly (vs implicit conversion from IFC4+ IfcPresentationStyles)
+        [Fact]
+        public void Issue_603_StyledItem_Ifc2x3_BackwardCompatibility()
+        {
+            using var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
+
+            // Explicitly create the IfcPresentationStyleAssignment vs implicit via IFC4 interfaces
+            IIfcStyledItem si = CreateStyledItemViaInterfaces(model, true);
+
+            var nativeStyledItem = si as Ifc2x3.PresentationAppearanceResource.IfcStyledItem;
+
+            nativeStyledItem.Styles.Should().HaveCount(1);
+            var firstStyle = nativeStyledItem.Styles.First();
+            firstStyle.Should().NotBeNull();
+            firstStyle.Should().BeAssignableTo<IIfcPresentationStyleAssignment>();
+            firstStyle.Styles.Should().HaveCount(1);
+            firstStyle.Styles.First().Should().BeAssignableTo<IIfcSurfaceStyle>();
+        }
+
+        private IIfcStyledItem CreateStyledItemViaInterfaces(MemoryModel model, bool useStyleAssignment = false)
+        {
+            using var txn = model.BeginTransaction("Test");
+            var factory = new EntityCreator(model);
+
+            var surfaceStyle = factory.SurfaceStyle(style =>
+            {
+                var defaultStyle = factory.SurfaceStyleShading(l =>
+                {
+                    l.SurfaceColour = factory.ColourRgb(rgb =>
+                    {
+                        rgb.Red = 1.0;
+                        rgb.Green = 0.0;
+                        rgb.Blue = 0.0;
+                    });
+                });
+
+                style.Side = IfcSurfaceSide.BOTH;
+                style.Styles.Add(defaultStyle);
+            });
+            var si = factory.StyledItem(styleItem =>
+            {
+                if(useStyleAssignment && model.SchemaVersion == Common.Step21.XbimSchemaVersion.Ifc2X3)
+                {
+                    var assignment = model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPresentationStyleAssignment>(a =>
+                    {
+                        a.Styles.Add((Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle)surfaceStyle);
+                    });
+                    styleItem.Styles.Add(assignment);
+                }
+                else
+                {
+                    // IFC 4/4.3 way
+                    styleItem.Styles.Add(surfaceStyle);
+                }
+            });
+            txn.Commit();
+            return si;
+        }
+
+        private Ifc2x3.PresentationAppearanceResource.IfcStyledItem CreateIfc2x3StyledItem(MemoryModel model)
+        {
+            using var txn = model.BeginTransaction("Test");
+            
+
+            var surfaceStyle = model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyle>(style =>
+            {
+                var defaultStyle = model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcSurfaceStyleShading>(l =>
+                {
+                    l.SurfaceColour = model.Instances.New<Ifc2x3.PresentationResource.IfcColourRgb>(rgb =>
+                    {
+                        rgb.Red = 1.0;
+                        rgb.Green = 0.0;
+                        rgb.Blue = 0.0;
+                    });
+                });
+
+                style.Styles.Add(defaultStyle);
+            });
+            var si = model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcStyledItem>(styleItem =>
+            {
+                // IfcPresentationStyleAssignment Required in IFC2x3, Optional in IFC4 and deprecated/removed in 4x3
+                var presStyleAssignment = model.Instances.New<Ifc2x3.PresentationAppearanceResource.IfcPresentationStyleAssignment>(a =>
+                    {
+                        a.Styles.Add(surfaceStyle);
+                    });
+                styleItem.Styles.Add(presStyleAssignment);
+            });
+            txn.Commit();
+            return si;
+        }
+
+        private Ifc4x3.PresentationAppearanceResource.IfcStyledItem CreateIfc4x3StyledItem(MemoryModel model)
+        {
+            using var txn = model.BeginTransaction("Test");
+
+
+            var surfaceStyle = model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyle>(style =>
+            {
+                var defaultStyle = model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcSurfaceStyleShading>(l =>
+                {
+                    l.SurfaceColour = model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcColourRgb>(rgb =>
+                    {
+                        rgb.Red = 1.0;
+                        rgb.Green = 0.0;
+                        rgb.Blue = 0.0;
+                    });
+                });
+
+                style.Styles.Add(defaultStyle);
+            });
+            var si = model.Instances.New<Ifc4x3.PresentationAppearanceResource.IfcStyledItem>(styleItem =>
+            {
+                // IfcPresentationStyleAssignment deprecated/removed in 4x3
+                //var presStyleAssignment = model.Instances.New<IfcPresentationStyleAssignment>(a =>
+                //{
+                //    a.Styles.Add(style);
+                //});
+                styleItem.Styles.Add(surfaceStyle);
+            });
+            txn.Commit();
+            return si;
+        }
+
+
 
         [Fact]
         public void GithubIssue_595_Fails_With_LinqSelectMany()

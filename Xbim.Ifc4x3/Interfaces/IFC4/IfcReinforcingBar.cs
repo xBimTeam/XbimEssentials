@@ -97,8 +97,7 @@ namespace Xbim.Ifc4x3.StructuralElementsDomain
 						return Ifc4.Interfaces.IfcReinforcingBarTypeEnum.SHEAR;
 					case IfcReinforcingBarTypeEnum.SPACEBAR:
 						//## Handle translation of SPACEBAR member from IfcReinforcingBarTypeEnum in property PredefinedType
-						//TODO: Handle translation of SPACEBAR member from IfcReinforcingBarTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReinforcingBarTypeEnum>();
 						//##
 					case IfcReinforcingBarTypeEnum.STUD:
 						return Ifc4.Interfaces.IfcReinforcingBarTypeEnum.STUD;

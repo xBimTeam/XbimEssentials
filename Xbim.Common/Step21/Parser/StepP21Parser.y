@@ -31,6 +31,8 @@
 %token	HEXA	
 %token  ILLEGALCHAR
 %token	MISC	
+%token  MLSTRING
+%token  INVALIDSTRING
 
 %%
 trailingSpace	: ' '
@@ -77,6 +79,8 @@ argument
 	| INTEGER		            {SetIntegerValue(CurrentSemanticValue.strVal);}
 	| FLOAT		                {SetFloatValue(CurrentSemanticValue.strVal);}
 	| STRING		            {SetStringValue(CurrentSemanticValue.strVal);}
+	| MLSTRING		            {SetStringValue(CurrentSemanticValue.strVal);}
+	| INVALIDSTRING		        {SetInvalidStringValue(CurrentSemanticValue.strVal);}
 	| BOOLEAN		            {SetBooleanValue(CurrentSemanticValue.strVal);}
 	| ENUM		                {SetEnumValue(CurrentSemanticValue.strVal);}
 	| HEXA		                {SetHexValue(CurrentSemanticValue.strVal);}

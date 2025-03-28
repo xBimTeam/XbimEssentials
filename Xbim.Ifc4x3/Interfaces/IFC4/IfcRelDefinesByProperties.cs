@@ -40,11 +40,10 @@ namespace Xbim.Ifc4x3.Kernel
 				var ifcpropertysetdefinition = RelatingPropertyDefinition as IfcPropertySetDefinition;
 				if (ifcpropertysetdefinition != null) 
 					return ifcpropertysetdefinition;
-				if (RelatingPropertyDefinition is IfcPropertySetDefinitionSet) 
-					//## Handle defined type IfcPropertySetDefinitionSet which is not a part of the target select interface IIfcPropertySetDefinitionSelect in property RelatingPropertyDefinition
-					//TODO: Handle defined type IfcPropertySetDefinitionSet which is not a part of the target select interface IIfcPropertySetDefinitionSelect in property RelatingPropertyDefinition
-					throw new System.NotImplementedException();
-					//##
+				//## Handle defined type IfcPropertySetDefinitionSet which is not a part of the target select interface IIfcPropertySetDefinitionSelect in property RelatingPropertyDefinition
+				if (RelatingPropertyDefinition is IfcPropertySetDefinitionSet set)
+					return set;
+				//##
 				return null;
 			} 
 			set

@@ -37,6 +37,7 @@ namespace Xbim.IO.Parser
         void SetHexValue(string value);
         void SetFloatValue(string value);
         void SetStringValue(string value);
+        void SetInvalidStringValue(string value);
         void SetEnumValue(string value);
         void SetBooleanValue(string value);
         void SetNonDefinedValue();

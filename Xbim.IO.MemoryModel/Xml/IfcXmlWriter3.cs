@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Metadata;
@@ -151,7 +152,8 @@ namespace Xbim.IO.Xml
         {
             try
             {
-                output.WriteElementString(prefix, localName, ns, value);
+                var encoded = XmlString(value);
+                output.WriteElementString(prefix, localName, ns, encoded);
             }
             catch (Exception e)
             {
@@ -428,6 +430,66 @@ namespace Xbim.IO.Xml
             }
             //else
             //    throw new Exception(string.Format("Entity of type {0} has illegal property {1} of type {2}", entity.GetType().ToString(), propType.Name, propType.Name));
+        }
+
+        // Based on https://github.com/RickStrahl/Westwind.Utilities/blob/master/Westwind.Utilities/Utilities/XmlUtils.c
+        /// <summary>
+        /// Turns a string into a properly XML Encoded string.
+        /// Uses simple string replacement.
+        /// </summary>
+        /// <param name="text">Plain text to convert to XML Encoded string</param>
+        /// <param name="isAttribute">
+        /// If true encodes single and double quotes.
+        /// When embedding element values quotes don't need to be encoded.
+        /// When embedding attributes quotes need to be encoded.
+        /// </param>
+        /// <returns>XML encoded string</returns>
+        private static string XmlString(string text, bool isAttribute = false)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            var sb = new StringBuilder(text.Length);
+            foreach (var chr in text)
+            {
+                if (chr == '<')
+                    sb.Append("&lt;");
+                else if (chr == '>')
+                    sb.Append("&gt;");
+                else if (chr == '&')
+                    sb.Append("&amp;");
+
+                if (isAttribute)
+                {
+                    // special handling for quotes
+                    if (chr == '\"')
+                        sb.Append("&quot;");
+                    else if (chr == '\'')
+                        sb.Append("&apos;");
+
+                    // Legal sub-chr32 characters
+                    else if (chr == '\n')
+                        sb.Append("&#xA;");
+                    else if (chr == '\r')
+                        sb.Append("&#xD;");
+                    else if (chr == '\t')
+                        sb.Append("&#x9;");
+                }
+                else
+                {
+                    if (chr < 32)
+                    {
+                        uint c = Convert.ToUInt32(chr);
+                        sb.AppendFormat(@"&#{0:X};", c);
+                    }
+                    else
+                    {
+                        sb.Append(chr);
+                    }
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }

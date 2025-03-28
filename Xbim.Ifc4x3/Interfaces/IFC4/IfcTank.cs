@@ -40,8 +40,7 @@ namespace Xbim.Ifc4x3.HvacDomain
 						return Ifc4.Interfaces.IfcTankTypeEnum.FEEDANDEXPANSION;
 					case IfcTankTypeEnum.OILRETENTIONTRAY:
 						//## Handle translation of OILRETENTIONTRAY member from IfcTankTypeEnum in property PredefinedType
-						//TODO: Handle translation of OILRETENTIONTRAY member from IfcTankTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcTankTypeEnum>();
 						//##
 					case IfcTankTypeEnum.PRESSUREVESSEL:
 						return Ifc4.Interfaces.IfcTankTypeEnum.PRESSUREVESSEL;

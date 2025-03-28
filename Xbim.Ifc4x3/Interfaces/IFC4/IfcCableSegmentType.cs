@@ -37,38 +37,32 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 					case IfcCableSegmentTypeEnum.CONDUCTORSEGMENT:
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CONDUCTORSEGMENT;
 					case IfcCableSegmentTypeEnum.CONTACTWIRESEGMENT:
-						//## Handle translation of CONTACTWIRESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of CONTACTWIRESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableSegmentTypeEnum.CORESEGMENT:
+                        //## Handle translation of CONTACTWIRESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableSegmentTypeEnum>();
+                    //##
+                    case IfcCableSegmentTypeEnum.CORESEGMENT:
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.CORESEGMENT;
 					case IfcCableSegmentTypeEnum.FIBERSEGMENT:
-						//## Handle translation of FIBERSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of FIBERSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableSegmentTypeEnum.FIBERTUBE:
-						//## Handle translation of FIBERTUBE member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of FIBERTUBE member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableSegmentTypeEnum.OPTICALCABLESEGMENT:
-						//## Handle translation of OPTICALCABLESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of OPTICALCABLESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableSegmentTypeEnum.STITCHWIRE:
-						//## Handle translation of STITCHWIRE member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of STITCHWIRE member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableSegmentTypeEnum.WIREPAIRSEGMENT:
-						//## Handle translation of WIREPAIRSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of WIREPAIRSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableSegmentTypeEnum.USERDEFINED:
+                        //## Handle translation of FIBERSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableSegmentTypeEnum>();
+                    //##
+                    case IfcCableSegmentTypeEnum.FIBERTUBE:
+                        //## Handle translation of FIBERTUBE member from IfcCableSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableSegmentTypeEnum>();
+                    //##
+                    case IfcCableSegmentTypeEnum.OPTICALCABLESEGMENT:
+                        //## Handle translation of OPTICALCABLESEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableSegmentTypeEnum>();
+                    //##
+                    case IfcCableSegmentTypeEnum.STITCHWIRE:
+                        //## Handle translation of STITCHWIRE member from IfcCableSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableSegmentTypeEnum>();
+                    //##
+                    case IfcCableSegmentTypeEnum.WIREPAIRSEGMENT:
+                        //## Handle translation of WIREPAIRSEGMENT member from IfcCableSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableSegmentTypeEnum>();
+                    //##
+                    case IfcCableSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcCableSegmentTypeEnum.USERDEFINED;

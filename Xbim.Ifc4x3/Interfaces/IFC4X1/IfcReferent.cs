@@ -33,44 +33,37 @@ namespace Xbim.Ifc4x3.ProductExtension
 				{
 					case IfcReferentTypeEnum.BOUNDARY:
 						//## Handle translation of BOUNDARY member from IfcReferentTypeEnum in property PredefinedType
-						//TODO: Handle translation of BOUNDARY member from IfcReferentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReferentTypeEnum>();
 						//##
 					case IfcReferentTypeEnum.INTERSECTION:
 						//## Handle translation of INTERSECTION member from IfcReferentTypeEnum in property PredefinedType
-						//TODO: Handle translation of INTERSECTION member from IfcReferentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReferentTypeEnum>();
 						//##
 					case IfcReferentTypeEnum.KILOPOINT:
 						return Ifc4.Interfaces.IfcReferentTypeEnum.KILOPOINT;
 					case IfcReferentTypeEnum.LANDMARK:
 						//## Handle translation of LANDMARK member from IfcReferentTypeEnum in property PredefinedType
-						//TODO: Handle translation of LANDMARK member from IfcReferentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReferentTypeEnum>();
 						//##
 					case IfcReferentTypeEnum.MILEPOINT:
 						return Ifc4.Interfaces.IfcReferentTypeEnum.MILEPOINT;
 					case IfcReferentTypeEnum.POSITION:
 						//## Handle translation of POSITION member from IfcReferentTypeEnum in property PredefinedType
-						//TODO: Handle translation of POSITION member from IfcReferentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReferentTypeEnum>();
 						//##
 					case IfcReferentTypeEnum.REFERENCEMARKER:
 						//## Handle translation of REFERENCEMARKER member from IfcReferentTypeEnum in property PredefinedType
-						//TODO: Handle translation of REFERENCEMARKER member from IfcReferentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReferentTypeEnum>();
 						//##
 					case IfcReferentTypeEnum.STATION:
 						return Ifc4.Interfaces.IfcReferentTypeEnum.STATION;
 					case IfcReferentTypeEnum.SUPERELEVATIONEVENT:
 						//## Handle translation of SUPERELEVATIONEVENT member from IfcReferentTypeEnum in property PredefinedType
-						//TODO: Handle translation of SUPERELEVATIONEVENT member from IfcReferentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReferentTypeEnum>();
 						//##
 					case IfcReferentTypeEnum.WIDTHEVENT:
 						//## Handle translation of WIDTHEVENT member from IfcReferentTypeEnum in property PredefinedType
-						//TODO: Handle translation of WIDTHEVENT member from IfcReferentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcReferentTypeEnum>();
 						//##
 					case IfcReferentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

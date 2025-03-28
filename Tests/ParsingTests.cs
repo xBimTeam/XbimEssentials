@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Common.Model;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
@@ -12,6 +14,7 @@ using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21;
+using MeLoggerFactory = Microsoft.Extensions.Logging.LoggerFactory;
 
 namespace Xbim.Essentials.Tests
 {
@@ -20,6 +23,8 @@ namespace Xbim.Essentials.Tests
     {
         private static readonly IEntityFactory ef4 = new Ifc4.EntityFactoryIfc4();
         private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
+
+
 
         [TestMethod]
         public void ToleratesFileWithAbstractClass()
@@ -119,7 +124,25 @@ namespace Xbim.Essentials.Tests
                 Assert.AreEqual(role.Role, IfcRoleEnum.ARCHITECT);
             }
         }
-        
+
+        [TestMethod]
+        public void ToleratesFileWithInvalidFileName()
+        {
+            // Technically FILE_NAME should have escaped backslashes: \\users not \users
+            using (var s = File.OpenRead(@"TestFiles\InvalidHeaderFileName.ifc"))
+            {
+                var header = StepModel.LoadStep21Header(s);
+                var fileName = header.FileName.Name;
+                fileName.Should().Be("C:\\Users\\xbim\\myfile.IFC");
+            }
+
+            using (var store = IfcStore.Open(@"TestFiles\InvalidHeaderFileName.ifc"))
+            {
+                var fileName = store.Header.FileName.Name;
+                fileName.Should().Be("C:\\Users\\xbim\\myfile.IFC");
+            }
+        }
+
         /// <summary>
         /// This is only provided as a remainder of possible improvements in the tolerance of incorrect files.
         /// </summary>
@@ -127,11 +150,15 @@ namespace Xbim.Essentials.Tests
         public void AcceptAFormallyIllegalFile()
         {
             // todo: should some notification when the file is malformed be available?
-            using (var store = IfcStore.Open("TestFiles\\FormallyIllegalFile.ifc"))
+            using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
+
+            using (var store = new StepModel(new Xbim.Ifc4.EntityFactoryIfc4(), loggerFactory))
             {
+                store.LoadStep21(@"TestFiles\FormallyIllegalFile.ifc");
+
                 // The file is formally illegal, 
                 // see inside the file for comments on details.
-                
+
                 // illegal diameter string
                 var st = store.Instances[1] as IIfcPropertySingleValue;
                 var val = (Ifc4.MeasureResource.IfcDescriptiveMeasure)st.NominalValue;
@@ -148,7 +175,6 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(double.IsNaN(point.Y), "coordinate should be NaN.");
                 Assert.IsTrue(double.IsPositiveInfinity(point.Z), "coordinate should be positive infinity.");
 
-                store.Close();
             }
         }
 
@@ -156,12 +182,37 @@ namespace Xbim.Essentials.Tests
         public void ToleratesEmptyMultibyteStringsTest()
         {
             // I have stumbled across a file containing empty multibyte string sequences '\X2\\X0\'.
-            using (IfcStore store = IfcStore.Open(@"TestFiles\EmptyMultibyteString.ifc")) {
+            using (IfcStore store = IfcStore.Open(@"TestFiles\EmptyMultibyteString.ifc"))
+            {
                 IIfcProject project = store.Instances.OfType<IIfcProject>().SingleOrDefault();
                 Assert.AreEqual("Test Test Test", (string)project.Name);
             }
         }
-        
+
+        [TestMethod]
+        public void ToleratesInvalidMultibyteStringsTest()
+        {
+            //Github Issue 605
+            using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
+
+            using (var model = new StepModel(new Xbim.Ifc2x3.EntityFactoryIfc2x3(), loggerFactory))
+            {
+                model.LoadStep21(@"TestFiles\InvalidMultiByte.ifc");
+
+                var props = model.Instances.OfType<IIfcPropertySingleValue>();
+                props.Should().HaveCount(3);
+                props.Should().AllSatisfy(prop =>
+                {
+                    prop.Name.Value.ToString().Should().EndWith("コンクリート体積");
+
+                    prop.NominalValue.Should().NotBeNull(@"Because should handle invalid Unicode marker");
+                    prop.NominalValue.Value.ToString().Should().EndWith(@"\X2\30B330F330AF30EA30FC30C84F537A4D8868\X0\.XLSX", "Invalid encoding");
+                });
+
+
+            }
+        }
+
         [TestMethod]
         public void IfcStoreOpenAndCloseMemoryModelTest()
         {
@@ -188,7 +239,7 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void IfcStoreOpenAndCloseEsentModelTest()
         {
-            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null,0))
+            using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
                 var count = store.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances");
@@ -250,23 +301,38 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void CanParseNewlinesInStrings()
         {
-            using (var model = new Xbim.IO.Memory.MemoryModel( ef2x3))
+            using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3, loggerFactory))
             {
                 var errCount = model.LoadStep21("TestFiles\\NewlinesInStrings.ifc");
-                Assert.AreEqual(0, errCount);
+                errCount.Should().Be(0);
+                model.Header.FileDescription.Description.First().Should().Be("(('ViewDefinition [CoordinationView_V2.0]'),'2;1\r\n')");
+                var member = model.Instances.OfType<IIfcMember>().First();
+                member.Name.ToString().Should().Be("L4x4x3/8\r\nB");
             }
 
-            using (var model = new Xbim.IO.Esent.EsentModel( ef2x3))
+        }
+
+        [TestMethod]
+        public void CanParseNewlinesInStringsEsent()
+        {
+            using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
+           
+            using (var model = new Xbim.IO.Esent.EsentModel(ef2x3, loggerFactory))
             {
-                var errCount = model.CreateFrom("TestFiles\\NewlinesInStrings.ifc");
-                Assert.AreEqual(true, errCount);
+                var err = model.CreateFrom("TestFiles\\NewlinesInStrings.ifc", keepOpen: true);
+                err.Should().Be(true);
+                model.Header.FileDescription.Description.First().Should().Be("(('ViewDefinition [CoordinationView_V2.0]'),'2;1\r\n')");
+                var member = model.Instances.OfType<IIfcMember>().First();
+                member.Name.ToString().Should().Be("L4x4x3/8\r\nB");
             }
         }
 
         [TestMethod]
         public void CanParseSpecicalSolidusEscape()
         {
-            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
+            using var loggerFactory = MeLoggerFactory.Create(b => b.AddConsole());
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3, loggerFactory))
             {
                 var errCount = model.LoadStep21("TestFiles\\SpecicalSolidusEscape.ifc");
                 Assert.AreEqual(0, errCount);
@@ -282,7 +348,7 @@ namespace Xbim.Essentials.Tests
             using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifczip"))
             {
                 count = store.Instances.Count;
-                Assert.IsTrue(count>0, "Should have instances");
+                Assert.IsTrue(count > 0, "Should have instances");
                 store.Close();
             }
             //esent database
@@ -304,10 +370,10 @@ namespace Xbim.Essentials.Tests
                 {
                     tok = scanner.yylex();
                     var txt = scanner.yytext;
-                    Console.WriteLine("Tok={0}, Txt = {1}", Enum.GetName(typeof(Tokens),tok),txt);
+                    Console.WriteLine("Tok={0}, Txt = {1}", Enum.GetName(typeof(Tokens), tok), txt);
                 }
-                while ( tok!= (int) Tokens.EOF);
-            }        
+                while (tok != (int)Tokens.EOF);
+            }
         }
 
 
@@ -356,7 +422,7 @@ namespace Xbim.Essentials.Tests
                 store.Close();
             }
             using (var store = IfcStore.Open("4walls1floorSiteA.ifczip", null, 0))
-            {               
+            {
                 Assert.IsTrue(count == store.Instances.Count, "Should have same number of instances");
                 store.Close();
             }
@@ -373,7 +439,7 @@ namespace Xbim.Essentials.Tests
             }
         }
 
-         [TestMethod]
+        [TestMethod]
         public void IfcStoreSaveAndOpenIfcXmlZipTest()
         {
             long count;
@@ -407,17 +473,17 @@ namespace Xbim.Essentials.Tests
         public void IfcStoreSaveAndOpenIfcXml4Test()
         {
             int percent = 0;
-            ReportProgressDelegate progDelegate = delegate(int percentProgress, object userState)
+            ReportProgressDelegate progDelegate = delegate (int percentProgress, object userState)
             {
                 percent = percentProgress;
 
             };
             long count;
-            
-            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc", null,-1, progDelegate))
+
+            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc", null, -1, progDelegate))
             {
                 count = store.Instances.Count;
-                store.SaveAs("SampleHouse4",  StorageType.IfcXml);
+                store.SaveAs("SampleHouse4", StorageType.IfcXml);
                 store.Close();
             }
             using (var store = IfcStore.Open("SampleHouse4.ifcxml", null, -1, progDelegate))
@@ -426,10 +492,10 @@ namespace Xbim.Essentials.Tests
                 store.Close();
             }
             //now with memory model
-            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc", null,-1,progDelegate)) 
+            using (var store = IfcStore.Open("TestFiles\\SampleHouse4.ifc", null, -1, progDelegate))
             {
                 count = store.Instances.Count;
-                store.SaveAs("SampleHouse4",  StorageType.IfcXml);
+                store.SaveAs("SampleHouse4", StorageType.IfcXml);
                 store.Close();
             }
             using (var store = IfcStore.Open("SampleHouse4.ifcxml"))
@@ -450,7 +516,7 @@ namespace Xbim.Essentials.Tests
                 EditorsOrganisationName = "XbimTeam"
             };
 
-            using (var store = IfcStore.Create(credentials, XbimSchemaVersion.Ifc2X3,XbimStoreType.EsentDatabase))
+            using (var store = IfcStore.Create(credentials, XbimSchemaVersion.Ifc2X3, XbimStoreType.EsentDatabase))
             {
                 using (var txn = store.BeginTransaction())
                 {
@@ -508,7 +574,7 @@ namespace Xbim.Essentials.Tests
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4);
         }
 
-        
+
 
         [TestMethod]
         public void ReadIfcHeaderTest()
@@ -516,9 +582,9 @@ namespace Xbim.Essentials.Tests
             var modelStore = new HeuristicModelProvider();
 
             var schemaVersion = modelStore.GetXbimSchemaVersion("TestFiles\\SampleHouse4.ifc");
-            Assert.IsTrue(schemaVersion==XbimSchemaVersion.Ifc4);
+            Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4);
             schemaVersion = modelStore.GetXbimSchemaVersion("TestFiles\\4walls1floorSite.ifc");
-            Assert.IsTrue(schemaVersion==XbimSchemaVersion.Ifc2X3);
+            Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc2X3);
 
             //first run with a memory model opeing Ifc4 file
             long count;
@@ -540,7 +606,7 @@ namespace Xbim.Essentials.Tests
                 Assert.IsTrue(count == store.Instances.Count, "Should have the same number of instances as the memory model");
                 store.Close();
             }
-            
+
             //now repeat for Ifc2x3
             using (var store = IfcStore.Open("TestFiles\\4walls1floorSite.ifc"))
             {
@@ -635,7 +701,7 @@ namespace Xbim.Essentials.Tests
             long originalCount;
             using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0)) //test esent databases first
             {
-                var  count = originalCount = ifcStore.Instances.Count;
+                var count = originalCount = ifcStore.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working               
                 ifcStore.SaveAs("4walls1floorSiteDoorES.xbim");
                 ifcStore.Close();
@@ -701,7 +767,7 @@ namespace Xbim.Essentials.Tests
             using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
                 transientXbimFile = ifcStore.Location;
-                
+
                 ifcStore.SaveAs(savedXBimFile);
                 ifcStore.Close();
             }
@@ -715,7 +781,7 @@ namespace Xbim.Essentials.Tests
             // Tests a special case - saving a transient xbim over itself
             // TODO: In theory could make this disable the transient behaviour
             string transientXbimFile;
-            
+
             // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
             using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
             {
@@ -727,7 +793,8 @@ namespace Xbim.Essentials.Tests
             Assert.IsFalse(File.Exists(transientXbimFile));
         }
 
-        [TestMethod]        public void IfcStoreInitialisationTest()
+        [TestMethod]
+        public void IfcStoreInitialisationTest()
         {
             var credentials = new XbimEditorCredentials
             {
@@ -762,7 +829,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [Ignore("We removed the ability to read illegal step files in order to read legal files with the \"\\S\\'\" sequence, that would otherwise be parsed by the normal backslash,S,backslash sequence, causing an early closure of the string when hitting the \"'\".")]
         public void EncodeBackslash()
         {
             const string path = "C:\\Data\\Martin\\document.txt";
@@ -789,20 +855,20 @@ namespace Xbim.Essentials.Tests
             using (var model = IfcStore.Open(test))
             {
                 var info = model.Instances.FirstOrDefault<Ifc2x3.ExternalReferenceResource.IfcDocumentInformation>();
-                Assert.IsTrue(info.Description == path);
+                info.Description.Value.ToString().Should().Be(path);
             }
         }
 
         [TestMethod]
         public void Ifc2x3FinalSchemaTest()
         {
-            using (var model = new Xbim.IO.Memory.MemoryModel( ef2x3))
+            using (var model = new Xbim.IO.Memory.MemoryModel(ef2x3))
             {
                 var errCount = model.LoadStep21("TestFiles\\ifc2x3_final_wall.ifc");
                 Assert.AreEqual(0, errCount);
             }
 
-            using (var model = new Xbim.IO.Esent.EsentModel( ef2x3))
+            using (var model = new Xbim.IO.Esent.EsentModel(ef2x3))
             {
                 var errCount = model.CreateFrom("TestFiles\\ifc2x3_final_wall.ifc");
                 Assert.AreEqual(true, errCount);
@@ -818,7 +884,6 @@ namespace Xbim.Essentials.Tests
         }
 
         [TestMethod]
-        [Ignore("Slow test")]
         // this is a meta tast of the large stream mock-up
         public void LargeStreamTest()
         {
@@ -922,13 +987,13 @@ namespace Xbim.Essentials.Tests
                 }
 
                 // overlap
-                { 
+                {
                     var spaceCount = (int)(offset - Position);
                     int idx = 0;
                     for (; idx < spaceCount; idx++)
                         buffer[bufferOffset + idx] = (byte)' ';
                     var dataCount = count - spaceCount;
-                    
+
                     // adjust
                     var position = Position - offset + spaceCount;
                     if (position != inner.Position)

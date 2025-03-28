@@ -1175,8 +1175,7 @@ namespace Xbim.Ifc4x3.CostResource
 						return Ifc4.Interfaces.IfcArithmeticOperatorEnum.DIVIDE;
 					case IfcArithmeticOperatorEnum.MODULO:
 						//## Handle translation of MODULO member from IfcArithmeticOperatorEnum in property ArithmeticOperator
-						//TODO: Handle translation of MODULO member from IfcArithmeticOperatorEnum in property ArithmeticOperator
-						throw new System.NotImplementedException();
+						throw new System.NotSupportedException("MODULO operation only supported in IFC4.3+");
 						//##
 					case IfcArithmeticOperatorEnum.MULTIPLY:
 						return Ifc4.Interfaces.IfcArithmeticOperatorEnum.MULTIPLY;

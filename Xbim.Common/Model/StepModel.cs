@@ -250,7 +250,7 @@ namespace Xbim.Common.Model
             get
             {
                 return _metadata ?? 
-                    (_metadata = ExpressMetaData.GetMetadata(EntityFactory.GetType().GetTypeInfo().Module));
+                    (_metadata = ExpressMetaData.GetMetadata(EntityFactory));
             }
         }
 

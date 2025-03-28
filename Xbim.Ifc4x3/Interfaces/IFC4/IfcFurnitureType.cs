@@ -88,8 +88,7 @@ namespace Xbim.Ifc4x3.SharedFacilitiesElements
 						return Ifc4.Interfaces.IfcFurnitureTypeEnum.TABLE;
 					case IfcFurnitureTypeEnum.TECHNICALCABINET:
 						//## Handle translation of TECHNICALCABINET member from IfcFurnitureTypeEnum in property PredefinedType
-						//TODO: Handle translation of TECHNICALCABINET member from IfcFurnitureTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcFurnitureTypeEnum>();
 						//##
 					case IfcFurnitureTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

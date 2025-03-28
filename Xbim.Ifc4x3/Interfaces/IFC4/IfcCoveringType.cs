@@ -36,8 +36,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.CLADDING;
 					case IfcCoveringTypeEnum.COPING:
 						//## Handle translation of COPING member from IfcCoveringTypeEnum in property PredefinedType
-						//TODO: Handle translation of COPING member from IfcCoveringTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcCoveringTypeEnum>();
 						//##
 					case IfcCoveringTypeEnum.FLOORING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.FLOORING;
@@ -55,8 +54,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.SLEEVING;
 					case IfcCoveringTypeEnum.TOPPING:
 						//## Handle translation of TOPPING member from IfcCoveringTypeEnum in property PredefinedType
-						//TODO: Handle translation of TOPPING member from IfcCoveringTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcCoveringTypeEnum>();
 						//##
 					case IfcCoveringTypeEnum.WRAPPING:
 						return Ifc4.Interfaces.IfcCoveringTypeEnum.WRAPPING;

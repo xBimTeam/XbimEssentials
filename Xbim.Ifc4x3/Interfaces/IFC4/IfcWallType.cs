@@ -44,8 +44,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcWallTypeEnum.POLYGONAL;
 					case IfcWallTypeEnum.RETAININGWALL:
 						//## Handle translation of RETAININGWALL member from IfcWallTypeEnum in property PredefinedType
-						//TODO: Handle translation of RETAININGWALL member from IfcWallTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcWallTypeEnum>();
 						//##
 					case IfcWallTypeEnum.SHEAR:
 						return Ifc4.Interfaces.IfcWallTypeEnum.SHEAR;
@@ -55,8 +54,7 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 						return Ifc4.Interfaces.IfcWallTypeEnum.STANDARD;
 					case IfcWallTypeEnum.WAVEWALL:
 						//## Handle translation of WAVEWALL member from IfcWallTypeEnum in property PredefinedType
-						//TODO: Handle translation of WAVEWALL member from IfcWallTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
+						return this.GetUserDefined<Ifc4.Interfaces.IfcWallTypeEnum>();
 						//##
 					case IfcWallTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 

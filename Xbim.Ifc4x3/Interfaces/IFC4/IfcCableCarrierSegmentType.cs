@@ -31,29 +31,26 @@ namespace Xbim.Ifc4x3.ElectricalDomain
 				switch (PredefinedType)
 				{
 					case IfcCableCarrierSegmentTypeEnum.CABLEBRACKET:
-						//## Handle translation of CABLEBRACKET member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of CABLEBRACKET member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
+                        //## Handle translation of CABLEBRACKET member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum>();
+                    //##
+                    case IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLELADDERSEGMENT;
 					case IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRAYSEGMENT;
 					case IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CABLETRUNKINGSEGMENT;
 					case IfcCableCarrierSegmentTypeEnum.CATENARYWIRE:
-						//## Handle translation of CATENARYWIRE member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of CATENARYWIRE member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
+                        //## Handle translation of CATENARYWIRE member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum>();
+                    //##
+                    case IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT:
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.CONDUITSEGMENT;
 					case IfcCableCarrierSegmentTypeEnum.DROPPER:
-						//## Handle translation of DROPPER member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
-						//TODO: Handle translation of DROPPER member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcCableCarrierSegmentTypeEnum.USERDEFINED:
+                        //## Handle translation of DROPPER member from IfcCableCarrierSegmentTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum>();
+                    //##
+                    case IfcCableCarrierSegmentTypeEnum.USERDEFINED:
 						//## Optional custom handling of PredefinedType == .USERDEFINED. 
 						//##
 						return Ifc4.Interfaces.IfcCableCarrierSegmentTypeEnum.USERDEFINED;

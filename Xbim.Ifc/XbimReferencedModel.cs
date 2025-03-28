@@ -29,7 +29,12 @@ namespace Xbim.Ifc
              }
         }
 
-        public XbimReferencedModel(IIfcDocumentInformation documentInformation)
+        public XbimReferencedModel(IIfcDocumentInformation documentInformation) : this(documentInformation, "")
+        {
+
+        }
+
+        public XbimReferencedModel(IIfcDocumentInformation documentInformation, string rootModelPath)
         {
             DocumentInformation = documentInformation;
 
@@ -43,6 +48,11 @@ namespace Xbim.Ifc
             {
                 var referencingStore = documentInformation.Model as IfcStore;
                 var fi = new FileInfo(referencingStore.FileName);
+                searchPaths.Add(fi.DirectoryName);
+            }
+            if(!string.IsNullOrEmpty(rootModelPath))
+            {
+                var fi = new FileInfo(rootModelPath);
                 searchPaths.Add(fi.DirectoryName);
             }
             var headerFileName = documentInformation.Model?.Header?.FileName?.Name;

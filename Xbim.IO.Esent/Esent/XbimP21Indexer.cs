@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Xbim.Common;
 using Xbim.Common.Step21;
@@ -75,6 +76,7 @@ namespace Xbim.IO.Esent
         private PropertyValue _propertyValue;
         private int _listNestLevel = -1;
         private readonly StepFileHeader _header = new StepFileHeader(StepFileHeader.HeaderCreationMode.LeaveEmpty, new EsentModel());
+        private readonly ILogger _logger;
 
         public StepFileHeader Header
         {
@@ -107,16 +109,17 @@ namespace Xbim.IO.Esent
             _entityCount = 0;
             _streamSize = streamSize;
             _codePageOverride = codePageOverride;
+            _logger = loggerFactory.CreateLogger<P21ToIndexParser>();
         }
 
         protected override void SetErrorMessage()
         {
-            Debug.WriteLine("TODO");
+            _logger.LogWarning("Parse Error at [{line}, {col}-{endCol}] on #{entityId}={entityType} : {value}", Scanner.yylloc.StartLine, Scanner.yylloc.StartColumn, Scanner.yylloc.EndColumn, _currentLabel, _currentType, Scanner.yylval.strVal);
         }
 
         protected override void CharacterError()
         {
-            Debug.WriteLine("TODO");
+            _logger?.LogWarning("Error parsing IFC File, illegal character found");
         }
 
         protected override void BeginParse()
@@ -443,6 +446,20 @@ namespace Xbim.IO.Esent
             }
             if (_listNestLevel == 0)
                 _currentInstance.CurrentParamIndex++;
+        }
+
+        protected override void SetInvalidStringValue(string value)
+        {
+            var last = GetLastEntity();
+            _logger.LogWarning("Incorrectly escaped string found on #{entityId}={entity} at Line {line} Col {pos} : {string}",
+                last.EntityLabel, last.Entity.GetType().Name.ToUpperInvariant(),
+                Scanner.yylloc.StartLine, Scanner.yylloc.StartColumn, Scanner.yylval.strVal);
+            SetStringValue(value);
+        }
+
+        protected Part21Entity GetLastEntity()
+        {
+            return _processStack.FirstOrDefault(e => e.EntityLabel > 0) ?? _processStack.Peek();
         }
 
         protected override void SetEnumValue(string value)

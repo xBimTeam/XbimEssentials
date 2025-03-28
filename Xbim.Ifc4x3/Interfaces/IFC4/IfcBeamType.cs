@@ -33,42 +33,36 @@ namespace Xbim.Ifc4x3.SharedBldgElements
 					case IfcBeamTypeEnum.BEAM:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.BEAM;
 					case IfcBeamTypeEnum.CORNICE:
-						//## Handle translation of CORNICE member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of CORNICE member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBeamTypeEnum.DIAPHRAGM:
-						//## Handle translation of DIAPHRAGM member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of DIAPHRAGM member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBeamTypeEnum.EDGEBEAM:
-						//## Handle translation of EDGEBEAM member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of EDGEBEAM member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBeamTypeEnum.GIRDER_SEGMENT:
-						//## Handle translation of GIRDER_SEGMENT member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of GIRDER_SEGMENT member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBeamTypeEnum.HATSTONE:
-						//## Handle translation of HATSTONE member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of HATSTONE member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBeamTypeEnum.HOLLOWCORE:
+                        //## Handle translation of CORNICE member from IfcBeamTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcBeamTypeEnum>();
+                    //##
+                    case IfcBeamTypeEnum.DIAPHRAGM:
+                        //## Handle translation of DIAPHRAGM member from IfcBeamTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcBeamTypeEnum>();
+                    //##
+                    case IfcBeamTypeEnum.EDGEBEAM:
+                        //## Handle translation of EDGEBEAM member from IfcBeamTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcBeamTypeEnum>();
+                    //##
+                    case IfcBeamTypeEnum.GIRDER_SEGMENT:
+                        //## Handle translation of GIRDER_SEGMENT member from IfcBeamTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcBeamTypeEnum>();
+                    //##
+                    case IfcBeamTypeEnum.HATSTONE:
+                        //## Handle translation of HATSTONE member from IfcBeamTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcBeamTypeEnum>();
+                    //##
+                    case IfcBeamTypeEnum.HOLLOWCORE:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.HOLLOWCORE;
 					case IfcBeamTypeEnum.JOIST:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.JOIST;
 					case IfcBeamTypeEnum.LINTEL:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.LINTEL;
 					case IfcBeamTypeEnum.PIERCAP:
-						//## Handle translation of PIERCAP member from IfcBeamTypeEnum in property PredefinedType
-						//TODO: Handle translation of PIERCAP member from IfcBeamTypeEnum in property PredefinedType
-						throw new System.NotImplementedException();
-						//##
-					case IfcBeamTypeEnum.SPANDREL:
+                        //## Handle translation of PIERCAP member from IfcBeamTypeEnum in property PredefinedType
+                        return this.GetUserDefined<Ifc4.Interfaces.IfcBeamTypeEnum>();
+                    //##
+                    case IfcBeamTypeEnum.SPANDREL:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.SPANDREL;
 					case IfcBeamTypeEnum.T_BEAM:
 						return Ifc4.Interfaces.IfcBeamTypeEnum.T_BEAM;
