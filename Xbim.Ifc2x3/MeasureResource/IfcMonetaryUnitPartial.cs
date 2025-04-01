@@ -17,7 +17,7 @@ namespace Xbim.Ifc2x3.MeasureResource
         }
 
         /// <summary>
-        /// ets the name of the currency as its known internationally
+        /// Gets the name of the currency as its known internationally
         /// </summary>
         /// <returns>String as full name</returns>
         public string FullEnglishName

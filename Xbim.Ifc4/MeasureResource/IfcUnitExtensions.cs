@@ -71,28 +71,59 @@ namespace Xbim.Ifc4.MeasureResource
         {
             return CurrencyMap.ContainsKey(obj.Currency) ? CurrencyMap[obj.Currency].CurrencyNativeName : obj.Currency.ToString();
         }
+
         private static IDictionary<string, RegionInfo> CurrencyMap => LazyCurrencyMap.Value;
 
+        // .NET doesn't provide a list of global currencies specifically. 
+        // We have to acquire currency symbols and localised names etc indirectly from all installed cultures on the platform
+        // - which can vary from machine to machine, Framework to framework.
+        // But the first culture we locate a currency in may not be the most natural/prevalent. E.g. Locating £ / 'GBP' on Windows net48,
+        // 'cy-GB' (Welsh UK) comes before 'en-GB' (English UK), based on the order of cultures, meaning the GBP
+        // CurrencyNativeName appears as the Welsh 'Punt Prydain' rather than the more natural 'Pound Sterling' / 'British Pound'. 
+
+        // To address this we prioritse the 'main' culture associated with common currencies so we're showing something
+        // sensible most of the time when displaying a native name.
+        // Less common currencies may end up with names taken from non-obvious cultures.
+
+        private static string[] commonCurrencyCultures = [
+            "en-GB",    // GBP
+            "fr-FR",    // Euro
+            "en-US",    // USD
+            "en-CA",    // CAD$
+            "en-AU",    // AUD$
+            "en-NZ",    // NZ$
+            "en-ZA",    // Rand
+            "da-DK",    // Danish Krone
+            "nn-NO",    // Norwegian Krone
+            "sv-SE",    // Swedish Krona
+            "fr-CH",    // Swiss Franc
+            "es-MX",    // Mexican Peso
+            "pt-BR",    // Brazil 
+            "pl-PL",    // Polish Zloty
+            "cs-CZ",    // Czech Korona
+            "ar-SA",    // Saudi Riyal
+            "ar-QA",    // Qatar Riyal
+            "ar-AE",    // UAE Diram
+            "ja-JP",    // Japanese Yen
+            "hi-IN",    // Indian Rupee
+            "ur-PK",    // Pakistan
+            "ko-KR",    // Korean
+            "zh-CN",    // Chinese CHN
+            "ru-RU",    // Russian Ruble
+        ];
+
+        private static IEnumerable<CultureInfo> prioritisedCultures = 
+            CultureInfo.GetCultures(CultureTypes.SpecificCultures).Where(c => commonCurrencyCultures.Any(i => c.Name == i))      // Common currency cultures first
+                .Union(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Where(c => !commonCurrencyCultures.Any(i => c.Name == i)));    // Then the rest
 
         // Lazily constructed dictionary of 'Regioninfo' by ISO Currency codes, acquired from all installed specific cultures.
         // eg. en-GB => {GBP}, en-US => {USD}, fr-FR => {Euro} etc. This mapping is slightly imperfect in terms of
-        // Cultural labling but good enough? See below
+        // Cultural labling but good enough? See above
         private static Lazy<IDictionary<string, RegionInfo>> LazyCurrencyMap = new Lazy<IDictionary<string, RegionInfo>>(() =>
-            CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                .Where(c => !skippedCountryCodes.Any(i => c.Name == i))
-                .Select(c => new RegionInfo(c.LCID))
+                prioritisedCultures
+                .Select(c => new RegionInfo(c.Name))
                 .Distinct(new RegionInfoComparer())
                 .ToDictionary(r => r.ISOCurrencySymbol, r => r));
-
-        // We're acquiring currency symbols and localised names etc indirectly from all installed cultures on the platform.
-        // But the first culture we locate a currency in may not be the most natural/prevalent. E.g. Locating GBP on Windows,
-        // 'cy-GB' (Welsh UK) comes before 'en-GB' (English UK), based on the order of cultures, meaning the GBP
-        // CurrencyNativeName appears as 'Punt Prydain' rather than the more natural 'Pound Sterling'.
-        // 
-        // Note: There are probably many other countries where a currency is shared across cultures and the first culture
-        // is not the most natural one. (e.g INR, ZAR), so this list may need updating
-        // This only affects currency lookups, not any other Culture/Locale feature.
-        private static string[] skippedCountryCodes = new[] { "cy-GB", "gd-GB" };
 
         private class RegionInfoComparer : IEqualityComparer<RegionInfo>
         {

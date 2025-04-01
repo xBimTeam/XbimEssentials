@@ -11,6 +11,7 @@ using Xbim.Ifc4.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using Xbim.Common;
+using Xbim.Ifc4.MeasureResource;
 
 //## Custom using statements
 //##
@@ -35,7 +36,7 @@ namespace Xbim.Ifc4x3.MeasureResource
 			}
 		}
 	//## Custom code
-		public string FullName => Currency;
+		public string FullName => this.FullEnglishName();
 	//##
 	}
 }
