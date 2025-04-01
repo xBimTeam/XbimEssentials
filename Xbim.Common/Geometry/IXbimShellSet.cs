@@ -20,5 +20,10 @@ namespace Xbim.Common.Geometry
         /// </summary>
         /// <param name="tolerance"></param>
         void Union(double tolerance);
+
+        /// <summary>
+        /// Returns the partial volume of the set which is closed and valid.
+        /// </summary>
+        double VolumeValid { get; }
     }
 }
