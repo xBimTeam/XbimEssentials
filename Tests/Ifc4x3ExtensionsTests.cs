@@ -285,6 +285,7 @@ namespace Xbim.Essentials.Tests
                 u.Currency = tla;
             });
 
+            currency.FullName.Should().Be(expectedName);
             currency.Symbol().Should().Be(expectedSymbol);
             currency.FullEnglishName().Should().Be(expectedName);
             currency.FullNativeName().Should().Be(nativeName);
