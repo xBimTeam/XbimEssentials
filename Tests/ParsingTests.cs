@@ -537,7 +537,20 @@ namespace Xbim.Essentials.Tests
                 }
                 store.SaveAs("esent4.ifc");
                 store.Close();
+
             }
+            using (var store = IfcStore.Create(credentials, XbimSchemaVersion.Ifc4x3, XbimStoreType.EsentDatabase))
+            {
+                using (var txn = store.BeginTransaction())
+                {
+                    var door = store.Instances.New<Ifc4x3.SharedBldgElements.IfcDoor>();
+                    door.Name = "Door 1";
+                    txn.Commit();
+                }
+                store.SaveAs("esent4x3.ifc");
+                store.Close();
+            }
+
 
             using (var store = IfcStore.Create(credentials, XbimSchemaVersion.Ifc2X3, XbimStoreType.InMemoryModel))
             {
@@ -563,15 +576,32 @@ namespace Xbim.Essentials.Tests
                 store.Close();
             }
 
+            using (var store = IfcStore.Create(credentials, XbimSchemaVersion.Ifc4x3, XbimStoreType.InMemoryModel))
+            {
+                using (var txn = store.BeginTransaction())
+                {
+                    var door = store.Instances.New<Ifc4x3.SharedBldgElements.IfcDoor>();
+                    door.Name = "Door 1";
+                    txn.Commit();
+                }
+                store.SaveAs("Memory4x3.ifc");
+                store.Close();
+            }
+
             var modelStore = new HeuristicModelProvider();
             var schemaVersion = modelStore.GetXbimSchemaVersion("Esent2X3.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc2X3);
             schemaVersion = modelStore.GetXbimSchemaVersion("Esent4.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4);
+            schemaVersion = modelStore.GetXbimSchemaVersion("Esent4x3.ifc");
+            Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4x3);
+
             schemaVersion = modelStore.GetXbimSchemaVersion("Memory2X3.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc2X3);
             schemaVersion = modelStore.GetXbimSchemaVersion("Memory4.ifc");
             Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4);
+            schemaVersion = modelStore.GetXbimSchemaVersion("Memory4x3.ifc");
+            Assert.IsTrue(schemaVersion == XbimSchemaVersion.Ifc4x3);
         }
 
 
