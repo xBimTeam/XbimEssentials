@@ -113,7 +113,7 @@ namespace Xbim.Common.Metadata
         private ExpressMetaData(IEntityFactory factory)
         {
             Module = factory.GetType().Module;
-            var schemaNamespace = factory.GetType().Namespace;
+            var schemaNamespace = factory.GetType().Namespace + ".";
             var typesToProcess =
                 Module.GetTypes().Where(
                     t => IsExpressTypeForSchema(t, schemaNamespace)).ToList();
