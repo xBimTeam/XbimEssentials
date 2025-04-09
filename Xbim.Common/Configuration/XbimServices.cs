@@ -15,7 +15,7 @@ namespace Xbim.Common.Configuration
     /// <remarks>the service delays building of the internal service provider when not configured to support 
     /// late configutation of the services.
     /// In this case the service provision is delagated to <see cref="InternalServiceProvider"/></remarks>
-    public class XbimServices
+    public class XbimServices : IDisposable
     {
 
         private XbimServices()
@@ -40,6 +40,7 @@ namespace Xbim.Common.Configuration
 
         static Lazy<XbimServices> lazySingleton = new Lazy<XbimServices>(() => new XbimServices());
         Lazy<IServiceProvider> serviceProviderBuilder;
+        private bool disposedValue;
 
         /// <summary>
         /// The shared instance of all Xbim Services
@@ -140,13 +141,8 @@ namespace Xbim.Common.Configuration
         {
             servicesCollection.Clear();
             isBuilt = false;
-            
-            if (serviceProviderBuilder != null &&
-                serviceProviderBuilder.IsValueCreated && 
-                serviceProviderBuilder.Value is ServiceProvider sp)
-            {
-                sp.Dispose();
-            }
+
+            DisposeServiceProvider();
             //rebuild the Lazy so IServiceProvider is rebuilt next time
             serviceProviderBuilder = new Lazy<IServiceProvider>(() =>
             {
@@ -157,6 +153,39 @@ namespace Xbim.Common.Configuration
             });
         }
 
-        
+        private void DisposeServiceProvider()
+        {
+            if (serviceProviderBuilder != null &&
+                            serviceProviderBuilder.IsValueCreated &&
+                            serviceProviderBuilder.Value is ServiceProvider sp)
+            {
+                sp.Dispose();
+            }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    Rebuild();
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        /// <summary>
+        /// Disposes of the XbimServices and resources held by any <see cref="IServiceProvider"/> in use.
+        /// Note: Not for general usage. This is typically used to reset the singleton DI between tests
+        /// or to ensure orderly release of resources at application close.
+        /// </summary>
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

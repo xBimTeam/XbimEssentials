@@ -83,12 +83,13 @@ namespace Xbim.Ifc4x3.ProductExtension
 		/// <returns></returns>
 		public IEnumerable<IIfcBuildingStorey> BuildingStoreys
 		{
-			get
-			{
-				return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcBuildingStorey>()
-					.OrderBy(s => s.Elevation.HasValue ? s.Elevation.Value : 0f);
-			}
-		}
+            get
+            {
+                var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcBuildingStorey>().ToList();
+                storeys.Sort(CompareStoreysByElevation);
+                return storeys;
+            }
+        }
 		/// <summary>
 		/// Returns the Gross Floor Area, if the element base quantity GrossFloorArea is defined
 		/// </summary>
@@ -140,6 +141,13 @@ namespace Xbim.Ifc4x3.ProductExtension
 			var qSets = IsDefinedBy.SelectMany(r => r.RelatingPropertyDefinition.PropertySetDefinitions).OfType<IIfcElementQuantity>();
 			return qSets.SelectMany(qset => qset.Quantities).OfType<TQType>().FirstOrDefault(q => q.Name == qName);
 		}
-		//##
-	}
+
+        internal static int CompareStoreysByElevation(IfcBuildingStorey x, IfcBuildingStorey y)
+        {
+            double a = x.Elevation ?? 0;
+            double b = y.Elevation ?? 0;
+            return a.CompareTo(b);
+        }
+        //##
+    }
 }
