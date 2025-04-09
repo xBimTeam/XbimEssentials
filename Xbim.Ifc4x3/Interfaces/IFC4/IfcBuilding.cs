@@ -106,20 +106,19 @@ namespace Xbim.Ifc4x3.ProductExtension
 			}
 		}
 
-
-
-		/// <summary>
-		/// Returns the building storeys for this floor  
-		/// </summary>
-		/// <returns></returns>
-		public IEnumerable<IIfcBuildingStorey> BuildingStoreys
-		{
-			get
-			{
-				return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcBuildingStorey>()
-					.OrderBy(s => s.Elevation.HasValue ? s.Elevation.Value : 0f);
-			}
-		}
-		//##
-	}
+        /// <summary>
+        /// Returns the building storeys for this floor  
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<IIfcBuildingStorey> BuildingStoreys
+        {
+            get
+            {
+                var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcBuildingStorey>().ToList();
+                storeys.Sort(IfcBuildingStorey.CompareStoreysByElevation);
+                return storeys;
+            }
+        }
+        //##
+    }
 }

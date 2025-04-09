@@ -233,7 +233,6 @@ namespace Xbim.Essentials.Tests
         [Fact]
         public void Services_Are_Registered_Once_Only()
         {
-            var services = new ServiceCollection();
             int count = 0;
             
             SuT.ConfigureServices(s => 
@@ -269,6 +268,33 @@ namespace Xbim.Essentials.Tests
             var ifcStore = IfcStore.Open(fs2, StorageType.Ifc, XbimModelType.MemoryModel);
             ifcStore.Instances.Should().NotBeEmpty();
         }
+
+        [Fact]
+        public void Services_Can_Be_Disposed()
+        {
+            var logFactory = new LoggerFactory();
+            SuT.ConfigureServices(s =>
+            {
+                s.AddXbimToolkit(c => c.AddLoggerFactory(logFactory));
+            });
+
+            SuT.Dispose();
+
+            SuT = XbimServices.CreateInstanceInternal();
+
+            SuT.ConfigureServices(s =>
+            {
+                var services = s.Count;
+                services.Should().Be(0);
+                s.AddXbimToolkit();
+            });
+
+            var newLogFactory = SuT.ServiceProvider.GetService<ILoggerFactory>();
+
+            newLogFactory.Should().NotBe(logFactory);
+
+        }
+
 
 
         private class DummyModelProvider : IModelProvider
