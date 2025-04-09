@@ -117,7 +117,7 @@ namespace Xbim.Ifc4x3.ProductExtension
 			get
 			{
 				return IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IIfcBuildingStorey>()
-					.OrderBy(s => s.Elevation.HasValue ? s.Elevation.Value : 0f);
+					.OrderBy(s => s.Elevation.HasValue ? (double)s.Elevation.Value : 0f);
 			}
 		}
 		//##
