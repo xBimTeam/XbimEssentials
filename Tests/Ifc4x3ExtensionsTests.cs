@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc;
+using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Memory;
 using Xunit;
 using XbimCommonSchema = Xbim.Ifc4;
@@ -381,6 +382,23 @@ namespace Xbim.Essentials.Tests
             cbt.ConversionFactor.ValueComponent.Value.Should().Be(25.4d);
             cbt.ConversionFactor.UnitComponent.FullName.Should().Be("MILLIMETRE");
 
+        }
+
+        [Fact]
+        public void CanGetBuildingStoreys()
+        {
+            using var model = MemoryModel.OpenRead(@"TestFiles\IFC4x3_ADD2\construction-scheduling-task.ifc");
+            var building = model.Instances.FirstOrDefault<IIfcBuilding>();
+            building.BuildingStoreys.Should().HaveCountGreaterThan(0);
+            
+        }
+
+        [Fact]
+        public void CanGetBuildingSubStoreys()
+        {
+            using var model = MemoryModel.OpenRead(@"TestFiles\IFC4x3_ADD2\construction-scheduling-task.ifc");
+            var storey = model.Instances.FirstOrDefault<IIfcBuildingStorey>();
+            storey.BuildingStoreys.Should().HaveCountGreaterThanOrEqualTo(0);
         }
 
         #region Dispose

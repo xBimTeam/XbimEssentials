@@ -54,15 +54,15 @@ namespace Xbim.Ifc2x3.ProductExtension
             }
         }
 
-
         public IEnumerable<Xbim.Ifc4.Interfaces.IIfcBuildingStorey> BuildingStoreys
         {
             get
             {
-                var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcBuildingStorey>().ToList();         
+                var storeys = IsDecomposedBy.SelectMany(s => s.RelatedObjects).OfType<IfcBuildingStorey>().ToList();
                 storeys.Sort(CompareStoreysByElevation);
                 return storeys;
             }
         }
+
     }
 }
