@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Xbim.Common.Exceptions;
+using Xbim.Common.Step21;
 
 namespace Xbim.Common.Metadata
 {
@@ -56,9 +57,12 @@ namespace Xbim.Common.Metadata
         /// <summary>
         /// Static cache to avoid multiple creation of the structure
         /// </summary>
-        private static readonly ConcurrentDictionary<Module, ExpressMetaData> Cache = new ConcurrentDictionary<Module, ExpressMetaData>();
+        private static readonly ConcurrentDictionary<Module, ExpressMetaData> ModuleCache = new ConcurrentDictionary<Module, ExpressMetaData>();
 
-        private static readonly ConcurrentDictionary<IEntityFactory, ExpressMetaData> FactoryCache = new ConcurrentDictionary<IEntityFactory, ExpressMetaData>();
+        /// <summary>
+        /// Static cache per schema to avoid multiple instances of the metadata
+        /// </summary>
+        private static readonly ConcurrentDictionary<XbimSchemaVersion, ExpressMetaData> SchemaCache = new ConcurrentDictionary<XbimSchemaVersion, ExpressMetaData>();
 
         /// <summary>
         /// This method creates metadata model for a specified module based on reflection and custom attributes.
@@ -66,13 +70,14 @@ namespace Xbim.Common.Metadata
         /// static cache. However, for a performance reasons try to minimize this and rather keep a single instance
         /// reference for your code.
         /// </summary>
-        /// <remarks>Prefer <c>GetMetadata(IEntityFactory)</c> overload which permits more control over schema enumeration</remarks>
+        /// <remarks>Prefer <c>GetMetadata(IEntityFactory)</c> overload which permits more control over schema enumeration when assembly 
+        /// hosts multiple schemas</remarks>
         /// <param name="module">Assembly module which contains single schema model</param>
         /// <returns>Meta data structure for the schema defined within the module</returns>
         [Obsolete("Prefer ExpressMetaData GetMetadata(IEntityFactory) overload")]
         public static ExpressMetaData GetMetadata(Module module)
         {
-            return Cache.GetOrAdd(module, m => new ExpressMetaData(m));
+            return ModuleCache.GetOrAdd(module, m => new ExpressMetaData(m));
         }
 
         /// <summary>
@@ -91,7 +96,7 @@ namespace Xbim.Common.Metadata
                 throw new ArgumentNullException(nameof(entityFactory));
             }
 
-            return FactoryCache.GetOrAdd(entityFactory, f => new ExpressMetaData(f));
+            return SchemaCache.GetOrAdd(entityFactory.SchemaVersion, f => new ExpressMetaData(entityFactory));
         }
 
         private ExpressMetaData(Module module)
