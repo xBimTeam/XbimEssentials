@@ -64,6 +64,34 @@ namespace Xbim.Essentials.Tests
         }
 
         [Fact]
+        public void MetaDataIsSharedAcrossModels()
+        {
+            var ifc2x3a = new Xbim.Ifc2x3.EntityFactoryIfc2x3();
+            var ifc2x3b = new Xbim.Ifc2x3.EntityFactoryIfc2x3();
+
+            var metaDataFirst = ExpressMetaData.GetMetadata(ifc2x3a);
+            var metaDataSecond = ExpressMetaData.GetMetadata(ifc2x3b);
+
+            var expected = metaDataFirst.ExpressType("IFCDOOR");
+
+            metaDataSecond.ExpressType("IFCDOOR").Should().Be(expected, "same metadata expected");
+        }
+
+        [Fact]
+        public void MetaDataIsNotSharedAcrossSchemas()
+        {
+            var ifc2x3 = new Xbim.Ifc2x3.EntityFactoryIfc2x3();
+            var ifc4 = new Xbim.Ifc4.EntityFactoryIfc4();
+
+            var metaData2x3 = ExpressMetaData.GetMetadata(ifc2x3);
+            var metaData4 = ExpressMetaData.GetMetadata(ifc4);
+
+            var ifc2x3Type = metaData2x3.ExpressType("IFCDOOR");
+
+            metaData4.ExpressType("IFCDOOR").Should().NotBe(ifc2x3Type, "different metadata expected");
+        }
+
+        [Fact]
         public void InvalidExpressTypeHandled()
         {
             var expressType = new ExpressType(typeof(Ifc2x3.ActorResource.IfcActorRole));

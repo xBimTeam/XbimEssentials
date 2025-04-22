@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Xbim.Ifc4;
 using Xbim.Ifc4.Interfaces;
@@ -9,13 +10,19 @@ using Xbim.Ifc4.MeasureResource;
 using Xbim.Ifc4.PropertyResource;
 using Xbim.IO.Memory;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Xbim.Essentials.NetCore.Tests
 {
    
     public class GithubTests
     {
-       
+        private readonly ITestOutputHelper outputHelper;
+
+        public GithubTests(ITestOutputHelper outputHelper)
+        {
+            this.outputHelper = outputHelper;
+        }
 
         [Fact]
         public void Issue_603_StyledItem_Ifc2x3Native()
@@ -120,6 +127,49 @@ namespace Xbim.Essentials.NetCore.Tests
             firstStyle.Should().BeAssignableTo<IIfcPresentationStyleAssignment>();
             firstStyle.Styles.Should().HaveCount(1);
             firstStyle.Styles.First().Should().BeAssignableTo<IIfcSurfaceStyle>();
+        }
+
+        [Fact]
+        public void Issue_620_StoreReleasesResources()
+        {
+            var filePath = @"TestFiles/Samplehouse4.ifc";
+            var baseMemory = Process.GetCurrentProcess().PrivateMemorySize64;
+
+            var warmupBytes = LoadModel(filePath);
+            var memoryDelta = warmupBytes - baseMemory;
+            outputHelper.WriteLine("Warmup: {0:N0} => {1:N0} bytes = {2:N0} Δ bytes", baseMemory, warmupBytes, memoryDelta);
+            
+            var sw = new Stopwatch();
+            sw.Start();
+            var baselineMs = sw.ElapsedMilliseconds;
+            baseMemory = Process.GetCurrentProcess().PrivateMemorySize64;
+            for (int i =0; i < 25; i++)
+            {
+                var currentMemory = LoadModel(filePath);
+                memoryDelta = currentMemory - baseMemory;
+                var timeMs = sw.ElapsedMilliseconds;
+
+                outputHelper.WriteLine("{0}: {1:N0} Δ bytes => {2:N0} in {3:N0}ms", i, memoryDelta, currentMemory, (timeMs - baselineMs));
+                baselineMs = sw.ElapsedMilliseconds;
+            }
+            memoryDelta.Should().BeLessThan(10_000_000);
+        }
+
+        private long LoadModel(string filePath)
+        {
+            GC.Collect();
+            var baselineBytes = Process.GetCurrentProcess().PrivateMemorySize64;// Environment.WorkingSet;
+            using (var model = MemoryModel.OpenRead(filePath))
+            {
+                var entities = model.Instances.OfType<IIfcSlab>().ToList();
+                // Simulated serialisation
+                var serialised = entities.Select(e => e.ToString()).ToList();
+            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            var latestMemory = Process.GetCurrentProcess().PrivateMemorySize64;
+            //outputHelper.WriteLine("  {0}: {1}", baselineBytes, latestMemory);
+            return latestMemory;
         }
 
         private IIfcStyledItem CreateStyledItemViaInterfaces(MemoryModel model, bool useStyleAssignment = false)

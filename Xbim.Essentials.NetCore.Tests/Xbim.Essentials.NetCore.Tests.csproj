@@ -23,4 +23,10 @@
     <ProjectReference Include="..\Xbim.Ifc\Xbim.Ifc.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestFiles\SampleHouse4.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
