@@ -384,6 +384,71 @@ namespace Xbim.Essentials.NetCore.Tests
             results.Should().HaveCount(1).And.Satisfy(v => v.IssueSource == "OwnerHistory");
         }
 
+        [Fact]
+        public void Can_AddPropertySet()
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel()
+                .CreateEntities(c => c.Wall().WithPropertySet("Pset_WallCommon"));
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var pset = wall.GetPropertySet("Pset_WallCommon");
+
+            pset.Should().NotBeNull();
+            pset.HasProperties.Should().BeEmpty();
+
+        }
+
+        [Fact]
+        public void Can_SetTextProperties()
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel()
+                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon", "Reference", new Ifc4.MeasureResource.IfcText("Test")));
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var prop = wall.GetPropertySingleValue("Pset_WallCommon", "Reference");
+
+            prop.Should().NotBeNull();
+            prop.NominalValue.Value.Should().Be("Test");   
+        }
+
+        [Fact]
+        public void Can_SetBooleanProperties()
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel()
+                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon", "IsExternal", new Ifc4.MeasureResource.IfcBoolean(true)));
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var prop = wall.GetPropertySingleValue("Pset_WallCommon", "IsExternal");
+
+            prop.Should().NotBeNull();
+            prop.NominalValue.Value.Should().Be(true);
+        }
+
+        [Fact]
+        public void Can_SetLengthProperties()
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel()
+                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon","NominalHeight", new Ifc4.MeasureResource.IfcLengthMeasure(1.23d)));
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var prop = wall.GetPropertySingleValue("Pset_WallCommon", "NominalHeight");
+
+            prop.Should().NotBeNull();
+            prop.NominalValue.Value.Should().Be(1.23d);
+        }
+
         private static XbimEditorCredentials GetEditor()
         {
             var editor = new XbimEditorCredentials

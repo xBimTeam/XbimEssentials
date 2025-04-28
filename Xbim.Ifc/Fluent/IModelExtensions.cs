@@ -2,6 +2,7 @@
 using Xbim.Common;
 using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc;
 
 namespace Xbim.Ifc.Fluent
 {
@@ -117,6 +118,43 @@ namespace Xbim.Ifc.Fluent
             SetPredefinedTypeValue(entity, init);   // Always set because non-null enums have a default value.
             return entity;
         }
+
+        /// <summary>
+        /// Creates a PropertySet associated with this entity, if not already existing
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="propertySet"></param>
+        /// <returns></returns>
+        public static T WithPropertySet<T>(this T entity, string propertySet) where T : IIfcObject
+        {
+            var pset = entity.GetPropertySet(propertySet);
+            if(pset == null)
+            {
+                pset = entity.Model.Build().PropertySet(o => o.Name = propertySet);
+            }
+            entity.AddPropertySet(pset);
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Creates a PropertySingleValue for an entity in the given PropertySet with the supplied Name and Value
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="propertySet"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="ifcValue"></param>
+        /// <returns></returns>
+        public static T WithPropertySingle<T>(this T entity, string propertySet, string propertyName, IIfcValue ifcValue) where T : IIfcObject
+        {
+            var type = ifcValue.GetType();
+            entity.SetPropertySingleValue(propertySet, propertyName, type).NominalValue = ifcValue;
+
+            return entity;
+        }
+
 
         private static void SetPredefinedTypeValue<T>(T entity, EntityDefaults init) where T : IIfcRoot
         {
