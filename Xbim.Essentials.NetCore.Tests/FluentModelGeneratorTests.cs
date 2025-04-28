@@ -22,6 +22,8 @@ namespace Xbim.Essentials.NetCore.Tests
         // Stack of files to clean up in Dispose
         public Stack<string> files = new();
 
+        static readonly Guid BaseGuid = new Guid("5F7546A1-00E8-44E9-A2A9-0FD1EB87EFE9");
+
         public FluentModelGeneratorTests()
         {
             NewTestFile();
@@ -74,6 +76,9 @@ namespace Xbim.Essentials.NetCore.Tests
 
             NewTestFile("wall.ifc");
             builder.AssignEditor(editor)
+                .UseStableGuids(BaseGuid)
+                .UseStableDateTime(new DateTime(2025, 1, 1));
+            builder
                 .CreateModel(XbimSchemaVersion.Ifc2X3)
                 .SetHeaders()
                 .SetOwnerHistory()
@@ -112,6 +117,52 @@ namespace Xbim.Essentials.NetCore.Tests
             var door = file.Model.Instances.OfType<IIfcDoor>().First();
 
             door.GlobalId.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Can_CreateStable_Guids()
+        {
+            var builder = new FluentModelBuilder();
+
+            Guid baseGuid = new Guid("05BC61EB-C2F1-47C5-93CE-BF931D7A8301");
+
+            var file = builder
+                .UseStableGuids(baseGuid)
+                .CreateModel()
+                .CreateEntities(c =>
+                {
+                    c.Door();
+                    c.Window();
+                    c.Wall();
+                });
+
+            var door = file.Model.Instances.OfType<IIfcDoor>().First();
+            var window = file.Model.Instances.OfType<IIfcWindow>().First();
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            
+            door.GlobalId.ToString().Should().Be(  "05l67hml57nG0000000001");
+            window.GlobalId.ToString().Should().Be("05l67hml57nG0000000002");
+            wall.GlobalId.ToString().Should().Be("05l67hml57nG0000000003");
+        }
+
+        [Fact]
+        public void Can_CreateStable_DateStamps()
+        {
+            var builder = new FluentModelBuilder();
+            var baseDate = new DateTime(2025, 04, 01);
+
+            var file = builder
+                .UseStableDateTime(baseDate)
+                .CreateModel()
+                .SetHeaders()
+                .SetOwnerHistory(GetEditor())
+                ;
+
+            file.Model.Header.TimeStamp.Should().Be("2025-04-01T00:00:00");
+            var owner = file.Model.Instances.OfType<IIfcOwnerHistory>().First();
+            owner.LastModifiedDate.Value.ToDateTime().Should().Be(baseDate);
+            owner.CreationDate.ToDateTime().Should().Be(baseDate);
         }
 
         [InlineData(XbimSchemaVersion.Ifc2X3)]
