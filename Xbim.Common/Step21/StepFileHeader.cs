@@ -111,6 +111,8 @@ namespace Xbim.Common.Step21
             _implementationLevel = binaryReader.ReadString();
         }
 
+
+        //<inheritDoc/>
         public IList<string> Description
         {
             get
@@ -126,6 +128,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public string ImplementationLevel
         {
             get
@@ -139,6 +142,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public int EntityCount
         {
             get { return _entityCount; }
@@ -292,6 +296,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public string Name
         {
             get
@@ -305,6 +310,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public string TimeStamp
         {
             get
@@ -318,6 +324,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public IList<string> AuthorName
         {
             get
@@ -333,6 +340,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public IList<string> Organization
         {
             get
@@ -348,6 +356,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public string PreprocessorVersion
         {
             get
@@ -361,6 +370,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public string OriginatingSystem
         {
             get
@@ -374,6 +384,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         public string AuthorizationName
         {
             get
@@ -386,7 +397,7 @@ namespace Xbim.Common.Step21
                 OnPropertyChanged("AuthorizationName");
             }
         }
-
+        //<inheritDoc/>
         public IList<string> AuthorizationMailingAddress
         {
             get
@@ -489,6 +500,7 @@ namespace Xbim.Common.Step21
             }
         }
 
+        //<inheritDoc/>
         IList<string> IStepFileSchema.Schemas
         {
             get
@@ -537,12 +549,15 @@ namespace Xbim.Common.Step21
         {
             if (mode == HeaderCreationMode.InitWithXbimDefaults)
             {
-                var assembly = model.GetType().GetTypeInfo().Assembly; //get the assembly that has created the model
+                var xbimAssembly = model.GetType().GetTypeInfo().Assembly;
+                var appAssembly = Assembly.GetEntryAssembly() ?? xbimAssembly; //get the assembly that has created the model
+                var xbimInfo = new XbimAssemblyInfo(xbimAssembly);
+                var appInfo = new XbimAssemblyInfo(appAssembly);
                 FileDescription = new StepFileDescription("2;1");
-                FileName = new StepFileName(DateTime.Now)
+                FileName = new StepFileName(DateTime.UtcNow)
                 {
-                    PreprocessorVersion =$"Processor version {assembly.GetName().Version}",
-                    OriginatingSystem = assembly.GetName().Name
+                    PreprocessorVersion = $"xbim Toolkit v{xbimInfo.FileVersion}",
+                    OriginatingSystem = $"{appAssembly.GetName().Name} v{appInfo.FileVersion}"
                 };
                 FileSchema = new StepFileSchema();
             }
