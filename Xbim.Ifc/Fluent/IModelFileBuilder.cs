@@ -1,4 +1,5 @@
-﻿using Xbim.Common;
+﻿using System;
+using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.Fluent
@@ -34,5 +35,10 @@ namespace Xbim.Ifc.Fluent
         /// </summary>
         /// <param name="name"></param>
         void NewTransaction(string name = "");
+
+        /// <summary>
+        /// Provides a date for IFC Header and OwnerHistory timestamps
+        /// </summary>
+        DateTime EffectiveDateTime { get; }
     }
 }

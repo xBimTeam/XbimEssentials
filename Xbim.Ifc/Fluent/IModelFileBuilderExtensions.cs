@@ -33,8 +33,8 @@ namespace Xbim.Ifc.Fluent
                 o.State = IfcStateEnum.READWRITE;
                 o.OwningApplication = app;
                 o.OwningUser = user;
-                o.CreationDate = DateTime.UtcNow;
-                o.LastModifiedDate = DateTime.UtcNow;
+                o.CreationDate = builder.EffectiveDateTime;
+                o.LastModifiedDate = builder.EffectiveDateTime;
                 return o;
             };
 
@@ -59,6 +59,7 @@ namespace Xbim.Ifc.Fluent
             stepFileName ??= f =>
             {
                 f.OriginatingSystem = $"{builder.Editor?.ApplicationFullName ?? "xbim Toolkit"} {builder.Editor?.ApplicationVersion}";
+                f.TimeStamp = string.Format(builder.EffectiveDateTime.ToString("s")); 
                 if (builder.Editor != null)
                 {
                     f.AuthorName.Add($"{builder.Editor.EditorsGivenName} {builder.Editor.EditorsFamilyName}");
