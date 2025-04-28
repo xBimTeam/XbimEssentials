@@ -9,7 +9,8 @@ namespace Xbim.Ifc
     public static class IIfcObjectExtensions
     {
         /// <summary>
-        /// Adds an element type to the object if it doesn't already have one, return the new or existing relationship that holds the type and this element. If there is a relationship for this type but this element is not related it adds it to the exosting relationship
+        /// Adds an element type to the object if it doesn't already have one, return the new or existing relationship that holds the type and this element. 
+        /// If there is a relationship for this type but this element is not related it adds it to the existing relationship
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="theType"></param>
