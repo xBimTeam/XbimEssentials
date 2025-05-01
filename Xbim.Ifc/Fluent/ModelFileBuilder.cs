@@ -1,5 +1,6 @@
 ﻿using System;
 using Xbim.Common;
+using Xbim.Ifc.Fluent.Internal;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.Fluent
@@ -8,7 +9,7 @@ namespace Xbim.Ifc.Fluent
     /// <summary>
     /// Builds a Model, ensuring new entities have OwnerHistory and defaults applied if specified
     /// </summary>
-    public class ModelFileBuilder : IModelFileBuilder, IDisposable
+    internal class ModelFileBuilder : IModelFileBuilder, IDisposable
     {
         // <inheritDocs>
         public IModel Model { get; }
@@ -17,11 +18,16 @@ namespace Xbim.Ifc.Fluent
         // <inheritDocs>
         public ITransaction Transaction { get; private set; }
         // <inheritDocs>
-        public XbimEditorCredentials? Editor { get; }
+        public XbimEditorCredentials? Editor { get => parent.Editor; }
         // <inheritDocs>
         public IIfcOwnerHistory? OwnerHistory { get; set; }
+        // <inheritDocs>
+        public DateTime EffectiveDateTime { get => parent.DateTimeGenerator.Generate(); }
+        private IGuidGenerator GuidGenerator { get => parent.GuidGenerator; }
+        
 
         private bool disposedValue;
+        private readonly FluentModelBuilder parent;
 
         /// <summary>
         /// Constructs a new <see cref="ModelFileBuilder"/>
@@ -30,9 +36,9 @@ namespace Xbim.Ifc.Fluent
         /// <param name="model"></param>
         public ModelFileBuilder(FluentModelBuilder parent, IModel model)
         {
+            this.parent = parent;
             Model = model;
             Factory = new EntityCreator(model);
-            Editor = parent.Editor;
             Transaction = Model.BeginTransaction("Fluent Builder");
 
             model.EntityNew += EntityAdded;
@@ -57,7 +63,7 @@ namespace Xbim.Ifc.Fluent
         {
             if (entity is IIfcRoot root)
             {
-                root.WithDefaults(t => t with { GlobalId = Guid.NewGuid(), OwnerHistory = OwnerHistory });
+                root.WithDefaults(t => t with { GlobalId = GuidGenerator.GenerateForEntity(root), OwnerHistory = OwnerHistory });
             }
         }
 

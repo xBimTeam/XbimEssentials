@@ -2,7 +2,6 @@
 using Xbim.Common;
 using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
-using Xbim.Ifc;
 
 namespace Xbim.Ifc.Fluent
 {
@@ -154,6 +153,89 @@ namespace Xbim.Ifc.Fluent
 
             return entity;
         }
+
+        /// <summary>
+        /// Creates a PropertyEnumeratedValue for an entity in the given PropertySet with the supplied Name and Values
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="propertySet"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="ifcValues"></param>
+        /// <returns></returns>
+        public static T WithEnumeratedProperty<T, V>(this T entity, string propertySet, string propertyName, V[] ifcValues) 
+            where T : IIfcObject 
+            where V : IIfcValue
+        {
+    
+            var prop = entity.SetPropertyEnumeratedValue(propertySet, propertyName, ifcValues);
+           
+            return entity;
+        }
+
+        /// <summary>
+        /// Creates a PropertyEnumeratedValue for an entity in the given PropertySet with the supplied Name and Value
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="propertySet"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="lowerValue"></param>
+        /// <param name="upperValue"></param>
+        /// <param name="setPointVaue"></param>
+        /// <returns></returns>
+        public static T WithBoundedProperty<T, V>(this T entity, string propertySet, string propertyName, V lowerValue, V upperValue, V? setPointVaue)
+            where T : IIfcObject
+            where V : IIfcValue
+        {
+            entity.SetPropertyBoundedValue(propertySet, propertyName, lowerValue, upperValue, setPointVaue);
+
+            return entity;
+        }
+
+
+        /// <summary>
+        /// Creates a PropertyListValue for an entity in the given PropertySet with the supplied Name and Values
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="propertySet"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="ifcValues"></param>
+        /// <returns></returns>
+        public static T WithListValueProperty<T, V>(this T entity, string propertySet, string propertyName, V[] ifcValues)
+            where T : IIfcObject
+            where V : IIfcValue
+        {
+
+            var prop = entity.SetPropertyListValue(propertySet, propertyName, ifcValues);
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Creates Physical Simple Quantity for an entity in the given PropertySet with the supplied Name, Value and Unit
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="propertySet"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="value"></param>
+        /// <param name="quantityType"></param>
+        /// <param name="unit"></param>
+        /// <returns></returns>
+        public static T WithQuantity<T>(this T entity, string propertySet, string propertyName, double value, XbimQuantityTypeEnum quantityType, IIfcNamedUnit unit)
+            where T : IIfcObject
+        {
+
+            entity.SetElementPhysicalSimpleQuantity(propertySet, propertyName, value, quantityType, unit);
+
+            return entity;
+        }
+
 
 
         private static void SetPredefinedTypeValue<T>(T entity, EntityDefaults init) where T : IIfcRoot
