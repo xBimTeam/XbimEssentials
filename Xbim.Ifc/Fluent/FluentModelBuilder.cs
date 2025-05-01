@@ -22,8 +22,8 @@ namespace Xbim.Ifc.Fluent
     ///   .SetOwnerHistory()
     ///   .CreateEntities(cfg =>
     ///   {
-    ///      var type = cfg.Create().WallType();
-    ///      cfg.Create().Wall(o => o.WithAttributes(t => t with { PredefinedType = "XYZ" }))
+    ///      var type = cfg.WallType();
+    ///      cfg.Wall(o => o.WithAttributes(t => t with { PredefinedType = "XYZ" }))
     ///        .AddDefiningType(type);
     ///   })
     ///   .SaveAsIfc("wall-with-type.ifc");

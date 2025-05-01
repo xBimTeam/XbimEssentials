@@ -84,8 +84,8 @@ namespace Xbim.Essentials.NetCore.Tests
                 .SetOwnerHistory()
                 .CreateEntities(cfg =>
                 {
-                    var type = cfg.WallType(o => o.WithDefaults(t => t with { Name = "Block"}));
-                    cfg.Wall(o => o.WithDefaults(t => t with { PredefinedType = "XYZ" }))
+                    var type = cfg.WallType(o => o.WithDefaults(t => t with { Name = "n/a"}));
+                    cfg.Wall(o => o.WithDefaults(t => t with { PredefinedType = "X" }))
                         .AddDefiningType(type);
                 })
                 .AssertValid()
@@ -452,13 +452,18 @@ namespace Xbim.Essentials.NetCore.Tests
 
         }
 
-        [Fact]
-        public void Can_SetTextProperties()
+        [InlineData(XbimSchemaVersion.Ifc2X3)]
+        [InlineData(XbimSchemaVersion.Ifc4)]
+        [InlineData(XbimSchemaVersion.Ifc4x3)]
+        [Theory]
+        public void Can_SetSingleTextProperties_Across_Schemas(XbimSchemaVersion schema)
         {
             var builder = new FluentModelBuilder();
 
-            var file = builder.CreateModel()
-                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon", "Reference", new Ifc4.MeasureResource.IfcText("Test")));
+            var file = builder.CreateModel(schema)
+                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon", "Reference", 
+                new Ifc4.MeasureResource.IfcText("Test")    // Note IFC4 IfcValues are translated to specific schema via Ifc4 Interfaces
+                ));
 
             var wall = file.Model.Instances.OfType<IIfcWall>().First();
 
@@ -466,6 +471,111 @@ namespace Xbim.Essentials.NetCore.Tests
 
             prop.Should().NotBeNull();
             prop.NominalValue.Value.Should().Be("Test");   
+        }
+
+        [InlineData(XbimSchemaVersion.Ifc2X3)]
+        [InlineData(XbimSchemaVersion.Ifc4)]
+        [InlineData(XbimSchemaVersion.Ifc4x3)]
+        [Theory]
+        public void Can_SetEnumerated_TextProperties_Across_Schemas(XbimSchemaVersion schema)
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel(schema)
+                .CreateEntities(c => c.Wall().WithEnumeratedProperty("Pset_WallCommon", "Risk", [
+                    new Ifc4.MeasureResource.IfcText("Low"),    // Note IFC4 IfcValues are translated to specific schema via Ifc4 Interfaces
+                    new Ifc4.MeasureResource.IfcText("Medium"),
+                    new Ifc4.MeasureResource.IfcText("High")
+                ]
+                ));
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var prop = wall.GetPropertyEnumeratedValue("Pset_WallCommon", "Risk");
+
+            prop.Should().NotBeNull();
+            prop.EnumerationValues.Select(v => v.ToString()).Should().Contain("Medium");
+        }
+
+
+        [InlineData(XbimSchemaVersion.Ifc2X3)]
+        [InlineData(XbimSchemaVersion.Ifc4)]
+        [InlineData(XbimSchemaVersion.Ifc4x3)]
+        [Theory]
+        public void Can_Set_Bounded_Properties_Across_Schemas(XbimSchemaVersion schema)
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel(schema)
+                .CreateEntities(c => c.Wall().WithBoundedProperty("Pset_WallCommon", "Height", 
+                    new Ifc4.MeasureResource.IfcReal(0d),    
+                    new Ifc4.MeasureResource.IfcReal(100d),
+                    new Ifc4.MeasureResource.IfcReal(50d)
+                
+                ));
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var prop = wall.GetPropertyBoundedValue("Pset_WallCommon", "Height");
+
+            prop.Should().NotBeNull();
+            prop.LowerBoundValue.Value.Should().Be(0d);
+            prop.UpperBoundValue.Value.Should().Be(100d);
+            prop.SetPointValue.Value.Should().Be(50d);
+        }
+
+        [InlineData(XbimSchemaVersion.Ifc2X3)]
+        [InlineData(XbimSchemaVersion.Ifc4)]
+        [InlineData(XbimSchemaVersion.Ifc4x3)]
+        [Theory]
+        public void Can_SetListProperties_Across_Schemas(XbimSchemaVersion schema)
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel(schema)
+                .CreateEntities(c => c.Wall().WithListValueProperty("Pset_WallCommon", "Layers", [
+                    new Ifc4.MeasureResource.IfcText("Block"),
+                    new Ifc4.MeasureResource.IfcText("Insulation"),
+                    new Ifc4.MeasureResource.IfcText("Plasterboard")
+                    ]
+                ));
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var prop = wall.GetPropertyListValue("Pset_WallCommon", "Layers");
+
+            prop.Should().NotBeNull();
+            prop.ListValues.Select(v => v.ToString()).Should().BeEquivalentTo(["Block", "Insulation", "Plasterboard"]);
+        }
+
+        // TODO: TableProps
+
+        [InlineData(XbimSchemaVersion.Ifc2X3)]
+        [InlineData(XbimSchemaVersion.Ifc4)]
+        [InlineData(XbimSchemaVersion.Ifc4x3)]
+        [Theory]
+        public void Can_SetQuantities_Across_Schemas(XbimSchemaVersion schema)
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel(schema)
+                .CreateEntities(c =>
+                {
+                    var unit = c.SIUnit(u =>
+                    {
+                        u.Name = IfcSIUnitName.METRE;
+                        u.Prefix = IfcSIPrefix.MILLI;
+                    });
+                    c.Wall().WithQuantity("BaseQuantities", "Height", 1200.5d, XbimQuantityTypeEnum.Length, unit);
+                });
+
+            var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var quant = wall.GetQuantity<IIfcQuantityLength>("BaseQuantities", "Height");
+
+            quant.Should().NotBeNull();
+            quant.LengthValue.Value.Should().Be(1200.5d);
+            quant.Unit.FullName.Should().Be("MILLIMETRE");
         }
 
         [Fact]

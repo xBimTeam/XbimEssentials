@@ -112,7 +112,7 @@ namespace Xbim.Ifc.Fluent
         /// Initiates building of the models entities using provided Factory 
         /// </summary>
         /// <param name="fileBuilder"></param>
-        /// <param name="config">Action to build the entities, using <see cref="IModelFileBuilder.Factory"/></param>
+        /// <param name="config">Action to build the entities, using <see cref="IModelFileBuilder.Factory"/> and the parent <see cref="IModelInstanceBuilder"/></param>
         /// <returns>The <see cref="IModelFileBuilder"/></returns>
         public static IModelFileBuilder CreateEntities(this IModelFileBuilder fileBuilder, Action<EntityCreator, IModelInstanceBuilder> config)
         {

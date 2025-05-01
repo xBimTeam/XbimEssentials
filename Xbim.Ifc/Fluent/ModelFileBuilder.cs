@@ -9,7 +9,7 @@ namespace Xbim.Ifc.Fluent
     /// <summary>
     /// Builds a Model, ensuring new entities have OwnerHistory and defaults applied if specified
     /// </summary>
-    public class ModelFileBuilder : IModelFileBuilder, IDisposable
+    internal class ModelFileBuilder : IModelFileBuilder, IDisposable
     {
         // <inheritDocs>
         public IModel Model { get; }

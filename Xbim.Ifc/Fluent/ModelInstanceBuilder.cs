@@ -3,7 +3,7 @@ using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.Fluent
 {
-    public class ModelInstanceBuilder : IModelInstanceBuilder
+    internal class ModelInstanceBuilder : IModelInstanceBuilder
     {
         public IModel Model { get => FileBuilder.Model; }
 
