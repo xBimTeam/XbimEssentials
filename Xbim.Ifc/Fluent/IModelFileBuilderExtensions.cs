@@ -46,6 +46,25 @@ namespace Xbim.Ifc.Fluent
         }
 
         /// <summary>
+        /// Returns a valid default value depending on the schema version, 
+        /// or a generic one if unsure.
+        /// 
+        /// The values are chosen from the documentation available at 
+        /// https://github.com/buildingSMART/IFC4.x-IF/tree/header-policy/docs/IFC-file-header#description
+        /// </summary>
+        /// <returns></returns>
+        private static string GetDefaultViewDefinitionString(IModelFileBuilder builder)
+        {
+            return builder.Model.SchemaVersion switch
+            {
+                XbimSchemaVersion.Ifc2X3 => "ViewDefinition [CoordinationView_V2.0]",
+                XbimSchemaVersion.Ifc4 => "ViewDefinition [ReferenceView_V1.2]",
+                XbimSchemaVersion.Ifc4x3 => "ViewDefinition [ReferenceView]",
+                _ => "ViewDefinition [CoordinationView]",
+            };
+        }
+
+        /// <summary>
         /// Sets the IFC STEP headers using the default <see cref="FluentModelBuilder.Editor"/> parameters for Author, Organisation and OrignatingSystem
         /// when supplied
         /// </summary>
@@ -55,11 +74,12 @@ namespace Xbim.Ifc.Fluent
         /// <returns></returns>
         public static IModelFileBuilder SetHeaders(this IModelFileBuilder builder, Action<IStepFileName>? stepFileName = null, Action<IStepFileDescription>? fileDescription = null)
         {
-            fileDescription ??= fd => fd.Description.Add("ViewDefinition [CoordinationView]");
+            var def = GetDefaultViewDefinitionString(builder);
+            fileDescription ??= fd => fd.Description.Add(def);
             stepFileName ??= f =>
             {
                 f.OriginatingSystem = $"{builder.Editor?.ApplicationFullName ?? "xbim Toolkit"} {builder.Editor?.ApplicationVersion}";
-                f.TimeStamp = string.Format(builder.EffectiveDateTime.ToString("s")); 
+                f.TimeStamp = string.Format(builder.EffectiveDateTime.ToString("s"));
                 if (builder.Editor != null)
                 {
                     f.AuthorName.Add($"{builder.Editor.EditorsGivenName} {builder.Editor.EditorsFamilyName}");

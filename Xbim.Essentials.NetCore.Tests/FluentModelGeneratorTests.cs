@@ -14,7 +14,7 @@ using Xunit;
 
 namespace Xbim.Essentials.NetCore.Tests
 {
-    public class FluentModelGeneratorTests :IDisposable
+    public class FluentModelGeneratorTests : IDisposable
     {
         // Latest file
         public string IfcFile { get => files.Peek(); }
@@ -43,7 +43,7 @@ namespace Xbim.Essentials.NetCore.Tests
             using var trans = model.BeginTransaction("Create");
 
             model.AddHeaders(IfcFile);
-      
+
             var type = model.Build().WallType().WithDefaults();
 
             var instance = model.Build().Wall().WithDefaults(t => t with { PredefinedType = "X" });
@@ -84,7 +84,7 @@ namespace Xbim.Essentials.NetCore.Tests
                 .SetOwnerHistory()
                 .CreateEntities(cfg =>
                 {
-                    var type = cfg.WallType(o => o.WithDefaults(t => t with { Name = "n/a"}));
+                    var type = cfg.WallType(o => o.WithDefaults(t => t with { Name = "n/a" }));
                     cfg.Wall(o => o.WithDefaults(t => t with { PredefinedType = "X" }))
                         .AddDefiningType(type);
                 })
@@ -97,7 +97,7 @@ namespace Xbim.Essentials.NetCore.Tests
                 .SetOwnerHistory()
                 .CreateEntities((factory, ctx) =>
                 {
-                    var type = factory.SensorType(o => o.WithDefaults(t => t with { Name = "Light Sensor", PredefinedType= "LIGHTSENSOR" }));
+                    var type = factory.SensorType(o => o.WithDefaults(t => t with { Name = "Light Sensor", PredefinedType = "LIGHTSENSOR" }));
                     // using context for more precise control. (Builder doesn't support IFC4+ types)
                     ctx.Instances.New<Ifc4.BuildingControlsDomain.IfcSensor>()
                         .AddDefiningType(type);
@@ -140,8 +140,8 @@ namespace Xbim.Essentials.NetCore.Tests
             var window = file.Model.Instances.OfType<IIfcWindow>().First();
             var wall = file.Model.Instances.OfType<IIfcWall>().First();
 
-            
-            door.GlobalId.ToString().Should().Be(  "05l67hml57nG0000000001");
+
+            door.GlobalId.ToString().Should().Be("05l67hml57nG0000000001");
             window.GlobalId.ToString().Should().Be("05l67hml57nG0000000002");
             wall.GlobalId.ToString().Should().Be("05l67hml57nG0000000003");
         }
@@ -184,9 +184,9 @@ namespace Xbim.Essentials.NetCore.Tests
         public void Should_AllowAttributes_To_Be_Set()
         {
             var builder = new FluentModelBuilder();
-            
+
             var file = builder.CreateModel()
-                .CreateEntities(c => c.Beam().WithDefaults(a => a with { Name = "A", Description="B" }));
+                .CreateEntities(c => c.Beam().WithDefaults(a => a with { Name = "A", Description = "B" }));
 
             var beam = file.Model.Instances.OfType<IIfcBeam>().First();
 
@@ -359,7 +359,7 @@ namespace Xbim.Essentials.NetCore.Tests
 
             var fileBuilder = builder.CreateModel()
                 .SetOwnerHistory(editor)
-                .CreateEntities(c => c.BeamType().WithDefaults(t => t with { Name = "A"}))
+                .CreateEntities(c => c.BeamType().WithDefaults(t => t with { Name = "A" }))
                 .SaveAsIfc(IfcFile, keepOpen: true);
 
             NewTestFile();
@@ -380,15 +380,17 @@ namespace Xbim.Essentials.NetCore.Tests
 
         }
 
-        [Fact]
-        public void Can_Set_Headers_from_Editor()
+        [Theory]
+        [InlineData(XbimSchemaVersion.Ifc2X3, "ViewDefinition [CoordinationView_V2.0]")]
+        [InlineData(XbimSchemaVersion.Ifc4, "ViewDefinition [ReferenceView_V1.2]")]
+        [InlineData(XbimSchemaVersion.Ifc4x3, "ViewDefinition [ReferenceView]")]
+        public void Can_Set_Headers_from_Editor(XbimSchemaVersion version, string expectedDefaultDescription)
         {
             var builder = new FluentModelBuilder();
             var editor = GetEditor();
-
             builder
                 .AssignEditor(editor)
-                .CreateModel()
+                .CreateModel(version)
                 .SetHeaders()
                 .CreateEntities(c => c.BeamType())
                 .SaveAsIfc(IfcFile);
@@ -397,10 +399,11 @@ namespace Xbim.Essentials.NetCore.Tests
             var model = MemoryModel.OpenRead(IfcFile);
             model.Header.FileName.AuthorName.Should().HaveCount(1).And.BeEquivalentTo(new[] { "John Doe" });
             model.Header.FileName.Organization.Should().HaveCount(1).And.BeEquivalentTo(new[] { "Acme" });
-
             model.Header.FileName.OriginatingSystem.Should().Be("Sample app 1.2.3-alpha");
             model.Header.FileName.PreprocessorVersion.Should().StartWith("xbim Toolkit v");
             model.Header.FileName.TimeStamp.Should().StartWith(dateNow.ToString("yyyy-MM-ddTHH"));
+
+            model.Header.FileDescription.Description.Should().HaveCount(1).And.BeEquivalentTo([expectedDefaultDescription]);
         }
 
         [Fact]
@@ -410,7 +413,7 @@ namespace Xbim.Essentials.NetCore.Tests
 
             var file = builder.CreateModel()
                 // Don't set Owner History
-               // .SetOwnerHistory(GetEditor())
+                // .SetOwnerHistory(GetEditor())
                 .CreateEntities(c => c.BeamType());
 
             var ex = Record.Exception(() => file.AssertValid());
@@ -461,7 +464,7 @@ namespace Xbim.Essentials.NetCore.Tests
             var builder = new FluentModelBuilder();
 
             var file = builder.CreateModel(schema)
-                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon", "Reference", 
+                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon", "Reference",
                 new Ifc4.MeasureResource.IfcText("Test")    // Note IFC4 IfcValues are translated to specific schema via Ifc4 Interfaces
                 ));
 
@@ -470,7 +473,7 @@ namespace Xbim.Essentials.NetCore.Tests
             var prop = wall.GetPropertySingleValue("Pset_WallCommon", "Reference");
 
             prop.Should().NotBeNull();
-            prop.NominalValue.Value.Should().Be("Test");   
+            prop.NominalValue.Value.Should().Be("Test");
         }
 
         [InlineData(XbimSchemaVersion.Ifc2X3)]
@@ -507,11 +510,11 @@ namespace Xbim.Essentials.NetCore.Tests
             var builder = new FluentModelBuilder();
 
             var file = builder.CreateModel(schema)
-                .CreateEntities(c => c.Wall().WithBoundedProperty("Pset_WallCommon", "Height", 
-                    new Ifc4.MeasureResource.IfcReal(0d),    
+                .CreateEntities(c => c.Wall().WithBoundedProperty("Pset_WallCommon", "Height",
+                    new Ifc4.MeasureResource.IfcReal(0d),
                     new Ifc4.MeasureResource.IfcReal(100d),
                     new Ifc4.MeasureResource.IfcReal(50d)
-                
+
                 ));
 
             var wall = file.Model.Instances.OfType<IIfcWall>().First();
@@ -600,7 +603,7 @@ namespace Xbim.Essentials.NetCore.Tests
             var builder = new FluentModelBuilder();
 
             var file = builder.CreateModel()
-                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon","NominalHeight", new Ifc4.MeasureResource.IfcLengthMeasure(1.23d)));
+                .CreateEntities(c => c.Wall().WithPropertySingle("Pset_WallCommon", "NominalHeight", new Ifc4.MeasureResource.IfcLengthMeasure(1.23d)));
 
             var wall = file.Model.Instances.OfType<IIfcWall>().First();
 
@@ -630,10 +633,10 @@ namespace Xbim.Essentials.NetCore.Tests
 
         public void Dispose()
         {
-            while(files.Any())
+            while (files.Any())
             {
                 var file = files.Pop();
-                if(Path.IsPathRooted(file) && File.Exists(file))
+                if (Path.IsPathRooted(file) && File.Exists(file))
                 {
                     try
                     {
@@ -647,7 +650,7 @@ namespace Xbim.Essentials.NetCore.Tests
 
     public static class WIP
     {
-        
+
     }
 
 }
