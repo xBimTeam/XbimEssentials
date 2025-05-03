@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -282,5 +283,10 @@ namespace Xbim.Common.Geometry
         }
 
         IVector3D IXbimShapeGeometryData.LocalShapeDisplacement => null;
+
+        ///<summary>
+        ///Returns the sum of bounding box volumes of this region collection.
+        ///</summary>
+        public double? Volume => this.Select(r => r.ToXbimRect3D().Volume).Sum();
     }
 }

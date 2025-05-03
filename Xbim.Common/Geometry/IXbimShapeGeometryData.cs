@@ -50,5 +50,10 @@
         /// LocalShapeDisplacement and should be added to placement of the shape in the product.
         /// </summary>
         IVector3D LocalShapeDisplacement { get; }
+
+        /// <summary>
+        /// Returns the volume which is closed and valid, if there's an existing closed shell.
+        /// </summary>
+        double? Volume { get; }
     }
 }
