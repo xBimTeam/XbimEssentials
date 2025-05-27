@@ -150,7 +150,7 @@ namespace Xbim.Tessellator
         /// Orientates edges to orientate in a uniform direction
         /// </summary>
         /// <returns></returns>
-        public void UnifyFaceOrientation(int entityLabel)
+        public void UnifyFaceOrientation()
         {
             XbimTriangleEdge[] extremeTriangle = FindExtremeTriangle();
             if (extremeTriangle == null) return;
