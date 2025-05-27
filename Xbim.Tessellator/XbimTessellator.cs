@@ -7,7 +7,6 @@ using Xbim.Common.Geometry;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Common.XbimExtensions;
 using Xbim.Ifc4.MeasureResource;
-using Xbim.Common.Collections;
 
 namespace Xbim.Tessellator
 {
@@ -17,12 +16,14 @@ namespace Xbim.Tessellator
         private readonly IModel _model;
         private readonly XbimGeometryType _geometryType;
         private readonly bool _reduceLargeCoordinates;
+        private readonly Func<XbimTriangulatedMesh, int, XbimTriangulatedMesh> _postTessellationCallback;
 
-        public XbimTessellator(IModel model, XbimGeometryType geometryType, bool reduceLargeCoordinates = true)
+        public XbimTessellator(IModel model, XbimGeometryType geometryType, bool reduceLargeCoordinates = true, Func<XbimTriangulatedMesh, int, XbimTriangulatedMesh> postTessellationCallback = null)
         {
             _model = model;
             _geometryType = geometryType;
             _reduceLargeCoordinates = reduceLargeCoordinates;
+            _postTessellationCallback = postTessellationCallback;
         }
 
         public IXbimShapeGeometryData Mesh(IXbimGeometryObject geomObject)
@@ -141,8 +142,10 @@ namespace Xbim.Tessellator
         }
         private XbimShapeGeometry MeshPolyhedronBinary(IIfcPolygonalFaceSet tess)
         {
-            var faces = new List<IList<IIfcFace>>();
-            faces.Add(new XbimPolygonalFaceSet(tess));
+            var faces = new List<IList<IIfcFace>>
+            {
+                tess.Faces.Select(f => new XbimPolygonalFace(f, tess.Coordinates, tess.PnIndex)).ToList<IIfcFace>()
+            };
             return Mesh(faces, tess.EntityLabel, (float)tess.Model.ModelFactors.Precision);
         }
 
@@ -624,15 +627,19 @@ namespace Xbim.Tessellator
                 }
             }
 
-            triangulatedMesh.UnifyFaceOrientation(entityLabel);
-            return triangulatedMesh;
+            if(_postTessellationCallback is not null)
+            {
+                triangulatedMesh = _postTessellationCallback(triangulatedMesh, entityLabel);
+            }
+
+            triangulatedMesh.UnifyFaceOrientation();
+            return triangulatedMesh;            
         }
 
 
         private XbimTriangulatedMesh Triangulate(IIfcTriangulatedFaceSet triangulation)
         {
             var faceId = 0;
-            var entityLabel = triangulation.EntityLabel;
             var precision = (float)triangulation.Model.ModelFactors.Precision;
             var faceCount = triangulation.CoordIndex.Count();
             var triangulatedMesh = new XbimTriangulatedMesh(faceCount, precision);
@@ -650,7 +657,7 @@ namespace Xbim.Tessellator
                 var tpl = triangleFace.AsTriplet<IfcPositiveInteger>();
                 triangulatedMesh.AddTriangle(vertices[(int)tpl.A - 1], vertices[(int)tpl.B - 1], vertices[(int)tpl.C - 1], faceId);
             }
-            triangulatedMesh.UnifyFaceOrientation(entityLabel);
+            triangulatedMesh.UnifyFaceOrientation();
             return triangulatedMesh;
         }
 
