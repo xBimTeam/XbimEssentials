@@ -9,7 +9,8 @@ namespace Xbim.Ifc
     public static class IIfcObjectExtensions
     {
         /// <summary>
-        /// Adds an element type to the object if it doesn't already have one, return the new or existing relationship that holds the type and this element. If there is a relationship for this type but this element is not related it adds it to the exosting relationship
+        /// Adds an element type to the object if it doesn't already have one, return the new or existing relationship that holds the type and this element. 
+        /// If there is a relationship for this type but this element is not related it adds it to the existing relationship
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="theType"></param>
@@ -69,6 +70,44 @@ namespace Xbim.Ifc
         }
 
         /// <summary>
+        /// Gets a PropertySet, creating one is does not exist matching the propertySet name
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="propertySetName"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        private static IIfcPropertySet GetOrCreatePropertySet(this IIfcObject obj, string propertySetName, EntityCreator factory)
+        {
+            var pset = obj.GetPropertySet(propertySetName);
+            if (pset == null)
+            {
+                pset = factory.PropertySet();
+                pset.Name = propertySetName;
+                var relDef = factory.RelDefinesByProperties(r =>
+                {
+                    r.RelatingPropertyDefinition = pset;
+                    r.RelatedObjects.Add(obj);
+                });
+            }
+
+            return pset;
+        }
+
+        /// <summary>
+        /// Returns the first property matching the pset and property name, null if none exists
+        /// </summary>
+        /// <typeparam name="TProp"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="pSetName"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static TProp GetSimpleProperty<TProp>(this IIfcObject obj, string pSetName, string propertyName) where TProp : IIfcSimpleProperty
+        {
+            var pset = obj.GetPropertySet(pSetName);
+            return pset != null ? pset.HasProperties.OfType<TProp>().FirstOrDefault(p => p.Name == propertyName) : default;
+        }
+
+        /// <summary>
         /// Returns the first single property matching the pset and property name, null if none exists
         /// </summary>
         /// <param name="obj"></param>
@@ -77,9 +116,45 @@ namespace Xbim.Ifc
         /// <returns></returns>
         public static IIfcPropertySingleValue GetPropertySingleValue(this IIfcObject obj, string pSetName, string propertyName)
         {
-            var pset = obj.GetPropertySet(pSetName);
-            return pset != null ? pset.HasProperties.OfType<IIfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName) : null;
+            return obj.GetSimpleProperty<IIfcPropertySingleValue>(pSetName, propertyName);
         }
+
+        /// <summary>
+        /// Returns the first Enumerated Property matching the pset and property name, null if none exists
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pSetName"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static IIfcPropertyEnumeratedValue GetPropertyEnumeratedValue(this IIfcObject obj, string pSetName, string propertyName)
+        {
+            return obj.GetSimpleProperty<IIfcPropertyEnumeratedValue>(pSetName, propertyName);
+        }
+
+        /// <summary>
+        /// Returns the first Bounded Property matching the pset and property name, null if none exists
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pSetName"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static IIfcPropertyBoundedValue GetPropertyBoundedValue(this IIfcObject obj, string pSetName, string propertyName)
+        {
+            return obj.GetSimpleProperty<IIfcPropertyBoundedValue>(pSetName, propertyName);
+        }
+
+        /// <summary>
+        /// Returns the first List Property matching the pset and property name, null if none exists
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pSetName"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static IIfcPropertyListValue GetPropertyListValue(this IIfcObject obj, string pSetName, string propertyName)
+        {
+            return obj.GetSimpleProperty<IIfcPropertyListValue>(pSetName, propertyName);
+        }
+
 
         /// <summary>
         /// Returns the value of the first single property matching the pset and property name, null if none exists
@@ -161,18 +236,8 @@ namespace Xbim.Ifc
         /// <returns></returns>
         public static IIfcPropertySingleValue SetPropertySingleValue(this IIfcObject obj, string pSetName, string propertyName, IIfcValue value)
         {
-            var pset = obj.GetPropertySet(pSetName);
             var factory = new EntityCreator(obj.Model);
-            if (pset == null)
-            {
-                pset = factory.PropertySet();
-                pset.Name = pSetName;
-                var relDef = factory.RelDefinesByProperties(r =>
-                {
-                    r.RelatingPropertyDefinition = pset;
-                    r.RelatedObjects.Add(obj);
-                });
-            }
+            IIfcPropertySet pset = obj.GetOrCreatePropertySet(pSetName, factory);
 
             //change existing property of the same name from the property set
             var singleVal = obj.GetPropertySingleValue(pSetName, propertyName);
@@ -187,6 +252,92 @@ namespace Xbim.Ifc
             }
 
             return singleVal;
+        }
+
+        /// <summary>
+        /// Creates an enumerated Value property, or updates an existing matching one with the supplied <see cref="IIfcValue"/>s
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pSetName"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static IIfcPropertyEnumeratedValue SetPropertyEnumeratedValue<TVal>(this IIfcObject obj, string pSetName, string propertyName, TVal[] values) where TVal : IIfcValue
+        {
+            var factory = new EntityCreator(obj.Model);
+            IIfcPropertySet pset = obj.GetOrCreatePropertySet(pSetName, factory);
+
+            //change existing property of the same name from the property set
+            var enumProperty = obj.GetSimpleProperty<IIfcPropertyEnumeratedValue>(pSetName, propertyName);
+            if (enumProperty == null)
+            {
+                enumProperty = factory.PropertyEnumeratedValue(psv => { psv.Name = propertyName; });
+                pset.HasProperties.Add(enumProperty);
+            }
+            foreach (var value in values)
+            {
+                enumProperty.EnumerationValues.Add(value);
+            }
+
+            return enumProperty;
+        }
+
+        /// <summary>
+        /// Creates an Bounded Value property, or updates an existing matching one with the supplied <see cref="IIfcValue"/>
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pSetName"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="lowerValue"></param>
+        /// <param name="upperValue"></param>
+        /// <param name="setPointValue"></param>
+        /// <returns></returns>
+        public static IIfcPropertyBoundedValue SetPropertyBoundedValue(this IIfcObject obj, string pSetName, string propertyName, 
+            IIfcValue lowerValue, IIfcValue upperValue, IIfcValue setPointValue)
+        {
+            var factory = new EntityCreator(obj.Model);
+            IIfcPropertySet pset = obj.GetOrCreatePropertySet(pSetName, factory);
+
+            //change existing property of the same name from the property set
+            var enumProperty = obj.GetSimpleProperty<IIfcPropertyBoundedValue>(pSetName, propertyName);
+            if (enumProperty == null)
+            {
+                enumProperty = factory.PropertyBoundedValue(psv => { psv.Name = propertyName; });
+                pset.HasProperties.Add(enumProperty);
+            }
+            enumProperty.LowerBoundValue = lowerValue;
+            enumProperty.UpperBoundValue = upperValue;
+            enumProperty.SetPointValue = setPointValue;
+
+            return enumProperty;
+        }
+
+        /// <summary>
+        /// Creates an enumerated Value property, or updates an existing matching one with the supplied <see cref="IIfcValue"/>s
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pSetName"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static IIfcPropertyListValue SetPropertyListValue<TVal>(this IIfcObject obj, string pSetName, string propertyName, TVal[] values) where TVal : IIfcValue
+        {
+            var factory = new EntityCreator(obj.Model);
+            IIfcPropertySet pset = obj.GetOrCreatePropertySet(pSetName, factory);
+
+            //change existing property of the same name from the property set
+            var listProperty = obj.GetSimpleProperty<IIfcPropertyListValue>(pSetName, propertyName);
+            if (listProperty == null)
+            {
+                listProperty = factory.PropertyListValue(psv => { psv.Name = propertyName; });
+                pset.HasProperties.Add(listProperty);
+            }
+            foreach (var value in values)
+            {
+                listProperty.ListValues.Add(value);
+            }
+
+            return listProperty;
         }
 
         //TODO: would this be more logical on IIfcBuilding not IIfcObject
@@ -268,18 +419,18 @@ namespace Xbim.Ifc
 
 
         /// <summary>
-        /// Returns simple physical quality of the element.
+        /// Returns simple physical quantity of the element.
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="pSetName"></param>
-        /// <param name="qualityName"></param>
+        /// <param name="quantityName"></param>
         /// <returns></returns>
-        public static IIfcPhysicalSimpleQuantity GetElementPhysicalSimpleQuantity(this IIfcObject obj, string pSetName, string qualityName)
+        public static IIfcPhysicalSimpleQuantity GetElementPhysicalSimpleQuantity(this IIfcObject obj, string pSetName, string quantityName)
         {
             var elementQuality = obj.GetElementQuantity(pSetName);
             if (elementQuality != null)
             {
-                return elementQuality.Quantities.FirstOrDefault<IIfcPhysicalSimpleQuantity>(sq => sq.Name == qualityName);
+                return elementQuality.Quantities.FirstOrDefault<IIfcPhysicalSimpleQuantity>(sq => sq.Name == quantityName);
             }
             return null;
         }
@@ -328,11 +479,11 @@ namespace Xbim.Ifc
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="qSetName"></param>
-        /// <param name="qualityName"></param>
+        /// <param name="quantityName"></param>
         /// <param name="value"></param>
         /// <param name="quantityType"></param>
         /// <param name="unit"></param>
-        public static void SetElementPhysicalSimpleQuantity(this IIfcObject obj, string qSetName, string qualityName, double value, XbimQuantityTypeEnum quantityType, 
+        public static void SetElementPhysicalSimpleQuantity(this IIfcObject obj, string qSetName, string quantityName, double value, XbimQuantityTypeEnum quantityType, 
             IIfcNamedUnit unit)
         {
 
@@ -352,8 +503,8 @@ namespace Xbim.Ifc
                 
             }
 
-            //remove existing simple quality
-            var simpleQuantity = obj.GetElementPhysicalSimpleQuantity(qSetName, qualityName);
+            //remove any existing matching simple quantity if one exists
+            var simpleQuantity = obj.GetElementPhysicalSimpleQuantity(qSetName, quantityName);
             if (simpleQuantity != null)
             {
                 var elementQuality = obj.GetElementQuantity(qSetName);
@@ -377,7 +528,7 @@ namespace Xbim.Ifc
                 return;
 
             simpleQuantity.Unit = unit;
-            simpleQuantity.Name = qualityName;
+            simpleQuantity.Name = quantityName;
 
             qset.Quantities.Add(simpleQuantity);
         }

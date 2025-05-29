@@ -567,43 +567,7 @@ namespace Xbim.Ifc
             {
                 if (_defaultOwningUser != null) return _defaultOwningUser;
 
-                //data wasn't supplied to create default user and application
-                if (EditorDetails == null)
-                    return null;
-
-                var factory = new EntityCreator(this);
-
-                var person = Instances.OfType<IIfcPerson>()
-                    .FirstOrDefault(p => // Look up by identifier and then Given/Family name
-                        EditorDetails.EditorsIdentifier != null && p.Identification == EditorDetails.EditorsIdentifier || 
-                        (p.GivenName == EditorDetails.EditorsGivenName && p.FamilyName == EditorDetails.EditorsFamilyName))
-                    ?? factory.Person(p =>
-                    {
-                        p.Identification = EditorDetails.EditorsIdentifier;
-                        p.GivenName = EditorDetails.EditorsGivenName;
-                        p.FamilyName = EditorDetails.EditorsFamilyName;
-                    });
-
-                var organization = Instances.OfType<IIfcOrganization>()
-                    .FirstOrDefault(o => // Look up by identifier and then Organisation name
-                        EditorDetails.EditorsOrganisationIdentifier != null && o.Identification == EditorDetails.EditorsOrganisationIdentifier || 
-                        (o.Name == EditorDetails.EditorsOrganisationName))
-                    ?? factory.Organization(o =>
-                    {
-                        o.Name = EditorDetails.EditorsOrganisationName;
-                        o.Identification = EditorDetails.EditorsOrganisationIdentifier;
-                    });
-
-                _defaultOwningUser = 
-                    Instances.OfType<IIfcPersonAndOrganization>()
-                    .FirstOrDefault(po => po.ThePerson == person && po.TheOrganization == organization)
-                    ?? factory.PersonAndOrganization(po =>
-                    {
-                        po.TheOrganization = organization;
-                        po.ThePerson = person;
-                    });
-
-                
+                _defaultOwningUser = this.GetOrCreateDefaultUser(EditorDetails);
                 return _defaultOwningUser;
             }
         }
@@ -618,41 +582,8 @@ namespace Xbim.Ifc
             {
                 if (_defaultOwningApplication != null) return _defaultOwningApplication;
 
-                //data wasn't supplied to create default user and application
-                if (EditorDetails == null)
-                    return null;
-
-                var existingApplication = Instances.OfType<IIfcApplication>()
-                    .Where(a => a.ApplicationFullName == EditorDetails.ApplicationFullName)
-                    .Where(a => a.ApplicationIdentifier == EditorDetails.ApplicationIdentifier)
-                    .Where(a => a.Version == EditorDetails.ApplicationVersion)
-                    .FirstOrDefault();
-                if(existingApplication != null)
-                {
-                    // use existing to avoid duplicate applications
-                    _defaultOwningApplication = existingApplication;
-                }
-                else
-                {
-                    // Create new application
-                    var factory = new EntityCreator(this);
-                    _defaultOwningApplication = factory.Application(a =>
-                    {
-                        a.ApplicationDeveloper = Instances.OfType<IIfcOrganization>().FirstOrDefault(o => o.Name == EditorDetails.ApplicationDevelopersName)
-                            ?? factory.Organization(o =>
-                            {
-                                o.Name = EditorDetails.ApplicationDevelopersName;
-                                o.Roles.Add(factory.ActorRole(r =>
-                                {
-                                    r.Role = IfcRoleEnum.USERDEFINED;
-                                    r.UserDefinedRole = "Software Provider";
-                                }));
-                            });
-                        a.ApplicationFullName = EditorDetails.ApplicationFullName;
-                        a.ApplicationIdentifier = EditorDetails.ApplicationIdentifier;
-                        a.Version = EditorDetails.ApplicationVersion;
-                    });
-                }
+                _defaultOwningApplication = this.GetOrCreateApplication(EditorDetails, true);
+  
                 return _defaultOwningApplication;
             }
         }

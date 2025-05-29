@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -54,8 +55,10 @@ namespace Xbim.Essentials.Tests
         {
             var model = new StepModel(new Ifc4.EntityFactoryIfc4());
             var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, model);
-            Assert.IsTrue(header.FileName.OriginatingSystem == model.GetType().GetTypeInfo().Assembly.GetName().Name);
-            Assert.IsTrue(header.FileName.PreprocessorVersion == string.Format("Processor version {0}", model.GetType().GetTypeInfo().Assembly.GetName().Version));
+            header.FileName.OriginatingSystem.Should().StartWith("Xbim.Common");
+            var versInfo = new XbimAssemblyInfo(model.GetType().GetTypeInfo().Assembly);
+            var expectedPreProcessor = string.Format("xbim Toolkit v{0}", versInfo.FileVersion);
+            header.FileName.PreprocessorVersion.Should().Be(expectedPreProcessor);
         }
 
         [TestMethod]
