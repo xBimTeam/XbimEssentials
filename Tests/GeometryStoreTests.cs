@@ -107,11 +107,14 @@ namespace Xbim.IO.Tests
         [TestMethod]
         public void EsentGeometryStoreReopenAddTest()
         {
+            var testEsentFile = nameof(EsentGeometryStoreReopenAddTest) + ".xbim";
+            File.Delete(testEsentFile);
+
             var db = Guid.NewGuid().ToString() + ".xbim";
             var ifc = "TestFiles\\4walls1floorSite.ifc";
-            var p = new EsentModelProvider { DatabaseFileName = db };
-            var s = p.GetXbimSchemaVersion(ifc);
-            using (var m = p.Open(ifc, s)) { p.Close(m); }
+            var dbProvider = new EsentModelProvider { DatabaseFileName = db };
+            var schemaV = dbProvider.GetXbimSchemaVersion(ifc);
+            using (var m = dbProvider.Open(ifc, schemaV)) { dbProvider.Close(m); }
 
             using (var model = IfcStore.Open(db, accessMode: XbimDBAccess.ReadWrite))
             {
@@ -154,7 +157,7 @@ namespace Xbim.IO.Tests
 
                     txn.Commit();
                 }
-                model.SaveAs("SampleHouse4.xbim", StorageType.Xbim);
+                model.SaveAs(testEsentFile, StorageType.Xbim);
                 model.Close();
             }
         }
@@ -162,6 +165,8 @@ namespace Xbim.IO.Tests
         [TestMethod]
         public void IfcStoreGeometryStoreAddTest()
         {
+            var testEsentFile = nameof(IfcStoreGeometryStoreAddTest) + ".xbim";
+            File.Delete(testEsentFile);
             using (var model = IfcStore.Open("TestFiles\\SampleHouse4.ifc"))
             {
                 var geomStore = model.GeometryStore;
@@ -201,10 +206,10 @@ namespace Xbim.IO.Tests
 
                     txn.Commit();
                 }
-                model.SaveAs("SampleHouse4.xbim", StorageType.Xbim);
+                model.SaveAs(testEsentFile, StorageType.Xbim);
                 model.Close();
             }
-            using (var model = IfcStore.Open(@"SampleHouse4.xbim"))
+            using (var model = IfcStore.Open(testEsentFile))
             {
                 var geomStore = model.GeometryStore;
                 Assert.IsFalse(geomStore.IsEmpty);
