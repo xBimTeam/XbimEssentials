@@ -728,23 +728,28 @@ namespace Xbim.Essentials.Tests
         [TestMethod]
         public void IfcStoreSaveAsXbimTest()
         {
+            const string DoorEs = "4walls1floorSiteDoorES.xbim";
+            const string DoorEs2 = "4walls1floorSiteDoorES2.Ifc";
+            File.Delete(DoorEs);
+            File.Delete(DoorEs2);
             long originalCount;
             using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0)) //test esent databases first
             {
                 var count = originalCount = ifcStore.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working               
-                ifcStore.SaveAs("4walls1floorSiteDoorES.xbim");
+                
+                ifcStore.SaveAs(DoorEs);
                 ifcStore.Close();
             }
-
-            using (var ifcStore = IfcStore.Open("4walls1floorSiteDoorES.xbim")) //test esent databases first
+            using (var ifcStore = IfcStore.Open(DoorEs)) //test esent databases first
             {
                 var count = ifcStore.Instances.Count;
                 Assert.IsTrue(count > 0, "Should have more than zero instances"); //read mode is working                
-                ifcStore.SaveAs("4walls1floorSiteDoorES2.Ifc");
+                
+                ifcStore.SaveAs(DoorEs2);
                 ifcStore.Close();
             }
-            using (var ifcStore = IfcStore.Open("4walls1floorSiteDoorES2.ifc")) //test esent databases first
+            using (var ifcStore = IfcStore.Open(DoorEs2)) //test esent databases first
             {
                 var count = ifcStore.Instances.Count;
                 Assert.IsTrue(count == originalCount, "Should have more than zero instances"); //read mode is working                              

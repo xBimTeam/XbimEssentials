@@ -13,8 +13,6 @@ using System.Runtime.InteropServices;
 
 namespace Xbim.Ifc
 {
-
-
     /// <summary>
     /// The <see cref="HeuristicModelProvider"/> encapsulates the underlying <see cref="IModel"/> implementations we use 
     /// to provide different persistance performance characteristics, depending on the use-case and the consumer's inputs.
@@ -58,7 +56,6 @@ namespace Xbim.Ifc
         /// </summary>
         public override StoreCapabilities Capabilities => new StoreCapabilities(isTransient: false, supportsTransactions: true);
 
-
         /// <summary>
         /// Closes a Model store, releasing any resources
         /// </summary>
@@ -67,9 +64,7 @@ namespace Xbim.Ifc
         {
             if (model is EsentModel esentSub)
                 esentSub.Close();
-
             // memory models don't need closing
-
         }
 
         /// <summary>
@@ -83,7 +78,6 @@ namespace Xbim.Ifc
             var factory = GetFactory(ifcVersion);
             var model = EsentModel.CreateModel(factory, dbPath);
             return model;
-
         }
 
         /// <summary>
@@ -173,7 +167,6 @@ namespace Xbim.Ifc
         public override IModel Open(Stream stream, StorageType dataType, XbimSchemaVersion schema, XbimModelType modelType, 
             XbimDBAccess accessMode = XbimDBAccess.Read, ReportProgressDelegate progDelegate = null, int codePageOverride = -1)
         {
-
             if(modelType == XbimModelType.EsentModel  && ! IsEsentSupported())
             {
                 modelType = XbimModelType.MemoryModel;
@@ -362,6 +355,10 @@ namespace Xbim.Ifc
                 var fullTargetPath = Path.GetFullPath(fileName);
                 if (string.Compare(fullSourcePath, fullTargetPath, StringComparison.OrdinalIgnoreCase) == 0)
                     return; // do nothing - don't save on top of self
+                // use faster SaveAs method
+                CoverageProbes.HeuristicModelProvider_EfficientEsentSaveasHit = true;
+                esentModel.SaveAs(fileName, StorageType.Xbim, progDelegate);
+                return;
             }
 
             // Create a new Esent model for this Model => Model copy
@@ -387,8 +384,6 @@ namespace Xbim.Ifc
         {
             var factory = GetFactory(schema);
             return new MemoryModel(factory, _loggerFactory);
-        }
-
-        
+        }    
     }
 }

@@ -637,7 +637,7 @@ namespace Xbim.Ifc
         /// Saves the model to the specified file
         /// </summary>
         /// <param name="fileName">Name of the file to save to, if no format is specified the extension is used to determine the format</param>
-        /// <param name="format">if specified saves in the required format and changes the extension to the correct one</param>
+        /// <param name="format">if specified, saves in the required format and changes the extension to the correct one</param>
         /// <param name="progDelegate">reports on progress</param>
         public void SaveAs(string fileName, StorageType? format = null, ReportProgressDelegate progDelegate = null)
         {
@@ -693,39 +693,34 @@ namespace Xbim.Ifc
                 }
             }
             var actualFileName = Path.ChangeExtension(fileName, extension);
-            
+
             SaveAs(actualFileName, actualFormat, progDelegate);
         }
 
         /// <summary>
         /// Saves / Exports the model to a given file with the provided model format
         /// </summary>
-        /// <param name="actualFileName"></param>
-        /// <param name="actualFormat">this will be correctly set</param>
-        /// <param name="progDelegate"></param>
-        private void SaveAs(string actualFileName, StorageType actualFormat, ReportProgressDelegate progDelegate)
-          {
-            FileName = actualFileName;
-            if (actualFormat.HasFlag(StorageType.Xbim)) //special case for xbim
+        private void SaveAs(string destinationFileName, StorageType requiredFormat, ReportProgressDelegate progDelegate)
+        {
+            FileName = destinationFileName;
+            if (requiredFormat.HasFlag(StorageType.Xbim)) //special case for xbim
             {
-                ModelProvider.Persist(Model, actualFileName, progDelegate);
+                ModelProvider.Persist(Model, destinationFileName, progDelegate);
             }
             else
             {
-                using (var fileStream = new FileStream(actualFileName, FileMode.Create, FileAccess.Write))
+                using (var fileStream = new FileStream(destinationFileName, FileMode.Create, FileAccess.Write))
                 {
-                    if (actualFormat.HasFlag(StorageType.IfcZip))
+                    if (requiredFormat.HasFlag(StorageType.IfcZip))
                         //do zip first so that xml and ifc are not confused by the combination of flags
-                        IfcStoreExportExtensions.SaveAsIfcZip(this, fileStream, Path.GetFileName(actualFileName), actualFormat, progDelegate);
-                    else if (actualFormat.HasFlag(StorageType.Ifc))
+                        IfcStoreExportExtensions.SaveAsIfcZip(this, fileStream, Path.GetFileName(destinationFileName), requiredFormat, progDelegate);
+                    else if (requiredFormat.HasFlag(StorageType.Ifc))
                         IfcStoreExportExtensions.SaveAsIfc(this, fileStream, progDelegate);
-                    else if (actualFormat.HasFlag(StorageType.IfcXml))
+                    else if (requiredFormat.HasFlag(StorageType.IfcXml))
                         IfcStoreExportExtensions.SaveAsIfcXml(this, fileStream, progDelegate);
-
                 }
             }
         }
-
 
         #region Referenced Models functions / Federation
 
