@@ -1,20 +1,25 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc;
+using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4x3;
+using Xbim.IO.Esent;
 using Xbim.IO.Memory;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Xbim.Essentials.Tests
 {
     [Collection(nameof(xUnitBootstrap))]
-    public class Ifc4x3ReadingTests: TestBase
+    public class Ifc4x3ReadingTests : TestBase
     {
             
+
         [Theory]
         [InlineData(@"TestFiles\IFC4x3_ADD2\basin-advanced-brep.ifc")]
         [InlineData(@"TestFiles\IFC4x3_ADD2\basin-faceted-brep.ifc")]
@@ -143,19 +148,41 @@ namespace Xbim.Essentials.Tests
             model.Should().NotBeNull();
         }
 
-        [Theory]
+        [Theory (DisplayName = nameof(Ifc4_interfaces_can_be_used_to_read_IFC4x3)) ]
+        [InlineData(@"TestFiles\IFC4x3\test1.ifc")]
         [InlineData(@"TestFiles\IFC4x3\test2.ifc")]
         public void Ifc4_interfaces_can_be_used_to_read_IFC4x3(string file)
         {
-       
-
             using var model = IfcStore.Open(file);
             var productsIfc4x3 = model.Instances.OfType<Ifc4x3.Kernel.IfcProduct>().Count();
             var productsIfc4 = model.Instances.OfType<Ifc4.Interfaces.IIfcProduct>().Count();
-            
             productsIfc4x3.Should().BeGreaterThan(0);
             productsIfc4x3.Should().Be(productsIfc4);
+            var cnt = 0;
+            foreach (var item in model.Instances.OfType<IIfcProduct>())
+            {
+                cnt++;
+            }
+            cnt.Should().Be(productsIfc4);
 
+            // the following was previosly failing in EsentModelProvider because
+            // abstract classes exist in the test files used, which generated a
+            // behaviour different from MemoryModelProvider
+            //
+            // changes added in PersistedEntityInstanceCache should address the issue
+            //
+            var db = Guid.NewGuid().ToString() + ".xbim";
+            var provider = new EsentModelProvider { DatabaseFileName = db };
+            var schema = provider.GetXbimSchemaVersion(file);
+            using (var eseModel = provider.Open(file, schema))
+            {
+                var esentProductCount = eseModel.Instances.OfType<Ifc4x3.Kernel.IfcProduct>().Count();
+                esentProductCount.Should().Be(productsIfc4);
+                var esentInterfaceCount = eseModel.Instances.OfType<Ifc4.Interfaces.IIfcProduct>().Count();
+                esentInterfaceCount.Should().Be(productsIfc4);
+                provider.Close(model);
+            }
+            File.Delete(db);
         }
 
         [Fact]
