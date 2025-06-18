@@ -121,7 +121,7 @@ namespace Xbim.Common.Metadata
             var schemaNamespace = factory.GetType().Namespace + ".";
             var typesToProcess =
                 Module.GetTypes().Where(
-                    t => IsExpressTypeForSchema(t, schemaNamespace)).ToList();
+                    t => IsExpressTypeForSchemaOld(t, schemaNamespace)).ToList();
 
             _typeIdToExpressTypeLookup = new Dictionary<short, ExpressType>(typesToProcess.Count);
             _typeNameToExpressTypeLookup = new Dictionary<string, ExpressType>(typesToProcess.Count);
@@ -132,14 +132,75 @@ namespace Xbim.Common.Metadata
             RegisterTypes(typesToProcess);
         }
 
-        private static bool IsExpressTypeForSchema(Type type, string schemaNamespace = "")
+        private static bool IsExpressTypeForSchemaOld(Type type, string schemaNamespace = "")
         {
             return typeof(IPersist).GetTypeInfo().IsAssignableFrom(type)
-                        && type.IsPublic
-                        && !type.IsEnum && !type.IsInterface
-                        && type.GetCustomAttributes(typeof(ExpressTypeAttribute), false).Any()
-                        && !typeof(IExpressHeaderType).GetTypeInfo().IsAssignableFrom(type)
-                        && (string.IsNullOrEmpty(schemaNamespace) || type.Namespace.StartsWith(schemaNamespace));
+                   && type.IsPublic
+                   && !type.IsEnum && !type.IsInterface
+                   && type.GetCustomAttributes(typeof(ExpressTypeAttribute), false).Any()
+                   && !typeof(IExpressHeaderType).GetTypeInfo().IsAssignableFrom(type)
+                   && (string.IsNullOrEmpty(schemaNamespace) || type.Namespace.StartsWith(schemaNamespace));
+        }
+        
+        internal static bool IsExpressTypeForSchema(Type type, string schemaNamespace = "")
+        {
+            if (type == null || type.Namespace == null)
+                return false;
+
+            if(string.IsNullOrWhiteSpace(schemaNamespace))
+                return IsExpressType(type);
+            
+    #if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
+            ReadOnlySpan<char> schemaNs = schemaNamespace.AsSpan().TrimEnd('.');
+            ReadOnlySpan<char> typeNs = type.Namespace.AsSpan();
+
+            // fast exit: prefix ≠ schema
+            if (!typeNs.StartsWith(schemaNs, StringComparison.Ordinal))
+                return false;
+
+            // exact match
+            if (typeNs.Length == schemaNs.Length)
+                return IsExpressType(type);
+
+            // ensure next char is '.'
+            if (typeNs[schemaNs.Length] != '.')
+                return false;
+
+            return IsExpressType(type);
+
+    #else
+            // ---- NETSTANDARD 2.0 fallback 
+            string typeNs = type.Namespace;
+
+            if (!typeNs.StartsWith(schemaNamespace, StringComparison.Ordinal)) 
+                return false;
+
+            if (typeNs.Length == schemaNamespace.Length)
+                return IsExpressType(type);
+
+            // bounds-checked index access, check if the next char is dot 
+            if (typeNs.Length > schemaNamespace.Length && typeNs[schemaNamespace.Length] == '.')
+                return IsExpressType(type);
+
+            return false;
+    #endif
+        }
+
+       
+        private static bool IsExpressType(Type type)
+        {
+            if (!typeof(IPersist).IsAssignableFrom(type)) 
+                return false;
+            
+            if (!type.IsPublic || type.IsEnum || type.IsInterface)
+                return false;
+
+            if (!Attribute.IsDefined(type, typeof(ExpressTypeAttribute), inherit: false))
+                return false;
+
+            if (typeof(IExpressHeaderType).IsAssignableFrom(type)) return false;
+
+            return true;
         }
 
         private void RegisterTypes(IList<Type> typesToProcess)

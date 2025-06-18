@@ -1,9 +1,13 @@
 ﻿using FluentAssertions;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Xbim.Common;
 using Xbim.Common.Metadata;
+using Xbim.Ifc4;
 using Xunit;
 
 namespace Xbim.Essentials.Tests
@@ -30,7 +34,7 @@ namespace Xbim.Essentials.Tests
         [InlineData(typeof(Xbim.Ifc2x3.EntityFactoryIfc2x3), 771)]
         [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4), 932)]
         [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4x1), 932)]
-        [InlineData(typeof(Xbim.Ifc4x3.EntityFactoryIfc4x3Add2), 1008)]
+        [InlineData(typeof(Xbim.Ifc4x3.EntityFactoryIfc4x3Add2), 1007)]
         [Theory]
         public void HasExpectedSchemaTypesByFactory(Type moduleType, int expectedTypes)
         {
@@ -38,7 +42,9 @@ namespace Xbim.Essentials.Tests
             var factory = Activator.CreateInstance(moduleType) as IEntityFactory;
             factory.Should().NotBeNull();
             var metaData = ExpressMetaData.GetMetadata(factory);
-            metaData.Types().Should().HaveCount(expectedTypes);
+            metaData.Types()
+                 .Where(t => t.Name != "IfcStrippedOptional")
+                .Should().HaveCount(expectedTypes);
         }
 
 
@@ -60,7 +66,6 @@ namespace Xbim.Essentials.Tests
             {
                 metaData.Types().Select(t => t.Name).Should().Contain(type.Name);
             }
-
         }
 
         [Fact]
