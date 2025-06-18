@@ -16,9 +16,9 @@ namespace Xbim.Essentials.Tests
     {
         [InlineData(typeof(Xbim.Common.PersistEntity), 0)]  // Nothing defined in this schema
         [InlineData(typeof(Xbim.Ifc2x3.EntityFactoryIfc2x3), 771)]
-        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4), 932)]
-        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4x1), 932)]
-        [InlineData(typeof(Xbim.Ifc4x3.EntityFactoryIfc4x3Add2), 1007)]
+        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4), 933)]
+        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4x1), 933)]
+        [InlineData(typeof(Xbim.Ifc4x3.EntityFactoryIfc4x3Add2), 1008)]
         [Theory]
         [Obsolete]
         public void HasExpectedSchemaTypesByModule(Type moduleType, int expectedTypes)
@@ -27,14 +27,13 @@ namespace Xbim.Essentials.Tests
             var m = moduleType.GetTypeInfo().Module;
             var metaData = ExpressMetaData.GetMetadata(moduleType.Module);
             metaData.Types()
-                .Where(t => t.Name != "IfcStrippedOptional")
                 .Should().HaveCount(expectedTypes);
         }
 
         [InlineData(typeof(Xbim.Ifc2x3.EntityFactoryIfc2x3), 771)]
-        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4), 932)]
-        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4x1), 932)]
-        [InlineData(typeof(Xbim.Ifc4x3.EntityFactoryIfc4x3Add2), 1007)]
+        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4), 933)]
+        [InlineData(typeof(Xbim.Ifc4.EntityFactoryIfc4x1), 933)]
+        [InlineData(typeof(Xbim.Ifc4x3.EntityFactoryIfc4x3Add2), 1008)]
         [Theory]
         public void HasExpectedSchemaTypesByFactory(Type moduleType, int expectedTypes)
         {
@@ -43,7 +42,6 @@ namespace Xbim.Essentials.Tests
             factory.Should().NotBeNull();
             var metaData = ExpressMetaData.GetMetadata(factory);
             metaData.Types()
-                 .Where(t => t.Name != "IfcStrippedOptional")
                 .Should().HaveCount(expectedTypes);
         }
 
