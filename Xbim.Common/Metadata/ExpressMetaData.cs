@@ -149,27 +149,7 @@ namespace Xbim.Common.Metadata
 
             if(string.IsNullOrWhiteSpace(schemaNamespace))
                 return IsExpressType(type);
-            
-    #if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
-            ReadOnlySpan<char> schemaNs = schemaNamespace.AsSpan().TrimEnd('.');
-            ReadOnlySpan<char> typeNs = type.Namespace.AsSpan();
 
-            // fast exit: prefix ≠ schema
-            if (!typeNs.StartsWith(schemaNs, StringComparison.Ordinal))
-                return false;
-
-            // exact match
-            if (typeNs.Length == schemaNs.Length)
-                return IsExpressType(type);
-
-            // ensure next char is '.'
-            if (typeNs[schemaNs.Length] != '.')
-                return false;
-
-            return IsExpressType(type);
-
-    #else
-            // ---- NETSTANDARD 2.0 fallback 
             string typeNs = type.Namespace;
 
             if (!typeNs.StartsWith(schemaNamespace, StringComparison.Ordinal)) 
@@ -183,7 +163,6 @@ namespace Xbim.Common.Metadata
                 return IsExpressType(type);
 
             return false;
-    #endif
         }
 
        
