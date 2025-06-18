@@ -118,10 +118,10 @@ namespace Xbim.Common.Metadata
         private ExpressMetaData(IEntityFactory factory)
         {
             Module = factory.GetType().Module;
-            var schemaNamespace = factory.GetType().Namespace + ".";
+            var schemaNamespace = factory.GetType().Namespace;
             var typesToProcess =
                 Module.GetTypes().Where(
-                    t => IsExpressTypeForSchemaOld(t, schemaNamespace)).ToList();
+                    t => IsExpressTypeForSchema(t, schemaNamespace)).ToList();
 
             _typeIdToExpressTypeLookup = new Dictionary<short, ExpressType>(typesToProcess.Count);
             _typeNameToExpressTypeLookup = new Dictionary<string, ExpressType>(typesToProcess.Count);
@@ -130,16 +130,6 @@ namespace Xbim.Common.Metadata
             _interfaceToExpressTypesLookup = new Dictionary<Type, List<ExpressType>>();
 
             RegisterTypes(typesToProcess);
-        }
-
-        private static bool IsExpressTypeForSchemaOld(Type type, string schemaNamespace = "")
-        {
-            return typeof(IPersist).GetTypeInfo().IsAssignableFrom(type)
-                   && type.IsPublic
-                   && !type.IsEnum && !type.IsInterface
-                   && type.GetCustomAttributes(typeof(ExpressTypeAttribute), false).Any()
-                   && !typeof(IExpressHeaderType).GetTypeInfo().IsAssignableFrom(type)
-                   && (string.IsNullOrEmpty(schemaNamespace) || type.Namespace.StartsWith(schemaNamespace));
         }
         
         internal static bool IsExpressTypeForSchema(Type type, string schemaNamespace = "")
