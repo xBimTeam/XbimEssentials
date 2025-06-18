@@ -29,4 +29,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\Tests\ExpressMetadataTests.cs">
+      <Link>ExpressMetadataTests.cs</Link>
+    </Compile>
+  </ItemGroup>
+
 </Project>

@@ -118,7 +118,7 @@ namespace Xbim.Common.Metadata
         private ExpressMetaData(IEntityFactory factory)
         {
             Module = factory.GetType().Module;
-            var schemaNamespace = factory.GetType().Namespace + ".";
+            var schemaNamespace = factory.GetType().Namespace;
             var typesToProcess =
                 Module.GetTypes().Where(
                     t => IsExpressTypeForSchema(t, schemaNamespace)).ToList();
@@ -131,15 +131,45 @@ namespace Xbim.Common.Metadata
 
             RegisterTypes(typesToProcess);
         }
-
-        private static bool IsExpressTypeForSchema(Type type, string schemaNamespace = "")
+        
+        internal static bool IsExpressTypeForSchema(Type type, string schemaNamespace = "")
         {
-            return typeof(IPersist).GetTypeInfo().IsAssignableFrom(type)
-                        && type.IsPublic
-                        && !type.IsEnum && !type.IsInterface
-                        && type.GetCustomAttributes(typeof(ExpressTypeAttribute), false).Any()
-                        && !typeof(IExpressHeaderType).GetTypeInfo().IsAssignableFrom(type)
-                        && (string.IsNullOrEmpty(schemaNamespace) || type.Namespace.StartsWith(schemaNamespace));
+            if (type == null || type.Namespace == null)
+                return false;
+
+            if(string.IsNullOrWhiteSpace(schemaNamespace))
+                return IsExpressType(type);
+
+            string typeNs = type.Namespace;
+
+            if (!typeNs.StartsWith(schemaNamespace, StringComparison.Ordinal)) 
+                return false;
+
+            if (typeNs.Length == schemaNamespace.Length)
+                return IsExpressType(type);
+
+            // bounds-checked index access, check if the next char is dot 
+            if (typeNs.Length > schemaNamespace.Length && typeNs[schemaNamespace.Length] == '.')
+                return IsExpressType(type);
+
+            return false;
+        }
+
+       
+        private static bool IsExpressType(Type type)
+        {
+            if (!typeof(IPersist).IsAssignableFrom(type)) 
+                return false;
+            
+            if (!type.IsPublic || type.IsEnum || type.IsInterface)
+                return false;
+
+            if (!Attribute.IsDefined(type, typeof(ExpressTypeAttribute), inherit: false))
+                return false;
+
+            if (typeof(IExpressHeaderType).IsAssignableFrom(type)) return false;
+
+            return true;
         }
 
         private void RegisterTypes(IList<Type> typesToProcess)
