@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="8.0.1" />
+    <PackageReference Include="FluentAssertions" Version="[7.2.0]" /><!-- locked at 7.2.0 to avoid licensing changes of 8.0.0 -->
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
@@ -27,6 +27,12 @@
     <None Update="TestFiles\SampleHouse4.ifc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Tests\ExpressMetadataTests.cs">
+      <Link>ExpressMetadataTests.cs</Link>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -1468,15 +1468,22 @@ namespace Xbim.IO.Esent
                                         // the attributes of this entity have not been loaded yet
                                         entity = _factory.New(_model, ih.EntityType, ih.EntityLabel, false);
 
-                                    if (_caching) entity = _read.GetOrAdd(ih.EntityLabel, entity);
-                                    entityLabels.Add(entity.EntityLabel);
-                                    yield return (TOType)entity;
+                                    if (entity is null)
+                                    {
+                                        _logger.LogError("Could not get {tp} #{label}={type}", ih.EntityType.IsAbstract ? "abstract" : "concrete", ih.EntityLabel, ih.EntityType);
+                                    }
+                                    else
+                                    {
+                                        if (_caching)
+                                            entity = _read.GetOrAdd(ih.EntityLabel, entity);
+                                        entityLabels.Add(ih.EntityLabel);
+                                        yield return (TOType)entity;
+                                    }
                                 }
                             } while (entityTable.TryMoveNextEntityType(out ih) &&
                                      entityTable.TrySeekEntityLabel(ih.EntityLabel));
                         }
                     }
-
                 }
 
                 // we need to see if there are any objects in the cache that have not been written to the database yet.
@@ -1499,8 +1506,6 @@ namespace Xbim.IO.Esent
             // Debug.Assert(indexKeyAsInt == -1, "Trying to look a class up by index key, but the class is not indexed");
             foreach (var item in InstancesOf<TOType>(unindexedTypes, activate, entityLabels))
                 yield return item;
-
-
         }
 
 
