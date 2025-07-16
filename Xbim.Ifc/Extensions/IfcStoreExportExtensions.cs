@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using Xbim.Common;
 using Xbim.Common.Step21;
@@ -13,16 +14,19 @@ namespace Xbim.Ifc
 {
     public static class IfcStoreExportExtensions
     {
+        private static Encoding UTF8Encoding { get; } = new UTF8Encoding(false, true);
+        private const int BufferSize = 1024;
+
         /// <summary>
         /// Saves a model as a STEP IFC file
         /// </summary>
         /// <param name="model"></param>
         /// <param name="stream"></param>
         /// <param name="progDelegate"></param>
-        public static void SaveAsIfc(this IModel model, Stream stream, ReportProgressDelegate progDelegate = null)
+        /// <param name="leaveOpen"><c>true</c> to leave the stream open; otherwise, <c>false</c>.</param>
+        public static void SaveAsIfc(this IModel model, Stream stream, ReportProgressDelegate progDelegate = null, bool leaveOpen = false)
         {
-
-            using (TextWriter tw = new StreamWriter(stream))
+            using (TextWriter tw = new StreamWriter(stream, UTF8Encoding, BufferSize, leaveOpen))
             {
                 Part21Writer.Write(model, tw, model.Metadata, null, progDelegate);
                 tw.Flush();

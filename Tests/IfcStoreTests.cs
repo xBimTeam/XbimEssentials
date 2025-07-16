@@ -2,12 +2,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.SharedBldgElements;
 using Xbim.Ifc4.Interfaces;
 using Xbim.IO.Esent;
+using Xbim.IO.Memory;
 using Xbim.IO.Step21;
+using Xbim.Ifc.Fluent;
 
 namespace Xbim.Essentials.Tests
 {
@@ -78,7 +81,41 @@ namespace Xbim.Essentials.Tests
 
         }
 
-        
+        [TestMethod]
+        public void SaveAsIfcClosesStreamByDefault()
+        {
+            using var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
+            using var trans = model.BeginTransaction("Create");
+            var type = model.Build().WallType().WithDefaults();
+
+            trans.Commit();
+            
+            using (var stream = new MemoryStream(1024))
+            {
+                stream.CanRead.Should().BeTrue();
+                model.SaveAsIfc(stream);
+                stream.CanRead.Should().BeFalse("IfcStream should be closed");
+            }
+        }
+
+        [TestMethod]
+        public void SaveAsIfcCanKeepStreamOpen()
+        {
+            using var model = new MemoryModel(new Ifc2x3.EntityFactoryIfc2x3());
+            using var trans = model.BeginTransaction("Create");
+            var type = model.Build().WallType().WithDefaults();
+
+            trans.Commit();
+
+            using (var stream = new MemoryStream(1024))
+            {
+                stream.CanRead.Should().BeTrue();
+                model.SaveAsIfc(stream, leaveOpen: true);
+                stream.CanRead.Should().BeTrue("IfcStream should not be closed");
+            }
+        }
+
+
 
         private XbimEditorCredentials CreateEditor()
         {
