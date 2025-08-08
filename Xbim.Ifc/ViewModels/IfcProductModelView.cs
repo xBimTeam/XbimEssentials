@@ -34,7 +34,7 @@ namespace Xbim.Ifc.ViewModels
                 
                 foreach (var rel in breakdown)
                 {
-                    foreach (var prod in rel.RelatedObjects.OfType<IIfcProduct>())
+                    foreach (var prod in rel.RelatedObjects.OfType<IIfcProduct>().OrderBy(p => p.Name))
                     {
                         _children.Add(new IfcProductModelView(prod, this));
                     }
