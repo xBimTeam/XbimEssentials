@@ -52,7 +52,7 @@ namespace Xbim.Ifc.ViewModels
                 // list related items of type IfcSpatialStructureElement
                 foreach (var aggregate in _spatialStructure.IsDecomposedBy)
                 {
-                    foreach (var subSpace in aggregate.RelatedObjects.OfType<IIfcSpatialStructureElement>())
+                    foreach (var subSpace in aggregate.RelatedObjects.OfType<IIfcSpatialStructureElement>().OrderBy(p => p.Name))
                         _children.Add(new SpatialViewModel(subSpace, this));
                 }
 
@@ -61,8 +61,12 @@ namespace Xbim.Ifc.ViewModels
                 var spatialElem = _spatialStructure as IIfcSpatialStructureElement;
                 if (spatialElem == null) return _children;
 
-                //Select all the disting type names of elements for this
-                foreach (var type in spatialElem.ContainsElements.SelectMany(container=>container.RelatedElements).Select(r=>r.GetType()).Distinct())
+                // Select all the distinct (IFC) type names of elements for this spatial element
+                var spatialTypes = spatialElem.ContainsElements.SelectMany(container => container.RelatedElements)
+                    .Select(r => r.GetType())
+                    .Distinct()
+                    .OrderBy(t => t.Name); // IfcDoor before IfcWindow
+                foreach (var type in spatialTypes)
                 {
                     _children.Add(new ContainedElementsViewModel(spatialElem, type, this));
                 }

@@ -46,9 +46,9 @@ namespace Xbim.Ifc.ViewModels
         public string Name
         {
             get
-            {              
+            {
                 if(!string.IsNullOrWhiteSpace(_product.Name))
-                 return string.Format("{0} - {1} #{2}",_product.Name, _product.ExpressType.ExpressName.Substring(3), _product.EntityLabel );
+                    return string.Format("{0} - {1} #{2}",_product.Name, _product.ExpressType.ExpressName.Substring(3), _product.EntityLabel );
                 return string.Format("{0} #{1}", _product.ExpressType.ExpressName.Substring(3), _product.EntityLabel);
             }
         }

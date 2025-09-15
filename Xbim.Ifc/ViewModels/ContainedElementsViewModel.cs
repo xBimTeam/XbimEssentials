@@ -50,10 +50,12 @@ namespace Xbim.Ifc.ViewModels
                 if (_children == null)
                 {
                     _children = new List<IXbimViewModel>();
-                    foreach (var rel in _spatialContainer.ContainsElements)
+                    var productsInContainerByType = _spatialContainer.ContainsElements.SelectMany(c => c.RelatedElements)
+                        .Where(e => e.GetType() == _type)
+                        .OrderBy(e => e.Name);
+                    foreach (var prod in productsInContainerByType)
                     {
-                        foreach (var prod in rel.RelatedElements.Where(e => e.GetType() == _type))
-                            _children.Add(new IfcProductModelView(prod, this));
+                        _children.Add(new IfcProductModelView(prod, this));
                     }
                 }
                 return _children;

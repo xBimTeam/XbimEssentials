@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
@@ -38,7 +39,7 @@ namespace Xbim.Ifc.ViewModels
                 if (_children == null)
                 {
                     _children = new List<IXbimViewModel>();
-                    var products = _model.Instances.Where<IIfcProduct>(p => p.GetType().IsAssignableFrom(_type));
+                    var products = _model.Instances.Where<IIfcProduct>(p => p.GetType().IsAssignableFrom(_type)).OrderBy(p => p.Name);
                     foreach (var prod in products)
                         _children.Add(new IfcProductModelView(prod, this));
                 }
