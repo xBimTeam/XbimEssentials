@@ -455,6 +455,23 @@ namespace Xbim.Essentials.NetCore.Tests
 
         }
 
+        [Fact]
+        public void Can_AddPropertySetToType()
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel()
+                .CreateEntities(c => c.WallType().WithPropertySet("Pset_WallCommon"));
+
+            var wall = file.Model.Instances.OfType<IIfcWallType>().First();
+
+            var pset = wall.GetPropertySet("Pset_WallCommon");
+
+            pset.Should().NotBeNull();
+            pset.HasProperties.Should().BeEmpty();
+
+        }
+
         [InlineData(XbimSchemaVersion.Ifc2X3)]
         [InlineData(XbimSchemaVersion.Ifc4)]
         [InlineData(XbimSchemaVersion.Ifc4x3)]
@@ -469,6 +486,27 @@ namespace Xbim.Essentials.NetCore.Tests
                 ));
 
             var wall = file.Model.Instances.OfType<IIfcWall>().First();
+
+            var prop = wall.GetPropertySingleValue("Pset_WallCommon", "Reference");
+
+            prop.Should().NotBeNull();
+            prop.NominalValue.Value.Should().Be("Test");
+        }
+
+        [InlineData(XbimSchemaVersion.Ifc2X3)]
+        [InlineData(XbimSchemaVersion.Ifc4)]
+        [InlineData(XbimSchemaVersion.Ifc4x3)]
+        [Theory]
+        public void Can_SetSingleTextProperties_ForType_Across_Schemas(XbimSchemaVersion schema)
+        {
+            var builder = new FluentModelBuilder();
+
+            var file = builder.CreateModel(schema)
+                .CreateEntities(c => c.WallType().WithPropertySingle("Pset_WallCommon", "Reference",
+                new Ifc4.MeasureResource.IfcText("Test")    // Note IFC4 IfcValues are translated to specific schema via Ifc4 Interfaces
+                ));
+
+            var wall = file.Model.Instances.OfType<IIfcWallType>().First();
 
             var prop = wall.GetPropertySingleValue("Pset_WallCommon", "Reference");
 

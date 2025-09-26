@@ -51,9 +51,30 @@ namespace Xbim.Ifc
             relDef.RelatedObjects.Add(obj);
         }
 
-        private static IEnumerable<IIfcPropertySet> GetPropertySets(this IIfcObject obj)
+        /// <summary>
+        /// Adds an existing property set to the Ifc Type, NB no check is done for duplicate psets
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="pSet"></param>
+        public static void AddPropertySet(this IIfcTypeObject obj, IIfcPropertySet pSet)
         {
-            var pSets = obj.IsDefinedBy.SelectMany(r => r.RelatingPropertyDefinition.PropertySetDefinitions);
+            obj.HasPropertySets.Add(pSet);
+        }
+
+        /// <summary>
+        /// Get PropertySets for an Object
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private static IEnumerable<IIfcPropertySet> GetPropertySets(this IIfcObjectDefinition obj)
+        {
+            var pSets = obj switch
+            {
+                IIfcObject o => o.IsDefinedBy.SelectMany(r => r.RelatingPropertyDefinition.PropertySetDefinitions),
+                IIfcTypeObject o => o.HasPropertySets,
+                _ => null
+            };
+            
             return pSets.OfType<IIfcPropertySet>();
         }
 
@@ -64,7 +85,7 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public static IIfcPropertySet GetPropertySet(this IIfcObject obj, string pSetName, bool caseSensitive = true)
+        public static IIfcPropertySet GetPropertySet(this IIfcObjectDefinition obj, string pSetName, bool caseSensitive = true)
         {
             return obj.GetPropertySets().FirstOrDefault(pset => string.Compare(pSetName, pset.Name, !caseSensitive) == 0);
         }
@@ -76,18 +97,31 @@ namespace Xbim.Ifc
         /// <param name="propertySetName"></param>
         /// <param name="factory"></param>
         /// <returns></returns>
-        private static IIfcPropertySet GetOrCreatePropertySet(this IIfcObject obj, string propertySetName, EntityCreator factory)
+        private static IIfcPropertySet GetOrCreatePropertySet(this IIfcObjectDefinition obj, string propertySetName, EntityCreator factory)
         {
-            var pset = obj.GetPropertySet(propertySetName);
+            var pset = obj switch
+            {
+                IIfcObject o => o.GetPropertySet(propertySetName),
+                IIfcTypeObject o => o.GetPropertySet(propertySetName),
+                _ => null
+            };
+
             if (pset == null)
             {
                 pset = factory.PropertySet();
                 pset.Name = propertySetName;
-                var relDef = factory.RelDefinesByProperties(r =>
+                if(obj is IIfcTypeObject t)
                 {
-                    r.RelatingPropertyDefinition = pset;
-                    r.RelatedObjects.Add(obj);
-                });
+                    t.HasPropertySets.Add(pset);
+                }
+                else
+                {
+                    var relDef = factory.RelDefinesByProperties(r =>
+                    {
+                        r.RelatingPropertyDefinition = pset;
+                        r.RelatedObjects.Add(obj);
+                    });
+                }
             }
 
             return pset;
@@ -101,9 +135,15 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static TProp GetSimpleProperty<TProp>(this IIfcObject obj, string pSetName, string propertyName) where TProp : IIfcSimpleProperty
+        public static TProp GetSimpleProperty<TProp>(this IIfcObjectDefinition obj, string pSetName, string propertyName) where TProp : IIfcSimpleProperty
         {
-            var pset = obj.GetPropertySet(pSetName);
+            var pset = obj switch
+            {
+                IIfcObject o => o.GetPropertySet(pSetName),
+                IIfcTypeObject o => o.GetPropertySet(pSetName),
+                _ => null
+            };
+            
             return pset != null ? pset.HasProperties.OfType<TProp>().FirstOrDefault(p => p.Name == propertyName) : default;
         }
 
@@ -114,7 +154,7 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IIfcPropertySingleValue GetPropertySingleValue(this IIfcObject obj, string pSetName, string propertyName)
+        public static IIfcPropertySingleValue GetPropertySingleValue(this IIfcObjectDefinition obj, string pSetName, string propertyName)
         {
             return obj.GetSimpleProperty<IIfcPropertySingleValue>(pSetName, propertyName);
         }
@@ -126,7 +166,7 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IIfcPropertyEnumeratedValue GetPropertyEnumeratedValue(this IIfcObject obj, string pSetName, string propertyName)
+        public static IIfcPropertyEnumeratedValue GetPropertyEnumeratedValue(this IIfcObjectDefinition obj, string pSetName, string propertyName)
         {
             return obj.GetSimpleProperty<IIfcPropertyEnumeratedValue>(pSetName, propertyName);
         }
@@ -138,7 +178,7 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IIfcPropertyBoundedValue GetPropertyBoundedValue(this IIfcObject obj, string pSetName, string propertyName)
+        public static IIfcPropertyBoundedValue GetPropertyBoundedValue(this IIfcObjectDefinition obj, string pSetName, string propertyName)
         {
             return obj.GetSimpleProperty<IIfcPropertyBoundedValue>(pSetName, propertyName);
         }
@@ -150,7 +190,7 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IIfcPropertyListValue GetPropertyListValue(this IIfcObject obj, string pSetName, string propertyName)
+        public static IIfcPropertyListValue GetPropertyListValue(this IIfcObjectDefinition obj, string pSetName, string propertyName)
         {
             return obj.GetSimpleProperty<IIfcPropertyListValue>(pSetName, propertyName);
         }
@@ -164,9 +204,15 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static TValueType GetPropertySingleValue<TValueType>(this IIfcObject obj, string pSetName, string propertyName) where TValueType : IIfcValue
+        public static TValueType GetPropertySingleValue<TValueType>(this IIfcObjectDefinition obj, string pSetName, string propertyName) where TValueType : IIfcValue
         {
-            var pset = obj.GetPropertySet(pSetName);
+            var pset = obj switch
+            {
+                IIfcObject o => o.GetPropertySet(pSetName),
+                IIfcTypeObject o => o.GetPropertySet(pSetName),
+                _ => null
+            };
+
             if (pset == null) return default;
             var pVal =
                 pset.HasProperties.OfType<IIfcPropertySingleValue>().FirstOrDefault(p => p.Name == propertyName);
@@ -181,7 +227,7 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IIfcValue GetPropertySingleNominalValue(this IIfcObject obj, string pSetName, string propertyName)
+        public static IIfcValue GetPropertySingleNominalValue(this IIfcObjectDefinition obj, string pSetName, string propertyName)
         {
             var psv = obj.GetPropertySingleValue(pSetName, propertyName);
             return psv == null ? null : psv.NominalValue;
@@ -196,7 +242,7 @@ namespace Xbim.Ifc
         /// <param name="pSetName"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        public static IIfcPropertySingleValue SetPropertySingleValue<T>(this IIfcObject obj, string pSetName, string propertyName) where T : IIfcValue
+        public static IIfcPropertySingleValue SetPropertySingleValue<T>(this IIfcObjectDefinition obj, string pSetName, string propertyName) where T : IIfcValue
         {
             return obj.SetPropertySingleValue(pSetName, propertyName, typeof(T));
         }
@@ -209,7 +255,7 @@ namespace Xbim.Ifc
         /// <param name="propertyName">Property name</param>
         /// <param name="type">Type of the property</param>
         /// <returns>Property single value with default value of the specified type</returns>
-        public static IIfcPropertySingleValue SetPropertySingleValue(this IIfcObject obj, string pSetName, string propertyName, Type type)
+        public static IIfcPropertySingleValue SetPropertySingleValue(this IIfcObjectDefinition obj, string pSetName, string propertyName, Type type)
         {
             if (typeof(IIfcValue).GetTypeInfo().IsAssignableFrom(type))
             {
@@ -220,7 +266,14 @@ namespace Xbim.Ifc
                     value = Activator.CreateInstance(type) as IIfcValue;
 
                 if (value != null)
-                    return obj.SetPropertySingleValue(pSetName, propertyName, value);
+                {
+                    return obj switch
+                    {
+                        IIfcObject o => o.SetPropertySingleValue(pSetName, propertyName, value),
+                        IIfcTypeObject o => o.SetPropertySingleValue(pSetName, propertyName, value),
+                        _ => null
+                    };
+                }
                 throw new Exception("Type '" + type.Name + "' can't be initialized.");
             }
             throw new ArgumentException("Type '" + type.Name + "' is not compatible with IfcValue type.");
@@ -234,7 +287,7 @@ namespace Xbim.Ifc
         /// <param name="propertyName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static IIfcPropertySingleValue SetPropertySingleValue(this IIfcObject obj, string pSetName, string propertyName, IIfcValue value)
+        public static IIfcPropertySingleValue SetPropertySingleValue(this IIfcObjectDefinition obj, string pSetName, string propertyName, IIfcValue value)
         {
             var factory = new EntityCreator(obj.Model);
             IIfcPropertySet pset = obj.GetOrCreatePropertySet(pSetName, factory);
@@ -262,7 +315,7 @@ namespace Xbim.Ifc
         /// <param name="propertyName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public static IIfcPropertyEnumeratedValue SetPropertyEnumeratedValue<TVal>(this IIfcObject obj, string pSetName, string propertyName, TVal[] values) where TVal : IIfcValue
+        public static IIfcPropertyEnumeratedValue SetPropertyEnumeratedValue<TVal>(this IIfcObjectDefinition obj, string pSetName, string propertyName, TVal[] values) where TVal : IIfcValue
         {
             var factory = new EntityCreator(obj.Model);
             IIfcPropertySet pset = obj.GetOrCreatePropertySet(pSetName, factory);
@@ -292,7 +345,7 @@ namespace Xbim.Ifc
         /// <param name="upperValue"></param>
         /// <param name="setPointValue"></param>
         /// <returns></returns>
-        public static IIfcPropertyBoundedValue SetPropertyBoundedValue(this IIfcObject obj, string pSetName, string propertyName, 
+        public static IIfcPropertyBoundedValue SetPropertyBoundedValue(this IIfcObjectDefinition obj, string pSetName, string propertyName, 
             IIfcValue lowerValue, IIfcValue upperValue, IIfcValue setPointValue)
         {
             var factory = new EntityCreator(obj.Model);
@@ -320,7 +373,7 @@ namespace Xbim.Ifc
         /// <param name="propertyName"></param>
         /// <param name="values"></param>
         /// <returns></returns>
-        public static IIfcPropertyListValue SetPropertyListValue<TVal>(this IIfcObject obj, string pSetName, string propertyName, TVal[] values) where TVal : IIfcValue
+        public static IIfcPropertyListValue SetPropertyListValue<TVal>(this IIfcObjectDefinition obj, string pSetName, string propertyName, TVal[] values) where TVal : IIfcValue
         {
             var factory = new EntityCreator(obj.Model);
             IIfcPropertySet pset = obj.GetOrCreatePropertySet(pSetName, factory);
