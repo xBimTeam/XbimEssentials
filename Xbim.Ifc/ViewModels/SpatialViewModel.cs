@@ -52,7 +52,7 @@ namespace Xbim.Ifc.ViewModels
                 // list related items of type IfcSpatialStructureElement
                 foreach (var aggregate in _spatialStructure.IsDecomposedBy)
                 {
-                    foreach (var subSpace in aggregate.RelatedObjects.OfType<IIfcSpatialStructureElement>().OrderBy(p => p.Name))
+                    foreach (var subSpace in aggregate.RelatedObjects.OfType<IIfcSpatialStructureElement>().OrderBy(p => p.Name?.ToString()))
                         _children.Add(new SpatialViewModel(subSpace, this));
                 }
 

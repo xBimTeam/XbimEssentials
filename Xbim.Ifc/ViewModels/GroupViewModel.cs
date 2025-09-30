@@ -31,11 +31,11 @@ namespace Xbim.Ifc.ViewModels
                     _children = new List<IXbimViewModel>();
                     foreach (var relAssignsToGroup in _group.IsGroupedBy)
                     {
-                        foreach (var prod in relAssignsToGroup.RelatedObjects.OfType<IIfcProduct>().OrderBy(p => p.Name)) //add products in the _group
+                        foreach (var prod in relAssignsToGroup.RelatedObjects.OfType<IIfcProduct>().OrderBy(p => p.Name?.ToString())) //add products in the _group
                         {
                             _children.Add(new IfcProductModelView(prod, this));
                         }
-                        foreach (var gr in relAssignsToGroup.RelatedObjects.OfType<IIfcGroup>().OrderBy(p => p.Name)) //add nested groups
+                        foreach (var gr in relAssignsToGroup.RelatedObjects.OfType<IIfcGroup>().OrderBy(p => p.Name?.ToString())) //add nested groups
                         {
                             _children.Add(new GroupViewModel(gr, this));
                         }

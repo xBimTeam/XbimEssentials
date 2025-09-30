@@ -39,7 +39,7 @@ namespace Xbim.Ifc.ViewModels
                 if (_children == null)
                 {
                     _children = new List<IXbimViewModel>();
-                    var products = _model.Instances.Where<IIfcProduct>(p => p.GetType().IsAssignableFrom(_type)).OrderBy(p => p.Name);
+                    var products = _model.Instances.Where<IIfcProduct>(p => p.GetType().IsAssignableFrom(_type)).OrderBy(p => p.Name?.ToString());
                     foreach (var prod in products)
                         _children.Add(new IfcProductModelView(prod, this));
                 }

@@ -24,11 +24,14 @@ namespace Xbim.Ifc.ViewModels
 
         public static List<IXbimViewModel> ComponentView(IModel model)
         {
-            var spaces = typeof(IIfcSpace).Name;
+            
             var types = model.Instances.OfType<IIfcProduct>()
                 .Select(itm => itm.GetType())
                 .Distinct()
-                .Where (itm => itm.IsSubclassOf(typeof(IIfcElement)) || itm.Name == spaces)
+                .Where(t =>
+                    (typeof(IIfcElement).IsAssignableFrom(t) && typeof(IIfcFeatureElement).IsAssignableFrom(t) == false) ||
+                    typeof(IIfcSpace).IsAssignableFrom(t)
+                )
                 .OrderBy(itm => itm.Name)
                 .ToArray();
 

@@ -52,7 +52,7 @@ namespace Xbim.Ifc.ViewModels
                     _children = new List<IXbimViewModel>();
                     var productsInContainerByType = _spatialContainer.ContainsElements.SelectMany(c => c.RelatedElements)
                         .Where(e => e.GetType() == _type)
-                        .OrderBy(e => e.Name);
+                        .OrderBy(e => e.Name?.ToString());
                     foreach (var prod in productsInContainerByType)
                     {
                         _children.Add(new IfcProductModelView(prod, this));
