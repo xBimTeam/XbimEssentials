@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc.Extensions;
@@ -8,6 +9,7 @@ using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.ViewModels
 {
+    [DebuggerDisplay("GroupVM: {Name}: {Children}")]
     public class GroupViewModel : IXbimViewModel
     {
         private readonly IIfcGroup _group;

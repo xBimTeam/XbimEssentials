@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
@@ -11,6 +12,7 @@ using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.ViewModels
 {
+    [DebuggerDisplay("RefModelVM: {Name}: {Children}")]
     public class XbimRefModelViewModel : IXbimViewModel
     {
         private readonly IReferencedModel _refModel;

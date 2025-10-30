@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Federation;
@@ -15,6 +16,7 @@ namespace Xbim.Ifc.ViewModels
     /// <summary>
     /// Model view for display top level Xbim Model contents and referenced models
     /// </summary>
+    [DebuggerDisplay("ModelVM: {Name}: {Children}")]
     public class XbimModelViewModel : IXbimViewModel
     {
         private readonly IModel _model;

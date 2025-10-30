@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.ViewModels
 {
+    [DebuggerDisplay("SpatialVM: {Name}: {Children}")]
     public class SpatialViewModel : IXbimViewModel
     {
         private readonly IModel _model;
@@ -61,17 +63,34 @@ namespace Xbim.Ifc.ViewModels
                 var spatialElem = _spatialStructure as IIfcSpatialStructureElement;
                 if (spatialElem == null) return _children;
 
-                // Select all the distinct (IFC) type names of elements for this spatial element
-                var spatialTypes = spatialElem.ContainsElements.SelectMany(container => container.RelatedElements)
-                    .Select(r => r.GetType())
-                    .Distinct()
-                    .OrderBy(t => t.Name); // IfcDoor before IfcWindow
-                foreach (var type in spatialTypes)
+                // Select all the distinct (IFC) type names of elements for this spatial element inferring from Defining Type when 
+                // product is typed. i.e Wall and WallStandard case both => Wall. FlowTerminals are grouped by type.
+                var spatialTypes2 = spatialElem.ContainsElements.SelectMany(container => container.RelatedElements)
+                    .GroupBy(GetKey)
+                    .OrderBy(p => p.Key);
+                    
+                foreach (var type in spatialTypes2)
                 {
-                    _children.Add(new ContainedElementsViewModel(spatialElem, type, this));
+                    _children.Add(new ContainedElementsViewModel(spatialElem, type.Key, type, this));
                 }
                 return _children;
             }
+        }
+
+        private static string GetKey(IIfcProduct prod)
+        {
+            var type = prod.IsTypedBy?.FirstOrDefault()?.RelatingType?.GetType();
+            if (type == null)
+            {
+                // Not typed
+                return(prod.GetType().Name)
+                    .Replace("Ifc", "");
+            }
+            
+            return type.Name
+                .Replace("Ifc", "")
+                .Replace("Type", "")
+                .Replace("Style", "");
         }
 
         public bool HasItems

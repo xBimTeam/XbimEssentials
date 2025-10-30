@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.ViewModels
 {
+    [DebuggerDisplay("ProductVM: {Name}: {Children}")]
     public class IfcProductModelView : IXbimViewModel
     {
         private readonly IIfcProduct _product;

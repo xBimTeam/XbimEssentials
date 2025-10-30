@@ -47,6 +47,20 @@ namespace Xbim.Essentials.Tests
             var building = site.Children.First();
             building.Should().BeOfType<SpatialViewModel>();
             building.Children.Should().HaveCount(2, "two storeys");
+
+            var level = building.Children.First();
+            level.Should().BeOfType<SpatialViewModel>();
+            level.Children.Should().HaveCount(9, "children in Level");
+
+            level.Children.Take(3).Should().AllBeOfType<SpatialViewModel>();
+            level.Children.Skip(3).Should().AllBeOfType<ContainedElementsViewModel>();
+
+            var wallGroup = level.Children.Skip(7).First();
+            wallGroup.Name.Should().Be("Wall");
+            wallGroup.Children.Should().HaveCount(5);
+            wallGroup.Children.Take(3).Should().AllSatisfy(e => e.Name.Should().Contain("Wall #"));
+            wallGroup.Children.Skip(3).Should().AllSatisfy(e => e.Name.Should().Contain("WallStandardCase #"));
+
         }
     }
 }

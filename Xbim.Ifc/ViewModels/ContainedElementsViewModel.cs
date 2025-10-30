@@ -2,16 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.ViewModels
 {
+    [DebuggerDisplay("ContainedElementsVM: {Name}: {Children}")]
     public class ContainedElementsViewModel : IXbimViewModel 
     {
         private readonly IModel _model;
-        private readonly Type _type;
+        private readonly string _type;
+        private readonly IEnumerable<IIfcProduct> _childProducts;
         private readonly IIfcSpatialStructureElement _spatialContainer;
         private bool _isSelected;
         private bool _isExpanded;
@@ -23,21 +26,17 @@ namespace Xbim.Ifc.ViewModels
         {
             get
             {
-                return _type.Name;
+                return _type;
             }
         }
 
 
-        //public ContainedElementsViewModel(IfcSpatialStructureElement container)
-        //{
-        //    xbimModel = container.ModelOf as XbimModel;
-        //    IEnumerable subs = this.Children; //call this once to preload first level of hierarchy          
-        //}
 
-        public ContainedElementsViewModel(IIfcSpatialStructureElement spatialElem, Type type, IXbimViewModel parent)
+        public ContainedElementsViewModel(IIfcSpatialStructureElement spatialElem, string type, IEnumerable<IIfcProduct> children, IXbimViewModel parent)
         {
             _spatialContainer = spatialElem;
             _type = type;
+            _childProducts = children;
             _model = spatialElem.Model;
             CreatingParent = parent;
         }
@@ -50,10 +49,8 @@ namespace Xbim.Ifc.ViewModels
                 if (_children == null)
                 {
                     _children = new List<IXbimViewModel>();
-                    var productsInContainerByType = _spatialContainer.ContainsElements.SelectMany(c => c.RelatedElements)
-                        .Where(e => e.GetType() == _type)
-                        .OrderBy(e => e.Name?.ToString());
-                    foreach (var prod in productsInContainerByType)
+
+                    foreach (var prod in _childProducts)
                     {
                         _children.Add(new IfcProductModelView(prod, this));
                     }
