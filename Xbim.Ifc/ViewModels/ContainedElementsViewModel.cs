@@ -30,8 +30,6 @@ namespace Xbim.Ifc.ViewModels
             }
         }
 
-
-
         public ContainedElementsViewModel(IIfcSpatialStructureElement spatialElem, string type, IEnumerable<IIfcProduct> children, IXbimViewModel parent)
         {
             _spatialContainer = spatialElem;
@@ -50,7 +48,7 @@ namespace Xbim.Ifc.ViewModels
                 {
                     _children = new List<IXbimViewModel>();
 
-                    foreach (var prod in _childProducts)
+                    foreach (var prod in _childProducts.OrderBy(p => p.Name?.ToString()))
                     {
                         _children.Add(new IfcProductModelView(prod, this));
                     }
