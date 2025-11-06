@@ -13,6 +13,7 @@ using Xbim.Common.Step21;
 using Xbim.IO;
 using Xbim.IO.Parser;
 using Xbim.IO.Step21;
+using System.Text;
 
 
 namespace Xbim.Common.Model
@@ -606,15 +607,20 @@ namespace Xbim.Common.Model
                 return result;
             }
         }
-       
+
+        private static Encoding UTF8Encoding { get; } = new UTF8Encoding(false, true);
+        private const int BufferSize = 1024;
+
+
         /// <summary>
         /// Saves the model as PART21 file
         /// </summary>
         /// <param name="stream">Stream to be used to write the file</param>
         /// <param name="progress"></param>
-        public virtual void SaveAsStep21(Stream stream, ReportProgressDelegate progress = null)
+        /// <param name="leaveOpen">><c>true</c> to leave the stream open; otherwise, <c>false</c>.</param>
+        public virtual void SaveAsStep21(Stream stream, ReportProgressDelegate progress = null, bool leaveOpen = false)
         {
-            using (var writer = new StreamWriter(stream))
+            using (var writer = new StreamWriter(stream, UTF8Encoding, BufferSize, leaveOpen))
             {
                 SaveAsStep21(writer, progress);
             }

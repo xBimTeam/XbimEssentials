@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.ViewModels
 {
+    [DebuggerDisplay("ProductVM: {Name}: {Children}")]
     public class IfcProductModelView : IXbimViewModel
     {
         private readonly IIfcProduct _product;
@@ -34,7 +36,7 @@ namespace Xbim.Ifc.ViewModels
                 
                 foreach (var rel in breakdown)
                 {
-                    foreach (var prod in rel.RelatedObjects.OfType<IIfcProduct>())
+                    foreach (var prod in rel.RelatedObjects.OfType<IIfcProduct>().OrderBy(p => p.Name?.ToString()))
                     {
                         _children.Add(new IfcProductModelView(prod, this));
                     }
@@ -46,9 +48,9 @@ namespace Xbim.Ifc.ViewModels
         public string Name
         {
             get
-            {              
+            {
                 if(!string.IsNullOrWhiteSpace(_product.Name))
-                 return string.Format("{0} - {1} #{2}",_product.Name, _product.ExpressType.ExpressName.Substring(3), _product.EntityLabel );
+                    return string.Format("{0} - {1} #{2}",_product.Name, _product.ExpressType.ExpressName.Substring(3), _product.EntityLabel );
                 return string.Format("{0} #{1}", _product.ExpressType.ExpressName.Substring(3), _product.EntityLabel);
             }
         }
