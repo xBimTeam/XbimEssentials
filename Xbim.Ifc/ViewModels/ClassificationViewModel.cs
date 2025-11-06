@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Xbim.Common;
 using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc.ViewModels
 {
     // this class does not seem to be used by any other part of the seolution.
+    [DebuggerDisplay("ClassificationVM: {Name}: {Children}")]
     public class ClassificationViewModel
     {
         private readonly IIfcClassificationReference _classification;

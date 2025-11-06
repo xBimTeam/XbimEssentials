@@ -125,15 +125,20 @@ namespace Xbim.Ifc.Fluent
         /// <param name="entity"></param>
         /// <param name="propertySet"></param>
         /// <returns></returns>
-        public static T WithPropertySet<T>(this T entity, string propertySet) where T : IIfcObject
+        public static T WithPropertySet<T>(this T entity, string propertySet) where T : IIfcObjectDefinition
         {
-            var pset = entity.GetPropertySet(propertySet);
-            if(pset == null)
+            if(entity is IIfcObject obj)
             {
-                pset = entity.Model.Build().PropertySet(o => o.Name = propertySet);
+                var pset = obj.GetPropertySet(propertySet);
+                pset ??= entity.Model.Build().PropertySet(o => o.Name = propertySet);
+                obj.AddPropertySet(pset);
             }
-            entity.AddPropertySet(pset);
-
+            else if(entity is IIfcTypeObject type)
+            {
+                var pset = type.GetPropertySet(propertySet);
+                pset ??= entity.Model.Build().PropertySet(o => o.Name = propertySet);
+                type.AddPropertySet(pset);
+            }
             return entity;
         }
 
@@ -146,7 +151,7 @@ namespace Xbim.Ifc.Fluent
         /// <param name="propertyName"></param>
         /// <param name="ifcValue"></param>
         /// <returns></returns>
-        public static T WithPropertySingle<T>(this T entity, string propertySet, string propertyName, IIfcValue ifcValue) where T : IIfcObject
+        public static T WithPropertySingle<T>(this T entity, string propertySet, string propertyName, IIfcValue ifcValue) where T : IIfcObjectDefinition
         {
             var type = ifcValue.GetType();
             entity.SetPropertySingleValue(propertySet, propertyName, type).NominalValue = ifcValue;
