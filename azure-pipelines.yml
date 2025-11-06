@@ -138,9 +138,10 @@ steps:
 
 - powershell: |
     choco install docfx -y
+    docfx --version
     docfx docs/docfx.json
     if ($lastexitcode -ne 0){
-      throw ("Error generating document")
+      throw ("Error generating DocFx documentation")
     }
   displayName: 'Generate Documentation'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')

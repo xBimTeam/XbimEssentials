@@ -59,16 +59,6 @@
         }
       ],
       "dest": "obj/documentation/Xbim.IO.MemoryModel"
-    },
-    {
-      "src": [
-        {
-          "files": [ "Xbim.Tessellator/Xbim.Tessellator.csproj" ],
-          "exclude": [ "**/bin/**", "**/obj/**" ],
-          "src": "../"
-        }
-      ],
-      "dest": "obj/documentation/Xbim.Tessellator"
     }
   ],
   "build": {
@@ -102,11 +92,6 @@
         "files": [ "**/*.yml" ],
         "src": "obj/documentation/Xbim.IO.MemoryModel",
         "dest": "documentation/Xbim.IO.MemoryModel"
-      },
-      {
-        "files": [ "**/*.yml" ],
-        "src": "obj/documentation/Xbim.Tessellator",
-        "dest": "documentation/Xbim.Tessellator"
       },
       {
         "files": [ "CHANGELOG.md" ],
