@@ -143,9 +143,6 @@ steps:
  # Step 2: Build the Documentation using DocFX
 - script: |
       docfx docs/docfx.json
-      if ($lastexitcode -ne 0){
-        throw ("Error generating DocFx documentation")
-      }
   displayName: 'Build Documentation'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
 
