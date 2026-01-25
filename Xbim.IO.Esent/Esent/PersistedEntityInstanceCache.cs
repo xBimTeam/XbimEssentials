@@ -26,6 +26,22 @@ namespace Xbim.IO.Esent
     public class PersistedEntityInstanceCache : IDisposable
     {
         /// <summary>
+        /// Global default that controls whether newly created ESENT instances
+        /// should force the engine format version to 9060. Can be set by
+        /// configuration extensions (e.g. AddEsentModel).
+        /// </summary>
+        public static bool ForceEngineFormatVersion9060 { get; set; } = false;
+
+        /// <summary>
+        /// a parameter to set the engine format version of the esent databases
+        /// </summary>
+        private const int JET_paramEngineFormatVersion = 194;
+
+        // JET_efvAllowHigherPersistedFormat is defined in esent.h https://github.com/microsoft/win32metadata/blob/f06337c77e3fd3bdd3b5a5e90e0f720a8e00d90f/generation/WinSDK/RecompiledIdlHeaders/um/esent.h#L279
+        // it allows databases created with an newer engine format version to be opened when the generation version is limited
+        const int JET_efvAllowHigherPersistedFormat = 0x41000000;
+
+        /// <summary>
         /// Holds a collection of all currently opened instances in this process
         /// </summary>
         static readonly HashSet<PersistedEntityInstanceCache> OpenInstances;
@@ -100,7 +116,8 @@ namespace Xbim.IO.Esent
             _factory = factory;
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
             _logger = _loggerFactory.CreateLogger<PersistedEntityInstanceCache>();
-            _jetInstance = CreateInstance("XbimInstance");
+            // honor the global default which can be configured via AddEsentModel
+            _jetInstance = CreateInstance("XbimInstance", false, false, ForceEngineFormatVersion9060);
             _lockObject = new object();
             _model = model;
             _entityTables = new EsentEntityCursor[MaxCachedEntityTables];
@@ -119,32 +136,65 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         internal void CreateDatabase(string fileName)
         {
-            using (var session = new Session(_jetInstance))
+            // Create the database using a temporary instance that is forced to
+            // produce the 9060 engine format. This ensures databases created by
+            // this code use format 9060 while the regular instance used for
+            // opening databases remains capable of reading newer formats.
+            if (ForceEngineFormatVersion9060)
+                _logger?.LogInformation("Creating Esent database with forced engine format version 9060: {filename}", fileName);
+            var tempInstance = CreateInstance("XbimCreate", false, false, ForceEngineFormatVersion9060);
+            JET_DBID dbid = JET_DBID.Nil;
+            try
             {
-                JET_DBID dbid;
-                Api.JetCreateDatabase(session, fileName, null, out dbid, CreateDatabaseGrbit.OverwriteExisting);
-                try
+                using (var session = new Session(tempInstance))
                 {
+                    Api.JetCreateDatabase(session, fileName, null, out dbid, CreateDatabaseGrbit.OverwriteExisting);
                     EsentEntityCursor.CreateTable(session, dbid);
                     EsentCursor.CreateGlobalsTable(session, dbid); //create the gobals table
                     EnsureGeometryTables(session, dbid);
                 }
-                catch (Exception ex)
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to Create Esent Database, {filename}", fileName);
+                try
                 {
-                    _logger.LogError(ex, "Failed to Create Esent Database, {filename}", fileName);
-                    try
+                    if (dbid != JET_DBID.Nil)
                     {
-                        Api.JetCloseDatabase(session, dbid, CloseDatabaseGrbit.None);
-                        lock (OpenInstances)
+                        // attempt to close the database if it was opened
+                        using (var session = new Session(tempInstance))
                         {
-                            Api.JetDetachDatabase(session, fileName);
-                            OpenInstances.Remove(this);
+                            Api.JetCloseDatabase(session, dbid, CloseDatabaseGrbit.None);
                         }
-                        File.Delete(fileName);
                     }
-                    catch { }
-                    throw;
+                    // Detach may fail if attachment didn't complete; ignore errors
+                    using (var session = new Session(tempInstance))
+                    {
+                        try { Api.JetDetachDatabase(session, fileName); } catch { }
+                    }
+                    File.Delete(fileName);
                 }
+                catch { }
+                throw;
+            }
+            finally
+            {
+                try { tempInstance.Term(); } catch { }
+                try
+                {
+                    // Clear the forced engine format parameters so they do not
+                    // affect other instances in this process.
+                    if (ForceEngineFormatVersion9060)
+                    {
+                        Api.JetSetSystemParameter(
+                            JET_INSTANCE.Nil,
+                            JET_SESID.Nil,
+                            (JET_param)JET_paramEngineFormatVersion,
+                            0,
+                            null);
+                    }
+                }
+                catch { }
             }
         }
 
@@ -586,9 +636,21 @@ namespace Xbim.IO.Esent
             return false;
         }
 
-        private Instance CreateInstance(string instanceName, bool recovery = false, bool createTemporaryTables = false)
+        private Instance CreateInstance(string instanceName, bool recovery = false, bool createTemporaryTables = false, bool forceEngineFormatVersion9060 = false)
         {
             var guid = Guid.NewGuid().ToString();
+
+            if (forceEngineFormatVersion9060)
+            {
+                // Force engine format for created databases to 9060
+                Api.JetSetSystemParameter(
+                    JET_INSTANCE.Nil,
+                    JET_SESID.Nil,
+                    (JET_param)JET_paramEngineFormatVersion, // JET_paramEngineFormatVersion
+                    9060 | JET_efvAllowHigherPersistedFormat,
+                    null);
+            }
+
             var jetInstance = new Instance(instanceName + guid);
 
             if (string.IsNullOrWhiteSpace(_systemPath)) //we haven't specified a path so make one               
