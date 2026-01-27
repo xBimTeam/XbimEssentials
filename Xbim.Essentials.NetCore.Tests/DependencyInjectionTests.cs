@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 using Xbim.Common.Configuration;
+using Xbim.IO.Esent;
 using Xunit;
 
 
@@ -18,6 +20,7 @@ namespace Xbim.Essentials.NetCore.Tests
             {
                 var services = s.AddXbimToolkit(opt => opt.AddEsentModel())
                     .AddLogging();
+                PersistedEntityInstanceCache.ForceEngineFormatVersion9060.Should().BeFalse("Esent model should be configured to default engine format for this test.");
 
                 // Manually build a ServiceProvider to sanity check baseline DI is valid
 

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Xbim.Common;
@@ -18,8 +19,6 @@ namespace Xbim.Essentials.Tests
     [Collection(nameof(xUnitBootstrap))]
     public class Ifc4x3ReadingTests : TestBase
     {
-            
-
         [Theory]
         [InlineData(@"TestFiles\IFC4x3_ADD2\basin-advanced-brep.ifc")]
         [InlineData(@"TestFiles\IFC4x3_ADD2\basin-faceted-brep.ifc")]
@@ -141,10 +140,7 @@ namespace Xbim.Essentials.Tests
                 .WriteTo.Debug()
                 .CreateLogger();
             var logger = (new LoggerFactory()).AddSerilog(config).CreateLogger(typeof(IModel));
-
-       
             using var model = IfcStore.Open(file);
-
             model.Should().NotBeNull();
         }
 
@@ -182,6 +178,8 @@ namespace Xbim.Essentials.Tests
                 esentInterfaceCount.Should().Be(productsIfc4);
                 provider.Close(model);
             }
+            FileInfo f = new FileInfo(db);
+            Debug.WriteLine(f.FullName);
             File.Delete(db);
         }
 
