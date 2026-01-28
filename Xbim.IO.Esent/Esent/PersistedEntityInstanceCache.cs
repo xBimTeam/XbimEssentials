@@ -102,11 +102,11 @@ namespace Xbim.IO.Esent
         /// <summary>
         /// dbversion: 1568,60,120 - LogVersion: 8,20,60 - FlushMapVer: 3,0,0 - 2017/01/10
         /// </summary>
-        JET_efvEscrow64 = 9040, //                       
+        JET_efvEscrow64 = 9040,
         /// <summary>
         /// dbversion: 1568,60,140 - LogVersion: 8,20,60 - FlushMapVer: 3,0,0 - 2017/06/12
         /// </summary>
-        JET_efvSynchronousLVCleanup = 9060, //           
+        JET_efvSynchronousLVCleanup = 9060,
         /// <summary>
         /// dbversion: 1568,70,160 - LogVersion: 8,20,60 - FlushMapVer: 3,0,0 - 2018/03/04
         /// </summary>
