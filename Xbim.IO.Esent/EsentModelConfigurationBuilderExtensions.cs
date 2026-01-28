@@ -11,12 +11,11 @@ namespace Xbim.Common.Configuration
         /// Use the <see cref="EsentModel"/> in the IfcStore. 
         /// </summary>
         /// <param name="builder"></param>
-        /// <param name="forceEngineFormatVersion9060">If true, force the engine format version to 9060 when creating databases.</param>
-        /// <returns></returns>
-        public static IXbimConfigurationBuilder AddEsentModel(this IXbimConfigurationBuilder builder, bool forceEngineFormatVersion9060 = false)
+        /// <param name="limitEngineFormatVersion">If defined, limits the engine format version to the specified version when creating databases.</param>
+        public static IXbimConfigurationBuilder AddEsentModel(this IXbimConfigurationBuilder builder, EngineFormatVersion limitEngineFormatVersion = EngineFormatVersion.Default)
         {
             // Configure the global default used by PersistedEntityInstanceCache
-            PersistedEntityInstanceCache.ForceEngineFormatVersion9060 = forceEngineFormatVersion9060;
+            PersistedEntityInstanceCache.LimitEngineFormatVersion = limitEngineFormatVersion;
             builder.Services.TryAddSingleton<IModelProvider, EsentModelProvider>();
             return builder;
         }
@@ -25,12 +24,11 @@ namespace Xbim.Common.Configuration
         /// Uses the best model depending on the model characteristics in the IfcStore. 
         /// </summary>
         /// <param name="builder"></param>
-        /// <param name="forceEngineFormatVersion9060">If true, force the engine format version to 9060 when creating databases.</param>
-        /// <returns></returns>
-        public static IXbimConfigurationBuilder AddHeuristicModel(this IXbimConfigurationBuilder builder, bool forceEngineFormatVersion9060 = false)
+        /// <param name="limitEngineFormatVersion">If defined, limits the engine format version to the specified version when creating databases.</param>
+        public static IXbimConfigurationBuilder AddHeuristicModel(this IXbimConfigurationBuilder builder, EngineFormatVersion limitEngineFormatVersion = EngineFormatVersion.Default)
         {
             // Configure the global default used by PersistedEntityInstanceCache
-            PersistedEntityInstanceCache.ForceEngineFormatVersion9060 = forceEngineFormatVersion9060;
+            PersistedEntityInstanceCache.LimitEngineFormatVersion = limitEngineFormatVersion;
             builder.Services.TryAddSingleton<IModelProvider, HeuristicModelProvider>();
             return builder;
         }
