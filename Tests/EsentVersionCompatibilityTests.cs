@@ -33,17 +33,18 @@ namespace Xbim.Essentials.Tests
         // xUnit captures Console.WriteLine and shows it in test output; no test output helper required here.
 
         [Fact]
-        public void EsentModel_DefaultEngineFormatVersion_IsNot9060()
+        public void EsentModel_DefaultEngineFormatVersion_IsDefault()
         {
             // set the Esent model as the default for this test
             SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel()));
-            PersistedEntityInstanceCache.ForceEngineFormatVersion9060.Should().BeFalse("Esent model should be configured to default engine format for this test.");
+            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(EngineFormatVersion.Default, "Esent model should be configured to default engine format for this test.");
         }
 
         [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void CanWriteWithLimitedDatabase(bool limit)
+        [InlineData(EngineFormatVersion.JET_efvSynchronousLVCleanup, "Format ulVersion: 0x620,60,140")]
+        [InlineData(EngineFormatVersion.JET_efvWindows10v2004, "Format ulVersion: 0x620,110,240")]
+        [InlineData(EngineFormatVersion.Default, "")]
+        public void CanWriteWithLimitedDatabase(EngineFormatVersion limit, string formatString)
         {
             SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel(limit))); // we are limiting the esent version here
             string transientXbimFile;
@@ -80,8 +81,10 @@ namespace Xbim.Essentials.Tests
                 var stdErr = p.StandardError.ReadToEnd();
                 p.WaitForExit(60000); // wait up to 60s
                 esentOutput = stdOut + (string.IsNullOrEmpty(stdErr) ? string.Empty : (Environment.NewLine + "ERROR:" + Environment.NewLine + stdErr));
-                var limitedVersionString = esentOutput.Contains("Format ulVersion: 0x620,60,140");
-                limit.Should().Be(limitedVersionString, $"Esent model saved file should {(limit ? "" : "not ")}be limited to version 9060.");
+                if (formatString != "")
+                {
+                    esentOutput.Should().Contain(formatString, $"Esent model saved version is mismatched");
+                }
                 output.WriteLine(esentOutput);
             }
 
@@ -99,9 +102,9 @@ namespace Xbim.Essentials.Tests
             // Create a logger factory that writes to the xUnit test output
             var loggerFactory = new Microsoft.Extensions.Logging.LoggerFactory();
             loggerFactory.AddProvider(new TestOutputLoggerProvider(output));
-            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory).AddEsentModel(true)));
+            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory).AddEsentModel(EngineFormatVersion.JET_efvSynchronousLVCleanup)));
 
-            PersistedEntityInstanceCache.ForceEngineFormatVersion9060.Should().BeTrue("Esent model should be configured to force engine format version 9060 for this test.");
+            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(EngineFormatVersion.JET_efvSynchronousLVCleanup, "Esent model should be configured to force engine format version 9060 for this test.");
 
             var testDir = Path.Combine("TestFiles", "EsentVersionFiles");
             Assert.True(Directory.Exists(testDir), $"Test directory not found: {testDir}");
