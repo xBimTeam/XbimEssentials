@@ -46,9 +46,13 @@ namespace Xbim.Essentials.Tests
         [InlineData(EngineFormatVersion.Default, "")]
         public void CanWriteWithLimitedDatabase(EngineFormatVersion limit, string formatString)
         {
-            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel(limit))); // we are limiting the esent version here
+            var loggerFactory = new Microsoft.Extensions.Logging.LoggerFactory();
+            loggerFactory.AddProvider(new TestOutputLoggerProvider(output));
+            SuT.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory).AddEsentModel(limit))); // we are limiting the esent version here
             string transientXbimFile;
-            string savedXBimFile = Path.ChangeExtension(Guid.NewGuid().ToString(), ".xbim");
+            string savedXBimFile = Path.ChangeExtension(Guid.NewGuid().ToString(), $".{limit}.xbim");
+            FileInfo f = new FileInfo(savedXBimFile);
+            output.WriteLine("Saving xbim to: " + f.FullName);
 
             // Load with Esent/File-based store - creates a temp xbim file in %TEMP%
             using (var ifcStore = IfcStore.Open("TestFiles\\4walls1floorSite.ifc", null, 0))
@@ -85,14 +89,12 @@ namespace Xbim.Essentials.Tests
                 {
                     esentOutput.Should().Contain(formatString, $"Esent model saved version is mismatched");
                 }
-                output.WriteLine(esentOutput);
+                // write captured output to test output for inspection
+                output.WriteLine(esentOutput ?? "(no output)");
             }
 
-
-            // write captured output to test output for inspection
-            output.WriteLine(esentOutput ?? "(no output)");
-
-            File.Delete(savedXBimFile);
+            // File.Delete(savedXBimFile);
+            File.Delete(Path.ChangeExtension(savedXBimFile, ".jfm"));
         }
 
         [Fact]
@@ -139,7 +141,7 @@ namespace Xbim.Essentials.Tests
                     continue;
                 }
 
-                using (var model = new IO.Esent.EsentModel(ef2x3))
+                using (var model = new IO.Esent.EsentModel(ef2x3, loggerFactory))
                 {
                     model.Open(file, XbimDBAccess.Read);
                     // Ensure we can enumerate instances without throwing
