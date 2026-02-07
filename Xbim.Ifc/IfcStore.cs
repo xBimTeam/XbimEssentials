@@ -324,7 +324,7 @@ namespace Xbim.Ifc
         /// <param name="codePageOverride">
         /// A CodePage that will be used to read implicitly encoded one-byte-char strings. If -1 is specified the default ISO8859-1
         /// encoding will be used according to the Ifc specification. </param>
-        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null, 
+        public static IfcStore Open(string path, XbimEditorCredentials editorDetails = null, double? ifcDatabaseSizeThreshHold = null,
             ReportProgressDelegate progDelegate = null, XbimDBAccess accessMode = XbimDBAccess.Read, int codePageOverride = -1)
         {
 
@@ -334,7 +334,7 @@ namespace Xbim.Ifc
                 throw new DirectoryNotFoundException(Path.GetDirectoryName(path) + " directory was not found");
             if (!File.Exists(path))
                 throw new FileNotFoundException(path + " file was not found");
-            
+
             var newStore = new IfcStore(); // we need an instance
             var ifcVersion = newStore.ModelProvider.GetXbimSchemaVersion(path);
             if (ifcVersion == XbimSchemaVersion.Unsupported)

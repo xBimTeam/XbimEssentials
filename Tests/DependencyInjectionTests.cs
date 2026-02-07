@@ -35,11 +35,8 @@ namespace Xbim.Essentials.Tests
         public void Services_can_be_resolved(Type type)
         {
             SuT.ConfigureServices(s => s.AddXbimToolkit());
-
             var service = SuT.ServiceProvider.GetRequiredService(type);
-
             service.Should().NotBeNull();
-            
         }
 
         [Fact]
@@ -234,20 +231,23 @@ namespace Xbim.Essentials.Tests
         public void Services_Are_Registered_Once_Only()
         {
             int count = 0;
-            
+
             SuT.ConfigureServices(s => 
-            { 
+            {
                 s.AddXbimToolkit();
                 count = s.Count;
             });
 
-            SuT.ConfigureServices(s =>
+            // After ConfigureServices is called, the services are built and cannot be reconfigured
+            // Attempting to call ConfigureServices again should throw InvalidOperationException
+            var action = () => SuT.ConfigureServices(s =>
             {
                 s.AddXbimToolkit();
                 s.Count.Should().Be(count);
             });
 
-
+            action.Should().Throw<InvalidOperationException>()
+                .WithMessage("*already been built*");
         }
 
         [Fact()]

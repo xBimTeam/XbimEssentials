@@ -111,7 +111,7 @@ namespace Xbim.IO.Esent
         {
             try
             {
-
+                Logger.LogTrace("Initialising EsentModel with factory {FactoryType}", factory.GetType().FullName);
                 _factory = factory;
                 InstanceCache = new PersistedEntityInstanceCache(this, factory, _loggerFactory);
                 InstancesLocal = new XbimInstanceCollection(this);
