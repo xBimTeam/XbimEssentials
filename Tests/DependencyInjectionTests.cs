@@ -228,7 +228,7 @@ namespace Xbim.Essentials.Tests
         }
 
         [Fact]
-        public void Services_Are_Registered_Once_Only()
+        public void ConfigureServices_Is_Idempontent()
         {
             int count = 0;
 
@@ -238,16 +238,13 @@ namespace Xbim.Essentials.Tests
                 count = s.Count;
             });
 
-            // After ConfigureServices is called, the services are built and cannot be reconfigured
-            // Attempting to call ConfigureServices again should throw InvalidOperationException
-            var action = () => SuT.ConfigureServices(s =>
+            // ConfigureServices can be called multiple times.
+            SuT.ConfigureServices(s =>
             {
                 s.AddXbimToolkit();
                 s.Count.Should().Be(count);
             });
 
-            action.Should().Throw<InvalidOperationException>()
-                .WithMessage("*already been built*");
         }
 
         [Fact()]

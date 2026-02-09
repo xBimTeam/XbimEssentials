@@ -68,7 +68,7 @@ namespace Xbim.Essentials.NetCore.Tests
                 ));
 
             // Assert
-            XbimServices.Current.IsBuilt.Should().BeTrue("ConfigureServices should mark the services as built");
+            XbimServices.Current.IsBuilt.Should().BeFalse("ConfigureServices should mark the services as built");
 
             var resolvedLoggerFactory = XbimServices.Current.ServiceProvider.GetRequiredService<ILoggerFactory>();
             resolvedLoggerFactory.Should().NotBeNull();
@@ -98,7 +98,7 @@ namespace Xbim.Essentials.NetCore.Tests
                 ));
 
             // Assert
-            XbimServices.Current.IsBuilt.Should().BeTrue("ConfigureServices should mark the services as built");
+            XbimServices.Current.IsBuilt.Should().BeFalse("ConfigureServices should mark the services as built");
 
             var modelProvider = XbimServices.Current.ServiceProvider.GetRequiredService<Xbim.IO.IModelProvider>();
             modelProvider.Should().NotBeNull();
@@ -148,8 +148,13 @@ namespace Xbim.Essentials.NetCore.Tests
         /// Opens an IFC file and saves it as xbim format, using xUnit output for logging.
         /// </summary>
         [Theory]
+        //
+        [InlineData(EngineFormatVersion.JET_efvWindows11v23H2, "Format ulVersion: 0x620,290,600")]
+        [InlineData(EngineFormatVersion.JET_efvWindows11v22H2, "Format ulVersion: 0x620,230,500")]
+        [InlineData(EngineFormatVersion.JET_efvWindowsServer2022, "Format ulVersion: 0x620,180,400")]
         [InlineData(EngineFormatVersion.JET_efvSynchronousLVCleanup, "Format ulVersion: 0x620,60,140")]
         [InlineData(EngineFormatVersion.JET_efvWindows10v2004, "Format ulVersion: 0x620,110,240")] // this may need changing 
+       // [InlineData(EngineFormatVersion.Default, "Format ulVersion: 0x620,300,620")]
         public async Task FullDependencyInjectionWorkflowWithXbimServicesCurrent(EngineFormatVersion version, string expectedFormatString)
         {
             // Arrange - Set up xUnit logging (replaces Serilog in Program.cs)
@@ -165,6 +170,10 @@ namespace Xbim.Essentials.NetCore.Tests
                     .AddLoggerFactory(loggerFactory)
                     .AddEsentModel(version)
                 ));
+
+            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(
+                version,
+                "Esent engine format version should match the configured value");
 
             logger.LogDebug("Xbim toolkit configured with logger factory and Esent version");
 

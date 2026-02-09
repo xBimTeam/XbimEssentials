@@ -17,6 +17,7 @@ using Xbim.Common.Step21;
 using Xbim.Ifc4.Interfaces;
 using Xbim.Ifc4.MeasureResource;
 using Xbim.IO;
+using Xbim.IO.Esent;
 using Xbim.IO.Memory;
 using Xbim.IO.Step21;
 
@@ -71,7 +72,7 @@ namespace Xbim.Ifc
             {
                 if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel(PersistedEntityInstanceCache.LimitEngineFormatVersion)));
                 }
                 else
                 {

@@ -121,7 +121,6 @@ namespace Xbim.Common.Configuration
                 throw new InvalidOperationException("The xbim internal ServiceCollection has already been built");
             }
             configure(servicesCollection);
-            isBuilt = true;
         }
 
         /// <summary>
