@@ -11,7 +11,6 @@ namespace Xbim.Common.Configuration
     /// </summary>
     public static class XbimConfigurationBuilderExtensions
     {
-
         /// <summary>
         /// Replaces the default <see cref="NullLoggerFactory"/> with a <see cref="ILoggerFactory"/> of your choosing.
         /// </summary>
@@ -24,7 +23,6 @@ namespace Xbim.Common.Configuration
         public static IXbimConfigurationBuilder AddLoggerFactory(this IXbimConfigurationBuilder builder, ILoggerFactory loggerFactory)
         {
             builder.Services.RemoveAll<ILoggerFactory>();
-            
             builder.Services.TryAdd(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
             // Bit of an assumption that the LoggerFactory wil create Logger<> rather than some other ILogger<>
             // but better then leaving NullLoggers resolving. Open Generics make this hard to define any other way
@@ -39,9 +37,7 @@ namespace Xbim.Common.Configuration
         /// <returns></returns>
         public static IXbimConfigurationBuilder AddModelProvider<T>(this IXbimConfigurationBuilder builder) where T : IModelProvider
         {
-
-            builder.Services.TryAddSingleton(typeof(IModelProvider), typeof(T));
-          
+            builder.Services.TryAddSingleton(typeof(IModelProvider), typeof(T));          
             return builder;
         }
     }

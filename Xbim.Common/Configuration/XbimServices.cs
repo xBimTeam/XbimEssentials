@@ -17,7 +17,6 @@ namespace Xbim.Common.Configuration
     /// In this case the service provision is delagated to <see cref="InternalServiceProvider"/></remarks>
     public class XbimServices : IDisposable
     {
-
         private XbimServices()
         {
             Rebuild();
@@ -33,7 +32,6 @@ namespace Xbim.Common.Configuration
         }
 
         private bool isBuilt = false;
-        
 
         private IServiceCollection servicesCollection = new ServiceCollection();
         private IServiceProvider externalServiceProvider = null;
@@ -46,7 +44,6 @@ namespace Xbim.Common.Configuration
         /// The shared instance of all Xbim Services
         /// </summary>
         public static XbimServices Current { get; private set; } = lazySingleton.Value;
-
 
         /// <summary>
         /// Override xbim's internal <see cref="IServiceCollection"/> with another instance for configuration
@@ -124,6 +121,7 @@ namespace Xbim.Common.Configuration
                 throw new InvalidOperationException("The xbim internal ServiceCollection has already been built");
             }
             configure(servicesCollection);
+            isBuilt = true;
         }
 
         /// <summary>

@@ -1,25 +1,25 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Isam.Esent.Interop;
+using Microsoft.Isam.Esent.Interop.Windows7;
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading;
 using System.Xml;
-using Microsoft.Isam.Esent.Interop;
-using Microsoft.Isam.Esent.Interop.Windows7;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Geometry;
 using Xbim.Common.Metadata;
+using Xbim.Common.Step21;
 using Xbim.IO.Step21;
 using Xbim.IO.Step21.Parser;
-using Microsoft.Extensions.Logging;
-using System.IO.Compression;
 using Xbim.IO.Xml;
-using Xbim.Common.Step21;
-using Xbim.Common.Configuration;
 
 namespace Xbim.IO.Esent
 {
@@ -326,16 +326,11 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         internal void CreateDatabase(string fileName)
         {
-            // Create the database using a temporary instance that is forced to
-            // produce the 9060 engine format. This ensures databases created by
-            // this code use format 9060 while the regular instance used for
-            // opening databases remains capable of reading newer formats.
-            if (LimitEngineFormatVersion != EngineFormatVersion.Default)
-                _logger?.LogInformation("Creating Esent database with forced engine format version: {version}: {filename}", LimitEngineFormatVersion, fileName);
             var tempInstance = CreateInstance("XbimCreate");
             JET_DBID dbid = JET_DBID.Nil;
             try
             {
+                _logger.LogTrace("Creating Esent Database {filename}", fileName);
                 using (var session = new Session(tempInstance))
                 {
                     Api.JetCreateDatabase(session, fileName, null, out dbid, CreateDatabaseGrbit.OverwriteExisting);
@@ -413,7 +408,6 @@ namespace Xbim.IO.Esent
                 {
                     //
                     _logger.LogDebug(ex, "Failed to delete geometry table {tableName}", EsentShapeGeometryCursor.GeometryTableName);
-                    ;
                 }
 
                 try
@@ -436,7 +430,6 @@ namespace Xbim.IO.Esent
 
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
         {
-
             if (!HasTable(XbimGeometryCursor.GeometryTableName, session, dbid))
                 XbimGeometryCursor.CreateTable(session, dbid);
             if (!HasTable(EsentShapeGeometryCursor.GeometryTableName, session, dbid))
@@ -829,8 +822,8 @@ namespace Xbim.IO.Esent
 
         private Instance CreateInstance(string instanceName, bool recovery = false, bool createTemporaryTables = false)
         {
+            _logger?.LogTrace("Creating Esent JetInstance with engine format version: {version}", LimitEngineFormatVersion);
             var guid = Guid.NewGuid().ToString();
-
             if (LimitEngineFormatVersion != EngineFormatVersion.Default)
             {
                 // Force engine format for created databases
