@@ -5,14 +5,14 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
 using Xbim.Common.Federation;
 using Xbim.Common.Geometry;
-using Xbim.Common.Configuration;
 using Xbim.Common.Metadata;
 using Xbim.Common.Step21;
-using System.Runtime.InteropServices;
 
 namespace Xbim.IO.Esent
 {
@@ -55,6 +55,8 @@ namespace Xbim.IO.Esent
         //Object that manages geometry conversion etc
         private string _importFilePath;
 
+        private readonly EsentEngineOptions _esentOptions;
+
         private IEntityFactory _factory;
         public IEntityFactory Factory { get { return _factory; } }
 
@@ -74,7 +76,7 @@ namespace Xbim.IO.Esent
         /// Constructs a new <see cref="EsentModel"/>
         /// </summary>
         /// <param name="factory"></param>
-        public EsentModel(IEntityFactory factory) : this(factory, default(ILoggerFactory))
+        public EsentModel(IEntityFactory factory) : this(factory, default(ILoggerFactory), new EsentEngineOptions())
         {
         }
 
@@ -83,8 +85,22 @@ namespace Xbim.IO.Esent
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="loggerFactory"></param>
+        
         public EsentModel(IEntityFactory factory, ILoggerFactory loggerFactory) : this(loggerFactory)
         {
+            _esentOptions = new EsentEngineOptions();
+            Init(factory);
+        }
+
+        /// <summary>
+        /// Constructs a new <see cref="EsentModel"/>
+        /// </summary>
+        /// <param name="factory"></param>
+        /// <param name="loggerFactory"></param>
+        /// <param name="options"></param>
+        public EsentModel(IEntityFactory factory, ILoggerFactory loggerFactory, EsentEngineOptions options) : this(loggerFactory)
+        {
+            _esentOptions = options == null ? new EsentEngineOptions() : options;
             Init(factory);
         }
 
@@ -111,9 +127,9 @@ namespace Xbim.IO.Esent
         {
             try
             {
-
+                Logger.LogTrace("Initialising EsentModel with factory {FactoryType}", factory.GetType().FullName);
                 _factory = factory;
-                InstanceCache = new PersistedEntityInstanceCache(this, factory, _loggerFactory);
+                InstanceCache = new PersistedEntityInstanceCache(this, factory, _loggerFactory, _esentOptions);
                 InstancesLocal = new XbimInstanceCollection(this);
                 var r = new Random();
                 UserDefinedId = (short)r.Next(short.MaxValue); // initialise value at random to reduce chance of duplicates
@@ -127,6 +143,8 @@ namespace Xbim.IO.Esent
             }
         }
 
+        public EngineFormatVersion EsentFormat { get => _esentOptions.FormatVersion; }
+        
         public string DatabaseName
         {
             get { return InstanceCache?.DatabaseName; }
@@ -514,11 +532,21 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         static public EsentModel CreateTemporaryModel(IEntityFactory factory)
         {
+            return CreateTemporaryModel(factory, new EsentEngineOptions());
+        }
+
+        /// <summary>
+        /// Creates an empty model using a temporary filename, the model will be deleted on close, unless SaveAs is called
+        /// It will be returned open for read write operations
+        /// </summary>
+        /// <returns></returns>
+        static public EsentModel CreateTemporaryModel(IEntityFactory factory, EsentEngineOptions options)
+        {
             var loggerFactory = XbimServices.Current.GetLoggerFactory();
             var tmpFileName = Path.GetTempFileName();
             try
             {
-                var model = new EsentModel(factory, loggerFactory);
+                var model = new EsentModel(factory, loggerFactory, options);
                 model.CreateDatabase(tmpFileName);
                 model.Open(tmpFileName, XbimDBAccess.ReadWrite, true);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, model);
@@ -544,7 +572,6 @@ namespace Xbim.IO.Esent
             InstanceCache.ClearGeometryTables();
         }
 
-
         /// <summary>
         ///  Creates and opens a new Xbim Database
         /// </summary>
@@ -554,12 +581,25 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         static public EsentModel CreateModel(IEntityFactory factory, string dbFileName, XbimDBAccess access = XbimDBAccess.ReadWrite)
         {
+            return CreateModel(factory, dbFileName, new EsentEngineOptions(), access);
+        }
+
+        /// <summary>
+        ///  Creates and opens a new Xbim Database
+        /// </summary>
+        /// <param name="factory">Entity factory to be used for deserialization</param>
+        /// <param name="dbFileName">Name of the Xbim file</param>
+        /// <param name="access"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        static public EsentModel CreateModel(IEntityFactory factory, string dbFileName, EsentEngineOptions options, XbimDBAccess access = XbimDBAccess.ReadWrite)
+        {
             var loggerFactory = XbimServices.Current.GetLoggerFactory();
             try
             {
                 if (string.IsNullOrWhiteSpace(Path.GetExtension(dbFileName)))
                     dbFileName += ".xBIM";
-                var model = new EsentModel(factory, loggerFactory);
+                var model = new EsentModel(factory, loggerFactory, options);
                 model.CreateDatabase(dbFileName);
                 model.Open(dbFileName, access);
                 model.Header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, model) { FileName = { Name = dbFileName } };
@@ -1184,7 +1224,7 @@ namespace Xbim.IO.Esent
             {
                 //create a temporary model
                 esentModel = new EsentModel();
-                esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null, default);
+                esentModel.InstanceCache = new PersistedEntityInstanceCache(esentModel, null, default, new EsentEngineOptions());
                 esentModel.InstanceCache.DatabaseName = fileName;
 
                 entTable = esentModel.InstanceCache.GetEntityTable();
