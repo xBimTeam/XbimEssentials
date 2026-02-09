@@ -7,6 +7,7 @@ using Xbim.Common.Exceptions;
 using Xbim.Common.Configuration;
 using Xbim.Common.Step21;
 using System.Runtime.InteropServices;
+using Microsoft.Extensions.Options;
 
 namespace Xbim.IO.Esent
 {
@@ -14,16 +15,18 @@ namespace Xbim.IO.Esent
     {
 
         private readonly ILoggerFactory _loggerFactory;
+        private readonly IOptionsMonitor<EsentEngineOptions> _esentOptions;
         private readonly ILogger _logger;
 
-        public EsentModelProvider() : this(default)
+        public EsentModelProvider() : this(default, new StaticEngineOptionsMonitor(new EsentEngineOptions()))
         {
 
         }
 
-        public EsentModelProvider(ILoggerFactory loggerFactory)
+        public EsentModelProvider(ILoggerFactory loggerFactory, IOptionsMonitor<EsentEngineOptions> options)
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _esentOptions = options;
             _logger = _loggerFactory.CreateLogger<EsentModelProvider>();
             if (!IsEsentSupported())
             {
@@ -42,7 +45,7 @@ namespace Xbim.IO.Esent
         public override IModel Create(XbimSchemaVersion ifcVersion, string dbPath)
         {
             var factory = GetFactory(ifcVersion);
-            return EsentModel.CreateModel(factory, dbPath);
+            return EsentModel.CreateModel(factory, dbPath, _esentOptions.CurrentValue);
         }
 
         public override IModel Create(XbimSchemaVersion ifcVersion, XbimStoreType storageType)
@@ -50,7 +53,7 @@ namespace Xbim.IO.Esent
             var factory = GetFactory(ifcVersion);
             if (storageType == XbimStoreType.EsentDatabase)
             {
-                return EsentModel.CreateTemporaryModel(factory);
+                return EsentModel.CreateTemporaryModel(factory, _esentOptions.CurrentValue);
             }
             throw new NotSupportedException($"{storageType} is not a supported Storage Type");
         }
@@ -219,7 +222,7 @@ namespace Xbim.IO.Esent
             }
             // Create a new Esent model for this Model => Model copy
             var factory = GetFactory(model.SchemaVersion);
-            using (var esentDb = new EsentModel(factory, _loggerFactory))
+            using (var esentDb = new EsentModel(factory, _loggerFactory, _esentOptions.CurrentValue))
             {
                 esentDb.CreateFrom(model, fileName, progDelegate);
                 esentDb.Close();
@@ -229,7 +232,7 @@ namespace Xbim.IO.Esent
         private EsentModel CreateEsentModel(XbimSchemaVersion schema, int codePageOverride)
         {
             var factory = GetFactory(schema);
-            var model = new EsentModel(factory, _loggerFactory)
+            var model = new EsentModel(factory, _loggerFactory, _esentOptions.CurrentValue)
             {
                 CodePageOverride = codePageOverride
             };

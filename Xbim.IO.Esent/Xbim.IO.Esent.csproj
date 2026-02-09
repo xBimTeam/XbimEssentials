@@ -25,4 +25,7 @@
 	<ItemGroup>
 		<None Include="..\xbim-toolkit-icon.png" Pack="True" PackagePath="\" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.3" />
+	</ItemGroup>
 </Project>
