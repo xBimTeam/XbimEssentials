@@ -1,15 +1,16 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using Xbim.Common;
-using Xbim.Common.Exceptions;
 using Xbim.Common.Configuration;
+using Xbim.Common.Exceptions;
 using Xbim.Common.Step21;
 using Xbim.IO;
 using Xbim.IO.Esent;
 using Xbim.IO.Memory;
-using System.Runtime.InteropServices;
 
 namespace Xbim.Ifc
 {
@@ -26,16 +27,17 @@ namespace Xbim.Ifc
     public class HeuristicModelProvider : BaseModelProvider
     {
         private readonly ILoggerFactory _loggerFactory;
+        private readonly IOptionsMonitor<EsentEngineOptions> _esentOptions;
         private readonly ILogger _logger;
 
-        public HeuristicModelProvider() : this(default)
+        public HeuristicModelProvider() : this(default, new StaticEngineOptionsMonitor(new EsentEngineOptions()))
         {
-
         }
 
-        public HeuristicModelProvider(ILoggerFactory loggerFactory)
+        public HeuristicModelProvider(ILoggerFactory loggerFactory, IOptionsMonitor<EsentEngineOptions> options)
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _esentOptions = options;
             _logger = _loggerFactory.CreateLogger<HeuristicModelProvider>();
 
             if(!IsEsentSupported())
@@ -91,7 +93,7 @@ namespace Xbim.Ifc
             var factory = GetFactory(ifcVersion);
             if (storageType == XbimStoreType.EsentDatabase)
             {
-                return EsentModel.CreateTemporaryModel(factory);
+                return EsentModel.CreateTemporaryModel(factory, _esentOptions.CurrentValue);
             }
 
             return new MemoryModel(factory, _loggerFactory);
@@ -363,7 +365,7 @@ namespace Xbim.Ifc
 
             // Create a new Esent model for this Model => Model copy
             var factory = GetFactory(model.SchemaVersion);
-            using (var esentDb = new EsentModel(factory, _loggerFactory))
+            using (var esentDb = new EsentModel(factory, _loggerFactory, _esentOptions.CurrentValue))
             {
                 esentDb.CreateFrom(model, fileName, progDelegate);
                 esentDb.Close();
@@ -373,7 +375,7 @@ namespace Xbim.Ifc
         private EsentModel CreateEsentModel(XbimSchemaVersion schema, int codePageOverride)
         {
             var factory = GetFactory(schema);
-            var model = new EsentModel(factory, _loggerFactory)
+            var model = new EsentModel(factory, _loggerFactory, _esentOptions.CurrentValue)
             {
                 CodePageOverride = codePageOverride
             };

@@ -1,22 +1,31 @@
 using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Xbim.Common;
 using Xbim.Common.Configuration;
 using Xbim.Ifc;
-using Xbim.Ifc2x3;
-using Xbim.Ifc4.Interfaces;
 using Xbim.IO;
-using System.Diagnostics;
 using Xbim.IO.Esent;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Xbim.Essentials.Tests
 {
-    [Collection(nameof(xUnitBootstrap))]
-    public class EsentVersionCompatibilityTests
+    /// <summary>
+    /// Isolated test collection for GeomService configuration tests.
+    /// This prevents DI configuration from interfering with other tests.
+    /// </summary>
+    [CollectionDefinition(nameof(EsentVersionCompatibilityCollection), DisableParallelization = true)]
+    public class EsentVersionCompatibilityCollection : ICollectionFixture<xUnitReinit>
+    {
+    }
+
+
+    [Collection(nameof(EsentVersionCompatibilityCollection))]
+    public class EsentVersionCompatibilityTests : IDisposable
     {
         private static readonly IEntityFactory ef2x3 = new Ifc2x3.EntityFactoryIfc2x3();
         private readonly ITestOutputHelper output;
@@ -25,10 +34,19 @@ namespace Xbim.Essentials.Tests
         {
             this.output = output;
             // Clear the singleton collection each test
-            InternalConfiguration = XbimServices.CreateInstanceInternal();
+            XbimServices.Current.Rebuild();
         }
 
-        private XbimServices InternalConfiguration;
+
+        
+        public void Dispose()
+        {
+            // Reset after each test to not affect other tests in the solution
+            XbimServices.Current.Rebuild();
+        }
+
+
+        private XbimServices InternalConfiguration = XbimServices.Current;
 
         // xUnit captures Console.WriteLine and shows it in test output; no test output helper required here.
 
@@ -36,8 +54,31 @@ namespace Xbim.Essentials.Tests
         public void EsentModel_DefaultEngineFormatVersion_IsDefault()
         {
             // set the Esent model as the default for this test
-            InternalConfiguration.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel()));
-            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(EngineFormatVersion.Default, "Esent model should be configured to default engine format for this test.");
+            InternalConfiguration.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel(/*c=> c.SetFormat(EngineFormatVersion.Default)*/)));
+
+            EsentModel esentModel = CreateEsentModel();
+            esentModel.EsentFormat.Should().Be(EngineFormatVersion.Default, "Esent model should be configured to default engine format for this test.");
+        }
+
+        private static EsentModel CreateEsentModel()
+        {
+            var model = IfcStore.Create(Common.Step21.XbimSchemaVersion.Ifc4, XbimStoreType.EsentDatabase);
+
+            var esentModel = model.Model as EsentModel;
+            return esentModel;
+        }
+
+        [Fact]
+        public void EsentModel_Can_Override_Format()
+        {
+            // set the Esent model as the default for this test
+            InternalConfiguration.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddEsentModel(c => c.SetFormat(EngineFormatVersion.JET_efvWindows10Rtm))));
+            var config = InternalConfiguration.ServiceProvider.GetRequiredService<IOptions<EsentEngineOptions>>();
+
+            config.Value.FormatVersion.Should().Be(EngineFormatVersion.JET_efvWindows10Rtm, "Esent model should be configured to JET_efvWindows10Rtm engine format for this test.");
+
+            EsentModel esentModel = CreateEsentModel();
+            esentModel.EsentFormat.Should().Be(EngineFormatVersion.JET_efvWindows10Rtm, "Underlying Esent model should be configured to JET_efvWindows10Rtm engine format for this test.");
         }
 
         [Theory]
@@ -48,7 +89,7 @@ namespace Xbim.Essentials.Tests
         {
             var loggerFactory = new Microsoft.Extensions.Logging.LoggerFactory();
             loggerFactory.AddProvider(new TestOutputLoggerProvider(output));
-            InternalConfiguration.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory).AddEsentModel(limit))); // we are limiting the esent version here
+            InternalConfiguration.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory).AddEsentModel(cfg => cfg.SetFormat(limit)))); // we are limiting the esent version here
             string transientXbimFile;
             string savedXBimFile = Path.ChangeExtension(Guid.NewGuid().ToString(), $".{limit}.xbim");
             FileInfo f = new FileInfo(savedXBimFile);
@@ -104,9 +145,12 @@ namespace Xbim.Essentials.Tests
             // Create a logger factory that writes to the xUnit test output
             var loggerFactory = new Microsoft.Extensions.Logging.LoggerFactory();
             loggerFactory.AddProvider(new TestOutputLoggerProvider(output));
-            InternalConfiguration.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory).AddEsentModel(EngineFormatVersion.JET_efvSynchronousLVCleanup)));
+            InternalConfiguration.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddLoggerFactory(loggerFactory).AddEsentModel(cfg => cfg.SetFormat(EngineFormatVersion.JET_efvSynchronousLVCleanup))));
 
-            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(EngineFormatVersion.JET_efvSynchronousLVCleanup, "Esent model should be configured to force engine format version 9060 for this test.");
+
+            var config = InternalConfiguration.ServiceProvider.GetRequiredService<IOptions<EsentEngineOptions>>();
+
+            config.Value.FormatVersion.Should().Be(EngineFormatVersion.JET_efvSynchronousLVCleanup, "Esent model should be configured to force engine format version 9060 for this test.");
 
             var testDir = Path.Combine("TestFiles", "EsentVersionFiles");
             Assert.True(Directory.Exists(testDir), $"Test directory not found: {testDir}");

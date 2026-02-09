@@ -72,7 +72,7 @@ namespace Xbim.Ifc
             {
                 if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel(PersistedEntityInstanceCache.LimitEngineFormatVersion)));
+                    XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
                 }
                 else
                 {

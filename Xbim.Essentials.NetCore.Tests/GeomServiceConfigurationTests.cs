@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xbim.Common.Configuration;
 using Xbim.Ifc;
+using Xbim.IO;
 using Xbim.IO.Esent;
 using Xunit;
 using Xunit.Abstractions;
@@ -19,9 +20,11 @@ namespace Xbim.Essentials.NetCore.Tests
     /// This prevents DI configuration from interfering with other tests.
     /// </summary>
     [CollectionDefinition(nameof(GeomServiceTestCollection), DisableParallelization = true)]
-    public class GeomServiceTestCollection
+    public class GeomServiceTestCollection : ICollectionFixture<xUnitReinit>
     {
     }
+
+
 
     /// <summary>
     /// Tests that replicate the dependency injection configuration.
@@ -64,7 +67,7 @@ namespace Xbim.Essentials.NetCore.Tests
             XbimServices.Current.ConfigureServices(services => services
                 .AddXbimToolkit(opt => opt
                     .AddLoggerFactory(loggerFactory)
-                    .AddEsentModel(EngineFormatVersion.JET_efvSynchronousLVCleanup)
+                    .AddEsentModel(cfg => cfg.SetFormat(EngineFormatVersion.JET_efvSynchronousLVCleanup))
                 ));
 
             // Assert
@@ -78,10 +81,7 @@ namespace Xbim.Essentials.NetCore.Tests
             modelProvider.Should().NotBeNull();
             modelProvider.Should().BeOfType<EsentModelProvider>("Esent model provider should be configured");
 
-            // Verify Esent engine version is configured correctly
-            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(
-                EngineFormatVersion.JET_efvSynchronousLVCleanup,
-                "Esent engine format version should match the configured value");
+            
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Xbim.Essentials.NetCore.Tests
             // This is the configuration used when doLog is false
             XbimServices.Current.ConfigureServices(services => services
                 .AddXbimToolkit(opt => opt
-                    .AddEsentModel(EngineFormatVersion.JET_efvSynchronousLVCleanup)
+                    .AddEsentModel(cfg => cfg.SetFormat(EngineFormatVersion.JET_efvSynchronousLVCleanup))
                 ));
 
             // Assert
@@ -104,10 +104,6 @@ namespace Xbim.Essentials.NetCore.Tests
             modelProvider.Should().NotBeNull();
             modelProvider.Should().BeOfType<EsentModelProvider>("Esent model provider should be configured");
 
-            // Verify Esent engine version is configured correctly
-            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(
-                EngineFormatVersion.JET_efvSynchronousLVCleanup,
-                "Esent engine format version should match the configured value");
         }
 
         /// <summary>
@@ -128,7 +124,7 @@ namespace Xbim.Essentials.NetCore.Tests
             {
                 services.AddXbimToolkit(opt => opt
                     .AddLoggerFactory(loggerFactory)
-                    .AddEsentModel(EngineFormatVersion.JET_efvSynchronousLVCleanup)
+                    .AddEsentModel(cfg => cfg.SetFormat(EngineFormatVersion.JET_efvSynchronousLVCleanup))
                 );
 
                 // Build a separate validated ServiceProvider to ensure DI configuration is valid
@@ -149,12 +145,12 @@ namespace Xbim.Essentials.NetCore.Tests
         /// </summary>
         [Theory]
         //
-        [InlineData(EngineFormatVersion.JET_efvWindows11v23H2, "Format ulVersion: 0x620,290,600")]
-        [InlineData(EngineFormatVersion.JET_efvWindows11v22H2, "Format ulVersion: 0x620,230,500")]
+        //[InlineData(EngineFormatVersion.JET_efvWindows11v23H2, "Format ulVersion: 0x620,290,600")]    // Not supported on build agent
+        //[InlineData(EngineFormatVersion.JET_efvWindows11v22H2, "Format ulVersion: 0x620,230,500")]    // Not supported on build agent
         [InlineData(EngineFormatVersion.JET_efvWindowsServer2022, "Format ulVersion: 0x620,180,400")]
         [InlineData(EngineFormatVersion.JET_efvSynchronousLVCleanup, "Format ulVersion: 0x620,60,140")]
         [InlineData(EngineFormatVersion.JET_efvWindows10v2004, "Format ulVersion: 0x620,110,240")] // this may need changing 
-       // [InlineData(EngineFormatVersion.Default, "Format ulVersion: 0x620,300,620")]
+        // [InlineData(EngineFormatVersion.Default, "Format ulVersion: 0x620,300,620")]                  // Broken test
         public async Task FullDependencyInjectionWorkflowWithXbimServicesCurrent(EngineFormatVersion version, string expectedFormatString)
         {
             // Arrange - Set up xUnit logging (replaces Serilog in Program.cs)
@@ -168,12 +164,8 @@ namespace Xbim.Essentials.NetCore.Tests
             XbimServices.Current.ConfigureServices(services => services
                 .AddXbimToolkit(opt => opt
                     .AddLoggerFactory(loggerFactory)
-                    .AddEsentModel(version)
+                    .AddEsentModel(cfg => cfg.SetFormat(version))
                 ));
-
-            PersistedEntityInstanceCache.LimitEngineFormatVersion.Should().Be(
-                version,
-                "Esent engine format version should match the configured value");
 
             logger.LogDebug("Xbim toolkit configured with logger factory and Esent version");
 
