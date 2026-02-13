@@ -34,6 +34,10 @@ namespace Xbim.Ifc
         {
         }
 
+        public HeuristicModelProvider(ILoggerFactory loggerFactory) : this(loggerFactory, new StaticEngineOptionsMonitor(new EsentEngineOptions()))
+        {
+        }
+
         public HeuristicModelProvider(ILoggerFactory loggerFactory, IOptionsMonitor<EsentEngineOptions> options)
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();

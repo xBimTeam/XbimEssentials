@@ -23,6 +23,11 @@ namespace Xbim.IO.Esent
 
         }
 
+        public EsentModelProvider(ILoggerFactory loggerFactory) : this(loggerFactory, new StaticEngineOptionsMonitor(new EsentEngineOptions()))
+        {
+
+        }
+
         public EsentModelProvider(ILoggerFactory loggerFactory, IOptionsMonitor<EsentEngineOptions> options)
         {
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
