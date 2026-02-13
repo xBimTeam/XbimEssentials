@@ -41,6 +41,10 @@ namespace Xbim.Essentials.Tests
         // Does nothing but trigger xUnitUnit construction at beginning of test run
     }
 
+
+    /// <summary>
+    /// Initilialises the Xbim DI Services once as a bootstrap
+    /// </summary>
     public class xUnitInit : IDisposable
     {
 
@@ -65,4 +69,32 @@ namespace Xbim.Essentials.Tests
             
         }
     }
+
+    /// <summary>
+    /// Reinstate DI after a xunit fixture may have cleared the shared DI
+    /// </summary>
+    public class xUnitReinit : IDisposable
+    {
+
+        public xUnitReinit()
+        {
+            // Nothing to do on setup fixture
+        }
+
+        public static void Reset()
+        {
+            if (!XbimServices.Current.IsBuilt)
+            {
+                XbimServices.Current.ConfigureServices(s => s.AddXbimToolkit(opt => opt.AddHeuristicModel()));
+            }
+        }
+
+        public void Dispose()
+        {
+            // Reinitialise the DI
+            Reset();
+            _ = IfcStore.Create(Common.Step21.XbimSchemaVersion.Ifc4, XbimStoreType.InMemoryModel);
+        }
+    }
+
 }

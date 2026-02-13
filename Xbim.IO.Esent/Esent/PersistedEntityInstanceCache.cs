@@ -1,30 +1,230 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Isam.Esent.Interop;
+using Microsoft.Isam.Esent.Interop.Windows7;
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading;
 using System.Xml;
-using Microsoft.Isam.Esent.Interop;
-using Microsoft.Isam.Esent.Interop.Windows7;
 using Xbim.Common;
+using Xbim.Common.Configuration;
 using Xbim.Common.Exceptions;
-using Xbim.Common.Geometry;
+using Xbim.Common.Geometry; 
 using Xbim.Common.Metadata;
+using Xbim.Common.Step21;
 using Xbim.IO.Step21;
 using Xbim.IO.Step21.Parser;
-using Microsoft.Extensions.Logging;
-using System.IO.Compression;
 using Xbim.IO.Xml;
-using Xbim.Common.Step21;
-using Xbim.Common.Configuration;
 
 namespace Xbim.IO.Esent
 {
+    /// <summary>
+    /// Enumeration supporting the identification of the Esent engine format version.
+    /// Mapping to the features that the format supports, to its DbVersion, LogVersion, and FlushMapVer
+    /// </summary>
+    public enum EngineFormatVersion
+    {
+        /// <summary>
+        /// Adopts the default engine format version supported by the Esent library in use.
+        /// </summary>
+        Default = 0,
+
+        // sourced from:
+        // https://github.com/microsoft/win32metadata/blob/f06337c77e3fd3bdd3b5a5e90e0f720a8e00d90f/generation/WinSDK/RecompiledIdlHeaders/um/esent.h#L281-L286
+
+        /// <summary>
+        /// Last pre-efv version, shipped in Windows 10 until 19H1 release.
+        /// </summary>
+        JET_efvWindows19H1Rtm = 8920,
+        /// <summary>
+        /// Efv shipped with Windows "Vibranium", first shipped with Windows 10 version 2004 (and all subsequent Windows 10 releases).
+        /// </summary>
+        JET_efvWindows10v2004 = 9180,         
+        /// <summary>
+        /// Efv shipped with Windows Server 2022.
+        /// </summary>
+        JET_efvWindowsServer2022 = 9360,
+        /// <summary>
+        /// Efv shipped with Windows 11 21H2 release.
+        /// </summary>
+        JET_efvWindows11v21H2 = 9400,
+        /// <summary>
+        /// Efv shipped with Windows 11 22H2 release.
+        /// </summary>
+        JET_efvWindows11v22H2 = 9480,
+        /// <summary>
+        /// Efv shipped with Windows 11 23H2 release.
+        /// </summary>
+        JET_efvWindows11v23H2 = 9600,
+
+        // sourced from:
+        // https://github.com/microsoft/Extensible-Storage-Engine/blob/7030fe7407615160e54d152e4ef704eede2fdd7e/dev/ese/src/ese/sysver.cxx#L52-L99
+
+        /// <summary>
+        /// dbversion: 1568,20,0 - LogVersion: 8,4,3 - FlushMapVer: 0,0,0 
+        /// </summary>
+        JET_efvWindows10Rtm = 8020,
+        /// <summary>
+        /// Final format version for Exchange 2016 RTM. Actually released summer of 2015.
+        /// dbversion: 1568,20,0 - LogVersion: 8,5,14 - FlushMapVer: 3,0,0
+        /// </summary>
+        JET_efvExchange2016Rtm = 8520,
+        /// <summary>
+        /// Final format version for Windows 10 Version 1511 (Threshold 2).
+        /// dbversion: 1568,20,0 - LogVersion: 8,5,14 - FlushMapVer: 3,0,0   
+        /// </summary>
+        JET_efvWindows10v2Rtm = 8620,
+        /// <summary>
+        /// dbversion: 1568,20,0 - LogVersion: 8,5,16 - FlushMapVer: 3,0,0
+        /// </summary>
+        JET_efvExchange2016Cu1Rtm = 8920,
+        /// <summary>
+        /// dbversion: 1568,20,20 - LogVersion: 8,6,20 - FlushMapVer: 3,0,0 - 2016/03/31
+        /// </summary>
+        JET_efvSetDbVersion = 8940,
+        /// <summary>
+        /// dbversion: 1568,40,60 - LogVersion: 8,7,40 - FlushMapVer: 3,0,0 - 2016/05/17
+        /// </summary>
+        JET_efvXpress9Compression = 8980,
+        /// <summary>
+        /// dbversion: 1568,50,80 - LogVersion: 8,7,40 - FlushMapVer: 3,0,0 - 2016/05/21
+        /// </summary>
+        JET_efvUppercaseTextNormalization = 9000,
+        /// <summary>
+        /// dbversion: 1568,50,100 - LogVersion: 8,7,40 - FlushMapVer: 3,0,0 - 2016/07/11
+        /// </summary>
+        JET_efvDbscanHeaderHighestPageSeen = 9020,
+        /// <summary>
+        /// dbversion: 1568,60,120 - LogVersion: 8,20,60 - FlushMapVer: 3,0,0 - 2017/01/10
+        /// </summary>
+        JET_efvEscrow64 = 9040,
+        /// <summary>
+        /// dbversion: 1568,60,140 - LogVersion: 8,20,60 - FlushMapVer: 3,0,0 - 2017/06/12
+        /// </summary>
+        JET_efvSynchronousLVCleanup = 9060,
+        /// <summary>
+        /// dbversion: 1568,70,160 - LogVersion: 8,20,60 - FlushMapVer: 3,0,0 - 2018/03/04
+        /// </summary>
+        JET_efvLid64 = 9080,
+        /// <summary>
+        /// dbversion: 1568,80,180 - LogVersion: 8,30,80 - FlushMapVer: 3,0,0 - 2018/05/03
+        /// </summary>
+        JET_efvShrinkEof = 9100,
+        /// <summary>
+        /// dbversion: 1568,90,200 - LogVersion: 8,40,100 - FlushMapVer: 3,0,0 - 2019/01/31
+        /// </summary>
+        JET_efvLogNewPage = 9120,
+        /// <summary>
+        /// dbversion: 1568,100,220 - LogVersion: 8,50,120 - FlushMapVer: 3,0,0 - 2019/02/13
+        /// </summary>
+        JET_efvRootPageMove = 9140,
+        /// <summary>
+        /// dbversion: 1568,100,220 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/03/20
+        /// </summary>
+        JET_efvScanCheck2 = 9160,
+        /// <summary>
+        /// dbversion: 1568,110,240 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/06/13
+        /// </summary>
+        JET_efvLgposLastResize = 9180,
+        /// <summary>
+        /// dbversion: 1568,120,260 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/09/12
+        /// </summary>
+        JET_efvShelvedPages = 9200,
+        /// <summary>
+        /// dbversion: 1568,130,280 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/09/27
+        /// </summary>
+        JET_efvShelvedPagesRevert = 9220,
+        /// <summary>
+        /// dbversion: 1568,140,300 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/09/30
+        /// </summary>
+        JET_efvShelvedPages2 = 9240,
+        /// <summary>
+        /// dbversion: 1568,150,320 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/10/04
+        /// </summary>
+        JET_efvLogtimeGenMaxRequired = 9260,
+        /// <summary>
+        /// dbversion: 1568,160,340 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/11/27
+        /// </summary>
+        JET_efvVariableDbHdrSignatureSnapshot = 9280,
+        /// <summary>
+        /// dbversion: 1568,160,360 - LogVersion: 8,60,140 - FlushMapVer: 3,0,0 - 2019/12/14
+        /// </summary>
+        JET_efvLowerMinReqLogGenOnRedo = 9300,
+        /// <summary>
+        /// dbversion: 1568,160,360 - LogVersion: 8,70,160 - FlushMapVer: 3,0,0 - 2019/12/18
+        /// </summary>
+        JET_efvDbTimeShrink = 9320,
+        /// <summary>
+        /// dbversion: 1568,170,380 - LogVersion: 8,80,180 - FlushMapVer: 3,0,0 - 2020/05/05
+        /// </summary>
+        JET_efvXpress10Compression = 9340,
+        /// <summary>
+        /// dbversion: 1568,180,400 - LogVersion: 8,90,200 - FlushMapVer: 3,0,0 - 2020/09/23
+        /// </summary>
+        JET_efvRevertSnapshot = 9360,
+        /// <summary>
+        /// dbversion: 1568,190,420 - LogVersion: 8,90,200 - FlushMapVer: 3,0,0 - 2020/12/01
+        /// </summary>
+        JET_efvApplyRevertSnapshot = 9380,
+        /// <summary>
+        /// dbversion: 1568,200,440 - LogVersion: 8,90,200 - FlushMapVer: 3,0,0 - 2021/01/15
+        /// </summary>
+        JET_efvExtentPageCountCache = 9400,
+        /// <summary>
+        /// dbversion: 1568,210,460 - LogVersion: 8,100,220 - FlushMapVer: 3,0,0 - 2021/03/26
+        /// </summary>
+        JET_efvLz4Compression = 9420,
+        /// <summary>
+        /// dbversion: 1568,230,500 - LogVersion: 8,100,220 - FlushMapVer: 3,0,0 - 2021/09/08
+        /// </summary>
+        JET_efvRBSNonRevertableTableDeletes = 9460,
+        /// <summary>
+        /// dbversion: 1568,230,500 - LogVersion: 8,110,240 - FlushMapVer: 3,0,0 - 2021/10/22
+        /// </summary>
+        JET_efvScanCheck2Flags = 9480,
+        /// <summary>
+        /// dbversion: 1568,230,500 - LogVersion: 8,120,260 - FlushMapVer: 3,0,0 - 2021/12/21
+        /// </summary>
+        JET_efvExtentFreed2 = 9500,
+        /// <summary>
+        /// dbversion: 1568,250,520 - LogVersion: 8,120,260 - FlushMapVer: 3,0,0 - 2022/02/17
+        /// </summary>
+        JET_efvKVPStoreV2 = 9520,
+        /// <summary>
+        /// dbversion: 1568,260,540 - LogVersion: 8,120,260 - FlushMapVer: 3,0,0 - 2022/03/02
+        /// </summary>
+        JET_efvIndexDeferredPopulate = 9540,
+        /// <summary>
+        /// dbversion: 1568,270,560 - LogVersion: 8,120,260 - FlushMapVer: 3,0,0 - 2022/06/17
+        /// </summary>
+        JET_efvReservedTags = 9560,
+        /// <summary>
+        /// dbversion: 1568,280,580 - LogVersion: 8,130,280 - FlushMapVer: 3,0,0 - 2022/07/14
+        /// </summary>
+        JET_efvRBSTooSoonDeletes = 9580,
+        /// <summary>
+        /// dbversion: 1568,290,600 - LogVersion: 8,130,280 - FlushMapVer: 3,0,0 - 2022/07/14
+        /// </summary>
+        JET_efvOptionallyUniqueIndices = 9600
+    }
+
     public class PersistedEntityInstanceCache : IDisposable
     {
+
+        /// <summary>
+        /// The ID of the engine property identifying the desired engine format version of the esent databases
+        /// </summary>
+        private const int JET_paramEngineFormatVersion = 194;
+
+        // JET_efvAllowHigherPersistedFormat is defined in esent.h https://github.com/microsoft/win32metadata/blob/f06337c77e3fd3bdd3b5a5e90e0f720a8e00d90f/generation/WinSDK/RecompiledIdlHeaders/um/esent.h#L279
+        // it allows databases created with an newer engine format version to be opened when the generation version is limited
+        const int JET_efvAllowHigherPersistedFormat = 0x41000000;
+
         /// <summary>
         /// Holds a collection of all currently opened instances in this process
         /// </summary>
@@ -35,6 +235,7 @@ namespace Xbim.IO.Esent
         private Instance _jetInstance;
         private readonly IEntityFactory _factory;
         private readonly ILoggerFactory _loggerFactory;
+        private readonly EsentEngineOptions _engineOptions;
         private readonly ILogger _logger;
         private Session _session;
         private JET_DBID _databaseId;
@@ -95,11 +296,13 @@ namespace Xbim.IO.Esent
         private bool _caching;
         private bool _previousCaching;
 
-        public PersistedEntityInstanceCache(EsentModel model, IEntityFactory factory, ILoggerFactory loggerFactory)
+        public PersistedEntityInstanceCache(EsentModel model, IEntityFactory factory, ILoggerFactory loggerFactory, EsentEngineOptions engineOptions)
         {
             _factory = factory;
             _loggerFactory = loggerFactory ?? XbimServices.Current.GetLoggerFactory();
+            _engineOptions = engineOptions;
             _logger = _loggerFactory.CreateLogger<PersistedEntityInstanceCache>();
+            // honor the global default which can be configured via AddEsentModel
             _jetInstance = CreateInstance("XbimInstance");
             _lockObject = new object();
             _model = model;
@@ -119,32 +322,60 @@ namespace Xbim.IO.Esent
         /// <returns></returns>
         internal void CreateDatabase(string fileName)
         {
-            using (var session = new Session(_jetInstance))
+            var tempInstance = CreateInstance("XbimCreate");
+            JET_DBID dbid = JET_DBID.Nil;
+            try
             {
-                JET_DBID dbid;
-                Api.JetCreateDatabase(session, fileName, null, out dbid, CreateDatabaseGrbit.OverwriteExisting);
-                try
+                _logger.LogTrace("Creating Esent Database {filename}", fileName);
+                using (var session = new Session(tempInstance))
                 {
+                    Api.JetCreateDatabase(session, fileName, null, out dbid, CreateDatabaseGrbit.OverwriteExisting);
                     EsentEntityCursor.CreateTable(session, dbid);
                     EsentCursor.CreateGlobalsTable(session, dbid); //create the gobals table
                     EnsureGeometryTables(session, dbid);
                 }
-                catch (Exception ex)
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to Create Esent Database, {filename}", fileName);
+                try
                 {
-                    _logger.LogError(ex, "Failed to Create Esent Database, {filename}", fileName);
-                    try
+                    if (dbid != JET_DBID.Nil)
                     {
-                        Api.JetCloseDatabase(session, dbid, CloseDatabaseGrbit.None);
-                        lock (OpenInstances)
+                        // attempt to close the database if it was opened
+                        using (var session = new Session(tempInstance))
                         {
-                            Api.JetDetachDatabase(session, fileName);
-                            OpenInstances.Remove(this);
+                            Api.JetCloseDatabase(session, dbid, CloseDatabaseGrbit.None);
                         }
-                        File.Delete(fileName);
                     }
-                    catch { }
-                    throw;
+                    // Detach may fail if attachment didn't complete; ignore errors
+                    using (var session = new Session(tempInstance))
+                    {
+                        try { Api.JetDetachDatabase(session, fileName); } catch { }
+                    }
+                    File.Delete(fileName);
                 }
+                catch { }
+                throw;
+            }
+            finally
+            {
+                try { tempInstance.Term(); } catch { }
+                try
+                {
+                    // Clear the forced engine format parameters so they do not
+                    // affect other instances in this process.
+                    if (_engineOptions.FormatVersion != EngineFormatVersion.Default)
+                    {
+                        Api.JetSetSystemParameter(
+                            JET_INSTANCE.Nil,
+                            JET_SESID.Nil,
+                            (JET_param)JET_paramEngineFormatVersion,
+                            0,
+                            null);
+                    }
+                }
+                catch { }
             }
         }
 
@@ -173,7 +404,7 @@ namespace Xbim.IO.Esent
                 {
                     //
                     _logger.LogDebug(ex, "Failed to delete geometry table {tableName}", EsentShapeGeometryCursor.GeometryTableName);
-;                }
+                }
 
                 try
                 {
@@ -195,7 +426,6 @@ namespace Xbim.IO.Esent
 
         private static bool EnsureGeometryTables(Session session, JET_DBID dbid)
         {
-
             if (!HasTable(XbimGeometryCursor.GeometryTableName, session, dbid))
                 XbimGeometryCursor.CreateTable(session, dbid);
             if (!HasTable(EsentShapeGeometryCursor.GeometryTableName, session, dbid))
@@ -227,7 +457,7 @@ namespace Xbim.IO.Esent
                 }
             }
             var openMode = AttachedDatabase();
-            return new EsentEntityCursor(_model, _databaseName, openMode, _loggerFactory);  
+            return new EsentEntityCursor(_model, _databaseName, openMode, _loggerFactory);
         }
 
         private OpenDatabaseGrbit AttachedDatabase()
@@ -533,17 +763,17 @@ namespace Xbim.IO.Esent
         {
             //Directories are setup using the following strategy
             //First look in the config file, then try and use windows temporary directory, then the current working directory
-           // var tempDirectory = ConfigurationManager.AppSettings["XbimTempDirectory"];
-           // if (!IsValidDirectory(ref tempDirectory))
-           // {
-                var tempDirectory = Path.Combine(Path.GetTempPath(), "Xbim." + Guid.NewGuid().ToString());
+            // var tempDirectory = ConfigurationManager.AppSettings["XbimTempDirectory"];
+            // if (!IsValidDirectory(ref tempDirectory))
+            // {
+            var tempDirectory = Path.Combine(Path.GetTempPath(), "Xbim." + Guid.NewGuid().ToString());
+            if (!IsValidDirectory(ref tempDirectory))
+            {
+                tempDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Xbim." + Guid.NewGuid().ToString());
                 if (!IsValidDirectory(ref tempDirectory))
-                {
-                    tempDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Xbim." + Guid.NewGuid().ToString());
-                    if (!IsValidDirectory(ref tempDirectory))
-                        throw new XbimException("Unable to initialise the Xbim database engine, no write access. Please set a location for the XbimTempDirectory in the config file");
-                }
-           // }
+                    throw new XbimException("Unable to initialise the Xbim database engine, no write access. Please set a location for the XbimTempDirectory in the config file");
+            }
+            // }
             return tempDirectory;
         }
 
@@ -588,7 +818,20 @@ namespace Xbim.IO.Esent
 
         private Instance CreateInstance(string instanceName, bool recovery = false, bool createTemporaryTables = false)
         {
+            _logger?.LogTrace("Creating Esent JetInstance with engine format version: {version}", _engineOptions.FormatVersion);
             var guid = Guid.NewGuid().ToString();
+            if (_engineOptions.FormatVersion != EngineFormatVersion.Default)
+            {
+                // Force engine format for created databases
+                int version = (int)_engineOptions.FormatVersion;
+                Api.JetSetSystemParameter(
+                    JET_INSTANCE.Nil,
+                    JET_SESID.Nil,
+                    (JET_param)JET_paramEngineFormatVersion,
+                    version | JET_efvAllowHigherPersistedFormat,
+                    null);
+            }
+
             var jetInstance = new Instance(instanceName + guid);
 
             if (string.IsNullOrWhiteSpace(_systemPath)) //we haven't specified a path so make one               
@@ -742,7 +985,7 @@ namespace Xbim.IO.Esent
                 Close();
                 File.Delete(xbimDbName);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Failed to tidy up {xbimFile}", xbimDbName);
             }

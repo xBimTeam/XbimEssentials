@@ -12,7 +12,6 @@ namespace Xbim.Essentials.NetCore.Tests
         [Fact]
         public void ServiceProviderIsValid()
         {
-
             var SuT = XbimServices.CreateInstanceInternal();
             SuT.ConfigureServices(s =>
             {

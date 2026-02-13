@@ -35,11 +35,8 @@ namespace Xbim.Essentials.Tests
         public void Services_can_be_resolved(Type type)
         {
             SuT.ConfigureServices(s => s.AddXbimToolkit());
-
             var service = SuT.ServiceProvider.GetRequiredService(type);
-
             service.Should().NotBeNull();
-            
         }
 
         [Fact]
@@ -231,22 +228,22 @@ namespace Xbim.Essentials.Tests
         }
 
         [Fact]
-        public void Services_Are_Registered_Once_Only()
+        public void ConfigureServices_Is_Idempontent()
         {
             int count = 0;
-            
+
             SuT.ConfigureServices(s => 
-            { 
+            {
                 s.AddXbimToolkit();
                 count = s.Count;
             });
 
+            // ConfigureServices can be called multiple times.
             SuT.ConfigureServices(s =>
             {
                 s.AddXbimToolkit();
                 s.Count.Should().Be(count);
             });
-
 
         }
 

@@ -69,7 +69,7 @@ steps:
 # Version .NET Core project files
 # Description - Applies a version to a .NET Core assembly via the .csproj files based on the build number. 
 # Based on https://github.com/rfennell/AzurePipelines/wiki/Version-Assemblies-and-Packages-Tasks-YAML#versiondotnetcoreassembliestask
-- task: VersionDotNetCoreAssemblies@2
+- task: VersionDotNetCoreAssemblies@3
   displayName: 'Versioning netcore projects $(fileversion)'
   inputs: 
     # Required arguments
@@ -135,15 +135,26 @@ steps:
 
   
 # Generate docs and push them to the documentation repo
-
-- powershell: |
-    choco install docfx -y
-    docfx docs/docfx.json
-    if ($lastexitcode -ne 0){
-      throw ("Error generating document")
-    }
-  displayName: 'Generate Documentation'
+- script: |
+      dotnet tool install -g docfx
+  displayName: 'Install DocFX'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+
+ # Step 2: Build the Documentation using DocFX
+- script: |
+      docfx docs/docfx.json
+  displayName: 'Build Documentation'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+
+# - powershell: |
+#     choco install docfx -y
+#     docfx --version
+#     docfx docs/docfx.json
+#     if ($lastexitcode -ne 0){
+#       throw ("Error generating DocFx documentation")
+#     }
+#   displayName: 'Generate Documentation'
+#   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
    
 
 - task: CopyFiles@2
