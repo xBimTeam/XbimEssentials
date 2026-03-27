@@ -104,12 +104,12 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy to artifacts'
   inputs:
-    sourceFolder: '$(Build.BinariesDirectory)'
-    contents: |
-      '**\*.nupkg'
-      '**\*.snupkg'
-    targetFolder: '$(build.artifactstagingdirectory)'
-    cleanTargetFolder: true
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: |
+      **\*.nupkg
+      **\*.snupkg
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
     
 # Publish to master or develop MyGet feed based on the source branch
 - task: NuGetCommand@2
