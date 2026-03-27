@@ -105,7 +105,9 @@ steps:
   displayName: 'Copy to artifacts'
   inputs:
     sourceFolder: '$(Build.BinariesDirectory)'
-    contents: '**\(*.nupkg|*.snupkg)'
+    contents: |
+      '**\*.nupkg'
+      '**\*.snupkg'
     targetFolder: '$(build.artifactstagingdirectory)'
     cleanTargetFolder: true
     
