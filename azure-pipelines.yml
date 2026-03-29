@@ -117,19 +117,17 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: push
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.snupkg'
     nuGetFeedType: external
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.snupkg'
     publishFeedCredentials: 'MyGetMaster'
-    # versioningScheme: byEnvVar
-    # versionEnvVar: packageversion
 
 - task: NuGetCommand@2
   displayName: 'Publish to MyGet Develop'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.snupkg'
     nuGetFeedType: 'external'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.snupkg'
     publishFeedCredentials: 'MyGetDev'
 
 - task: PublishBuildArtifacts@1
