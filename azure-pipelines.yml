@@ -104,10 +104,12 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy to artifacts'
   inputs:
-    sourceFolder: '$(Build.BinariesDirectory)'
-    contents: '**\*.nupkg' 
-    targetFolder: '$(build.artifactstagingdirectory)'
-    cleanTargetFolder: true
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: |
+      **\*.nupkg
+      **\*.snupkg
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    CleanTargetFolder: true
     
 # Publish to master or develop MyGet feed based on the source branch
 - task: NuGetCommand@2
@@ -116,19 +118,17 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.snupkg'
     publishFeedCredentials: 'MyGetMaster'
-    versioningScheme: byEnvVar
-    versionEnvVar: packageversion
 
 - task: NuGetCommand@2
   displayName: 'Publish to MyGet Develop'
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   inputs:
-    command: push
-    nuGetFeedType: external
+    command: 'push'
+    nuGetFeedType: 'external'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.snupkg'
     publishFeedCredentials: 'MyGetDev'
-    versioningScheme: byEnvVar
-    versionEnvVar: packageversion
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts'
