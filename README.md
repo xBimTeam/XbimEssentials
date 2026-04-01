@@ -12,7 +12,6 @@ Develop | [![Build Status](https://dev.azure.com/xBIMTeam/xBIMToolkit/_apis/buil
 |Geometry| ![develop](https://img.shields.io/myget/xbim-develop/vpre/Xbim.Geometry.svg) | ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Geometry.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.Geometry.svg)](https://www.nuget.org/packages/Xbim.Geometry/)
 |CobieExpress| ![develop](https://img.shields.io/myget/xbim-develop/vpre/Xbim.CobieExpress.svg) | ![master](https://img.shields.io/myget/xbim-master/v/Xbim.IO.CobieExpress.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.IO.CobieExpress.svg)](https://www.nuget.org/packages/Xbim.CobieExpress/)
 |Windows UI| ![develop](https://img.shields.io/myget/xbim-develop/vpre/Xbim.WindowsUI.svg) | ![master](https://img.shields.io/myget/xbim-master/v/Xbim.WindowsUI.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.WindowsUI.svg)](https://www.nuget.org/packages/Xbim.WindowsUI/)
-|Exchange| ![develop](https://img.shields.io/myget/xbim-develop/vpre/Xbim.Exchange.svg) | ![master](https://img.shields.io/myget/xbim-master/v/Xbim.Exchange.svg) | [![Nuget](https://img.shields.io/nuget/v/Xbim.Exchange.svg)](https://www.nuget.org/packages/Xbim.Exchange/)
 
 # XbimEssentials
 **XbimEssentials** is the foundational components of [Xbim](https://xbimteam.github.io/), the e**X**tensible 
@@ -229,7 +228,7 @@ The Windows [Xbim Xplorer](http://docs.xbim.net/downloads/xbimxplorer.html) appl
 application that shows off most of the functionality in the XBIM toolkit. The app supports visualising and inspecting multiple 
 model files, as well as supporting plugins to export COBie, import/export BCF and more.
 
-![Xbim WebUI WebGL App](docs/img/XbimWebUI-Shot.png "Xbim WebUI WebGL app")
+![Xbim WebUI WebGL App](https://docs.xbim.net/img/visualization_pipeline.png "Xbim WebUI WebGL app")
 The browser-based [Xbim WeXplorer](http://docs.xbim.net/XbimWebUI/) is a simple demonstrator of visualising models in a browser
 and an ability open sementic model data from a JSON structure.
 
@@ -251,7 +250,28 @@ PM> Install-Package Xbim.Essentials
 ```
 
 Note that `Xbim.Essentials` is now a meta package. For more control it will be possible to add the 
-dependent packages directly. (Which is necessary for .NET Core currently, as Essentials only targets net47)
+dependent packages directly. 
+
+### Installing Development builds
+
+Pre-release builds are hosted in Myget. There are two separate feeds:
+
+1. develop - for the latest development builds
+1. master - staging builds / release candidates that can be promoted to the public Nuget feed.
+
+To access the Myget feeds add the following to your solution's [nuget.config](./nuget.config) or the Visual Studio global settings:
+
+- https://www.myget.org/F/xbim-develop/api/v3/index.json
+- https://www.myget.org/F/xbim-master/api/v3/index.json
+
+### Debugging & Symbol Support
+
+As of April 2026, PDB debugging Symbols are no longer deployed with the Nuget packages. If you wish to debug the released xbim
+binaries please add the following Myget Symbol Server locations to Visual Studio as per [these instructions](https://learn.microsoft.com/en-us/visualstudio/debugger/specify-symbol-dot-pdb-and-source-files-in-the-visual-studio-debugger?view=visualstudio#configure-location-of-symbol-files-and-loading-options):
+
+- https://www.myget.org/F/xbim-master/api/v2/symbolpackage/ (For Myget master and Nuget releases)
+- https://www.myget.org/F/xbim-develop/api/v2/symbolpackage/ (For Myget develop releases)
+
 
 ## Toolkit Overview
 
