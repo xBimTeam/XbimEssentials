@@ -127,7 +127,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 			get 
 			{
 				//## Getter for Dim
-                return _firstOperand.Dim;
+                return FirstOperand.Dim;
 				//##
 			}
 		}

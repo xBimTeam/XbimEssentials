@@ -83,7 +83,7 @@ namespace Xbim.Ifc4.GeometryResource
 			get 
 			{
 				//## Getter for Z
-                return _axis != null ? _axis.Normalise() : new Common.Geometry.XbimVector3D(0, 0, 1);
+                return Axis != null ? Axis.Normalise() : new Common.Geometry.XbimVector3D(0, 0, 1);
 				//##
 			}
 		}
