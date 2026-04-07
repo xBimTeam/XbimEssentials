@@ -28,7 +28,7 @@ namespace Xbim.Essentials.NetCore.Tests
         [Theory]
         [InlineData(0.0)]
         [InlineData(-1)]
-        public void ShouddValidateOnEsentModel(double threshold)
+        public void ShouldValidateOnEsentModel(double threshold)
         {
             // Configure on the local instance, not the global singleton
             configuration.ConfigureServices(services => services.AddXbimToolkit(opt => opt.AddEsentModel()));
