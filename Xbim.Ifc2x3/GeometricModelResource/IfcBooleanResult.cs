@@ -85,7 +85,6 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 		}	
 		#endregion
 
-
 		#region Derived attributes
 		[EntityAttribute(0, EntityAttributeState.Derived, EntityAttributeType.None, EntityAttributeType.None, null, null, 0)]
 		public IfcDimensionCount @Dim 
@@ -93,7 +92,7 @@ namespace Xbim.Ifc2x3.GeometricModelResource
 			get 
 			{
 				//## Getter for Dim
-                return _firstOperand.Dim;
+                return FirstOperand.Dim;
 				//##
 			}
 		}
