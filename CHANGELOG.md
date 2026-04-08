@@ -7,7 +7,7 @@ All notable changes to this project should be documented in this file
 This is the 6.0 release of XBIM Toolkit
 ### Added
 
-- Added net10.0 support to all Essentials components (including Esent). Updated packages and conditional references where required.
+- Added net6.0 support to all Essentials components (including Esent) [#432](https://github.com/xBimTeam/XbimEssentials/issues/432) [#451](https://github.com/xBimTeam/XbimEssentials/issues/451)
 - Added Common units to new projects
 - Docs are automatically generated with each build [#449](https://github.com/xBimTeam/XbimEssentials/issues/449) [#457](https://github.com/xBimTeam/XbimEssentials/issues/457)
 - Support for IFC 4x3 schema [#450](https://github.com/xBimTeam/XbimEssentials/issues/450)
