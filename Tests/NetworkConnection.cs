@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Net;
+using System.Net.Http;
 
 namespace Xbim.Essentials.Tests
 {
@@ -12,9 +13,9 @@ namespace Xbim.Essentials.Tests
             // this is slow, but apparently the best way to check for available connection.
             try
             {
-                using (var client = new WebClient())
+                using (var client = new HttpClient())
                 {
-                    using (var stream = client.OpenRead("http://www.google.com"))
+                    using (var stream = client.GetStreamAsync("http://www.google.com").GetAwaiter().GetResult())
                     {
                         _internalBool = true;
                     }

@@ -55,7 +55,12 @@ namespace Xbim.Essentials.Tests
         {
             var model = new StepModel(new Ifc4.EntityFactoryIfc4());
             var header = new StepFileHeader(StepFileHeader.HeaderCreationMode.InitWithXbimDefaults, model);
-            header.FileName.OriginatingSystem.Should().StartWith("Xbim.Common");
+#if NETFRAMEWORK
+            var expectedSystem = "Xbim.Common";
+#else
+            var expectedSystem = "testhost";
+#endif
+            header.FileName.OriginatingSystem.Should().StartWith(expectedSystem);
             var versInfo = new XbimAssemblyInfo(model.GetType().GetTypeInfo().Assembly);
             var expectedPreProcessor = string.Format("xbim Toolkit v{0}", versInfo.FileVersion);
             header.FileName.PreprocessorVersion.Should().Be(expectedPreProcessor);

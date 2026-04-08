@@ -10,7 +10,11 @@ namespace Xbim.Essentials.Tests
     {
  
         [InlineData("USD", "$", "US Dollar")]
+#if NETFRAMEWORK
         [InlineData("GBP", "£", "British Pound", "Pound Sterling")]
+#else
+        [InlineData("GBP", "£", "British Pound", "British Pound")]
+#endif
         [InlineData("EUR", "€", "Euro", "euro")]    // 'euro' since French culture picked up by default
         [InlineData("CAD", "$", "Canadian Dollar")]
         [InlineData("AUD", "$", "Australian Dollar")]
@@ -34,7 +38,11 @@ namespace Xbim.Essentials.Tests
         }
 
         [InlineData(Ifc2x3.MeasureResource.IfcCurrencyEnum.USD, "$", "US Dollar")]
+#if NETFRAMEWORK
         [InlineData(Ifc2x3.MeasureResource.IfcCurrencyEnum.GBP, "£", "British Pound", "Pound Sterling")]
+#else
+        [InlineData(Ifc2x3.MeasureResource.IfcCurrencyEnum.GBP, "£", "British Pound", "British Pound")]
+#endif
         [InlineData(Ifc2x3.MeasureResource.IfcCurrencyEnum.EUR, "€", "Euro", "euro")]    // 'euro' since French culture picked up by default
         [InlineData(Ifc2x3.MeasureResource.IfcCurrencyEnum.CAD, "$", "Canadian Dollar")]
         [InlineData(Ifc2x3.MeasureResource.IfcCurrencyEnum.AUD, "$", "Australian Dollar")]
