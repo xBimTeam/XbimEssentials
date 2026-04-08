@@ -1,4 +1,8 @@
 <Project>
+  <!-- Pin .NET SDK version via global.json in repository root. -->
+  <PropertyGroup>
+    <DotNetSdkVersion>10.0.100</DotNetSdkVersion>
+  </PropertyGroup>
   <PropertyGroup>
     <IsTestProject Condition="$(MSBuildProjectName.EndsWith('Tests')) OR $(MSBuildProjectName.EndsWith('.Test'))">true</IsTestProject>
   </PropertyGroup>
