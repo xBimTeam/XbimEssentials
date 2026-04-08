@@ -69,7 +69,11 @@ namespace Xbim.Essentials.Tests
             double arg = 0.84551240822557006;
 
             string result = formatter.Format(fmt, arg, null);
+#if NETFRAMEWORK
             string expected = "0.84551240822557";   // Last digits of double are truncated
+#else
+            string expected = "0.8455124082255701";   // Last digits of double are truncated
+#endif
             result.Should().Be(expected);
         }
 
