@@ -28,12 +28,16 @@ This is the 6.0 release of XBIM Toolkit
 - IfcStore.ModelProvider deprecated
 - Methods accepting ILogger parameters deprecated - Loggers can be injected (if using DI) or are provided by the XbimServices ServiceProvider
 
+- Updated supported targets: removed explicit `net6.0` target and added `net10.0` across the solution. CI updated to install .NET 10 SDK and repo pinned via `global.json`.
+
 ### Removed
 
 - Removed static Xbim.Commom.XbimLogger - replaced with a DI friendly internal service provide Logger functionality when needed [#455](https://github.com/xBimTeam/XbimEssentials/issues/455)
 - Removed support for .NET Framework targets prior to net472 - now out of support by Microsoft
 - Removed targeting of .NET 3.1 (Out of support, but can still be used via netstandard2.0)
 - Removed Default Microsoft.Extensions.Logging implementation - now requires explicit setup via Xbim.Common.Configuration.XbimServices
+
+- Removed explicit `net6.0` target from all project files. Consumers should use net8 or net10 targets where appropriate.
 
 
 ## [v5.1.527] 2019-05-30
