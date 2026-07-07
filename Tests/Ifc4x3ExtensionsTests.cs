@@ -272,7 +272,11 @@ namespace Xbim.Essentials.Tests
         }
 
         [InlineData("USD", "$", "US Dollar")]
+#if NETFRAMEWORK
         [InlineData("GBP", "£", "British Pound", "Pound Sterling")]
+#else
+        [InlineData("GBP", "£", "British Pound", "British Pound")]
+#endif
         [InlineData("EUR", "€", "Euro", "euro")]    // 'euro' since French culture picked up by default
         [InlineData("CAD", "$", "Canadian Dollar")]
         [InlineData("AUD", "$", "Australian Dollar")]

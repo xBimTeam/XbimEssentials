@@ -19,7 +19,7 @@ _[**B**uilding **I**nformation **M**odelling](https://en.wikipedia.org/wiki/Buil
 the .NET platform. This library enables software developers to easily read, write, validate and interrogate data in 
 the buildingSmart [IFC formats](https://en.wikipedia.org/wiki/Industry_Foundation_Classes), using any .NET language. 
 
-As of version 6.0 XbimEssentials includes support for `.netstandard2.0`, `.netstandard2.1`, `.net6.0` and `net8.0`. 
+As of version 6.1 XbimEssentials includes support for `.netstandard2.0`, `.netstandard2.1`, `.net8` and `net10`. 
 Supporting `netstandard2.0` provides support .NET Framework 4.7.2 upwards. 
 Earlier .NET Framework versions may work, but we can't provide any support for them.
 

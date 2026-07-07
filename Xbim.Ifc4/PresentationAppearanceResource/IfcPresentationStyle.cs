@@ -97,10 +97,10 @@ namespace Xbim.Ifc4.PresentationAppearanceResource
 	    }
         #endregion
 
-		#region Custom code (will survive code regeneration)
-		//## Custom code
-        public IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get { return Enumerable.Empty<IIfcSurfaceStyle>(); } }
-		//##
-		#endregion
-	}
+        #region Custom code (will survive code regeneration)
+        //## Custom code
+        public IEnumerable<IIfcSurfaceStyle> SurfaceStyles { get { return this is IIfcSurfaceStyle ? new[] { (IIfcSurfaceStyle)this } : Enumerable.Empty<IIfcSurfaceStyle>(); } }
+        //##
+        #endregion
+    }
 }
