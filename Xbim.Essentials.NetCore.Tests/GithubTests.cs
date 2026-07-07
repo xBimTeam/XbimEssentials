@@ -308,7 +308,35 @@ namespace Xbim.Essentials.NetCore.Tests
             flattenedProperties.Should().NotContainNulls();
         }
 
-     
+        
+
+        [Fact]
+        public void Issue_666()
+        {
+            // SurfaceStyles were not being returned in Ifc4x3, since the IfcPresentationStyleAssignment was removed in 4x3, and the IfcStyledItem.Styles
+            // collection now contains only IfcPresentationStyles directly, and the cross schema mapping was not handling this correctly.
+            var filePath = @"TestFiles/wall_door_columnt_rgb4x3.ifc";
+            using var model = MemoryModel.OpenRead(filePath);
+
+            var styledItemsGroup = model.Instances
+                    .OfType<IIfcStyledItem>()
+                    .Where(s => s.Item != null)
+                    .GroupBy(s => s.Item.EntityLabel);
+            
+            styledItemsGroup.Should().NotBeEmpty();
+            foreach (var styledItemGrouping in styledItemsGroup)
+            {
+                var val = styledItemGrouping.SelectMany(st => st.Styles.SelectMany(s => s.SurfaceStyles)).FirstOrDefault();
+                if (val != null)
+                {
+                    outputHelper.WriteLine($"StyledItem {styledItemGrouping.Key} has SurfaceStyle {val.EntityLabel} : {val.Name}");
+                }
+                styledItemGrouping.SelectMany(st => st.Styles.SelectMany(s => s.SurfaceStyles)).Should().NotBeEmpty();
+            }
+            
+        }
+
+
         private static void InitialiseIfc4Model(MemoryModel model)
         {
             using (var tx = model.BeginTransaction("memory"))

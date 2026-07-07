@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
@@ -13,9 +14,13 @@ namespace Xbim.IO.Tests
 		[TestMethod]
 		public void WhenOpeningFile_UsesCodePageOverride()
 		{
-			// "Wrongly1251Encoded.ifc" - the file with IfcProject.Name containing a one-byte-string encoded using the 
-			// Windows-1251 encoding instead of the ISO-8859-1 encoding.
-			using (var model = IfcStore.Open("TestFiles\\Wrongly1251Encoded.ifc", null, 0, null, XbimDBAccess.Read, 1251)) {
+            // "Wrongly1251Encoded.ifc" - the file with IfcProject.Name containing a one-byte-string encoded using the 
+            // Windows-1251 encoding instead of the ISO-8859-1 encoding.
+
+#if NET6_0_OR_GREATER
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#endif
+            using (var model = IfcStore.Open("TestFiles\\Wrongly1251Encoded.ifc", null, 0, null, XbimDBAccess.Read, 1251)) {
 				var project = model.Instances.OfType<IIfcProject>().Single();
 				Assert.AreEqual("дом", project.Name.ToString());
 			}

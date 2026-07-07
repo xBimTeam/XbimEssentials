@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System.Text;
 using Xbim.IO.Step21;
 using Xunit;
 
@@ -6,6 +7,13 @@ namespace Xbim.Essentials.Tests
 {
     public class XbimP21StringDecoderTests
     {
+
+        public XbimP21StringDecoderTests()
+        {
+#if NET6_0_OR_GREATER
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#endif
+        }
         [InlineData("", "")]
         [InlineData("''", "'")]
         [InlineData("'Acme'", "'Acme'")]
