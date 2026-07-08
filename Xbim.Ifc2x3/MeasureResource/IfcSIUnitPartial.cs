@@ -67,7 +67,7 @@ namespace Xbim.Ifc2x3.MeasureResource
             if (result != null)
                 return result;
 
-            result = new IfcDimensionalExponents(null, -1, true);
+            result = new IfcDimensionalExponents(this.Model, -1, true);
             for (var i = 0; i < 7; i++)
             {
                 result.Parse(i, new PropVal(exponents[i]), null);

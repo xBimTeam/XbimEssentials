@@ -192,27 +192,29 @@ namespace Xbim.Essentials.Tests
         }
         
         [TestMethod]
-        [ExpectedException(typeof(KeyNotFoundException))]
+       
         public void Indexer_GetMissingKey_ThrowsKeyNotFoundException()
         {
             var dictionary = new ChunkedDictionary<int, string>(10);
-            var value = dictionary[999]; // This should throw
+            Assert.ThrowsExactly<KeyNotFoundException>(() => { var value = dictionary[999]; });
         }
         
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void Add_DuplicateKey_ThrowsArgumentException()
         {
             var dictionary = new ChunkedDictionary<int, string>(10);
             dictionary.Add(1, "One");
-            dictionary.Add(1, "One again"); // This should throw
+
+            Assert.ThrowsExactly<ArgumentException>(() => { dictionary.Add(1, "One again"); });
         }
         
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void Init_InvalidChunkSize_ThrowsArgumentException()
         {
-            var dictionary = new ChunkedDictionary<int, string>(10, 11);
+            Assert.ThrowsExactly<ArgumentException>(() => 
+            { 
+                var dictionary = new ChunkedDictionary<int, string>(10, 11);
+            });
         }
         
     }

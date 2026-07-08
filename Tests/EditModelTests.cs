@@ -22,7 +22,7 @@ namespace Xbim.Essentials.Tests
 					txn.Commit();
 				}
 				
-				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
+				Assert.AreEqual("TestingHeaderNotEmpty", model.Header.FileName.Name);
 			}
 
 			using (var model = IfcStore.Create(XbimSchemaVersion.Ifc4, XbimStoreType.EsentDatabase))
@@ -36,7 +36,7 @@ namespace Xbim.Essentials.Tests
 					txn.Commit();
 				}
 				
-				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
+				Assert.AreEqual("TestingHeaderNotEmpty", model.Header.FileName.Name);
 			}
 
 			using (var model = IfcStore.Create(XbimSchemaVersion.Ifc4x1, XbimStoreType.EsentDatabase))
@@ -50,7 +50,7 @@ namespace Xbim.Essentials.Tests
 					txn.Commit();
 				}
 				
-				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
+				Assert.AreEqual("TestingHeaderNotEmpty", model.Header.FileName.Name);
 			}
 		}
 
@@ -68,7 +68,7 @@ namespace Xbim.Essentials.Tests
 					txn.Commit();
 				}
 				
-				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
+				Assert.AreEqual("TestingHeaderNotEmpty", model.Header.FileName.Name);
 			}
 
 			using (var model = IfcStore.Create(XbimSchemaVersion.Ifc4, XbimStoreType.InMemoryModel))
@@ -82,7 +82,7 @@ namespace Xbim.Essentials.Tests
 					txn.Commit();
 				}
 				
-				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
+				Assert.AreEqual("TestingHeaderNotEmpty", model.Header.FileName.Name);
 			}
 
 			using (var model = IfcStore.Create(XbimSchemaVersion.Ifc4x1, XbimStoreType.InMemoryModel))
@@ -96,7 +96,7 @@ namespace Xbim.Essentials.Tests
 					txn.Commit();
 				}
 				
-				Assert.AreEqual(model.Header.FileName.Name, "TestingHeaderNotEmpty");
+				Assert.AreEqual("TestingHeaderNotEmpty", model.Header.FileName.Name);
 			}
 		}
 	}
