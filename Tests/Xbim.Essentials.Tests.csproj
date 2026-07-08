@@ -28,13 +28,13 @@
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="[7.2.0]" /><!-- locked at 7.2.0 to avoid licensing changes of 8.0.0 -->
     <PackageReference Include="MartinCostello.Logging.XUnit" Version="0.7.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.9" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="4.2.3" />
     <PackageReference Include="MSTest.TestFramework" Version="4.2.3" />
     <PackageReference Include="Neovolve.Logging.Xunit" Version="6.3.0" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
     <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.core" Version="2.9.3" />
