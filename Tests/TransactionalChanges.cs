@@ -74,7 +74,7 @@ namespace Xbim.Essentials.Tests
                         pset.HasProperties.Add(model.Instances.New<IfcPropertySingleValue>());
 
                         Assert.IsTrue(changed.SequenceEqual(new[] { "Name", "Description", "HasProperties" }));
-                        Assert.AreEqual(valuesLog.ToString(), "'New name'\r\n$\r\n(#3)\r\n");
+                        Assert.AreEqual("'New name'\r\n$\r\n(#3)\r\n", valuesLog.ToString());
 
                         txn.Commit();
                     }

@@ -43,7 +43,7 @@ namespace Xbim.Essentials.Tests
 
             stream.Seek(0, SeekOrigin.Begin);   // Will be ignored.
 
-            var ex = Assert.ThrowsException<XbimParserException>(() =>  MemoryModel.OpenReadStep21(stream));
+            var ex = Assert.Throws<XbimParserException>(() =>  MemoryModel.OpenReadStep21(stream));
 
             ex.Message.Should().StartWith("IFC Schema could not be read from Header");
 
@@ -104,7 +104,7 @@ namespace Xbim.Essentials.Tests
             // Makes the Stream useless
             stream.DisableBuffering();
             var schema = ModelHelper.GetStepFileSchemaVersion(stream);
-            var ex = Assert.ThrowsException<NotSupportedException>(() => stream.Seek(0, SeekOrigin.Begin));
+            var ex = Assert.ThrowsExactly<NotSupportedException>(() => stream.Seek(0, SeekOrigin.Begin));
 
             ex.Message.Should().Be("Cannot seek when back buffer is disabled");
         }

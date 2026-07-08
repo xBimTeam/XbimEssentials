@@ -23,7 +23,7 @@ namespace Xbim.Essentials.Tests
                     Assert.IsFalse(a4.Purpose.HasValue);
 
                     a3.Purpose = Ifc2x3.ActorResource.IfcAddressTypeEnum.OFFICE;
-                    Assert.AreEqual(a4.Purpose, Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE);
+                    Assert.AreEqual(Ifc4.Interfaces.IfcAddressTypeEnum.OFFICE, a4.Purpose);
 
                     a4.Purpose = null;
                     Assert.IsFalse(a3.Purpose.HasValue);

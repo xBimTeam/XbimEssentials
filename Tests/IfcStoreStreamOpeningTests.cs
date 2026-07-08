@@ -132,7 +132,7 @@ namespace Xbim.Essentials.Tests
             using var nonseekableStream = new NonSeekableStream(fileStream);
             
             var bufferSize = 1; // 1 byte buffer
-            var ex = Assert.ThrowsException<XbimException>(() => IfcStore.Open(nonseekableStream, StorageType.Ifc, XbimModelType.MemoryModel, streamBufferSize: bufferSize));
+            var ex = Assert.Throws<XbimException>(() => IfcStore.Open(nonseekableStream, StorageType.Ifc, XbimModelType.MemoryModel, streamBufferSize: bufferSize));
             
             ex.Message.Should().StartWith("Cannot infer Schema for this model since the header size (");
         }

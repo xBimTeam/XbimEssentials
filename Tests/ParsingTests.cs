@@ -109,7 +109,7 @@ namespace Xbim.Essentials.Tests
                 var inst = store.Instances[582800] as IIfcBuildingStorey;
                 Assert.IsNotNull(inst);
                 var items = inst.ContainsElements.SelectMany(container => container.RelatedElements);
-                Assert.AreEqual(items.Count(), 2, "Should find two items");
+                Assert.AreEqual(2, items.Count(), "Should find two items");
             }
         }
 
@@ -121,7 +121,7 @@ namespace Xbim.Essentials.Tests
             {
                 var role = store.Instances[2] as IIfcActorRole;
                 Assert.IsNotNull(role);
-                Assert.AreEqual(role.Role, IfcRoleEnum.ARCHITECT);
+                Assert.AreEqual(IfcRoleEnum.ARCHITECT, role.Role);
             }
         }
 
@@ -279,7 +279,7 @@ namespace Xbim.Essentials.Tests
             using (var store = IfcStore.Open("TestFiles\\DoubleBackSlashName.ifc"))
             {
                 var mat1 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[417];
-                Assert.AreEqual(mat1.Name.ToString(), @"TextWithEscapedBackslash\MoreText", "String containing escaped backslash is not parsed correctly");
+                Assert.AreEqual(@"TextWithEscapedBackslash\MoreText", mat1.Name.ToString(), "String containing escaped backslash is not parsed correctly");
 
                 var mat2 = (Ifc2x3.MaterialResource.IfcMaterial)store.Instances[418];
                 Assert.IsTrue(mat2.Name.ToString().EndsWith(@"\"), "String ending in escaped backslash is not parsed correctly");

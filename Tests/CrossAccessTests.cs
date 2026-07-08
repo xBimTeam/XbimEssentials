@@ -70,7 +70,7 @@ namespace Xbim.Essentials.Tests
                     //LOUVRE doesn't exist in IFC2x3 but should be persisted using IFC2x3 values
                     var airTerminal = model.Instances.New<IfcAirTerminalType>() as IIfcAirTerminalType;
                     airTerminal.PredefinedType = IfcAirTerminalTypeEnum.LOUVRE;
-                    Assert.AreEqual(airTerminal.PredefinedType, IfcAirTerminalTypeEnum.LOUVRE);
+                    Assert.AreEqual(IfcAirTerminalTypeEnum.LOUVRE, airTerminal.PredefinedType);
                     Assert.IsTrue(((IfcAirTerminalType)airTerminal).PredefinedType == Ifc2x3.HVACDomain.IfcAirTerminalTypeEnum.USERDEFINED);
                     Assert.IsTrue(airTerminal.ElementType == "LOUVRE");
 

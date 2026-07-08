@@ -47,7 +47,7 @@ namespace Xbim.Essentials.Tests
             using (var ifcStore = IfcStore.Open(fedName))
             {
                 Assert.IsTrue(ifcStore.IsFederation, "Federation not created");
-                Assert.AreEqual(ifcStore.ReferencedModels.Count(), 2, "Should have two federated models.");
+                Assert.AreEqual(2, ifcStore.ReferencedModels.Count(), "Should have two federated models.");
                 foreach (var ifcStoreReferencedModel in ifcStore.ReferencedModels)
                 {
                     Debug.WriteLine(ifcStoreReferencedModel.Name);

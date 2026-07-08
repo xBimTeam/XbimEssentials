@@ -75,7 +75,7 @@ namespace Xbim.Essentials.Tests
 
                 foreach (var property in properties)
                 {
-                    Assert.IsNotNull(property.Name);
+                    Assert.IsNotNull(property.Name.Value);
                     var single = property as IIfcPropertySingleValue;
                     if(single != null)
                         Assert.IsNotNull(single.NominalValue);

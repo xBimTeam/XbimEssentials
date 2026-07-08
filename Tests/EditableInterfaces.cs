@@ -66,7 +66,7 @@ namespace Xbim.Essentials.Tests
 
                     //enumeration
                     oh.ChangeAction = IfcChangeActionEnum.MODIFIED;
-                    Assert.AreEqual(oh.ChangeAction, IfcChangeActionEnum.MODIFIED);
+                    Assert.AreEqual(IfcChangeActionEnum.MODIFIED, oh.ChangeAction);
 
                     //non-existing defined type
                     var layer = model.Instances.New<IfcMaterialLayer>() as IIfcMaterialLayer;
@@ -83,7 +83,7 @@ namespace Xbim.Essentials.Tests
 
                     //non-existing enumeration
                     wall.PredefinedType = IfcWallTypeEnum.POLYGONAL;
-                    Assert.AreEqual(wall.PredefinedType, IfcWallTypeEnum.POLYGONAL);
+                    Assert.AreEqual(IfcWallTypeEnum.POLYGONAL, wall.PredefinedType);
                     Assert.IsTrue(extendedChanges > 0);
                     extendedChanges = 0;
 
