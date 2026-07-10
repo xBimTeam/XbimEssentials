@@ -31,18 +31,6 @@ namespace Xbim.Ifc4x3.GeometricModelResource
 					t => new MeasureResource.IfcLengthMeasure(t));
 			} 
 		}
-
-		[CrossSchemaAttribute(typeof(IIfcCartesianPointList3D), 2)]
-		IItemSet<Xbim.Ifc4.MeasureResource.IfcLabel> IIfcCartesianPointList3D.TagList 
-		{ 
-			get
-			{
-			
-				return new Common.Collections.ProxyValueSet<MeasureResource.IfcLabel, Ifc4.MeasureResource.IfcLabel>(TagList, 
-					s => new Ifc4.MeasureResource.IfcLabel(s), 
-					t => new MeasureResource.IfcLabel(t));
-			} 
-		}
 	//## Custom code
 	//##
 	}

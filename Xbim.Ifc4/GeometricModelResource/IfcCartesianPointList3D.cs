@@ -27,7 +27,6 @@ namespace Xbim.Ifc4.Interfaces
 	public partial interface @IIfcCartesianPointList3D : IIfcCartesianPointList
 	{
 		IItemSet<IItemSet<IfcLengthMeasure>> @CoordList { get; }
-		IItemSet<IfcLabel> @TagList { get; }
 	
 	}
 }
@@ -41,22 +40,17 @@ namespace Xbim.Ifc4.GeometricModelResource
 		#region IIfcCartesianPointList3D explicit implementation
 		IItemSet<IItemSet<IfcLengthMeasure>> IIfcCartesianPointList3D.CoordList { 
 			get { return @CoordList; } 
-		}	
-		IItemSet<IfcLabel> IIfcCartesianPointList3D.TagList { 
-			get { return @TagList; } 
-		}	
+		}		
 		#endregion
 
 		//internal constructor makes sure that objects are not created outside of the model/ assembly controlled area
 		internal IfcCartesianPointList3D(IModel model, int label, bool activated) : base(model, label, activated)  
 		{
 			_coordList = new ItemSet<IItemSet<IfcLengthMeasure>>( this, 0,  1);
-			_tagList = new OptionalItemSet<IfcLabel>( this, 0,  2);
 		}
 
 		#region Explicit attribute fields
 		private readonly ItemSet<IItemSet<IfcLengthMeasure>> _coordList;
-		private readonly OptionalItemSet<IfcLabel> _tagList;
 		#endregion
 	
 		#region Explicit attribute properties
@@ -68,16 +62,6 @@ namespace Xbim.Ifc4.GeometricModelResource
 				if(_activated) return _coordList;
 				Activate();
 				return _coordList;
-			} 
-		}	
-		[EntityAttribute(2, EntityAttributeState.Optional, EntityAttributeType.List, EntityAttributeType.None, new int [] { 1 }, new int [] { -1 }, 4)]
-		public IOptionalItemSet<IfcLabel> @TagList 
-		{ 
-			get 
-			{
-				if(_activated) return _tagList;
-				Activate();
-				return _tagList;
 			} 
 		}	
 		#endregion
@@ -96,7 +80,7 @@ namespace Xbim.Ifc4.GeometricModelResource
 						.InternalAdd((IfcLengthMeasure)(value.RealVal));
 					return;
 				case 1: 
-					_tagList.InternalAdd(value.StringVal);
+					//_tagList.InternalAdd(value.StringVal);
 					return;
 				default:
 					throw new XbimParserException(string.Format("Attribute index {0} is out of range for {1}", propIndex + 1, GetType().Name.ToUpper()));
