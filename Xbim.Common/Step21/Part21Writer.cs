@@ -264,7 +264,7 @@ namespace Xbim.IO.Step21
                 if (realType != propType)
                 //we have a type but it is a select type use the actual value but write out explicitly
                 {
-                    output.Write(realType.Name.ToUpper());
+                    output.Write(realType.Name.ToUpperInvariant());
                     output.Write('(');
                     WriteProperty(realType, propVal, output, map, metadata);
                     output.Write(')');
@@ -359,7 +359,7 @@ namespace Xbim.IO.Step21
             else if (pInfoType == typeof(Int16) || pInfoType == typeof(Int32) || pInfoType == typeof(Int64))
                 output.Write(pVal.ToString());
             else if (pInfoType.GetTypeInfo().IsEnum) //convert enum
-                output.Write(".{0}.", pVal.ToString().ToUpper());
+                output.Write(".{0}.", pVal.ToString().ToUpperInvariant());
             else if (pInfoType == typeof(bool))
             {
                 if (pVal != null)

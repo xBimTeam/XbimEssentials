@@ -191,7 +191,7 @@ namespace Xbim.IO
                 //we have a type but it is a select type use the actual value but write out explicitly
                 {
                     entityWriter.Write(Convert.ToByte(P21ParseAction.BeginNestedType));
-                    entityWriter.Write(realType.Name.ToUpper());
+                    entityWriter.Write(realType.Name.ToUpperInvariant());
                     entityWriter.Write(Convert.ToByte(P21ParseAction.BeginList));
                     WriteProperty(realType, propVal, entityWriter, metadata);
                     entityWriter.Write(Convert.ToByte(P21ParseAction.EndList));
