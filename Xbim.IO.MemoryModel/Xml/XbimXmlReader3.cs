@@ -394,7 +394,7 @@ namespace Xbim.IO.Xml
         {
             ExpressType expressType;
             var xmlEntity = _currentNode as XmlEntity;
-            if (xmlEntity != null && !_metadata.TryGetExpressType(elementName.ToUpper(), out expressType))
+            if (xmlEntity != null && !_metadata.TryGetExpressType(elementName.ToUpperInvariant(), out expressType))
             {
                 var t = _metadata.ExpressType(xmlEntity.Entity);
 
@@ -423,14 +423,14 @@ namespace Xbim.IO.Xml
 
         private bool IsIfcType(string elementName, out ExpressType expressType)
         {
-            var ok = _metadata.TryGetExpressType(elementName.ToUpper(), out expressType);
+            var ok = _metadata.TryGetExpressType(elementName.ToUpperInvariant(), out expressType);
             if (!ok)
             {
 
                 if (elementName.Contains("-wrapper") && elementName.StartsWith(_expressNamespace) == false) // we have an inline type definition
                 {
                     var inputName = elementName.Substring(0, elementName.LastIndexOf("-", StringComparison.Ordinal));
-                    ok = _metadata.TryGetExpressType(inputName.ToUpper(), out expressType);
+                    ok = _metadata.TryGetExpressType(inputName.ToUpperInvariant(), out expressType);
                 }
             }
             return ok && typeof(IExpressValueType).GetTypeInfo().IsAssignableFrom(expressType.Type);
@@ -477,7 +477,7 @@ namespace Xbim.IO.Xml
 
         private bool IsIfcEntity(string elementName, out ExpressType expressType)
         {
-            return _metadata.TryGetExpressType(elementName.ToUpper(), out expressType);
+            return _metadata.TryGetExpressType(elementName.ToUpperInvariant(), out expressType);
         }
 
         private void EndElement(XmlReader input, XmlNodeType prevInputType, string prevInputName, out IPersistEntity writeEntity)

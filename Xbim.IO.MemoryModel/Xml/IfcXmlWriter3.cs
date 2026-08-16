@@ -328,7 +328,7 @@ namespace Xbim.IO.Xml
                     }
                     else
                         output.WriteStartElement(propName);
-                    output.WriteValue(propVal.ToString().ToLower());
+                    output.WriteValue(propVal.ToString().ToLowerInvariant());
                 }
                 else if (pInfoType.GetTypeInfo().UnderlyingSystemType == typeof(Boolean))
                 {
