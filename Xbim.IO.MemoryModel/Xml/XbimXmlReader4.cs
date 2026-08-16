@@ -215,12 +215,12 @@ namespace Xbim.IO.Xml
         private ExpressType GetExpresType(XmlReader input)
         {
             //type defined by xml attribute has always a priority over the name of the element
-            var typeName = (input.GetAttribute("type", _xsi) ?? input.LocalName).ToUpper();
+            var typeName = (input.GetAttribute("type", _xsi) ?? input.LocalName).ToUpperInvariant();
             if (_metadata.TryGetExpressType(typeName, out ExpressType expType))
                 return expType;
 
             //try to replace WRAPPER keyword
-            typeName = input.LocalName.ToUpper();
+            typeName = input.LocalName.ToUpperInvariant();
             if (!typeName.Contains("-")) return null;
 
             typeName = typeName.Replace("-WRAPPER", "");
