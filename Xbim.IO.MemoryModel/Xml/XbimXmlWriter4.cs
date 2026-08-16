@@ -342,7 +342,7 @@ namespace Xbim.IO.Xml
                 if (pInfoType.GetTypeInfo().IsEnum) //convert enum
                 {
                     output.WriteStartElement(propName);
-                    pValue = propVal.ToString().ToLower();
+                    pValue = propVal.ToString().ToLowerInvariant();
                 }
                 else if (pInfoType.GetTypeInfo().UnderlyingSystemType == typeof(Boolean))
                 {

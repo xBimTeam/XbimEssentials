@@ -452,7 +452,7 @@ namespace Xbim.Common.Step21
 
         public StepFileSchema(XbimSchemaVersion schemaVersion)
         {
-            _schemas.Add(schemaVersion.ToString().ToUpper());
+            _schemas.Add(schemaVersion.ToString().ToUpperInvariant());
             Init();
         }
 
