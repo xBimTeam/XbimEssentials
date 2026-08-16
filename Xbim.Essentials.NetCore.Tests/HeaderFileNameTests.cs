@@ -31,6 +31,16 @@ namespace Xbim.Essentials.NetCore.Tests
         }
 
         [Fact]
+        public void MemoryModelProvider_preserves_header_file_name()
+        {
+            var provider = new MemoryModelProvider();
+
+            using var model = provider.Open(TestFile, XbimSchemaVersion.Ifc2X3);
+
+            model.Header.FileName.Name.Should().Be(HeaderFileName);
+        }
+
+        [Fact]
         public void HeuristicModelProvider_preserves_header_file_name()
         {
             var provider = new HeuristicModelProvider();
