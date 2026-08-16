@@ -129,8 +129,14 @@ namespace Xbim.IO.Memory
                         model.LoadXml(path, progDelegate);
                     }
 
-                    FileInfo f = new FileInfo(path);
-                    model.Header.FileName.Name = f.FullName;
+                    if (string.IsNullOrEmpty(model.Header.FileName.Name))
+                    {
+                        // Only fall back to the path on disk when the file itself declares no
+                        // HEADER/FILE_NAME. Historically setting this to the local IFC path is what
+                        // enabled Federations to find their relative child models.
+                        FileInfo f = new FileInfo(path);
+                        model.Header.FileName.Name = f.FullName;
+                    }
                     return model;
                 }
             }
