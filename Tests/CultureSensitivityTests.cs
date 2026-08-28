@@ -95,5 +95,31 @@ namespace Xbim.Essentials.Tests
                 CultureInfo.CurrentCulture = previous;
             }
         }
+
+        [Theory]
+        [InlineData("en-US")]
+        [InlineData("tr-TR")]
+        public void Case_insensitive_property_set_lookup_works_regardless_of_current_culture(string culture)
+        {
+            var previous = CultureInfo.CurrentCulture;
+            try
+            {
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+
+                using var model = new MemoryModel(new EntityFactoryIfc4());
+                using var txn = model.BeginTransaction("psets");
+                var pile = model.Instances.New<Xbim.Ifc4.StructuralElementsDomain.IfcPile>();
+                var pset = model.Instances.New<Xbim.Ifc4.Kernel.IfcPropertySet>(p => p.Name = "Pset_WindowCommon");
+                pile.AddPropertySet(pset);
+
+                // 'i' and 'I' are different letters under the Turkish casing rules, so a
+                // culture-sensitive case-insensitive comparison does not match here
+                Assert.NotNull(pile.GetPropertySet("PSET_WINDOWCOMMON", caseSensitive: false));
+            }
+            finally
+            {
+                CultureInfo.CurrentCulture = previous;
+            }
+        }
     }
 }
