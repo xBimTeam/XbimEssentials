@@ -1,4 +1,5 @@
 using System.Globalization;
+using Xbim.Ifc;
 using Xbim.Ifc4;
 using Xbim.IO.Memory;
 using Xunit;
@@ -26,6 +27,29 @@ namespace Xbim.Essentials.Tests
                 model.LoadXml(@"TestFiles\Dimensions.ifcxml");
 
                 Assert.True(model.Instances.Count > 0);
+            }
+            finally
+            {
+                CultureInfo.CurrentCulture = previous;
+            }
+        }
+
+        [Theory]
+        [InlineData("en-US")]
+        [InlineData("tr-TR")]
+        public void Can_query_OfType_by_type_name_regardless_of_current_culture(string culture)
+        {
+            var previous = CultureInfo.CurrentCulture;
+            try
+            {
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+
+                // a threshold of 0 forces the Esent database store rather than the memory model
+                using var store = IfcStore.Open(@"TestFiles\SampleHouse4.ifc", null, 0);
+
+                // the type name has to contain a lower case 'i' for the Turkish casing to bite:
+                // "IfcWall" upper-cases identically in every culture, "IfcBuilding" does not
+                Assert.NotEmpty(store.Instances.OfType("IfcBuilding", false));
             }
             finally
             {
