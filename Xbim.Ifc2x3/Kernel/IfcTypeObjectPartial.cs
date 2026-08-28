@@ -26,7 +26,7 @@ namespace Xbim.Ifc2x3.Kernel
             if (HasPropertySets == null) return null;
             return caseSensitive ?
                 HasPropertySets.FirstOrDefault<IfcPropertySet>(r => r.Name == pSetName) :
-                HasPropertySets.FirstOrDefault<IfcPropertySet>(r => string.Equals(r.Name.ToString(), pSetName, StringComparison.CurrentCultureIgnoreCase));
+                HasPropertySets.FirstOrDefault<IfcPropertySet>(r => string.Equals(r.Name, pSetName, StringComparison.OrdinalIgnoreCase));
         }
 
         public IfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
@@ -141,7 +141,7 @@ namespace Xbim.Ifc2x3.Kernel
 
             return caseSensitive ?
                 HasPropertySets.FirstOrDefault<IfcElementQuantity>(r => r.Name == pSetName) :
-                HasPropertySets.FirstOrDefault<IfcElementQuantity>(r => r.Name.ToString().ToLower() == pSetName.ToLower());
+                HasPropertySets.FirstOrDefault<IfcElementQuantity>(r => string.Equals(r.Name, pSetName, StringComparison.OrdinalIgnoreCase));
         }
 
 

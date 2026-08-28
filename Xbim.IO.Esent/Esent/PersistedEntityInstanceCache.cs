@@ -2536,7 +2536,7 @@ namespace Xbim.IO.Esent
         internal IEnumerable<IPersistEntity> OfType(string stringType, bool activate)
         {
 
-            var ot = Model.Metadata.ExpressType(stringType.ToUpper());
+            var ot = Model.Metadata.ExpressType(stringType.ToUpperInvariant());
             if (ot == null)
             {
                 // it could be that we're searching for an interface

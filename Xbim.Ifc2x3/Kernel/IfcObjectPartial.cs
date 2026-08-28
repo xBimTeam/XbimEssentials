@@ -98,10 +98,19 @@ namespace Xbim.Ifc2x3.Kernel
         /// <param name="pSetName"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
+
         public IfcPropertySet GetPropertySet(string pSetName, bool caseSensitive = true)
         {
-            return PropertySets.FirstOrDefault(ps=>string.Compare(ps.Name,pSetName,!caseSensitive)==0);
+            return PropertySets.FirstOrDefault(ps => string.Equals(ps.Name, pSetName, Comparison(caseSensitive)));
         }
+
+        // Property set names are IFC identifiers, so a case-insensitive match must be ordinal:
+        // the culture-sensitive comparison treats 'i' and 'I' as different letters under tr-TR.
+        private static StringComparison Comparison(bool caseSensitive)
+        {
+            return caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+        }
+
 
         public IfcPropertySingleValue GetPropertySingleValue(string pSetName, string propertyName)
         {
@@ -208,7 +217,7 @@ namespace Xbim.Ifc2x3.Kernel
         {
             IfcRelDefinesByProperties rel = caseSensitive ?
                 IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name == pSetName && r.RelatingPropertyDefinition is Ifc4.Interfaces.IIfcElementQuantity)
-                : IsDefinedByProperties.FirstOrDefault(r => r.RelatingPropertyDefinition.Name.ToString().ToLower() == pSetName.ToLower() && r.RelatingPropertyDefinition is Ifc4.Interfaces.IIfcElementQuantity);
+                : IsDefinedByProperties.FirstOrDefault(r => string.Equals(r.RelatingPropertyDefinition.Name, pSetName, StringComparison.OrdinalIgnoreCase) && r.RelatingPropertyDefinition is Ifc4.Interfaces.IIfcElementQuantity);
             if (rel != null) return rel.RelatingPropertyDefinition as Ifc4.Interfaces.IIfcElementQuantity;
             return null;
         }
@@ -399,6 +408,7 @@ namespace Xbim.Ifc2x3.Kernel
         Count,
         Weight,
         Time
+
     }
 
 }
