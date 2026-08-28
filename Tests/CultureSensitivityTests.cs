@@ -1,6 +1,8 @@
 using System.Globalization;
 using Xbim.Ifc;
 using Xbim.Ifc4;
+using Xbim.Ifc4.Interfaces;
+using Xbim.Ifc4.MeasureResource;
 using Xbim.IO.Memory;
 using Xunit;
 
@@ -50,6 +52,43 @@ namespace Xbim.Essentials.Tests
                 // the type name has to contain a lower case 'i' for the Turkish casing to bite:
                 // "IfcWall" upper-cases identically in every culture, "IfcBuilding" does not
                 Assert.NotEmpty(store.Instances.OfType("IfcBuilding", false));
+            }
+            finally
+            {
+                CultureInfo.CurrentCulture = previous;
+            }
+        }
+
+        [Theory]
+        [InlineData("en-US")]
+        [InlineData("tr-TR")]
+        public void Imperial_unit_symbol_is_detected_regardless_of_current_culture(string culture)
+        {
+            var previous = CultureInfo.CurrentCulture;
+            try
+            {
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+
+                using var model = new MemoryModel(new EntityFactoryIfc4());
+                using var txn = model.BeginTransaction("unit");
+                var unit = model.Instances.New<IfcConversionBasedUnit>(u =>
+                {
+                    u.Name = "inch";
+                    u.UnitType = IfcUnitEnum.LENGTHUNIT;
+                    u.Dimensions = model.Instances.New<IfcDimensionalExponents>(d =>
+                    {
+                        d.LengthExponent = 1;
+                        d.MassExponent = 0;
+                        d.TimeExponent = 0;
+                        d.ElectricCurrentExponent = 0;
+                        d.ThermodynamicTemperatureExponent = 0;
+                        d.AmountOfSubstanceExponent = 0;
+                        d.LuminousIntensityExponent = 0;
+                    });
+                });
+
+                // "inch".ToUpper() is "İNCH" under tr-TR and does not contain "INCH"
+                Assert.Equal("in", unit.Symbol);
             }
             finally
             {

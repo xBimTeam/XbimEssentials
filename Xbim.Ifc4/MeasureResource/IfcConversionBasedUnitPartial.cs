@@ -1,4 +1,5 @@
-﻿using Xbim.Ifc4.Interfaces;
+﻿using System;
+using Xbim.Ifc4.Interfaces;
 
 namespace Xbim.Ifc4.MeasureResource
 {
@@ -27,16 +28,23 @@ namespace Xbim.Ifc4.MeasureResource
                     if (Dimensions.LengthExponent == 3) //volume
                         pow += '\u00B3'; //((char)0x00B3)add ³
 
-                    if ((name.ToUpper().Contains("FEET")) || (name.ToUpper().Contains("FOOT")))
+                    if (Contains(name, "FEET") || Contains(name, "FOOT"))
                         return "ft" + pow;
 
-                    if (name.ToUpper().Contains("INCH"))
+                    if (Contains(name, "INCH"))
                         return "in" + pow;
 
                     return name + pow;
                 }
                 return name;
             }
+        }
+
+        // Ordinal, case-insensitive: name.ToUpper() is culture sensitive, so under the Turkish
+        // casing rules "inch" upper-cases to "İNCH" and never contains "INCH".
+        private static bool Contains(string name, string token)
+        {
+            return name != null && name.IndexOf(token, StringComparison.OrdinalIgnoreCase) >= 0;
         }
     }
 }
